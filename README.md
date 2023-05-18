@@ -2,7 +2,7 @@
 
 # Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator. If you don't know Docusaurus, please learn more from [Docusaurus website](https://docusaurus.io/).
 
 ### Installation
 
