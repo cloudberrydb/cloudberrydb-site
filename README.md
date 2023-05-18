@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6f2dcedf-68eb-479e-9cf6-5c788d173572/deploy-status)](https://app.netlify.com/sites/cloudberrydb/deploys)
+
 # Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
