@@ -5,7 +5,7 @@ authors: [cloudberrydbteam]
 tags: [database, cloudberrydb]
 ---
 
-Greetings and Welcome to the Cloudberry Database Blog! We are pleased to inform you that our ongoing efforts with regards to the Cloudberry Database open source project have been steadily progressing.
+Greetings and welcome to the Cloudberry Database Blog! We are pleased to inform you that our ongoing efforts with regard to the Cloudberry Database open-source project have been steadily progressing.
 
 
 To keep yourself updated and be informed of the latest news and developments, we recommend following us through the following channels:
