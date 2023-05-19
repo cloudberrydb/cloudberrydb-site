@@ -63,19 +63,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      sidebar: {
-        Docs: [
-          {
-            type: 'category',
-            label: 'introduction',
-            collapsed: false,
-            items: [
-              'intro2',
-              'intro3'
-            ],
-          },
-        ],
-      },
       image: 'img/docusaurus-social-card.jpg',
       announcementBar: {
         id: 'support_us',
