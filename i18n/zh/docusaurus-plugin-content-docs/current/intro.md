@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 ---
+
 # Cloudberry Database 介绍
 
 Cloudberry Database 基于最新的 PostgreSQL14.4 内核（2022 年中发布），是当前最先进的成熟开源 MPP 数据库之一，具备高并发、高可用等多种特性，可以对复杂任务进行快速高效计算，以满足海量数据管理和计算的需求，目前在多个领域都有着广泛应用。

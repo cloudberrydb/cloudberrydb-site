@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Cloudberry Database部署手册
 
 ## Cloudberry Database系统架构
