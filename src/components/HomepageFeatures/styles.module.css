@@ -1,0 +1,28 @@
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 2rem 0;
+}
+.wrapper:nth-child(odd) {
+  background: var(--wdio-dark-section-background-color);
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.card {
+  padding: 18px 0;
+}
+
+.cardTitle {
+  text-align: center;
+  margin-bottom: 24px;
+}
