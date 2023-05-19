@@ -6,10 +6,7 @@ Learn about Cloudberry Database in just a few minutes.
 
 ## Overview
 
-Cloudberry Database is an enterprise-level cloud-native database product that's highly elastic, performant, 
-available, and cost-effective. It helps enterprise users handle and analyze large datasets of terabytes and 
-petabytes with ease. HashData's vision is to break down the entry barriers for enterprises to build big data 
-systems and bring out the complete potential of big data resources.
+Cloudberry Database is an enterprise-level cloud-native database product that's highly elastic, performant, available, and cost-effective. It helps enterprise users handle and analyze large datasets of terabytes and petabytes with ease. HashData's vision is to break down the entry barriers for enterprises to build big data systems and bring out the complete potential of big data resources.
 
 Cloudberry Database's core technical features include:
 
