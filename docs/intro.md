@@ -21,11 +21,7 @@ Greenplum database.
 - Easily integrates with common ETL and BI tools.
 - Supports hybrid and integrated data warehouse and data lake solutions.
 
-Cloudberry Database consists of two main modules: a user module and a management module. The top layer of the 
-user module is an independent metadata service layer, the middle is a stateless computing layer, and the 
-bottom layer is a shared data storage layer. The management module incorporates the management console (Cloud 
-Manager) that manages all metadata clusters and computing clusters, including cluster creation, startup and 
-shutdown, and resource management, monitoring, and alerts.
+Cloudberry Database consists of two main modules: a user module and a management module. The top layer of the user module is an independent metadata service layer, the middle is a stateless computing layer, and the bottom layer is a shared data storage layer. The management module incorporates the management console (Cloud Manager) that manages all metadata clusters and computing clusters, including cluster creation, startup and shutdown, and resource management, monitoring, and alerts.
 
 ## Advantages
 
