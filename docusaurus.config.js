@@ -65,10 +65,16 @@ const config = {
     ({
       sidebar: {
         Docs: [
-          'intro',
-          'intro2',
-          'intro3',
-        ]
+          {
+            type: 'category',
+            label: 'introduction',
+            collapsed: false,
+            items: [
+              'intro2',
+              'intro3'
+            ],
+          },
+        ],
       },
       image: 'img/docusaurus-social-card.jpg',
       announcementBar: {
