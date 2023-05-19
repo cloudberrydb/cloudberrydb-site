@@ -1,4 +1,8 @@
-
+---
+id: intro
+title: Intro
+sidebar_position: 1
+---
 
 Learn about Cloudberry Database in just a few minutes.
 
