@@ -1,5 +1,6 @@
 ---
-sidebar_position: 1
+id: cbdb-overview
+title: Cloudberry DataBase Overview
 ---
 
 Learn about Cloudberry Database in just a few minutes.

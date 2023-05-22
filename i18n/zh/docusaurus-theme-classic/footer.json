@@ -9,7 +9,7 @@
   },
   "link.item.label.Docs": {
     "message": "文档",
-    "description": "The label of footer link with label=Docs linking to /docs/intro"
+    "description": "The label of footer link with label=Docs linking to /docs/cbdb-overview"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",

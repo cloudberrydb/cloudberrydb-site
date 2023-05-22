@@ -2,5 +2,9 @@
   "version.label": {
     "message": "下一版",
     "description": "The label for version current"
+  },
+  "sidebar.docsbars.category.Deployment Guides": {
+    "message": "部署指南",
+    "description": "The label for category deployment guides in sidebar docs"
   }
 }
