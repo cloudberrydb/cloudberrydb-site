@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+id: intro
+title: Cloudberry Database 介绍
 ---
 
 # Cloudberry Database 介绍

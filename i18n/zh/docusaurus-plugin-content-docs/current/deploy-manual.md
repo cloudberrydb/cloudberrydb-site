@@ -1,6 +1,6 @@
 ---
 id: deploy-manual
-title: 部署手册
+title: Cloudberry Database 部署手册
 ---
 
 # Cloudberry Database 部署手册

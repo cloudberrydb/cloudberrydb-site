@@ -1,7 +1,6 @@
 ---
 id: intro
-title: Intro
-sidebar_position: 1
+title: CloudBerry DataBase Overview
 ---
 
 Learn about Cloudberry Database in just a few minutes.
