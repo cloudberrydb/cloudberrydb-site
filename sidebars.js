@@ -14,13 +14,13 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
 
-  docsbars: ['cbdb-overview',
+  docsbars: ['cbdb-overview'
 
-  {
-    type: 'category',
-    label: 'Deployment Guides',
-    items: ['cbdb-op-deploy-guide']
-  },
+  // {
+  //   type: 'category',
+  //   label: 'Deployment Guides',
+  //   items: ['cbdb-op-deploy-guide']
+  // },
 
   ]
 }
