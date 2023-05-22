@@ -5,11 +5,11 @@ title: 部署手册
 
 # Cloudberry Database 部署手册
 
-## Cloudberry Database系统架构
+## Cloudberry Database 系统架构
 
-Cloudberry Database是一种大规模并行处理（MPP）数据库服务器，其架构特别针对管理大规模分析型数据仓库以及商业智能工作负载而设计。
+Cloudberry Database 是一种大规模并行处理（MPP）数据库服务器，其架构特别针对管理大规模分析型数据仓库以及商业智能工作负载而设计。
 
-MPP（也被称为 shared nothing 架构）指有两个或者更多个处理器协同执行一个操作的系统，每一个处理器都有其自己的内存、操作系统和磁盘。Cloudberry Database使用这种高性能系统架构来分布数 TB/PB 级数据仓库的负载并且能够使用系统的所有资源并行处理一个查询。
+MPP（也被称为 shared nothing 架构）指有两个或者更多个处理器协同执行一个操作的系统，每一个处理器都有其自己的内存、操作系统和磁盘。Cloudberry Database 使用这种高性能系统架构来分布数 TB/PB 级数据仓库的负载并且能够使用系统的所有资源并行处理一个查询。
 
 Cloudberry Database 是在 PostgreSQL 和 Greenplum Database 的基础上对系统架构和运行实现上面进行了大量深度的优化。但在查询接口（包括使用习惯）以及底层数据文件存储格式和访问协议方面，我们保持与开源系统一致。这一方面意味着用户可以充分利用已有的 SQL 技能和在 BI 和 ETL 工具方面的投入；另一方面意味着使用 Cloudberry Database完全没有应用和数据绑架的风险。
 
@@ -55,9 +55,11 @@ Cloudberry Database整套系统包含的组件如下：
 </tbody>
 </table>
 
-> **注意：**
->
-> CloudMgr 云管平台为容器化部署。
+::: note 注意
+
+CloudMgr 云管平台为容器化部署。
+
+:::
 
 ## 硬件需求
 
