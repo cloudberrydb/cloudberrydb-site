@@ -64,7 +64,7 @@ CloudMgr 云管平台为容器化部署。
 
 ## 硬件需求
 
-Cloudberry Database支持 Intel_X86、海光_X86、ARM_鲲鹏等架构的物理服务器。
+Cloudberry Database支持 Intel\_X86、海光\_X86、ARM\_鲲鹏等架构的物理服务器。
 
 主机数量需求参考下表：
 
