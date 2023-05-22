@@ -1,6 +1,6 @@
 ---
-id: intro
-title: Cloudberry Database 介绍
+id: cbdb-overview
+title: 产品介绍
 ---
 
 # Cloudberry Database 介绍

@@ -1,5 +1,5 @@
 ---
-id: intro
+id: cbdb-overview
 title: CloudBerry DataBase Overview
 ---
 

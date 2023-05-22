@@ -1,9 +1,9 @@
 ---
-id: deploy-manual
-title: Cloudberry Database 部署手册
+id: cbdb-op-deploy-guide
+title: Cloudberry Database 本地部署指南
 ---
 
-# Cloudberry Database 部署手册
+# Cloudberry Database 本地部署指南
 
 ## Cloudberry Database 系统架构
 
