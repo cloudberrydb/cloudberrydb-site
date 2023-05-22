@@ -44,7 +44,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'http://github.com/cloudberrydb/cloudberrydb-site',
+            'http://github.com/cloudberrydb/cloudberrydb-site/blob/main/',
         },
         blog: {
           showReadingTime: false,
@@ -94,7 +94,7 @@ const config = {
                 type: 'html',
                 value: '<hr style="margin: 0.3rem 0;">',
             },{
-              href: 'https://github.com/cloudberrydb/cloudberrydb-site/',
+              href: 'https://github.com/cloudberrydb/cloudberrydb-site/blob/main/',
               label: 'Help Us Translate',
             }]
           },{
