@@ -6,6 +6,6 @@ This document introduces how to deploy Cloudberry Database in you local (on-prem
 
 :::note
 
-The English version of this document is currently on the way. Please stay watching, or see the [Chinese version](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-deploy-guide.md).
+The English version of this document is currently on the way. Please stay watching, or see the Chinese version.
 
 :::
