@@ -4,7 +4,7 @@ title: 本地部署指南
 
 # 本地部署指南
 
-本文档介绍如何在本地 (On-Premises) 环境 中部署 Cloudberry Database。
+本文档介绍如何在本地 (On-Premises) 环境中部署 Cloudberry Database。
 
 ## Cloudberry Database 系统架构
 
