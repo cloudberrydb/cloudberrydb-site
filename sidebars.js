@@ -14,7 +14,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
 
-  docsSidebar: ['cbdb-overview','cbdb-op-deploy-guide'],
+  docsbar: ['cbdb-overview','cbdb-op-deploy-guide'],
 };
 
 module.exports = sidebars;

@@ -1,6 +1,6 @@
 ---
 id: cbdb-overview
-title: CloudBerry DataBase Overview
+title: Cloudberry DataBase Overview
 ---
 
 Learn about Cloudberry Database in just a few minutes.
