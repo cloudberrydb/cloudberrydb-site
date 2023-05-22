@@ -14,7 +14,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
 
-  en_docs: ['intro'],
+  docs: ['intro','deploy-manual'],
 };
 
 module.exports = sidebars;

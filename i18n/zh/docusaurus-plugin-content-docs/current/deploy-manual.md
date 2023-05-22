@@ -1,8 +1,9 @@
 ---
-sidebar_position: 1
+id: deploy-manual
+title: 部署手册
 ---
 
-# Cloudberry Database部署手册
+# Cloudberry Database 部署手册
 
 ## Cloudberry Database系统架构
 
