@@ -14,7 +14,15 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
 
-  docs: ['cbdb-overview', 'cbdb-op-deploy-guide'],
-};
+  docsbars: ['cbdb-overview',
+
+  {
+    type: 'category',
+    label: 'Deployment Guides',
+    items: ['cbdb-op-deployment-guide']
+  },
+
+  ]
+}
 
 module.exports = sidebars;
