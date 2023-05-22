@@ -19,7 +19,7 @@ const sidebars = {
   {
     type: 'category',
     label: 'Deployment Guides',
-    items: ['cbdb-op-deployment-guide']
+    items: ['cbdb-op-deploy-guide']
   },
 
   ]
