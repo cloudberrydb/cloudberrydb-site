@@ -55,7 +55,7 @@ Cloudberry Database整套系统包含的组件如下：
 </tbody>
 </table>
 
-::: note 注意
+:::note 注意
 
 CloudMgr 云管平台为容器化部署。
 
