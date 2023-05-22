@@ -1,5 +1,4 @@
 ---
-id: cbdb-op-deploy-guide
 title: 本地部署指南
 ---
 

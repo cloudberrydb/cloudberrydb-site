@@ -1,5 +1,4 @@
 ---
-id: cbdb-op-deploy-guide
 title: Local Deployment Guide
 ---
 
