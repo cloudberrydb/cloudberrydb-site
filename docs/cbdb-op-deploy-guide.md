@@ -6,6 +6,6 @@ This document introduces how to deploy Cloudberry Database in you local (on-prem
 
 :::note
 
-The English version of this document is currently on the way. Please stay watching, or see the Chinese version.
+The English version of this document is currently on the way. Please stay watching.
 
 :::
