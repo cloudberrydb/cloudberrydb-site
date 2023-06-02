@@ -152,6 +152,10 @@ const config = {
                 label: 'Youtube',
                 href: 'https://youtube.com/@cloudberrydb',
               },
+              {
+                label: 'Code of Conduct',
+                href: '/community/coc',
+              },
             ],
           },
         ],
