@@ -57,7 +57,8 @@ const config = {
   ],
 
   scripts: [
-    '/js/ribbons.js'
+    '/js/ribbons.js',
+    'http://js.hs-scripts.com/39864506.js',
   ],
 
   themeConfig:
