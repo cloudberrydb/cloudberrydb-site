@@ -10,7 +10,7 @@ const config = {
   title: 'Cloudberry Database',
   tagline: 'Open Source MPP Database',
   favicon: 'img/logo.svg',
-  url: 'https://cloudberrydb.io',
+  url: 'https://cloudberrydb.org',
   baseUrl: '/',
   organizationName: 'cloudberrydb', // Usually your GitHub org/user name.
   projectName: 'cloudberrydb-site', // Usually your repo name.

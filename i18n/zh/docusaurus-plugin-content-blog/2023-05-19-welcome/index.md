@@ -9,7 +9,7 @@ tags: [database, cloudberrydb]
 
 你可以关注我们获取 Cloudberry Database 的最新消息：
 
-- 官网：[http://cloudberrydb.io](http://cloudberrydb.io)
+- 官网：[http://cloudberrydb.org](http://cloudberrydb.org)
 - Twitter：[http://twitter.com/cloudberrydb](http://twitter.com/cloudberrydb)
 - GitHub：[http://github.com/cloudberrydb](http://github.com/cloudberrydb)
 - Slack：[https://communityinviter.com/apps/cloudberrydb/welcome](https://communityinviter.com/apps/cloudberrydb/welcome)

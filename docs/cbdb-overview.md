@@ -41,7 +41,7 @@ Our Cloudberry Database's open-source work is ongoing. Detailed and organized do
 
 You may visit the following channels to stay connected:
 
-- Website: [http://cloudberrydb.io](http://cloudberrydb.io)
+- Website: [http://cloudberrydb.org](http://cloudberrydb.org)
 - Twitter: [http://twitter.com/cloudberrydb](http://twitter.com/cloudberrydb)
 - GitHub: [http://github.com/cloudberrydb](http://github.com/cloudberrydb)
 - Slack: [@cloudberrydb](https://communityinviter.com/apps/cloudberrydb/welcome)
