@@ -156,6 +156,10 @@ const config = {
                 label: 'Code of Conduct',
                 href: '/community/coc',
               },
+              {
+                label: 'Brand Guidelines',
+                href: '/community/brand-guide',
+              },
             ],
           },
         ],
