@@ -10,7 +10,7 @@ Greetings and welcome to the Cloudberry Database Blog! We are pleased to inform 
 
 To keep yourself updated and be informed of the latest news and developments, we recommend following us through the following channels:
 
-- Website: [http://cloudberrydb.io](http://cloudberrydb.io)
+- Website: [http://cloudberrydb.org](http://cloudberrydb.org)
 - Twitter: [http://twitter.com/cloudberrydb](http://twitter.com/cloudberrydb)
 - GitHub: [http://github.com/cloudberrydb](http://github.com/cloudberrydb)
 - Slack: [@cloudberrydb](https://communityinviter.com/apps/cloudberrydb/welcome)
