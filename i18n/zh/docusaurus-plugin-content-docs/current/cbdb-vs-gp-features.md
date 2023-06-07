@@ -4,7 +4,7 @@ title: 与 Greenplum 的特性对比
 
 # 与 Greenplum 的特性对比
 
-Cloudberry Database 100% 兼容 Greenplum 操作。你所需的一切 Greenplum 功能，都能在 Cloudberry Database 中找到。
+Cloudberry Database 100% 兼容 Greenplum，能提供所有你需要的 Greenplum 特性。
 
 除此之外，Cloudberry Database 还拥有一些 Greenplum 当前不具备或不支持的特性，详见下文。
 
