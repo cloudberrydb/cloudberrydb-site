@@ -3,6 +3,10 @@
     "message": "下一版",
     "description": "The label for version current"
   },
+  "sidebar.docsbars.category.Introduction": {
+    "message": "产品介绍",
+    "description": "The label for category product introduction in sidebar docs"
+  },
   "sidebar.docsbars.category.Deployment Guides": {
     "message": "部署指南",
     "description": "The label for category deployment guides in sidebar docs"
