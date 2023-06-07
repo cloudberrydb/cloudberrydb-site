@@ -12,7 +12,8 @@ Cloudberry Database 100% 兼容 Greenplum，能提供所有你需要的 Greenplu
 
 :::info 说明
 
-以下表格中，✅ 代表支持，❌ 代表不支持
+- 在以下表格中，✅ 代表支持，❌ 代表不支持。
+- 以下表格中的对比，基于 Greenplum 7.0 Beta.3 版本。 
 
 :::
 
