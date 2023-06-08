@@ -14,7 +14,13 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
 
-  docsbars: ['cbdb-overview'
+  docsbars: [
+
+    {
+      type: 'category',
+      label: 'Introduction',
+      items: ['cbdb-overview','cbdb-vs-gp-features']
+     },
 
   // {
   //   type: 'category',
