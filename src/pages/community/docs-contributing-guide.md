@@ -1,4 +1,4 @@
-# CloudberryDB Documentation Contribution Guide
+# Cloudberry Database Documentation Contribution Guide
 
 ## Code of conduct
 
@@ -6,7 +6,7 @@ We are committed to fostering a welcoming and respectful community. All contribu
 
 ## What contributors can do
 
-Contributors can help improve the CloudberryDB documentation in the following ways:
+Contributors can help improve the Cloudberry Database documentation in the following ways:
 
 - Fix typos, wrong spelling, grammar mistakes, and broken links
 - Correct inaccurate or misleading descriptions
@@ -23,36 +23,38 @@ Here are some of the key files in our documentation repository:
 
 ## How to contribute
 
-> **Note:**
->
-> This guide assumes that you are already familiar with the Git processes, including how to use Git commands or GitHub Desktop to create a Pull Requests.
+:::info
+
+This guide assumes that you are already familiar with the Git processes, including how to use Git commands or GitHub Desktop to create a Pull Request.
+
+:::
 
 ### For simple updates
 
 For simple updates such as typo or link fixing in a single document:
 
 1. Navigate to the target page on the [Cloudberry Database documentation site](https://cloudberrydb.io/docs/cbdb-overview) you wish to update.
-2. Click **Edit this page** or **编辑此页** at the left bottom of the page. This will take you to the GitHub edit page for that file.
+2. Click **Edit this page** at the left bottom of the page. This will take you to the GitHub edit page for that file.
 3. Make your changes in the GitHub editor.
 4. Scroll down to the **Propose changes** section. Enter a short description of your changes in the first field, and a more detailed description in the second field.
 5. Click **Propose changes** to create a pull request.
-6. Sign the Contributor License Agreement as CLAassistent prompts.
+6. Sign the Contributor License Agreement as CLAassistant prompts.
 
 ### For more complex updates or new content
 
 For more complex updates or adding new content in multiple documents:
 
-1. Fork the [CloudberryDB documentation repository](https://github.com/cloudberrydb/cloudberrydb-site).
+1. Fork the [Cloudberry Database site repository](https://github.com/cloudberrydb/cloudberrydb-site).
 2. Clone your forked repository to your local machine.
 3. Create a new branch for your changes.
 4. Make your changes in your local environment.
 5. Commit your changes and push them to your forked repository.
-6. Navigate to the original CloudberryDB documentation repository.
+6. Navigate to the original Cloudberry Database site repository.
 7. Click **New pull request**.
 8. Choose your forked repository's branch in the comparison, and choose the `main` branch for the `cloudberrydb/cloudberrydb-site` repository.
 9. Enter a clear and concise title for your pull request. In the description, explain the purpose of your changes.
 10. Click **Create pull request**.
-11. Sign the Contributor License Agreement as CLAassistent prompts.
+11. Sign the Contributor License Agreement as CLAassistant prompts.
 
 ## Styling
 
@@ -70,11 +72,10 @@ We aim for a clear, concise, and friendly writing style in our documentation. He
 For more details about writing styles, you can read:
 
 - [Google developer documentation style guide](https://developers.google.com/style)
-- [中文技术文档写作风格指南](https://zh-style-guide.readthedocs.io/zh_CN/latest/)
 
 ## PR Review Process
 
-After you submit your PR, it will be reviewed by the CloudberryDB team. We aim to review PRs within a week of submission, but it might take longer depending on the complexity of the changes. We appreciate your patience during this process.
+After you submit your PR, it will be reviewed by the Cloudberry Database team. We aim to review PRs within a week of submission, but it might take longer depending on the complexity of the changes. We appreciate your patience during this process.
 
 Please keep an eye on your PR after submission. You might receive feedback or questions in the PR comments. Addressing these comments promptly will help speed up the review process.
 
@@ -82,5 +83,5 @@ Please keep an eye on your PR after submission. You might receive feedback or qu
 
 If you are considering a major change to the documentation, such as adding a new section or rewriting a large part of it, we recommend the following process:
 
-1. Open an issue in the [CloudberryDB documentation repository](https://github.com/cloudberrydb/cloudberrydb-site) describing your proposed changes. This allows the CloudberryDB team and community to provide feedback before you invest a lot of time in writing.
+1. Open an issue in the [Cloudberry Database site repository](https://github.com/cloudberrydb/cloudberrydb-site) describing your proposed changes. This allows the Cloudberry Database team and community to provide feedback before you invest a lot of time in writing.
 2. Once you have received feedback and agreement on your proposal, follow the contribution process described above to implement your changes and submit a pull request.
