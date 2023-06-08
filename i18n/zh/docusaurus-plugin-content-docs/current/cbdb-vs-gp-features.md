@@ -20,13 +20,13 @@ Cloudberry Database 100% 兼容 Greenplum，能提供所有你需要的 Greenplu
 | 功能名                                   | Cloudberry Database | Greenplum   |
 | ---------------------------------------- | ------------------- | ----------- |
 | 在 `EXPLAIN` 的结果中查看 WAL 的使用信息 | ✅                   | ❌           |
-| 多范围 (multiranges)                     | ✅                   | ❌           |
-| B 树自底向上索引删除                     | ✅                   | ❌           |
+| Multiranges 类型                     | ✅                   | ❌           |
+| B 树自底向上索引清理                     | ✅                   | ❌           |
 | GiST的覆盖索引 (`INCLUDE`)               | ✅                   | ✅（待发布） |
 | `range_agg` 范围类型聚合函数             | ✅                   | ❌           |
 | `CREATE ACCESS METHOD`                   | ✅                   | ✅（待发布） |
 | `TOAST`  表上的 LZ4 压缩支持             | ✅                   | ❌           |
-| JSONB 下标                               | ✅                   | ❌           |
+| JSONB 通过下标读取元素                               | ✅                   | ❌           |
 | 配置复制插槽的最大 WAL 保留              | ✅                   | ❌           |
 | 验证备份的完整性 (`pg_verifybackup`)     | ✅                   | ❌           |
 | 客户端可以要求 SCRAM 通道绑定            | ✅                   | ❌           |
@@ -36,9 +36,9 @@ Cloudberry Database 100% 兼容 Greenplum，能提供所有你需要的 Greenplu
 | COPY FROM Where                          | ✅                   | ❌           |
 | VACUUM / ANALYZE 跳过锁定表              | ✅                   | ❌           |
 | HASH 分区表                              | ✅                   | ❌           |
-| CTE（搜索和循环）                        | ✅                   | ❌           |
-| 过程 OUT 参数                            | ✅                   | ❌           |
-| 外键表的 `CHECK` 约束                    | ✅                   | ❌           |
+| CTE (`SEARCH` 和 `CYCLE`)                       | ✅                   | ❌           |
+| 存储过程 OUT 参数                            | ✅                   | ❌           |
+| 外键表的外键约束                    | ✅                   | ❌           |
 | `pg_terminate_backend` 的超时参数        | ✅                   | ❌           |
 | Master 自动故障转移                      | ✅                   | ❌           |
 | 支持在 Kubernetes 上部署                 | ✅                   | ❌           |
@@ -55,7 +55,7 @@ Cloudberry Database 100% 兼容 Greenplum，能提供所有你需要的 Greenplu
 | 查询流水线                                  | ✅                   | ❌         |
 | BRIN 索引（多最小最大值，bloom）            | ✅                   | ❌         |
 | 查询并行                                    | ✅                   | ❌         |
-| 排序的缩略键                                | ✅                   | ❌         |
+| 基于 Abbreviated Keys 进行排序                                | ✅                   | ❌         |
 | 哈希索引的 WAL 支持                         | ✅                   | ❌         |
 | `postgres_fdw` 聚合下推                     | ✅                   | ❌         |
 | 添加列时无需重写整个表                      | ✅                   | ❌         |
