@@ -32,6 +32,7 @@ For simple updates such as typo or link fixing in a single document:
 3. Make your changes in the GitHub editor.
 4. Scroll down to the **Propose changes** section. Enter a short description of your changes in the first field, and a more detailed description in the second field.
 5. Click **Propose changes** to create a pull request.
+6. Sign the Contributor License Agreement as CLAassistent prompts.
 
 ### For more complex updates or new content
 
@@ -47,6 +48,7 @@ For more complex updates or adding new content in multiple documents:
 8. Choose your forked repository's branch in the comparison, and choose the `main` branch for the `cloudberrydb/cloudberrydb-site` repository.
 9. Enter a clear and concise title for your pull request. In the description, explain the purpose of your changes.
 10. Click **Create pull request**.
+11. Sign the Contributor License Agreement as CLAassistent prompts.
 
 ## Styling
 
