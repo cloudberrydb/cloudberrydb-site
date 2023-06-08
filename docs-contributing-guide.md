@@ -23,6 +23,10 @@ Here are some of the key files in our documentation repository:
 
 ## How to contribute
 
+> **Note:**
+>
+> This guide assumes that you are already familiar with the Git processes, including how to use Git commands or GitHub Desktop to create a Pull Requests.
+
 ### For simple updates
 
 For simple updates such as typo or link fixing in a single document:
