@@ -6,11 +6,7 @@ title: 特性概览
 
 Cloudberry Database 基于最新的 PostgreSQL 14.4 内核，是当前最先进的成熟开源 MPP 数据库之一，具备高并发、高可用等多种特性，可以对复杂任务进行快速高效计算，以满足海量数据管理和计算的需求，目前在多个领域都有着广泛应用。
 
-- 性能优秀： Cloudberry Database 在数据存储、高并发、高可用、线性扩展、反应速度、易用性和性价比等方面显著的优势。进入大数据时代以后，Cloudberry Database 在处理 TB 级别数据量上性能优秀，单机性能明显优于 Hadoop。
-- 语法兼容性强：在功能和语法上，远比 Hadoop 上的 SQL 引擎 Hive 易用，普通用户更加容易上手。
-- 工具完善： Cloudberry Database 有着完善的工具体系，用户无需投入太多时间和精力进行工具改造，适合作为大型数据仓库的解决方案。
-- 部署灵活：Cloudberry Database 支持灵活的部署方式，包括传统的硬件部署，支持多云和跨云部署。
-- 对不同数据类型、数据格式、存储介质都提供完善的支持，多层次地满足用户多方位的需求。
+本文档从总体上介绍 Cloudberry Database 的特性。
 
 ## 多场景高效查询
 
@@ -27,7 +23,7 @@ Cloudberry Database 基于最新的 PostgreSQL 14.4 内核，是当前最先进�
 Cloudberry Database 支持多种不同的存储格式，包括 Heap 存储、AO 行存储、AOCS 列存储，用于不同的应用场景。同时，Cloudberry Database 还支持分区表，用户可以按照某个条件定义表的分区方式，查询时根据查询条件自动过滤不需要查询的子表，提高数据的查询效率。
 
 <details>
-<summary>点击以查看主要数据存储特性</summary>
+<summary>点击以查看详情</summary>
 
 - **均匀的数据分布**：通过 Hash 和 Random 的方式进行数据分布，可以更好地利用磁盘性能并解决 I/O 瓶颈问题。
 - **多种存储类型的选择**：
@@ -47,7 +43,7 @@ Cloudberry Database 支持多种不同的存储格式，包括 Heap 存储、AO 
 Cloudberry Database 加强对用户数据的保护，支持函数加密解密，以及透明数据加密和解密。透明数据加密解密指在用户不感知的情况下，加密解密过程由 Cloudberry Database 内核完成，目前可以支持的数据格式包括 Heap 表、AO 行存储、AOCS 列存储。同时加密算法除了常用的 AES 等算法以外，还特别支持国密算法，用户可以方便的扩展自己的算法到透明数据加密中。
 
 <details>
-<summary>点击查看详情</summary>
+<summary>点击以查看详情</summary>
 
 Cloudberry Database 着重强调数据安全性，提供了全方位的安全保护措施。这些安全特性被设计为满足各种数据库环境需求，并提供多层次的安全防护，包括：
 
@@ -68,7 +64,7 @@ Cloudberry Database 着重强调数据安全性，提供了全方位的安全保
 Cloudberry Database 提供了一系列高效且灵活的数据加载解决方案，以满足各种数据处理需求，包括并行化和持久化的数据加载、支持灵活的数据源和文件格式、集成多款 ETL 工具、支持流式数据加载、提供高性能的数据访问。
 
 <details>
-<summary>点击查看数据加载方案详情</summary>
+<summary>点击以查看详情</summary>
 
 - **并行化和持久化的数据加载**：通过外部表技术，Cloudberry Database 支持大批量并行和持久化的数据加载，实现字符集间的自动转换，例如从 GBK 到 UTF8。这一功能使得数据输入变得更为流畅。
 
@@ -88,7 +84,7 @@ Cloudberry Database 为了确保数据安全和服务的连续性，采取了数
 
 <details>
 
-<summary>点击查看详细信息</summary>
+<summary>点击以查看详情</summary>
 
 - **数据页面的 Checksum**：在底层存储上，Cloudberry Database 使用 Checksum 机制进行坏块检测，保证数据的完整性。
 
@@ -103,7 +99,7 @@ Cloudberry Database 为了确保数据安全和服务的连续性，采取了数
 Cloudberry Database 提供了强大的数据分析功能，使得数据处理、查询和分析变得更加高效，满足各类复杂的数据处理、分析和查询需求。
 
 <details>
-<summary>点击以查看主要的数据分析功能和组件</summary>
+<summary>点击以查看详情</summary>
 
 - **并行优化器和执行器**：Cloudberry Database 内核内置了并行优化器和执行器，不仅能够兼容 PostgreSQL 生态，还支持数据分区裁剪、多种索引技术（包括 BTree，Bitmap，Hash，Brin，GIN等），以及 JIT（表达式即时编译处理）等。
 
