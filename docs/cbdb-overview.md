@@ -109,7 +109,7 @@ Cloudberry Database provides powerful data analysis features. These features mak
 
      - Support for object storage: supports directly loading large-capacity geospatial data from object storage (OSS) into the database.
      - Comprehensive spatial data type support: including geometry, geography, and raster.
-     - Spatio-temporal index: Provides spatio-temporal index technology, which can effectively accelerate space- and time-related queries.
+     - Spatio-temporal index: Provides spatio-temporal index technology, which can effectively accelerate spatial and temporal queries.
      - Complex spatial and geographic calculations: including sphere length calculations as well as spatial aggregation functions (such as contain, cover, intersect).
 
 - **Cloudberry Database text component**: This component supports using ElasticSearch to accelerate file retrieval capabilities. Compared with traditional GIN data text query performance, this component has an order of magnitude improvement. It supports multiple word segmentation, natural language processing, and query result rendering.
