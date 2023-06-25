@@ -29,7 +29,7 @@ title: 使用场景
 - 支持非国产数据库的替换，例如 Oracle、TeraData、Greenplum、Vertical 等。
 - 支持其他类型MPP数据库的替换，例如 Gbase8a、GaussDB 等。
 
-场景六：地理信息系统 (GIS) 应用 (Geographic Information System Applications)
+**场景六：地理信息系统 (GIS) 应用 (Geographic Information System Applications)**
 
 - 在 Cloudberry Database 上构建地理信息系统 (GIS) 应用。
 - 存储和查询地理位置数据，支持空间数据分析、地理编码和地图可视化等功能。
