@@ -1,961 +1,650 @@
 ---
-title: 本地部署指南
+title: 物理机部署指南
 ---
 
-# 本地部署指南
+# 物理机部署指南
 
-本文档介绍如何在本地 (On-Premises) 环境中部署 Cloudberry Database。
+本文档介绍如何在物理机环境中部署 Cloudberry Database。在阅读本文前，你需要先阅读 [Cloudberry Database 物理机部署架构](./cbdb-op-deploy-arch.md) 和 [Cloudberry Database 软硬件配置需求](./cbdb-op-software-hardware.md)。
 
-## Cloudberry Database 系统架构
+:::info 注意
 
-Cloudberry Database 是一种大规模并行处理（MPP）数据库服务器，其架构特别针对管理大规模分析型数据仓库以及商业智能工作负载而设计。
-
-MPP（也被称为 shared nothing 架构）指有两个或者更多个处理器协同执行一个操作的系统，每一个处理器都有其自己的内存、操作系统和磁盘。Cloudberry Database 使用这种高性能系统架构来分布数 TB/PB 级数据仓库的负载并且能够使用系统的所有资源并行处理一个查询。
-
-Cloudberry Database 是在 PostgreSQL 和 Greenplum Database 的基础上对系统架构和运行实现上面进行了大量深度的优化。但在查询接口（包括使用习惯）以及底层数据文件存储格式和访问协议方面，我们保持与开源系统一致。这一方面意味着用户可以充分利用已有的 SQL 技能和在 BI 和 ETL 工具方面的投入；另一方面意味着使用 Cloudberry Database完全没有应用和数据绑架的风险。
-
-![CBDB 架构图](./media/cbdb-arch.png)
-
-Cloudberry Database整套系统包含的组件如下：
-
-<table>
-<thead>
-  <tr>
-    <th>组件缩写</th>
-    <th>子组件名称</th>
-    <th>备注</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td rowspan="2">计算集群</td>
-    <td>控制节点 (Master/Standby)</td>
-    <td>保存元数据，负责管理会话，SQL 解析及执行计划、分发 SQL，返回 SQL执行结果。</td>
-  </tr>
-  <tr>
-    <td>Segment 计算节点</td>
-    <td>保存用户数据，SQL 执行。</td>
-  </tr>
-  <tr>
-    <td rowspan="4">CloudMgr 云管平台</td>
-    <td>监控运维组件</td>
-    <td>包含：ops/VictoriaMetrics/prometheus/grafana</td>
-  </tr>
-  <tr>
-    <td>核心管理组件</td>
-    <td>包含：Account/advisor/region/teleport/webGateway</td>
-  </tr>
-  <tr>
-    <td>公共服务</td>
-    <td>包含：Eureka/config 服务</td>
-  </tr>
-  <tr>
-    <td>存储层</td>
-    <td>持久化存储层：Postgres/etcd</td>
-  </tr>
-</tbody>
-</table>
-
-:::note 注意
-
-CloudMgr 云管平台为容器化部署。
+本文所介绍的部署方法，都基于[自动高可用部署架构](./cbdb-op-deploy-arch.md#自动高可用部署架构)。
 
 :::
 
-## 硬件需求
+:::info 名词解释
 
-Cloudberry Database支持 Intel\_X86、海光\_X86、ARM\_鲲鹏等架构的物理服务器。
+- FTS，全称为 Fault Tolerance Service，即故障恢复节点，为 Cloudberry Database 的高可用服务组件。
+- ETCD：Cloudberry Database 的元数据服务。
+- 混合部署：将 ETCD 和 FTS 集群部署在与数据库节点的同一物理机资源上。
 
-主机数量需求参考下表：
+:::
 
-|  组件   |    最小主机数量    |  高可用部署主机数  |
-|   :---|  :---   |      :----|
-|  管理控制台  |  1   |   3 到 6（3 活部署）   |
-|  计算集群   |  3  |  最少 4 个   |
+对于测试环境，你可以选择以下任一部署模式（点击链接查看对应模式的详细说明）：
 
-ARM_鲲鹏生产环境推荐的物理机配置：
+- [最小化部署模式](#最小化部署模式)：适用于快速验证或者 PoC 测试场景。资源需求小，可用性保障较差。在该部署模式下，ETCD 和 FTS 集群混合方式部署于数据库节点。
+- [单节点部署模式](#单节点部署模式)：适用于研发测试或开源用户试用场景。只需单节点资源，无高可用保障。在该部署模式下，ETCD 和 FTS 集群部署于单节点上。
 
-| 资源类型 | 规格                                     |
-| :-------- | :---------------------------------------- |
-| CPU      | 2 \* 鲲鹏 920<br />32 核 \* 2 物理线程   |
-| 内存     | 256 GB                                   |
-| 网络     | 10 Gbps 光交换以太网 \* 2<br />（bond 后使用） |
-| 磁盘 1   | 480G SAS HDD \* 2 (RAID 1)<br />（系统盘）     |
-| 磁盘 2   | 4T SAS HDD \* 8（RAID 5)<br />（数据盘）       |
-| 阵列卡   | 支持 RAID 1、RAID 5、RAID 10             |
+对于生产环境，你可以选择以下任一部署模式（点击链接查看对应模式的详细说明）：
 
-海光_X86 生产环境推荐的物理机配置：
+- [标准分布式部署模式](#标准分布式部署模式)：适用于生产环境，可用性保障最高。在该模式下，你需要额外的机器资源来独立部署 ETCD 和 FTS 集群。
+- [混合部署模式](#混合部署模式)：适用于生产环境，可用性保障较高，但不如标准分布式部署。在该模式下，ETCD 和 FTS 集群混合部署于数据库节点，无需额外的机器资源。
 
-| 资源类型 | 规格                                     |
-| :-------- | :---------------------------------------- |
-| CPU      | 2 \* HYGON 7390<br />32 核 \* 2 物理线程（双线程 128C）   |
-| 内存     | 512 GB GB                                   |
-| 网络     | 10 Gbps 光交换以太网 \* 2<br />（bond 后使用） |
-| 磁盘 1   | 480G SAS HDD \* 2<br /> (RAID 1)（系统盘）     |
-| 磁盘 2   | 4T SAS HDD \* 8<br />（RAID 5)（数据盘）       |
-| 阵列卡   | 支持 RAID 1、RAID 5、RAID 10             |
+## 测试环境部署
 
-Intel_X86 生产环境推荐的物理机配置：
+:::danger 警告
 
-| 资源类型 | 规格                                     |
-| :-------- | :---------------------------------------- |
-| CPU      | 2 \* HYGON 7390<br />32 核 \* 2 物理线程（双线程 128C）   |
-| 内存     | 512 GB GB                                   |
-| 网络     | 10 Gbps 光交换以太网 \* 2<br />（bond 后使用） |
-| 磁盘 1   | 480G SAS HDD \* 2(RAID 1)<br />（系统盘）     |
-| 磁盘 2   | 4T SAS HDD \* 8 (RAID 5)<br />（数据盘）       |
-| 阵列卡   | 支持 RAID 1、RAID 5、RAID 10             |
+以下部署模式仅适用于测试环境。请勿在生产环境下使用最小化部署和单节点部署。
 
-### 存储需求
+:::
 
-为了避免数据盘在高负载的情况下，影响操作系统正常的 IO 响应。操作系统应当与数据盘挂载到不同的磁盘上。在主机配置允许的情况下，建议使用 2 个独立的 SAS 磁盘作为系统盘(RAID1)，另外 10 块 SAS 磁盘作为数据盘 (RAID5)。建议使用 LVM 逻辑卷管理磁盘，以获取更灵活的磁盘配置。
+### 最小化部署模式
 
-#### 系统盘
+该模式适用于快速验证或者 PoC 测试场景。资源需求小，可用性保障较差。在该部署模式下，你无需使用额外的机器将 FTS 和 ETCD 服务部署为独立的集群，而是将 FTS 和 ETCD 混合部署在数据库的不同节点上。最小化部署的方法如下：
 
-系统盘应当使用独立的磁盘，以避免数据盘高负载时，影响操作系统的运行。建议系统盘为双盘 RAID 1 的配置，系统盘操作系统为 XFS。
+#### 第 1 步：规划部署
 
-#### 数据盘
+建议按照下表来规划待部署的节点：
 
-建议使用 LVM 管理数据盘。经过测试，为每个物理卷创建一个独立的逻辑卷能获得最好的磁盘性能。示例如下：
+| 组件              | 建议的物理机数量 | 说明                                                         |
+| :----------------- | :---------------- | :------------------------------------------------------------ |
+| Master 节点       | 1                |                                                              |
+| Segment 计算节点 | 1                |                                                              |
+| FTS 节点          |                  | FTS 集群支持多节点混合部署，无需单独预留物理机，默认配置 2 节点保证可用性。 |
+| ETCD 元数据节点   | 0                | ETCD 集群支持多节点部署，无需单独预留物理机，节点高可用功能由应用原生支持。 |
 
-```
-pvcreate /dev/vdb
-pvcreate /dev/vdc
-pvcreate /dev/vdd
-vgcreate data /dev/vdb /dev/vdc /dev/vdd
-lvcreate --extents 100%pvs -n data0 data /dev/vdb
-lvcreate --extents 100%pvs -n data1 data /dev/vdc
-lvcreate --extents 100%pvs -n data2 data /dev/vdd
-```
+#### 第 2 步：准备配置文件
 
-数据盘的挂载点应当为 `/data0`，`/data1` … `/dataN`。挂载点名称需要应当连续。数据盘应当使用 XFS 文件系统格式。示例如下：
+:::info 注意
+
+以下部署安装操作均在 `gpadmin` 用户下进行。
+
+:::
+
+1. 编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+
+2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
+
+    ```
+    master
+    segment1
+    ```
+
+3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
+
+    ```
+    segment1
+    ```
+
+4. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
+
+    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，需要配置为 Master 和 Segment 的主机名，ETCD 服务会默认在这两台主机上启动。
+    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+
+    配置文件示例如下：
+
+    ```
+    gp_etcd_endpoints='master:2379,standby:2379,seg1:2379'
+    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
+    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
+    gp_etcd_namespace='default'
+    ```
+
+    :::info 注意
+
+    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
+
+    :::
+
+#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
+
+在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。
 
 ```shell
-mkdir -p /data0 /data1 /data2
-mkfs.xfs /dev/data/data0
-mkfs.xfs /dev/data/data1
-mkfs.xfs /dev/data/data2
-mount /dev/data/data0 /data0/
-mount /dev/data/data1 /data1/
-mount /dev/data/data2 /data2/
+ssh-copy-id -f master
+ssh-copy-id -f seg1
 ```
 
-修改 `/etc/fstab` 文件，确保重启后数据盘能够正常挂载。
+#### 第 4 步：创建数据目录 {#最小化第-4-步}
 
-### 数据交换网络
+1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
 
-#### 网卡配置
+    ```bash
+    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
 
-数据交换网络是用于业务数据传输的网络，对于网络性能和吞吐要求较高。生产环境一般需要两块 10 Gbps 网卡，bond 后作使用。Bond 4 参数建议如下：
+    source /usr/local/cloudberry-db/greenplum_path.sh
+    ```
 
+2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
+
+    ```bash
+    # 在本例中分别为 /data0/primary 和 /data0/mirror
+
+    gpssh -f seg_host -e 'mkdir -p /data0/primary'
+    gpssh -f seg_host -e 'mkdir -p /data0/mirror'
+    ```
+
+3. 在 Master 上创建数据目录。
+
+    ```bash
+    # 在本例中为 /data0/master
+
+    mkdir -p /data0/master
+    ```
+
+4. 在 Master 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
+
+    ```bash
+    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
+    ```
+
+5. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
+
+    ```bash
+    source ~/.bashrc
+    ```
+
+#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
+
+1. 在 Master 节点上，将模板配置文件复制到当前目录。
+
+    ```bash
+    cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
+    ```
+
+2. 修改 `gpinitsystem_config` 文件：
+
+    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `/data0/primary`。
+    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
+    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 3 步的 `/data0/master`。
+
+    修改后的示例配置文件如下：
+
+    ```toml
+    #### Base number by which primary segment port numbers 
+    #### are calculated.
+    PORT_BASE=6000
+    
+    #### File system location(s) where primary segment data directories 
+    #### will be created. The number of locations in the list dictate
+    #### the number of primary segments that will get created per
+    #### physical host (if multiple addresses for a host are listed in 
+    #### the hostfile, the number of segments will be spread evenly across
+    #### the specified interface addresses).
+    declare -a DATA_DIRECTORY=(/data0/primary)
+    
+    #### OS-configured hostname or IP address of the coordinator host.
+    COORDINATOR_HOSTNAME=master
+    
+    #### File system location where the coordinator data directory 
+    #### will be created.
+    COORDINATOR_DIRECTORY=/data0/master
+    
+    #### Port number for the coordinator instance. 
+    COORDINATOR_PORT=5432
+    
+    #### Shell utility used to connect to remote hosts.
+    TRUSTED_SHELL=ssh
+    
+    #### Default server-side character set encoding.
+    ENCODING=UNICODE
+    ```
+
+    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+
+    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
+    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `data0/mirror`。
+
+    修改后的示例配置文件如下：
+
+    ```toml
+    #### Base number by which mirror segment port numbers 
+    #### are calculated.
+    MIRROR_PORT_BASE=17000
+    
+    #### File system location(s) where mirror segment data directories 
+    #### will be created. The number of mirror locations must equal the
+    #### number of primary locations as specified in the 
+    #### DATA_DIRECTORY parameter.
+    declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
+    ```
+
+#### 第 6 步：初始化数据库
+
+使用 `gpinitsystem` 命令初始化数据库。
+
+```bash
+gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 ```
-BONDING_OPTS='mode=4 miimon=100 xmit_hash_policy=layer3+4'
-```
 
-#### 连通性要求
+### 单节点部署模式
 
-管理控制台与数据库主机应当在数据交换网络中连通，如果管理控制台与数据库主机的网络访问关系中有防火墙设备，应当确保 TCP 空闲连接能够保持 12 小时以上。
+单节点部署模式即在本地单节点上部署 FTS 和 ETCD 服务。该模式主要用于研发测试场景，不支持高可用功能，不适用于生产环境。
 
-数据库主机之间、管理控制台主机之间，应当在数据交换网络中连通，且不应当限制TCP 空闲连接时间。
+单机部署模式可在 Cloudberry 数据库安装完成后，直接利用 CBDB 源代码中的gpdemo中的脚本进行部署。在 CloudBerry Database RPM 包安装后，执行以下命令即可。
 
-数据库客户端、访问数据库的应用程序应当与数据库主节点在数据交换网络中连通。应当确保 TCP 空闲连接能够保持 12 小时以上。
+1. 在 `~/.bashrc` 中添加一行 `source` 命令：
 
-#### 默认网关
+    ```shell
+    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
 
-如果主机配置有管理网络，则应当使用数据交换网络的网卡 (bond0) 作为默认网关设备，否则可能导致主机网络流量监控异常、部署失败和性能问题。下面是一个查看默认网关的示例。
+    source /usr/local/cloudberry-db/greenplum_path.sh
+    ```
+
+2. 下载 Cloudberry Database 数据库源码至本地目录：`/home/gpadmin/workspace/cbdb`。
+
+3. 进入 Cloudberry Database 源代码目录。
+
+    ```shell
+    cd /home/gpadmin/workspace/cbdb
+    ```
+
+4. 启动单机版本 Cloudberry Database。
+
+    ```shell
+    make create-demo-cluster
+    ```
+
+## 生产环境部署
+
+### 标准分布式部署模式
+
+该部署模式下，FTS 和 ETCD 集群节点部署在独立的物理机器上。系统可靠性较高，支持 Master/Standby 节点自动切换故障恢复，适用于对高可用性有要求的生产环境。
+
+该模式的部署方法如下：
+
+#### 第 1 步：规划部署
+
+建议按照下表来规划待部署的节点：
+
+| 组件              | 建议的物理机数量 | 说明                                                         |
+| :----------------- | :---------------- | :------------------------------------------------------------ |
+| Master 节点       | 1                |                                                              |
+| Standby 节点 | 1 | Standby 节点用于 Master 节点的热备份。 |
+| Segment 计算节点 |                 | 推荐部署与计算节点数量相同的 Mirror 节点做数据高可用。 |
+| FTS 节点          | 3 | FTS 集群支持多节点独立部署，默认配置 3 节点保证高可用。 |
+| ETCD 元数据节点   | 3               | ETCD 集群支持多节点独立部署，节点高可用功能由应用原生支持。 |
+
+:::info 注意
+
+- 以下部署安装操作均在 `gpadmin` 用户下进行。
+- 建议将 FTS 节点和 ETCD 节点部署在同一台服务器上，以节约资源。
+
+:::
+
+#### 第 2 步：准备配置文件
+
+1. 编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+
+2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
+
+3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
+
+4. 在 Master 节点上创建名为 `fts_service.conf` 的文件，填入所有 FTS 节点的主机名。
+
+    :::note 说明
+
+    为节省硬件资源，FTS 服务不用单独部署集群，建议和 ETCD 服务混合部署在 ETCD 服务器上。
+
+    :::
+
+5. 在 Master 节点上创建名为 `etcd_service.conf` 的文件，填入所有 ETCD 节点的主机名。
+
+6. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
+
+    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，此处需要配置 `etcd_service.conf` 中指定的 ETCD 服务节点主机 `{etcd-service-0}`，`{etcd-service-1}`，`{etcd-service-2}`。ETCD 服务会默认在这三个主机上启动。
+    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+
+    配置文件示例如下：
+
+    ```conf
+    gp_etcd_endpoints='{etcd-service-0}:2379,{etcd-service-1}:2379,{etcd-service-2}:2379'
+    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
+    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
+    gp_etcd_namespace='default'
+    ```
+
+    :::info 注意
+
+    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
+
+    :::
+
+    以部署配置三台 ETCD 主机名 etcd1，etcd2，etcd3 为例：
+
+    ```conf
+    gp_etcd_endpoints='etcd1:2379,etcd2:2379,etcd3:2379'
+    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
+    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
+    gp_etcd_namespace='default'
+    ```
+
+#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
+
+在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。示例如下：
 
 ```shell
-netstat -rn | grep ^0.0.0.0
+ssh-copy-id -f master
+ssh-copy-id -f standby
+ssh-copy-id -f seg1
+ssh-copy-id -f seg2
+ssh-copy-id -f seg3
+ssh-copy-id -f etcd1
+ssh-copy-id -f etcd2
+ssh-copy-id -f etcd3
 ```
 
-#### 交换机
+#### 第 4 步：创建数据目录 {#标准第-4-步}
 
-数据网络交换机的一层到二层的出口带宽不应当低于单机柜最大磁盘 I/O 吞吐能力（以单块 RAID 卡 500 MBps 计算）。建议交换机收敛比为 4:1。当收敛比达到 6:1 时，大多数链路会达到饱和。当收敛比达到 8:1 时开始出现显著丢包。
+1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
 
-## 操作系统
+    ```bash
+    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
 
-### 操作系统版本
+    source /usr/local/cloudberry-db/greenplum_path.sh
+    ```
 
-Cloudberry Database支持操作系统包括：KYLIN V10 SP1 或 SP2，中标麒麟 V7update6，RHEL/CentOS 7.6+，openEuler 20.3 LTS SP2 等。
+2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
 
-### 操作系统配置
+    ```bash
+    # 在本例中分别为 /data0/primary 和 /data0/mirror
 
-#### 主机名称配置
+    gpssh -f seg_host -e 'mkdir -p /data0/primary'
+    gpssh -f seg_host -e 'mkdir -p /data0/mirror'
+    ```
 
-数据库和管理控制台对主机名称命名规则没有强制要求，但是需要满足以下条件：
+3. 在 Master 上创建数据目录。
 
-- 必须是合法的主机名，不得包含非法字符。合法主机名字符包括英文字母、数字和连接符 `-`。下划线 `_` 不是合法字符。
-- 主机名不区分大小写，建议全部使用小写字母。使用大写字母作为主机名，可能会导致 Kerberos 认证失败。
-- 所有主机中，主机名必须唯一，并在 `/etc/hosts` 里写上所有机器。
+    ```bash
+    # 在本例中为 /data0/master
 
-#### 时间同步配置
+    mkdir -p /data0/master
+    ```
 
-应当为所有主机配置时间同步服务，时间同步服务应当随主机启动而启动。应当保证所有主机时间同步。
+4. 在 Standby 节点上创建数据目录。
 
-系统时区应当配置为客户所在时区。中国客户应当设置为东八区：
+    ```bash
+    # 本例中为 /data0/master
 
+    gpssh -h standby -e 'mkdir -p /data0/master'
+    ```
+
+5. 在 Master 和 Standby 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
+
+    ```bash
+    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
+    ```
+
+6. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
+
+    ```bash
+    source ~/.bashrc
+    ```
+
+#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
+
+1. 在 Master 节点上，将模板配置文件复制到当前目录。
+
+    ```bash
+    cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
+    ```
+
+2. 修改 `gpinitsystem_config` 文件：
+
+    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `/data0/primary`。
+    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
+    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 3 步的 `/data0/master`。
+
+    修改后的示例配置文件如下：
+
+    ```toml
+    #### Base number by which primary segment port numbers 
+    #### are calculated.
+    PORT_BASE=6000
+    
+    #### File system location(s) where primary segment data directories 
+    #### will be created. The number of locations in the list dictate
+    #### the number of primary segments that will get created per
+    #### physical host (if multiple addresses for a host are listed in 
+    #### the hostfile, the number of segments will be spread evenly across
+    #### the specified interface addresses).
+    declare -a DATA_DIRECTORY=(/data0/primary)
+    
+    #### OS-configured hostname or IP address of the coordinator host.
+    COORDINATOR_HOSTNAME=master
+    
+    #### File system location where the coordinator data directory 
+    #### will be created.
+    COORDINATOR_DIRECTORY=/data0/master
+    
+    #### Port number for the coordinator instance. 
+    COORDINATOR_PORT=5432
+    
+    #### Shell utility used to connect to remote hosts.
+    TRUSTED_SHELL=ssh
+    
+    #### Default server-side character set encoding.
+    ENCODING=UNICODE
+    ```
+
+    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+
+    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
+    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `data0/mirror`。
+
+    修改后的示例配置文件如下：
+
+    ```toml
+    #### Base number by which mirror segment port numbers 
+    #### are calculated.
+    MIRROR_PORT_BASE=17000
+    
+    #### File system location(s) where mirror segment data directories 
+    #### will be created. The number of mirror locations must equal the
+    #### number of primary locations as specified in the 
+    #### DATA_DIRECTORY parameter.
+    declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
+    ```
+
+#### 第 6 步：初始化数据库
+
+使用 `gpinitsystem` 命令初始化数据库。
+
+```bash
+gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E etcd_service.conf -h seg_host -s standby
 ```
-Asia/Shanghai East China – Beijing,Guangdong,Shanghai,etc.
-```
 
-#### SELinux 与防火墙配置
+### 混合部署模式
 
-应当禁用防火墙和 SELinux 功能，示例如下：
+该模式为 CloudBerry Database FTS、ETCD 服务的外部独立部署模式，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
+
+#### 第 1 步：规划部署
+
+建议按照下表来规划待部署的节点：
+
+| 组件              | 建议的物理机数量 | 说明                                                         |
+| :----------------- | :---------------- | :------------------------------------------------------------ |
+| Master 节点       | 1                |                                                              |
+| Standby 节点 | 1 | Standby 节点用于 Master 节点的热备份。 |
+| Segment 计算节点 | 3 | 推荐部署与计算节点数量相同的 Mirror 节点做数据高可用。数据节点需要根据用户的数据需求，相关硬件（机器挂载盘数量）来确定。 |
+| FTS 节点          | 3 | FTS 集群支持多节点混合部署，无需单独预留物理机，默认配置 3 节点保证高可用。 |
+| ETCD 元数据节点   | 3               | ETCD 集群支持多节点部署，无需单独预留物理机，节点高可用功能由应用原生支持。 |
+
+:::info 注意
+
+- 以下部署安装操作均在 `gpadmin` 用户下进行。
+- 由于 Segment 为计算节点，如果将 ETCD 和 FTS 服务部署在计算节点，在生产环境下可能会有性能相关问题。为避免性能相关问题，建议通过配置文件指定一台额外的物理机 `{host}` 来部署 ETCD 和 FTS 服务，以提升系统可靠性，即 master + standby + {host} 部署。
+
+:::
+
+#### 第 2 步：准备配置文件
+
+1. 编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+
+2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
+
+3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
+
+4. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
+
+    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，此处需要配置为 Master、Standby 和需配置 ETCD 的 Segment 主机名。ETCD 服务会默认在三个主机上启动。
+    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+
+    配置文件示例如下：
+
+    ```conf
+    gp_etcd_endpoints='master:2379,standby:2379,seg1:2379'
+    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
+    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
+    gp_etcd_namespace='default'
+    ```
+
+    :::info 注意
+
+    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
+
+    :::
+
+#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
+
+在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。示例如下：
 
 ```shell
-systemctl stop firewalld
-systemctl disable firewalld
-setenforce 0
-sed -i /etc/selinux/config -e 's/SELINUX=.*/SELINUX=disabled/g'
+ssh-copy-id -f master
+ssh-copy-id -f standby
+ssh-copy-id -f seg1
+ssh-copy-id -f seg2
+ssh-copy-id -f seg3
 ```
 
-#### SSH 配置
+#### 第 4 步：创建数据目录 {#混合第-4-步}
 
-SSH 服务端应当有以下配置（`/etc/ssh/sshd_config`）：
+1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
 
-| 参数                     | 值    | 说明                                 |
-| :------------------------ | :----- | :------------------------------------ |
-| `Port`                   | `22`  | 监听端口                             |
-| `PasswordAuthentication` | `yes` | 允许密码登录（集群初始化后可以变更） |
-| `PermitEmptyPasswords`   | `no`  | 禁止空密码登录                       |
-| `UseDNS`                 | `no`  | 不使用 DNS                           |
+    ```bash
+    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
 
-配置完成后执行 `systemctl restart sshd.service` 重启生效。
-
-#### auditd 审计服务
-
-启用 auditd 服务可能会带来性能问题，表现为主机内核 CPU 使用率接近 100%。
-
-建议关闭 auditd 服务，示例如下：
-
-```
-auditctl -e0
-systemctl disable auditd
-```
-
-#### 内核参数配置
-
-内核参数是关系到数据库稳定运行的重要因素。管理控制台在初始化集群的时候会自动变更内核参数。因此请确认安装操作系统之后，没有人工设置过内核参数。
-
-配置内核参数的脚本参见附件。
-
-#### SSH 免密
-
-CloudMgr 部署机到所有其他服务器需要配置 root 免密，示例如下：
-
-```shell
-ssh-keygen -t rsa
-ssh-copy-id root@192.168.66.154
-```
-
-## 部署规划
-
-| 机器名        | 虚拟机配置      | 操作系统        | 部署规划                         |
-| ------------- | --------------- | --------------- | -------------------------------- |
-| hashdata2x-01 | 8c/16G/50G/200G | 银河麒麟 V10SP2 | CloudMgr 管控与 Standby 混合部署 |
-| hashdata2x-02 | 8c/16G/50G/200G | 银河麒麟 V10SP2 | Master                           |
-| hashdata2x-03 | 8c/16G/50G/200G | 银河麒麟 V10SP2 | Segment                          |
-| hashdata2x-04 | 8c/16G/50G/200G | 银河麒麟 V10SP2 | Segment                          |
-| hashdata2x-05 | 8c/16G/50G/200G | 银河麒麟 V10SP2 | Segment                          |
-| hashdata2x-06 | 8c/16G/50G/200G | 银河麒麟 V10SP2 | Segment                          |
-
-对于物理机部署，建议采用 CloudMgr 管控与 Standby 混合部署，以节约资源。
-
-## 介质准备
-
-将以下 6 个介质下载存放至 CloudMgr 管控机器的 `/root/` 或者 `/data/` 下即可：
-
-- CloudMgr-deploy 部署工具
-- CloudMgr 容器镜像包
-- CloudMgr-offline-repo 离线 yum 源
-- cloudberry-db 安装包
-- database-offline-repo yum 源
-- JDK 1.8 介质
-
-## 部署管理控制台
-
-### 管理控制台架构
-
-管理控制台由若干独立的服务组成，这些服务逻辑上可以分成非持久化存储层、持久化存储层、接入层、公共服务组件、核心管理组件和监控运维组件。
-
-| 组件         | 说明                                                         |
-| ------------ | ------------------------------------------------------------ |
-| 非持久化存储 | 基于 Hazalcast 实现的分布式内存数据结构。提供分布式内存队列、消息队列和字典表结构实现，提供分布式锁实现。用于管理控制台中临时状态数据的存储。 |
-| 持久化存储   | 基于 PostgreSQL 实现的一写多读高可用关系数据库存储系统。用于管理控制台中持久化数据的存储。 |
-| 接入层       | 以 Nginx 实现的负载均衡和基于 Virtual IP Address 实现的高可用接入层。 |
-| 公共服务组件 | 提供全局配置管理、服务注册和服务发现等功能。                 |
-| 核心管理组件 | 管理控制台核心功能，管理数据库集群。                         |
-| 监控运维组件 | 基于 Prometheus、Grafana 等实现的数据库集群监控和运维组件。实现数据库集群的性能、健康状态监控、展示和告警功能。 |
-
-管理控制台采用 3 主机高可用部署。其中 PostgreSQL 采用一主两从的主从高可用架构，并通过 pgpool 实现自动高可用切换和负载均衡。其他控制台组件采用同构三副本多活架构实现高可用。
-
-接入层通过 Nginx 实现四层负载均衡，并通过 VIP 对外提供稳定的接入点。管理控制台部署架构图如下。
-
-![管理控制台部署架构图](./media/cbdb-mgr-arch.png)
-
-## 第 1 步：准备离线安装环境
-
-可以选择管理控制台的任意一台主机作为离线部署主机，或者使用独立的一台主机作为离线部署主机。部署主机对 CPU、内存等硬件资源没有要求，操作系统与其他主机相同。部署主机应当与其他主机在数据交换网络连通。
-
-在部署主机（CloudMgr 节点）上，使用 root 用户完成以下操作。
-
-1. 在 `/root` 目录下，解压以下安装包。
-
-    ```shell
-    tar -xzf cloudmgr-offline-repo.tar.gz
-    tar -xzf cloudmgr-deploy.tar.gz
+    source /usr/local/cloudberry-db/greenplum_path.sh
     ```
 
-2. 准备管理控制台镜像文件。
+2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
 
-    ```shell
-    mkdir /root/cloudmgr-offline-repo/docker/cloudmgr
-    cp cloudmgr-4.5.0-RELEASE-20210916.071152_x86_64.tar.gz /root/cloudmgr-offline-repo/docker/cloudmgr/
+    ```bash
+    # 在本例中分别为 /data0/primary 和 /data0/mirror
+
+    gpssh -f seg_host -e 'mkdir -p /data0/primary'
+    gpssh -f seg_host -e 'mkdir -p /data0/mirror'
     ```
 
-3. 启用离线安装服务。
+3. 在 Master 上创建数据目录。
 
-    1. 修改 `/root/cloudmgr-offline-repo/bootstrap.sh`（只针对 Kylin v10 aarch64 操作系统，其它系统不需要）：
+    ```bash
+    # 在本例中为 /data0/master
 
-        把下图中第 46 行的 `/usr/bin/python3` 改成 `/usr/bin/python2`，把 51、52 行的 `pip` 改成 `pip2`。
-
-        ![bootstrap.sh](./media/cbdb-bootstrap-sh.png)
-
-    2. 执行以下命令：
-
-        ```shell
-        /root/cloudmgr-offline-repo/bootstrap.sh install
-        ```
-
-4. 检查服务是否自启动。
-
-    ```shell
-    systemctl status cloudmgr-repo
+    mkdir -p /data0/master
     ```
 
-### 第 2 步：准备配置文件
+4. 在 Standby 节点上创建数据目录。
 
-1. 编辑 Ansible Hosts 文件。编辑文件 `/root/cloudmgr-deploy/profiles/xxx/hosts`，将文件中所有的 IP 修改为 CloudMgr 服务器的 IP。
+    ```bash
+    # 本例中为 /data0/master
 
-2. 编辑全局配置文件。
-
-    编辑文件 `/root/cloudmgr-deploy/profiles/xxx/group_vars/all.yml`，填入各个组件的默认密码、IP 等信息，参考如下：
-
-    在第一行修改版本信息，按实际填写：
-
-    ```
-    cloudmgr_image_version: 4.16.0-SNAPSHOT-20220830.080339
+    gpssh -h standby -e 'mkdir -p /data0/master'
     ```
 
-    将所有 IP 替换为 CloudMgr 服务器的实际 IP：
+5. 在 Master 和 Standby 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
 
-    ![cloudmgr 实际 IP](./media/cbdb-all-yml.png)
-
-### 第 3 步：CloudMgr 与 Standby 节点混部配置（可选）
-
-CloudMgr 里 Postgres 容器端口会与 Master/Standby 缺省端口冲突（5432）。你可以在创建计算集群时指定 Master/Standby 端口。如果 Master/Standby 坚持使用 5432 端口，则需要修改 CloudMgr 里 Postgres 容器的服务端口映射关系，将 5432 修改为 5431。方法如下：
-
-1. 修改 `/root/cloudmgr-deploy/profiles/standalone-offline example/group_vars/all.yml`，在最后添加下图中红色圈内的配置（IP 部分填写 CloudMgr 地址）：
-
-    ![CloudMgr all.yml](./media/cbdb-all-yml2.png)
-
-2. 修改 `cloudmgr-deploy/roles/postgresql-standalone-role/tasks/main.yml` 中第 2 个 `cloudmgr_postgres.server.port` 为 `5432`，如下图所示：
-
-    ![CloudMgr main.yml](./media/cbdb-main-yml.png)
-
-### 第 4 步：部署依赖组件
-
-在 `/root/cloudmgr-deploy/` 执行以下命令：
-
-1. 初始化控制台主机。
-
-    ```shell
-    ansible-playbook -i profiles/xxx/hosts deploy-setup-hosts-playbook.yml
+    ```bash
+    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
     ```
 
-2. 部署 Docker 环境。
+6. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
 
-    ```shell
-    ansible-playbook -i profiles/xxx/hosts deploy-setup-docker-playbook.yml
+    ```bash
+    source ~/.bashrc
     ```
 
-3. 部署 PostgreSQL 数据库。
+#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
 
-    ```shell
-    ansible-playbook -i profiles/xxx/hosts
-    cleanup-deploy-postgresql-standalone-playbook.yml
+1. 在 Master 节点上，将模板配置文件复制到当前目录。
+
+    ```bash
+    cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
     ```
 
-4. 部署 Victoria Metrics。
+2. 修改 `gpinitsystem_config` 文件：
 
-    ```shell
-    ansible-playbook -i profiles/xxx/hosts deploy-victoria-metrics-cluster-playbook.yml
+    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `/data0/primary`。
+    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
+    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 3 步的 `/data0/master`。
+
+    修改后的示例配置文件如下：
+
+    ```toml
+    #### Base number by which primary segment port numbers 
+    #### are calculated.
+    PORT_BASE=6000
+
+    #### File system location(s) where primary segment data directories 
+    #### will be created. The number of locations in the list dictate
+    #### the number of primary segments that will get created per
+    #### physical host (if multiple addresses for a host are listed in 
+    #### the hostfile, the number of segments will be spread evenly across
+    #### the specified interface addresses).
+    declare -a DATA_DIRECTORY=(/data0/primary)
+
+    #### OS-configured hostname or IP address of the coordinator host.
+    COORDINATOR_HOSTNAME=master
+
+    #### File system location where the coordinator data directory 
+    #### will be created.
+    COORDINATOR_DIRECTORY=/data0/master
+
+    #### Port number for the coordinator instance. 
+    COORDINATOR_PORT=5432
+
+    #### Shell utility used to connect to remote hosts.
+    TRUSTED_SHELL=ssh
+
+    #### Default server-side character set encoding.
+    ENCODING=UNICODE
     ```
 
-5. 部署单节点 PostgreSQL。
+    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
 
-    ```shell
-    ansible-playbook -i profiles/xxx/hosts cleanup-deploy-postgresql-standalone-playbook.yml
+    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
+    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `data0/mirror`。
+
+    修改后的示例配置文件如下：
+
+    ```toml
+    #### Base number by which mirror segment port numbers 
+    #### are calculated.
+    MIRROR_PORT_BASE=17000
+    
+    #### File system location(s) where mirror segment data directories 
+    #### will be created. The number of mirror locations must equal the
+    #### number of primary locations as specified in the 
+    #### DATA_DIRECTORY parameter.
+    declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
     ```
 
-### 第 5 步：部署管理控制台
+#### 第 6 步：初始化数据库
 
-1. （仅适用于麒麟 v10 操作系统）修改 `/usr/lib/systemd/system/docker.service`，在第 13 行的行尾添加：`--default-ulimit nofile=65536:65536`。
+使用 `gpinitsystem` 命令初始化数据库。`-s` 参数用于指定 Standby 的主机名。
 
-    ![docker.service 行尾](./media/cbdb-docker-service.png)
-
-2. 重启 Docker 服务：
-
-    ```shell
-    systemctl daemon-reload
-    systemctl restart docker
-    ```
-
-3. 在 `/root/cloudmgr-deploy/` 下执行以下命令：
-
-```shell
-ansible-playbook -i profiles/xxx/hosts deploy-cloudmgr-playbook.yml
+```bash
+gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host -s standby
 ```
 
-通过以下命令检查管理控制台的部署情况，正常情况下所有容器应当处于运行状态：
+## 注意事项
 
-```shell
-docker ps -a | grep cloudmgr
-```
+- 自动检测 Master 是否失效，并自动将 Standby 升级为 Master 的功能需要在系统执行两次 dml 才能开启。
+- ETCD 服务至少需要存活 2 个节点才能正常工作，FTS 只要存活 1 个节点就能正常工作。
+- FTS 节点的日志存放在 `/tmp/fts/log` 文件夹中。
 
-## 部署数据库
 
-### 第 1 步：准备离线安装环境
 
-在部署主机上，使用 `root` 用户完成以下操作。
-
-1. 在 `/root` 目录下解压以下安装包：
-
-    ```shell
-    tar -xzf database-offline-repo.tar.gz
-    ```
-
-2. 启用离线安装服务：
-
-    ```shell
-    /root/database-offline-repo/bootstrap.sh
-    ```
-
-3. 检查服务是否启动：
-
-    ```shell
-    systemctl status hashdata-repo
-    ```
-
-### 第 2 步：部署依赖组件
-
-1. 编辑 `/root/database-offline-repo/ansible/hosts 文件`，在 `[database]` 部分填入所有数据库主机（Master/Standby/Segment）的 IP。因为当前为 CloudMgr 和 Standby 混合部署，所以你需要在 `[database]` 部分填入 CloudMgr 节点。
-
-    ![/ansible/hosts 文件依赖组件](./media/cbdb-ansible-host-file.png)
-
-2. 在 `/root/database-offline-repo/ansible` 目录下执行以下命令：
-
-    ```shell
-    ansible-playbook -i hosts database-offline-setup-playbook.yml
-    ```
-
-### 第 3 步：创建 gpadmin 账号
-
-> 注意：所有机器上 `gpadmin` 账号的 ID 需要使用 `1001`，CloudMgr 节点上的 Postgres 账号会使用 `1000`，以此避免冲突。
-
-为每台机器创建 `gpadmin` 账号：
-
-```shell
-groupadd -g 1001 gpadmin
-useradd -g 1001 -u 1001 -m -d /home/gpadmin -s /bin/bash gpadmin
-echo "Qaz2wsx3edc" | passwd --stdin gpadmin
-```
-
-### 第 4 步：部署数据库软件
-
-在所有数据库主机（Master/Standby/Segment）上，以 root 身份执行以下命令。可以借用 CloudMgr 机器上的 Ansible 脚本来批量执行。
-
-```shell
-cd /root/database-offline-repo/ansible/
-
-ansible database -i ./hosts -m shell -a 'yum install -y apr apr-util bzip2 rsync zip curl libcurl libevent libxml2 libyaml zlib openldap openssh openssl openssl-libs perl readline sed krb5 krb5-devel zstd sshpass '
-
-ansible database -i ./hosts -m copy -a 'src=/data0/cloudberry-db-1.2.0-1.el7.centos.x86_64.rpm dest=/data0/'
-
-ansible database -i ./hosts -m shell -a 'yum install -y /data0/cloudberry-db-1.2.0-1.el7.centos.x86_64.rpm '
-
-ansible database -i ./hosts -m shell -a 'chown -R gpadmin:gpadmin /usr/local/cloudberry-db'
-ansible database -i ./hosts -m shell -a 'chown -R gpadmin:gpadmin /usr/local/cloudberry-db-1.* '
-
-ansible database -i ./hosts -m shell -a 'ln -s /usr/local/cloudberry-db  /opt/gpsql'
-ansible database -i ./hosts -m shell -a 'chown -R gpadmin:gpadmin
-/opt/gpsql'
-```
-
-在 `/opt/gpsql/greenplum_path.sh` 中指定 `GPHOME`：
-
-```shell
-GPHOME=/opt/gpsql
-export MASTER_DATA_DIRECTORY=/data0/database/master/gpseg-1/
-export PGPORT=5432
-```
-
-在 `/home/gpadmin/.bashrc` 增加以下脚本：
-
-```shell
-test -f /opt/gpsql/greenplum_path.sh && . /opt/gpsql/greenplum_path.sh
-```
-
-### 第 5 步：配置 gpadmin 账号的 SSH 免密
-
-1. 为每台机器生成密钥。
-
-    ```shell
-    su - gpadmin
-    ssh-keygen -t rsa
-    ```
-
-2. 批量免密。
-
-    ```shell
-    gpssh-exkeys -f hostfile_exkeys
-    ```
-
-3. 在 `hostfile_exkeys` 文件中放入所有节点的主机名：
-
-    ```shell
-    cat hostfile_exkeys
-    hashdata2x-01
-    hashdata2x-02
-    hashdata2x-03
-    hashdata2x-04
-    hashdata2x-05
-    hashdata2x-06
-    ```
-
-### 第 6 步：安装 JDK 1.8（cloudmgr-guest-agent 依赖）
-
-1. 下载 JDK 并传到计算集群所有节点的 `/data/` 路径下：
-
-    ```shell
-    cd /root/database-offline-repo/ansible/
-    ansible -i hosts database -m shell -a ' mkdir -p  /opt/gpsql/ext/ '
-    ansible -i hosts database -m shell -a ' tar -zxf /data/jdk1.8.0_291.tar.gz -C /opt/gpsql/ext/  '
-    ansible database -i ./hosts -m shell -a 'ln -s /opt/gpsql/ext/jdk1.8.0_291   /opt/gpsql/ext/jdk'
-    ansible database -i ./hosts -m shell -a 'chown -R gpadmin:gpadmin /opt/gpsql/ext'
-    ```
-
-2. 修改 `/opt/gpsql/greenplum_path.sh` 增加如下部分：
-
-    ```shell
-    setup JAVA_HOME
-
-    if [ -x "${GPHOME}/ext/jdk/bin/java" ]; then
-      JAVA_HOME="${GPHOME}/ext/jdk"
-      PATH="${JAVA_HOME}/bin:${PATH}"
-      LD_LIBRARY_PATH=${JAVA_HOME}/jre/lib/amd64/server:${LD_LIBRARY_PATH-}
-      export LD_LIBRARY_PATH
-      export JAVA_HOME
-    fi
-    ```
-
-## 创建计算集群
-
-### 第 1 步：开启 Cloudberry 集群创建功能
-
-1. 在 CloudMgr 节点上，修改 `/data0/cloudmgr/data/etc/config/repo/default.yml` 文件，将文件中 `warehouse` 下的 `enabled` 值改为 `true`。
-
-    ![default.yml](./media/cbdb-default-yml.png)
-
-2. 重启 `region-default` 容器使配置生效：
-
-    ```shell
-    docker ps -a | grep region-default | awk '{print $1}' | xargs docker restart
-    ```
-
-### 第 2 步：创建资源池
-
-在管理控制台页面 (`http://cloudmgrIP`) 进行操作，(缺省账户，密码为 root@exmaple.com/root)。
-
-1. 创建资源池。
-
-    打开**租户管理** -> **资源池**页面，创建新资源池，名称为 demo，对象存储区域留空即可。
-
-    ![创建资源池](./media/cbdb-mgr-create-resource-pool.png)
-
-2. 注册主机。
-
-    在**资源池详情**页面，点击**注册**按钮，在注册对话框中，填入 root 密码以及所有数据库节点 IP，完成数据库主机注册。
-
-### 第 3 步：创建 Cloudberry 计算集群
-
-1. 点击左侧导航的**数据仓库**后，在页面中点击**新建数据仓库**。
-2. 填写集群信息后，进行服务配置：
-
-    ![服务配置](./media/cbdb-mgr-service-config.png)
-
-    - **共享元数据服务**：选择“否”。
-    - **高可用**：选择“是”，表示启用镜像。
-    - **本地存储**：选择“是”，表示数据都保存在每台主机的本地磁盘上。
-    - **计算实例数量**：每个主机上的 Segment 数量，这个集群设置为 `2`。
-    - **计算集群规模**：如果集群中一共有 8 个 Primary Segment，则选择 `8-64`，64 代表最多扩容至 32 个 Segment 实例。
-    - **默认数据库**：指定想要创建出来的数据库名字，默认为 `warehouse`。
-    - **默认用户名**：指定需要创建的数据库用户，默认为 `warehouse`。
-    - **默认密码**：指定上面“默认用户”的密码。
-
-3. 进行模块配置。
-
-    选择 `hashdata2x-02` 作为 Master 主节点，`hashdata2x-01` 作为 Standby 备份节点，其余 `hashdata2x-03`、`hashdata2x-04`、`hashdata2x-05`、`hashdata2x-06` 这 4 台机器作为 Segment 计算节点。
-
-    ![模块配置](./media/cbdb-mgr-module-config.png)
-
-    管控控制台会在后台初始化计算集群，在**计算集群详情**页面，点击**刷新**可以查看是否创建成功。当计算集群状态变更为**运行中**，则创建工作完成。
-
-## 参考：内核参数调整脚本 (Ansible)
-
-<details>
-<summary>内核参数调整脚本 (Ansible)</summary>
-
-```
----
-- name: Set max_map_count
-  sysctl:
-    name: vm.max_map_count
-    value: "262144"
-    state: present
-    reload: no
-
-- name: Set kernel.shmmax
-  sysctl:
-    name: kernel.shmmax
-    value: "500000000000"
-    state: present
-    reload: no
-
-- name: Set kernel.shmmni
-  sysctl:
-    name: kernel.shmmni
-    value: "4096"
-    state: present
-    reload: no
-
-- name: Set kernel.shmall
-  sysctl:
-    name: kernel.shmall
-    value: "4000000000"
-    state: present
-    reload: no
-
-- name: Set kernel.sem
-  sysctl:
-    name: kernel.sem
-    value: 250 512000 100 2048
-    state: present
-    reload: no
-
-- name: Set kernel.sysrq
-  sysctl:
-    name: kernel.sysrq
-    value: "1"
-    state: present
-    reload: no
-
-- name: Set kernel.msgmnb
-  sysctl:
-    name: kernel.msgmnb
-    value: "65535"
-    state: present
-    reload: no
-
-- name: Set kernel.msgmax
-  sysctl:
-    name: kernel.msgmax
-    value: "65535"
-    state: present
-    reload: no
-
-- name: Set kernel.msgmni
-  sysctl:
-    name: kernel.msgmni
-    value: "2048"
-    state: present
-    reload: no
-
-- name: Set kernel.core_pattern
-  sysctl:
-    name: kernel.core_pattern
-    value: "core-%e-%s-%u-%g-%p-%t"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.tcp_syncookies
-  sysctl:
-    name: net.ipv4.tcp_syncookies
-    value: "1"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.tcp_syn_retries
-  sysctl:
-    name: net.ipv4.tcp_syn_retries
-    value: "7"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.ip_forward
-  sysctl:
-    name: net.ipv4.ip_forward
-    value: "1"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.conf.default.accept_source_route
-  sysctl:
-    name: net.ipv4.conf.default.accept_source_route
-    value: "0"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.tcp_tw_recycle
-  sysctl:
-    name: net.ipv4.tcp_tw_recycle
-    value: "0"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.tcp_tw_reuse
-  sysctl:
-    name: net.ipv4.tcp_tw_reuse
-    value: "1"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.tcp_max_syn_backlog
-  sysctl:
-    name: net.ipv4.tcp_max_syn_backlog
-    value: "4096"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.conf.all.arp_filter
-  sysctl:
-    name: net.ipv4.conf.all.arp_filter
-    value: "1"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.ip_local_port_range
-  sysctl:
-    name: net.ipv4.ip_local_port_range
-    value: 1025 65535
-    state: present
-    reload: no
-
-- name: Set net.core.netdev_max_backlog
-  sysctl:
-    name: net.core.netdev_max_backlog
-    value: "10000"
-    state: present
-    reload: no
-
-- name: Set net.core.rmem_max
-  sysctl:
-    name: net.core.rmem_max
-    value: "2097152"
-    state: present
-    reload: no
-
-- name: Set net.core.wmem_max
-  sysctl:
-    name: net.core.wmem_max
-    value: "2097152"
-    state: present
-    reload: no
-
-- name: Set fs.inotify.max_user_watches
-  sysctl:
-    name: fs.inotify.max_user_watches
-    value: "524288"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.neigh.default.gc_thresh1
-  sysctl:
-    name: net.ipv4.neigh.default.gc_thresh1
-    value: "8192"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.neigh.default.gc_thresh2
-  sysctl:
-    name: net.ipv4.neigh.default.gc_thresh2
-    value: "32768"
-    state: present
-    reload: no
-
-- name: Set net.ipv4.neigh.default.gc_thresh3
-  sysctl:
-    name: net.ipv4.neigh.default.gc_thresh3
-    value: "65536"
-    state: present
-    reload: no
-
-- name: Set net.ipv6.neigh.default.gc_thresh1
-  sysctl:
-    name: net.ipv6.neigh.default.gc_thresh1
-    value: "8192"
-    state: present
-    reload: no
-
-- name: Set net.ipv6.neigh.default.gc_thresh2
-  sysctl:
-    name: net.ipv6.neigh.default.gc_thresh2
-    value: "32768"
-    state: present
-    reload: no
-
-- name: Set net.ipv6.neigh.default.gc_thresh3
-  sysctl:
-    name: net.ipv6.neigh.default.gc_thresh3
-    value: "65536"
-    state: present
-    reload: no
-
-- name: Set fs.nr_open
-  sysctl:
-    name: fs.nr_open
-    value: "3000000"
-    state: present
-    reload: yes
-  ignore_errors: yes
-
-- name: Set limit nproc
-  pam_limits:
-    domain: "*"
-    limit_type: '-'
-    limit_item: nproc
-    value: "131072"
-
-- name: Set limit nofile
-  pam_limits:
-    domain: "*"
-    limit_type: '-'
-    limit_item: nofile
-    value: "65535"
-
-- name: Set limit core
-  pam_limits:
-    domain: "*"
-    limit_type: '-'
-    limit_item: core
-    value: "unlimited"
-
-- name: Enable ClientAliveInterval for sshd
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^ClientAliveInterval'
-    line: 'ClientAliveInterval 60'
-    state: present
-
-- name: Enable ClientAliveInterval for sshd
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^ClientAliveCountMax'
-    line: 'ClientAliveCountMax 3'
-    state: present
-
-- name: Enable PasswordAuthentication for sshd
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PasswordAuthentication'
-    line: 'PasswordAuthentication yes'
-    state: present
-
-- name: Disable GSSAPIAuthentication for sshd
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^GSSAPIAuthentication'
-    line: 'GSSAPIAuthentication no'
-    state: present
-
-- name: Disable PermitEmptyPasswords for sshd
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PermitEmptyPasswords'
-    line: 'PermitEmptyPasswords no'
-    state: present
-
-- name: Disable UseDNS for sshd
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^UseDNS'
-    line: 'UseDNS no'
-    state: present
-
-- name: Restart sshd daemon
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: sshd
-  ignore_errors: yes
-
-- name: Change ssh client log level to ERROR
-  lineinfile:
-    path: /etc/ssh/ssh_config
-    regexp: '^LogLevel'
-    line: 'LogLevel ERROR'
-    insertafter: '^Host'
-    state: present
-
-- name: Enable ServerAliveInterval for ssh
-  lineinfile:
-    path: /etc/ssh/ssh_config
-    regexp: '^ServerAliveInterval'
-    line: 'ServerAliveInterval 60'
-    insertafter: '^Host'
-    state: present
-
-- name: Enable ServerAliveCountMax for ssh
-  lineinfile:
-    path: /etc/ssh/ssh_config
-    regexp: '^ServerAliveCountMax'
-    line: 'ServerAliveCountMax 3'
-    insertafter: '^Host'
-    state: present
-
-- name: Disable removing IPC when logout
-  lineinfile:
-    path: /etc/systemd/logind.conf
-    regexp: '^RemoveIPC'
-    line: 'RemoveIPC=no'
-    state: present
-  when: ansible_distribution_major_version == '7' or ansible_distribution == 'Kylin Linux Advanced Server'
-
-- name: Restart login daemon
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: systemd-logind
-  when: ansible_distribution_major_version == '7' or ansible_distribution == 'Kylin Linux Advanced Server'
-  ignore_errors: yes
-
-- name: Set SElinux to permissive mode
-  selinux:
-    policy: targeted
-    state: permissive
-  ignore_errors: yes
-
-- name: Disable SElinux
-  selinux:
-    state: disabled
-  ignore_errors: yes
-
-- name: Disable firewalld
-  systemd:
-    name: firewalld
-    state: stopped
-    enabled: no
-  ignore_errors: yes
-```
-
-</details>
