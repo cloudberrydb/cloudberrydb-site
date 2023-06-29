@@ -44,7 +44,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'http://github.com/cloudberrydb/cloudberrydb-site/blob/main/',
+            'https://github.com/cloudberrydb/cloudberrydb-site/edit/main/',
         },
         blog: {
           showReadingTime: false,
