@@ -7,6 +7,18 @@ const youtubeUrl = `https://youtube.com/@cloudberrydb`
 const slackUrl = 'https://communityinviter.com/apps/cloudberrydb/welcome'
 
 const config = {
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      zh: {
+        label: '简体中文',
+      },
+    },
+  },
   title: 'Cloudberry Database',
   tagline: 'Open Source MPP Database',
   favicon: 'img/logo.svg',
@@ -44,7 +56,8 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'http://github.com/cloudberrydb/cloudberrydb-site/blob/main/',
+            'https://github.com/cloudberrydb/cloudberrydb-site/edit/main/',
+            editLocalizedFiles: true,
         },
         blog: {
           showReadingTime: false,

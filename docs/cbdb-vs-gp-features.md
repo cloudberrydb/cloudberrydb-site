@@ -1,8 +1,8 @@
 ---
-title: Comparision with Greenplum Features
+title: Comparison with Greenplum Features
 ---
 
-# Comparision with Greenplum Features
+# Comparison with Greenplum Features
 
 Cloudberry Database is 100% compatible with Greenplum, and provides all the Greenplum features you need.
 
