@@ -16,7 +16,7 @@ From users' view, Cloudberry Database is a complete relational database manageme
 
 The architecture diagram of Cloudberry Database is as follows:
 
-<!-- ![Cloudberry Architecture](./media/cbdb-arch.png) -->
+![Cloudberry Architecture](./media/cbdb-arch.png)
 
 - **Master node** (or control node) is the gateway to the Cloudberry Database system, which accepts client connections and SQL queries, and allocates tasks to data node instances. Users interact with Cloudberry Database by connecting to the master node using a client program (such as psql) or an application programming interface (API) (such as JDBC, ODBC, or libpq PostgreSQL C API).
     - The master node acts as the global system directory, containing a set of system tables that record the metadata of Cloudberry Database.
