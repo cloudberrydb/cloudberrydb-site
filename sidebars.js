@@ -19,7 +19,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Introduction',
-      items: ['cbdb-overview','cbdb-vs-gp-features']
+      items: ['cbdb-overview','cbdb-architecture','cbdb-scenarios','cbdb-vs-gp-features']
      },
 
     {
