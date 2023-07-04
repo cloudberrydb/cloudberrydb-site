@@ -65,7 +65,13 @@ title: 物理机部署指南
 
 :::
 
-1. 编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+1. 准备好两台物理机器作为集群节点。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+
+    ```
+    # Loopback address       Hostname
+    <ip_address 1>           master
+    <ip_address 2>           segment1
+    ```
 
 2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
 
@@ -228,29 +234,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
 单节点部署模式为非分布式部署，所有服务都部署在同一台物理机上。该模式所需的物理机配置参见[开发及测试环境配置](./cbdb-op-software-hardware.md#开发及测试环境)。
 
-单机部署模式可在 Cloudberry 数据库安装完成后，直接利用 CBDB 源代码中的gpdemo中的脚本进行部署。在 CloudBerry Database RPM 包安装后，执行以下命令即可。
-
-1. 在 `~/.bashrc` 中添加一行 `source` 命令：
-
-    ```shell
-    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
-
-    source /usr/local/cloudberry-db/greenplum_path.sh
-    ```
-
-2. 下载 Cloudberry Database 数据库源码至本地目录：`/home/gpadmin/workspace/cbdb`。
-
-3. 进入 Cloudberry Database 源代码目录。
-
-    ```shell
-    cd /home/gpadmin/workspace/cbdb
-    ```
-
-4. 启动单机版本 Cloudberry Database。
-
-    ```shell
-    make create-demo-cluster
-    ```
+<待添加>
 
 ## 生产环境部署
 
@@ -283,11 +267,40 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
 #### 第 2 步：准备配置文件
 
-1. 编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+1. 按照上一步规划的节点数，准备好对应的物理机。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+
+    ```
+    # Loopback address       Hostname
+    <ip_address 1>           master
+    <ip_address 2>           standby 1
+    <ip_address 3>           segment 1
+    <ip_address 4>           segment 2
+    <ip_address 5>           segment 3
+    <ip_address 6>           etcd 1
+    <ip_address 7>          etcd 2
+    <ip_address 8>          etcd 3
+    ```
 
 2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
 
+    ```
+    master
+    standby
+    segment 1
+    segment 2
+    segment 3
+    etcd 1
+    etcd 2
+    etcd 3
+    ```
+
 3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
+
+    ```
+    segment 1
+    segment 2
+    segment 3
+    ```
 
 4. 在 Master 节点上创建名为 `fts_service.conf` 的文件，填入所有 FTS 节点的主机名。
 
@@ -297,7 +310,19 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
     :::
 
+    ```
+    etcd 1
+    etcd 2
+    etcd 3
+    ```
+
 5. 在 Master 节点上创建名为 `etcd_service.conf` 的文件，填入所有 ETCD 节点的主机名。
+
+    ```
+    etcd 1
+    etcd 2
+    etcd 3
+    ```
 
 6. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
 
@@ -437,7 +462,7 @@ ssh-copy-id -f etcd3
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和 `MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `data0/mirror`。
@@ -491,11 +516,34 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
 
 #### 第 2 步：准备配置文件
 
-1. 编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+1. 按照上一步规划的节点数，准备好对应的物理机。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+
+    ```
+    # Loopback address       Hostname
+    <ip_address 1>           master
+    <ip_address 2>           standby 1
+    <ip_address 3>           segment 1
+    <ip_address 4>           segment 2
+    <ip_address 5>           segment 3
+    ```
 
 2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
 
+    ```
+    master
+    standby
+    segment 1
+    segment 2
+    segment 3
+    ```
+
 3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
+
+    ```
+    segment 1
+    segment 2
+    segment 3
+    ```
 
 4. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
 
