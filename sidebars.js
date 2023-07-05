@@ -22,11 +22,16 @@ const sidebars = {
       items: ['cbdb-overview','cbdb-architecture','cbdb-scenarios','cbdb-vs-gp-features']
      },
 
-  // {
-  //   type: 'category',
-  //   label: 'Deployment Guides',
-  //   items: ['cbdb-op-deploy-guide']
-  // },
+    {
+      type: 'category',
+      label: 'Deployment Guides',
+      items: ['cbdb-op-software-hardware',
+      {
+        type: 'category',
+        label: 'On-Premises Deployment',
+        items: ['cbdb-op-deploy-arch','cbdb-op-deploy-guide']
+      }]
+    },
 
   ]
 }
