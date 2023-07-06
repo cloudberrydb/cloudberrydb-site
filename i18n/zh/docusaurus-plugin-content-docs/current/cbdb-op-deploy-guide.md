@@ -15,7 +15,7 @@ title: 物理机部署指南
 :::info 名词解释
 
 - FTS，全称为 Fault Tolerance Service，即故障恢复节点，为 Cloudberry Database 的高可用服务组件。
-- ETCD：Cloudberry Database 的元数据服务。
+- ETCD：用于存储 Cloudberry Database 集群拓扑信息以及集群状态元数据信息。
 - 混合部署：将 ETCD 和 FTS 集群部署在与数据库节点的同一物理机资源上。
 
 :::
