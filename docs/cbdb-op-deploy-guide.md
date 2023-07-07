@@ -243,7 +243,7 @@ Currently, the steps for this deployment mode are on the way. Please keep watchi
 
 In this deployment mode, FTS and ETCD cluster nodes are deployed on separate physical machines. The system reliability is high, supporting automatic failover of master/standby nodes, which is suitable for production environments that require high availability.
 
-To learn the configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#production-environment).
+To learn the physical configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#production-environment).
 
 To deploy Cloudberry Database in this mode, take the following steps.
 
@@ -259,9 +259,9 @@ It is recommended to plan the nodes to be deployed according to the following ta
 | FTS node        | 3                | The FTS cluster supports multi-node independent deployment, with 3 nodes as the default configuration to ensure high availability. |
 | ETCD metadata node | 3             | The ETCD cluster supports multi-node independent deployment, with high availability feature natively supported by the application. |
 
-:::info Note
+:::info
 
-- The following deployment operations are all performed using the `gpadmin` user.
+- The following deployment operations are all performed with the `gpadmin` user.
 - It is recommended to deploy the FTS nodes and ETCD nodes on the same server to save resources.
 
 :::
@@ -325,7 +325,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
     etcd 3
     ```
 
-4. On the master node, create a file named `cbdb_etcd.conf`. Then write the following configuration items in the file.
+6. On the master node, create a file named `cbdb_etcd.conf`. Then write the following configuration items in the file.
 
     - `gp_etcd_endpoints`: Node names of the ETCD cluster service. You need to configure the ETCD service node hosts `{etcd-service-0}`, `{etcd-service-1}`, and `{etcd-service-2}` in `etcd_service.conf`. The ETCD service will start on these 3 hosts by default.
     - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool and configure the item.
@@ -392,7 +392,7 @@ ssh-copy-id -f etcd3
 3. Create a data directory on the master node.
 
     ```bash
-    # For example, /data0/master
+    # For example, /data0/master.
 
     mkdir -p /data0/master
     ```
@@ -490,34 +490,36 @@ Initialize the database using the `gpinitsystem` command:
 gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E etcd_service.conf -h seg_host -s standby
 ```
 
-### 混合部署模式
+### Hybrid deployment mode
 
-该模式为 CloudBerry Database FTS、ETCD 服务的外部独立部署模式，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
+In this mode, you can reuse the existing physical machines to deploy the FTS and ETCD services. No additional physical machines are required for FTS and ETCD. The system reliability is not as high as that of the standard distributed deployment. This deployment mode supports automatic fault recovery by switching between master/standby nodes.
 
-该模式部署所需的物理机配置参见[生产环境配置](./cbdb-op-software-hardware.md#生产环境)。
+To learn the physical configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#production-environment).
 
-#### 第 1 步：规划部署
+To deploy Cloudberry Database in this mode, take the following steps.
 
-建议按照下表来规划待部署的节点：
+#### Step 1: Plan the deployment
 
-| 组件              | 建议的物理机数量 | 说明                                                         |
-| :----------------- | :---------------- | :------------------------------------------------------------ |
-| Master 节点       | 1                |                                                              |
-| Standby 节点 | 1 | Standby 节点用于 Master 节点的热备份。 |
-| Segment 计算节点 | 3 | 推荐部署与计算节点数量相同的 Mirror 节点做数据高可用。数据节点需要根据用户的数据需求，相关硬件（机器挂载盘数量）来确定。 |
-| FTS 节点          | 3 | FTS 集群支持多节点混合部署，无需单独预留物理机，默认配置 3 节点保证高可用。 |
-| ETCD 元数据节点   | 3               | ETCD 集群支持多节点部署，无需单独预留物理机，节点高可用功能由应用原生支持。 |
+It is recommended to plan the nodes to be deployed according to the following table:
 
-:::info 注意
+| Component       | Recommended number of physical machines | Description |
+| :-------------  | :---------------- | :---------- |
+| Master node     | 1                |             |
+| Standby node    | 1                | Standby nodes are used for hot backup of master nodes. |
+| Segment (computing node) |  3      | It is recommended to deploy the same number of mirror nodes as computing nodes for high availability. The number of nodes is determined according to your data requirements and related hardware (the number of disks mounted on the machine). |
+| FTS node        | 3                | The FTS cluster supports multi-node hybrid deployment, with 3 nodes as the default configuration to ensure high availability. You do not need to reserve a separate physical machine for it. |
+| ETCD metadata node | 3             | The ETCD cluster supports multi-node deployment, with high availability feature natively supported by the application. You do not need to reserve a separate physical machine for it. |
 
-- 以下部署安装操作均在 `gpadmin` 用户下进行。
-- 由于 Segment 为计算节点，如果将 ETCD 和 FTS 服务部署在计算节点，在生产环境下可能会有性能相关问题。为避免性能相关问题，建议通过配置文件指定一台额外的物理机 `{host}` 来部署 ETCD 和 FTS 服务，以提升系统可靠性，即 master + standby + {host} 部署。
+:::info
+
+- The following deployment operations are all performed with the `gpadmin` user.
+- Because segments are computing nodes, deploying the ETCD and FTS services on computing nodes might cause performance issues in production environments. To avoid performance issues and improve system reliability, it is recommended to specify an additional physical machine `{host}` through the configuration file to deploy ETCD and FTS services, that is, master + standby + {host} deployment.
 
 :::
 
-#### 第 2 步：准备配置文件
+#### Step 2: Prepare configuration files
 
-1. 按照上一步规划的节点数，准备好对应的物理机。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
+1. Prepare the corresponding physical machines according to the number of nodes planned in the previous step. Edit the `/etc/hosts` file. Then add all cluster nodes including all IP addresses and aliases. For example:
 
     ```
     # Loopback address       Hostname
@@ -528,7 +530,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
     <ip_address 5>           segment 3
     ```
 
-2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
+2. On the master node, create a file named `all_host`, and fill in all the hostnames in this file.
 
     ```
     master
@@ -538,7 +540,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
     segment 3
     ```
 
-3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
+3. On the master node, create a file named `seg_host`, and fill in all the hostnames of the segment nodes in this file.
 
     ```
     segment 1
@@ -546,13 +548,13 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
     segment 3
     ```
 
-4. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
+4. On the master node, create a file named `cbdb_etcd.conf`. Then write the following configuration items in the file.
 
-    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，此处需要配置为 Master、Standby 和需配置 ETCD 的 Segment 主机名。ETCD 服务会默认在三个主机上启动。
-    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
+    - `gp_etcd_endpoints`: Node names of the ETCD cluster service. You need to configure the node names with the hostnames of master, standby, and the segment on which ETCD are to be deployed. The ETCD service will start on these 3 hosts by default.
+    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool and configure the item.
+    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool and configure the item.
 
-    配置文件示例如下：
+    An example of the configuration file is as follows:
 
     ```conf
     gp_etcd_endpoints='master:2379,standby:2379,seg1:2379'
@@ -561,15 +563,15 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
     gp_etcd_namespace='default'
     ```
 
-    :::info 注意
+    :::info
 
-    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
+    `gp_etcd_namespace` is the namespace configuration for the cluster, and the on-premises deployment mode can use the default configuration.
 
     :::
 
-#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
+#### Step 3: Configure SSH keyless authentication for the `gpadmin` account
 
-在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。示例如下：
+With the `gpadmin` user of the master host, use the `ssh-copy-id` command to configure keyless authentication. Here is an example:
 
 ```shell
 ssh-copy-id -f master
@@ -579,68 +581,68 @@ ssh-copy-id -f seg2
 ssh-copy-id -f seg3
 ```
 
-#### 第 4 步：创建数据目录 {#混合第-4-步}
+#### Step 4: Create data directories {#hybrid-step-4}
 
-1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
+1. In the `~/.bashrc` file of each node, add a line of the `source` command. Here is an example:
 
     ```bash
-    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
+    # /usr/local/cloudberry-db is the deployment directory of Cloudberry Database.
 
     source /usr/local/cloudberry-db/greenplum_path.sh
     ```
 
-2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
+2. On the master node, use the `gpssh` command to create data directories and mirror directories for segments.
 
     ```bash
-    # 在本例中分别为 /data0/primary 和 /data0/mirror
+    # For example, /data0/primary and /data0/mirror.
 
     gpssh -f seg_host -e 'mkdir -p /data0/primary'
     gpssh -f seg_host -e 'mkdir -p /data0/mirror'
     ```
 
-3. 在 Master 上创建数据目录。
+3. Create a data directory on the master node.
 
     ```bash
-    # 在本例中为 /data0/master
+    # For example, /data0/master.
 
     mkdir -p /data0/master
     ```
 
-4. 在 Standby 节点上创建数据目录。
+4. Create a data directory on the standby node.
 
     ```bash
-    # 本例中为 /data0/master
+    # For example, /data0/master.
 
     gpssh -h standby -e 'mkdir -p /data0/master'
     ```
 
-5. 在 Master 和 Standby 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
+5. In the `~/.bashrc` file of master and standby nodes, add the following line of command, which is the path `{path in the previous step}` + `gpseg-1`.
 
     ```bash
     export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
     ```
 
-6. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
+6. Run the following command to make `COORDINATOR_DATA_DIRECTORY` effective.
 
     ```bash
     source ~/.bashrc
     ```
 
-#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
+#### Step 5: Configure the `gpinitsystem_config` startup script
 
-1. 在 Master 节点上，将模板配置文件复制到当前目录。
+1. On the master node, copy the template configuration file to the current directory.
 
     ```bash
     cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
     ```
 
-2. 修改 `gpinitsystem_config` 文件：
+2. Edit the `gpinitsystem_config` file:
 
-    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `/data0/primary`。
-    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
-    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 3 步的 `/data0/master`。
+    - Modify the `DATA_DIRECTORY` configuration item to the data directory of the segment node, that is, `/data0/primary` in Step 2 of [Step 4: Create data directory](#hybrid-step-4).
+    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master primary node.
+    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master primary node, that is, `/data0/master` in Step 3 of [Step 4: Create data directory](#hybrid-step-4).
 
-    修改后的示例配置文件如下：
+    The modified example configuration file is as follows:
 
     ```toml
     #### Base number by which primary segment port numbers 
@@ -672,12 +674,12 @@ ssh-copy-id -f seg3
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    If there are segment mirror nodes, you also need to modify `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY`.
 
-    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
-    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `data0/mirror`。
+    - `MIRROR_PORT_BASE` is the port used by the mirror.
+    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror, that is, `data0/mirror` in Step 2 of [Step 4: Create data directory](#hybrid-step-4).
 
-    修改后的示例配置文件如下：
+    The modified example configuration file is as follows:
 
     ```toml
     #### Base number by which mirror segment port numbers 
@@ -691,16 +693,16 @@ ssh-copy-id -f seg3
     declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
     ```
 
-#### 第 6 步：初始化数据库
+#### Step 6: Initialize the database
 
-使用 `gpinitsystem` 命令初始化数据库。`-s` 参数用于指定 Standby 的主机名。
+Initialize the database using the `gpinitsystem` command:
 
 ```bash
 gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host -s standby
 ```
 
-## 注意事项
+## Points to note
 
-- 自动检测 Master 是否失效，并自动将 Standby 升级为 Master 的功能需要在系统执行两次 dml 才能开启。
-- ETCD 服务至少需要存活 2 个节点才能正常工作，FTS 只要存活 1 个节点就能正常工作。
-- FTS 节点的日志存放在 `/tmp/fts/log` 文件夹中。
+- If you want to enable the feature that automatically detects whether the master is down and upgrades the standby to master, you need to execute the DML twice in the system.
+- The ETCD service needs at least 2 live nodes to operate normally, while the FTS service only needs 1 live node to work correctly.
+- The logs of the FTS node are stored in the `/tmp/fts/log` folder.

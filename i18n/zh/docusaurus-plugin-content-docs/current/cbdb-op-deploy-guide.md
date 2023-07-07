@@ -497,7 +497,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
 
 ### 混合部署模式
 
-该模式为 CloudBerry Database FTS、ETCD 服务的外部独立部署模式，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
+该模式下，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
 
 该模式部署所需的物理机配置参见[生产环境配置](./cbdb-op-software-hardware.md#生产环境)。
 
