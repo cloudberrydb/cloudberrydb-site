@@ -14,7 +14,7 @@ The deployment methods described in this document are based on the [automatic hi
 
 :::info Glossary
 
-- FTS stands for fault tolerance service. It is the fault recovery node and a high availability service component of Cloudberry Database.
+- FTS stands for fault tolerance service. It is the fault recovery nodes and a high availability service component of Cloudberry Database.
 - ETCD: Used to store the cluster topology information and cluster state metadata of Cloudberry Database.
 - Hybrid Deployment: The ETCD and FTS clusters are deployed on the same physical machine as the database nodes.
 
@@ -22,19 +22,19 @@ The deployment methods described in this document are based on the [automatic hi
 
 For the testing environment, you can choose any of the following deployment modes (click the link for a detailed description of the corresponding mode):
 
-- [Minimal Deployment Mode](#minimal-deployment-mode): Suitable for quick verification or PoC testing scenarios. It requires less resources (at least 2 servers), but provides poor availability. In this deployment mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way.
-- [Single-Node Deployment Mode](#single-node-deployment-mode): Suitable for development testing or trial use by open-source users. It only requires single-node resource (that is, one server), and does not guarantee high availability. In this deployment mode, the ETCD and FTS clusters are deployed on a single node.
+- [Minimal deployment mode](#minimal-deployment-mode): Suitable for quick verification or PoC test scenarios. It requires less resources (at least 2 servers), but provides poor availability. In this deployment mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way.
+- [Single-node deployment mode](#single-node-deployment-mode): Suitable for development testing or trial use by open-source users. It only requires single-node resource (that is, one server), and does not guarantee high availability. In this deployment mode, the ETCD and FTS clusters are deployed on a single node.
 
 For the production environment, you can choose any of the following deployment modes (click the link for a detailed description of the corresponding mode):
 
-- [Standard Distributed Deployment Mode](#standard-distributed-deployment-mode): Suitable for production environments, with the highest guarantee of availability. In this mode, you need additional machine resources to deploy the ETCD and FTS clusters independently.
-- Hybrid Deployment Mode: Suitable for production environments, with high availability, but not as much as the standard distributed deployment mode. In this mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way, without the need for additional machine resources.
+- [Standard distributed deployment mode](#standard-distributed-deployment-mode): Suitable for production environments, with the highest guarantee of availability. In this mode, you need additional machine resources to deploy the ETCD and FTS clusters independently.
+- [Hybrid deployment mode](#hybrid-deployment-mode): Suitable for production environments, with high availability, but not as much as the standard distributed deployment mode. In this mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way, without the need for additional machine resources.
 
-## Test environment deployment
+## Test environment deployments
 
 :::danger Warning
 
-The following deployment modes are only for testing environments. Do not use the minimal deployment mode and the single-node deployment mode in production environments.
+The following deployment modes are only for test environments. Do not use the minimal deployment mode and the single-node deployment mode in production environments.
 
 :::
 
@@ -59,7 +59,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
 
 #### Step 2: Prepare configuration files
 
-:::info Note
+:::info
 
 The following deployment operations are performed using the `gpadmin` user.
 
@@ -80,7 +80,7 @@ The following deployment operations are performed using the `gpadmin` user.
     segment1
     ```
 
-3. On the master node, create a file named `seg_host` and fill in all the host names of the Segments in this file.
+3. On the master node, create a file named `seg_host` and fill in all the host names of the segments in this file.
 
     ```
     segment1
@@ -89,8 +89,8 @@ The following deployment operations are performed using the `gpadmin` user.
 4. On the master node, create a file named `cbdb_etcd.conf`. Then write the following configuration items in the file.
 
     - `gp_etcd_endpoints`: Node names of the ETCD cluster service. You need to configure the node names with the hostnames of master and segment, and the ETCD service will start on these 2 hosts by default.
-    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool and configure the item.
-    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool and configure the item.
+    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool for it.
+    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool for it.
 
     An example of the configuration file is as follows:
 
@@ -103,13 +103,13 @@ The following deployment operations are performed using the `gpadmin` user.
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster, and the on-premises deployment mode can use the default configuration.
+    `gp_etcd_namespace` is the namespace configuration for the cluster, and on-premises deployments use the default configuration.
 
     :::
 
 #### Step 4: Create data directory {#minimal-step-4}
 
-1. Append a line of the `source` command in the `~/.bashrc` file on each node. For example:
+1. In the `~/.bashrc` file on each node, add a line of the `source` command. For example:
 
     ```bash
     # /usr/local/cloudberry-db is the deployment directory for Cloudberry Database.
@@ -134,7 +134,7 @@ The following deployment operations are performed using the `gpadmin` user.
     mkdir -p /data0/master
     ```
 
-4. Append a line of the following command to the `~/.bashrc` file on the master node, which is the path `{previous step's path} + gpseg-1`.
+4. In the `~/.bashrc` file on the master node, add a line of the following command, which is the path `{previous step's path} + gpseg-1`.
 
     ```bash
     export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
@@ -221,7 +221,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
 ### Single-node deployment mode
 
-Single-node deployment mode means deploying FTS and ETCD services on a single local node. This mode is mainly used for code development in testing scenarios. It does not support high availability features, and is not suitable for production environments.
+Single-node deployment mode means deploying FTS and ETCD services on a single local node. This mode is mainly used for code development in test scenarios. It does not support high availability, and is not suitable for production environments.
 
 The single-node deployment mode is non-distributed. All services are deployed on the same physical machine. To learn the configuration required for this mode, see [development and test environment configuration](./cbdb-op-software-hardware.md#development-and-test-environment).
 
@@ -237,7 +237,7 @@ Currently, the steps for this deployment mode are on the way. Please keep watchi
 
 :::
 
-## Production deployment
+## Production deployments
 
 ### Standard distributed deployment mode
 
@@ -257,7 +257,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
 | Standby node    | 1                | Standby nodes are used for hot backup of master nodes. |
 | Segment (computing node) |  3      | It is recommended to deploy the same number of mirror nodes as computing nodes for high availability. |
 | FTS node        | 3                | The FTS cluster supports multi-node independent deployment, with 3 nodes as the default configuration to ensure high availability. |
-| ETCD metadata node | 3             | The ETCD cluster supports multi-node independent deployment, with high availability feature natively supported by the application. |
+| ETCD metadata node | 3             | The ETCD cluster supports multi-node independent deployment, with high availability features natively supported by the application. |
 
 :::info
 
@@ -328,8 +328,8 @@ It is recommended to plan the nodes to be deployed according to the following ta
 6. On the master node, create a file named `cbdb_etcd.conf`. Then write the following configuration items in the file.
 
     - `gp_etcd_endpoints`: Node names of the ETCD cluster service. You need to configure the ETCD service node hosts `{etcd-service-0}`, `{etcd-service-1}`, and `{etcd-service-2}` in `etcd_service.conf`. The ETCD service will start on these 3 hosts by default.
-    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool and configure the item.
-    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool and configure the item.
+    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool for it.
+    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool for it.
 
     An example of the configuration file is as follows:
 
@@ -342,7 +342,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster, and the on-premises deployment mode can use the default configuration.
+    `gp_etcd_namespace` is the namespace configuration for the cluster, and on-premises deployments use the default configuration.
 
     :::
 
@@ -551,8 +551,8 @@ It is recommended to plan the nodes to be deployed according to the following ta
 4. On the master node, create a file named `cbdb_etcd.conf`. Then write the following configuration items in the file.
 
     - `gp_etcd_endpoints`: Node names of the ETCD cluster service. You need to configure the node names with the hostnames of master, standby, and the segment on which ETCD are to be deployed. The ETCD service will start on these 3 hosts by default.
-    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool and configure the item.
-    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool and configure the item.
+    - `gp_etcd_account_id`: Tenant ID. You can generate a globally unique UUID using the UUID tool for it.
+    - `gp_etcd_cluster_id`: Cluster ID. You can generate a globally unique UUID using the UUID tool for it.
 
     An example of the configuration file is as follows:
 
@@ -565,7 +565,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster, and the on-premises deployment mode can use the default configuration.
+    `gp_etcd_namespace` is the namespace configuration for the cluster, and on-premises deployments use the default configuration.
 
     :::
 
