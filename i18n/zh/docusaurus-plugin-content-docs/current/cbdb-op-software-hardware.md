@@ -10,7 +10,7 @@ title: 软硬件配置需求
 
 ### 物理机
 
-以下部署介绍 Cloudberry Database 在测试和生产环境中，推荐的物理机配置。
+以下介绍 Cloudberry Database 在测试和生产环境中，推荐的物理机配置。
 
 #### 开发及测试环境
 
@@ -133,16 +133,16 @@ CloudBerry Database 支持操作系统包括：
 
     SSH 服务端的配置（`/etc/ssh/sshd_config`）如下。配置完成后，执行 `systemctl restart sshd.service` 命令重启生效。
 
-    | 参数                   | 值   | 说明             | 说明                   |
-    | ---------------------- | ---- | ---------------- | ---------------------- |
-    | Port                   | 22   | 监听端口         |                        |
-    | PasswordAuthentication | yes  | 允许密码登陆。   | 集群初始化后可以变更。 |
-    | PermitEmptyPass words  | no   | 禁止空密码登陆。 |                        |
-    | UseDNS                 | no   | 不使用 DNS。     |                        |
+    | 参数                   | 值   | 说明             |
+    | ---------------------- | ---- | ---------------- |
+    | Port                   | 22   | 监听端口         |
+    | PasswordAuthentication | yes  | 允许密码登陆。集群初始化后可以变更。   |
+    | PermitEmptyPass words  | no   | 禁止空密码登陆。 |
+    | UseDNS                 | no   | 不使用 DNS。     |
 
 ### 内核参数配置
 
-内核参数是关系到数据库稳定运行的重要因素。管理控制台在初始化集群的时候会自动变更内核参数。需确认安装操作系统之后，没有人工设置过内核参数。配置内核参数的脚本参见以下脚本：
+内核参数是关系到数据库稳定运行的重要因素。管理控制台在初始化集群的时候会自动变更内核参数。需确认安装操作系统之后，没有人工设置过内核参数。配置内核参数的脚本参见如下：
 
 <details>
 <summary>内核参数脚本</summary>
@@ -492,6 +492,6 @@ name: Set fs.inotify.max_user_watches
 你需要为部署机到所有其他服务器的连接配置 root 免密，示例如下：
 
 ```bash
-$ ssh-keygen -t rsa
-$ ssh-copy-id root@192.168.66.154 
+ssh-keygen -t rsa
+ssh-copy-id root@192.168.66.154 
 ```
