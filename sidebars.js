@@ -33,6 +33,26 @@ const sidebars = {
       }]
     },
 
+    {
+      type: 'category',
+      label: 'SQL References',
+      items: [
+      {
+        type: 'category',
+        label: 'SQL Statements',
+        items: [
+        'sql-statements/sql-statement-abort',
+        'sql-statements/sql-statement-alter-aggregate',
+        'sql-statements/sql-statement-alter-conversion',
+        'sql-statements/sql-statement-alter-database',
+        'sql-statements/sql-statement-alter-external-table',
+        'sql-statements/sql-statement-alter-function',
+        'sql-statements/sql-statement-alter-domain'
+        ]
+       }
+      ]
+    },
+
   ]
 }
 

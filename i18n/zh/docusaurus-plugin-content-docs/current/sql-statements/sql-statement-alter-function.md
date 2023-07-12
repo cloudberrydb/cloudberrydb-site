@@ -53,7 +53,7 @@ RESET ALL
 - **RETURNS NULL ON NULL INPUT** 和 **STRICT**：如果某个参数为空，则不会调用该函数，而是自动假定为空结果。
 - **IMMUTABLE**，**STABLE**，**VOLATILE**：将函数的波动性改为指定的设置。
 - **[ EXTERNAL ] SECURITY INVOKER** 和 **[ EXTERNAL ] SECURITY DEFINER**：是否将该函数标记为安全定义器。为了保持 SQL 的一致性，可以忽略关键词 `EXTERNAL`。
-- **COST execution_cost**：更改该函数的估计执行代价。参阅 [`CREATE FUNCTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-statements/sql-statement-create-function.md) 获取更多信息。
+- **COST execution_cost**：更改该函数的估计执行代价。参阅 `CREATE FUNCTION` 获取更多信息。
 - **configuration_parameter** 和 **value**：当该函数被调用时，用于配置参数的值。如果 `value` 的值是 `DEFAULT` 或者 `RESET`，则删除函数的本地设置，并且该函数会使用环境中存在的值执行。使用 `RESET ALL` 可以清除所有函数本地的设置。`SET FROM CURRENT` 将运行 `ALTER FUNCTION` 时的参数值保存为输入函数时应用的值。
 - **RESTRICT**：忽略 SQL 标准。
 
