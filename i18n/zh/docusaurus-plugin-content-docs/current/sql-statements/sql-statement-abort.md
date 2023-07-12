@@ -1,5 +1,5 @@
 ---
-title: ABORT 语句
+title: ABORT
 description: 了解 SQL 语句 ABORT 在 Cloudberry Database 中的用法。
 ---
 

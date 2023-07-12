@@ -1,5 +1,5 @@
 ---
-title: ALTER DATABASE 语句
+title: ALTER DATABASE
 description: 了解 SQL 语句 ALTER DATABASE 在 Cloudberry Database 中的用法。
 ---
 

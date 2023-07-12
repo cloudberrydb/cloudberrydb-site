@@ -1,5 +1,5 @@
 ---
-title: ALTER CONVERSION 语句
+title: ALTER CONVERSION
 description: 了解 SQL 语句 ALTER CONVERSION 在 Cloudberry Database 中的用法。
 ---
 
@@ -8,6 +8,14 @@ description: 了解 SQL 语句 ALTER CONVERSION 在 Cloudberry Database 中的�
 `ALTER CONVERSION` 语句用于更改转换的定义。
 
 用户必须拥有使用 `ALTER CONVERSION` 的转换权限。要更改所有者，用户还必须是新任命的直接或间接成员，并且该角色必须对转换的模式拥有 `CREATE` 权限。
+
+## 概要
+
+```sql
+ALTER CONVERSION <name> RENAME TO <newname>
+
+ALTER CONVERSION <name> OWNER TO <newowner>
+```
 
 ## 参数
 

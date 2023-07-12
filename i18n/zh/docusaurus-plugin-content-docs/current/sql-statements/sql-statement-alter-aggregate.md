@@ -1,5 +1,5 @@
 ---
-title: ALTER AGGREGATE 语句
+title: ALTER AGGREGATE
 description: 了解 SQL 语句 ALTER AGGREGATE 在 Cloudberry Database 中的用法。
 ---
 
