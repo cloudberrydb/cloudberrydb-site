@@ -6,7 +6,7 @@ title: 物理机部署架构
 
 本文介绍 Cloudberry Database 所支持的两种物理机部署架构，即“主备部署架构”和“自动高可用部署架构”。两种架构的主要差异在于 Master/ Standby 节点故障恢复是否需要人工运维。在物理机上部署前，你需要了解这两种架构，并根据实际需要进行选择。
 
-在阅读本文前，你需要先阅读 Cloudberry Database 架构介绍，对 Cloudberry Database 的架构有所了解。
+在阅读本文前，你需要先阅读 [Cloudberry Database 架构介绍](./cbdb-architecture.md)，对 Cloudberry Database 的架构有所了解。
 
 | 部署架构                 | 收益或优势 | 成本或风险 |
 | ------------------------ | ---- | ---- |
