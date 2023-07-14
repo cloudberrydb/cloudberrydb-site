@@ -8,27 +8,27 @@ This document describes how to deploy Cloudberry Database in an on-premises envi
 
 :::info
 
-The deployment methods described in this document are based on the [automatic high availability deployment architecture](./cbdb-op-deploy-arch.md#automatic-high-availability-deployment-architecture).
+The deployment methods described in this document are based on the [Automatic high availability architecture](./cbdb-op-deploy-arch.md#automatic-high-availability-architecture).
 
 :::
 
 :::info Glossary
 
-- FTS stands for fault tolerance service. It is the fault recovery nodes and a high availability service component of Cloudberry Database.
+- FTS (Fault Tolerance Service) is a high availability fault recovery component of Cloudberry Database.
 - ETCD: Used to store the cluster topology information and cluster state metadata of Cloudberry Database.
-- Hybrid Deployment: The ETCD and FTS clusters are deployed on the same physical machine as the database nodes.
+- Hybrid Deployment: The ETCD and FTS clusters are deployed on the same physical machines as database nodes.
 
 :::
 
-For the testing environment, you can choose any of the following deployment modes (click the link for a detailed description of the corresponding mode):
+For the test environment, you can choose any of the following deployment modes (click the link for a detailed description):
 
-- [Minimal deployment mode](#minimal-deployment-mode): Suitable for quick verification or PoC test scenarios. It requires less resources (at least 2 servers), but provides poor availability. In this deployment mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way.
-- [Single-node deployment mode](#single-node-deployment-mode): Suitable for development testing or trial use by open-source users. It only requires single-node resource (that is, one server), and does not guarantee high availability. In this deployment mode, the ETCD and FTS clusters are deployed on a single node.
+- [Minimal deployment mode](#minimal-deployment-mode): Suitable for quick verification or PoC scenarios. It requires less resources (at least 2 servers) but provides poor availability. In this mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way.
+- [Single-node deployment mode](#single-node-deployment-mode): Suitable for development test and trial use by open-source users. It only requires single-node resource (one server), and does not guarantee high availability. In this mode, the ETCD and FTS clusters are deployed on a single node.
 
-For the production environment, you can choose any of the following deployment modes (click the link for a detailed description of the corresponding mode):
+For the production environment, you can choose any of the following deployment modes (click the link for a detailed description):
 
-- [Standard distributed deployment mode](#standard-distributed-deployment-mode): Suitable for production environments, with the highest guarantee of availability. In this mode, you need additional machine resources to deploy the ETCD and FTS clusters independently.
-- [Hybrid deployment mode](#hybrid-deployment-mode): Suitable for production environments, with high availability, but not as much as the standard distributed deployment mode. In this mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way, without the need for additional machine resources.
+- [Standard distributed deployment mode](#standard-distributed-deployment-mode): Suitable for production environments, with the highest guarantee of availability among all modes. In this mode, you need additional machine resources to deploy the ETCD and FTS clusters independently.
+- [Hybrid deployment mode](#hybrid-deployment-mode): Suitable for production environments, with high availability, but not as much as the standard distributed deployment mode. In this mode, the ETCD and FTS clusters are deployed on the database nodes in a hybrid way, and no additional machine resources are required.
 
 ## Test environment deployments
 
@@ -40,21 +40,21 @@ The following deployment modes are only for test environments. Do not use the mi
 
 ### Minimal deployment mode
 
-This mode is suitable for quick verification or PoC testing scenarios. It requires less resources and provides poor availability. In this deployment mode, you only need to deploy the FTS and ETCD services in a hybrid way on different nodes of the database, without the need to use additional machines to deploy FTS and ETCD as independent clusters.
+This mode is suitable for quick verification or PoC scenarios. It requires less resources but provides poor availability. In this deployment mode, you only need to deploy the FTS and ETCD services in a hybrid way on different database nodes, and no additional machine resources are required to deploy FTS and ETCD as independent clusters.
 
-The minimal deployment mode is a distributed deployment and requires at least 2 physical machines. To learn the configuration required for this mode, see [development and test environment configuration](./cbdb-op-software-hardware.md#development-and-test-environment).
+The minimal deployment mode is distributed and requires at least 2 physical machines. To learn the configuration required for this mode, see [recommended configurations for development and test environments](./cbdb-op-software-hardware.md#for-development-or-test-environments).
 
 The following are the steps to perform the minimal deployment:
 
 #### Step 1: Plan the deployment
 
-It is recommended to plan the nodes to be deployed according to the following table:
+It is recommended to deploy nodes according to the following table:
 
 | Component           | Recommended number of physical machines | Description                                                            |
 | :------------------ | :-------------------------------------- | :-------------------------------------------------------------------- |
 | Master node         | 1                                       |                                                                        |
 | Segment (computing node) | 1                                       |                                                                        |
-| FTS node            | 0                                       | FTS clusters support hybrid deployment across multiple nodes, and you do not need to reserve separate physical machines for the deployment. Two nodes are deployed by default for availability. |
+| FTS node            | 0                                       | The FTS cluster supports multi-node hybrid deployment, and you do not need to reserve physical machines separately. Two nodes are deployed by default for availability. |
 | ETCD metadata node  | 0                                       | ETCD clusters support multi-node deployment, and you do not need to reserve separate physical machines for the deployment. High availability is natively supported by the application. |
 
 #### Step 2: Prepare configuration files
@@ -107,9 +107,18 @@ The following deployment operations are performed using the `gpadmin` user.
 
     :::
 
+#### Step 3: Configure SSH password-free login for the `gpadmin` account
+
+Use the `ssh-copy-id` command to configure password-free login by the `gpadmin` user of the master.
+
+```shell
+ssh-copy-id -f master
+ssh-copy-id -f seg1
+```
+
 #### Step 4: Create data directory {#minimal-step-4}
 
-1. In the `~/.bashrc` file on each node, add a line of the `source` command. For example:
+1. In the `~/.bashrc` file on each node, add the `source` command. For example:
 
     ```bash
     # /usr/local/cloudberry-db is the deployment directory for Cloudberry Database.
@@ -117,7 +126,7 @@ The following deployment operations are performed using the `gpadmin` user.
     source /usr/local/cloudberry-db/greenplum_path.sh
     ```
 
-2. On the master node, use the `gpssh` command to create data directories and mirror directories for segments.
+2. On the master node, use the `gpssh` command to create a data directory and a mirror directory for segments.
 
     ```bash
     # For example, /data0/primary and /data0/mirror.
@@ -134,7 +143,7 @@ The following deployment operations are performed using the `gpadmin` user.
     mkdir -p /data0/master
     ```
 
-4. In the `~/.bashrc` file on the master node, add a line of the following command, which is the path `{previous step's path} + gpseg-1`.
+4. In the `~/.bashrc` file on the master node, add the following command with the path `{path in the previous step} + gpseg-1`.
 
     ```bash
     export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
@@ -156,9 +165,9 @@ The following deployment operations are performed using the `gpadmin` user.
 
 2. Edit the `gpinitsystem_config` file:
 
-    - Modify the `DATA_DIRECTORY` configuration item to the data directory of the segment node, that is, `/data0/primary` in Step 2 of [Step 4: Create data directory](#minimal-step-4).
-    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master primary node.
-    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master primary node, that is, `/data0/master` in Step 3 of [Step 4: Create data directory](#minimal-step-4).
+    - Modify `DATA_DIRECTORY` to the data directory of the segment node, which is `/data0/primary` as mentioned in step 2 of [Step 4: Create data directory](#minimal-step-4).
+    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master node.
+    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master node, which is `/data0/master` as mentioned in step 3 of [Step 4: Create data directory](#minimal-step-4).
 
     The modified example configuration file is as follows:
 
@@ -192,10 +201,10 @@ The following deployment operations are performed using the `gpadmin` user.
     ENCODING=UNICODE
     ```
 
-    If there are segment mirror nodes, you also need to modify `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY`.
+    If there are mirror nodes, `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY` also need to be modified.
 
-    - `MIRROR_PORT_BASE` is the port used by the mirror.
-    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror, that is, `data0/mirror` in Step 2 of [Step 4: Create data directory](#minimal-step-4).
+    - `MIRROR_PORT_BASE` is the port used by the mirror node.
+    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror node, which is `/data0/mirror` as mentioned in step 2 of [Step 4: Create data directory](#minimal-step-4).
 
     The modified example configuration file is as follows:
 
@@ -221,9 +230,9 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
 ### Single-node deployment mode
 
-Single-node deployment mode means deploying FTS and ETCD services on a single local node. This mode is mainly used for code development in test scenarios. It does not support high availability, and is not suitable for production environments.
+The single-node deployment mode deploys FTS and ETCD services on a single local node. This mode is mainly used for development test scenarios. It does not support high availability and is not suitable for production environments.
 
-The single-node deployment mode is non-distributed. All services are deployed on the same physical machine. To learn the configuration required for this mode, see [development and test environment configuration](./cbdb-op-software-hardware.md#development-and-test-environment).
+The single-node deployment mode is non-distributed. All services are deployed on the same physical machine. To learn the configuration required for this mode, see [development and test environment configuration](./cbdb-op-software-hardware.md#for-development-or-test-environments).
 
 <!-- 要进行单节点部署，执行以下步骤：
 
@@ -233,7 +242,7 @@ The single-node deployment mode is non-distributed. All services are deployed on
 
 :::info
 
-Currently, the steps for this deployment mode are on the way. Please keep watching.
+The steps for this deployment mode are on the way. Please keep watching.
 
 :::
 
@@ -241,34 +250,34 @@ Currently, the steps for this deployment mode are on the way. Please keep watchi
 
 ### Standard distributed deployment mode
 
-In this deployment mode, FTS and ETCD cluster nodes are deployed on separate physical machines. The system reliability is high, supporting automatic failover of master/standby nodes, which is suitable for production environments that require high availability.
+In this deployment mode, FTS and ETCD cluster nodes are deployed on separate physical machines. The system has high reliability and supports automatic fault recovery by switching between master/standby nodes, which is suitable for production environments that require high availability.
 
-To learn the physical configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#production-environment).
+To learn the physical configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#for-production-environments).
 
 To deploy Cloudberry Database in this mode, take the following steps.
 
 #### Step 1: Plan the deployment
 
-It is recommended to plan the nodes to be deployed according to the following table:
+It is recommended to deploy nodes according to the following table:
 
 | Component       | Recommended number of physical machines | Description |
 | :-------------  | :---------------- | :---------- |
 | Master node     | 1                |             |
-| Standby node    | 1                | Standby nodes are used for hot backup of master nodes. |
+| Standby node    | 1                | The standby node is used for hot backup of the master node. |
 | Segment (computing node) |  3      | It is recommended to deploy the same number of mirror nodes as computing nodes for high availability. |
-| FTS node        | 3                | The FTS cluster supports multi-node independent deployment, with 3 nodes as the default configuration to ensure high availability. |
-| ETCD metadata node | 3             | The ETCD cluster supports multi-node independent deployment, with high availability features natively supported by the application. |
+| FTS node        | 3                | The FTS cluster supports multi-node independent deployment, with the default configuration of 3 nodes to ensure high availability. |
+| ETCD metadata node | 3             | The ETCD cluster supports multi-node independent deployment. High availability is natively supported by applications. |
 
 :::info
 
-- The following deployment operations are all performed with the `gpadmin` user.
+- The following deployment operations are performed by the `gpadmin` user.
 - It is recommended to deploy the FTS nodes and ETCD nodes on the same server to save resources.
 
 :::
 
 #### Step 2: Prepare configuration files
 
-1. Prepare the corresponding physical machines according to the number of nodes planned in the previous step. Edit the `/etc/hosts` file. Then add all cluster nodes including all IP addresses and aliases. For example:
+1. Prepare physical machines according to the recommended nodes in the previous step. Edit the `/etc/hosts` file. Then add all cluster nodes including all IP addresses and aliases. For example:
 
     ```
     # Loopback address       Hostname
@@ -342,7 +351,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster, and on-premises deployments use the default configuration.
+    `gp_etcd_namespace` is the namespace configuration for the cluster. For on-premises deployments, use the default configuration of `gp_etcd_namespace`.
 
     :::
 
@@ -355,9 +364,9 @@ It is recommended to plan the nodes to be deployed according to the following ta
     gp_etcd_namespace='default'
     ```
 
-#### Step 3: Configure SSH keyless authentication for the `gpadmin` account
+#### Step 3: Configure SSH password-free login for the `gpadmin` account
 
-With the `gpadmin` user of the master host, use the `ssh-copy-id` command to configure keyless authentication. Here is an example:
+Use the `ssh-copy-id` command to configure password-free login by the `gpadmin` user of the master. For example:
 
 ```shell
 ssh-copy-id -f master
@@ -372,7 +381,7 @@ ssh-copy-id -f etcd3
 
 #### Step 4: Create data directories {#standard-step-4}
 
-1. In the `~/.bashrc` file of each node, add a line of the `source` command. Here is an example:
+1. In the `~/.bashrc` file of each node, add the `source` command. For example:
 
     ```bash
     # /usr/local/cloudberry-db is the deployment directory of Cloudberry Database.
@@ -405,7 +414,7 @@ ssh-copy-id -f etcd3
     gpssh -h standby -e 'mkdir -p /data0/master'
     ```
 
-5. In the `~/.bashrc` file of master and standby nodes, add the following line of command, which is the path `{path in the previous step}` + `gpseg-1`.
+5. In the `~/.bashrc` file of the master and standby nodes, add the following command with the path `{path in the previous step} + gpseg-1`.
 
     ```bash
     export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
@@ -427,9 +436,9 @@ ssh-copy-id -f etcd3
 
 2. Edit the `gpinitsystem_config` file:
 
-    - Modify the `DATA_DIRECTORY` configuration item to the data directory of the segment node, that is, `/data0/primary` in Step 2 of [Step 4: Create data directory](#standard-step-4).
-    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master primary node.
-    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master primary node, that is, `/data0/master` in Step 3 of [Step 4: Create data directory](#standard-step-4).
+    - Modify `DATA_DIRECTORY` to the data directory of the segment node, which is `/data0/primary` as mentioned in step 2 of [Step 4: Create data directory](#standard-step-4).
+    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master node.
+    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master node, which is `/data0/master` as mentioned in step 3 of [Step 4: Create data directory](#standard-step-4).
 
     The modified example configuration file is as follows:
 
@@ -463,10 +472,10 @@ ssh-copy-id -f etcd3
     ENCODING=UNICODE
     ```
 
-    If there are segment mirror nodes, you also need to modify `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY`.
+    If there are mirror nodes, `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY` also need to be modified.
 
-    - `MIRROR_PORT_BASE` is the port used by the mirror.
-    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror, that is, `data0/mirror` in Step 2 of [Step 4: Create data directory](#standard-step-4).
+    - `MIRROR_PORT_BASE` is the port used by the mirror node.
+    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror node, which is `/data0/mirror` as mentioned in step 2 of [Step 4: Create data directory](#standard-step-4).
 
     The modified example configuration file is as follows:
 
@@ -494,7 +503,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
 
 In this mode, you can reuse the existing physical machines to deploy the FTS and ETCD services. No additional physical machines are required for FTS and ETCD. The system reliability is not as high as that of the standard distributed deployment. This deployment mode supports automatic fault recovery by switching between master/standby nodes.
 
-To learn the physical configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#production-environment).
+To learn the physical configuration required for this mode, see [configuration for production environment](./cbdb-op-software-hardware.md#for-production-environments).
 
 To deploy Cloudberry Database in this mode, take the following steps.
 
@@ -505,21 +514,21 @@ It is recommended to plan the nodes to be deployed according to the following ta
 | Component       | Recommended number of physical machines | Description |
 | :-------------  | :---------------- | :---------- |
 | Master node     | 1                |             |
-| Standby node    | 1                | Standby nodes are used for hot backup of master nodes. |
-| Segment (computing node) |  3      | It is recommended to deploy the same number of mirror nodes as computing nodes for high availability. The number of nodes is determined according to your data requirements and related hardware (the number of disks mounted on the machine). |
-| FTS node        | 3                | The FTS cluster supports multi-node hybrid deployment, with 3 nodes as the default configuration to ensure high availability. You do not need to reserve a separate physical machine for it. |
-| ETCD metadata node | 3             | The ETCD cluster supports multi-node deployment, with high availability feature natively supported by the application. You do not need to reserve a separate physical machine for it. |
+| Standby node    | 1                | The standby node is used for hot backup of the master node. |
+| Segment (computing node) |  3      | It is recommended to deploy the same number of mirror nodes as computing nodes for high availability. The number of segment nodes is determined according to data requirements and related hardware (the number of disks mounted on the machine). |
+| FTS node        | 3                | The FTS cluster supports multi-node hybrid deployment, you do not need to reserve physical machines separately. Three nodes are deployed by default for availability. |
+| ETCD metadata node | 3             | The ETCD cluster supports multi-node deployment, and you do no need to reserve physical machines separately. High availability is natively supported by applications. |
 
 :::info
 
-- The following deployment operations are all performed with the `gpadmin` user.
+- The following deployment operations are performed by the `gpadmin` user.
 - Because segments are computing nodes, deploying the ETCD and FTS services on computing nodes might cause performance issues in production environments. To avoid performance issues and improve system reliability, it is recommended to specify an additional physical machine `{host}` through the configuration file to deploy ETCD and FTS services, that is, master + standby + {host} deployment.
 
 :::
 
 #### Step 2: Prepare configuration files
 
-1. Prepare the corresponding physical machines according to the number of nodes planned in the previous step. Edit the `/etc/hosts` file. Then add all cluster nodes including all IP addresses and aliases. For example:
+1. Prepare physical machines according to the recommended nodes in the previous step. Edit the `/etc/hosts` file. Then add all cluster nodes including all IP addresses and aliases. For example:
 
     ```
     # Loopback address       Hostname
@@ -565,13 +574,13 @@ It is recommended to plan the nodes to be deployed according to the following ta
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster, and on-premises deployments use the default configuration.
+    `gp_etcd_namespace` is the namespace configuration for the cluster. For on-premises deployments, use the default configuration of `gp_etcd_namespace`.
 
     :::
 
-#### Step 3: Configure SSH keyless authentication for the `gpadmin` account
+#### Step 3: Configure SSH password-free login for the `gpadmin` account
 
-With the `gpadmin` user of the master host, use the `ssh-copy-id` command to configure keyless authentication. Here is an example:
+With the `gpadmin` user of the master host, use the `ssh-copy-id` command to configure keyless authentication. For example:
 
 ```shell
 ssh-copy-id -f master
@@ -583,7 +592,7 @@ ssh-copy-id -f seg3
 
 #### Step 4: Create data directories {#hybrid-step-4}
 
-1. In the `~/.bashrc` file of each node, add a line of the `source` command. Here is an example:
+1. In the `~/.bashrc` file of each node, add a line of the `source` command. For example:
 
     ```bash
     # /usr/local/cloudberry-db is the deployment directory of Cloudberry Database.
@@ -616,7 +625,7 @@ ssh-copy-id -f seg3
     gpssh -h standby -e 'mkdir -p /data0/master'
     ```
 
-5. In the `~/.bashrc` file of master and standby nodes, add the following line of command, which is the path `{path in the previous step}` + `gpseg-1`.
+5. In the `~/.bashrc` file of the master and standby nodes, add the following command with the path `{path in the previous step} + gpseg-1`.
 
     ```bash
     export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
@@ -638,9 +647,9 @@ ssh-copy-id -f seg3
 
 2. Edit the `gpinitsystem_config` file:
 
-    - Modify the `DATA_DIRECTORY` configuration item to the data directory of the segment node, that is, `/data0/primary` in Step 2 of [Step 4: Create data directory](#hybrid-step-4).
-    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master primary node.
-    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master primary node, that is, `/data0/master` in Step 3 of [Step 4: Create data directory](#hybrid-step-4).
+    - Modify `DATA_DIRECTORY` to the data directory of the segment node, which is `/data0/primary` as mentioned in step 2 of [Step 4: Create data directory](#hybrid-step-4).
+    - Modify `COORDINATOR_HOSTNAME` to the hostname of the master node.
+    - Modify `COORDINATOR_DIRECTORY` to the data directory of the master node, which is `/data0/master` as mentioned in step 3 of [Step 4: Create data directory](#hybrid-step-4).
 
     The modified example configuration file is as follows:
 
@@ -674,10 +683,10 @@ ssh-copy-id -f seg3
     ENCODING=UNICODE
     ```
 
-    If there are segment mirror nodes, you also need to modify `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY`.
+    If there are mirror nodes, `MIRROR_PORT_BASE` and `MIRROR_DATA_DIRECTORY` also need to be modified.
 
-    - `MIRROR_PORT_BASE` is the port used by the mirror.
-    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror, that is, `data0/mirror` in Step 2 of [Step 4: Create data directory](#hybrid-step-4).
+    - `MIRROR_PORT_BASE` is the port used by the mirror node.
+    - `MIRROR_DATA_DIRECTORY` is the data directory of the mirror node, which is `/data0/mirror` as mentioned in step 2 of [Step 4: Create data directory](#hybrid-step-4).
 
     The modified example configuration file is as follows:
 
@@ -704,5 +713,5 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host -s standby
 ## Points to note
 
 - If you want to enable the feature that automatically detects whether the master is down and upgrades the standby to master, you need to execute the DML twice in the system.
-- The ETCD service needs at least 2 live nodes to operate normally, while the FTS service only needs 1 live node to work correctly.
+- The ETCD service requires at least 2 live nodes to operate normally, while the FTS service only requires 1 live node.
 - The logs of the FTS node are stored in the `/tmp/fts/log` folder.
