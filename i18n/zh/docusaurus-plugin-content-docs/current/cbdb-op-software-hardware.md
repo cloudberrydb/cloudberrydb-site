@@ -489,7 +489,7 @@ name: Set fs.inotify.max_user_watches
 
 ### SSH 免密
 
-你需要为部署机到所有其他服务器的连接配置 root 免密，示例如下：
+为所有节点配置免密登录，示例如下：
 
 ```bash
 ssh-keygen -t rsa
