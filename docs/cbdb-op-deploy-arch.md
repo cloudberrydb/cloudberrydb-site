@@ -6,11 +6,11 @@ title: Local Deployment Architectures
 
 Before reading this document, it is recommended to understand the architecture of Cloudberry Database by referring to [Cloudberry Database Architecture](./cbdb-architecture.md).
 
-This document introduces two architecture options for deploying the Cloudberry Database on your local machine: the "active-standby architecture" and the "automatic high-availability architecture". The main difference between the two is whether or not manual operation and maintenance is required to recover the database from master/standby node failures. Before deploying Cloudberry Database on your local machine, you need to understand these 2 architectures and choose according to your actual needs.
+This document introduces two architecture options for deploying the Cloudberry Database on your local machine: the "master-standby architecture" and the "automatic high-availability architecture". The main difference between the two is whether or not manual operation and maintenance is required to recover the database from master/standby node failures.
 
 | Deployment architecture | Benefits | Costs and risks |
 | ------------------------ | ---- | ---- |
-| Active-standby architecture (default) | <ul><li>Similar to the traditional Greenplum architecture. Well compatible with Greenplum tool ecosystem.</li><li>No need to deploy high-availability components separately, and its resource requirements are slightly lower.</li></ul> | <ul><li>If the master node fails, the database cannot automatically recover from the failure, and metadata cannot be updated in time. </li><li>If the master/standby node fails, manual intervention is required for recovery, which will result in manual maintenance costs. </li></ul> |
+| Master-standby architecture (default) | <ul><li>Similar to the traditional Greenplum architecture. Well compatible with Greenplum tool ecosystem.</li><li>No need to deploy high-availability components separately, and its resource requirements are slightly lower.</li></ul> | <ul><li>If the master node fails, the database cannot automatically recover from the failure, and metadata cannot be updated in time. </li><li>If the master/standby node fails, manual intervention is required for recovery, which will result in manual maintenance costs. </li></ul> |
 | Automatic high-availability architecture | If the master/standby node fails:<ul><li>The system automatically switches nodes, with high reliability.</li><li>No manual intervention is required, saving manual maintenance costs.</li></ul> | Needs additional deployment of high-availability components (fault detection and recovery nodes, and ETCD clusters). |
 
 :::info Glossary
@@ -21,15 +21,15 @@ This document introduces two architecture options for deploying the Cloudberry D
 
 :::
 
-## Active-standby architecture (default)
+## Master-standby architecture (default)
 
-The active-standby architecture is the default deployment architecture of Cloudberry Database on physical machines, which is compatible with Greenplum Database architecture and tool ecosystem. With this deployment architecture, Cloudberry Database behaves the same as traditional Greenplum Database.
+The master-standby architecture is the default deployment architecture of Cloudberry Database on physical machines, which is compatible with Greenplum Database architecture and tool ecosystem. With this deployment architecture, Cloudberry Database behaves the same as traditional Greenplum Database.
 
 In this deployment architecture, you do not need to deploy the FTS and ETCD services. However, in this architecture, the master and standby nodes do not support automatic failure recovery, and you need to manually switch between master and standby nodes to recover from failures. The failure recovery might take a long time and the operation is complicated.
 
 The architecture is shown in the figure below:
 
-![Active-standby deployment architecture](./media/cbdb-deploy-manual-high-avail.png)
+![Master-standby deployment architecture](./media/cbdb-deploy-manual-high-avail.png)
 
 ## Automatic high-availability architecture
 

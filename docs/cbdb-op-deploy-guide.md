@@ -234,11 +234,13 @@ The single-node deployment mode deploys FTS and ETCD services on a single local 
 
 The single-node deployment mode is non-distributed. All services are deployed on the same physical machine. To learn the configuration required for this mode, see [development and test environment configuration](./cbdb-op-software-hardware.md#for-development-or-test-environments).
 
-<!-- 要进行单节点部署，执行以下步骤：
+To perform the single-node deployment, take these steps:
 
-1. 下载 Cloudberry Database 源代码到本地目录，下载地址为 <https://github.com/cloudberrydb/cloudberrydb>。
-2. 参考 Cloudberry Database 代码仓库中 README.md 文档，编译 Cloudberry Database 源代码并安装。
-3. 执行 `make create-demo-cluster` 命令。-->
+1. Download the Cloudberry Database source code to your local directory. The download link is <https://github.com/cloudberrydb/cloudberrydb>.
+
+2. Refer to the [README.md](https://github.com/cloudberrydb/cloudberrydb/tree/main/readmes) in the Cloudberry Database code repository to compile the source code and install the database.
+
+3. Run the `make create-demo-cluster` command.
 
 :::info
 

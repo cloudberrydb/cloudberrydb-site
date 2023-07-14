@@ -201,7 +201,7 @@ ssh-copy-id -f seg1
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    若存在Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `data0/mirror`。
@@ -234,13 +234,11 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
 单节点部署模式为非分布式部署，所有服务都部署在同一台物理机上。该模式所需的物理机配置参见[开发及测试环境配置](./cbdb-op-software-hardware.md#开发及测试环境)。
 
-<!-- 要进行单节点部署，执行以下步骤：
+要进行单节点部署，执行以下步骤：
 
 1. 下载 Cloudberry Database 源代码到本地目录，下载地址为 <https://github.com/cloudberrydb/cloudberrydb>。
-2. 参考 Cloudberry Database 代码仓库中 README.md 文档，编译 Cloudberry Database 源代码并安装。
-3. 执行 `make create-demo-cluster` 命令。-->
-
-部署方法待添加。
+2. 参考 Cloudberry Database 代码仓库中 [README.md](https://github.com/cloudberrydb/cloudberrydb/tree/main/readmes) 文档，编译 Cloudberry Database 源代码并安装。
+3. 执行 `make create-demo-cluster` 命令。
 
 ## 生产环境部署
 
@@ -468,7 +466,7 @@ ssh-copy-id -f etcd3
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和 `MIRROR_DATA_DIRECTORY`。
+    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和 `MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `data0/mirror`。
@@ -677,7 +675,7 @@ ssh-copy-id -f seg3
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `data0/mirror`。
