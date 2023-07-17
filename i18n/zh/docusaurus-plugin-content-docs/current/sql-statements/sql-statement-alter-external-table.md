@@ -83,6 +83,6 @@ ALTER EXTERNAL TABLE ext_leads SET SCHEMA marketing;
 
 `ALTER EXTERNAL TABLE` 是 Cloudberry Database 的语法扩展。SQL 标准或常规 PostgreSQL 中没有 `ALTER EXTERNAL TABLE` 语句。
 
-### 另见
+## 另见
 
 `CREATE EXTERNAL TABLE`，`DROP EXTERNAL TABLE`

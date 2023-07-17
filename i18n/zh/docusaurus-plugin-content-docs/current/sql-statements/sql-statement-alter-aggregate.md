@@ -17,7 +17,7 @@ ALTER AGGREGATE <name> ( <type> [ , ... ] ) OWNER TO <new_owner>
 ALTER AGGREGATE <name> ( <type> [ , ... ] ) SET SCHEMA <new_schema>
 ```
 
-### 参数
+## 参数
 
 - **name**：一个现有聚合函数的名称（可以是限定模式）
 - **type**：聚合函数能运行的输入数据类型。要引用零参数聚合函数，写入 `*` 代替输入数据类型的列表。
@@ -25,7 +25,7 @@ ALTER AGGREGATE <name> ( <type> [ , ... ] ) SET SCHEMA <new_schema>
 - **new_owner**：聚合函数新的所有者。
 - **new_schema**：聚合函数的新 schema。
 
-### 示例
+## 示例
 
 要将 integer 类型的聚合函数 `myavg` 重命名为 `my_average`：
 
@@ -45,10 +45,10 @@ ALTER AGGREGATE myavg(integer) OWNER TO joe;
 ALTER AGGREGATE myavg(integer) SET SCHEMA myschema;
 ```
 
-### 兼容性
+## 兼容性
 
 在 SQL 标准中没有 `ALTER AGGREGATE` 语句。
 
-### 另见
+## 另见
 
 `CREATE`，`AGGREGATE`，`DROP`，`AGGREGATE`

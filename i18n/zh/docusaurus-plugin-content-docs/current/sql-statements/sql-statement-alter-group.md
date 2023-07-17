@@ -45,6 +45,6 @@ ALTER GROUP workers DROP USER beth;
 
 在 SQL 标准中没有 `ALTER GROUP` 语句。
 
-### 另见
+## 另见
 
 `ALTER ROLE`，`GRANT`，`REVOKE`

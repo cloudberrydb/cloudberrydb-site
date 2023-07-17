@@ -47,7 +47,17 @@ const sidebars = {
         'sql-statements/sql-statement-alter-database',
         'sql-statements/sql-statement-alter-external-table',
         'sql-statements/sql-statement-alter-function',
-        'sql-statements/sql-statement-alter-domain'
+        'sql-statements/sql-statement-alter-domain',
+        'sql-statements/sql-statement-alter-external-table',
+        'sql-statements/sql-statement-alter-function',
+        'sql-statements/sql-statement-alter-group',
+        'sql-statements/sql-statement-alter-operator',
+        'sql-statements/sql-statement-alter-role',
+        'sql-statements/sql-statement-alter-schema',
+        'sql-statements/sql-statement-alter-sequence',
+        'sql-statements/sql-statement-alter-table',
+        'sql-statements/sql-statement-alter-type',
+        'sql-statements/sql-statement-alter-user'
         ]
        }
       ]

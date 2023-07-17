@@ -132,7 +132,7 @@ ALTER TABLE <name>
    OIDS[=TRUE|FALSE]
 ```
 
-### 描述
+## 描述
 
 ALTER TABLE 更改表的定义。下文描述了几种形式：
 
@@ -147,9 +147,9 @@ ALTER TABLE 更改表的定义。下文描述了几种形式：
 - **DISABLE/ENABLE TRIGGER**：禁用或启用触发器。对于被禁用的触发器，即使被触发了也不会运行。对于延迟触发器，会在事件发生时而不是触发器函数真正被执行时检查其启用状态。可以禁用或启用由名称指定的单个触发器，或表上的所有触发器，或用户创建的触发器。禁用或启用约束触发器需要超级用户权限。注意：Cloudberry Database 不支持触发器。由于 Cloudberry Database 的并行性，触发器通常只具有非常有限的功能。
 - **CLUSTER ON/SET WITHOUT CLUSTER**：为 `CLUSTER` 操作选择默认索引。它不会真正地对表进行重新排列。不建议通过 `CLUSTER` 来重排表，因为 `CLUSTER` 比较费时。最好是用 `CREATE TABLE AS` 重新创建表并由索引列排序。
 
-    :::note
-    注意： `append` 优化表不支持 `CLUSTER ON`。
-    :::
+:::note 注意
+`append` 优化表不支持 `CLUSTER ON`。
+:::
 
 - **SET WITHOUT OIDS**：移除 `oid` 系统列。注意，`oid` 一旦被删除，将无法恢复。
 - **SET ( FILLFACTOR = value) / RESET (FILLFACTOR)**：更改表的填充因子。表的填充因子是 `10` 到 `100` 之间的百分比。默认值为 `100`（完全填充）。当指定较小的填充因子时，`INSERT` 操作仅将表页填充到指定的百分比；每页上的剩余空间将用于更新该页上的行。所以可以通过 `UPDATE` 将行的更新副本放在与原始页面相同的页面上，这比将其放在不同的页面上更有效。对于不更新条目的表，完全填充是最佳选择，但是在大量更新的表中，较小的填充因子更为恰当。请注意，此命令不会立即修改表内容。用户将需要重写表以获得所需的效果。
@@ -161,7 +161,7 @@ ALTER TABLE 更改表的定义。下文描述了几种形式：
 - **SET SCHEMA**：将表移动到另一个 schema。表列所拥有的关联索引、约束和序列也会被移动。
 - **ALTER PARTITION | DROP PARTITION | RENAME PARTITION | TRUNCATE PARTITION | ADD PARTITION | SPLIT PARTITION | EXCHANGE PARTITION | SET SUBPARTITION TEMPLATE**：更改分区表的结构。在大多数情况下，用户必须通过父表来更改其子表分区。
 
-:::tip 小提示
+:::tip 提示
 
 - 如果将分区添加到具有子分区编码的表中，则新分区将继承子分区的存储指令。
 
@@ -171,7 +171,7 @@ ALTER TABLE 更改表的定义。下文描述了几种形式：
 
 :::
 
-### 参数
+## 参数
 
 - **ONLY**：只对指定的表名进行操作。如果不使用 `ONLY` 关键字，将对表和与该表相关联的任何子表分区执行操作。
 - **name**：要更改的表的名称（可包括schema信息）。 如果指定了ONLY，则只有该表被更改。如果未指定 ONLY，该表及其所有子表都会被修改。注意： 限制只能添加到整个表中，而不能添加到分区。由于这个限制，该 name 参数只能包含一个表名，而不能是一个分区名。
@@ -199,158 +199,171 @@ ALTER TABLE 更改表的定义。下文描述了几种形式：
 - **ALTER [DEFAULT] PARTITION**：更改比第一级分区更深的分区，请使用 ALTER PARTITION子句指定要更改层次结构中的哪个子分区。
 - **DROP [DEFAULT] PARTITION**：删除指定的分区。如果分区具有子分区，子分区也将自动删除。
 - **TRUNCATE [DEFAULT] PARTITION**：截断指定的分区。如果分区具有子分区，则子分区也将自动截断。
-- **RENAME [DEFAULT] PARTITION**：更改分区的分区名称（而不是关系名称）。分区表是使用命名约定创建的： <parentname >_<level >_prt_<partition_name >。
+- **RENAME [DEFAULT] PARTITION**：更改分区的分区名称（而不是关系名称）。分区表是使用命名约定创建的： `<parentname >_<level >_prt_<partition_name >`。
 - **ADD DEFAULT PARTITION**：将默认分区添加到现有分区设计。当数据与现有分区不匹配时，它将被插入到默认分区中。没有默认分区的分区设计将拒绝传入与现有分区不匹配的行。必须为默认分区命名。
 - **ADD PARTITION**：
     - **partition_element**：使用表（范围或列表）的现有分区类型，定义要添加的新分区的边界。
     - name - 新分区名称。
     - **VALUES**：对于列表分区，定义分区将包含的值。
-    - **START**：对于范围分区，定义分区的起始范围值。默认情况下，起始值为 INCLUSIVE。例如，如果您声明开始日期为 "2016-01-01"，则分区将包含所有大于或等于 "2016-01-01" 的日期。通常，`START` 表达式的数据类型与分区键列的类型相同。如果不是这种情况，那么您必须显式转换为预期的数据类型。
-    - **END**：对于范围分区，定义分区的结束范围值。默认情况下，结束值为 EXCLUSIVE。如果您声明结束日期为 '2016-02-01'，则分区将包含所有小于但不等于 '2016-02-01' 的日期。通常，END表达式的数据类型与分区键列的类型相同。如果不是这种情况，那么您必须显式转换为预期的数据类型。
+    - **START**：对于范围分区，定义分区的起始范围值。默认情况下，起始值为 INCLUSIVE。例如，如果你声明开始日期为 "2016-01-01"，则分区将包含所有大于或等于 "2016-01-01" 的日期。通常，`START` 表达式的数据类型与分区键列的类型相同。如果不是这种情况，那么你必须显式转换为预期的数据类型。
+    - **END**：对于范围分区，定义分区的结束范围值。默认情况下，结束值为 EXCLUSIVE。如果你声明结束日期为 '2016-02-01'，则分区将包含所有小于但不等于 '2016-02-01' 的日期。通常，END表达式的数据类型与分区键列的类型相同。如果不是这种情况，那么你必须显式转换为预期的数据类型。
     - **WITH**：设置分区的表存储选项。例如，用户可能希望较旧的分区是追加优化的表，较新的分区为常规堆表。
     - **TABLESPACE**：要在其中创建分区的表空间名称。
     - **subpartition_spec**：只允许在没有子分区模板的情况下创建的分区设计。声明要添加的新分区的子分区规范。如果分区表最初是使用子分区模板定义的，那么该模板将用于自动生成子分区。
-- **EXCHANGE [DEFAULT] PARTITION**：
-    将另一个表交换到分区层次结构中，以代替现有分区。在多级分区设计中，您只能交换最低级别的分区（包含数据的分区）。
-    Hashdata数据库服务器配置参数 gp_enable_exchange_default_partition 用来控制可用 EXCHANGE DEFAULT PARTITION 子句的可用性。 参数的默认值为 off。
-    警告: 在交换默认分区之前，用户必须确保要被交换的表（新的默认分区）中的数据对于默认分区是有效的。例如，新默认分区中的数据不能含有对该分区表其他叶子子分区中有效的数据。否则，针对被交换默认分区所在分区表的查询在被GPORCA执行时可能返回不正确的结果。
-    - **WITH TABLE <table_name>**：要交换到分区设计中的表的名称。用户可以交换表数据被存储在数据库中的表。例如，该表由CREATE TABLE命令创建，该表必须具有与父表相同的列数、列顺序、列名、列类型和分配策略。
-      通过EXCHANGE PARTITION子句，还可以将可读的外部表（使用CREATE EXTERNAL TABLE命令创建）交换到分区层次结构中，以代替现有的叶子子分区。如果您指定一个可读的外部表，您还必须指定WITHOUT VALIDATION子句以跳过针对CHECK您正在交换的分区的约束的表验证。以下情况不支持用外部表交换叶子子分区：
-      分区表通过SUBPARTITION子句创建，或者分区具有子分区。
-      分区表含有带有检查约束或者NOT NULL约束的列。
-    - **WITH | WITHOUT VALIDATION**：验证表中的数据是否与您正在交换的分区的CHECK约束相匹配。默认是根据CHECK约束验证数据。
-      警告：如果指定了WITHOUT VALIDATION子句，必须确保正在交换的现有叶子子分区的表中的数据对于该分区上的CHECK约束有效。否则针对分区表的查询可能返回不正确的结果。
-- **SET SUBPARTITION TEMPLATE**：
-    为现有分区修改子分区模板。在设置了新的子分区模板后，所有增加的新分区都将具有新的子分区设计（现有分区不会被修改）。
-- **SPLIT DEFAULT PARTITION**：
-    拆分一个默认分区。在一种多级分区设计中，用户只能分裂最低层的默认分区（包含数据的分区）。拆分默认分区会创建包含指定值的新分区，并保留包含与现有分区不匹配的任何值的默认分区。
-    - **AT** - 对于列表分区表，指定用作拆分条件的列表值。
-    - **START** - 对于范围分区表，指定新分区的起始值。
-    - **END** - 对于范围分区表，指定新分区的结束值。
-    - **INTO** - 允许用户为新分区指定一个。在使用INTO子句拆分默认分区时，指定的第二个分区名应该总是现有的默认分区。如果用户不知道默认分区的名称，可以使用pg_partitions视图找到它。
-- **SPLIT PARTITION**：
-    将现有分区分裂成两个分区。在多层分区设计中，用户只能分裂最低层的分区（包含数据的分区）。
-    - **AT** - 指定用作拆分条件的值。分区将被划分成两个新分区，指定的分裂值会成为后一个分区的开始范围。
-    - **INTO** - 允许用户指定两个新分区的名字。
-- **partition_name**：
-    给定的分区名称。
-- **FOR (RANK(number))**：
-    对于范围分区，分区在范围中的排名。
-- **FOR ('value')**：
-    通过声明属于分区边界规范的值来指定一个分区。如果用FOR声明的值匹配一个分区和它的一个子分区（例如，如果该值是一个日期，并且表按月分区，然后按天分区），那么FOR将在第一个找到匹配的层次上操作（例如，每月的分区）。如果用户的目的是在子分区上操作，则必须按如下的方式声明： ALTER TABLE name ALTER PARTITION FOR ('2016-10-01') DROP PARTITION FOR ('2016-10-01');
+- **EXCHANGE [DEFAULT] PARTITION**：将另一个表交换到分区层次结构中，以代替现有分区。在多级分区设计中，你只能交换最低级别的分区（包含数据的分区）。Cloudberry Database 服务器配置参数 `gp_enable_exchange_default_partition` 用来控制可用 `EXCHANGE DEFAULT PARTITION` 子句的可用性。该参数的默认值为 `OFF`。
 
-### 注解
+  :::caution 警告
+  在交换默认分区之前，用户必须确保要被交换的表（新的默认分区）中的数据对于默认分区是有效的。例如，新默认分区中的数据不能含有对该分区表其他叶子子分区中有效的数据。否则，针对被交换默认分区所在分区表的查询在被 GPORCA 执行时可能返回不正确的结果。
+  :::
 
-ALTER TABLE命令中指定的表名不能是表中的分区名。
+    - **WITH TABLE <table_name>**：要交换到分区设计中的表的名称。用户可以交换表数据被存储在数据库中的表。例如，该表由 `CREATE TABLE` 命令创建，该表必须具有与父表相同的列数、列顺序、列名、列类型和分配策略。通过 `EXCHANGE PARTITION` 子句，还可以将可读的外部表（使用 `CREATE EXTERNAL TABLE` 命令创建）交换到分区层次结构中，以代替现有的叶子子分区。如果你指定一个可读的外部表，你还必须指定 `WITHOUT VALIDATION` 子句以跳过针对 `CHECK` 你正在交换的分区的约束的表验证。以下情况不支持用外部表交换叶子子分区：
+        - 分区表通过 `SUBPARTITION` 子句创建，或者分区具有子分区。
+        - 分区表含有带有检查约束或者 `NOT NULL` 约束的列。
+    - **WITH | WITHOUT VALIDATION**：验证表中的数据是否与你正在交换的分区的 `CHECK` 约束相匹配。默认是根据 `CHECK` 约束验证数据。
 
-在修改或者删除作为Hashdata数据库分布键相关的列时要谨慎，这可能会改变表的分布策略。
+    :::caution 警告
+    如果指定了 `WITHOUT VALIDATION` 子句，则必须确保在表中的、与现有子叶分区进行交换的数据满足分区上的 `CHECK` 约束。否则，对分区表的查询可能返回不正确的结果。
+    :::
 
-Hashdata数据库当前不支持外键约束。对于要在Hashdata数据库中强制执行的唯一约束，表必须是哈希分布的（不是DISTRIBUTED RANDOMLY），并且所有的分布键列必须和唯一约束列中前部的列相同。
+- **SET SUBPARTITION TEMPLATE**：为现有分区修改子分区模板。在设置了新的子分区模板后，所有增加的新分区都将具有新的子分区设计（现有分区不会被修改）。
+- **SPLIT DEFAULT PARTITION**：拆分一个默认分区。在一种多级分区设计中，用户只能分裂最低层的默认分区（包含数据的分区）。拆分默认分区会创建包含指定值的新分区，并保留包含与现有分区不匹配的任何值的默认分区。
+    - **AT**：对于列表分区表，指定用作拆分条件的列表值。
+    - **START**：对于范围分区表，指定新分区的起始值。
+    - **END**：对于范围分区表，指定新分区的结束值。
+    - **INTO**：允许用户为新分区指定一个。在使用INTO子句拆分默认分区时，指定的第二个分区名应该总是现有的默认分区。如果用户不知道默认分区的名称，可以使用pg_partitions视图找到它。
+- **SPLIT PARTITION**：将现有分区分裂成两个分区。在多层分区设计中，用户只能分裂最低层的分区（包含数据的分区）。
+    - **AT**：指定用作拆分条件的值。分区将被划分成两个新分区，指定的分裂值会成为后一个分区的开始范围。
+    - **INTO**：允许用户指定两个新分区的名字。
+- **partition_name**：给定的分区名称。
+- **FOR (RANK(number))**：对于范围分区，分区在范围中的排名。
+- **FOR ('value')**：通过声明属于分区边界规范的值来指定一个分区。如果用 `FOR`n 声明的值匹配一个分区和它的一个子分区（例如，如果该值是一个日期，并且表按月分区，然后按天分区），那么FOR将在第一个找到匹配的层次上操作（例如，每月的分区）。如果用户的目的是在子分区上操作，则必须按如下的方式声明：`ALTER TABLE name ALTER PARTITION FOR ('2016-10-01') DROP PARTITION FOR ('2016-10-01');`。
 
-增加CHECK或者NOT NULL约束要求扫描表以验证现有的行是否符合约束。
+## 注解
 
-在用ADD COLUMN增加列时，表中所有的行都用该列的默认值初始化，如果没有指定DEFAULT子句则初始化为NULL（注意不允许在追加优化表中增加不指定默认值的列）。增加一个非空默认值的列或者更改现有列的类型要求重写整个表。对于大型表这可能需要大量的时间，并且会临时要求两倍的磁盘空间。
+- `ALTER TABLE` 命令中指定的表名不能是表中的分区名。在修改或删除作为 Cloudberry Database 分布键相关的列时要谨慎，这可能会改变表的分布策略。
+- Cloudberry Database 当前不支持外键约束。如果要在 Cloudberry Database 中强制执行的唯一约束，表必须是哈希分布的（不是 `DISTRIBUTED RANDOMLY`），并且所有的分布键列必须和唯一约束列中前部的列相同。
+- 增加 `CHECK` 或者 `NOT NULL` 约束时，要求扫描表以验证现有的行是否符合约束。
+- 在用 `ADD COLUMN` 增加列时，表中所有的行都用该列的默认值初始化。如果没有指定 `DEFAULT` 子句，则初始化为 `NULL`（注意不允许在追加优化表中增加不指定默认值的列）。增加一个非空默认值的列或者更改现有列的类型要求重写整个表。对于大型表这可能需要大量的时间，并且会临时要求两倍的磁盘空间。
+- 用户可以在单个 `ALTER TABLE` 命令中指定多个更改，它们将在对表的一趟扫描中完成。在删除列时，不会物理上移除列，而是将该列变成不可见状态。尽管如此，删除操作耗时短，但不会立即减少表占用的磁盘空间，因为被删除列所占据的空间并不会立即回收。这些空间将随着现有行被更新而逐渐被回收。
+- `ALTER TYPE` 操作有时需要重写整个表，因为重写过程会消除表中的死亡空间。要立即回收被删除列所占据的空间，可以使用这个命令：`ALTER TABLE table ALTER COLUMN anycol TYPE sametype;`，其中 `anycol` 是任何现有表列，而 `sametype` 是该列现有的数据类型。虽然此命令不会对表产生任何可见的变化，但它强制进行了重写，从而可以去除无用的数据。
+- 如果表已分区或者有子表存在，则不允许增加列、重命名列、更改列类型，除非对所有子表进行同样操作。这将确保子表始终具有与父表相匹配的列。
+- 要查看分区表的结构，用户可以使用视图 `pg_partitions`。此视图可帮助识别用户想要修改的特定分区。
+- 只有当后代表没有从任何父表继承列并且也没有对该列的独立定义时，递归的 `DROP COLUMN` 操作才会移除后代表的这个列。非递归的 `DROP COLUMN`（`ALTER TABLE.. DROP COLUMN`）不会移除任何后代列，而是将它们标记为独立定义而不是继承而来。
+- `TRIGGER`、`CLUSTER`、`OWNER` 以及 `TABLESPACE` 不会递归到后代表，也就是说它们只在指定了 `ONLY` 的情况下执行。
 
-用户可以在单个ALTER TABLE命令中指定多个更改，它们将在对表的一趟扫描中完成。
+- 如果分区表的叶子子分区已被交换为使用外部表，并且没有在分区表上更改数据，则支持这些 `ALTER PARTITION` 操作。否则将返回错误。
 
-DROP COLUMN形式不会物理上移除列，而是简单地将它变成对SQL操作不可见。表中的后续插入和更新操作将存储该列的空值。因此，删除列用时短，但是不会立即减少表占用的磁盘大小，因为被删除列所占据的空间没有被回收。这些空间将随着现有行被更新而逐渐被回收。
+    - 添加或删除列。
+    - 更改列的数据类型。
 
-ALTER TYPE要求重写整个表的做法有时候是一种优点，因为重写过程会消除表中的死亡空间。例如，要立即回收被删除列占据的空间，最快的方法是： ALTER TABLE table ALTER COLUMN anycol TYPE sametype; 其中anycol是任何现有表列，而sametype是该列现有的数据类型。这不会对表产生任何语义可见的变化，但是该命令强制进行了重写，这可以去除无用的数据。
+- 对于叶子子分区已被交换为使用外部表的分区表，Cloudberry Database 不支持对这些分区表执行这些 `ALTER PARTITION` 操作：
 
-如果表已分区或者有子表，则不允许增加列、重命名列、更改列类型而不对其子表做同样的事情。这确保了子表总是具有和父表相匹配的列。
+    - 设置子分区模板。
+    - 更改分区属性。
+    - 创建默认分区。
+    - 制定分发政策。
+    - 设置或删除 `NOT NULL` 列的约束。
+    - 添加或删除约束。
+    - 拆分外部分区。
 
-要查看一个分区表的结构，用户可以使用视图pg_partitions。这个视图可以识别用户想要修改的特定分区。
+- 不允许更改系统目录表的任何部分。
 
-只有当后代表没有从任何父表继承列并且也没有对该列的独立定义时，递归的DROP COLUMN操作才会移除后代表的这个列。非递归的DROP COLUMN（ALTER TABLE ONLY ... DROP COLUMN）不会移除任何后代列，而是将它们标记为独立定义而不是继承而来。
-
-TRIGGER、CLUSTER、OWNER以及TABLESPACE不会递归到后代表，也就是说它们只在指定了ONLY的情况下执行。
-
-如果在包含已经被交换为使用外部表的叶子子分区的分区表上没有数据被更改，则支持这些ALTER PARTITION操作。否则会返回错误。
-- 添加或删除列。
-- 更改列的数据类型。
-
-这些ALTER PARTITION操作 对于已经交换为使用外部表的叶子分区的分区表，不支持以下操作：
-- 设置子分区模板。
-- 更改分区属性。
-- 创建默认分区。
-- 制定分发政策。
-- 设置或删除NOT NULL 列的约束。
-- 添加或删除约束。
-- 拆分外部分区。
-
-不允许更改系统目录表的任何部分。
-
-### 示例
+## 示例
 
 向列中添加列：
+
 ```sql
 ALTER TABLE distributors ADD COLUMN address varchar(30);
 ```
+
 重命名现有列：
+
 ```sql
 ALTER TABLE distributors RENAME COLUMN address TO city;
 ```
+
 重命名现有表：
+
 ```sql
 ALTER TABLE distributors RENAME TO suppliers;
 ```
+
 向列添加非空约束：
+
 ```sql
 ALTER TABLE distributors ALTER COLUMN street SET NOT NULL;
 ```
-向表中添加检查约束
+
+向表中添加检查约束：
+
 ```sql
 ALTER TABLE distributors ADD CONSTRAINT zipchk CHECK 
 (char_length(zipcode) = 5);
 ```
-将表移动到不同的schema：
+
+将表移动到不同的 schema：
+
 ```sql
 ALTER TABLE myschema.distributors SET SCHEMA yourschema;
 ```
+
 将新分区添加到分区表中：
+
 ```sql
 ALTER TABLE sales ADD PARTITION 
             START (date '2017-02-01') INCLUSIVE 
             END (date '2017-03-01') EXCLUSIVE;
 ```
+
 将默认分区添加到现有分区设计中：
+
 ```sql
 ALTER TABLE sales ADD DEFAULT PARTITION other;
 ```
+
 重命名分区：
+
 ```sql
 ALTER TABLE sales RENAME PARTITION FOR ('2016-01-01') TO 
 jan08;
 ```
+
 删除范围序列中的第一个（最旧的）分区：
+
 ```sql
 ALTER TABLE sales DROP PARTITION FOR (RANK(1));
 ```
+
 将表交换到用户的分区设计中：
+
 ```sql
 ALTER TABLE sales EXCHANGE PARTITION FOR ('2016-01-01') WITH 
 TABLE jan08;
 ```
-拆分默认分区(现有的默认分区名称为other)以添加2017年1月的新月度分区：
+
+拆分默认分区（现有的默认分区名称为other）以添加 2017 年 1 月的新月度分区：
+
 ```sql
 ALTER TABLE sales SPLIT DEFAULT PARTITION 
 START ('2017-01-01') INCLUSIVE 
 END ('2017-02-01') EXCLUSIVE 
 INTO (PARTITION jan09, PARTITION other);
 ```
-将每月分区一分为二，第一个分区包含日期为1月1日至15日，第二个分区包含日期1月16日至31日：
+
+将每月分区一分为二，第一个分区包含日期为 1 月 1 日至 15 日，第二个分区包含日期 1 月 16 日至 31 日：
+
 ```sql
 ALTER TABLE sales SPLIT PARTITION FOR ('2016-01-01')
 AT ('2016-01-16')
 INTO (PARTITION jan081to15, PARTITION jan0816to31);
 ```
 
-### 兼容性
+## 兼容性
 
-ADD, DROP, and SET DEFAULT 符合SQL标准。 其他形式是SQL标准的Hashdata数据库扩展。 另外，在一个单一的指定多个操作的能力 ALTER TABLE命令是一个扩展。此外，在单个ALTER TABLE命令中指定多个操作的能力也是Hashdata数据库扩展。
+`ALTER TABLE` 中的 `ADD`、`DROP` 和 `SET DEFAULT` 形式符合 SQL 标准，其他形式则是 Cloudberry Database 的扩展。此外，Cloudberry Database 还提供了一个扩展，允许在单个 `ALTER TABLE` 命令中指定多个操作。这种能力是在 SQL 标准之外的。
 
-ALTER TABLE DROP COLUMN 可用于删除表的唯一列，成为零列表。
+`ALTER TABLE DROP COLUMN` 可用于删除表的唯一列，成为零列表。
 
-### 另见
+## 另见
 
-CREATE TABLE, DROP TABLE
+`CREATE TABLE`，`DROP TABLE`

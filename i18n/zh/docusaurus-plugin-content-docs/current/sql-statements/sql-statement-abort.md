@@ -17,7 +17,7 @@ ABORT [WORK | TRANSACTION]
 
 `WORK` 和 `TRANSACTION` 为可选关键字，对 `ABORT` 操作没有影响。
 
-## 注意
+## 注意事项
 
 使用 `COMMIT` 成功终止一个事务。
 

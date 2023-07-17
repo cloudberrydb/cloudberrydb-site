@@ -19,7 +19,7 @@ ALTER USER <name> RESET <config_parameter>
 ALTER USER <name> [ [WITH] <option> [ ... ] ]
 ```
 
-其中，<option> 可以是：
+其中，`<option>` 可以是：
 
 ```sql
       SUPERUSER | NOSUPERUSER

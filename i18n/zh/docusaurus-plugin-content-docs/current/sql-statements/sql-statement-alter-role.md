@@ -62,15 +62,15 @@ ALTER ROLE <name> [ [WITH] <option> [ ... ] ]
     **CREATEROLE | NOCREATEROLE**,<br />
     **CREATEEXTTABLE | NOCREATEEXTTABLE [(attribute='value')]**：<br />
     如果指定了 `CREATEEXTTABLE`，则允许角色创建外部表。如果没被指定，则默认类型为可读，并且默认协议是 gpfdist。`NOCREATEEXTTABLE`（默认）不允许角色创建外部表。注意，使用 `file` 或 `execute` 协议的外部表只能由超级用户创建。
-- **INHERIT | NOINHERIT**,<br>
-    **LOGIN | NOLOGIN**,<br>
-    **CONNECTION LIMIT connlimit**,<br>
-    **PASSWORD password**,<br>
-    **ENCRYPTED | UNENCRYPT**,<br>
+- **INHERIT | NOINHERIT**,<br />
+    **LOGIN | NOLOGIN**,<br />
+    **CONNECTION LIMIT connlimit**,<br />
+    **PASSWORD password**,<br />
+    **ENCRYPTED | UNENCRYPT**,<br />
     **VALID UNTIL 'timestamp'**：<br />
     这些子句改变了最初由 `CREATE ROLE` 设置的角色属性。
-- **DENY deny_point**,<br>
-    **DENY BETWEEN deny_point AND deny_point**：<br>
+- **DENY deny_point**,<br />
+    **DENY BETWEEN deny_point AND deny_point**：<br />
     `DENY` 和 `DENY BETWEEN` 用于设置登录时强制执行的基于时间的约束。`DENY` 设置拒绝访问的日期或日期和时间。`DENY BETWEEN` 设置拒绝访问的时间间隔。两者都使用具有以下格式的参数 `deny_point`：
 
     ```sql
