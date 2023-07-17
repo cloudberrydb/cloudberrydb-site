@@ -201,7 +201,7 @@ ssh-copy-id -f seg1
     ENCODING=UNICODE
     ```
 
-    若存在Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `data0/mirror`。
