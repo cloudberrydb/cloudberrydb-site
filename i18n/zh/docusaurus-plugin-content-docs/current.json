@@ -11,8 +11,8 @@
     "message": "部署指南",
     "description": "The label for category deployment guides in sidebar docs"
   },
-  "sidebar.docsbars.category.On-Premises Deployment": {
+  "sidebar.docsbars.category.Physical Machine Deployment": {
     "message": "物理机部署",
-    "description": "The label for category OP deployment guides in sidebar docs"
+    "description": "The label for category physical machine deployment guides in sidebar docs"
   }
 }
