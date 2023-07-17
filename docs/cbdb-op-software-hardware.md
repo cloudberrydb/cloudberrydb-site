@@ -16,19 +16,19 @@ The following section describes the recommended physical machine configuration f
 
 | Component    | CPU  | Memory | Disk type | Network                 | Number of instances |
 | ------- | ---- | ---- | -------- | -------------------- | -------- |
-| Master  | 4 cores | 8 GB | SSD      | 10 Gigabit network card (2 preferred) | 1+       |
-| Segment | 4 cores | 8 GB | SSD      | 10 Gigabit network card (2 preferred) | 1+       |
-| ETCD    | 2 cores | 4 GB | SSD      | 10 Gigabit network card (2 preferred) | 2+       |
-| FTS     | 2 cores | 4 GB | SSD      | 10 Gigabit network card (2 preferred) | 1+       |
+| Master  | 4 cores | 8 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
+| Segment | 4 cores | 8 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
+| ETCD    | 2 cores | 4 GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
+| FTS     | 2 cores | 4 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
 
 #### For production environments
 
 | Component    | CPU    | Memory   | Disk type | Network                 | Instance count |
 | ------- | ------ | ------ | -------- | -------------------- | -------- |
-| Master  | 16+ cores | 32+ GB | SSD      | 10 Gigabit network card (2 preferred) | 2+       |
-| Segment | 8+ cores  | 32+ GB | SSD      | 10 Gigabit network card (2 preferred) | 2+       |
-| ETCD    | 16+ cores | 64+ GB | SSD      | 10 Gigabit network card (2 preferred) | 3+       |
-| FTS     | 4+ cores  | 8+ GB   | SSD      | 10 Gigabit network card (2 preferred) | 3+       |
+| Master  | 16+ cores | 32+ GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
+| Segment | 8+ cores  | 32+ GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
+| ETCD    | 16+ cores | 64+ GB | SSD      | 10 Gbps NIC (2 preferred) | 3+       |
+| FTS     | 4+ cores  | 8+ GB   | SSD      | 10 Gbps NIC (2 preferred) | 3+       |
 
 ### Storage
 
