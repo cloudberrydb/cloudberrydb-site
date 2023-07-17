@@ -1,12 +1,12 @@
 ---
-title: Local Deployment Architectures
+title: Physical Machine Deployment Architectures
 ---
 
-# Local Deployment Architectures
+# Physical Machine Deployment Architectures
 
 Before reading this document, it is recommended to understand the architecture of Cloudberry Database by referring to [Cloudberry Database Architecture](./cbdb-architecture.md).
 
-This document introduces two architecture options for deploying the Cloudberry Database on your local machine: the "master-standby architecture" and the "automatic high-availability architecture". The main difference between the two is whether or not manual operation and maintenance is required to recover the database from master/standby node failures.
+This document introduces two architecture options for deploying the Cloudberry Database on your physical machine: the "master-standby architecture" and the "automatic high-availability architecture". The main difference between the two is whether or not manual operation and maintenance is required to recover the database from master/standby node failures.
 
 | Deployment architecture | Benefits | Costs and risks |
 | ------------------------ | ---- | ---- |

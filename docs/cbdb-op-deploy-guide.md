@@ -1,10 +1,10 @@
 ---
-title: Local Deployment Guide
+title: Physical Machine Deployment Guide
 ---
 
-# Local Deployment Guide
+# Physical Machine Deployment Guide
 
-This document describes how to deploy Cloudberry Database in an on-premises environment. Before reading this document, first you need to read [On-Premises Deployment Architecture](./cbdb-op-deploy-arch.md) and [Software and Hardware Configuration Requirements](./cbdb-op-software-hardware.md).
+This document describes how to deploy Cloudberry Database on physical machines. Before reading this document, first you need to read [Physical Machine Deployment Architecture](./cbdb-op-deploy-arch.md) and [Software and Hardware Configuration Requirements](./cbdb-op-software-hardware.md).
 
 :::info
 
@@ -103,7 +103,7 @@ The following deployment operations are performed using the `gpadmin` user.
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster, and on-premises deployments use the default configuration.
+    `gp_etcd_namespace` is the namespace configuration for the cluster, and physical machine deployments use the default configuration.
 
     :::
 
@@ -353,7 +353,7 @@ It is recommended to deploy nodes according to the following table:
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster. For on-premises deployments, use the default configuration of `gp_etcd_namespace`.
+    `gp_etcd_namespace` is the namespace configuration for the cluster. For physical machine deployments, use the default configuration of `gp_etcd_namespace`.
 
     :::
 
@@ -576,7 +576,7 @@ It is recommended to plan the nodes to be deployed according to the following ta
 
     :::info
 
-    `gp_etcd_namespace` is the namespace configuration for the cluster. For on-premises deployments, use the default configuration of `gp_etcd_namespace`.
+    `gp_etcd_namespace` is the namespace configuration for the cluster. For physical machine deployments, use the default configuration of `gp_etcd_namespace`.
 
     :::
 
