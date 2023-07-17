@@ -28,7 +28,7 @@ const sidebars = {
       items: ['cbdb-op-software-hardware',
       {
         type: 'category',
-        label: 'On-Premises Deployment',
+        label: 'Physical Machine Deployment',
         items: ['cbdb-op-deploy-arch','cbdb-op-deploy-guide']
       }]
     },

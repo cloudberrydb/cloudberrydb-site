@@ -15,7 +15,7 @@ title: 物理机部署指南
 :::info 名词解释
 
 - FTS，全称为 Fault Tolerance Service，即故障恢复节点，为 Cloudberry Database 的高可用服务组件。
-- ETCD：Cloudberry Database 的元数据服务。
+- ETCD：用于存储 Cloudberry Database 集群拓扑信息以及集群状态元数据信息。
 - 混合部署：将 ETCD 和 FTS 集群部署在与数据库节点的同一物理机资源上。
 
 :::
@@ -201,7 +201,7 @@ ssh-copy-id -f seg1
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `data0/mirror`。
@@ -234,13 +234,11 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
 
 单节点部署模式为非分布式部署，所有服务都部署在同一台物理机上。该模式所需的物理机配置参见[开发及测试环境配置](./cbdb-op-software-hardware.md#开发及测试环境)。
 
-<!-- 要进行单节点部署，执行以下步骤：
+要进行单节点部署，执行以下步骤：
 
 1. 下载 Cloudberry Database 源代码到本地目录，下载地址为 <https://github.com/cloudberrydb/cloudberrydb>。
-2. 参考 Cloudberry Database 代码仓库中 README.md 文档，编译 Cloudberry Database 源代码并安装。
-3. 执行 `make create-demo-cluster` 命令。-->
-
-部署方法待添加。
+2. 参考 Cloudberry Database 代码仓库中 [README.md](https://github.com/cloudberrydb/cloudberrydb/tree/main/readmes) 文档，编译 Cloudberry Database 源代码并安装。
+3. 执行 `make create-demo-cluster` 命令。
 
 ## 生产环境部署
 
@@ -468,7 +466,7 @@ ssh-copy-id -f etcd3
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和 `MIRROR_DATA_DIRECTORY`。
+    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和 `MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `data0/mirror`。
@@ -497,7 +495,7 @@ gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E et
 
 ### 混合部署模式
 
-该模式为 CloudBerry Database FTS、ETCD 服务的外部独立部署模式，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
+该模式下，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
 
 该模式部署所需的物理机配置参见[生产环境配置](./cbdb-op-software-hardware.md#生产环境)。
 
@@ -677,7 +675,7 @@ ssh-copy-id -f seg3
     ENCODING=UNICODE
     ```
 
-    若存在 Segment Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
+    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
 
     - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
     - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `data0/mirror`。
