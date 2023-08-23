@@ -11,7 +11,7 @@ html[data-theme=dark] {
     background: var(--ifm-navbar-background-color);
     text-align: left;
     padding: 0;
-    height: 85px;
+    height: 64px;
 }
 
 .navbar__items--right {
@@ -28,7 +28,7 @@ html[data-theme=dark] {
 }
 
 .navbar__link {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 @media (max-width: 996px) {
