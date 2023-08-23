@@ -4,10 +4,10 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Cloud Native',
+    title: 'More Use Cases',
     description: (
       <>
-        Cloudberry Database is built on a cloud-native architecture to leverage the advantages of the cloud and to achieve excellent elasticity and high availability, by separating storage, computing, and metadata.
+        Cloudberry Database can be used in different scenarios, including batch processing data warehouse offline, building data warehouse in real-time, and more. Also, you can use it as an alternative to existing MPP databases.
       </>
     ),
   },
@@ -117,13 +117,6 @@ export default function HomepageFeatures() {
                 <Feature key={idx} {...props} />
               ))}
             </div>
-          </div>
-        </div>
-      </div>
-      <div class={styles.wrapper}>
-        <div className="container">
-          <div className={styles.card}>
-            <h2 className={styles.cardTitle}>More is coming!❤️</h2>
           </div>
         </div>
       </div>
