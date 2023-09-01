@@ -66,8 +66,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Learn about Cloudberry Database in just a few minutes."
+      title={`Next generation unified database for analytics and AI`}
+      description="Cloudberry Database ships with PostgreSQL 14.4 as the kernel. It is 100% open source and helps you leverage the value of your data."
     >
       <HomepageHeader />
       <main>
