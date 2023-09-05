@@ -1,5 +1,6 @@
 ---
 title: Feature Overview
+slug: /
 ---
 
 # Cloudberry Database Feature Overview

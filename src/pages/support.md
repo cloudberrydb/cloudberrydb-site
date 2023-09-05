@@ -9,7 +9,7 @@ This page shows that how you can ask for help and get support from our community
 | Type | Description |
 |-------------|----------------|
 |[Download](/download)| You can download the Cloudberry Database releases and see the changelogs.|
-| [Documentation](/docs/cbdb-overview) | Official documentation for Cloudberry Database. You can explore it to discover more details about us. If you want to contribute, see [the guide](/contribute/doc).  |
+| [Documentation](/docs/) | Official documentation for Cloudberry Database. You can explore it to discover more details about us. If you want to contribute, see [the guide](/contribute/doc).  |
 | Report bugs | Problems and issues in Cloudberry Database core. If you find bugs, welcome to submit them [here](https://github.com/cloudberrydb/cloudberrydb/issues).  |
 | Report a security vulnerability | View our [security policy](https://github.com/cloudberrydb/cloudberrydb/security/policy) to learn how to report and contact us.  |
 | Q&A | Ask for help when running/developing Cloudberry Database, visit [GitHub Discussions - QA](https://github.com/orgs/cloudberrydb/discussions/categories/q-a). |

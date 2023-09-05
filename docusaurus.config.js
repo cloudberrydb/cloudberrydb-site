@@ -234,7 +234,7 @@ const config = {
                 },
                 {
                   label: 'Documentation',
-                  to: '/docs/cbdb-overview',
+                  to: '/docs/',
                 },
                 {
                   label: 'Events',

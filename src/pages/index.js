@@ -46,7 +46,7 @@ function HomepageHeader() {
           <Link
             style={{ marginRight: "12px" }}
             className="button button--secondary button--lg"
-            to="/docs/cbdb-overview"
+            to="/docs/"
           >
             Discover more
           </Link>
