@@ -44,7 +44,7 @@ create a Pull Request.
 For simple updates such as typo or link fixing in a single document:
 
 1. Navigate to the target page on the [Cloudberry Database
-   documentation site](https://cloudberrydb.io/docs/cbdb-overview) you
+   documentation site](https://cloudberrydb.io/docs/) you
    wish to update.
 2. Click **Edit this page** at the left bottom of the page. This will
    take you to the GitHub edit page for that file.

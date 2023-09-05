@@ -1,5 +1,6 @@
 ---
 title: 产品特性
+slug: /
 ---
 
 # Cloudberry Database 产品特性
