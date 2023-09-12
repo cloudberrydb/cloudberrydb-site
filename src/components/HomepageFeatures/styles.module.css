@@ -25,4 +25,30 @@
 .cardTitle {
   text-align: center;
   margin-bottom: 24px;
+  font-weight: bold;
+}
+
+.titleLogo {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/static/img/feature/icon_data_anlytical.png");
+  margin-bottom: 8px;
+}
+
+.CommunityItemBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.CommunityItemBox a {
+  margin-bottom: 12px;
+  margin-top: 18px;
+}
+.CommunityItemBox a::before {
+  width: 50px;
+  height: 50px;
 }
