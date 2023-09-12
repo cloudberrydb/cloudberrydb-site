@@ -13,7 +13,6 @@ function HomepageHeader() {
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
-    console.log(123123, window.Ribbons);
     if (!window.Ribbons) {
       return;
     }
