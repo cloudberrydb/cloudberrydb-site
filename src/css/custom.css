@@ -349,3 +349,34 @@ a {
     text-decoration: var(--ifm-link-decoration);
 }
 
+/* 深色模式下的代码块背景色 */
+html[data-theme='dark'] pre {
+    background-color: rgb(226, 226, 226) !important;
+}
+
+/* 深色模式下的代码块字体颜色 */
+html[data-theme='dark'] pre code, html[data-theme='dark'] pre span {
+    color: black !important;
+}
+
+/* 深色模式下的关键字高亮 */
+html[data-theme='dark'] pre .token.keyword {
+    color: rgb(105, 105, 250) !important;
+}
+
+/* 深色模式下的字符串高亮 */
+html[data-theme='dark'] pre .token.string {
+    color: rgb(3, 184, 3) !important;
+}
+
+/* 深色模式下的函数高亮 */
+html[data-theme='dark'] pre .token.function {
+    color: orange !important;
+}
+
+/* 深色模式下的注释高亮 */
+html[data-theme='dark'] pre .token.comment {
+    color: rgb(136, 136, 136) !important;
+}
+
+
