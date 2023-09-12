@@ -23,8 +23,8 @@
     --ifm-color-primary-lightest: #fa823e;
     --ifm-navbar-link-hover-color: var(--ifm-color-primary);
     --ifm-background-color: #fafafa;
-    --ifm-code-font-size: 95%;
-    --ifm-navbar-link-color: #000;
+    --ifm-code-font-size: 80%;
+    --ifm-navbar-link-color: #484848;
     --ifm-font-family-base: 'Noto Sans', sans-serif, Nunito, Fira Sans, PT Sans, Montserrat, Lato;
     --ifm-font-family-monospace: 'Noto Sans', sans-serif, Open Sans, PT Sans, Roboto Slab, Roboto Condensed;
     --ifm-button-padding-horizontal: 0.55rem;
@@ -38,8 +38,8 @@
     --docusaurus-announcement-bar-height: auto!important;
 
     --wdio-spacing-vertical: 60px;
-    --wdio-link-background-color: #eee0d7;
-    --wdio-link-color: #000;
+    --wdio-link-background-color: transparent;
+    --wdio-link-color: #f9640f;
     --wdio-section-background-color: #fff;
     --wdio-dark-section-background-color: #dfdfdf;
 }
@@ -196,14 +196,15 @@ img[alt^=Support] {
     display: inline-block;
 }
 
-.main-wrapper .markdown p > a,
+/* .main-wrapper .markdown p > a,
 .main-wrapper .container p > a {
     background-color: var(--wdio-link-background-color);
     color: var(--wdio-link-color);
     text-decoration: none!important;
     border-bottom: 1px solid var(--ifm-color-primary);
     padding: 2px;
-}
+} */
+
 .main-wrapper .container .admonition p > a {
     background-color: transparent;
     color: inherit;
@@ -312,3 +313,39 @@ div[role="tabpanel"] .margin-vert--md {
     display: block;
     height: 15px;
 }
+
+/* 代码块背景色 */
+pre {
+    background-color: black !important;
+}
+
+/* 代码块字体颜色 */
+pre code, pre span {
+    color: white !important;
+}
+
+/* 关键字高亮 */
+pre .token.keyword {
+    color: rgb(105, 105, 250) !important;
+}
+
+/* 字符串高亮 */
+pre .token.string {
+    color: rgb(119, 248, 119) !important;
+}
+
+/* 函数高亮 */
+pre .token.function {
+    color: orange !important;
+}
+
+/* 注释高亮 */
+pre .token.comment {
+    color: rgb(219, 219, 219) !important;
+}
+
+a {
+    color: var(--ifm-link-color);
+    text-decoration: var(--ifm-link-decoration);
+}
+
