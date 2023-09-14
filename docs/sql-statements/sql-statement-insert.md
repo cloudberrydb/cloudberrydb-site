@@ -1,8 +1,8 @@
-# INSERT 
+# INSERT
 
 Creates new rows in a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
@@ -28,7 +28,7 @@ and <conflict_action> is one of:
               [ WHERE <condition> ]
 ```
 
-## Description 
+## Description
 
 `INSERT` inserts new rows into a table. One can insert one or more rows specified by value expressions, or zero or more rows resulting from a query.
 
@@ -48,7 +48,7 @@ When a column list is specified, you only need `INSERT` privilege on the listed 
 
 Use of the `RETURNING` clause requires `SELECT` privilege on all columns mentioned in `RETURNING`. If you use the query clause to insert rows from a query, you must have `SELECT` privilege on any table or column referenced in the query.
 
-## Parameters 
+## Parameters
 
 ### Inserting
 
@@ -156,7 +156,7 @@ The count is the number of rows inserted or updated. oid is always `0` \(it used
 
 If the `INSERT` command contains a `RETURNING` clause, the result will be similar to that of a `SELECT` statement containing the columns and values defined in the `RETURNING` list, computed over the row\(s\) inserted or updated by the command.
 
-## Notes 
+## Notes
 
 If the specified table is a partitioned table, Greenplum Database routes each row to the appropriate partition and inserts into it. If the specified table is a partition, an error will occur if one of the input rows violates the partition constraint.
 
@@ -164,7 +164,7 @@ For a partitioned table, all of the child tables are locked during the `INSERT` 
 
 Greenplum Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table.
 
-## Examples 
+## Examples
 
 Insert a single row into table `films`:
 
@@ -279,7 +279,7 @@ INSERT INTO distributors (did, dname) VALUES (10, 'Conrad International')
     ON CONFLICT (did) WHERE is_active DO NOTHING;
 ```
 
-## Compatibility 
+## Compatibility
 
 `INSERT` conforms to the SQL standard, except that the `RETURNING` clause is a Greenplum Database extension, as is the ability to use `WITH` with `INSERT`, and the ability to specify an alternative action with `ON CONFLICT`. Also, the case in which a column name list is omitted, but not all of the columns are filled from the `VALUES` clause or query, is disallowed by the standard.
 
@@ -287,7 +287,7 @@ The SQL standard specifies that `OVERRIDING SYSTEM VALUE` can only be specified 
 
 Possible limitations of the query clause are documented under [SELECT](SELECT.html).
 
-## See Also 
+## See Also
 
 [SELECT](SELECT.html)
 

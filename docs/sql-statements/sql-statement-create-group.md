@@ -1,8 +1,8 @@
-# CREATE GROUP 
+# CREATE GROUP
 
 Defines a new database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE GROUP <name> [[WITH] <option> [ ... ]]
@@ -38,15 +38,15 @@ where option can be:
     | [ DENY BETWEEN <deny_point> AND <deny_point>]
 ```
 
-## Description 
+## Description
 
 `CREATE GROUP` is an alias for [CREATE ROLE](CREATE_ROLE.html).
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE GROUP` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE ROLE](CREATE_ROLE.html)
 

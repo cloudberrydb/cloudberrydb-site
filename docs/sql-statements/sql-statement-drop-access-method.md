@@ -1,18 +1,18 @@
-# DROP ACCESS METHOD 
+# DROP ACCESS METHOD
 
 Removes an access method
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP ACCESS METHOD [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP ACCESS METHOD` removes an existing access method. Only superusers can drop access methods.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the access method does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the access method if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Drop the access method `heptree`;
 
@@ -34,11 +34,11 @@ Drop the access method `heptree`;
 DROP ACCESS METHOD heptree;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP ACCESS METHOD` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE ACCESS METHOD](CREATE_ACCESS_METHOD.html)
 

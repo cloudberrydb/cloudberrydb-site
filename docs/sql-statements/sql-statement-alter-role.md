@@ -1,8 +1,8 @@
-# ALTER ROLE 
+# ALTER ROLE
 
 Changes a database role \(user or group\).
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER ROLE <role_specification> [ WITH ] <option> [ ... ]
@@ -44,7 +44,7 @@ where <role_specification> can be:
   | SESSION_USER
 ```
 
-## Description 
+## Description
 
 `ALTER ROLE` changes the attributes of a Greenplum Database role. There are several variants of this command.
 
@@ -67,7 +67,7 @@ where <role_specification> can be:
 **RESOURCE GROUP**
 :   Assigns a resource group to the role. The role would then be subject to the concurrent transaction, memory, and CPU limits configured for the resource group. You can assign a single resource group to one or more roles. You cannot assign a resource group that you create for an external component to a role. See [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html) for additional information.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the role whose attributes are to be altered.
@@ -120,7 +120,7 @@ group\_name
 queue\_name
 :   The name of the resource queue to which the user-level role is to be assigned. Only roles with `LOGIN` privilege can be assigned to a resource queue. To unassign a role from a resource queue and put it in the default resource queue, specify `NONE`. A role can belong only to one resource queue.
 
-## Notes 
+## Notes
 
 Use [CREATE ROLE](CREATE_ROLE.html) to add a new role, and [DROP ROLE](DROP_ROLE.html) to remove a role.
 
@@ -130,7 +130,7 @@ You must exercise caution when specifying an unencrypted password with this comm
 
 It is also possible to tie a session default to a specific database rather than to a role; see [ALTER DATABASE](ALTER_DATABASE.html). If there is a conflict, database-role-specific settings override role-specific ones, which in turn override database-specific ones.
 
-## Examples 
+## Examples
 
 Change the password for a role:
 
@@ -204,11 +204,11 @@ Assign a new resource group to a role:
 ALTER ROLE parttime_user RESOURCE GROUP rg_light;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `ALTER ROLE` statement is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE ROLE](CREATE_ROLE.html), [DROP ROLE](DROP_ROLE.html), [ALTER DATABASE](ALTER_DATABASE.html), [SET](SET.html), [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html)
 

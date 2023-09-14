@@ -1,8 +1,8 @@
-# ALTER USER 
+# ALTER USER
 
 Changes the definition of a database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER USER <role_specification> [WITH] <option> [ ... ]
@@ -46,15 +46,15 @@ where <role_specification> can be:
   | SESSION_USER
 ```
 
-## Description 
+## Description
 
 `ALTER USER` is an alias for [ALTER ROLE](ALTER_ROLE.html).
 
-## Compatibility 
+## Compatibility
 
 The `ALTER USER` statement is a Greenplum Database extension. The SQL standard leaves the definition of users to the implementation.
 
-## See Also 
+## See Also
 
 [ALTER ROLE](ALTER_ROLE.html)
 

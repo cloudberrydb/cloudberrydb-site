@@ -1,8 +1,8 @@
-# CREATE TYPE 
+# CREATE TYPE
 
 Defines a new data type.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TYPE <name> AS 
@@ -45,7 +45,7 @@ CREATE TYPE <name> (
 CREATE TYPE <name>
 ```
 
-## Description 
+## Description
 
 `CREATE TYPE` registers a new data type for use in the current database. The user who defines a type becomes its owner.
 
@@ -119,7 +119,7 @@ Whenever a user-defined type is created, Greenplum Database automatically create
 
 Why is there is an `ELEMENT` option, when the system makes the correct array type automatically? The only case where it's useful to use `ELEMENT` is when you are making a fixed-length type that happens to be internally an array of a number of identical things, and you want to allow these things to be accessed directly by subscripting, in addition to whatever operations you plan to provide for the type as a whole. For example, type `point` is represented as just two floating-point numbers, each can be accessed using `point[0]` and `point[1]`. Note that this facility only works for fixed-length types whose internal form is exactly a sequence of identical fixed-length fields. A subscriptable variable-length type must have the generalized internal representation used by `array_in` and `array_out`. For historical reasons, subscripting of fixed-length array types starts from zero, rather than from one as for variable-length arrays.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of a type to be created.
@@ -208,7 +208,7 @@ compression\_level
 blocksize
 :   Set to the size, in bytes, for each block in the column. The `BLOCKSIZE` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default block size is 32768.
 
-## Notes 
+## Notes
 
 User-defined type names cannot begin with the underscore character \(\_\) and can only be 62 characters long \(or in general `NAMEDATALEN - 2`, rather than the `NAMEDATALEN - 1` characters allowed for other names\). Type names beginning with underscore are reserved for internally-created array type names.
 
@@ -220,7 +220,7 @@ Because there are no restrictions on use of a data type once it's been created, 
 
 Use `pg_type.typarray` to locate the array type associated with a given type.
 
-## Examples 
+## Examples
 
 This example creates a composite type and uses it in a function definition:
 
@@ -305,13 +305,13 @@ CREATE TABLE big_objs (
     );
 ```
 
-## Compatibility 
+## Compatibility
 
 The first form of the `CREATE TYPE` command, which creates a composite type, conforms to the SQL standard. The other forms are Greenplum Database extensions. The `CREATE TYPE` statement in the SQL standard also defines other forms that are not implemented in Greenplum Database.
 
 The ability to create a composite type with zero attributes is a Greenplum Database-specific deviation from the standard \(analogous to the same case in `CREATE TABLE`\).
 
-## See Also 
+## See Also
 
 [ALTER TYPE](ALTER_TYPE.html), [CREATE DOMAIN](CREATE_DOMAIN.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP TYPE](DROP_TYPE.html)
 

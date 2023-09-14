@@ -1,14 +1,14 @@
-# RELEASE SAVEPOINT 
+# RELEASE SAVEPOINT
 
 Destroys a previously defined savepoint.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 RELEASE [SAVEPOINT] <savepoint_name>
 ```
 
-## Description 
+## Description
 
 `RELEASE SAVEPOINT` destroys a savepoint previously defined in the current transaction.
 
@@ -16,7 +16,7 @@ Destroying a savepoint makes it unavailable as a rollback point, but it has no o
 
 `RELEASE SAVEPOINT` also destroys all savepoints that were established *after* the named savepoint was established.
 
-## Parameters 
+## Parameters
 
 savepoint\_name
 :   The name of the savepoint to destroy.
@@ -29,7 +29,7 @@ It is not possible to release a savepoint when the transaction is in an aborted 
 
 If multiple savepoints have the same name, Greenplum Database releases only the most recently defined unreleased savepoint. Repeated commands release progressively older savepoints.
 
-## Examples 
+## Examples
 
 To establish and later destroy a savepoint:
 
@@ -44,11 +44,11 @@ COMMIT;
 
 The above transaction inserts both 3 and 4.
 
-## Compatibility 
+## Compatibility
 
 This command conforms to the SQL standard. The standard specifies that the key word `SAVEPOINT` is mandatory, but Greenplum Database allows it to be omitted.
 
-## See Also 
+## See Also
 
 [BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html), [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html), [SAVEPOINT](SAVEPOINT.html)
 

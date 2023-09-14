@@ -1,10 +1,10 @@
-# CREATE TABLE 
+# CREATE TABLE
 
 Defines a new table.
 
 > **Note** Greenplum Database accepts, but does not enforce, referential integrity syntax (foreign key constraints).
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [ [GLOBAL | LOCAL] {TEMPORARY | TEMP} | UNLOGGED ] TABLE [IF NOT EXISTS] <table_name> ( 
@@ -189,7 +189,7 @@ and <subpartition_element> is:
 [ TABLESPACE <tablespace> ]
 ```
 
-## Description 
+## Description
 
 `CREATE TABLE` creates a new, initially empty table in the current database. The user who issues the command owns the table.
 
@@ -214,7 +214,7 @@ The `PARTITION BY` and `PARTITION OF` clauses allow you to divide the table into
 > **Note** Greenplum Database supports both *classic* and *modern* partitioning syntaxes. Refer to [Choosing the Partitioning Syntax](../../admin_guide/ddl/ddl-partition.html#choose) for more information, including guidance on selecting the appropriate syntax for a partitioned table.
 
 
-## Parameters 
+## Parameters
 
 GLOBAL \| LOCAL
 :   These keywords are present for SQL standard compatibility, but have no effect in Greenplum Database and are deprecated.
@@ -515,7 +515,7 @@ DISTRIBUTED REPLICATED
 
 :   The `DISTRIBUTED REPLICATED` clause replicates the entire table to all Greenplum Database segment instances. It can be used when it is necessary to run user-defined functions on segments when the functions require access to all rows in the table, or to improve query performance by preventing broadcast motions.
 
-### Classic Partitioning Syntax Parameters 
+### Classic Partitioning Syntax Parameters
 
 Descriptions of additional parameters that are specific to the *classic partitioning syntax* follow.
 
@@ -670,7 +670,7 @@ log_autovacuum_min_duration, toast.log_autovacuum_min_duration (integer)
 :   Per-table value for the `log_autovacuum_min_duration` server configuration parameter.
 :   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
-## Notes 
+## Notes
 
 Greenplum Database automatically creates an index for each unique constraint and primary key constraint to enforce uniqueness, so it is not necessary to create an index explicitly for primary key columns. (See [CREATE INDEX](CREATE_INDEX.html) for more information.)
 
@@ -1067,7 +1067,7 @@ PARTITION BY RANGE (year)
   DEFAULT PARTITION outlying_years);
 ```
 
-## Compatibility 
+## Compatibility
 
 
 `CREATE TABLE` command conforms to the SQL standard, with the following exceptions:
@@ -1144,7 +1144,7 @@ Table partitioning via the `PARTITION OF` clause is a Greenplum Database extensi
 The Greenplum Database concept of a parallel or distributed database is not part of the SQL standard. The `DISTRIBUTED` clauses are extensions.
 
 
-## See Also 
+## See Also
 
 [ALTER TABLE](ALTER_TABLE.html), [DROP TABLE](DROP_TABLE.html), [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE TABLESPACE](CREATE_TABLESPACE.html), [CREATE TYPE](CREATE_TYPE.html)
 

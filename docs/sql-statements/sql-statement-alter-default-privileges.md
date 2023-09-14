@@ -1,8 +1,8 @@
-# ALTER DEFAULT PRIVILEGES 
+# ALTER DEFAULT PRIVILEGES
 
 Changes default access privileges.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 
@@ -69,7 +69,7 @@ REVOKE [ GRANT OPTION FOR ]
 
 ```
 
-## Description 
+## Description
 
 `ALTER DEFAULT PRIVILEGES` allows you to set the privileges that will be applied to objects created in the future. \(It does not affect privileges assigned to already-existing objects.\) Currently, only the privileges for schemas, tables \(including views and foreign tables\), sequences, functions, and types \(including domains\) can be altered. For this command, functions include aggregates and procedures. The words `FUNCTIONS` and `ROUTINES` are equivalent in this command. \(`ROUTINES` is preferred going forward as the standard term for functions and procedures taken together. In earlier Greenplum Database releases, only the word `FUNCTIONS` was allowed. It is not possible to set default privileges for functions and procedures separately.\)
 
@@ -79,7 +79,7 @@ As explained under [GRANT](GRANT.html), the default privileges for any object ty
 
 Default privileges that are specified per-schema are added to whatever the global default privileges are for the particular object type. This means you cannot revoke privileges per-schema if they are granted globally \(either by default, or according to a previous `ALTER DEFAULT PRIVILEGES` command that did not specify a schema\). Per-schema `REVOKE` is only useful to reverse the effects of a previous per-schema `GRANT`.
 
-## Parameters 
+## Parameters
 
 target\_role
 :   The name of an existing role of which the current role is a member. If `FOR ROLE` is omitted, the current role is assumed.
@@ -90,13 +90,13 @@ schema\_name
 role\_name
 :   The name of an existing role to grant or revoke privileges for. This parameter, and all the other parameters in abbreviated\_grant\_or\_revoke, act as described under [GRANT](GRANT.html) or [REVOKE](REVOKE.html), except that one is setting permissions for a whole class of objects rather than specific named objects.
 
-## Notes 
+## Notes
 
 Use [psql](../../utility_guide/ref/psql.html)'s `\ddp` command to obtain information about existing assignments of default privileges. The meaning of the privilege values is the same as explained for `\dp` under [GRANT](GRANT.html).
 
 If you wish to drop a role for which the default privileges have been altered, it is necessary to reverse the changes in its default privileges or use `DROP OWNED BY` to get rid of the default privileges entry for the role.
 
-## Examples 
+## Examples
 
 Grant SELECT privilege to everyone for all tables \(and views\) you subsequently create in schema `myschema`, and allow role `webuser` to INSERT into them too:
 
@@ -126,11 +126,11 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE EXECUTE ON FUNCTIONS FROM PUBLI
 
 That's because per-schema default privileges can only add privileges to the global setting, not remove privileges granted by it.
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER DEFAULT PRIVILEGES` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [GRANT](GRANT.html), [REVOKE](REVOKE.html)
 

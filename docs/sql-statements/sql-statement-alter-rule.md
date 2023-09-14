@@ -1,20 +1,20 @@
-# ALTER RULE 
+# ALTER RULE
 
 Changes the definition of a rule.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER RULE name ON <table_name> RENAME TO <new_name>
 ```
 
-## Description 
+## Description
 
 `ALTER RULE` changes properties of an existing rule. Currently, the only available action is to change the rule's name.
 
 To use `ALTER RULE`, you must own the table or view that the rule applies to.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of an existing rule to alter.
@@ -33,11 +33,11 @@ To rename an existing rule:
 ALTER RULE notify_all ON emp RENAME TO notify_me; 
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER RULE` is a Greenplum Database extension, as is the entire query rewrite system.
 
-## See Also 
+## See Also
 
 [CREATE RULE](CREATE_RULE.html), [DROP RULE](DROP_RULE.html)
 

@@ -1,8 +1,8 @@
-# CREATE RULE 
+# CREATE RULE
 
 Defines a new rewrite rule.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [OR REPLACE] RULE <name> AS ON <event>
@@ -15,7 +15,7 @@ where <event> can be one of:
   SELECT | INSERT | UPDATE | DELETE
 ```
 
-## Description 
+## Description
 
 `CREATE RULE` defines a new rule applying to a specified table or view. `CREATE OR REPLACE RULE` will either create a new rule, or replace an existing rule of the same name for the same table.
 
@@ -29,7 +29,7 @@ There is a catch if you try to use conditional rules for complex view updates: t
 
 > **Note** A view that is simple enough to be automatically updatable \(see [CREATE VIEW](CREATE_VIEW.html)\) does not require a user-created rule in order to be updatable. While you can create an explicit rule anyway, the automatic update transformation will generally outperform an explicit rule.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of a rule to create. This must be distinct from the name of any other rule for the same table. Multiple rules on the same table and same event type are applied in alphabetical name order.
@@ -54,7 +54,7 @@ command
 
 Within condition and command, the special table names `NEW` and `OLD` can be used to refer to values in the referenced table. `NEW` is valid in `ON INSERT` and `ON UPDATE` rules to refer to the new row being inserted or updated. `OLD` is valid in `ON UPDATE` and `ON DELETE` rules to refer to the existing row being updated or deleted.
 
-## Notes 
+## Notes
 
 You must be the owner of a table to create or change rules for it.
 
@@ -87,11 +87,11 @@ UPDATE mytable SET name = 'foo' WHERE id = 42;
 one `NOTIFY` event will be sent during the `UPDATE`, whether or not there are any rows that match the condition id = 42.
 
 
-## Compatibility 
+## Compatibility
 
 `CREATE RULE` is a Greenplum Database extension, as is the entire query rewrite system.
 
-## See Also 
+## See Also
 
 [ALTER RULE](ALTER_RULE.html), [DROP RULE](DROP_RULE.html)
 

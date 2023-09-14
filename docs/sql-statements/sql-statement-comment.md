@@ -1,8 +1,8 @@
-# COMMENT 
+# COMMENT
 
 Defines or changes the comment of an object.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 COMMENT ON
@@ -57,7 +57,7 @@ where <aggregate_signature> is:
 [ [ <argmode> ] [ <argname> ] <argtype> [ , ... ] ] ORDER BY [ <argmode> ] [ <argname> ] <argtype> [ , ... ]
 ```
 
-## Description 
+## Description
 
 `COMMENT` stores a comment about a database object. Only one comment string is stored for each object, so to modify a comment, issue a new `COMMENT` command for the same object. To remove a comment, specify `NULL` in place of the text string. Comments are automatically dropped when the object is dropped.
 
@@ -67,7 +67,7 @@ For most kinds of object, only the object's owner can set the comment. Roles don
 
 You can view comments using the `psql` meta-commands `\dd`, `\d+`, and `\l+`. Other user interfaces to retrieve comments can be built atop the same built-in functions that `psql` uses, namely `obj_description()`, `col_description()`, and `shobj_description()`.
 
-## Parameters 
+## Parameters
 
 object\_name
 relation\_name.column\_name
@@ -122,13 +122,13 @@ string_literal
 NULL
 :   Specify `NULL` to drop the comment.
 
-## Notes 
+## Notes
 
 There is presently no security mechanism for viewing comments: any user connected to a database can see all of the comments for objects in that database. For shared objects such as databases, roles, and tablespaces, comments are stored globally so any user connected to any database in the cluster can see all the comments for shared objects.
 
 > **Caution** Do not put security-critical information in comments.
 
-## Examples 
+## Examples
 
 Attach a comment to the table `mytable`:
 
@@ -188,7 +188,7 @@ COMMENT ON TYPE complex IS 'Complex number data type';
 COMMENT ON VIEW my_view IS 'View of departmental costs';
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `COMMENT` command in the SQL standard.
 

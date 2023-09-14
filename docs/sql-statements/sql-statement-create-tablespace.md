@@ -1,8 +1,8 @@
-# CREATE TABLESPACE 
+# CREATE TABLESPACE
 
 Defines a new tablespace.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TABLESPACE <tablespace_name>
@@ -11,7 +11,7 @@ CREATE TABLESPACE <tablespace_name>
    [ WITH (content<ID_1>='<directory>'[, content<ID_2>='<directory>' ... ] [, <tablespace_option = value [, ... ] ] ) ]
 ```
 
-## Description 
+## Description
 
 `CREATE TABLESPACE` registers and configures a new tablespace for your Greenplum Database system. The tablespace name must be distinct from the name of any existing tablespace in the system. A tablespace is a Greenplum Database system object \(a global object\), you can use a tablespace from any database if you have appropriate privileges.
 
@@ -21,7 +21,7 @@ A user with appropriate privileges can pass tablespace\_name to [CREATE DATABASE
 
 In Greenplum Database, the file system location must exist on all hosts including the hosts running the coordinator, standby mirror, each primary segment, and each mirror segment.
 
-## Parameters 
+## Parameters
 
 tablespace\_name
 :   The name of a tablespace to be created. The name cannot begin with `pg_` or `gp_`, as such names are reserved for system tablespaces.
@@ -44,7 +44,7 @@ contentID\_i='directory_i'
 tablespace\_option
 :   A tablespace parameter to set or reset. Currently, the only available parameters are `seq_page_cost` and `random_page_cost`. Setting either value for a particular tablespace will override the planner's usual estimate of the cost of reading pages from tables in that tablespace, as established by the configuration parameters of the same name (see [seq_page_cost](../config_params/guc-list.html#seq_page_cost), [random_page_cost](../config_params/guc-list.html#random_page_cost)). This may be useful if one tablespace is located on a disk which is faster or slower than the remainder of the I/O subsystem.
 
-## Notes 
+## Notes
 
 Because `CREATE TABLESPACE` creates symbolic links from the `pg_tblspc` directory in the coordinator and segment instance data directory to the directories specified in the command, Greenplum Database supports tablespaces only on systems that support symbolic links.
 
@@ -54,7 +54,7 @@ When creating tablespaces, ensure that file system locations have sufficient I/O
 
 > **Note** Greenplum Database does not support different tablespace locations for a primary-mirror pair with the same content ID. It is only possible to configure different locations for different content IDs. Do not modify symbolic links under the `pg_tblspc` directory so that primary-mirror pairs point to different file locations; this will lead to erroneous behavior.
 
-## Examples 
+## Examples
 
 Create a new tablespace and specify the file system location for the coordinator and all segment instances:
 
@@ -76,11 +76,11 @@ CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace' WITH (content0='/t
 
 The example specifies the same location for the two segment instances. You can a specify different location for each segment.
 
-## Compatibility 
+## Compatibility
 
 `CREATE TABLESPACE` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE DATABASE](CREATE_DATABASE.html), [CREATE TABLE](CREATE_TABLE.html), [CREATE INDEX](CREATE_INDEX.html), [DROP TABLESPACE](DROP_TABLESPACE.html), [ALTER TABLESPACE](ALTER_TABLESPACE.html)
 

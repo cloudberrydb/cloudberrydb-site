@@ -1,8 +1,8 @@
-# CREATE POLICY 
+# CREATE POLICY
 
 Defines a new row-level security policy for a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE POLICY <name> ON <table_name>
@@ -13,7 +13,7 @@ CREATE POLICY <name> ON <table_name>
     [ WITH CHECK ( <check_expression> ) ]
 ```
 
-## Description 
+## Description
 
 The `CREATE POLICY` command defines a new row-level security policy for a table. Note that row-level security must be enabled on the table \(using `ALTER TABLE ... ENABLE ROW LEVEL SECURITY`\) in order for Greenplum Database to apply created policies.
 
@@ -29,7 +29,7 @@ For policies that can have both `USING` and `WITH CHECK` expressions \(`ALL` and
 
 If row-level security is enabled for a table, but no applicable policies exist, a "default deny" policy is assumed, so that no rows will be visible or updatable.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the policy to be created. This must be distinct from the name of any other policy defined for the table.
@@ -154,11 +154,11 @@ Since policy expressions are added to the user's query directly, they will be ru
 
 Refer to [About Configuring Row-Level Security Policies](../../admin_guide/row_security.html) for more information and practical examples.
 
-## Compatibility 
+## Compatibility
 
 `CREATE POLICY` is a Greenplum Database extension to the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER POLICY](ALTER_POLICY.html), [DROP POLICY](DROP_POLICY.html), [ALTER TABLE](ALTER_TABLE.html)
 

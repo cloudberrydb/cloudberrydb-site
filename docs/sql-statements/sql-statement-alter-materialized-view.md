@@ -1,8 +1,8 @@
-# ALTER MATERIALIZED VIEW 
+# ALTER MATERIALIZED VIEW
 
 Changes the definition of a materialized view.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER MATERIALIZED VIEW [ IF EXISTS ] <name> <action> [, ... ]
@@ -31,7 +31,7 @@ where <action> is one of:
     OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }
 ```
 
-## Description 
+## Description
 
 `ALTER MATERIALIZED VIEW` changes various auxiliary properties of an existing materialized view.
 
@@ -41,7 +41,7 @@ The `DEPENDS ON EXTENSION` form marks the materialized view as dependent on an e
 
 The statement subforms and actions available for `ALTER MATERIALIZED VIEW` are a subset of those available for `ALTER TABLE`, and have the same meaning when used for materialized views. See the descriptions for [ALTER TABLE](ALTER_TABLE.html) for details.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing materialized view.
@@ -64,7 +64,7 @@ new\_name
 new\_schema
 :   The new schema for the materialized view.
 
-## Examples 
+## Examples
 
 To rename the materialized view `foo` to `bar`:
 
@@ -72,11 +72,11 @@ To rename the materialized view `foo` to `bar`:
 ALTER MATERIALIZED VIEW foo RENAME TO bar;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER MATERIALIZED VIEW` is a Greenplum Database extension of the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html), [DROP MATERIALIZED VIEW](DROP_MATERIALIZED_VIEW.html), [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html)
 

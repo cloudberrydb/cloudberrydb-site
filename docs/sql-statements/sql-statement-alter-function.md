@@ -1,8 +1,8 @@
-# ALTER FUNCTION 
+# ALTER FUNCTION
 
 Changes the definition of a function.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER FUNCTION <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ] 
@@ -37,13 +37,13 @@ where <action> is one of:
     RESET ALL
 ```
 
-## Description 
+## Description
 
 `ALTER FUNCTION` changes the definition of a function.
 
 You must own the function to use `ALTER FUNCTION`. To change a function's schema, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the function's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the function. However, a superuser can alter ownership of any function anyway.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing function. If no argument list is specified, the name must be unique in its schema.
@@ -123,11 +123,11 @@ value
 RESTRICT
 :   Ignored for conformance with the SQL standard.
 
-## Notes 
+## Notes
 
 Greenplum Database has limitations on the use of functions defined as `STABLE` or `VOLATILE`. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
 
-## Examples 
+## Examples
 
 To rename the function `sqrt` for type `integer` to `square_root`:
 
@@ -167,11 +167,11 @@ ALTER FUNCTION check_password(text) RESET search_path;
 
 The function will now execute with whatever search path is used by its caller.
 
-## Compatibility 
+## Compatibility
 
 This statement is partially compatible with the `ALTER FUNCTION` statement in the SQL standard. The standard allows more properties of a function to be modified, but does not provide the ability to rename a function, make a function a security definer, attach configuration parameter values to a function, or change the owner, schema, or volatility of a function. The standard also requires the `RESTRICT` key word, which is optional in Greenplum Database.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP FUNCTION](DROP_FUNCTION.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html), [ALTER ROUTINE](ALTER_ROUTINE.html)
 

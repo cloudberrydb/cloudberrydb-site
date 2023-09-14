@@ -1,8 +1,8 @@
-# CREATE USER 
+# CREATE USER
 
 Defines a new database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE USER <name> [[WITH] <option> [ ... ]]
@@ -35,15 +35,15 @@ where option can be:
     | [ DENY BETWEEN <deny_point> AND <deny_point>]
 ```
 
-## Description 
+## Description
 
 `CREATE USER` is an alias for [CREATE ROLE](CREATE_ROLE.html). The only difference is that when the command `CREATE USER` is invoked, `LOGIN` is assumed by default, whereas `NOLOGIN` is assumed when the command invoked is `CREATE ROLE`.
 
-## Compatibility 
+## Compatibility
 
 The `CREATE USER` statement is a Greenplum Database extension. The SQL standard leaves the definition of users to the implementation.
 
-## See Also 
+## See Also
 
 [CREATE ROLE](CREATE_ROLE.html)
 

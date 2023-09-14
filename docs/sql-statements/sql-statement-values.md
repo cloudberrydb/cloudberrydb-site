@@ -1,8 +1,8 @@
-# VALUES 
+# VALUES
 
 Computes a set of rows.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 VALUES ( <expression> [, ...] ) [, ...]
@@ -12,7 +12,7 @@ VALUES ( <expression> [, ...] ) [, ...]
    [FETCH { FIRST | NEXT } [<count> ] { ROW | ROWS } ONLY ]
 ```
 
-## Description 
+## Description
 
 `VALUES` computes a row value or set of row values specified by value expressions. It is most commonly used to generate a "constant table" within a larger command, but it can be used on its own.
 
@@ -20,7 +20,7 @@ When more than one row is specified, all the rows must have the same number of e
 
 Within larger commands, `VALUES` is syntactically allowed anywhere that `SELECT` is. Because it is treated like a `SELECT` by the grammar, it is possible to use the `ORDER BY`, `LIMIT` \(or equivalent `FETCH FIRST`\), and `OFFSET` clauses with a `VALUES` command.
 
-## Parameters 
+## Parameters
 
 expression
 :   A constant or expression to compute and insert at the indicated place in the resulting table \(set of rows\). In a `VALUES` list appearing at the top level of an `INSERT`, an expression can be replaced by `DEFAULT` to indicate that the destination column's default value should be inserted. `DEFAULT` cannot be used when `VALUES` appears in other contexts.
@@ -35,11 +35,11 @@ LIMIT count
 OFFSET start
 :   The maximum number of rows to return. For more details, see "The LIMIT Clause" in the parameters for [SELECT](SELECT.html).
 
-## Notes 
+## Notes
 
 `VALUES` lists with very large numbers of rows should be avoided, as you may encounter out-of-memory failures or poor performance. `VALUES` appearing within `INSERT` is a special case \(because the desired column types are known from the `INSERT`'s target table, and need not be inferred by scanning the `VALUES` list\), so it can handle larger lists than are practical in other contexts.
 
-## Examples 
+## Examples
 
 A bare `VALUES` command:
 
@@ -97,11 +97,11 @@ SELECT * FROM machines WHERE ip_address IN
 
 > **Note** For simple `IN` tests, it is better to rely on the list-of-scalars form of `IN` than to write a `VALUES` query as shown above. The list of scalars method requires less writing and is often more efficient.
 
-## Compatibility 
+## Compatibility
 
 `VALUES` conforms to the SQL standard. `LIMIT` and `OFFSET` are Greenplum Database extensions; see also under [SELECT](SELECT.html).
 
-## See Also 
+## See Also
 
 [INSERT](INSERT.html), [SELECT](SELECT.html)
 

@@ -1,8 +1,8 @@
-# LOCK 
+# LOCK
 
 Locks a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 LOCK [TABLE] [ONLY] name [ * ] [, ...] [IN <lockmode> MODE] [NOWAIT] [COORDINATOR ONLY]
@@ -15,7 +15,7 @@ where lockmode is one of:
   | SHARE | SHARE ROW EXCLUSIVE | EXCLUSIVE | ACCESS EXCLUSIVE
 ```
 
-## Description 
+## Description
 
 `LOCK TABLE` obtains a table-level lock, waiting if necessary for any conflicting locks to be released. If `NOWAIT` is specified, `LOCK TABLE` does not wait to acquire the desired lock: if it cannot be acquired immediately, the command is stopped and an error is emitted. Once obtained, the lock is held for the remainder of the current transaction. There is no `UNLOCK TABLE` command; locks are always released at transaction end.
 
@@ -25,7 +25,7 @@ To achieve a similar effect when running a transaction at the `REPEATABLE READ` 
 
 If a transaction of this sort is going to change the data in the table, then it should use `SHARE ROW EXCLUSIVE` lock mode instead of `SHARE` mode. This ensures that only one transaction of this type runs at a time. Without this, a deadlock is possible: two transactions might both acquire `SHARE` mode, and then be unable to also acquire `ROW EXCLUSIVE` mode to actually perform their updates. Note that a transaction's own locks never conflict, so a transaction can acquire `ROW EXCLUSIVE` mode when it holds `SHARE` mode — but not if anyone else holds `SHARE` mode. To avoid deadlocks, make sure all transactions acquire locks on the same objects in the same order, and if multiple lock modes are involved for a single object, then transactions should always acquire the most restrictive mode first.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing table to lock. If `ONLY` is specified, only that table is locked. If `ONLY` is not specified, the table and all its descendant tables \(if any\) are locked. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
@@ -53,7 +53,7 @@ COORDINATOR ONLY
 :   Specifies that when a `LOCK TABLE` command is issued, Greenplum Database will lock tables on the coordinator only, rather than on the coordinator and all of the segments. This is particularly useful for metadata-only operations. 
     <br/><br/>> **Note** This option is only supported in `ACCESS SHARE MODE`.
 
-## Notes 
+## Notes
 
 `LOCK TABLE ... IN ACCESS SHARE MODE` requires `SELECT` privileges on the target table. All other forms of `LOCK` require table-level `UPDATE`, `DELETE`, or `TRUNCATE` privileges.
 
@@ -61,7 +61,7 @@ COORDINATOR ONLY
 
 `LOCK TABLE` only deals with table-level locks, and so the mode names involving `ROW` are all misnomers. These mode names should generally be read as indicating the intention of the user to acquire row-level locks within the locked table. Also, `ROW EXCLUSIVE` mode is a shareable table lock. Keep in mind that all the lock modes have identical semantics so far as `LOCK TABLE` is concerned, differing only in the rules about which modes conflict with which. For information on how to acquire an actual row-level lock, see the `FOR UPDATE/FOR SHARE` clause in the [SELECT](SELECT.html) reference documentation.
 
-## Examples 
+## Examples
 
 Obtain a `SHARE` lock on the `films` table when going to perform inserts into the `films_user_comments` table:
 
@@ -87,13 +87,13 @@ DELETE FROM films WHERE rating < 5;
 COMMIT WORK;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `LOCK TABLE` in the SQL standard, which instead uses `SET TRANSACTION` to specify concurrency levels on transactions. Greenplum Database supports that too; see [SET TRANSACTION](SET_TRANSACTION.html) for details.
 
 Except for `ACCESS SHARE`, `ACCESS EXCLUSIVE`, and `SHARE UPDATE EXCLUSIVE` lock modes, the Greenplum Database lock modes and the `LOCK TABLE` syntax are compatible with those present in Oracle.
 
-## See Also 
+## See Also
 
 [BEGIN](BEGIN.html), [SET TRANSACTION](SET_TRANSACTION.html), [SELECT](SELECT.html)
 

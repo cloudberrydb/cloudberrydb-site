@@ -1,10 +1,10 @@
-# CREATE TEXT SEARCH TEMPLATE 
+# CREATE TEXT SEARCH TEMPLATE
 
-## Description 
+## Description
 
 Defines a new text search template.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TEXT SEARCH TEMPLATE <name> (
@@ -13,7 +13,7 @@ CREATE TEXT SEARCH TEMPLATE <name> (
 )
 ```
 
-## Description 
+## Description
 
 `CREATE TEXT SEARCH TEMPLATE` creates a new text search template. Text search templates define the functions that implement text search dictionaries. A template is not useful by itself, but must be instantiated as a dictionary to be used. The dictionary typically specifies parameters to be given to the template functions.
 
@@ -23,7 +23,7 @@ You must be a superuser to use `CREATE TEXT SEARCH TEMPLATE`. This restriction i
 
 Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.html#full-text-search) for further information.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the text search template to be created. The name can be schema-qualified.
@@ -38,11 +38,11 @@ The function names can be schema-qualified if necessary. Argument types are not 
 
 The arguments can appear in any order, not only the order shown above.
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [DROP TEXT SEARCH TEMPLATE](DROP_TEXT_SEARCH_TEMPLATE.html), [ALTER TEXT SEARCH TEMPLATE](ALTER_TEXT_SEARCH_TEMPLATE.html)
 

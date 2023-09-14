@@ -1,8 +1,8 @@
-# CREATE PROCEDURE 
+# CREATE PROCEDURE
 
 Defines a new procedure.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [OR REPLACE] PROCEDURE <name>    
@@ -16,7 +16,7 @@ CREATE [OR REPLACE] PROCEDURE <name>    
   } ...
 ```
 
-## Description 
+## Description
 
 `CREATE PROCEDURE` defines a new procedure. `CREATE OR REPLACE PROCEDURE` either creates a new procedure, or replaces an existing definition. To define a procedure, the user must have the `USAGE` privilege on the language.
 
@@ -32,7 +32,7 @@ To be able to create a procedure, you must have `USAGE` privilege on the argumen
 
 For more information about creating procedures, refer to the [User Defined Procedures](https://www.postgresql.org/docs/12/xproc.html) section of the PostgreSQL documentation.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of the procedure to create.
@@ -83,13 +83,13 @@ obj\_file, link\_symbol
 :   This form of the `AS` clause is used for dynamically loadable C language procedures when the procedure name in the C language source code is not the same as the name of the SQL procedure. The string obj\_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](LOAD.html) command. The string link\_symbol is the name of the procedure in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL procedure being defined.
 :   When repeated `CREATE PROCEDURE` calls refer to the same object file, the file is only loaded once per session. To unload and reload the file \(perhaps during development\), start a new session.
 
-## Notes 
+## Notes
 
 See [CREATE FUNCTION](CREATE_FUNCTION.html) for more details on function creation that also apply to procedures.
 
 Use [CALL](CALL.html) to execute a procedure.
 
-## Examples 
+## Examples
 
 ```
 CREATE PROCEDURE insert_data(a integer, b integer)
@@ -102,11 +102,11 @@ $$;
 CALL insert_data(1, 2);
 ```
 
-## Compatibility 
+## Compatibility
 
 A `CREATE PROCEDURE` command is defined in the SQL standard. The Greenplum Database version is similar but not fully compatible. For details see also [CREATE FUNCTION](CREATE_FUNCTION.html).
 
-## See Also 
+## See Also
 
 [ALTER PROCEDURE](ALTER_PROCEDURE.html), [DROP PROCEDURE](DROP_PROCEDURE.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [CALL](CALL.html)
 

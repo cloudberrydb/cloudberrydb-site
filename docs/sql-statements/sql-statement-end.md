@@ -1,18 +1,18 @@
-# END 
+# END
 
 Commits the current transaction.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 END [WORK | TRANSACTION] [AND [NO] CHAIN]
 ```
 
-## Description 
+## Description
 
 `END` commits the current transaction. All changes made by the transaction become visible to others and are guaranteed to be durable if a crash occurs. This command is a Greenplum Database extension that is equivalent to [COMMIT](COMMIT.html).
 
-## Parameters 
+## Parameters
 
 WORK
 TRANSACTION
@@ -27,7 +27,7 @@ Use [ROLLBACK](ROLLBACK.html) to terminate a transaction.
 
 Issuing `END` when not inside a transaction does no harm, but it will provoke a warning message.
 
-## Examples 
+## Examples
 
 To commit the current transaction and make all changes permanent:
 
@@ -35,11 +35,11 @@ To commit the current transaction and make all changes permanent:
 END;
 ```
 
-## Compatibility 
+## Compatibility
 
 `END` is a Greenplum Database extension that provides functionality equivalent to [COMMIT](COMMIT.html), which is specified in the SQL standard.
 
-## See Also 
+## See Also
 
 [BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html)
 

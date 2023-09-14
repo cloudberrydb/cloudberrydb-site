@@ -1,8 +1,8 @@
-# ALTER SEQUENCE 
+# ALTER SEQUENCE
 
 Changes the definition of a sequence generator.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER SEQUENCE [ IF EXISTS ] <name>
@@ -22,7 +22,7 @@ ALTER SEQUENCE [ IF EXISTS ] <name> RENAME TO <new_name>
 ALTER SEQUENCE [ IF EXISTS ] <name> SET SCHEMA <new_schema>
 ```
 
-## Description 
+## Description
 
 `ALTER SEQUENCE` changes the parameters of an existing sequence generator. Any parameters not specifically set in the `ALTER SEQUENCE` command retain their prior settings.
 
@@ -30,7 +30,7 @@ You must own the sequence to use `ALTER SEQUENCE`. To change a sequence's schema
 
 To alter the owner, you must be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the sequence's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the sequence. However, a superuser can alter ownership of any sequence anyway.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of a sequence to be altered.
@@ -84,7 +84,7 @@ new\_name
 new\_schema
 :   The new schema for the sequence.
 
-## Notes 
+## Notes
 
 `ALTER SEQUENCE` will not immediately affect `nextval()` results in backends, other than the current one, that have preallocated \(cached\) sequence values. They will use up all cached values prior to noticing the changed sequence generation parameters. The current backend will be affected immediately.
 
@@ -92,7 +92,7 @@ new\_schema
 
 For historical reasons, `ALTER TABLE` can be used with sequences too; but the only variants of `ALTER TABLE` that are allowed with sequences are equivalent to the forms shown above.
 
-## Examples 
+## Examples
 
 Restart a sequence called `serial` at `105`:
 
@@ -100,11 +100,11 @@ Restart a sequence called `serial` at `105`:
 ALTER SEQUENCE serial RESTART WITH 105;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER SEQUENCE` conforms to the SQL standard, except for the `AS`, `START WITH`, `OWNED BY`, `OWNER TO`, `RENAME TO`, and `SET SCHEMA` clauses, which are Greenplum Database extensions.
 
-## See Also 
+## See Also
 
 [CREATE SEQUENCE](CREATE_SEQUENCE.html), [DROP SEQUENCE](DROP_SEQUENCE.html), [ALTER TABLE](ALTER_TABLE.html)
 

@@ -2,7 +2,7 @@
 
 Defines a new transform
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [ OR REPLACE ] TRANSFORM FOR <type_name> LANGUAGE <lang_name> (
@@ -11,7 +11,7 @@ CREATE [ OR REPLACE ] TRANSFORM FOR <type_name> LANGUAGE <lang_name> (
 );
 ```
 
-## Description 
+## Description
 
 `CREATE TRANSFORM` defines a new transform. `CREATE OR REPLACE TRANSFORM` will either create a new transform, or replace an existing definition.
 
@@ -27,7 +27,7 @@ It is not necessary to provide both of these functions. If one is not specified,
 
 To create a transform, you must own and have `USAGE` privilege on the type, have `USAGE` privilege on the language, and own and have `EXECUTE` privilege on the from-SQL and to-SQL functions, if specified.
 
-## Parameters 
+## Parameters
 
 type\_name
 :   The name of the data type of the transform.
@@ -41,11 +41,11 @@ from\_sql\_function\_name[(argument\_type [, ...])]
 to\_sql\_function\_name[(argument\_type [, ...])]
 :   The name of the function for converting the type from the language to the SQL environment. It must take a single argument of type `internal` and return the type that is the type for the transform. The actual argument value will be something specific to the language implementation. If no argument list is specified, the function name must be unique in its schema.
 
-## Notes 
+## Notes
 
 Use [DROP TRANSFORM](DROP_TRANSFORM.html) to remove transforms.
 
-## Examples 
+## Examples
 
 To create a transform for type `hstore` and language `plpython3u`, first set up the type and the language:
 
@@ -78,11 +78,11 @@ CREATE TRANSFORM FOR hstore LANGUAGE plpython3u (
 
 In practice, these commands would be wrapped up in an extension.
 
-## Compatibility 
+## Compatibility
 
 This form of `CREATE TRANSFORM` is a Greenplum Database extension. There is a `CREATE TRANSFORM` command in the SQL standard, but it is for adapting data types to client languages. That usage is not supported by Greenplum.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [CREATE LANGUAGE](CREATE_LANGUAGE.html), [CREATE TYPE](CREATE_TYPE.html), [DROP TRANSFORM](DROP_TRANSFORM.html)
 

@@ -1,14 +1,14 @@
-# REINDEX 
+# REINDEX
 
 Rebuilds indexes.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 REINDEX [ (VERBOSE) ] { INDEX | TABLE | SCHEMA | DATABASE | SYSTEM } <name>
 ```
 
-## Description 
+## Description
 
 `REINDEX` rebuilds an index using the data stored in the index's table, replacing the old copy of the index. There are several scenarios in which to use `REINDEX`:
 
@@ -16,7 +16,7 @@ REINDEX [ (VERBOSE) ] { INDEX | TABLE | SCHEMA | DATABASE | SYSTEM } <name>
 -   An index has become bloated, that is, it contains many empty or nearly-empty pages. This can occur with B-tree indexes in Greenplum Database under certain uncommon access patterns. `REINDEX` provides a way to reduce the space consumption of the index by writing a new version of the index without the dead pages.
 -   You have altered a storage parameter (such as `fillfactor`) for an index, and wish to ensure that the change has taken full effect.
 
-## Parameters 
+## Parameters
 
 INDEX
 :   Recreate the specified index.
@@ -39,7 +39,7 @@ name
 VERBOSE
 :   Prints a progress report as each index is reindexed.
 
-## Notes 
+## Notes
 
 Greenplum Database does not support concurrently recreating indexes \(`CONCURRENTLY` keyword is not supported\).
 
@@ -51,7 +51,7 @@ Reindexing a single index or table requires being the owner of that index or tab
 
 REINDEX` does not update the `reltuples` and `relpages` statistics for the index. To update those statistics, run `ANALYZE` on the table after reindexing.
 
-## Examples 
+## Examples
 
 Rebuild a single index:
 
@@ -75,11 +75,11 @@ broken_db=> REINDEX DATABASE broken_db;
 broken_db=> \q
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `REINDEX` command in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE INDEX](CREATE_INDEX.html), [DROP INDEX](DROP_INDEX.html), [VACUUM](VACUUM.html), [reindexdb](../../utility_guide/ref/reindexdb.html)
 

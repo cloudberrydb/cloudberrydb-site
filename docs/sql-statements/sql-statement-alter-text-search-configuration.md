@@ -1,8 +1,8 @@
-# ALTER TEXT SEARCH CONFIGURATION 
+# ALTER TEXT SEARCH CONFIGURATION
 
 Changes the definition of a text search configuration.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER TEXT SEARCH CONFIGURATION <name>
@@ -20,13 +20,13 @@ ALTER TEXT SEARCH CONFIGURATION <name> OWNER TO { <new_owner> | CURRENT_USER | S
 ALTER TEXT SEARCH CONFIGURATION <name> SET SCHEMA <new_schema>
 ```
 
-## Description 
+## Description
 
 `ALTER TEXT SEARCH CONFIGURATION` changes the definition of a text search configuration. You can modify its mappings from token types to dictionaries, or change the configuration's name or owner.
 
 You must be the owner of the configuration to use `ALTER TEXT SEARCH CONFIGURATION`.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing text search configuration.
@@ -54,7 +54,7 @@ new\_schema
 
 The `ADD MAPPING FOR` form installs a list of dictionaries to be consulted for the specified token type\(s\); it is an error if there is already a mapping for any of the token types. The `ALTER MAPPING FOR` form does the same, but first removing any existing mapping for those token types. The `ALTER MAPPING REPLACE` forms substitute new\_dictionary for old\_dictionary anywhere the latter appears. This is done for only the specified token types when `FOR` appears, or for all mappings of the configuration when it doesn't. The `DROP MAPPING` form removes all dictionaries for the specified token type\(s\), causing tokens of those types to be ignored by the text search configuration. It is an error if there is no mapping for the token types, unless `IF EXISTS` appears.
 
-## Examples 
+## Examples
 
 The following example replaces the `english` dictionary with the `swedish` dictionary anywhere that `english` is used within `my_config`.
 
@@ -63,11 +63,11 @@ ALTER TEXT SEARCH CONFIGURATION my_config
   ALTER MAPPING REPLACE english WITH swedish;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE TEXT SEARCH CONFIGURATION](CREATE_TEXT_SEARCH_CONFIGURATION.html), [DROP TEXT SEARCH CONFIGURATION](DROP_TEXT_SEARCH_CONFIGURATION.html)
 

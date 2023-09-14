@@ -1,20 +1,20 @@
-# DROP TEXT SEARCH PARSER 
+# DROP TEXT SEARCH PARSER
 
-## Description 
+## Description
 
 Removes a text search parser.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TEXT SEARCH PARSER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP TEXT SEARCH PARSER` drops an existing text search parser. You must be a superuser to use this command.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the text search parser does not exist. Greenplum Database issues a notice in this case.
@@ -28,7 +28,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the text search parser if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the text search parser `my_parser`:
 
@@ -38,11 +38,11 @@ DROP TEXT SEARCH PARSER my_parser;
 
 This command will not succeed if there are any existing text search configurations that use the parser. Add `CASCADE` to drop such configurations along with the parser.
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP TEXT SEARCH PARSER` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH PARSER](ALTER_TEXT_SEARCH_PARSER.html), [CREATE TEXT SEARCH PARSER](CREATE_TEXT_SEARCH_PARSER.html)
 

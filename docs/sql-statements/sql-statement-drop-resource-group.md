@@ -1,14 +1,14 @@
-# DROP RESOURCE GROUP 
+# DROP RESOURCE GROUP
 
 Removes a resource group.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP RESOURCE GROUP <group_name>
 ```
 
-## Description 
+## Description
 
 This command removes a resource group from Greenplum Database. Only a superuser can drop a resource group. When you drop a resource group, the memory and CPU resources reserved by the group are returned to Greenplum Database.
 
@@ -16,12 +16,12 @@ To drop a role resource group, the group cannot be assigned to any roles, nor ca
 
 You cannot drop the pre-defined `admin_group` and `default_group` resource groups.
 
-## Parameters 
+## Parameters
 
 group\_name
 :   The name of the resource group to remove.
 
-## Notes 
+## Notes
 
 You cannot submit a `DROP RESOURCE GROUP` command in an explicit transaction or sub-transaction.
 
@@ -44,7 +44,7 @@ SELECT rolname, rsgname
   WHERE pg_roles.rolresgroup=pg_resgroup.oid;
 ```
 
-## Examples 
+## Examples
 
 Remove the resource group assigned to a role. This operation then assigns the default resource group `default_group` to the role:
 
@@ -58,11 +58,11 @@ Remove the resource group named `adhoc`:
 DROP RESOURCE GROUP adhoc;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `DROP RESOURCE GROUP` statement is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER RESOURCE GROUP](ALTER_RESOURCE_GROUP.html), [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [ALTER ROLE](ALTER_ROLE.html)
 

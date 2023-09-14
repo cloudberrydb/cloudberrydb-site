@@ -1,8 +1,8 @@
-# UPDATE 
+# UPDATE
 
 Updates rows of a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
@@ -16,7 +16,7 @@ UPDATE [ ONLY ] <table_name> [ [ AS ] <alias> ]
    [ RETURNING * | <output_expression> [ [AS] <output_name> ] [, ...] ]
 ```
 
-## Description 
+## Description
 
 `UPDATE` changes the values of the specified columns in all rows that satisfy the condition. Only the columns to be modified need be mentioned in the `SET` clause; columns not explicitly modified retain their previous values.
 
@@ -28,7 +28,7 @@ You must have the `UPDATE` privilege on the table, or at least on the column\(s\
 
 > **Note** As the default, Greenplum Database acquires an `EXCLUSIVE` lock on tables for `UPDATE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
 
-## Parameters 
+## Parameters
 
 with\_query
 :   The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `UPDATE` query. See [WITH Queries \(Common Table Expressions\)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](SELECT.html) for details.
@@ -84,7 +84,7 @@ The count is the number of rows updated, including matched rows whose values did
 
 If the `UPDATE` command contains a `RETURNING` clause, the result will be similar to that of a `SELECT` statement containing the columns and values defined in the `RETURNING` list, computed over the row\(s\) updated by the command.
 
-## Notes 
+## Notes
 
 When a `FROM` clause is present, the target table is joined to the tables mentioned in the from\_item list, and each output row of the join represents an update operation for the target table. When using `FROM`, ensure that the join produces at most one output row for each row to be modified. In other words, a target row should not join to more than one row from the other table\(s\). If it does, then only one of the join rows will be used to update the target row, but which one will be used is not readily predictable.
 
@@ -100,7 +100,7 @@ There is a possibility that a concurrent `UPDATE` or `DELETE` on the row being m
 
 Note that while rows can be moved from local partitions to a foreign-table partition \(provided the foreign data wrapper supports tuple routing\), they cannot be moved from a foreign-table partition to another partition.
 
-## Examples 
+## Examples
 
 Change the word `Drama` to `Dramatic` in the column `kind` of the table `films`:
 
@@ -190,7 +190,7 @@ Lafite 2003';
 COMMIT;
 ```
 
-## Compatibility 
+## Compatibility
 
 This command conforms to the SQL standard, except that the `FROM` and `RETURNING` clauses are Greenplum Database extensions, as is the ability to use `WITH` with `UPDATE`.
 
@@ -198,7 +198,7 @@ Some other database systems offer a `FROM` option in which the target table is s
 
 According to the standard, the source value for a parenthesized sub-list of target column names can be any row-valued expression yielding the correct number of columns. Greenplum Database only allows the source value to be a [row constructor](https://www.postgresql.org/docs/12/sql-expressions.html#SQL-SYNTAX-ROW-CONSTRUCTORS) or a sub-`SELECT`. You can specify an individual column's updated value as `DEFAULT` in the row-constructor case, but not inside a sub-`SELECT`.
 
-## See Also 
+## See Also
 
 [DECLARE](DECLARE.html), [DELETE](DELETE.html), [SELECT](SELECT.html), [INSERT](INSERT.html)
 

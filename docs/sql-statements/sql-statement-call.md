@@ -1,20 +1,20 @@
-# CALL 
+# CALL
 
 Invokes a procedure.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CALL <name> ( [ <argument> ] [, ...] )
 ```
 
-## Description 
+## Description
 
 `CALL` executes a procedure.
 
 If the procedure has any output parameters, then a result row will be returned, containing the values of those parameters.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of the procedure.
@@ -32,17 +32,17 @@ If `CALL` is invoked in a transaction block, then the called procedure cannot ru
 
 PL/pgSQL handles output parameters in `CALL` commands differently; refer to [Calling a Procedure](https://www.postgresql.org/docs/12/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-CALLING-PROCEDURE) in the PostgreSQL documentation for more information.
 
-## Examples 
+## Examples
 
 ```
 CALL do_db_maintenance();
 ```
 
-## Compatibility 
+## Compatibility
 
 `CALL` conforms to the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE PROCEDURE](CREATE_PROCEDURE.html)
 

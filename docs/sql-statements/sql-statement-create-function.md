@@ -1,8 +1,8 @@
-# CREATE FUNCTION 
+# CREATE FUNCTION
 
 Defines a new function.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [OR REPLACE] FUNCTION <name>    
@@ -28,7 +28,7 @@ CREATE [OR REPLACE] FUNCTION <name>    
   } ...
 ```
 
-## Description 
+## Description
 
 `CREATE FUNCTION` defines a new function. `CREATE OR REPLACE FUNCTION` either creates a new function, or replaces an existing definition. To define a function, the user must have the `USAGE` privilege on the language.
 
@@ -78,7 +78,7 @@ See [Using Functions and Operators](../../admin_guide/query/topics/functions-ope
 A user-defined function that runs only `SELECT` commands on replicated tables can run on segments. Replicated tables, created with the `DISTRIBUTED REPLICATED` clause, store all of their rows on every segment. It is safe for a function to read them on the segments, but updates to replicated tables must run on the coordinator instance.
 
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of the function to create.
@@ -215,7 +215,7 @@ obj\_file, link\_symbol
 describe\_function
 :   The name of a callback function to run when a query that calls this function is parsed. The callback function returns a tuple descriptor that indicates the result type.
 
-## Overloading 
+## Overloading
 
 Greenplum Database allows function overloading; that is, the same name can be used for several different functions so long as they have distinct input argument types. Whether or not you use it, this capability entails security precautions when calling functions in databases where some users mistrust other users; refer to [Functions](https://www.postgresql.org/docs/12/typeconv-func.html) in the PostgreSQL documentation for more information.
 
@@ -235,7 +235,7 @@ CREATE FUNCTION foo(int, int default 42) ...
 
 A call `foo(10)` will fail due to the ambiguity about which function should be called.
 
-## Notes 
+## Notes
 
 Any compiled code \(shared library files\) for custom functions must be placed in the same location on every host in your Greenplum Database cluster \(coordinator and all segments\). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files. It is recommended that you locate shared libraries either relative to `$libdir` \(which is located at `$GPHOME/lib`\) or through the dynamic library path \(set by the `dynamic_library_path` server configuration parameter\) on all coordinator segment instances in the Greenplum cluster.
 
@@ -323,7 +323,7 @@ LANGUAGE plpgsql;
 SELECT my_ctas('t1');
 ```
 
-## Examples 
+## Examples
 
 Add two integers using a SQL function:
 
@@ -470,7 +470,7 @@ GRANT EXECUTE ON FUNCTION check_password(uname TEXT, pass TEXT) TO admins;
 COMMIT;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE FUNCTION` is defined in SQL:1999 and later. The Greenplum Database version is similar but not fully compatible. The attributes are not portable, neither are the different available languages.
 
@@ -478,7 +478,7 @@ For compatibility with some other database systems, argmode can be written eithe
 
 For parameter defaults, the SQL standard specifies only the syntax with the `DEFAULT` key word. The syntax with `=` is used in T-SQL and Firebird.
 
-## See Also 
+## See Also
 
 [ALTER FUNCTION](ALTER_FUNCTION.html), [DROP FUNCTION](DROP_FUNCTION.html), [GRANT](GRANT.html), [LOAD](LOAD.html), [REVOKE](REVOKE.html), [createlang](../../utility_guide/ref/createdb.html)
 

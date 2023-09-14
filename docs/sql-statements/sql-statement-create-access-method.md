@@ -2,7 +2,7 @@
 
 Defines a new access method.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE ACCESS METHOD <name>
@@ -10,7 +10,7 @@ CREATE ACCESS METHOD <name>
     HANDLER <handler_function>
 ```
 
-## Description 
+## Description
 
 `CREATE ACCESS METHOD` creates a new access method.
 
@@ -19,7 +19,7 @@ The access method name must be unique within the database.
 Only superusers can define new access methods.
 
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the access method to create.
@@ -30,7 +30,7 @@ access\_method\_type
 handler\_function
 :   handler\_function is the name \(possibly schema-qualified\) of a previously registered function that represents the access method. The handler function must be declared to take a single argument of type `internal`, and its return type depends on the type of access method; for `TABLE` access methods, it must be `table_am_handler` and for `INDEX` access methods, it must be `index_am_handler`. The C-level API that the handler function must implement varies depending on the type of access method. The table access method API is described in [Table Access Method Interface Definition](https://www.postgresql.org/docs/12/tableam.html) in the PostgreSQL documentation. The index access method API is described in [Index Access Method Interface Definition](https://www.postgresql.org/docs/12/indexam.html).
 
-## Examples 
+## Examples
 
 Create an index access method `heptree` with handler function `heptree_handler`:
 
@@ -38,11 +38,11 @@ Create an index access method `heptree` with handler function `heptree_handler`:
 CREATE ACCESS METHOD heptree TYPE INDEX HANDLER heptree_handler;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE ACCESS METHOD` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [DROP ACCESS METHOD](DROP_ACCESS_METHOD.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [CREATE OPERATOR FAMILY](CREATE_OPERATOR_FAMILY.html)
 

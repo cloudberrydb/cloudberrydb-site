@@ -1,8 +1,8 @@
-# CREATE OPERATOR CLASS 
+# CREATE OPERATOR CLASS
 
 Defines a new operator class.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE OPERATOR CLASS <name> [DEFAULT] FOR TYPE <data_type>  
@@ -13,7 +13,7 @@ CREATE OPERATOR CLASS <name> [DEFAULT] FOR TYPE <data_type>  
   } [, ... ]
 ```
 
-## Description 
+## Description
 
 `CREATE OPERATOR CLASS` creates a new operator class. An operator class defines how a particular data type can be used with an index. The operator class specifies that certain operators will fill particular roles or strategies for this data type and this index method. The operator class also specifies the support functions to be used by the index method when the operator class is selected for an index column. All of the operators and functions used by an operator class must be defined before the operator class is created. Any functions used to implement the operator class must be defined as `IMMUTABLE`.
 
@@ -27,7 +27,7 @@ Related operator classes can be grouped into operator families. To add a new ope
 
 Refer to [Interfacing Extensions to Indexes](https://www.postgresql.org/docs/12/xindex.html) in the PostgreSQL documentation for more information.
 
-## Parameters 
+## Parameters
 
 name
 :   The \(optionally schema-qualified\) name of the operator class to be defined. Two operator classes in the same schema can have the same name only if they are for different index methods.
@@ -74,7 +74,7 @@ storage\_type
 
 The `OPERATOR`, `FUNCTION`, and `STORAGE` clauses can appear in any order.
 
-## Notes 
+## Notes
 
 Because the index machinery does not check access permissions on functions before using them, including a function or operator in an operator class is the same as granting public execute permission on it. This is usually not an issue for the sorts of functions that are useful in an operator class.
 
@@ -84,7 +84,7 @@ Any functions used to implement the operator class must be defined as `IMMUTABLE
 
 Before Greenplum Database 6.0, the `OPERATOR` clause could include a `RECHECK` option. This option is no longer supported. Greenplum Database now determines whether an index operator is "lossy" on-the-fly at run time. This allows more efficient handling of cases where an operator might or might not be lossy.
 
-## Examples 
+## Examples
 
 The following example command defines a GiST index operator class for the data type `_int4` \(array of int4\). See the `intarray` contrib module for the complete example.
 
@@ -105,11 +105,11 @@ CREATE OPERATOR CLASS gist__int_ops
         FUNCTION 7 g_int_same (_int4, _int4, internal);
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE OPERATOR CLASS` is a Greenplum Database extension. There is no `CREATE OPERATOR CLASS` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [DROP OPERATOR CLASS](DROP_OPERATOR_CLASS.html), [CREATE OPERATOR FAMILY](CREATE_OPERATOR_FAMILY.html), [ALTER OPERATOR FAMILY](ALTER_OPERATOR_FAMILY.html), [CREATE FUNCTION](CREATE_FUNCTION.html)
 

@@ -1,8 +1,8 @@
-# CREATE VIEW 
+# CREATE VIEW
 
 Defines a new view.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [OR REPLACE] [TEMP | TEMPORARY] [RECURSIVE] VIEW <name> [ ( <column_name> [, ...] ) ]
@@ -11,7 +11,7 @@ CREATE [OR REPLACE] [TEMP | TEMPORARY] [RECURSIVE] VIEW <name> [ ( <column_name>
     [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]
 ```
 
-## Description 
+## Description
 
 `CREATE VIEW` defines a view of a query. The view is not physically materialized. Instead, Greenplum Database runs the query every time the view is referenced in a query.
 
@@ -19,7 +19,7 @@ CREATE [OR REPLACE] [TEMP | TEMPORARY] [RECURSIVE] VIEW <name> [ ( <column_name>
 
 If a schema name is given \(for example, `CREATE VIEW myschema.myview ...`\) then the view is created in the specified schema. Otherwise it is created in the current schema. Temporary views exist in a special schema, so you may not provide a schema name when creating a temporary view. The name of the view must be distinct from the name of any other view, table, sequence, index, or foreign table in the same schema.
 
-## Parameters 
+## Parameters
 
 TEMPORARY \| TEMP
 :   If specified, the view is created as a temporary view. Temporary views are automatically dropped at the end of the current session. Existing permanent relations with the same name are not visible to the current session while the temporary view exists, unless they are referenced with schema-qualified names. 
@@ -69,7 +69,7 @@ WITH \[ CASCADED \| LOCAL \] CHECK OPTION
 
 :   The `CHECK OPTION` may not be used with `RECURSIVE` views.
 
-## Notes 
+## Notes
 
 Use the [DROP VIEW](DROP_VIEW.html) statement to drop views.
 
@@ -117,7 +117,7 @@ A more complex view that does not satisfy all of these conditions is read-only b
 
 Note that the user performing the insert, update or delete on the view must have the corresponding insert, update or delete privilege on the view. In addition the view's owner must have the relevant privileges on the underlying base relations, but the user performing the update does not need any permissions on the underlying base relations (again, refer to [Rules and Privileges](https://www.postgresql.org/docs/12/rules-privileges.html) in the PostgreSQL documentation).
 
-## Examples 
+## Examples
 
 Create a view consisting of all comedy films:
 
@@ -188,11 +188,11 @@ UNION ALL
 
 Notice that although the recursive view's name is schema-qualified in this `CREATE VIEW` command, its internal self-reference is not schema-qualified. This is because the implicitly-created CTE's name cannot be schema-qualified.
 
-## Compatibility 
+## Compatibility
 
 `CREATE OR REPLACE VIEW` is a Greenplum Database extension. So is the concept of a temporary view.  The `WITH ( ... )` clause is an extension as well.
 
-## See Also 
+## See Also
 
 [ALTER VIEW](ALTER_VIEW.html), [DROP VIEW](DROP_VIEW.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html)
 

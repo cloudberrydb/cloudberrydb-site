@@ -1,8 +1,8 @@
-# CREATE LANGUAGE 
+# CREATE LANGUAGE
 
 Defines a new procedural language.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [ OR REPLACE ] [ PROCEDURAL ] LANGUAGE <name>
@@ -14,7 +14,7 @@ CREATE [ OR REPLACE ] [ TRUSTED ] [ PROCEDURAL ] LANGUAGE <name>
             
 ```
 
-## Description 
+## Description
 
 `CREATE LANGUAGE` registers a new procedural language with a Greenplum database. Subsequently, functions and procedures can be defined in this new language.
 
@@ -31,7 +31,7 @@ Ordinarily, the user must have the Greenplum Database superuser privilege to reg
 `CREATE OR REPLACE LANGUAGE` will either create a new language, or replace an existing definition. If the language already exists, its parameters are updated according to the values specified or taken from `pg_pltemplate`, but the language's ownership and permissions settings do not change, and any existing functions written in the language are assumed to still be valid. In addition to the normal privilege requirements for creating a language, the user must be superuser or owner of the existing language. The `REPLACE` case is mainly meant to be used to ensure that the language exists. If the language has a `pg_pltemplate` entry then `REPLACE` will not actually change anything about an existing definition, except in the unusual case where the `pg_pltemplate` entry has been modified since the language was created.
 
 
-## Parameters 
+## Parameters
 
 TRUSTED
 :   `TRUSTED` specifies that the language does not grant access to data that the user would not otherwise have. If this key word is omitted when registering the language, only users with the Greenplum Database superuser privilege can use this language to create new functions.
@@ -55,7 +55,7 @@ VALIDATOR valfunction
 
 > **Note**  The `TRUSTED` option and the support function name\(s\) are ignored if the server has an entry for the specified language name in `pg_pltemplate`.
 
-## Notes 
+## Notes
 
 Use [DROP LANGUAGE](DROP_LANGUAGE.html) to drop procedural languages.
 
@@ -67,7 +67,7 @@ Procedural languages are local to individual databases. However, a language can 
 
 The call handler function, the inline handler function \(if any\), and the validator function \(if any\) must already exist if the server does not have an entry for the language in `pg_pltemplate`. But when there is an entry, the functions need not already exist; they will be automatically defined if not present in the database. \(This might result in `CREATE LANGUAGE` failing, if the shared library that implements the language is not available in the installation.\)
 
-## Examples 
+## Examples
 
 The preferred way of creating any of the standard procedural languages is to use `CREATE EXTENSION` instead of `CREATE LANGUAGE`. For example:
 
@@ -86,11 +86,11 @@ CREATE LANGUAGE plsample
     HANDLER plsample_call_handler;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE LANGUAGE` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER LANGUAGE](ALTER_LANGUAGE.html), [CREATE EXTENSION](CREATE_EXTENSION.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP LANGUAGE](DROP_LANGUAGE.html), [GRANT](GRANT.html), [DO](DO.html)
 

@@ -1,8 +1,8 @@
-# CREATE EXTENSION 
+# CREATE EXTENSION
 
 Registers an extension in a Greenplum database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE EXTENSION [ IF NOT EXISTS ] <extension_name>
@@ -12,7 +12,7 @@ CREATE EXTENSION [ IF NOT EXISTS ] <extension_name>
            [ CASCADE ]
 ```
 
-## Description 
+## Description
 
 `CREATE EXTENSION` loads a new extension into the current database. There must not be an extension of the same name already loaded.
 
@@ -20,7 +20,7 @@ Loading an extension essentially amounts to running the extension script file. T
 
 Loading an extension requires the same privileges that would be required to create its component objects. For most extensions this means superuser or database owner privileges are required. The user who runs `CREATE EXTENSION` becomes the owner of the extension for purposes of later privilege checks, as well as the owner of any objects created by the extension script.
 
-## Parameters 
+## Parameters
 
 IF NOT EXISTS
 :   Do not throw an error if an extension with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing extension is anything like the one that would have been created from the currently-available script file.
@@ -44,7 +44,7 @@ old\_version
 CASCADE
 :   Automatically install any extensions that this extension depends on that are not already installed. Dependent extensions are checked recursively and those dependencies are also installed automatically. If the `SCHEMA` clause is specified, the schema applies to the extension and all dependent extensions that are installed. Other options that are specified are not applied to the automatically-installed dependent extensions; in particular, their default versions are always selected.
 
-## Notes 
+## Notes
 
 Before you can use `CREATE EXTENSION` to load an extension into a database, the extension's supporting files must be installed. The supporting files must be installed in the same location on all Greenplum Database hosts. For information about creating new extensions, see the PostgreSQL [Packaging Related Objects into an Extension](https://www.postgresql.org/docs/12/extend-extensions.html) documentation.
 
@@ -53,7 +53,7 @@ The extensions currently available for loading can be identified from the [pg\_a
 <div class="note">Installing an extension as superuser requires trusting that the extension's author wrote the extension installation script in a secure fashion. It is not terribly difficult for a malicious user to create trojan-horse objects that will compromise later execution of a carelessly-written extension script, allowing that user to acquire superuser privileges. However, trojan-horse objects are only hazardous if they are in the <code>search_path</code> during script execution, meaning that they are in the extension's installation target schema or in the schema of some extension it depends on. Therefore, a good rule of thumb when dealing with extensions whose scripts have not been carefully vetted is to install them only into schemas for which <code>CREATE</code> privilege has not been and will not be granted to any untrusted users. Likewise for any extensions they depend on.<p>
 The extensions supplied with Greenplum Database are believed to be secure against installation-time attacks of this sort, except for a few that depend on other extensions. As stated in the documentation for those extensions, they should be installed into secure schemas, or installed into the same schemas as the extensions they depend on, or both.</p></div>
 
-## Examples 
+## Examples
 
 Install the `hstore` extension into the current database, placing its objects in schema `addons`:
 
@@ -68,11 +68,11 @@ SET search_path = addons;
 CREATE EXTENSION hstore;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE EXTENSION` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER EXTENSION](ALTER_EXTENSION.html), [DROP EXTENSION](DROP_EXTENSION.html)
 

@@ -1,8 +1,8 @@
-# VACUUM 
+# VACUUM
 
 Garbage-collects and optionally analyzes a database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 VACUUM [({ FULL | FREEZE | VERBOSE | ANALYZE | DISABLE_PAGE_SKIPPING | SKIP_LOCKED | INDEX_CLEANUP } [, ...])] [<table> [(<column> [, ...] )]]
@@ -15,7 +15,7 @@ VACUUM [FULL] [FREEZE] [VERBOSE] ANALYZE
 VACUUM AO_AUX_ONLY <ao_table>
 ```
 
-## Description 
+## Description
 
 `VACUUM` reclaims storage occupied by deleted tuples. In normal Greenplum Database operation, tuples that are deleted or obsoleted by an update are not physically removed from their table; they remain present on disk until a `VACUUM` is done. Therefore it is necessary to do `VACUUM` periodically, especially on frequently-updated tables.
 
@@ -37,7 +37,7 @@ When the option list is surrounded by parentheses, the options can be written in
 
 When `VERBOSE` is specified, `VACUUM` emits progress messages to indicate which table is currently being processed. Various statistics about the tables are printed as well.
 
-## Parameters 
+## Parameters
 
 FULL
 :   Selects a full vacuum, which may reclaim more space, but takes much longer and exclusively locks the table. This method also requires extra disk space, since it writes a new copy of the table and doesn't release the old copy until the operation is complete. Usually this should only be used when a significant amount of space needs to be reclaimed from within the table.
@@ -72,7 +72,7 @@ AO_AUX_ONLY
 <column>
 :   The name of a specific column to analyze. Defaults to all columns. If a column list is specified, `ANALYZE` is implied.
 
-## Notes 
+## Notes
 
 `VACUUM` cannot be run inside a transaction block.
 
@@ -98,7 +98,7 @@ If a concurrent serializable transaction is detected when an append-optimized ta
 
 For more information about concurrency control in Greenplum Database, see "Routine System Maintenance Tasks" in *Greenplum Database Administrator Guide*.
 
-## Examples 
+## Examples
 
 To clean a single table `onek`, analyze it for the optimizer and print a detailed vacuum activity report:
 
@@ -124,11 +124,11 @@ Vacuum all tables in the current database and collect statistics for the query o
 VACUUM ANALYZE;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `VACUUM` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ANALYZE](ANALYZE.html)
 

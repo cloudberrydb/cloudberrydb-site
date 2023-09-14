@@ -1,8 +1,8 @@
-# START TRANSACTION 
+# START TRANSACTION
 
 Starts a transaction block.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 START TRANSACTION [<transaction_mode>] [, ...]
@@ -14,16 +14,16 @@ where <transaction_mode> is one of:
    [NOT] DEFERRABLE
 ```
 
-## Description 
+## Description
 
 `START TRANSACTION` begins a new transaction block. If the isolation level, read/write mode, or deferrable mode is specified, the new transaction has those characteristics, as if [SET TRANSACTION](SET_TRANSACTION.html) was run. This is the same as the [BEGIN](BEGIN.html) command.
 
-## Parameters 
+## Parameters
 
 Refer to [SET TRANSACTION](SET_TRANSACTION.html) for information on the meaning of the parameters to this statement.
 
 
-## Compatibility 
+## Compatibility
 
 In the standard, it is not necessary to issue `START TRANSACTION` to start a transaction block: any SQL command implicitly begins a block. Greenplum Database's behavior can be seen as implicitly issuing a `COMMIT` after each command that does not follow `START TRANSACTION` \(or `BEGIN`\), and it is therefore often called 'autocommit'. Other relational database systems may offer an autocommit feature as a convenience.
 
@@ -33,7 +33,7 @@ The SQL standard requires commas between successive transaction\_modes, but for 
 
 See also the compatibility section of [SET TRANSACTION](SET_TRANSACTION.html).
 
-## See Also 
+## See Also
 
 [BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html), [SAVEPOINT](SAVEPOINT.html), [SET TRANSACTION](SET_TRANSACTION.html)
 

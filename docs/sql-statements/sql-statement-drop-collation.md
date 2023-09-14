@@ -1,8 +1,8 @@
-# DROP COLLATION 
+# DROP COLLATION
 
 Removes a previously defined collation.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP COLLATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
@@ -12,7 +12,7 @@ DROP COLLATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 
 `DROP COLLATION` removes a previously defined collation. To be able to drop a collation, you must own the collation.
 
-## Parameters 
+## Parameters
 
 `IF EXISTS`
 :   Do not throw an error if the collation does not exist. A notice is issued in this case.
@@ -27,7 +27,7 @@ name
 :   Refuse to drop the collation if any objects depend on it. This is the default.
 
 
-## Examples 
+## Examples
 
 To drop the collation named `german`:
 
@@ -35,11 +35,11 @@ To drop the collation named `german`:
 DROP COLLATION german;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `DROP COLLATION` command conforms to the SQL standard, apart from the `IF EXISTS` option, which is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER COLLATION](ALTER_COLLATION.html), [CREATE COLLATION](CREATE_COLLATION.html)
 

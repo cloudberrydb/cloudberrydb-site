@@ -1,8 +1,8 @@
-# CLUSTER 
+# CLUSTER
 
 Physically reorders a table on disk according to an index. 
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CLUSTER <indexname> ON <table_name>
@@ -12,7 +12,7 @@ CLUSTER [VERBOSE] <table_name> [ USING <index_name> ]
 CLUSTER [VERBOSE]
 ```
 
-## Description 
+## Description
 
 `CLUSTER` instructs Greenplum Database to order the table specified by `<table_name>` based on the index specified by `<index_name>`. The index must already have been defined on `<table_name>`.
 
@@ -26,7 +26,7 @@ When a table is clustered using this command, Greenplum Database remembers on wh
 
 When a table is being clustered, an `ACCESS EXCLUSIVE` lock is acquired on it. This prevents any other database operations \(both reads and writes\) from operating on the table until the `CLUSTER` is finished.
 
-## Parameters 
+## Parameters
 
 index_name
 :   The name of an index.
@@ -37,7 +37,7 @@ index_name
 table_name
 :   The name \(optionally schema-qualified\) of a table.
 
-## Notes 
+## Notes
 
 If the records you need are distributed randomly on disk, then the database has to seek across the disk to get the records requested. If those records are stored more closely together, then the fetching from disk is more sequential. In cases where you are accessing single rows randomly within a table, the actual order of the data in the table is unimportant. However, if you tend to access some data more than others, and there is an index that groups them together, you will benefit from using `CLUSTER`. If you are requesting a range of indexed values from a table, or a single indexed value that has multiple rows that match, `CLUSTER` will help because once the index identifies the table page for the first row that matches, all other rows that match are probably already on the same table page, and so you save disk accesses and speed up the query. A good example for a clustered index is on a date column where the data is ordered sequentially by date. A query against a specific date range will result in an ordered fetch from the disk, which leverages faster sequential access.
 
@@ -53,7 +53,7 @@ Because the query optimizer records statistics about the ordering of tables, it 
 
 Because `CLUSTER` remembers which indexes are clustered, you can cluster the tables you want clustered manually the first time, then set up a periodic maintenance script that runs `CLUSTER` without any parameters, so that the desired tables are periodically reclustered.
 
-## Examples 
+## Examples
 
 Cluster the table `employees` on the basis of its index `emp_ind`:
 
@@ -73,11 +73,11 @@ Cluster all tables in the database that have previously been clustered:
 CLUSTER;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `CLUSTER` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE INDEX](CREATE_INDEX.html)
 

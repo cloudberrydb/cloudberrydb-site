@@ -1,8 +1,8 @@
-# DELETE 
+# DELETE
 
 Deletes rows from a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
@@ -12,7 +12,7 @@ DELETE FROM [ONLY] <table_name> [[AS] <alias>]
       [RETURNING * | <output_expression> [[AS] <output_name>] [, …]]
 ```
 
-## Description 
+## Description
 
 `DELETE` deletes rows that satisfy the `WHERE` clause from the specified table. If the `WHERE` clause is absent, the effect is to delete all rows in the table. The result is a valid, but empty table.
 
@@ -28,7 +28,7 @@ You must have the `DELETE` privilege on the table to delete from it, as well as 
 
 > **Note** As the default, Greenplum Database acquires an `EXCLUSIVE` lock on tables for `DELETE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
 
-## Parameters 
+## Parameters
 
 with\_query
 :   The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `DELETE` query.
@@ -72,7 +72,7 @@ The count is the number of rows deleted. If count is 0, no rows were deleted by 
 
 If the `DELETE` command contains a `RETURNING` clause, the result will be similar to that of a `SELECT` statement containing the columns and values defined in the `RETURNING` list, computed over the row\(s\) deleted by the command.
 
-## Notes 
+## Notes
 
 The `RETURNING` clause is not supported when deleting from append-optimized tables.
 
@@ -93,7 +93,7 @@ DELETE FROM films
 
 For a partitioned table, all of the child tables are locked during the `DELETE` operation when the Global Deadlock Detector is not enabled \(the default\). Only some of the leaf child tables are locked when the Global Deadlock Detector is enabled. For information about the Global Deadlock Detector, see [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
 
-## Examples 
+## Examples
 
 Delete all films but musicals:
 
@@ -126,11 +126,11 @@ DELETE FROM rank USING names WHERE names.id = rank.id AND
 name = 'Hannah';
 ```
 
-## Compatibility 
+## Compatibility
 
 This command conforms to the SQL standard, except that the `USING` and `RETURNING` clauses are Greenplum Database extensions, as is the ability to use `WITH` with `DELETE`.
 
-## See Also 
+## See Also
 
 [TRUNCATE](TRUNCATE.html)
 

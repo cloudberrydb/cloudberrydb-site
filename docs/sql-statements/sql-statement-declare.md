@@ -1,8 +1,8 @@
-# DECLARE 
+# DECLARE
 
 Defines a cursor.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DECLARE <name> [BINARY] [INSENSITIVE] [NO SCROLL] [PARALLEL RETRIEVE] CURSOR 
@@ -10,7 +10,7 @@ DECLARE <name> [BINARY] [INSENSITIVE] [NO SCROLL] [PARALLEL RETRIEVE] CURSOR
      FOR <query>
 ```
 
-## Description 
+## Description
 
 `DECLARE` allows a user to create a cursor, which can be used to retrieve a small number of rows at a time out of a larger query. Cursors can return data using [FETCH](FETCH.html).
 
@@ -34,7 +34,7 @@ Parallel retrieve cursors do not support the `WITH HOLD` clause. Greenplum Datab
 
 You open a special retrieve session to each parallel retrieve cursor endpoint, and use the [RETRIEVE](RETRIEVE.html) command to retrieve the query results from a parallel retrieve cursor.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the cursor to be created.
@@ -79,7 +79,7 @@ query
 
 The key words `BINARY`, `INSENSITIVE`, and `NO SCROLL` can appear in any order.
 
-## Notes 
+## Notes
 
 Unless `WITH HOLD` is specified, the cursor created by this command can only be used within the current transaction. Thus, `DECLARE` without `WITH HOLD` is useless outside a transaction block: the cursor would survive only to the completion of the statement. Therefore Greenplum Database reports an error if this command is used outside a transaction block. Use `BEGIN` and `COMMIT` \(or `ROLLBACK`\) to define a transaction block.
 
@@ -93,7 +93,7 @@ Scrollable cursors are not currently supported in Greenplum Database. You can on
 
 You can see all available cursors by querying the [pg\_cursors](../system_catalogs/catalog_ref-views.html#pg_cursors) system view.
 
-## Examples 
+## Examples
 
 Declare a cursor:
 
@@ -107,7 +107,7 @@ Declare a parallel retrieve cursor for the same query:
 DECLARE myprcursor PARALLEL RETRIEVE CURSOR FOR SELECT * FROM mytable;
 ```
 
-## Compatibility 
+## Compatibility
 
 SQL standard allows cursors only in embedded SQL and in modules. Greenplum Database permits cursors to be used interactively.
 
@@ -119,7 +119,7 @@ Binary cursors are a Greenplum Database extension.
 
 The SQL standard makes no provisions for parallel retrieve cursors.
 
-## See Also 
+## See Also
 
 [CLOSE](CLOSE.html), [DELETE](DELETE.html), [FETCH](FETCH.html), [MOVE](MOVE.html), [RETRIEVE](RETRIEVE.html), [SELECT](SELECT.html), [UPDATE](UPDATE.html)
 

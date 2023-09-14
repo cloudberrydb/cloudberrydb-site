@@ -1,8 +1,8 @@
-# ALTER FOREIGN DATA WRAPPER 
+# ALTER FOREIGN DATA WRAPPER
 
 Changes the definition of a foreign-data wrapper.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER FOREIGN DATA WRAPPER <name>
@@ -14,13 +14,13 @@ ALTER FOREIGN DATA WRAPPER <name> OWNER TO { <new_owner> | CURRENT_USER | SESSIO
 ALTER FOREIGN DATA WRAPPER <name> RENAME TO <new_name>
 ```
 
-## Description 
+## Description
 
 `ALTER FOREIGN DATA WRAPPER` changes the definition of a foreign-data wrapper. The first form of the command changes the support functions or generic options of the foreign-data wrapper. Greenplum Database requires at least one clause. The second and third forms of the command change the owner or name of the foreign-data wrapper.
 
 Only superusers can alter foreign-data wrappers. Additionally, only superusers can own foreign-data wrappers
 
-## Parameters 
+## Parameters
 
 name
 :   The name of an existing foreign-data wrapper.
@@ -50,7 +50,7 @@ OWNER TO new\_owner
 RENAME TO new\_name
 :   Specifies the new name of the foreign-data wrapper.
 
-## Examples 
+## Examples
 
 Change the definition of a foreign-data wrapper named `dbi` by adding a new option named `foo`, and removing the option named `bar`:
 
@@ -64,11 +64,11 @@ Change the validator function for a foreign-data wrapper named `dbi` to `bob.myv
 ALTER FOREIGN DATA WRAPPER dbi VALIDATOR bob.myvalidator;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER FOREIGN DATA WRAPPER` conforms to ISO/IEC 9075-9 \(SQL/MED\), with the exception that the `HANDLER`, `VALIDATOR`, `OWNER TO`, and `RENAME TO` clauses are Greenplum Database extensions.
 
-## See Also 
+## See Also
 
 [CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [DROP FOREIGN DATA WRAPPER](DROP_FOREIGN_DATA_WRAPPER.html)
 

@@ -1,18 +1,18 @@
-# DROP DOMAIN 
+# DROP DOMAIN
 
 Removes a domain.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP DOMAIN [IF EXISTS] <name> [, ...]  [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP DOMAIN` removes a previously defined domain. Only the owner of a domain can remove it.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the domain does not exist. A notice is issued in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the domain if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the domain named `us_postal_code`:
 
@@ -34,11 +34,11 @@ Remove the domain named `us_postal_code`:
 DROP DOMAIN us_postal_code;
 ```
 
-## Compatibility 
+## Compatibility
 
 This command conforms to the SQL standard, except for the `IF EXISTS` option, which is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER DOMAIN](ALTER_DOMAIN.html), [CREATE DOMAIN](CREATE_DOMAIN.html)
 

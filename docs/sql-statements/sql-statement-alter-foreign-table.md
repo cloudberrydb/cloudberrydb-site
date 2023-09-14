@@ -1,8 +1,8 @@
-# ALTER FOREIGN TABLE 
+# ALTER FOREIGN TABLE
 
 Changes the definition of a foreign table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER FOREIGN TABLE [ IF EXISTS ] [ONLY] <name> [ * ]
@@ -41,7 +41,7 @@ where <action> is one of:
     OPTIONS ( [ ADD | SET | DROP ] <option> ['<value>'] [, ... ] )
 ```
 
-## Description 
+## Description
 
 `ALTER FOREIGN TABLE` changes the definition of an existing foreign table. There are several subforms of the command:
 
@@ -113,7 +113,7 @@ If the command is written as `ALTER FOREIGN TABLE IF EXISTS ...` and the foreign
 
 You must own the table to use `ALTER FOREIGN TABLE`. To change the schema of a foreign table, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the table's schema. \(These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the table. However, a superuser can alter ownership of any table anyway.\) To add a column or to alter a column type, you must also have `USAGE` privilege on the data type.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(possibly schema-qualified\) of an existing foreign table to alter. If `ONLY` is specified before the table name, only that table is altered. If `ONLY` is not specified, the table and all its descendant tables \(if any\) are altered. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
@@ -160,7 +160,7 @@ new\_owner
 new\_schema
 :   The name of the schema to which the foreign table will be moved.
 
-## Notes 
+## Notes
 
 The key word `COLUMN` is noise and can be omitted.
 
@@ -168,7 +168,7 @@ Consistency with the foreign server is not checked when a column is added or rem
 
 Refer to [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html) for a further description of valid parameters.
 
-## Examples 
+## Examples
 
 To mark a column as not-null:
 
@@ -183,13 +183,13 @@ ALTER FOREIGN TABLE myschema.distributors
     OPTIONS (ADD opt1 'value', SET opt2 'value2', DROP opt3 'value3');
 ```
 
-## Compatibility 
+## Compatibility
 
 The forms `ADD`, `DROP`, and `SET DATA TYPE` conform with the SQL standard. The other forms are Greenplum Database extensions of the SQL standard. The ability to specify more than one manipulation in a single `ALTER FOREIGN TABLE` command is also a Greenplum Database extension.
 
 You can use `ALTER FOREIGN TABLE ... DROP COLUMN` to drop the only column of a foreign table, leaving a zero-column table. This is an extension of SQL, which disallows zero-column foreign tables.
 
-## See Also 
+## See Also
 
 [ALTER TABLE](ALTER_TABLE.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [DROP FOREIGN TABLE](DROP_FOREIGN_TABLE.html)
 

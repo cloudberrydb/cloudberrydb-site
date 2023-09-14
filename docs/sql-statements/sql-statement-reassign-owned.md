@@ -1,19 +1,19 @@
-# REASSIGN OWNED 
+# REASSIGN OWNED
 
 Changes the ownership of database objects owned by a database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 REASSIGN OWNED BY { <old_role> | CURRENT_USER | SESSION_USER } [, ...]
                TO { <new_role> | CURRENT_USER | SESSION_USER }
 ```
 
-## Description 
+## Description
 
 `REASSIGN OWNED` changes the ownership of database objects owned by any of the old\_roles to new\_role.
 
-## Parameters 
+## Parameters
 
 old\_role
 :   The name of a role. The ownership of all the objects in the current database, and of all shared objects \(databases, tablespaces\), owned by this role will be reassigned to new\_role.
@@ -21,7 +21,7 @@ old\_role
 new\_role
 :   The name of the role that will be made the new owner of the affected objects.
 
-## Notes 
+## Notes
 
 `REASSIGN OWNED` is often used to prepare for the removal of one or more roles. Because `REASSIGN OWNED` does not affect objects in other databases, it is usually necessary to run this command in each database that contains objects owned by a role that is to be removed.
 
@@ -31,7 +31,7 @@ The [DROP OWNED](DROP_OWNED.html) command is an alternative that simply drops al
 
 The `REASSIGN OWNED` command does not affect any privileges granted to the old\_roles on objects that are not owned by them. Likewise, it does not affect default privileges created with `ALTER DEFAULT PRIVILEGES`. Use `DROP OWNED` to revoke such privileges.
 
-## Examples 
+## Examples
 
 Reassign any database objects owned by the role named `sally` and `bob` to `admin`:
 
@@ -39,11 +39,11 @@ Reassign any database objects owned by the role named `sally` and `bob` to `admi
 REASSIGN OWNED BY sally, bob TO admin;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `REASSIGN OWNED` command is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [DROP OWNED](DROP_OWNED.html), [DROP ROLE](DROP_ROLE.html), [ALTER DATABASE](ALTER_DATABASE.html)
 

@@ -1,8 +1,8 @@
-# CREATE FOREIGN TABLE 
+# CREATE FOREIGN TABLE
 
 Defines a new foreign table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE FOREIGN TABLE [ IF NOT EXISTS ] <table_name> ( [
@@ -45,7 +45,7 @@ FROM ( { <partition_bound_expr> | MINVALUE | MAXVALUE } [, ...] )
 WITH ( MODULUS <numeric_literal>, REMAINDER <numeric_literal> )
 ```
 
-## Description 
+## Description
 
 `CREATE FOREIGN TABLE` creates a new foreign table in the current database. The user who creates the foreign table becomes its owner.
 
@@ -57,7 +57,7 @@ If the `PARTITION OF` clause is specified, then the table is created as a partit
 
 To create a foreign table, you must have `USAGE` privilege on the foreign server, as well as `USAGE` privilege on all column types used in the table.
 
-## Parameters 
+## Parameters
 
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
@@ -124,7 +124,7 @@ mpp\_execute \{ 'coordinator' \| 'any' \| 'all segments' \}
 
     The `mpp_execute` option can be specified in multiple commands: `CREATE FOREIGN TABLE`, `CREATE SERVER`, and `CREATE FOREIGN DATA WRAPPER`. The foreign table setting takes precedence over the foreign server setting, followed by the foreign-data wrapper setting.
 
-## Notes 
+## Notes
 
 Constraints on foreign tables \(such as `CHECK` or `NOT NULL` clauses\) are not enforced by Greenplum Database, and most foreign-data wrappers do not attempt to enforce them either; that is, the constraint is simply assumed to hold true. There would be little point in such enforcement since it would only apply to rows inserted or updated via the foreign table, and not to rows modified by other means, such as directly on the remote server. Instead, a constraint attached to a foreign table should represent a constraint that is being enforced by the remote server.
 
@@ -138,7 +138,7 @@ Within a partitioned table containing foreign-table partitions, an `UPDATE` that
 
 Similar considerations apply to generated columns. Stored generated columns are computed on insert or update on the local Greenplum Database server and handed to the foreign-data wrapper for writing out to the foreign data store, but it is not enforced that a query of the foreign table returns values for stored generated columns that are consistent with the generation expression. Again, this might result in incorrect query results.
 
-## Examples 
+## Examples
 
 Create a foreign table named `films` with the server named `film_server`:
 
@@ -162,11 +162,11 @@ CREATE FOREIGN TABLE measurement_y2016m07
     SERVER server_07;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE FOREIGN TABLE` largely conforms to the SQL standard; however, much as with [CREATE TABLE](CREATE_TABLE.html), Greenplum Database permits `NULL` constraints and zero-column foreign tables. The ability to specify column default values is a Greenplum Database extension, as is the `mpp_execute` option. Table inheritance, in the form defined by Greenplum Database, is nonstandard.
 
-## See Also 
+## See Also
 
 [ALTER FOREIGN TABLE](ALTER_FOREIGN_TABLE.html), [DROP FOREIGN TABLE](DROP_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html)
 

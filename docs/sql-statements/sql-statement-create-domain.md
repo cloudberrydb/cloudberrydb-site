@@ -1,8 +1,8 @@
-# CREATE DOMAIN 
+# CREATE DOMAIN
 
 Defines a new domain.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE DOMAIN <name> [AS] <data_type>
@@ -16,7 +16,7 @@ where <constraint> is:
 { NOT NULL | NULL | CHECK (<expression>)  }
 ```
 
-## Description 
+## Description
 
 `CREATE DOMAIN` creates a new domain. A domain is essentially a data type with optional constraints \(restrictions on the allowed set of values\). The user who defines a domain becomes its owner.
 
@@ -26,7 +26,7 @@ Domains are useful for abstracting common constraints on fields into a single lo
 
 To be able to create a domain, you must have `USAGE` privilege on the underlying type.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of a domain to be created.
@@ -72,7 +72,7 @@ Greeplum Database assumes that `CHECK` constraints' conditions are immutable, th
 
 An example of a common way to break this assumption is to reference a user-defined function in a `CHECK` expression, and then change the behavior of that function. Greenplum Database does not disallow that, but it will not notice if there are stored values of the domain type that now violate the `CHECK` constraint. That would cause a subsequent database dump and restore to fail. The recommended way to handle such a change is to drop the constraint \(using `ALTER DOMAIN`\), adjust the function definition, and re-add the constraint, thereby rechecking it against stored data.
 
-## Examples 
+## Examples
 
 This example creates the `us_postal_code` data type and then uses the type in a table definition. A regular expression test is used to verify that the value looks like a valid US postal code.
 
@@ -93,11 +93,11 @@ CREATE TABLE us_snail_addy (
 );
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE DOMAIN` conforms to the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER DOMAIN](ALTER_DOMAIN.html), [DROP DOMAIN](DROP_DOMAIN.html)
 

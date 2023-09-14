@@ -1,8 +1,8 @@
-# COPY 
+# COPY
 
 Copies data between a file and a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 COPY <table_name> [(<column_name> [, ...])] 
@@ -37,7 +37,7 @@ LOG ERRORS [ SEGMENT REJECT LIMIT <count> [ ROWS | PERCENT ] ]
 IGNORE EXTERNAL PARTITIONS
 ```
 
-## Description 
+## Description
 
 `COPY` moves data between Greenplum Database tables and standard file-system files. `COPY TO` copies the contents of a table to a file \(or multiple files based on the segment ID if copying `ON SEGMENT`\), while `COPY FROM` copies data from a file to a table \(appending the data to whatever is in the table already\). `COPY TO` can also copy the results of a `SELECT` query.
 
@@ -73,7 +73,7 @@ If running a `COPY FROM` command in single row error isolation mode, the followi
 NOTICE: Rejected <count> badly formatted rows.
 ```
 
-## Parameters 
+## Parameters
 
 table\_name
 :   The name \(optionally schema-qualified\) of an existing table.
@@ -202,7 +202,7 @@ IGNORE EXTERNAL PARTITIONS
 
 :   See the next section "Notes" for information about specifying an SQL query to copy data from leaf partitions that are external tables.
 
-## Notes 
+## Notes
 
 `COPY` can only be used with tables, not with external tables or views. However, you can write `COPY (SELECT * FROM viewname) TO ...`
 
@@ -271,7 +271,7 @@ A non-superuser can run only these types of `COPY` commands:
 
 For information about resource queues, see "Resource Management with Resource Queues" in the *Greenplum Database Administrator Guide*.
 
-## File Formats 
+## File Formats
 
 File formats supported by `COPY`.
 
@@ -340,7 +340,7 @@ The binary file format consists of a file header, zero or more tuples containing
 
 -   **File Trailer** — The file trailer consists of a 16-bit integer word containing `-1`. This is easily distinguished from a tuple's field-count word. A reader should report an error if a field-count word is neither `-1` nor the expected number of columns. This provides an extra check against somehow getting out of sync with the data.
 
-## Examples 
+## Examples
 
 Copy a table to the client using the vertical bar \(\|\) as the field delimiter:
 
@@ -437,7 +437,7 @@ This example uses the `PROGRAM` and `ON SEGMENT` clauses to copy data from files
 COPY LINEITEM_4 FROM PROGRAM 'cat /tmp/lineitem_program<SEGID>.csv' ON SEGMENT CSV;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `COPY` statement in the SQL standard.
 
@@ -476,7 +476,7 @@ COPY { <table_name> [(<column_name> [, ...])] | (<query>)} TO {'<filename>' | PR
 
 Note that in this syntax, `BINARY` and `CSV` are treated as independent keywords, not as arguments of a FORMAT option.
 
-## See Also 
+## See Also
 
 [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html)
 

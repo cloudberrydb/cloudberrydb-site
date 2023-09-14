@@ -1,8 +1,8 @@
-# ALTER OPERATOR 
+# ALTER OPERATOR
 
 Changes the definition of an operator.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER OPERATOR <name> ( {<left_type> | NONE} , {<right_type> | NONE} ) 
@@ -17,13 +17,13 @@ ALTER OPERATOR name ( { <left_type> | NONE } , { <right_type> | NONE } )
          } [, ... ] )
 ```
 
-## Description 
+## Description
 
 `ALTER OPERATOR` changes the definition of an operator.
 
 You must own the operator to use `ALTER OPERATOR`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the operator's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the operator. However, a superuser can alter ownership of any operator anyway.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing operator.
@@ -46,7 +46,7 @@ res\_proc
 join\_proc
 :   The join selectivity estimator function for this operator; write `NONE` to remove the existing selectivity estimator.
 
-## Examples 
+## Examples
 
 Change the owner of a custom operator `a @@ b` for type `text`:
 
@@ -60,11 +60,11 @@ Change the restriction and join selectivity estimator functions of a custom oper
 ALTER OPERATOR && (_int4, _int4) SET (RESTRICT = _int_contsel, JOIN = _int_contjoinsel);
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER OPERATOR` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE OPERATOR](CREATE_OPERATOR.html), [DROP OPERATOR](DROP_OPERATOR.html)
 

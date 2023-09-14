@@ -1,8 +1,8 @@
-# BEGIN 
+# BEGIN
 
 Starts a transaction block.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 BEGIN [WORK | TRANSACTION] [<transaction_mode>]
@@ -14,7 +14,7 @@ where <transaction_mode> is:
    [NOT] DEFERRABLE
 ```
 
-## Description 
+## Description
 
 `BEGIN` initiates a transaction block, that is, all statements after a `BEGIN` command will be run in a single transaction until an explicit [COMMIT](COMMIT.html) or [ROLLBACK](ROLLBACK.html) is given. By default \(without `BEGIN`\), Greenplum Database runs transactions in "autocommit" mode, that is, each statement is run in its own transaction and a commit is implicitly performed at the end of the statement \(if execution was successful, otherwise a rollback is done\).
 
@@ -22,7 +22,7 @@ Statements are run more quickly in a transaction block, because transaction star
 
 If the isolation level, read/write mode, or deferrable mode is specified, the new transaction has those characteristics, as if [SET TRANSACTION](SET_TRANSACTION.html) was run.
 
-## Parameters 
+## Parameters
 
 WORK
 TRANSACTION
@@ -30,7 +30,7 @@ TRANSACTION
 
 Refer to [SET TRANSACTION](SET_TRANSACTION.html) for information on the meaning of the other parameters to this statement.
 
-## Notes 
+## Notes
 
 [START TRANSACTION](START_TRANSACTION.html) has the same functionality as `BEGIN`.
 
@@ -40,7 +40,7 @@ Issuing `BEGIN` when already inside a transaction block will provoke a warning m
 
 For reasons of backwards compatibility, the commas between successive transaction\_modes can be omitted.
 
-## Examples 
+## Examples
 
 To begin a transaction block:
 
@@ -48,7 +48,7 @@ To begin a transaction block:
 BEGIN;
 ```
 
-## Compatibility 
+## Compatibility
 
 `BEGIN` is a Greenplum Database language extension. It is equivalent to the SQL-standard command [START TRANSACTION](START_TRANSACTION.html), whose reference page contains additional compatibility information.
 
@@ -56,7 +56,7 @@ The `DEFERRABLE` transaction\_mode is a Greenplum Database language extension.
 
 Incidentally, the `BEGIN` key word is used for a different purpose in embedded SQL. You are advised to be careful about the transaction semantics when porting database applications.
 
-## See Also 
+## See Also
 
 [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html), [SAVEPOINT](SAVEPOINT.html), [START TRANSACTION](START_TRANSACTION.html)
 

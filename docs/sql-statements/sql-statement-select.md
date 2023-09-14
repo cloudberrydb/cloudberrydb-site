@@ -1,8 +1,8 @@
-# SELECT 
+# SELECT
 
 Retrieves rows from a table or view.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
@@ -52,7 +52,7 @@ TABLE [ ONLY ] <table_name> [ * ]
 ```
 
 
-## Description 
+## Description
 
 `SELECT` retrieves rows from zero or more tables. The general processing of `SELECT` is as follows:
 
@@ -70,7 +70,7 @@ TABLE [ ONLY ] <table_name> [ * ]
 
 You must have `SELECT` privilege on each column used in a `SELECT` command. The use of `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, or `FOR KEY SHARE` requires `UPDATE` privilege as well (for at least one column of each table so selected).
 
-## Parameters 
+## Parameters
 
 ### The WITH Clause
 
@@ -618,7 +618,7 @@ Note that this will result in locking all rows of `mytable`, whereas `FOR UPDATE
 At the `REPEATABLE READ` or `SERIALIZABLE` transaction isolation level this would cause a serialization failure (with a `SQLSTATE` of `40001`), so there is no possibility of receiving rows out of order under these isolation levels.
 
 
-## The TABLE Command 
+## The TABLE Command
 
 The command
 
@@ -634,7 +634,7 @@ SELECT * FROM <name>
 
 It can be used as a top-level command or as a space-saving syntax variant in parts of complex queries. Only the `WITH`, `UNION`, `INTERSECT`, `EXCEPT`, `ORDER BY`, `LIMIT`, `OFFSET`, `FETCH`, and `FOR` locking clauses can be used with `TABLE`; the `WHERE` clause and any form of aggregation cannot be used.
 
-## Examples 
+## Examples
 
 To join the table `films` with the table `distributors`:
 
@@ -776,7 +776,7 @@ SELECT m.name AS mname, pname
   FROM manufacturers m LEFT JOIN LATERAL get_product_names(m.id) pname ON true;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `SELECT` statement is compatible with the SQL standard, but there are some extensions and some missing features.
 
@@ -866,7 +866,7 @@ The `MATERIALIZED` and `NOT MATERIALIZED` options of `WITH` are extensions of th
 
 To prevent data from becoming out-of-sync across the segments in Greenplum Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment database level if it contains SQL or modifies the database in any way. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
 
-## See Also 
+## See Also
 
 [EXPLAIN](EXPLAIN.html)
 

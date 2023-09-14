@@ -1,18 +1,18 @@
-# DROP CONVERSION 
+# DROP CONVERSION
 
 Removes a conversion.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP CONVERSION [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP CONVERSION` removes a previously defined conversion. To be able to drop a conversion, you must own the conversion.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the conversion does not exist. A notice is issued in this case.
@@ -24,7 +24,7 @@ CASCADE
 RESTRICT
 :   These keywords have no effect since there are no dependencies on conversions.
 
-## Examples 
+## Examples
 
 Drop the conversion named `myname`:
 
@@ -32,11 +32,11 @@ Drop the conversion named `myname`:
 DROP CONVERSION myname;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP CONVERSION` statement in the SQL standard. The standard has `CREATE TRANSLATION` and `DROP TRANSLATION` statements that are similar to the Greenplum Database `CREATE CONVERSION` and `DROP CONVERSION` statements.
 
-## See Also 
+## See Also
 
 [ALTER CONVERSION](ALTER_CONVERSION.html), [CREATE CONVERSION](CREATE_CONVERSION.html)
 

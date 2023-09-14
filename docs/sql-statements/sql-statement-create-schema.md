@@ -1,8 +1,8 @@
-# CREATE SCHEMA 
+# CREATE SCHEMA
 
 Defines a new schema.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE SCHEMA <schema_name> [AUTHORIZATION <role_specification>] 
@@ -21,7 +21,7 @@ where <role_specification> can be:
   | SESSION_USER
 ```
 
-## Description 
+## Description
 
 `CREATE SCHEMA` enters a new schema into the current database. The schema name must be distinct from the name of any existing schema in the current database.
 
@@ -29,7 +29,7 @@ A schema is essentially a namespace: it contains named objects \(tables, data ty
 
 Optionally, `CREATE SCHEMA` can include subcommands to create objects within the new schema. The subcommands are treated essentially the same as separate commands issued after creating the schema, except that if the `AUTHORIZATION` clause is used, all the created objects will be owned by that role.
 
-## Parameters 
+## Parameters
 
 schema\_name
 :   The name of a schema to be created. If this is omitted, the user\_name is used as the schema name. The name cannot begin with `pg_`, as such names are reserved for system catalog schemas.
@@ -45,11 +45,11 @@ schema\_element
 `IF NOT EXISTS`
 :   Do nothing \(except issuing a notice\) if a schema with the same name already exists. schema\_element subcommands cannot be included when this option is used.
 
-## Notes 
+## Notes
 
 To create a schema, the invoking user must have the `CREATE` privilege for the current database or be a superuser.
 
-## Examples 
+## Examples
 
 Create a schema:
 
@@ -89,7 +89,7 @@ CREATE VIEW hollywood.winners AS
     SELECT title, release FROM hollywood.films WHERE awards IS NOT NULL;
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL standard allows a `DEFAULT CHARACTER SET` clause in `CREATE SCHEMA`, as well as more subcommand types than are presently accepted by Greenplum Database.
 
@@ -99,7 +99,7 @@ According to the SQL standard, the owner of a schema always owns all objects wit
 
 The `IF NOT EXISTS` option is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER SCHEMA](ALTER_SCHEMA.html), [DROP SCHEMA](DROP_SCHEMA.html)
 

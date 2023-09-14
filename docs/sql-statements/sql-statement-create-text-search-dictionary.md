@@ -1,8 +1,8 @@
-# CREATE TEXT SEARCH DICTIONARY 
+# CREATE TEXT SEARCH DICTIONARY
 
 Defines a new text search dictionary.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TEXT SEARCH DICTIONARY <name> (
@@ -11,7 +11,7 @@ CREATE TEXT SEARCH DICTIONARY <name> (
 )
 ```
 
-## Description 
+## Description
 
 CREATE TEXT SEARCH DICTIONARY creates a new text search dictionary. A text search dictionary specifies a way of recognizing interesting or uninteresting words for searching. A dictionary depends on a text search template, which specifies the functions that actually perform the work. Typically the dictionary provides some options that control the detailed behavior of the template's functions.
 
@@ -21,7 +21,7 @@ The user who defines a text search dictionary becomes its owner.
 
 Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.html#full-text-search) for further information.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the text search dictionary to be created. The name can be schema-qualified.
@@ -37,7 +37,7 @@ value
 
 The options can appear in any order.
 
-## Examples 
+## Examples
 
 The following example command creates a Snowball-based dictionary with a nonstandard list of stop words.
 
@@ -49,11 +49,11 @@ CREATE TEXT SEARCH DICTIONARY my_russian (
 );
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH DICTIONARY](ALTER_TEXT_SEARCH_DICTIONARY.html), [DROP TEXT SEARCH DICTIONARY](DROP_TEXT_SEARCH_DICTIONARY.html)
 

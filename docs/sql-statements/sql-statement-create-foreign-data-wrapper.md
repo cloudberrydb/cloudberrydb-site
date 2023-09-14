@@ -1,8 +1,8 @@
-# CREATE FOREIGN DATA WRAPPER 
+# CREATE FOREIGN DATA WRAPPER
 
 Defines a new foreign-data wrapper.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE FOREIGN DATA WRAPPER <name>
@@ -11,7 +11,7 @@ CREATE FOREIGN DATA WRAPPER <name>
     [ OPTIONS ( [ mpp_execute { 'coordinator' | 'any' | 'all segments' } [, ] ] <option> '<value>' [, ... ] ) ]
 ```
 
-## Description 
+## Description
 
 `CREATE FOREIGN DATA WRAPPER` creates a new foreign-data wrapper in the current database. The user who defines the foreign-data wrapper becomes its owner.
 
@@ -19,7 +19,7 @@ The foreign-data wrapper name must be unique within the database.
 
 Only superusers can create foreign-data wrappers.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the foreign-data wrapper to create. The name must be unique within the database.
@@ -49,11 +49,11 @@ mpp\_execute \{ 'coordinator' \| 'any' \| 'all segments' \}
 
     The `mpp_execute` option can be specified in multiple commands: `CREATE FOREIGN TABLE`, `CREATE SERVER`, and `CREATE FOREIGN DATA WRAPPER`. The foreign table setting takes precedence over the foreign server setting, followed by the foreign-data wrapper setting.
 
-## Notes 
+## Notes
 
 The foreign-data wrapper functionality is still under development. Optimization of queries is primitive \(and mostly left to the wrapper\).
 
-## Examples 
+## Examples
 
 Create a useless foreign-data wrapper named `dummy`:
 
@@ -73,13 +73,13 @@ Create a foreign-data wrapper named `mywrapper` that includes an option:
 CREATE FOREIGN DATA WRAPPER mywrapper OPTIONS (debug 'true');
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE FOREIGN DATA WRAPPER` conforms to ISO/IEC 9075-9 \(SQL/MED\), with the exception that the `HANDLER` and `VALIDATOR` clauses are extensions, and the standard clauses `LIBRARY` and `LANGUAGE` are not implemented in Greenplum Database.
 
 Note, however, that the SQL/MED functionality as a whole is not yet conforming.
 
-## See Also 
+## See Also
 
 [ALTER FOREIGN DATA WRAPPER](ALTER_FOREIGN_DATA_WRAPPER.html), [DROP FOREIGN DATA WRAPPER](DROP_FOREIGN_DATA_WRAPPER.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html), [CREATE USER MAPPING](CREATE_USER_MAPPING.html)
 

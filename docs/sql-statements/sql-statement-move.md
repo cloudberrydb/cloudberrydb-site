@@ -1,8 +1,8 @@
-# MOVE 
+# MOVE
 
 Positions a cursor.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 MOVE [ <forward_direction> [ FROM | IN ] ] <cursor_name>
@@ -23,7 +23,7 @@ where <forward_direction> can be empty or one of:
     FORWARD ALL
 ```
 
-## Description 
+## Description
 
 `MOVE` repositions a cursor without retrieving any data. `MOVE` works exactly like the [FETCH](FETCH.html) command, except it only positions the cursor and does not return rows.
 
@@ -43,7 +43,7 @@ MOVE <count>
 
 The count is the number of rows that a `FETCH` command with the same parameters would have returned \(possibly zero\).
 
-## Examples 
+## Examples
 
 Start the transaction:
 
@@ -81,11 +81,11 @@ CLOSE mycursor;
 COMMIT;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `MOVE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [DECLARE](DECLARE.html), [FETCH](FETCH.html), [CLOSE](CLOSE.html)
 

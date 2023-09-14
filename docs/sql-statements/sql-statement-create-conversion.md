@@ -1,21 +1,21 @@
-# CREATE CONVERSION 
+# CREATE CONVERSION
 
 Defines a new encoding conversion.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [DEFAULT] CONVERSION <name>
      FOR <source_encoding> TO <dest_encoding> FROM <function_name>
 ```
 
-## Description 
+## Description
 
 `CREATE CONVERSION` defines a new conversion between character set encodings. Also, conversions that are marked `DEFAULT` can be used for automatic encoding conversion between client and server. For this purpose, two conversions, from encoding A to B *and* from encoding B to A, must be defined.
 
 To create a conversion, you must have `EXECUTE` privilege on the function and `CREATE` privilege on the destination schema.
 
-## Parameters 
+## Parameters
 
 DEFAULT
 :   Indicates that this conversion is the default for this particular source to destination encoding. There should be only one default encoding in a schema for the encoding pair.
@@ -42,7 +42,7 @@ conv_proc(
 ) RETURNS void;
 ```
 
-## Notes 
+## Notes
 
 Use [DROP CONVERSION](DROP_CONVERSION.html) to remove a user-defined conversion.
 
@@ -51,7 +51,7 @@ The privileges required to create a conversion might change in a feature release
 Note that in this release of Greenplum Database, user-defined functions used in a user-defined conversion must be defined as `IMMUTABLE`. Any compiled code \(shared library files\) for custom functions must be placed in the same location on every host in your Greenplum Database array \(coordinator and all segments\). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files.
 
 
-## Examples 
+## Examples
 
 To create a conversion from encoding `UTF8` to `LATIN1` using `myfunc`:
 
@@ -59,11 +59,11 @@ To create a conversion from encoding `UTF8` to `LATIN1` using `myfunc`:
 CREATE CONVERSION myconv FOR 'UTF8' TO 'LATIN1' FROM myfunc;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE CONVERSION` is a Greenplum Database extension. There is no `CREATE CONVERSION` statement in the SQL standard, but there is a `CREATE TRANSLATION` statement that is very similar in purpose and syntax.
 
-## See Also 
+## See Also
 
 [ALTER CONVERSION](ALTER_CONVERSION.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP CONVERSION](DROP_CONVERSION.html)
 

@@ -1,8 +1,8 @@
-# SET 
+# SET
 
 Changes the value of a run-time Greenplum Database configuration parameter.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 SET [ SESSION | LOCAL ] <configuration_parameter> { TO | = } { <value> | '<value>' | DEFAULT }
@@ -10,7 +10,7 @@ SET [ SESSION | LOCAL ] <configuration_parameter> { TO | = } { <value> | '<value
 SET [SESSION | LOCAL] TIME ZONE { <value> | '<value>' |  LOCAL | DEFAULT }
 ```
 
-## Description 
+## Description
 
 The `SET` command changes server configuration parameters. Any configuration parameter classified as a session parameter can be changed on-the-fly with `SET`. (Some require superuser privileges to change, and others cannot be changed after server or session start.) `SET` affects only the value used by the current session.
 
@@ -24,7 +24,7 @@ If `SET LOCAL` is used within a function that includes a `SET` option for the sa
 
 See [Server Configuration Parameters](../config_params/guc_config.html) for information about server parameters.
 
-## Parameters 
+## Parameters
 
 SESSION
 :   Specifies that the command takes effect for the current session. This is the default if neither `SESSION` nor `LOCAL` appears.
@@ -69,7 +69,7 @@ TIME ZONE
 
     See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#DATATYPE-TIMEZONES) section of the PostgreSQL documentation for more information about time zones in Greenplum Database.
 
-## Examples 
+## Examples
 
 Set the schema search path:
 
@@ -101,11 +101,11 @@ Set the time zone for Italy:
 SET TIME ZONE 'Europe/Rome'; 
 ```
 
-## Compatibility 
+## Compatibility
 
 `SET TIME ZONE` extends syntax defined in the SQL standard. The standard allows only numeric time zone offsets while Greenplum Database allows more flexible time-zone specifications. All other `SET` features are Greenplum Database extensions.
 
-## See Also 
+## See Also
 
 [RESET](RESET.html), [SHOW](SHOW.html)
 

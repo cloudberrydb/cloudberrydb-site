@@ -1,8 +1,8 @@
-# ALTER DOMAIN 
+# ALTER DOMAIN
 
 Changes the definition of a domain.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER DOMAIN <name> { SET DEFAULT <expression> | DROP DEFAULT }
@@ -24,7 +24,7 @@ ALTER DOMAIN <name> RENAME TO <new_name>
 ALTER DOMAIN <name> SET SCHEMA <new_schema>
 ```
 
-## Description 
+## Description
 
 `ALTER DOMAIN` changes the definition of an existing domain. There are several sub-forms:
 
@@ -40,7 +40,7 @@ ALTER DOMAIN <name> SET SCHEMA <new_schema>
 
 You must own the domain to use `ALTER DOMAIN`. To change the schema of a domain, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the domain's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the domain. However, a superuser can alter ownership of any domain anyway.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing domain to alter.
@@ -72,13 +72,13 @@ new\_owner
 new\_schema
 :   The new schema for the domain.
 
-## Notes 
+## Notes
 
 Although `ALTER DOMAIN ADD CONSTRAINT` attempts to verify that existing stored data satisfies the new constraint, this check is not bulletproof, because the command cannot “see” table rows that are newly inserted or updated and not yet committed. If there is a hazard that concurrent operations might insert bad data, the way to proceed is to add the constraint using the `NOT VALID` option, commit that command, wait until all transactions started before that commit have finished, and then issue `ALTER DOMAIN VALIDATE CONSTRAINT` to search for data violating the constraint. This method is reliable because once the constraint is committed, all new transactions are guaranteed to enforce it against new values of the domain type.
 
 Currently, `ALTER DOMAIN ADD CONSTRAINT`, `ALTER DOMAIN VALIDATE CONSTRAINT`, and `ALTER DOMAIN SET NOT NULL` will fail if the named domain or any derived domain is used within a container-type column \(a composite, array, or range column\) in any table in the database. They should eventually be improved to be able to verify the new constraint for such nested values.
 
-## Examples 
+## Examples
 
 To add a `NOT NULL` constraint to a domain:
 
@@ -116,11 +116,11 @@ To move the domain into a different schema:
 ALTER DOMAIN zipcode SET SCHEMA customers;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER DOMAIN` conforms to the SQL standard, except for the `OWNER`, `RENAME`, `SET SCHEMA`, and `VALIDATE CONSTRAINT` variants, which are Greenplum Database extensions. The `NOT VALID` clause of the `ADD CONSTRAINT` variant is also a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE DOMAIN](CREATE_DOMAIN.html), [DROP DOMAIN](DROP_DOMAIN.html)
 

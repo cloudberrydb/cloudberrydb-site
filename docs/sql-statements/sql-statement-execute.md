@@ -1,14 +1,14 @@
-# EXECUTE 
+# EXECUTE
 
 Runs a prepared SQL statement.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 EXECUTE <name> [ (<parameter> [, ...] ) ]
 ```
 
-## Description 
+## Description
 
 `EXECUTE` is used to run a previously prepared statement. Since prepared statements only exist for the duration of a session, the prepared statement must have been created by a `PREPARE` statement run earlier in the current session.
 
@@ -16,7 +16,7 @@ If the `PREPARE` statement that created the statement specified some parameters,
 
 For more information on the creation and usage of prepared statements, see [PREPARE](PREPARE.html).
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the prepared statement to run.
@@ -28,7 +28,7 @@ parameter
 
 The command tag returned by `EXECUTE` is that of the prepared statement, and not `EXECUTE`.
 
-## Examples 
+## Examples
 
 Create a prepared statement for an `INSERT` statement, and then run it:
 
@@ -38,11 +38,11 @@ PREPARE fooplan (int, text, bool, numeric) AS
 EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL standard includes an `EXECUTE` statement, but it is only for use in embedded SQL. This version of the `EXECUTE` statement also uses a somewhat different syntax.
 
-## See Also 
+## See Also
 
 [DEALLOCATE](DEALLOCATE.html), [PREPARE](PREPARE.html)
 

@@ -1,22 +1,22 @@
-# DROP TEXT SEARCH TEMPLATE 
+# DROP TEXT SEARCH TEMPLATE
 
-## Description 
+## Description
 
 Removes a text search template.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TEXT SEARCH TEMPLATE [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP TEXT SEARCH TEMPLATE` drops an existing text search template. You must be a superuser to use this command.
 
 You must be a superuser to use `ALTER TEXT SEARCH TEMPLATE`.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the text search template does not exist. Greenplum Database issues a notice in this case.
@@ -40,11 +40,11 @@ DROP TEXT SEARCH TEMPLATE thesaurus;
 
 This command will not succeed if there are any existing text search dictionaries that use the template. Add `CASCADE` to drop such dictionaries along with the template. 
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH TEMPLATE](ALTER_TEXT_SEARCH_TEMPLATE.html), [CREATE TEXT SEARCH TEMPLATE](CREATE_TEXT_SEARCH_TEMPLATE.html)
 

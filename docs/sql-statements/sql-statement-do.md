@@ -1,14 +1,14 @@
-# DO 
+# DO
 
 Runs anonymous code block as a transient anonymous function.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DO [ LANGUAGE <lang_name> ] <code>
 ```
 
-## Description 
+## Description
 
 `DO` runs an anonymous code block, or in other words a transient anonymous function in a procedural language.
 
@@ -22,7 +22,7 @@ Anonymous blocks are standard procedural language blocks. They carry the syntax 
 
 The compilation and execution of anonymous blocks are combined in one step, while a user-defined function needs to be re-defined before use each time its definition changes.
 
-## Parameters 
+## Parameters
 
 code
 :   The procedural language code to be run. This must be specified as a string literal, just as with the `CREATE FUNCTION` command. Use of a dollar-quoted literal is recommended.
@@ -30,7 +30,7 @@ code
 lang\_name
 :   The name of the procedural language in which the code is written. The default is `plpgsql`.
 
-## Notes 
+## Notes
 
 The procedural language to be used must already have been installed into the current database by means of `CREATE EXTENSION`. The PL/pgSQL language is installed wih Greenplum Database and is registered by default every user-created database. The PL/Python and PL/Perl languages are installed by default, but not registered. Other languages are neither installed nor registered. The [pg_language](../system_catalogs/pg_language.html) system catalog contains information about the registered languages in a database.
 
@@ -40,7 +40,7 @@ If `DO` is run in a transaction block, then the procedure code cannot execute tr
 
 Anonymous blocks do not support function volatility or `EXECUTE ON` attributes.
 
-## Examples 
+## Examples
 
 This PL/pgSQL example grants all privileges on all views in schema `public` to role `webuser`:
 
@@ -55,11 +55,11 @@ BEGIN
 END$$;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `DO` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE LANGUAGE](CREATE_LANGUAGE.html)
 

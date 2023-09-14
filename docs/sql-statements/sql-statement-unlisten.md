@@ -1,20 +1,20 @@
-# UNLISTEN 
+# UNLISTEN
 
 Stops listening for a notification.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 UNLISTEN { <channel> | * }
 ```
 
-## Description 
+## Description
 
 `UNLISTEN` is used to remove an existing registration for `NOTIFY` events. `UNLISTEN` cancels any existing registration of the current Greenplum Database session as a listener on the notification channel named channel. The special wildcard `*` cancels all listener registrations for the current session.
 
 [NOTIFY](NOTIFY.html) contains a more extensive discussion of the use of `LISTEN` and `NOTIFY`.
 
-## Parameters 
+## Parameters
 
 channel
 :   The name of a notification channel \(any identifier\).
@@ -30,7 +30,7 @@ At the end of each session, `UNLISTEN *` is automatically executed.
 
 A transaction that has executed `UNLISTEN` cannot be prepared for two-phase commit.
 
-## Examples 
+## Examples
 
 To make a registration:
 
@@ -48,11 +48,11 @@ NOTIFY virtual;
 -- no NOTIFY event is received
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `UNLISTEN` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [LISTEN](LISTEN.html), [NOTIFY](NOTIFY.html)
 

@@ -1,20 +1,20 @@
-# DROP TABLESPACE 
+# DROP TABLESPACE
 
 Removes a tablespace.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TABLESPACE [IF EXISTS] <name>
 ```
 
-## Description 
+## Description
 
 `DROP TABLESPACE` removes a tablespace from the system.
 
 A tablespace can only be dropped by its owner or a superuser. The tablespace must be empty of all database objects before it can be dropped. It is possible that objects in other databases may still reside in the tablespace even if no objects in the current database are using the tablespace. Also, if the tablespace is listed in the [temp\_tablespaces](../config_params/guc-list.html) setting of any active session, `DROP TABLESPACE` might fail due to temporary files residing in the tablespace.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the tablespace does not exist. Greenplum Database issues a notice in this case.
@@ -22,7 +22,7 @@ IF EXISTS
 name
 :   The name of the tablespace to remove.
 
-## Notes 
+## Notes
 
 You cannot run `DROP TABLESPACE` inside a transaction block.
 
@@ -38,7 +38,7 @@ DROP TABLESPACE
 
 The table data in the tablespace directory is not dropped. You can use the [ALTER TABLE](ALTER_TABLE.html) command to change the tablespace defined for the table and move the data to an existing tablespace.
 
-## Examples 
+## Examples
 
 Remove the tablespace `mystuff`:
 
@@ -46,11 +46,11 @@ Remove the tablespace `mystuff`:
 DROP TABLESPACE mystuff;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP TABLESPACE` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE TABLESPACE](CREATE_TABLESPACE.html), [ALTER TABLESPACE](ALTER_TABLESPACE.html)
 

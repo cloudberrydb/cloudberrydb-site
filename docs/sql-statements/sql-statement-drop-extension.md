@@ -1,14 +1,14 @@
-# DROP EXTENSION 
+# DROP EXTENSION
 
 Removes an extension from a Greenplum database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP EXTENSION [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP EXTENSION` removes extensions from the database. Dropping an extension causes its component objects to be dropped as well.
 
@@ -16,7 +16,7 @@ DROP EXTENSION [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 You must own the extension to use `DROP EXTENSION`.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the extension does not exist. Greenplum Database issues a notice in this case.
@@ -41,11 +41,11 @@ DROP EXTENSION hstore;
 
 This command fails if any of the extension objects are in use in the database. For example, if a table is defined with columns of the `hstore` type. Add the `CASCADE` option to forcibly remove those dependent objects.
 
-## Compatibility 
+## Compatibility
 
 `DROP EXTENSION` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE EXTENSION](CREATE_EXTENSION.html), [ALTER EXTENSION](ALTER_EXTENSION.html)
 

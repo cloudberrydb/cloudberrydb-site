@@ -1,8 +1,8 @@
-# ALTER SERVER 
+# ALTER SERVER
 
 Changes the definition of a foreign server.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER SERVER <name> [ VERSION '<new_version>' ]
@@ -13,7 +13,7 @@ ALTER SERVER <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }
 ALTER SERVER <name> RENAME TO <new_name>
 ```
 
-## Description 
+## Description
 
 `ALTER SERVER` changes the definition of a foreign server. The first form of the command changes the version string or the generic options of the server. Greenplum Database requires at least one clause. The second and third forms of the command change the owner or the name of the server.
 
@@ -25,7 +25,7 @@ To alter the server, you must be the owner of the server. To alter the owner you
 
 Superusers automatically satisfy all of these criteria.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of an existing server.
@@ -42,7 +42,7 @@ new\_owner
 new\_name
 :   Specifies the new name of the foreign server.
 
-## Examples 
+## Examples
 
 Change the definition of a server named `foo` by adding connection options:
 
@@ -56,11 +56,11 @@ Change the option named `host` for a server named `foo`, and set the server vers
 ALTER SERVER foo VERSION '9.1' OPTIONS (SET host 'baz');
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\). The `OWNER TO` and `RENAME` forms are Greenplum Database extensions.
 
-## See Also 
+## See Also
 
 [CREATE SERVER](CREATE_SERVER.html), [DROP SERVER](DROP_SERVER.html)
 

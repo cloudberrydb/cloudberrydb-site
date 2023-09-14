@@ -1,8 +1,8 @@
-# CREATE AGGREGATE 
+# CREATE AGGREGATE
 
 Defines a new aggregate function.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [ OR REPLACE ] AGGREGATE <name> ( [ <argmode> ] [ <argname> ] <arg_data_type> [ , ... ] ) (
@@ -71,7 +71,7 @@ CREATE [ OR REPLACE ] AGGREGATE <name> ( [ <argmode> ] [ <argname> ] <arg_data_t
   )
 ```
 
-## Description 
+## Description
 
 `CREATE AGGREGATE` defines a new aggregate function. `CREATE OR REPLACE AGGREGATE` will either define a new aggregate function or replace an existing definition. Some basic and commonly-used aggregate functions such as `count()`, `min()`, `max()`, `sum()`, `avg()` and so on are already provided in Greenplum Database. If you define new types or need an aggregate function not already provided, you can use `CREATE AGGREGATE` to provide the desired features.
 
@@ -128,7 +128,7 @@ You can specify `combinefunc` as a method for optimizing aggregate execution. By
 
 Single-level aggregation and two-level aggregation are equivalent execution strategies. Either type of aggregation can be implemented in a query plan. When you implement the functions `combinefunc` and `sfunc`, you must ensure that the invocation of the `sfunc` on the segment instances followed by `combinefunc` on the coordinator produce the same result as single-level aggregation that sends all the rows to the coordinator and then applies only the `sfunc` to the rows.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of the aggregate function to create.
@@ -220,7 +220,7 @@ HYPOTHETICAL
 
 The parameters of `CREATE AGGREGATE` can be written in any order, not just the order illustrated above.
 
-## Notes 
+## Notes
 
 The ordinary functions used to define a new aggregate function must be defined first.
 
@@ -239,7 +239,7 @@ The `ORDERED` keyword is accepted for backwards compatibility, but is ignored.
 
 In previous versions of Greenplum Database, the `COMBINEFUNC` option was called `PREFUNC`. It is still accepted for backwards compatibility, as a synonym for `COMBINEFUNC`.
 
-## Example 
+## Example
 
 The following simple example creates an aggregate function that computes the sum of two columns.
 
@@ -288,11 +288,11 @@ SELECT agg_twocols(a, b) FROM t1;
 
 Refer to [User-Defined Aggregates](https://www.postgresql.org/docs/12/xaggr.html) in the PostgreSQL documentation for more examples of creating aggregates.
 
-## Compatibility 
+## Compatibility
 
 `CREATE AGGREGATE` is a Greenplum Database language extension. The SQL standard does not provide for user-defined aggregate functions.
 
-## See Also 
+## See Also
 
 [ALTER AGGREGATE](ALTER_AGGREGATE.html), [DROP AGGREGATE](DROP_AGGREGATE.html), [CREATE FUNCTION](CREATE_FUNCTION.html)
 

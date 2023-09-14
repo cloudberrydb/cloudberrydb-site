@@ -1,8 +1,8 @@
-# DROP AGGREGATE 
+# DROP AGGREGATE
 
 Removes an aggregate function.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP AGGREGATE [IF EXISTS] <name> ( <aggregate_signature> ) [, ...] [CASCADE | RESTRICT]
@@ -14,11 +14,11 @@ where <aggregate_signature> is:
 [ [ <argmode> ] [ <argname> ] <argtype> [ , ... ] ] ORDER BY [ <argmode> ] [ <argname> ] <argtype> [ , ... ]
 ```
 
-## Description 
+## Description
 
 `DROP AGGREGATE` removes an existing aggregate function. To run this command the current user must be the owner of the aggregate function.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the aggregate does not exist. A notice is issued in this case.
@@ -41,11 +41,11 @@ CASCADE
 RESTRICT
 :   Refuse to drop the aggregate function if any objects depend on it. This is the default.
 
-## Notes 
+## Notes
 
 Alternative syntaxes for referencing ordered-set aggregates are described under [ALTER AGGREGATE](ALTER_AGGREGATE.html).
 
-## Examples 
+## Examples
 
 To remove the aggregate function `myavg` for type `integer`:
 
@@ -65,11 +65,11 @@ To remove multiple aggregate functions in one command:
 DROP AGGREGATE myavg(integer), myavg(bigint);
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP AGGREGATE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER AGGREGATE](ALTER_AGGREGATE.html), [CREATE AGGREGATE](CREATE_AGGREGATE.html)
 

@@ -1,8 +1,8 @@
-# ALTER EXTERNAL TABLE 
+# ALTER EXTERNAL TABLE
 
 Changes the definition of an external table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER EXTERNAL TABLE <name> <action> [, ... ]
@@ -17,7 +17,7 @@ where action is one of:
   OWNER TO <new_owner>
 ```
 
-## Description 
+## Description
 
 `ALTER EXTERNAL TABLE` changes the definition of an existing external table. These are the supported `ALTER EXTERNAL TABLE` actions:
 
@@ -39,7 +39,7 @@ Changes that you make to an external table definition with either `ALTER EXTERNA
 
 The `ALTER EXTERNAL TABLE` and `ALTER TABLE` commands cannot modify the type of the external table \(read, write, web\), the table `FORMAT` information, or the location of the external data. To modify this information, you must drop and recreate the external table definition.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(possibly schema-qualified\) of an existing external table definition to alter.
@@ -62,7 +62,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
 
-## Examples 
+## Examples
 
 Add a new column to an external table definition:
 
@@ -82,11 +82,11 @@ Change the data type of an external table:
 ALTER EXTERNAL TABLE ext_leads ALTER COLUMN acct_code TYPE integer;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER EXTERNAL TABLE` is a Greenplum Database extension. There is no `ALTER EXTERNAL TABLE` statement in the SQL standard or regular PostgreSQL.
 
-## See Also 
+## See Also
 
 [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [DROP EXTERNAL TABLE](DROP_EXTERNAL_TABLE.html), [ALTER TABLE](ALTER_TABLE.html)
 

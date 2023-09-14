@@ -1,8 +1,8 @@
-# SELECT INTO 
+# SELECT INTO
 
 Defines a new table from the results of a query.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
@@ -22,11 +22,11 @@ SELECT [ALL | DISTINCT [ON ( <expression> [, ...] )]]
     [FOR {UPDATE | SHARE} [OF <table_name> [, ...]] [NOWAIT] [...]]
 ```
 
-## Description 
+## Description
 
 `SELECT INTO` creates a new table and fills it with data computed by a query. The data is not returned to the client, as it is with a normal `SELECT`. The new table's columns have the names and data types associated with the output columns of the `SELECT`.
 
-## Parameters 
+## Parameters
 
 TEMPORARY
 TEMP
@@ -47,7 +47,7 @@ All other parameters for `SELECT INTO` are described in detail on the [SELECT](S
 
 In contrast to `CREATE TABLE AS`, `SELECT INTO` does not allow specifying properties like a table's access method with `USING <method>` or the table's tablespace with `TABLESPACE <tablespace_name>`. Use [CREATE TABLE AS](CREATE_TABLE_AS.html) if necessary. Therefore, the default table access method is chosen for the new table. See [default_table_access_method](../config_params/guc-list.html#default_table_access_method) for more information.
 
-## Examples 
+## Examples
 
 Create a new table `films_recent` consisting only of recent entries from the table `films`:
 
@@ -55,11 +55,11 @@ Create a new table `films_recent` consisting only of recent entries from the tab
 SELECT * INTO films_recent FROM films WHERE date_prod >= '2016-01-01';
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL standard uses `SELECT INTO` to represent selecting values into scalar variables of a host program, rather than creating a new table. The Greenplum Database usage of `SELECT INTO` to represent table creation is historical. It is best to use [CREATE TABLE AS](CREATE_TABLE_AS.html) for this purpose in new applications.
 
-## See Also 
+## See Also
 
 [SELECT](SELECT.html), [CREATE TABLE AS](CREATE_TABLE_AS.html)
 

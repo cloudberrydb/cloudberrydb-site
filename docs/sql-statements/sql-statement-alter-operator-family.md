@@ -1,8 +1,8 @@
-# ALTER OPERATOR FAMILY 
+# ALTER OPERATOR FAMILY
 
 Changes the definition of an operator family.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER OPERATOR FAMILY <name> USING <index_method> ADD
@@ -22,7 +22,7 @@ ALTER OPERATOR FAMILY <name> USING <index_method> OWNER TO { <new_owner> | CURRE
 ALTER OPERATOR FAMILY <name> USING <index_method> SET SCHEMA <new_schema>
 ```
 
-## Description 
+## Description
 
 `ALTER OPERATOR FAMILY` changes the definition of an operator family. You can add operators and support functions to the family, remove them from the family, or change the family's name or owner.
 
@@ -32,7 +32,7 @@ You must be a superuser to use `ALTER OPERATOR FAMILY`. \(This restriction is ma
 
 `ALTER OPERATOR FAMILY` does not presently check whether the operator family definition includes all the operators and functions required by the index method, nor whether the operators and functions form a self-consistent set. It is the user's responsibility to define a valid operator family.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing operator family.
@@ -76,7 +76,7 @@ new\_schema
 
 The `OPERATOR` and `FUNCTION` clauses can appear in any order.
 
-## Notes 
+## Notes
 
 Notice that the `DROP` syntax only specifies the "slot" in the operator family, by strategy or support number and input data type\(s\). The name of the operator or function occupying the slot is not mentioned. Also, for `DROP FUNCTION` the type\(s\) to specify are the input data type\(s\) the function is intended to support; for `GiST`, `SP_GiST`, and `GIN` indexes this might have nothing to do with the actual input argument types of the function.
 
@@ -86,7 +86,7 @@ The operators should not be defined by SQL functions. A SQL function is likely t
 
 Before Greenplum Database 6.0, the `OPERATOR` clause could include a `RECHECK` option. This option is no longer supported. Greenplum Database now determines whether an index operator is "lossy" on-the-fly at run time. This allows more efficient handling of cases where an operator might or might not be lossy.
 
-## Examples 
+## Examples
 
 The following example command adds cross-data-type operators and support functions to an operator family that already contains B-tree operator classes for data types `int4` and `int2`.:
 
@@ -132,11 +132,11 @@ ALTER OPERATOR FAMILY integer_ops USING btree DROP
   FUNCTION 1 (int2, int4) ;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER OPERATOR FAMILY` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE OPERATOR FAMILY](CREATE_OPERATOR_FAMILY.html), [DROP OPERATOR FAMILY](DROP_OPERATOR_FAMILY.html), [ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR CLASS](DROP_OPERATOR_CLASS.html)
 

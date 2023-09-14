@@ -1,18 +1,18 @@
-# DROP RULE 
+# DROP RULE
 
 Removes a rewrite rule.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP RULE [IF EXISTS] <name> ON <table_name> [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP RULE` drops a rewrite rule from a table or view.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the rule does not exist. Greenplum Database issues a notice in this case.
@@ -29,7 +29,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the rule if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the rewrite rule `sales_2006` on the table `sales`:
 
@@ -37,11 +37,11 @@ Remove the rewrite rule `sales_2006` on the table `sales`:
 DROP RULE sales_2006 ON sales;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP RULE` is a Greenplum Database extension, as is the entire query rewrite system.
 
-## See Also 
+## See Also
 
 [ALTER RULE](ALTER_RULE.html), [CREATE RULE](CREATE_RULE.html)
 

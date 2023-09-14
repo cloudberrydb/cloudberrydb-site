@@ -1,8 +1,8 @@
-# ALTER AGGREGATE 
+# ALTER AGGREGATE
 
 Changes the definition of an aggregate function
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER AGGREGATE <name> ( <aggregate_signature> )  RENAME TO <new_name>
@@ -19,13 +19,13 @@ where <aggregate_signature> is:
 [ [ <argmode> ] [ <argname> ] <argtype> [ , ... ] ] ORDER BY [ <argmode> ] [ <argname> ] <argtype> [ , ... ]
 ```
 
-## Description 
+## Description
 
 `ALTER AGGREGATE` changes the definition of an aggregate function.
 
 You must own the aggregate function to use `ALTER AGGREGATE`. To change the schema of an aggregate function, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the aggregate function's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the aggregate function. However, a superuser can alter ownership of any aggregate function anyway.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing aggregate function.
@@ -48,11 +48,11 @@ new\_owner
 new\_schema
 :   The new schema for the aggregate function.
 
-## Notes 
+## Notes
 
 The recommended syntax for referencing an ordered-set aggregate is to write `ORDER BY` between the direct and aggregated argument specifications, in the same style as in [CREATE AGGREGATE](CREATE_AGGREGATE.html). However, it will also work to omit `ORDER BY` and just run the direct and aggregated argument specifications into a single list. In this abbreviated form, if `VARIADIC "any"` was used in both the direct and aggregated argument lists, write `VARIADIC "any"` only once.
 
-## Examples 
+## Examples
 
 To rename the aggregate function `myavg` for type `integer` to `my_average`:
 
@@ -78,11 +78,11 @@ This will work too:
 ALTER AGGREGATE mypercentile(float8, integer) SET SCHEMA myschema;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER AGGREGATE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE AGGREGATE](CREATE_AGGREGATE.html), [DROP AGGREGATE](DROP_AGGREGATE.html)
 

@@ -1,8 +1,8 @@
-# ALTER TEXT SEARCH DICTIONARY 
+# ALTER TEXT SEARCH DICTIONARY
 
 Changes the definition of a text search dictionary.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER TEXT SEARCH DICTIONARY <name> (
@@ -13,13 +13,13 @@ ALTER TEXT SEARCH DICTIONARY <name> OWNER TO { <new_owner> | CURRENT_USER | SESS
 ALTER TEXT SEARCH DICTIONARY <name> SET SCHEMA <new_schema>
 ```
 
-## Description 
+## Description
 
 `ALTER TEXT SEARCH DICTIONARY` changes the definition of a text search dictionary. You can change the dictionary's template-specific options, or change the dictionary's name or owner.
 
 You must be the owner of the dictionary to use `ALTER TEXT SEARCH DICTIONARY`.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing text search dictionary.
@@ -41,7 +41,7 @@ new\_schema
 
 Template-specific options can appear in any order.
 
-## Examples 
+## Examples
 
 The following example command changes the stop word list for a Snowball-based dictionary. Other parameters remain unchanged.
 
@@ -63,11 +63,11 @@ ALTER TEXT SEARCH DICTIONARY my_dict ( dummy );
 
 \(The reason this works is that the option removal code doesn't complain if there is no such option.\) This trick is useful when changing configuration files for the dictionary: the `ALTER` will force existing database sessions to re-read the configuration files, which they would otherwise never do if they had read them earlier.
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE TEXT SEARCH DICTIONARY](CREATE_TEXT_SEARCH_DICTIONARY.html), [DROP TEXT SEARCH DICTIONARY](DROP_TEXT_SEARCH_DICTIONARY.html)
 

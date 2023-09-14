@@ -1,8 +1,8 @@
-# CREATE EXTERNAL TABLE 
+# CREATE EXTERNAL TABLE
 
 Defines a new external table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [READABLE] EXTERNAL [TEMPORARY | TEMP] TABLE <table_name>     
@@ -123,7 +123,7 @@ CREATE WRITABLE EXTERNAL WEB [TEMPORARY | TEMP] TABLE <table_name>
     [ DISTRIBUTED BY ({<column> [<opclass>]}, [ ... ] ) | DISTRIBUTED RANDOMLY ]
 ```
 
-## Description 
+## Description
 
 `CREATE EXTERNAL TABLE` or `CREATE EXTERNAL WEB TABLE` creates a new readable external table definition in Greenplum Database. Readable external tables are typically used for fast, parallel data loading. Once an external table is defined, you can query its data directly \(and in parallel\) using SQL commands. For example, you can select, join, or sort external table data. You can also create views for external tables. DML operations \(`UPDATE`, `INSERT`, `DELETE`, or `TRUNCATE`\) are not allowed on readable external tables, and you cannot create indexes on readable external tables.
 
@@ -133,7 +133,7 @@ The main difference between regular external tables and external web tables is t
 
 See [Working with External Data](../../admin_guide/external/g-working-with-file-based-ext-tables.html) for detailed information about working with external tables.
 
-## Parameters 
+## Parameters
 
 READABLE \| WRITABLE
 :   Specifies the type of external table, readable being the default. Readable external tables are used for loading data into Greenplum Database. Writable external tables are used for unloading data.
@@ -283,7 +283,7 @@ DISTRIBUTED BY \(\{column \[opclass\]\}, \[ ... \] \)
 DISTRIBUTED RANDOMLY
 :   Used to declare the Greenplum Database distribution policy for a writable external table. By default, writable external tables are distributed randomly. If the source table you are exporting data from has a hash distribution policy, defining the same distribution key column\(s\) and operator class\(es\), `oplcass`, for the writable external table will improve unload performance by eliminating the need to move rows over the interconnect. When you issue an unload command such as `INSERT INTO wex_table SELECT * FROM source_table`, the rows that are unloaded can be sent directly from the segments to the output location if the two tables have the same hash distribution policy.
 
-## Examples 
+## Examples
 
 Start the `gpfdist` file server program in the background on port `8081` serving files from directory `/var/data/staging`:
 
@@ -358,7 +358,7 @@ Use the writable external table defined above to unload selected data:
 INSERT INTO campaign_out SELECT * FROM campaign WHERE customer_id=123;
 ```
 
-## Notes 
+## Notes
 
 When you specify the `LOG ERRORS` clause, Greenplum Database captures errors that occur while reading the external table data. For information about the error log format, see [Viewing Bad Rows in the Error Log](../../admin_guide/load/topics/g-viewing-bad-rows-in-the-error-table-or-error-log.html#topic58).
 
@@ -399,11 +399,11 @@ You can view and manage the captured error log data. The functions to manage log
 
 When multiple Greenplum Database external tables are defined with the `gpfdist`, `gpfdists`, or `file` protocol and access the same named pipe a Linux system, Greenplum Database restricts access to the named pipe to a single reader. An error is returned if a second reader attempts to access the named pipe.
 
-## Compatibility 
+## Compatibility
 
 `CREATE EXTERNAL TABLE` is a Greenplum Database extension. The SQL standard makes no provisions for external tables.
 
-## See Also 
+## See Also
 
 [CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE TABLE](CREATE_TABLE.html), [COPY](COPY.html), [SELECT INTO](SELECT_INTO.html), [INSERT](INSERT.html)
 

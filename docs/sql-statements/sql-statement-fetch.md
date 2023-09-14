@@ -1,8 +1,8 @@
-# FETCH 
+# FETCH
 
 Retrieves rows from a query using a cursor.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 FETCH [ <forward_direction> { FROM | IN } ] <cursor_name>
@@ -22,7 +22,7 @@ where <forward_direction> can be empty or one of:
     FORWARD ALL
 ```
 
-## Description 
+## Description
 
 `FETCH` retrieves rows using a previously-created cursor.
 
@@ -42,7 +42,7 @@ The forms using `FORWARD` retrieve the indicated number of rows moving in the fo
 > **Note**
 > This page describes usage of cursors at the SQL command level. If you are trying to use cursors inside a PL/pgSQL function, the rules are different. See [PL/pgSQL function](../../analytics/pl_sql.html#topic1).
 
-## Parameters 
+## Parameters
 
 forward\_direction
 :   Defines the fetch direction and number of rows to fetch. Only forward fetches are allowed in Greenplum Database. It can be one of the following:
@@ -87,7 +87,7 @@ FETCH <count>
 
 The count is the number of rows fetched \(possibly zero\). Note that in `psql`, the command tag will not actually be displayed, since `psql` displays the fetched rows instead.
 
-## Notes 
+## Notes
 
 Greenplum Database does not support scrollable cursors, so you can only use `FETCH` to move the cursor position forward.
 
@@ -95,7 +95,7 @@ Greenplum Database does not support scrollable cursors, so you can only use `FET
 
 `DECLARE` is used to define a cursor. Use `MOVE` to change cursor position without retrieving data.
 
-## Examples 
+## Examples
 
 Start the transaction:
 
@@ -135,7 +135,7 @@ Change the `kind` column of the table `films` in the row at the `c_films` cursor
 UPDATE films SET kind = 'Dramatic' WHERE CURRENT OF c_films;
 ```
 
-## Compatibility 
+## Compatibility
 
 SQL standard allows cursors only in embedded SQL and in modules. Greenplum Database permits cursors to be used interactively.
 
@@ -145,7 +145,7 @@ The `FETCH` forms involving `FORWARD`, as well as the forms `FETCH` count and `F
 
 The SQL standard allows only `FROM` preceding the cursor name; the option to use `IN`, or to leave them out altogether, is an extension.
 
-## See Also 
+## See Also
 
 [DECLARE](DECLARE.html), [CLOSE](CLOSE.html), [MOVE](MOVE.html)
 

@@ -1,8 +1,8 @@
-# ALTER PROTOCOL 
+# ALTER PROTOCOL
 
 Changes the definition of a protocol.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER PROTOCOL <name> RENAME TO <newname>
@@ -10,7 +10,7 @@ ALTER PROTOCOL <name> RENAME TO <newname>
 ALTER PROTOCOL <name> OWNER TO <newowner>
 ```
 
-## Description 
+## Description
 
 `ALTER PROTOCOL` changes the definition of a protocol. Only the protocol name or owner can be altered.
 
@@ -18,7 +18,7 @@ You must own the protocol to use `ALTER PROTOCOL`. To alter the owner, you must 
 
 These restrictions are in place to ensure that altering the owner only makes changes that could by made by dropping and recreating the protocol. Note that a superuser can alter ownership of any protocol.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing protocol.
@@ -29,7 +29,7 @@ newname
 newowner
 :   The new owner of the protocol.
 
-## Examples 
+## Examples
 
 To rename the protocol `GPDBauth` to `GPDB_authentication`:
 
@@ -43,11 +43,11 @@ To change the owner of the `GPDB_authentication` protocol to `joe`:
 ALTER PROTOCOL GPDB_authentication OWNER TO joe;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER PROTOCOL` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE PROTOCOL](CREATE_PROTOCOL.html), [DROP PROTOCOL](DROP_PROTOCOL.html)
 

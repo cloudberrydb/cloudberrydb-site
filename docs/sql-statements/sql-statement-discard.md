@@ -1,20 +1,20 @@
-# DISCARD 
+# DISCARD
 
 Discards the session state.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DISCARD { ALL | PLANS | SEQUENCES | TEMPORARY | TEMP }
 ```
 
-## Description 
+## Description
 
 `DISCARD` releases internal resources associated with a database session. This command is useful for partially or fully resetting the session's state. There are several subcommands to release different types of resources; the `DISCARD ALL` variant subsumes all the others, and also resets additional state.
 
 Greenplum Database does not support invoking `DISCARD ALL` in a transaction.
 
-## Parameters 
+## Parameters
 
 PLANS
 :   Releases all cached query plans, forcing re-planning to occur the next time the associated prepared statement is used.
@@ -44,7 +44,7 @@ ALL
 
 `DISCARD ALL` cannot be run inside a transaction block.
 
-## Compatibility 
+## Compatibility
 
 `DISCARD` is a Greenplum Database extension.
 

@@ -1,18 +1,18 @@
-# DROP SEQUENCE 
+# DROP SEQUENCE
 
 Removes a sequence.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP SEQUENCE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP SEQUENCE` removes sequence number generators. You must own the sequence to drop it \(or be a superuser\).
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the sequence does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the sequence if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the sequence `myserial`:
 
@@ -34,11 +34,11 @@ Remove the sequence `myserial`:
 DROP SEQUENCE myserial;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP SEQUENCE` conforms to the SQL standard, except that the standard allows only one sequence to be dropped per command. Also, the `IF EXISTS` option is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER SEQUENCE](ALTER_SEQUENCE.html), [CREATE SEQUENCE](CREATE_SEQUENCE.html)
 

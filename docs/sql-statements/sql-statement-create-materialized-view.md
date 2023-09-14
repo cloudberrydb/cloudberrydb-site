@@ -1,8 +1,8 @@
-# CREATE MATERIALIZED VIEW 
+# CREATE MATERIALIZED VIEW
 
 Defines a new materialized view.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE MATERIALIZED VIEW [ IF  NOT EXISTS ] <table_name>
@@ -15,13 +15,13 @@ CREATE MATERIALIZED VIEW [ IF  NOT EXISTS ] <table_name>
     [DISTRIBUTED {| BY <column> [<opclass>], [ ... ] | RANDOMLY | REPLICATED }]
 ```
 
-## Description 
+## Description
 
 `CREATE MATERIALIZED VIEW` defines a materialized view of a query. The query is run and used to populate the view at the time the command is issued \(unless `WITH NO DATA` is used\) and can be refreshed later using [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html).
 
 `CREATE MATERIALIZED VIEW` is similar to `CREATE TABLE AS`, except that it also remembers the query used to initialize the view, so that it can be refreshed later upon demand. To refresh materialized view data, use the `REFRESH MATERIALIZED VIEW` command. A materialized view has many of the same properties as a table, but there is no support for temporary materialized views.
 
-## Parameters 
+## Parameters
 
 IF NOT EXISTS
 :   Do not throw an error if a materialized view with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing materialized view is anything like the one that would have been created.
@@ -52,13 +52,13 @@ DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
 :   Used to declare the Greenplum Database distribution policy for the materialized view data. For information about a table distribution policy, see [CREATE TABLE](CREATE_TABLE.html).
 
-## Notes 
+## Notes
 
 Materialized views are read only. The system will not allow an `INSERT`, `UPDATE`, or `DELETE` on a materialized view. Use `REFRESH MATERIALIZED VIEW` to update the materialized view data.
 
 If you want the data to be ordered upon generation, you must use an `ORDER BY` clause in the materialized view query. However, if a materialized view query contains an `ORDER BY` or `SORT` clause, the data is not guaranteed to be ordered or sorted if `SELECT` is performed on the materialized view.
 
-## Examples 
+## Examples
 
 Create a view consisting of all comedy films:
 
@@ -76,11 +76,11 @@ CREATE MATERIALIZED VIEW topten AS SELECT name, rank, gender, year FROM
 names, rank WHERE rank < '11' AND names.id=rank.id;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE MATERIALIZED VIEW` is a Greenplum Database extension of the SQL standard.
 
-## See Also 
+## See Also
 
 [SELECT](SELECT.html), [VALUES](VALUES.html), [CREATE VIEW](CREATE_VIEW.html), [ALTER MATERIALIZED VIEW](ALTER_MATERIALIZED_VIEW.html), [DROP MATERIALIZED VIEW](DROP_MATERIALIZED_VIEW.html), [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html)
 

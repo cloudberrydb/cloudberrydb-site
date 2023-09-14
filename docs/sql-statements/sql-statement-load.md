@@ -1,14 +1,14 @@
-# LOAD 
+# LOAD
 
 Loads or reloads a shared library file.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 LOAD '<filename>'
 ```
 
-## Description 
+## Description
 
 This command loads a shared library file into the Greenplum Database server address space. If the file had been loaded previously, it is first unloaded. This command is primarily useful to unload and reload a shared library file that has been changed since the server first loaded it. To make use of the shared library, function\(s\) in it need to be declared using the `CREATE FUNCTION` command.
 
@@ -18,12 +18,12 @@ Note that in Greenplum Database the shared library file \(`.so` file\) must resi
 
 Non-superusers can only apply `LOAD` to library files located in `$libdir/plugins/` — the specified `filename` must begin with exactly that string. You must ensure that only “safe” libraries are installed there.
 
-## Parameters 
+## Parameters
 
 filename
 :   The path and file name of a shared library file. This file must exist in the same location on all hosts in your Greenplum Database array.
 
-## Examples 
+## Examples
 
 Load a shared library file:
 
@@ -31,11 +31,11 @@ Load a shared library file:
 LOAD '/usr/local/greenplum-db/lib/myfuncs.so';
 ```
 
-## Compatibility 
+## Compatibility
 
 `LOAD` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html)
 

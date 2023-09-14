@@ -1,14 +1,14 @@
-# NOTIFY 
+# NOTIFY
 
 Generates a notification.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 NOTIFY <channel> [ , <payload> ]
 ```
 
-## Description 
+## Description
 
 
 The `NOTIFY` command sends a notification event together with an optional "payload" string to each client application that has previously executed `LISTEN <channel>` for the specified channel name in the current database. Notifications are visible to all users.
@@ -28,7 +28,7 @@ If the same channel name is signaled multiple times from the same transaction wi
 It is common for a client that executes `NOTIFY` to be listening on the same notification channel itself. In that case it will get back a notification event, just like all the other listening sessions. Depending on the application logic, this could result in useless work, for example, reading a database table to find the same updates that that session just wrote out. It is possible to avoid such extra work by noticing whether the notifying session's server process PID \(supplied in the notification event message\) is the same as one's own session's PID \(available from `libpq`\). When they are the same, the notification event is one's own work bouncing back, and can be ignored.
 
 
-## Parameters 
+## Parameters
 
 channel
 :   The name of a notification channel \(any identifier\).
@@ -48,7 +48,7 @@ A transaction that has executed `NOTIFY` cannot be prepared for two-phase commit
 
 To send a notification you can also use the function `pg_notify(text, text)`. The function takes the channel name as the first argument and the payload as the second. The function is much easier to use than the `NOTIFY` command if you need to work with non-constant channel names and payloads.
 
-## Examples 
+## Examples
 
 Configure and execute a listen/notify sequence from `psql`:
 
@@ -64,11 +64,11 @@ SELECT pg_notify('fo' || 'o', 'pay' || 'load');
 Asynchronous notification "foo" with payload "payload" received from server process with PID 14728.
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `NOTIFY` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [LISTEN](LISTEN.html), [UNLISTEN](UNLISTEN.html)
 

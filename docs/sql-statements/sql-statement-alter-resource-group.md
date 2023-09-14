@@ -1,8 +1,8 @@
-# ALTER RESOURCE GROUP 
+# ALTER RESOURCE GROUP
 
 Changes the limits of a resource group.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER RESOURCE GROUP <name> SET <group_attribute> <value>
@@ -18,7 +18,7 @@ CPU_MAX_PERCENT=<integer> | CPUSET=<coordinator_cores>;<segment_cores>
 [ MIN_COST=<integer> ]
 ```
 
-## Description 
+## Description
 
 `ALTER RESOURCE GROUP` changes the limits of a resource group. Only a superuser can alter a resource group.
 
@@ -32,7 +32,7 @@ When you increase the memory limit of a resource group that you create for exter
 
 You can alter one limit type in a single `ALTER RESOURCE GROUP` call.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the resource group to alter.
@@ -76,13 +76,13 @@ This means that low-cost queries will execute more quickly, as they are not subj
 
 The value range is `0-500`. The default value is `0`, which means that the cost is not used to bypass the query. 
 
-## Notes 
+## Notes
 
 Use [CREATE ROLE](CREATE_ROLE.html) or [ALTER ROLE](ALTER_ROLE.html) to assign a specific resource group to a role \(user\).
 
 You cannot submit an `ALTER RESOURCE GROUP` command in an explicit transaction or sub-transaction.
 
-## Examples 
+## Examples
 
 Change the active transaction limit for a resource group:
 
@@ -108,11 +108,11 @@ Reserve CPU core 1 for a resource group on the coordinator host and all segment 
 ALTER RESOURCE GROUP rgroup5 SET CPUSET '1;1';
 ```
 
-## Compatibility 
+## Compatibility
 
 The `ALTER RESOURCE GROUP` statement is a Greenplum Database extension. This command does not exist in standard PostgreSQL.
 
-## See Also 
+## See Also
 
 [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [DROP RESOURCE GROUP](DROP_RESOURCE_GROUP.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER ROLE](ALTER_ROLE.html)
 

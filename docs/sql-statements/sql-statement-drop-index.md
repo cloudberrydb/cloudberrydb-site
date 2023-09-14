@@ -1,18 +1,18 @@
-# DROP INDEX 
+# DROP INDEX
 
 Removes an index.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP INDEX [ CONCURRENTLY ] [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP INDEX` drops an existing index from the database system. To run this command you must be the owner of the index.
 
-## Parameters 
+## Parameters
 
 CONCURRENTLY
 :   Drop the index without locking out concurrent selects, inserts, updates, and deletes on the index's table. A normal `DROP INDEX` acquires an `ACCESS EXCLUSIVE` lock on the table, blocking other accesses until the index drop can be completed. With this option, the command instead waits until conflicting transactions have completed.
@@ -31,7 +31,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the index if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the index `title_idx`:
 
@@ -39,11 +39,11 @@ Remove the index `title_idx`:
 DROP INDEX title_idx;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP INDEX` is a Greenplum Database language extension. There are no provisions for indexes in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER INDEX](ALTER_INDEX.html), [CREATE INDEX](CREATE_INDEX.html)
 

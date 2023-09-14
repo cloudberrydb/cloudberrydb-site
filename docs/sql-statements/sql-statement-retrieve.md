@@ -1,14 +1,14 @@
-# RETRIEVE 
+# RETRIEVE
 
 Retrieves rows from a query using a parallel retrieve cursor.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 RETRIEVE { <count> | ALL } FROM ENDPOINT <endpoint_name>
 ```
 
-## Description 
+## Description
 
 `RETRIEVE` retrieves rows using a previously-created parallel retrieve cursor. You retrieve the rows in individual retrieve sessions, separate direct connections to individual segment endpoints that will serve the results for each individual segment. When you initiate a retrieve session, you must specify [gp\_retrieve\_conn=true](../config_params/guc-list.html#gp_retrieve_conn) on the connection request. Because a retrieve session is independent of the parallel retrieve cursors or their corresponding endpoints, you can `RETRIEVE` from multiple endpoints in the same retrieve session.
 
@@ -23,7 +23,7 @@ If `RETRIEVE` runs off the end of the available rows then the cursor is left pos
 
 `RETRIEVE ALL` always leaves the parallel retrieve cursor positioned after the last row.
 
-## Parameters 
+## Parameters
 
 count
 :   Retrieve the next count number of rows. count must be a positive number.
@@ -38,13 +38,13 @@ endpoint\_name
 
 On successful completion, a `RETRIEVE` command returns the fetched rows \(possibly empty\) and a count of the number of rows fetched \(possibly zero\).
 
-## Notes 
+## Notes
 
 Use `DECLARE ... PARALLEL RETRIEVE CURSOR` to define a parallel retrieve cursor.
 
 Parallel retrieve cursors do not support `FETCH` or `MOVE` operations.
 
-## Examples 
+## Examples
 
 Start the transaction:
 
@@ -91,11 +91,11 @@ CLOSE mycursor;
 COMMIT;
 ```
 
-## Compatibility 
+## Compatibility
 
 `RETRIEVE` is a Greenplum Database extension. The SQL standard makes no provisions for parallel retrieve cursors.
 
-## See Also 
+## See Also
 
 [DECLARE](DECLARE.html), [CLOSE](CLOSE.html)
 

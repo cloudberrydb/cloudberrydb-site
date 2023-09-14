@@ -1,8 +1,8 @@
-# CREATE COLLATION 
+# CREATE COLLATION
 
 Defines a new collation.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE COLLATION [ IF NOT EXISTS ] <name> (
@@ -22,7 +22,7 @@ CREATE COLLATION [ IF NOT EXISTS ] <name> FROM <existing_collation>
 
 To be able to create a collation, you must have `CREATE` privilege on the destination schema.
 
-## Parameters 
+## Parameters
 
 IF NOT EXISTS
 :   Do not throw an error if a collation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing collation is anything like the one that would have been created.
@@ -53,7 +53,7 @@ version
 existing\_collation
 :   The name of an existing collation to copy. The new collation will have the same properties as the existing one, but it will be an independent object.
 
-## Notes 
+## Notes
 
 `CREATE COLLATION` takes a `SHARE ROW EXCLUSIVE` lock, which is self-conflicting, on the `pg_collation` system catalog, so only one `CREATE COLLATION` command can run at a time.
 
@@ -63,7 +63,7 @@ See [Collation Support](https://www.postgresql.org/docs/12/collation.html) in th
 
 When using the `libc` collation provider, the, locale must be applicable to the current database encoding. See [CREATE DATABASE](CREATE_DATABASE.html) for the precise rules.
 
-## Examples 
+## Examples
 
 To create a collation from the operating system locale `fr_FR.utf8` \(assuming the current database encoding is `UTF8`\):
 
@@ -85,11 +85,11 @@ CREATE COLLATION german FROM "de_DE";
 
 This can be convenient to be able to use operating-system-independent collation names in applications.
 
-## Compatibility 
+## Compatibility
 
 There is a `CREATE COLLATION` statement in the SQL standard, but it is limited to copying an existing collation. The syntax to create a new collation is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER COLLATION](ALTER_COLLATION.html), [DROP COLLATION](DROP_COLLATION.html)
 

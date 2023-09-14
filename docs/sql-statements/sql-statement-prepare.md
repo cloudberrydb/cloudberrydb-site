@@ -1,14 +1,14 @@
-# PREPARE 
+# PREPARE
 
 Prepares a statement for execution.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 PREPARE <name> [ (<data_type> [, ...] ) ] AS <statement>
 ```
 
-## Description 
+## Description
 
 `PREPARE` creates a prepared statement. A prepared statement is a server-side object that can be used to optimize performance. When the `PREPARE` statement is run, the specified statement is parsed, analyzed, and rewritten. When an `EXECUTE` command is subsequently issued, the prepared statement is planned and run. This division of labor avoids repetitive parse analysis work, while allowing the execution plan to depend on the specific parameter values supplied.
 
@@ -18,7 +18,7 @@ Prepared statements last only for the duration of the current database session. 
 
 Prepared statements have the largest performance advantage when a single session is being used to run a large number of similar statements. The performance difference will be particularly significant if the statements are complex to plan or rewrite, for example, if the query involves a join of many tables or requires the application of several rules. If the statement is relatively simple to plan and rewrite but relatively expensive to run, the performance advantage of prepared statements will be less noticeable.
 
-## Parameters 
+## Parameters
 
 name
 :   An arbitrary name given to this particular prepared statement. It must be unique within a single session and is subsequently used to run or deallocate a previously prepared statement.
@@ -29,7 +29,7 @@ data\_type
 statement
 :   Any `SELECT`, `INSERT`, `UPDATE`, `DELETE`, or `VALUES` statement.
 
-## Notes 
+## Notes
 
 A prepared statement can be run with either a *generic plan* or a *custom plan*. A generic plan is the same across all executions, while a custom plan is generated for a specific execution using the parameter values given in that call. Use of a generic plan avoids planning overhead, but in some situations a custom plan will be much more efficient to run because the planner can make use of knowledge of the parameter values. If the prepared statement has no parameters, a generic plan is always used.
 
@@ -51,7 +51,7 @@ Although the main point of a prepared statement is to avoid repeated parse analy
 
 You can see all prepared statements available in the session by querying the [pg\_prepared\_statements](../system_catalogs/pg_prepared_statements.html) system view.
 
-## Examples 
+## Examples
 
 Create a prepared statement for an `INSERT` statement, and then run it:
 
@@ -70,11 +70,11 @@ PREPARE usrrptplan (int) AS
 EXECUTE usrrptplan(1, current_date);
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL standard includes a `PREPARE` statement, but it can only be used in embedded SQL, and it uses a different syntax.
 
-## See Also 
+## See Also
 
 [EXECUTE](EXECUTE.html), [DEALLOCATE](DEALLOCATE.html)
 

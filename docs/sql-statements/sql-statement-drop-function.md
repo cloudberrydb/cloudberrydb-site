@@ -1,19 +1,19 @@
-# DROP FUNCTION 
+# DROP FUNCTION
 
 Removes a function.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP FUNCTION [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
     [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP FUNCTION` removes the definition of an existing function. To run this command the user must be the owner of the function. The argument types to the function must be specified, since several different functions may exist with the same name and different argument lists.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the function does not exist. A notice is issued in this case.
@@ -36,7 +36,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the function if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 This command removes the square root function:
 
@@ -44,11 +44,11 @@ This command removes the square root function:
 DROP FUNCTION sqrt(integer);
 ```
 
-## Compatibility 
+## Compatibility
 
 A `DROP FUNCTION` statement is defined in the SQL standard, but it is not compatible with this command.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [ALTER FUNCTION](ALTER_FUNCTION.html)
 

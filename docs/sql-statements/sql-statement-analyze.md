@@ -1,8 +1,8 @@
-# ANALYZE 
+# ANALYZE
 
 Collects statistics about a database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ANALYZE [VERBOSE] [SKIP_LOCKED] [<table> [ (<column> [, ...] ) ]]
@@ -12,7 +12,7 @@ ANALYZE [VERBOSE] [SKIP_LOCKED] {<root_partition_table_name>|<leaf_partition_tab
 ANALYZE [VERBOSE] [SKIP_LOCKED] ROOTPARTITION {ALL | <root_partition_table_name> [ (<column> [, ...] )]}
 ```
 
-## Description 
+## Description
 
 `ANALYZE` collects statistics about the contents of tables in the database, and stores the results in the system table *pg\_statistic*. Subsequently, Greenplum Database uses these statistics to help determine the most efficient execution plans for queries. For information about the table statistics that are collected, see [Notes](#section5).
 
@@ -29,7 +29,7 @@ For partitioned tables, `ANALYZE` collects additional statistics, HyperLogLog \(
 
 > **Note** You can also use the Greenplum Database utility `analyzedb` to update table statistics. The `analyzedb` utility can update statistics for multiple tables concurrently. The utility can also check table statistics and update statistics only if the statistics are not current or do not exist. For information about the utility, see the *Greenplum Database Utility Guide*.
 
-## Parameters 
+## Parameters
 
 \{ root\_partition\_table\_name \| leaf\_partition\_table\_name \} \[ \(column \[, ...\] \) \]
 :   Collect statistics for partitioned tables including HLL statistics. HLL statistics are collected only on leaf partitions.
@@ -81,7 +81,7 @@ table
 column
 :   The name of a specific column to analyze. Defaults to all columns.
 
-## Notes 
+## Notes
 
 Foreign tables are analyzed only when explicitly selected. Not all foreign data wrappers support `ANALYZE`. If the table's wrapper does not support `ANALYZE`, the command prints a warning and does nothing.
 
@@ -129,7 +129,7 @@ When Greenplum Database performs an `ANALYZE` operation to collect statistics fo
 
 If there are no statistics for the table, the server configuration parameter [gp\_enable\_relsize\_collection](../config_params/guc-list.html) controls whether the Postgres Planner uses a default statistics file or estimates the size of a table using the `pg_relation_size` function. By default, the Postgres Planner uses the default statistics file to estimate the number of rows if statistics are not available.
 
-## Examples 
+## Examples
 
 Collect statistics for the table `mytable`:
 
@@ -137,11 +137,11 @@ Collect statistics for the table `mytable`:
 ANALYZE mytable;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ANALYZE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TABLE](ALTER_TABLE.html), [EXPLAIN](EXPLAIN.html), [VACUUM](VACUUM.html), [analyzedb](../../utility_guide/ref/analyzedb.html).
 

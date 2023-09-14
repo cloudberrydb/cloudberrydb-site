@@ -1,8 +1,8 @@
-# RESET 
+# RESET
 
 Restores the value of a run-time system configuration parameter to the default value.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 RESET <configuration_parameter>
@@ -10,7 +10,7 @@ RESET <configuration_parameter>
 RESET ALL
 ```
 
-## Description 
+## Description
 
 `RESET` restores system configuration parameters to their default values. `RESET` is an equivalent command for
 
@@ -24,7 +24,7 @@ The default value is defined as the value that the parameter would have had, had
 
 The transactional behavior of `RESET` is the same as `SET`: its effects will be undone by transaction rollback.
 
-## Parameters 
+## Parameters
 
 configuration\_parameter
 :   The name of a settable run-time system configuration parameter. See [Server Configuration Parameters](../config_params/guc_config.html) for details.
@@ -32,7 +32,7 @@ configuration\_parameter
 ALL
 :   Resets all settable run-time configuration parameters to their default values.
 
-## Examples 
+## Examples
 
 Set the `statement_mem` configuration parameter to its default value:
 
@@ -40,11 +40,11 @@ Set the `statement_mem` configuration parameter to its default value:
 RESET statement_mem; 
 ```
 
-## Compatibility 
+## Compatibility
 
 `RESET` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [SET](SET.html), [SHOW](SHOW.html)
 

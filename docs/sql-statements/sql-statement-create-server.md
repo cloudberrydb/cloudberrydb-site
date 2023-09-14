@@ -1,8 +1,8 @@
-# CREATE SERVER 
+# CREATE SERVER
 
 Defines a new foreign server.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE SERVER [ IF NOT EXISTS ] <server_name> [ TYPE '<server_type>' ] [ VERSION '<server_version>' ]
@@ -12,7 +12,7 @@ CREATE SERVER [ IF NOT EXISTS ] <server_name> [ TYPE '<server_type>' ] [ VERSION
                 [ <option> '<value>' [, ... ]] ) ]
 ```
 
-## Description 
+## Description
 
 `CREATE SERVER` defines a new foreign server. The user who defines the server becomes its owner.
 
@@ -20,7 +20,7 @@ A foreign server typically encapsulates connection information that a foreign-da
 
 Creating a server requires the `USAGE` privilege on the foreign-data wrapper specified.
 
-## Parameters 
+## Parameters
 
 IF NOT EXISTS
 
@@ -59,11 +59,11 @@ num\_segments 'num'
 
     Support for the foreign server `num_segments` option is foreign-data wrapper-specific.
 
-## Notes 
+## Notes
 
 When using the dblink module \(see [dblink](../modules/dblink.html)\), you can use the foreign server name as an argument of the `dblink_connect()` function to provide the connection parameters. You must have the `USAGE` privilege on the foreign server to use it in this manner.
 
-## Examples 
+## Examples
 
 Create a foreign server named `myserver` that uses a foreign-data wrapper named `gpfdw1` and includes connection options:
 
@@ -72,11 +72,11 @@ CREATE SERVER myserver FOREIGN DATA WRAPPER gpfdw1
     OPTIONS (host 'foo', dbname 'foodb', port '5432');
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\).
 
-## See Also 
+## See Also
 
 [ALTER SERVER](ALTER_SERVER.html), [DROP SERVER](DROP_SERVER.html), [CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE USER MAPPING](CREATE_USER_MAPPING.html)
 

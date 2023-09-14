@@ -1,8 +1,8 @@
-# GRANT 
+# GRANT
 
 Defines access privileges.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 GRANT { {SELECT | INSERT | UPDATE | DELETE | REFERENCES | 
@@ -75,7 +75,7 @@ where <role_specification> can be:
   | SESSION_USER
 ```
 
-## Description 
+## Description
 
 The `GRANT` command has two basic variants: one that grants privileges on a database object \(table, column, view, foreign table, sequence, database, foreign-data wrapper, foreign server, function, procedural language, schema, or tablespace\), and one that grants membership in a role. These variants are similar in many ways, but they are different enough to be described separately.
 
@@ -150,7 +150,7 @@ You can also use the `GRANT` command to specify which users can access a trusted
 
 You can also use this command to grant users permissions to create and use `s3` and `pxf` external tables. However, external tables of type `http`, `https`, `gpfdist`, and `gpfdists`, are implemented internally in Greenplum Database instead of as custom protocols. For these types, use the `CREATE ROLE` or `ALTER ROLE` command to set the `CREATEEXTTABLE` or `NOCREATEEXTTABLE` attribute for each user. See [CREATE ROLE](CREATE_ROLE.html) for syntax and examples.
 
-## Parameters 
+## Parameters
 
 SELECT
 :   Allows `SELECT` from any column, or the specific columns listed, of the specified table, view, or sequence. Also allows the use of `COPY TO`. This privilege is also needed to reference existing column values in `UPDATE` or `DELETE`.
@@ -217,7 +217,7 @@ WITH GRANT OPTION
 WITH ADMIN OPTION
 :   The member of a role may in turn grant membership in the role to others.
 
-## Notes 
+## Notes
 
 The [REVOKE](REVOKE.html) command is used to revoke access privileges.
 
@@ -241,7 +241,7 @@ The `GRANT` command cannot be used to set privileges for the protocols `file`, `
 
 Use `psql`'s `\dp` meta-command to obtain information about existing privileges for tables and columns. There are other `\d` meta-commands that you can use to display the privileges of non-table objects.
 
-## Examples 
+## Examples
 
 Grant insert privilege to all roles on table `mytable`:
 
@@ -263,7 +263,7 @@ Grant membership in role `admins` to user `joe`:
 GRANT admins TO joe;
 ```
 
-## Compatibility 
+## Compatibility
 
 According to the SQL standard, the `PRIVILEGES` key word in `ALL PRIVILEGES` is required, but it is optional in Greenplum Database. The SQL standard does not support setting the privileges on more than one object per command.
 
@@ -277,7 +277,7 @@ In the SQL standard, sequences only have a `USAGE` privilege, which controls the
 
 Privileges on databases, tablespaces, schemas, and languages are Greenplum Database extensions.
 
-## See Also 
+## See Also
 
 [ALTER DEFAULT PRIVILEGES](ALTER_DEFAULT_PRIVILEGES.html), [REVOKE](REVOKE.html)
 

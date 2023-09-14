@@ -1,8 +1,8 @@
-# CREATE RESOURCE GROUP 
+# CREATE RESOURCE GROUP
 
 Defines a new resource group.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE RESOURCE GROUP <name> WITH (<group_attribute>=<value> [, ... ])
@@ -18,7 +18,7 @@ CPU_MAX_PERCENT=<integer> | CPUSET=<coordinator_cores>;<segment_cores>
 [ MIN_COST=<integer> ]
 ```
 
-## Description 
+## Description
 
 Creates a new resource group for Greenplum Database resource management. You can create resource groups to manage resources for roles or to manage the resources of a Greenplum Database external component such as PL/Container.
 
@@ -36,7 +36,7 @@ After creating a resource group for a role, assign the group to one or more role
 
 After you create a resource group to manage the CPU and memory resources of an external component, configure the external component to use the resource group. For example, configure the PL/Container runtime `resource_group_id`.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the resource group.
@@ -80,7 +80,7 @@ This means that low-cost queries will execute more quickly, as they are not subj
 
 The value range is `0-500`. The default value is `0`, which means that the cost is not used to bypass the query. 
 
-## Notes 
+## Notes
 
 You cannot submit a `CREATE RESOURCE GROUP` command in an explicit transaction or sub-transaction.
 
@@ -90,7 +90,7 @@ Use the `gp_toolkit.gp_resgroup_config` system view to display the limit setting
 SELECT * FROM gp_toolkit.gp_resgroup_config;
 ```
 
-## Examples 
+## Examples
 
 Create a resource group with CPU and memory limit percentages of 35:
 
@@ -118,11 +118,11 @@ Create a resource group with a memory limit percentage of 11 to which you assign
 CREATE RESOURCE GROUP rgroup3 WITH (CPUSET='1;1-3', MEMORY_LIMIT=11);
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE RESOURCE GROUP` is a Greenplum Database extension. There is no provision for resource groups or resource management in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER ROLE](ALTER_ROLE.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER RESOURCE GROUP](ALTER_RESOURCE_GROUP.html), [DROP RESOURCE GROUP](DROP_RESOURCE_GROUP.html)
 

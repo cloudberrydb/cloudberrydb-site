@@ -1,18 +1,18 @@
-# ALTER TRIGGER 
+# ALTER TRIGGER
 
 Changes the definition of a trigger.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER TRIGGER <name> ON <table> RENAME TO <newname>
 ```
 
-## Description 
+## Description
 
 `ALTER TRIGGER` changes properties of an existing trigger. The `RENAME` clause changes the name of the given trigger without otherwise changing the trigger definition. You must own the table on which the trigger acts to be allowed to change its properties.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of an existing trigger to alter.
@@ -23,13 +23,13 @@ table
 newname
 :   The new name for the trigger.
 
-## Notes 
+## Notes
 
 The ability to temporarily activate or deactivate a trigger is provided by [ALTER TABLE](ALTER_TABLE.html), not by `ALTER TRIGGER`, because `ALTER TRIGGER` has no convenient way to express the option of activating or deactivating all of a table's triggers at once.
 
 Note that Greenplum Database has limited support of triggers in this release. See [CREATE TRIGGER](CREATE_TRIGGER.html) for more information.
 
-## Examples 
+## Examples
 
 To rename an existing trigger:
 
@@ -37,11 +37,11 @@ To rename an existing trigger:
 ALTER TRIGGER emp_stamp ON emp RENAME TO emp_track_chgs;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER TRIGGER` is a Greenplum Database extension of the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TABLE](ALTER_TABLE.html), [CREATE TRIGGER](CREATE_TRIGGER.html), [DROP TRIGGER](DROP_TRIGGER.html)
 

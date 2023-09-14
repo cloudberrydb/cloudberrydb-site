@@ -1,20 +1,20 @@
-# DROP TABLE 
+# DROP TABLE
 
 Removes a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TABLE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP TABLE` removes tables from the database. Only the table owner, the schema owner, and superuser can drop a table. To empty a table of rows without removing the table definition, use [DELETE](DELETE.html) or [TRUNCATE](TRUNCATE.html).
 
 `DROP TABLE` always removes any indexes, rules, triggers, and constraints that exist for the target table. However, to drop a table that is referenced by a view, `CASCADE` must be specified. `CASCADE` removes a dependent view entirely.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the table does not exist. Greenplum Database issues a notice in this case.
@@ -28,7 +28,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the table if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the table `mytable`:
 
@@ -42,11 +42,11 @@ Remove two tables, `films` and `distributors`:
 DROP TABLE films, distributors;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP TABLE` conforms to the SQL standard, except that the standard allows only one table to be dropped per command. Also, the `IF EXISTS` option is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER TABLE](ALTER_TABLE.html), [CREATE TABLE](CREATE_TABLE.html)
 

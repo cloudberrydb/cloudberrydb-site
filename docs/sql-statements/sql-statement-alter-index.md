@@ -1,8 +1,8 @@
-# ALTER INDEX 
+# ALTER INDEX
 
 Changes the definition of an index.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER INDEX [ IF EXISTS ] <name> RENAME TO <new_name>
@@ -18,7 +18,7 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 
 ```
 
-## Description 
+## Description
 
 `ALTER INDEX` changes the definition of an existing index. There are several subforms described below. Note that the lock level required may differ for each subform. An `ACCESS EXCLUSIVE` lock is held unless explicitly noted. When multiple subcommands are listed, the lock held will be the strictest one required from any subcommand.
 
@@ -44,7 +44,7 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 **ALTER [ COLUMN ] column\_number SET STATISTICS integer**
 :   This form sets the per-column statistics-gathering target for subsequent `ANALYZE` operations, though can be used only on index columns that are defined as an expression. Since expressions lack a unique name, we refer to them using the ordinal number of the index column. The target can be set in the range 0 to 10000; alternatively, set it to `-1` to revert to using the system default statistics target \([default\_statistics\_target](../config_params/guc-list.html#default_statistics_target)\).
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the index does not exist. Greenplum Database issues a notice in this case.
@@ -67,7 +67,7 @@ storage\_parameter
 value
 :   The new value for an index-method-specific storage parameter. This might be a number or a word depending on the parameter.
 
-## Notes 
+## Notes
 
 These operations are also possible using [ALTER TABLE](ALTER_TABLE.html). `ALTER INDEX` is in fact just an alias for the forms of `ALTER TABLE` that apply to indexes.
 
@@ -75,7 +75,7 @@ There was formerly an `ALTER INDEX OWNER` variant, but this is now ignored \(wit
 
 Changing any part of a system catalog index is not permitted.
 
-## Examples 
+## Examples
 
 To rename an existing index:
 
@@ -103,11 +103,11 @@ CREATE INDEX coord_idx ON measured (x, y, (z + t));
 ALTER INDEX coord_idx ALTER COLUMN 3 SET STATISTICS 1000;
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER INDEX` is a Greenplum Database extension to the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE INDEX](CREATE_INDEX.html), [REINDEX](REINDEX.html), [ALTER TABLE](ALTER_TABLE.html)
 

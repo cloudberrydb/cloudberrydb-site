@@ -1,8 +1,8 @@
-# CREATE TRIGGER 
+# CREATE TRIGGER
 
 Defines a new trigger. User-defined triggers are not supported in Greenplum Database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TRIGGER <name> {BEFORE | AFTER} {<event> [OR ...]}
@@ -10,7 +10,7 @@ CREATE TRIGGER <name> {BEFORE | AFTER} {<event> [OR ...]}
        EXECUTE PROCEDURE <funcname> ( <arguments> )
 ```
 
-## Description 
+## Description
 
 `CREATE TRIGGER` creates a new trigger. The trigger will be associated with the specified table and will run the specified function when certain events occur. If multiple triggers of the same kind are defined for the same event, they will be fired in alphabetical order by name.
 
@@ -19,7 +19,7 @@ CREATE TRIGGER <name> {BEFORE | AFTER} {<event> [OR ...]}
 
 [SELECT](SELECT.html) does not modify any rows so you can not create `SELECT` triggers. Rules and views are more appropriate in such cases.
 
-## Parameters 
+## Parameters
 
 name
 :   The name to give the new trigger. This must be distinct from the name of any other trigger for the same table.
@@ -43,11 +43,11 @@ funcname
 arguments
 :   An optional comma-separated list of arguments to be provided to the function when the trigger is run. The arguments are literal string constants. Simple names and numeric constants may be written here, too, but they will all be converted to strings. Please check the description of the implementation language of the trigger function about how the trigger arguments are accessible within the function; it may be different from normal function arguments.
 
-## Notes 
+## Notes
 
 To create a trigger on a table, the user must have the `TRIGGER` privilege on the table.
 
-## Examples 
+## Examples
 
 Declare the trigger function and then a trigger:
 
@@ -59,7 +59,7 @@ CREATE TRIGGER t_sendmail AFTER INSERT OR UPDATE OR DELETE
 ON mytable FOR EACH STATEMENT EXECUTE PROCEDURE sendmail();
 ```
 
-## Compatibility 
+## Compatibility
 
 The `CREATE TRIGGER` statement in Greenplum Database implements a subset of the SQL standard. The following functionality is currently missing:
 
@@ -71,7 +71,7 @@ The `CREATE TRIGGER` statement in Greenplum Database implements a subset of the 
 -   SQL specifies that `BEFORE DELETE` triggers on cascaded deletes fire after the cascaded `DELETE` completes. The Greenplum Database behavior is for `BEFORE DELETE` to always fire before the delete action, even a cascading one. This is considered more consistent.
 -   The ability to specify multiple actions for a single trigger using `OR` is a Greenplum Database extension of the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [ALTER TRIGGER](ALTER_TRIGGER.html), [DROP TRIGGER](DROP_TRIGGER.html), [CREATE RULE](CREATE_RULE.html)
 

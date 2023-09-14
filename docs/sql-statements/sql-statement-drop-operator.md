@@ -1,19 +1,19 @@
-# DROP OPERATOR 
+# DROP OPERATOR
 
 Removes an operator.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP OPERATOR [IF EXISTS] <name> ( {<left_type> | NONE} , 
     {<right_type> | NONE} ) [, ...] [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP OPERATOR` drops an existing operator from the database system. To run this command you must be the owner of the operator.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the operator does not exist. A notice is issued in this case.
@@ -33,7 +33,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the operator if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the power operator `a^b` for type `integer`:
 
@@ -59,11 +59,11 @@ Remove multiple operators in one command:
 DROP OPERATOR ~ (none, bit), ! (bigint, none);
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP OPERATOR` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER OPERATOR](ALTER_OPERATOR.html), [CREATE OPERATOR](CREATE_OPERATOR.html)
 

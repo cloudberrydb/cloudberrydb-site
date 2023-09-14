@@ -1,8 +1,8 @@
-# ALTER VIEW 
+# ALTER VIEW
 
 Changes properties of a view.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER VIEW [ IF EXISTS ] <name> ALTER [ COLUMN ] <column_name> SET DEFAULT <expression>
@@ -20,13 +20,13 @@ ALTER VIEW [ IF EXISTS ] <name> SET ( <view_option_name> [= <view_option_value>]
 ALTER VIEW [ IF EXISTS ] <name> RESET ( <view_option_name> [, ... ] )
 ```
 
-## Description 
+## Description
 
 `ALTER VIEW` changes various auxiliary properties of a view. \(If you want to modify the view's defining query, use `CREATE OR REPLACE VIEW`\).
 
 You must own the view to use `ALTER VIEW`. To change a view's schema you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the view's schema. These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the view. However, a superuser can alter ownership of any view.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing view.
@@ -56,11 +56,11 @@ RESET ( view\_option\_name [, ... ] )
     security\_barrier \(boolean\)
     :   Changes the security-barrier property of the view. The value must be a Boolean value, such as `true` or `false`.
 
-## Notes 
+## Notes
 
 For historical reasons, `ALTER TABLE` can be used with views, too; however, the only variants of `ALTER TABLE` that are allowed with views are equivalent to the statements shown above.
 
-## Examples 
+## Examples
 
 To rename the view `foo` to `bar`:
 
@@ -78,11 +78,11 @@ INSERT INTO base_table(id) VALUES(1);  -- ts will receive a NULL
 INSERT INTO a_view(id) VALUES(2);  -- ts will receive the current time
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER VIEW` is a Greenplum Database extension of the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE VIEW](CREATE_VIEW.html), [DROP VIEW](DROP_VIEW.html)
 

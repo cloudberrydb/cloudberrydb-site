@@ -1,23 +1,23 @@
-# DROP RESOURCE QUEUE 
+# DROP RESOURCE QUEUE
 
 Removes a resource queue.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP RESOURCE QUEUE <queue_name>
 ```
 
-## Description 
+## Description
 
 This command removes a resource queue from Greenplum Database. To drop a resource queue, the queue cannot have any roles assigned to it, nor can it have any statements waiting in the queue. Only a superuser can drop a resource queue.
 
-## Parameters 
+## Parameters
 
 queue\_name
 :   The name of a resource queue to remove.
 
-## Notes 
+## Notes
 
 Use [ALTER ROLE](ALTER_ROLE.html) to remove a user from a resource queue.
 
@@ -37,7 +37,7 @@ SELECT rolname, rsqname FROM pg_roles, pg_resqueue WHERE
 pg_roles.rolresqueue=pg_resqueue.oid;
 ```
 
-## Examples 
+## Examples
 
 Remove a role from a resource queue \(and move the role to the default resource queue, `pg_default`\):
 
@@ -51,11 +51,11 @@ Remove the resource queue named `adhoc`:
 DROP RESOURCE QUEUE adhoc;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `DROP RESOURCE QUEUE` statement is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [ALTER RESOURCE QUEUE](ALTER_RESOURCE_QUEUE.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html), [ALTER ROLE](ALTER_ROLE.html)
 

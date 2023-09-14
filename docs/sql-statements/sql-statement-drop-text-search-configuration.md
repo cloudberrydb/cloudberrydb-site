@@ -1,18 +1,18 @@
-# DROP TEXT SEARCH CONFIGURATION 
+# DROP TEXT SEARCH CONFIGURATION
 
 Removes a text search configuration.
 
-## Synopsis 
+## Synopsis
 
 ```
 DROP TEXT SEARCH CONFIGURATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP TEXT SEARCH CONFIGURATION` drops an existing text search configuration. You must be the owner of the configuration to run this command.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the text search configuration does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the text search configuration if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the text search configuration `my_english`:
 
@@ -36,11 +36,11 @@ DROP TEXT SEARCH CONFIGURATION my_english;
 
 This command will not succeed if there are any existing indexes that reference the configuration in `to_tsvector` calls. Add `CASCADE` to drop such indexes along with the text search configuration.
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH CONFIGURATION](ALTER_TEXT_SEARCH_CONFIGURATION.html), [CREATE TEXT SEARCH CONFIGURATION](CREATE_TEXT_SEARCH_CONFIGURATION.html)
 

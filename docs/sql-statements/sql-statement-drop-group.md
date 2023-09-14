@@ -1,22 +1,22 @@
-# DROP GROUP 
+# DROP GROUP
 
 Removes a database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP GROUP [IF EXISTS] <name> [, ...]
 ```
 
-## Description 
+## Description
 
 `DROP GROUP` is an alias for [DROP ROLE](DROP_ROLE.html).
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP GROUP` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [DROP ROLE](DROP_ROLE.html)
 

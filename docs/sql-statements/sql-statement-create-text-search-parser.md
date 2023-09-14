@@ -1,10 +1,10 @@
-# CREATE TEXT SEARCH PARSER 
+# CREATE TEXT SEARCH PARSER
 
-## Description 
+## Description
 
 Defines a new text search parser.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TEXT SEARCH PARSER <name> (
@@ -16,7 +16,7 @@ CREATE TEXT SEARCH PARSER <name> (
 )
 ```
 
-## Description 
+## Description
 
 `CREATE TEXT SEARCH PARSER` creates a new text search parser. A text search parser defines a method for splitting a text string into tokens and assigning types \(categories\) to the tokens. A parser is not particularly useful by itself, but must be bound into a text search configuration along with some text search dictionaries to be used for searching.
 
@@ -26,7 +26,7 @@ You must be a superuser to use `CREATE TEXT SEARCH PARSER`. \(This restriction i
 
 Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.html#full-text-search) for further information.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the text search parser to be created. The name can be schema-qualified.
@@ -50,11 +50,11 @@ The function names can be schema-qualified if necessary. Argument types are not 
 
 The arguments can appear in any order, not only the one shown above.
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE TEXT SEARCH PARSER` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH PARSER](ALTER_TEXT_SEARCH_PARSER.html), [DROP TEXT SEARCH PARSER](DROP_TEXT_SEARCH_PARSER.html)
 

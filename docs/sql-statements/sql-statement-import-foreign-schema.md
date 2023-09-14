@@ -1,8 +1,8 @@
-# IMPORT FOREIGN SCHEMA 
+# IMPORT FOREIGN SCHEMA
 
 Imports table definitions from a foreign server.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 IMPORT FOREIGN SCHEMA <remote_schema>
@@ -12,7 +12,7 @@ IMPORT FOREIGN SCHEMA <remote_schema>
     [ OPTIONS ( <option> '<value>' [, ... ] ) ]
 ```
 
-## Description 
+## Description
 
 `IMPORT FOREIGN SCHEMA` creates foreign tables that represent tables existing on a foreign server. The new foreign tables will be owned by the user issuing the command and are created with the correct column definitions and options to match the remote tables.
 
@@ -22,7 +22,7 @@ To use `IMPORT FOREIGN SCHEMA`, the user must have `USAGE` privilege on the fore
 
 Support for importing foreign schemas is foreign-data wrapper-specific.
 
-## Parameters 
+## Parameters
 
 remote\_schema
 :   The remote schema to import from. The specific meaning of a remote schema depends on the foreign data wrapper in use.
@@ -43,7 +43,7 @@ OPTIONS \( option 'value' \[, ... \] \)
 :   The options to be used during the import. The allowed option names and values are specific to each foreign-data wrapper.
 
 
-## Examples 
+## Examples
 
 Import table definitions from a remote schema `foreign_films` on server `film_server`, creating the foreign tables in local schema `films`:
 
@@ -59,11 +59,11 @@ IMPORT FOREIGN SCHEMA foreign_films LIMIT TO (actors, directors)
     FROM SERVER film_server INTO films;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `IMPORT FOREIGN SCHEMA` command conforms to the SQL standard, except that the `OPTIONS` clause is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html)
 

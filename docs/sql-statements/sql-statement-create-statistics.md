@@ -2,7 +2,7 @@
 
 Defines extended statistics.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE STATISTICS [ IF NOT EXISTS ] <statistics_name>
@@ -11,13 +11,13 @@ CREATE STATISTICS [ IF NOT EXISTS ] <statistics_name>
     FROM <table_name>
 ```
 
-## Description 
+## Description
 
 `CREATE STATISTICS` creates a new extended statistics object tracking data about the specified table, foreign table, or materialized view. The statistics object is created in the current database and will be owned by the user issuing the command.
 
 If a schema name is given \(for example, `CREATE STATISTICS myschema.mystat ...`\) then the statistics object is created in the specified schema. Otherwise it is created in the current schema. The name of the statistics object must be distinct from the name of any other statistics object in the same schema.
 
-## Parameters 
+## Parameters
 
 IF NOT EXISTS
 
@@ -35,11 +35,11 @@ column\_name
 table\_name
 :   The name \(optionally schema-qualified\) of the table containing the column\(s\) on which the statistics are computed; see [ANALYZE](ANALYZE.html) for an explanation of inheritance and partition handling.
 
-## Notes 
+## Notes
 
 You must be the owner of a table to create a statistics object that reads it. Once created, however, the ownership of the statistics object is independent of the underlying table\(s\).
 
-## Examples 
+## Examples
 
 Create table `t1` with two functionally-dependent columns, i.e., knowledge of a value in the first column is sufficient for determining the value in the other column. Then build functional dependency statistics on those columns:
 
@@ -91,11 +91,11 @@ EXPLAIN ANALYZE SELECT * FROM t2 WHERE (a = 1) AND (b = 2);
 
 The MCV list gives the planner more detailed information about the specific values that commonly appear in the table, as well as an upper bound on the selectivities of combinations of values that do not appear in the table, allowing it to generate better estimates in both cases.
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE STATISTICS` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER STATISTICS](ALTER_STATISTICS.html), [DROP STATISTICS](DROP_STATISTICS.html)
 

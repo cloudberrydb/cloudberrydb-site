@@ -1,8 +1,8 @@
-# CREATE DATABASE 
+# CREATE DATABASE
 
 Creates a new database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE DATABASE name
@@ -17,7 +17,7 @@ CREATE DATABASE name
           [IS_TEMPLATE [=] <istemplate> ] ]
 ```
 
-## Description 
+## Description
 
 `CREATE DATABASE` creates a new database.
 
@@ -27,7 +27,7 @@ The creator becomes the owner of the new database by default. Superusers can cre
 
 By default, the new database will be created by cloning the standard system database `template1`. A different template can be specified by writing `TEMPLATE name`. In particular, by writing `TEMPLATE template0`, you can create a clean database containing only the standard objects predefined by Greenplum Database. This is useful if you wish to avoid copying any installation-local objects that may have been added to `template1`.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of a database to create.
@@ -61,7 +61,7 @@ istemplate
 
 Optional parameters can be written in any order, not only the order illustrated above.
 
-## Notes 
+## Notes
 
 `CREATE DATABASE` cannot be run inside a transaction block.
 
@@ -82,7 +82,7 @@ The encoding and locale settings must match those of the template database, exce
 The `CONNECTION LIMIT` option is enforced approximately; if two new sessions start at about the same time when just one connection “slot” remains for the database, it is possible that both will fail. Also, the limit is not enforced against superusers or background worker processes.
 
 
-## Examples 
+## Examples
 
 To create a new database:
 
@@ -119,11 +119,11 @@ The specified locale and encoding settings must match, or an error will be repor
 
 Note that locale names are specific to the operating system, so that the above commands might not work in the same way everywhere.
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE DATABASE` statement in the SQL standard. Databases are equivalent to catalogs, whose creation is implementation-defined.
 
-## See Also 
+## See Also
 
 [ALTER DATABASE](ALTER_DATABASE.html), [DROP DATABASE](DROP_DATABASE.html)
 

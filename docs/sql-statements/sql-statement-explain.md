@@ -1,8 +1,8 @@
-# EXPLAIN 
+# EXPLAIN
 
 Shows the query plan of a statement.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 EXPLAIN [ ( <option> [, ...] ) ] <statement>
@@ -20,7 +20,7 @@ where option can be one of:
     FORMAT { TEXT | XML | JSON | YAML }
 ```
 
-## Description 
+## Description
 
 `EXPLAIN` displays the query plan that the Greenplum or Postgres Planner generates for the supplied statement. Query plans are a tree plan of nodes. Each node in the plan represents a single operation, such as table scan, join, aggregation or a sort.
 
@@ -63,7 +63,7 @@ ROLLBACK;
 
 Only the `ANALYZE` and `VERBOSE` options can be specified, and only in that order, without surrounding the option list in parentheses.
 
-## Parameters 
+## Parameters
 
 ANALYZE
 :   Carry out the command and show the actual run times and other statistics. This parameter defaults to `FALSE` if you omit it; specify `ANALYZE true` to enable it.
@@ -91,7 +91,7 @@ boolean
 statement
 :   Any `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `VALUES`, `EXECUTE`, `DECLARE`, or `CREATE TABLE AS` statement, whose execution plan you wish to see.
 
-## Notes 
+## Notes
 
 In order to allow the query optimizer to make reasonably informed decisions when optimizing queries, the `ANALYZE` statement should be run to record statistics about the distribution of data within the table. If you have not done this \(or if the statistical distribution of the data in the table has changed significantly since the last time `ANALYZE` was run\), the estimated costs are unlikely to conform to the real properties of the query, and consequently an inferior query plan may be chosen.
 
@@ -99,7 +99,7 @@ An SQL statement that is run during the execution of an `EXPLAIN ANALYZE` comman
 
 For more information about query profiling, see "Query Profiling" in the *Greenplum Database Administrator Guide*. For more information about resource queues, see "Resource Management with Resource Queues" in the *Greenplum Database Administrator Guide*.
 
-## Examples 
+## Examples
 
 To illustrate how to read an `EXPLAIN` query plan, consider the following example for a very simple query:
 
@@ -214,11 +214,11 @@ EXPLAIN (FORMAT YAML) SELECT * FROM NAMES WHERE LOCATION='Sydney, Australia';
 (1 row)
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `EXPLAIN` statement defined in the SQL standard.
 
-## See Also 
+## See Also
 
 [ANALYZE](ANALYZE.html)
 

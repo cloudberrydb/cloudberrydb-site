@@ -1,18 +1,18 @@
-# DROP LANGUAGE 
+# DROP LANGUAGE
 
 Removes a procedural language.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP [PROCEDURAL] LANGUAGE [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP LANGUAGE` removes the definition of the previously registered procedural language. You must be a superuser or owner of the language to drop a language.
 
-## Parameters 
+## Parameters
 
 PROCEDURAL
 :   Optional keyword - has no effect.
@@ -29,7 +29,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the language if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the procedural language `plsample`:
 
@@ -37,11 +37,11 @@ Remove the procedural language `plsample`:
 DROP LANGUAGE plsample;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP LANGUAGE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER LANGUAGE](ALTER_LANGUAGE.html), [CREATE LANGUAGE](CREATE_LANGUAGE.html)
 

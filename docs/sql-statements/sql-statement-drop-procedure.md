@@ -1,19 +1,19 @@
-# DROP PROCEDURE 
+# DROP PROCEDURE
 
 Removes a procedure.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP PROCEDURE [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
     [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP PROCEDURE` removes the definition of an existing procedure. To run this command the user must be the owner of the procedure. The argument types to the procedure must be specified, since several different procedures may exist with the same name and different argument lists.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the procedure does not exist. A notice is issued in this case.
@@ -36,7 +36,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the procedure if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 This command removes the procedure named `do_db_maintenance`:
 
@@ -44,7 +44,7 @@ This command removes the procedure named `do_db_maintenance`:
 DROP PROCEDURE do_db_maintenance();
 ```
 
-## Compatibility 
+## Compatibility
 
 This command conforms to the SQL standard, with these Greenplum Database extensions:
 
@@ -54,7 +54,7 @@ This command conforms to the SQL standard, with these Greenplum Database extensi
 
 - The ability to specify argument modes and names.
 
-## See Also 
+## See Also
 
 [CREATE PROCEDURE](CREATE_PROCEDURE.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html)
 

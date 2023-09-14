@@ -1,8 +1,8 @@
-# CREATE TEXT SEARCH CONFIGURATION 
+# CREATE TEXT SEARCH CONFIGURATION
 
 Defines a new text search configuration.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE TEXT SEARCH CONFIGURATION <name> (
@@ -11,7 +11,7 @@ CREATE TEXT SEARCH CONFIGURATION <name> (
 )
 ```
 
-## Description 
+## Description
 
 `CREATE TEXT SEARCH CONFIGURATION` creates a new text search configuration. A text search configuration specifies a text search parser that can divide a string into tokens, plus dictionaries that can be used to determine which tokens are of interest for searching.
 
@@ -23,7 +23,7 @@ The user who defines a text search configuration becomes its owner.
 
 Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.html#full-text-search) for further information.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the text search configuration to be created. The name can be schema-qualified.
@@ -34,15 +34,15 @@ parser\_name
 source\_config
 :   The name of an existing text search configuration to copy.
 
-## Notes 
+## Notes
 
 The `PARSER` and `COPY` options are mutually exclusive, because when an existing configuration is copied, its parser selection is copied too.
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH CONFIGURATION](ALTER_TEXT_SEARCH_CONFIGURATION.html), [DROP TEXT SEARCH CONFIGURATION](DROP_TEXT_SEARCH_CONFIGURATION.html)
 

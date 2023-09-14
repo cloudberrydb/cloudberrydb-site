@@ -1,14 +1,14 @@
-# CHECKPOINT 
+# CHECKPOINT
 
 Forces a write-ahead log checkpoint.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CHECKPOINT
 ```
 
-## Description 
+## Description
 
 A checkpoint is a point in the write-ahead log sequence at which all data files have been updated to reflect the information in the log. All data files will be flushed to disk.
 
@@ -18,7 +18,7 @@ If run during recovery, the `CHECKPOINT` command will force a restartpoint rathe
 
 Only superusers may call `CHECKPOINT`.
 
-## Compatibility 
+## Compatibility
 
 The `CHECKPOINT` command is a Greenplum Database extension.
 

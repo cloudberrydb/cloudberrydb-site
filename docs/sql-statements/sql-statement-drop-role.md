@@ -1,14 +1,14 @@
-# DROP ROLE 
+# DROP ROLE
 
 Removes a database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP ROLE [IF EXISTS] <name> [, ...]
 ```
 
-## Description 
+## Description
 
 `DROP ROLE` removes the specified role\(s\). To drop a superuser role, you must be a superuser yourself. To drop non-superuser roles, you must have `CREATEROLE` privilege.
 
@@ -16,7 +16,7 @@ A role cannot be removed if it is still referenced in any database; an error wil
 
 However, it is not necessary to remove role memberships involving the role; `DROP ROLE` automatically revokes any memberships of the target role in other roles, and of other roles in the target role. The other roles are not dropped nor otherwise affected.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the role does not exist. A notice is issued in this case.
@@ -24,7 +24,7 @@ IF EXISTS
 name
 :   The name of the role to remove.
 
-## Examples 
+## Examples
 
 Remove the roles named `sally` and `bob`:
 
@@ -32,11 +32,11 @@ Remove the roles named `sally` and `bob`:
 DROP ROLE sally, bob;
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped at a time, and it specifies different privilege requirements than Greenplum Database uses.
 
-## See Also 
+## See Also
 
 [REASSIGN OWNED](REASSIGN_OWNED.html), [DROP OWNED](DROP_OWNED.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER ROLE](ALTER_ROLE.html), [SET ROLE](SET_ROLE.html)
 

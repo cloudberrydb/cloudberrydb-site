@@ -1,8 +1,8 @@
-# CREATE OPERATOR 
+# CREATE OPERATOR
 
 Defines a new operator.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE OPERATOR <name> ( 
@@ -13,7 +13,7 @@ CREATE OPERATOR <name> (
        [, HASHES] [, MERGES] )
 ```
 
-## Description 
+## Description
 
 `CREATE OPERATOR` defines a new operator. The user who defines an operator becomes its owner. If a schema name is given, then the operator is created in the specified schema. Otherwise, it is created in the current schema.
 
@@ -42,7 +42,7 @@ The other clauses specify optional operator optimization clauses. Their meaning 
 
 To be able to create an operator, you must have `USAGE` privilege on the argument types and the return type, as well as `EXECUTE` privilege on the underlying function. If a commutator or negator operator is specified, you must own these operators.
 
-## Parameters 
+## Parameters
 
 name
 :   The \(optionally schema-qualified\) name of the operator to be defined. Refer to the *Description* above for allowable characters. The name can be schema-qualified, for example `CREATE OPERATOR myschema.+ (...)`. If not, then the operator is created in the current schema. Two operators in the same schema can have the same name if they operate on different data types. This is called *overloading*.
@@ -80,7 +80,7 @@ To give a schema-qualified operator name in com\_op or the other optional argume
 COMMUTATOR = OPERATOR(myschema.===) ,
 ```
 
-## Notes 
+## Notes
 
 Refer to [User-defined Operators](https://www.postgresql.org/docs/12/xoper.html) in the PostgreSQL documentation for further information.
 
@@ -90,7 +90,7 @@ It is not possible to specify an operator's lexical precedence in `CREATE OPERAT
 
 Use [DROP OPERATOR](DROP_OPERATOR.html) to delete user-defined operators from a database. Use [ALTER OPERATOR](ALTER_OPERATOR.html) to modify operators in a database.
 
-## Examples 
+## Examples
 
 The following command defines a new operator, area-equality, for the data type `box`:
 
@@ -128,11 +128,11 @@ To use this operator in a query:
 SELECT (a + b) AS c FROM test_complex;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE OPERATOR` is a Greenplum Database extension to the SQL standard. The SQL standard does not provide for user-defined operators.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [CREATE TYPE](CREATE_TYPE.html), [ALTER OPERATOR](ALTER_OPERATOR.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR](DROP_OPERATOR.html)
 

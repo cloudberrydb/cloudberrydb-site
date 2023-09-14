@@ -1,8 +1,8 @@
-# ALTER TYPE 
+# ALTER TYPE
 
 Changes the definition of a data type.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 
@@ -28,7 +28,7 @@ where <storage_directive> is:
    BLOCKSIZE={8192-2097152}
 ```
 
-## Description 
+## Description
 
 `ALTER TYPE` changes the definition of an existing type. There are several subforms:
 
@@ -66,7 +66,7 @@ You can change the name, the owner, and the schema of a type. You can also add o
 
 You must own the type to use `ALTER TYPE`. To change the schema of a type, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the type's schema. \(These restrictions enforce that altering the owner does not do anything that could be done by dropping and recreating the type. However, a superuser can alter ownership of any type.\) To add an attribute or alter an attribute type, you must also have `USAGE` privilege on the data type.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing type to alter.
@@ -121,7 +121,7 @@ If `ALTER TYPE ... ADD VALUE` \(the form that adds a new value to an enum type\)
  
 Comparisons involving an added enum value will sometimes be slower than comparisons involving only original members of the enum type. This will usually only occur if `BEFORE` or `AFTER` is used to set the new value's sort position somewhere other than at the end of the list. However, sometimes it will happen even though the new value is added at the end \(this occurs if the OID counter "wrapped around" since the original creation of the enum type\). The slowdown is usually insignificant; but if it matters, optimal performance can be regained by dropping and recreating the enum type, or by dumping and reloading the database.
 
-## Examples 
+## Examples
 
 To rename the data type named `electronic_mail`:
 
@@ -165,11 +165,11 @@ To rename an enum value:
 ALTER TYPE colors RENAME VALUE 'purple' TO 'mauve';
 ```
 
-## Compatibility 
+## Compatibility
 
 The variants to add and drop attributes are part of the SQL standard; the other variants are Greenplum Database extensions.
 
-## See Also 
+## See Also
 
 [CREATE TYPE](CREATE_TYPE.html), [DROP TYPE](DROP_TYPE.html)
 

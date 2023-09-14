@@ -1,18 +1,18 @@
-# DROP SERVER 
+# DROP SERVER
 
 Removes a foreign server descriptor.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP SERVER [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP SERVER` removes an existing foreign server descriptor. The user running this command must be the owner of the server.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the server does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the server if any object depends on it. This is the default.
 
-## Examples 
+## Examples
 
 Drop the server named `foo` if it exists:
 
@@ -34,11 +34,11 @@ Drop the server named `foo` if it exists:
 DROP SERVER IF EXISTS foo;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\). The `IF EXISTS` clause is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE SERVER](CREATE_SERVER.html), [ALTER SERVER](ALTER_SERVER.html)
 

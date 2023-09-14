@@ -1,22 +1,22 @@
-# DROP USER 
+# DROP USER
 
 Removes a database role.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP USER [IF EXISTS] <name> [, ...]
 ```
 
-## Description 
+## Description
 
 `DROP USER` is an alias for [DROP ROLE](DROP_ROLE.html).
 
-## Compatibility 
+## Compatibility
 
 The `DROP USER` statement is a Greenplum Database extension. The SQL standard leaves the definition of users to the implementation.
 
-## See Also 
+## See Also
 
 [DROP ROLE](DROP_ROLE.html)
 

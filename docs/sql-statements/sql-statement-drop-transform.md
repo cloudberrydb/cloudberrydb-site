@@ -2,19 +2,19 @@
 
 Removes a transform.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TRANSFORM [IF EXISTS] FOR <type_name> LANGUAGE <lang_name> [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP TRANSFORM` removes a previously defined transform.
 
 To drop a transform, you must own the type and the language. These are the same privileges that are required to create a transform.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the transform does not exist. Greenplum Database issues a notice in this case.
@@ -31,7 +31,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the transform if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 To drop the transform for type `hstore` and language `plpython3u`:
 
@@ -39,11 +39,11 @@ To drop the transform for type `hstore` and language `plpython3u`:
 DROP TRANSFORM FOR hstore LANGUAGE plpython3u;
 ```
 
-## Compatibility 
+## Compatibility
 
 This form of `DROP TRANSFORM` is a Greenplum Database extension. See [CREATE TRANSFORM](CREATE_TRANSFORM.html) for details.
 
-## See Also 
+## See Also
 
 [CREATE TRANSFORM](CREATE_TRANSFORM.html)
 

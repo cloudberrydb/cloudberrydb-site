@@ -1,18 +1,18 @@
-# DROP TEXT SEARCH DICTIONARY 
+# DROP TEXT SEARCH DICTIONARY
 
 Removes a text search dictionary.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TEXT SEARCH DICTIONARY [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP TEXT SEARCH DICTIONARY` drops an existing text search dictionary. You must be the owner of the dictionary to run this command.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the text search dictionary does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the text search dictionary if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the text search dictionary `english`:
 
@@ -36,11 +36,11 @@ DROP TEXT SEARCH DICTIONARY english;
 
 This command will not succeed if there are any existing text search configurations that use the dictionary. Add `CASCADE` to drop such configurations along with the dictionary.
 
-## Compatibility 
+## Compatibility
 
 There is no `CREATE TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TEXT SEARCH DICTIONARY](ALTER_TEXT_SEARCH_DICTIONARY.html), [CREATE TEXT SEARCH DICTIONARY](CREATE_TEXT_SEARCH_DICTIONARY.html)
 

@@ -1,8 +1,8 @@
-# ALTER EXTENSION 
+# ALTER EXTENSION
 
 Change the definition of an extension.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER EXTENSION <name> UPDATE [ TO <new_version> ]
@@ -48,7 +48,7 @@ and <aggregate_signature> is:
 [ [ <argmode> ] [ <argname> ] <argtype> [ , ... ] ] ORDER BY [ <argmode> ] [ <argname> ] <argtype> [ , ... ]
 ```
 
-## Description 
+## Description
 
 `ALTER EXTENSION` changes the definition of an installed extension. There are several subforms:
 
@@ -68,7 +68,7 @@ See [Packaging Related Objects into an Extension](https://www.postgresql.org/doc
 
 You must own the extension to use `ALTER EXTENSION`. The `ADD` and `DROP` forms also require ownership of the object that is being added or dropped.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of an installed extension.
@@ -115,7 +115,7 @@ type\_name
 lang\_name
 :   The name of the language of the transform.
 
-## Examples 
+## Examples
 
 To update the hstore extension to version 2.0:
 
@@ -135,11 +135,11 @@ To add an existing function to the `hstore` extension:
 ALTER EXTENSION hstore ADD FUNCTION populate_record(anyelement, hstore);
 ```
 
-## Compatibility 
+## Compatibility
 
 `ALTER EXTENSION` is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE EXTENSION](CREATE_EXTENSION.html), [DROP EXTENSION](DROP_EXTENSION.html)
 

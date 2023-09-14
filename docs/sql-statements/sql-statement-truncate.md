@@ -1,23 +1,23 @@
-# TRUNCATE 
+# TRUNCATE
 
 Empties a table or set of tables of all rows.
 
 > **Note** Greenplum Database does not enforce referential integrity syntax \(foreign key constraints\). `TRUNCATE` truncates a table that is referenced in a foreign key constraint even if the `CASCADE` option is omitted.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 TRUNCATE [TABLE] [ONLY] <name> [ * ] [, ...] 
     [ RESTART IDENTITY | CONTINUE IDENTITY ] [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `TRUNCATE` quickly removes all rows from a table or set of tables. It has the same effect as an unqualified [DELETE](DELETE.html) on each table, but since it does not actually scan the tables it is faster. Furthermore, it reclaims disk space immediately, rather than requiring a subsequent [VACUUM](VACUUM.html) operation. This is most useful on large tables.
 
 You must have the `TRUNCATE` privilege on the table to truncate it.
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of a table to truncate. If `ONLY` is specified before the table name, only that table is truncated. If `ONLY` is not specified, the table and all its descendant tables \(if any\) are truncated. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
@@ -34,7 +34,7 @@ CASCADE
 RESTRICT
 :   Because this key word applies to foreign key references \(which are not supported in Greenplum Database\) it has no effect.
 
-## Notes 
+## Notes
 
 `TRUNCATE` acquires an `ACCESS EXCLUSIVE` lock on each table that it operates on, which blocks all other concurrent operations on the table. When `RESTART IDENTITY` is specified, any sequences that are to be restarted are likewise locked exclusively. If you require concurrent access to a table, use the `DELETE` command instead.
 
@@ -50,7 +50,7 @@ When `RESTART IDENTITY` is specified, the implied `ALTER SEQUENCE RESTART` opera
 
 `TRUNCATE` is not currently supported for foreign tables. This implies that if a specified table has any descendant tables that are foreign, the command will fail.
 
-## Examples 
+## Examples
 
 Empty the tables `films` and `distributors`:
 
@@ -64,11 +64,11 @@ The same, and also reset any associated sequence generators:
 TRUNCATE films, distributors RESTART IDENTITY;
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL:2008 standard includes a `TRUNCATE` command with the syntax `TRUNCATE TABLE tablename`. The clauses `CONTINUE IDENTITY`/`RESTART IDENTITY` also appear in that standard, but have slightly different though related meanings. Some of the concurrency behavior of this command is left implementation-defined by the standard, so the above notes should be considered and compared with other implementations if necessary.
 
-## See Also 
+## See Also
 
 [DELETE](DELETE.html)
 

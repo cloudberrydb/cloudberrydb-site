@@ -1,8 +1,8 @@
-# CREATE CAST 
+# CREATE CAST
 
 Defines a new cast.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE CAST (<sourcetype> AS <targettype>) 
@@ -18,7 +18,7 @@ CREATE CAST (<sourcetype> AS <targettype>)
        [AS ASSIGNMENT | AS IMPLICIT]
 ```
 
-## Description 
+## Description
 
 `CREATE CAST` defines a new cast. A cast specifies how to perform a conversion between two data types. For example,
 
@@ -62,7 +62,7 @@ It is wise to be conservative about marking casts as implicit. An overabundance 
 
 To be able to create a cast, you must own the source or the target data type and have `USAGE` privilege on the other type. To create a binary-coercible cast, you must be superuser. \(This restriction is made because an erroneous binary-coercible cast conversion can easily crash the server.\)
 
-## Parameters 
+## Parameters
 
 sourcetype
 :   The name of the source data type of the cast.
@@ -95,7 +95,7 @@ AS ASSIGNMENT
 AS IMPLICIT
 :   Indicates that the cast may be invoked implicitly in any context.
 
-## Notes 
+## Notes
 
 Note that in this release of Greenplum Database, user-defined functions used in a user-defined cast must be defined as `IMMUTABLE`. Any compiled code \(shared library files\) for custom functions must be placed in the same location on every host in your Greenplum Database array \(coordinator and all segments\). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files.
 
@@ -109,7 +109,7 @@ There are two cases in which a function-call construct is treated as a cast requ
 
 There is an exception to the exception above: I/O conversion casts from composite types to string types cannot be invoked using functional syntax, but must be written in explicit cast syntax \(either `CAST` or :: notation\). This exception exists because after the introduction of automatically-provided I/O conversion casts, it was found to be too easy to accidentally invoke such a cast when you intended a function or column reference.
 
-## Examples 
+## Examples
 
 To create an assignment cast from type `bigint` to type `int4` using the function `int4(bigint)` \(This cast is already predefined in the system.\):
 
@@ -117,11 +117,11 @@ To create an assignment cast from type `bigint` to type `int4` using the functio
 CREATE CAST (bigint AS int4) WITH FUNCTION int4(bigint) AS ASSIGNMENT;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `CREATE CAST` command conforms to the SQL standard, except that SQL does not make provisions for binary-coercible types or extra arguments to implementation functions. `AS IMPLICIT` is a Greenplum Database extension, too.
 
-## See Also 
+## See Also
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [CREATE TYPE](CREATE_TYPE.html), [DROP CAST](DROP_CAST.html)
 

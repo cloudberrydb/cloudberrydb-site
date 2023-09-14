@@ -1,8 +1,8 @@
-# CREATE INDEX 
+# CREATE INDEX
 
 Defines a new index.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [UNIQUE] INDEX [[IF NOT EXISTS] <name>] ON [ONLY] <table_name> [USING <method>]
@@ -13,7 +13,7 @@ CREATE [UNIQUE] INDEX [[IF NOT EXISTS] <name>] ON [ONLY] <table_name> [USING <me
        [ WHERE <predicate> ]
 ```
 
-## Description 
+## Description
 
 `CREATE INDEX` constructs an index on the specified column\(s\) of the specified table or materialized view. Indexes are primarily used to enhance database performance \(though inappropriate use can result in slower performance\).
 
@@ -29,7 +29,7 @@ The expression used in the `WHERE` clause may refer only to columns of the under
 
 All functions and operators used in an index definition must be immutable. Their results must depend only on their arguments and never on any outside influence \(such as the contents of another table or the current time\). This restriction ensures that the behavior of the index is well-defined. To use a user-defined function in an index expression or `WHERE` clause, remember to mark the function `IMMUTABLE` when you create it.
 
-## Parameters 
+## Parameters
 
 UNIQUE
 :   Checks for duplicate values in the table when the index is created \(if data already exist\) and each time data is added. Duplicate entries will generate an error. Unique indexes only apply to B-tree indexes.
@@ -131,7 +131,7 @@ pages_per_range
 autosummarize
 :   Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance] (https://www.postgresql.org/docs/12/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
 
-## Notes 
+## Notes
 Refer to the [Indexes](https://www.postgresql.org/docs/12/indexes.html) topics in the PostgreSQL documentation for information about when indexes can be used, when they are not used, and in which particular situations they can be useful.
 
 Currently, only the B-tree, bitmap, GiST, GIN, and BRIN index methods support multicolumn indexes. You can specify up to 32 fields by default. Only B-tree currently supports unique indexes.
@@ -155,7 +155,7 @@ Like any long-running transaction, `CREATE INDEX` on a table can affect which tu
 
 Prior releases of Greenplum Database also had an R-tree index method. This method has been removed because it had no significant advantages over the GiST method. If `USING rtree` is specified, `CREATE INDEX` will interpret it as `USING gist`, to simplify conversion of old databases to GiST.
 
-## Examples 
+## Examples
 
 To create a unique B-tree index on the column `title` in the table `films`:
 
@@ -215,13 +215,13 @@ CREATE INDEX pointloc ON points USING gist (box(location,location));
 SELECT * FROM points WHERE box(location,location) && '(0,0),(1,1)'::box;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE INDEX` is a Greenplum Database extension to the SQL standard. There are no provisions for indexes in the SQL standard.
 
 Greenplum Database does not support the concurrent creation of indexes \(`CONCURRENTLY` keyword is not supported\).
 
-## See Also 
+## See Also
 
 [ALTER INDEX](ALTER_INDEX.html), [DROP INDEX](DROP_INDEX.html)
 

@@ -1,8 +1,8 @@
-# CREATE ROLE 
+# CREATE ROLE
 
 Defines a new database role \(user or group\).
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE ROLE <name> [[WITH] <option> [ ... ]]
@@ -38,13 +38,13 @@ where option can be:
     | [ DENY BETWEEN <deny_point> AND <deny_point>]
 ```
 
-## Description 
+## Description
 
 `CREATE ROLE` adds a new role to a Greenplum Database system. A role is an entity that can own database objects and have database privileges. A role can be considered a user, a group, or both depending on how it is used. You must have `CREATEROLE` privilege or be a database superuser to use this command.
 
 Note that roles are defined at the system-level and are valid for all databases in your Greenplum Database system.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the new role.
@@ -160,7 +160,7 @@ The `DENY BETWEEN` clause uses two deny\_point parameters:
 DENY BETWEEN <deny_point> AND <deny_point>
 ```
 
-## Notes 
+## Notes
 
 Use [ALTER ROLE](ALTER_ROLE.html) to change the attributes of a role, and [DROP ROLE](DROP_ROLE.html) to remove a role. All the attributes specified by `CREATE ROLE` can be modified by later `ALTER ROLE` commands.
 
@@ -180,7 +180,7 @@ The `CONNECTION LIMIT` option is only enforced approximately; if two new session
 
 You must exercise caution when specifying an unencrypted password with this command. The password will be transmitted to the server in clear-text, and it might also be logged in the client's command history or the server log. The client program [createuser](../../utility_guide/ref/createuser.html), however, transmits the password encrypted. Also, [psql](../../utility_guide/ref/psql.html) contains a command `\password` that can be used to safely change the password later.
 
-## Examples 
+## Examples
 
 Create a role that can log in, but don't give it a password:
 
@@ -233,7 +233,7 @@ Create a role that belongs to a resource queue:
 CREATE ROLE jonathan LOGIN RESOURCE QUEUE poweruser;
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE ROLE` is in the SQL standard, but the standard only requires the syntax:
 
@@ -247,7 +247,7 @@ The SQL standard defines the concepts of users and roles, but it regards them as
 
 The behavior specified by the SQL standard is most closely approximated by giving users the `NOINHERIT` attribute, while roles are given the `INHERIT` attribute.
 
-## See Also 
+## See Also
 
 [SET ROLE](SET_ROLE.html), [ALTER ROLE](ALTER_ROLE.html), [DROP ROLE](DROP_ROLE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html) [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [createuser](../../utility_guide/ref/createuser.html)
 

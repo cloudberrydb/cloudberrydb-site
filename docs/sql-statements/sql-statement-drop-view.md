@@ -1,18 +1,18 @@
-# DROP VIEW 
+# DROP VIEW
 
 Removes a view.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP VIEW [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP VIEW` removes an existing view. Only the owner of a view can remove it.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the view does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the view if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the view `topten`:
 
@@ -34,11 +34,11 @@ Remove the view `topten`:
 DROP VIEW topten;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP VIEW` fully conforms to the SQL standard, except that the standard only allows one view to be dropped per command. Also, the `IF EXISTS` option is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE VIEW](CREATE_VIEW.html), [ALTER VIEW](ALTER_VIEW.html)
 

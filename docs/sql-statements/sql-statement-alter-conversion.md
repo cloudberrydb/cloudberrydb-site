@@ -1,8 +1,8 @@
-# ALTER CONVERSION 
+# ALTER CONVERSION
 
 Changes the definition of a conversion.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER CONVERSION <name> RENAME TO <new_name>
@@ -13,13 +13,13 @@ ALTER CONVERSION <name> SET SCHEMA <new_schema>
 
 ```
 
-## Description 
+## Description
 
 `ALTER CONVERSION` changes the definition of a conversion.
 
 You must own the conversion to use `ALTER CONVERSION`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the conversion's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the conversion. However, a superuser can alter ownership of any conversion anyway.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing conversion.
@@ -33,7 +33,7 @@ new\_owner
 new\_schema
 :   The new schema for the conversion.
 
-## Examples 
+## Examples
 
 To rename the conversion `iso_8859_1_to_utf8` to `latin1_to_unicode`:
 
@@ -47,11 +47,11 @@ To change the owner of the conversion `iso_8859_1_to_utf8` to `joe`:
 ALTER CONVERSION iso_8859_1_to_utf8 OWNER TO joe;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER CONVERSION` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE CONVERSION](CREATE_CONVERSION.html), [DROP CONVERSION](DROP_CONVERSION.html)
 

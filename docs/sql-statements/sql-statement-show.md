@@ -1,8 +1,8 @@
-# SHOW 
+# SHOW
 
 Shows the value of a run-time system configuration parameter.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 SHOW <name>
@@ -10,12 +10,12 @@ SHOW <name>
 SHOW ALL
 ```
 
-## Description 
+## Description
 
 `SHOW` displays the current settings of Greenplum Database run-time system configuration parameters. You can set these parameters with the `SET` statement, by editing the `postgresql.conf` configuration file of the Greenplum Database coordinator, through the `PGOPTIONS` environment variable (when using libpq or a libpq-based application), or through command-line flags when starting the Greenplum server.
 
 
-## Parameters 
+## Parameters
 
 name
 :   The name of a run-time system configuration parameter.
@@ -44,7 +44,7 @@ ALL
 
 The function `current_setting()` produces equivalent output; see [System Administration Functions](https://www.postgresql.org/docs/12/functions-admin.html) in the PostgreSQL documentation. Also, the [pg_settings](https://www.postgresql.org/docs/12/view-pg-settings.html) system view produces the same information.
 
-## Examples 
+## Examples
 
 Show the current setting of the parameter `DateStyle`:
 
@@ -81,11 +81,11 @@ SHOW ALL;
 (473 rows)
 ```
 
-## Compatibility 
+## Compatibility
 
 The `SHOW` command is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [SET](SET.html), [RESET](RESET.html)
 

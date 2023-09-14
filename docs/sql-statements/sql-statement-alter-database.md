@@ -1,8 +1,8 @@
-# ALTER DATABASE 
+# ALTER DATABASE
 
 Changes the attributes of a database.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER DATABASE <name> [ [WITH] <option> [ ... ]  ]
@@ -26,7 +26,7 @@ ALTER DATABASE <name> RESET ALL
 
 ```
 
-## Description 
+## Description
 
 `ALTER DATABASE` changes the attributes of a database.
 
@@ -40,7 +40,7 @@ The fourth form changes the default tablespace of the database. Only the databas
 
 The remaining forms change the session default for a configuration parameter for a Greenplum database. Whenever a new session is subsequently started in that database, the specified value becomes the session default value. The database-specific default overrides whatever setting is present in the server configuration file \(`postgresql.conf`\). Only the database owner or a superuser can change the session defaults for a database. Certain parameters cannot be set this way, or can only be set by a superuser.
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the database whose attributes are to be altered.
@@ -68,11 +68,11 @@ configuration\_parameter value
 :   Set this database's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the database-specific setting is removed, so the system-wide default setting will be inherited in new sessions. Use `RESET ALL` to clear all database-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the database-specific value.
 :   See [SET](SET.html) and [Server Configuration Parameters](../config_params/guc_config.html) for more information about allowed parameter names and values.
 
-## Notes 
+## Notes
 
 It is also possible to tie a session default to a specific role rather than to a database; see [ALTER ROLE](ALTER_ROLE.html). Role-specific settings override database-specific ones if there is a conflict.
 
-## Examples 
+## Examples
 
 To disable index scans by default in the `test` database:
 
@@ -86,11 +86,11 @@ To set the default schema search path for the `mydatabase` database:
 ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
 ```
 
-## Compatibility 
+## Compatibility
 
 The `ALTER DATABASE` statement is a Greenplum Database extension.
 
-## See Also 
+## See Also
 
 [CREATE DATABASE](CREATE_DATABASE.html), [DROP DATABASE](DROP_DATABASE.html), [SET](SET.html), [CREATE TABLESPACE](CREATE_TABLESPACE.html)
 

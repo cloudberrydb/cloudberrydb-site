@@ -1,8 +1,8 @@
-# ALTER TABLESPACE 
+# ALTER TABLESPACE
 
 Changes the definition of a tablespace.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER TABLESPACE <name> RENAME TO <new_name>
@@ -14,13 +14,13 @@ ALTER TABLESPACE <name> SET ( <tablespace_option> = <value> [, ... ] )
 ALTER TABLESPACE <name> RESET ( <tablespace_option> [, ... ] )
 ```
 
-## Description 
+## Description
 
 `ALTER TABLESPACE` changes the definition of a tablespace.
 
 You must own the tablespace to use `ALTER TABLESPACE`. To alter the owner, you must also be a direct or indirect member of the new owning role. \(Note that superusers have these privileges automatically.\)
 
-## Parameters 
+## Parameters
 
 name
 :   The name of an existing tablespace.
@@ -34,7 +34,7 @@ new\_owner
 tablespace\_parameter
 :   A tablespace parameter to set or reset. Currently, the only available parameters are `seq_page_cost` and `random_page_cost`. Setting either value for a particular tablespace will override the planner's usual estimate of the cost of reading pages from tables in that tablespace, as established by the configuration parameters of the same name \(see [seq_page_cost](../config_params/guc-list.html#seq_page_cost), [random_page_cost](../config_params/guc-list.html#random_page_cost)\). This may be useful if one tablespace is located on a disk which is faster or slower than the remainder of the I/O subsystem.
 
-## Examples 
+## Examples
 
 Rename tablespace `index_space` to `fast_raid`:
 
@@ -48,11 +48,11 @@ Change the owner of tablespace `index_space`:
 ALTER TABLESPACE index_space OWNER TO mary;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER TABLESPACE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE TABLESPACE](CREATE_TABLESPACE.html), [DROP TABLESPACE](DROP_TABLESPACE.html)
 

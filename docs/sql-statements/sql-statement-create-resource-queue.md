@@ -1,8 +1,8 @@
-# CREATE RESOURCE QUEUE 
+# CREATE RESOURCE QUEUE
 
 Defines a new resource queue.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE RESOURCE QUEUE <name> WITH (<queue_attribute>=<value> [, ... ])
@@ -24,7 +24,7 @@ where queue\_attribute is:
         [ MEMORY_LIMIT='<memory_units>' ]
 ```
 
-## Description 
+## Description
 
 Creates a new resource queue for Greenplum Database resource management. A resource queue must have either an `ACTIVE_STATEMENTS` or a `MAX_COST` value \(or it can have both\). Only a superuser can create a resource queue.
 
@@ -54,7 +54,7 @@ The `MEMORY_LIMIT` value for all of your resource queues should not exceed the a
 
 For information about `statement_mem`, `max_statement`, and `gp_vmem_protect_limit`, see [Server Configuration Parameters](../config_params/guc_config.html).
 
-## Parameters 
+## Parameters
 
 name
 :   The name of the resource queue.
@@ -77,7 +77,7 @@ MIN\_COST float
 PRIORITY=\{MIN\|LOW\|MEDIUM\|HIGH\|MAX\}
 :   Sets the priority of queries associated with a resource queue. Queries or statements in queues with higher priority levels will receive a larger share of available CPU resources in case of contention. Queries in low-priority queues may be delayed while higher priority queries are run. If no priority is specified, queries associated with the queue have a priority of `MEDIUM`.
 
-## Notes 
+## Notes
 
 Use the `gp_toolkit.gp_resqueue_status` system view to see the limit settings and current status of a resource queue:
 
@@ -92,7 +92,7 @@ There is also another system view named `pg_stat_resqueue` which shows statistic
 
 Also, an SQL statement that is run during the execution time of an `EXPLAIN ANALYZE` command is excluded from resource queues.
 
-## Examples 
+## Examples
 
 Create a resource queue with an active query limit of 20:
 
@@ -134,11 +134,11 @@ CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5,
   PRIORITY=MAX);
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE RESOURCE QUEUE` is a Greenplum Database extension. There is no provision for resource queues or resource management in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER ROLE](ALTER_ROLE.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER RESOURCE QUEUE](ALTER_RESOURCE_QUEUE.html), [DROP RESOURCE QUEUE](DROP_RESOURCE_QUEUE.html)
 

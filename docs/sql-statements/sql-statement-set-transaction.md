@@ -1,8 +1,8 @@
-# SET TRANSACTION 
+# SET TRANSACTION
 
 Sets the characteristics of the current transaction.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 SET TRANSACTION <transaction_mode> [, ...]
@@ -20,7 +20,7 @@ where <transaction_mode> is one of:
 and <snapshot_id> is the id of the existing transaction whose snapshot you want this transaction to run with.
 ```
 
-## Description 
+## Description
 
 The `SET TRANSACTION` command sets the characteristics of the current transaction. It has no effect on any subsequent transactions. `SET SESSION CHARACTERISTICS` sets the default transaction characteristics for subsequent transactions of a session. These defaults can be overridden by `SET TRANSACTION` for an individual transaction.
 
@@ -43,7 +43,7 @@ The `DEFERRABLE` transaction property has no effect unless the transaction is al
 
 The `SET TRANSACTION SNAPSHOT` command allows a new transaction to run with the same snapshot as an existing transaction. The pre-existing transaction must have exported its snapshot with the `pg_export_snapshot()` function. That function returns a snapshot identifier, which must be given to `SET TRANSACTION SNAPSHOT` to specify which snapshot is to be imported. The identifier must be written as a string literal in this command, for example `'000003A1-1'`. `SET TRANSACTION SNAPSHOT` can only be executed at the start of a transaction, before the first query or data-modification statement \(`SELECT`, `INSERT`, `DELETE`, `UPDATE`, `FETCH`, or `COPY`\) of the transaction. Furthermore, the transaction must already be set to `SERIALIZABLE` or `REPEATABLE READ` isolation level \(otherwise, the snapshot would be discarded immediately, since `READ COMMITTED` mode takes a new snapshot for each command\). If the importing transaction uses `SERIALIZABLE` isolation level, then the transaction that exported the snapshot must also use that isolation level. Also, a non-read-only serializable transaction cannot import a snapshot from a read-only transaction.
 
-## Notes 
+## Notes
 
 If `SET TRANSACTION` is run without a prior [START TRANSACTION](START_TRANSACTION.html) or [BEGIN](BEGIN.html), it emits a warning and otherwise has no effect.
 
@@ -53,7 +53,7 @@ The session default transaction modes can also be set or examined via the config
 
 The current transaction's modes can similarly be set or examined via the configuration parameters [transaction\_isolation](../config_params/guc-list.html#transaction_isolation), [transaction\_read\_only](../config_params/guc-list.html#transaction_read_only), and [transaction\_deferrable](../config_params/guc-list.html#transaction_deferrable). Setting one of these parameters acts the same as the corresponding `SET TRANSACTION` option, with the same restrictions on when it can be done. However, these parameters cannot be set in the configuration file, or from any source other than live SQL.
 
-## Examples 
+## Examples
 
 To begin a new transaction with the same snapshot as an already existing transaction, first export the snapshot from the existing transaction. That will return the snapshot identifier, for example:
 
@@ -73,7 +73,7 @@ BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 SET TRANSACTION SNAPSHOT '00000003-0000001B-1';
 ```
 
-## Compatibility 
+## Compatibility
 
 These commands are defined in the SQL standard, except for the `DEFERRABLE` transaction mode and the `SET TRANSACTION SNAPSHOT` form, which are Greenplum Database extensions.
 
@@ -83,7 +83,7 @@ In the SQL standard, there is one other transaction characteristic that can be s
 
 The SQL standard requires commas between successive transaction\_modes, but for historical reasons Greenplum Database allows the commas to be omitted.
 
-## See Also 
+## See Also
 
 [BEGIN](BEGIN.html)
 

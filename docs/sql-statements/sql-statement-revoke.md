@@ -1,8 +1,8 @@
-# REVOKE 
+# REVOKE
 
 Removes access privileges.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 REVOKE [GRANT OPTION FOR]
@@ -91,7 +91,7 @@ where <role_specification> can be:
   | SESSION_USER
 ```
 
-## Description 
+## Description
 
 `REVOKE` command revokes previously granted privileges from one or more roles. The key word `PUBLIC` refers to the implicitly defined group of all roles.
 
@@ -109,11 +109,11 @@ By default, when you revoke privileges on a partitioned table, Greenplum Databas
 
 When revoking membership in a role, `GRANT OPTION` is instead called `ADMIN OPTION`, but the behavior is similar. This form of the command also allows a `GRANTED BY` option, but that option is currently ignored \(except for checking the existence of the named role\). Note also that this form of the command does not allow the noise word `GROUP` in role\_specification.
 
-## Parameters 
+## Parameters
 
 See [GRANT](GRANT.html).
 
-## Notes 
+## Notes
 
 A user may revoke only those privileges directly granted by that user. If, for example, user A grants a privilege with grant option to user B, and user B has in turn granted it to user C, then user A cannot revoke the privilege directly from C. Instead, user A could revoke the grant option from user B and use the `CASCADE` option so that the privilege is in turn revoked from user C. For another example, if both A and B grant the same privilege to C, A can revoke their own grant but not B's grant, so C effectively still has the privilege.
 
@@ -127,7 +127,7 @@ If the role that runs `REVOKE` holds privileges indirectly via more than one rol
 
 Use `psql`'s `\dp` meta-command to obtain information about existing privileges for tables and columns. There are other `\d` meta-commands that you can use to display the privileges of non-table objects.
 
-## Examples 
+## Examples
 
 Revoke insert privilege for the public on table `films`:
 
@@ -147,13 +147,13 @@ Revoke membership in role `admins` from user `joe`:
 REVOKE admins FROM joe;
 ```
 
-## Compatibility 
+## Compatibility
 
 The compatibility notes of the [GRANT](GRANT.html) command also apply to `REVOKE`.
 
 Either `RESTRICT` or `CASCADE` is required according to the standard, but Greenplum Database assumes `RESTRICT` by default.
 
-## See Also 
+## See Also
 
 [ALTER DEFAULT PRIVILEGES](ALTER_DEFAULT_PRIVILEGES.html), [GRANT](GRANT.html)
 

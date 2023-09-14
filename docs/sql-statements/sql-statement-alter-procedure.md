@@ -1,8 +1,8 @@
-# ALTER PROCEDURE 
+# ALTER PROCEDURE
 
 Changes the definition of a procedure.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER PROCEDURE <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ] 
@@ -29,14 +29,14 @@ where <action> is one of:
     RESET ALL
 ```
 
-## Description 
+## Description
 
 `ALTER PROCEDURE` changes the definition of a procedure.
 
 You must own the procedure to use `ALTER PROCEDURE`. To change a procedure's schema, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the procedure's schema. \(These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the procedure. However, a superuser can alter ownership of any procedure anyway.\)
 
 
-## Parameters 
+## Parameters
 
 name
 :   The name \(optionally schema-qualified\) of an existing procedure. If no argument list is specified, the name must be unique in its schema.
@@ -74,11 +74,11 @@ value
 RESTRICT
 :   Ignored for conformance with the SQL standard.
 
-## Notes 
+## Notes
 
 Greenplum Database has limitations on the use of functions defined as `STABLE` or `VOLATILE`. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
 
-## Examples 
+## Examples
 
 To rename the procedure `insert_data` with two arguments of type `integer` to `insert_record`:
 
@@ -118,11 +118,11 @@ ALTER PROCEDURE check_password(text) RESET search_path;
 
 The procedure will now execute with whatever search path is used by its caller.
 
-## Compatibility 
+## Compatibility
 
 This statement is partially compatible with the `ALTER PROCEDURE` statement in the SQL standard. The standard allows more properties of a procedure to be modified, but does not provide the ability to rename a procedure, make a procedure a security definer, attach configuration parameter values to a procedure, or change the owner, schema, or volatility of a procedure. The standard also requires the `RESTRICT` key word, which is optional in Greenplum Database.
 
-## See Also 
+## See Also
 
 [CREATE PROCEDURE](CREATE_PROCEDURE.html), [DROP PROCEDURE](DROP_PROCEDURE.html)
 

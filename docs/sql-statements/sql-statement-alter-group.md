@@ -1,8 +1,8 @@
-# ALTER GROUP 
+# ALTER GROUP
 
 Changes a role name or membership.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 ALTER GROUP <role_specification> ADD USER <user_name> [, ... ]
@@ -18,7 +18,7 @@ where <role_specification> can be:
 ALTER GROUP <group_name> RENAME TO <new_name>
 ```
 
-## Description 
+## Description
 
 `ALTER GROUP` changes the attributes of a user group. This is an obsolete command, though still accepted for backwards compatibility, because users and groups are superseded by the more general concept of roles.
 
@@ -26,7 +26,7 @@ The first two variants add users to a group or remove them from a group. \(Any r
 
 The third variant changes the name of the group. This is exactly equivalent to renaming the role with [ALTER ROLE](ALTER_ROLE.html).
 
-## Parameters 
+## Parameters
 
 group\_name
 :   The name of the group \(role\) to modify.
@@ -37,7 +37,7 @@ user\_name
 new\_name
 :   The new name of the group.
 
-## Examples 
+## Examples
 
 To add users to a group:
 
@@ -51,11 +51,11 @@ To remove a user from a group:
 ALTER GROUP workers DROP USER beth;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `ALTER GROUP` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER ROLE](ALTER_ROLE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html)
 

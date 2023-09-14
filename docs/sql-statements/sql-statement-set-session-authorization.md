@@ -1,8 +1,8 @@
-# SET SESSION AUTHORIZATION 
+# SET SESSION AUTHORIZATION
 
 Sets the session role identifier and the current role identifier of the current session.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 SET [SESSION | LOCAL] SESSION AUTHORIZATION <rolename>
@@ -12,7 +12,7 @@ SET [SESSION | LOCAL] SESSION AUTHORIZATION DEFAULT
 RESET SESSION AUTHORIZATION
 ```
 
-## Description 
+## Description
 
 This command sets the session role identifier and the current role identifier of the current SQL-session context to be rolename. The role name may be written as either an identifier or a string literal. Using this command, it is possible, for example, to temporarily become an unprivileged user and later switch back to being a superuser.
 
@@ -22,7 +22,7 @@ The session user identifier may be changed only if the initial session user \(th
 
 The `DEFAULT` and `RESET` forms reset the session and current user identifiers to be the originally authenticated user name. These forms may be run by any user.
 
-## Parameters 
+## Parameters
 
 SESSION
 :   Specifies that the command takes effect for the current session. This is the default.
@@ -37,7 +37,7 @@ NONE
 RESET
 :   Reset the session and current role identifiers to be that of the role used to log in.
 
-## Examples 
+## Examples
 
 ```
 SELECT SESSION_USER, CURRENT_USER;
@@ -53,11 +53,11 @@ SELECT SESSION_USER, CURRENT_USER;
  paul         | paul
 ```
 
-## Compatibility 
+## Compatibility
 
 The SQL standard allows some other expressions to appear in place of the literal rolename, but these options are not important in practice. Greenplum Database allows identifier syntax \(rolename\), which SQL does not. SQL does not allow this command during a transaction; Greenplum Database does not make this restriction. The `SESSION` and `LOCAL` modifiers are a Greenplum Database extension, as is the `RESET` syntax.
 
-## See Also 
+## See Also
 
 [SET ROLE](SET_ROLE.html)
 

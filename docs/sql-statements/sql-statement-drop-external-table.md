@@ -1,18 +1,18 @@
-# DROP EXTERNAL TABLE 
+# DROP EXTERNAL TABLE
 
 Removes an external table definition.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP EXTERNAL [WEB] TABLE [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP EXTERNAL TABLE` drops an existing external table definition from the database system. The external data sources or files are not deleted. To run this command you must be the owner of the external table.
 
-## Parameters 
+## Parameters
 
 WEB
 :   Optional keyword for dropping external web tables.
@@ -29,7 +29,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the external table if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the external table named `staging` if it exists:
 
@@ -37,11 +37,11 @@ Remove the external table named `staging` if it exists:
 DROP EXTERNAL TABLE IF EXISTS staging;
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `DROP EXTERNAL TABLE` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [ALTER EXTERNAL TABLE](ALTER_EXTERNAL_TABLE.html)
 

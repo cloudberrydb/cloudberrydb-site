@@ -1,18 +1,18 @@
-# DROP POLICY 
+# DROP POLICY
 
 Removes a row-level security policy from a table.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP POLICY [ IF EXISTS ] <name> ON <table_name> [ CASCADE | RESTRICT ]
 ```
 
-## Description 
+## Description
 
 `DROP POLICY` removes the specified policy from the table. Note that if the last policy is removed for a table and the table still has row-level security enabled via `ALTER TABLE`, then the default-deny policy will be used. `ALTER TABLE ... DISABLE ROW LEVEL SECURITY` can be used to disable row-level security for a table, whether policies for the table exist or not.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the policy does not exist. A notice is issued in this case.
@@ -35,11 +35,11 @@ To drop the policy called `p1` on the table named `my_table`:
 DROP POLICY p1 ON my_table;
 ```
 
-## Compatibility 
+## Compatibility
 
 `DROP POLICY` is a Greenplum Database extension to the SQL standard.
 
-## See Also 
+## See Also
 
 [CREATE POLICY](CREATE_POLICY.html), [ALTER POLICY](ALTER_POLICY.html)
 

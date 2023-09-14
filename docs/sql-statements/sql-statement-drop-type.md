@@ -1,18 +1,18 @@
-# DROP TYPE 
+# DROP TYPE
 
 Removes a data type.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 DROP TYPE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 ```
 
-## Description 
+## Description
 
 `DROP TYPE` will remove a user-defined data type. Only the owner of a type can remove it.
 
-## Parameters 
+## Parameters
 
 IF EXISTS
 :   Do not throw an error if the type does not exist. Greenplum Database issues a notice in this case.
@@ -26,7 +26,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the type if any objects depend on it. This is the default.
 
-## Examples 
+## Examples
 
 Remove the data type `box`;
 
@@ -34,11 +34,11 @@ Remove the data type `box`;
 DROP TYPE box;
 ```
 
-## Compatibility 
+## Compatibility
 
 This command is similar to the corresponding command in the SQL standard, apart from the `IF EXISTS` option, which is a Greenplum Database extension. But note that much of the `CREATE TYPE` command and the data type extension mechanisms in Greenplum Database differ from the SQL standard.
 
-## See Also 
+## See Also
 
 [ALTER TYPE](ALTER_TYPE.html), [CREATE TYPE](CREATE_TYPE.html)
 

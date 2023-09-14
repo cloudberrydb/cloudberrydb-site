@@ -1,14 +1,14 @@
-# LISTEN 
+# LISTEN
 
 Listens for a notification.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 LISTEN <channel>
 ```
 
-## Description 
+## Description
 
 `LISTEN` registers the current session as a listener on the notification channel named channel. If the current session is already registered as a listener for this notification channel, nothing is done.
 
@@ -20,7 +20,7 @@ The method a client application must use to detect notification events depends o
 
 [NOTIFY](NOTIFY.html) contains a more extensive discussion of the use of `LISTEN` and `NOTIFY`.
 
-## Parameters 
+## Parameters
 
 channel
 :   The name of a notification channel (any identifier).
@@ -31,7 +31,7 @@ channel
 
 A transaction that has executed `LISTEN` cannot be prepared for two-phase commit.
 
-## Examples 
+## Examples
 
 Configure and execute a listen/notify sequence from `psql`:
 
@@ -41,11 +41,11 @@ NOTIFY virtual;
 Asynchronous notification "virtual" received from server process with PID 8448.
 ```
 
-## Compatibility 
+## Compatibility
 
 There is no `LISTEN` statement in the SQL standard.
 
-## See Also 
+## See Also
 
 [NOTIFY](NOTIFY.html), [UNLISTEN](UNLISTEN.html)
 

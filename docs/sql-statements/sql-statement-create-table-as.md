@@ -1,8 +1,8 @@
-# CREATE TABLE AS 
+# CREATE TABLE AS
 
 Defines a new table from the results of a query.
 
-## Synopsis 
+## Synopsis
 
 ``` {#sql_command_synopsis}
 CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXISTS ] <table_name>
@@ -18,13 +18,13 @@ CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXI
            | DISTRIBUTED REPLICATED ]
 ```
 
-## Description 
+## Description
 
 `CREATE TABLE AS` creates a table and fills it with data computed by a [SELECT](SELECT.html) command. The table columns have the names and data types associated with the output columns of the `SELECT`, however you can override the column names by giving an explicit list of new column names.
 
 `CREATE TABLE AS` creates a new table and evaluates the query just once to fill the new table initially. The new table will not track subsequent changes to the source tables of the query.
 
-## Parameters 
+## Parameters
 
 GLOBAL \| LOCAL
 :   Ignored for compatibility. These keywords are deprecated; refer to [CREATE TABLE](CREATE_TABLE.html) for details.
@@ -76,13 +76,13 @@ DISTRIBUTED REPLICATED
 :   Used to declare the Greenplum Database distribution policy for the table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
 
 
-## Notes 
+## Notes
 
 This command is functionally similar to [SELECT INTO](SELECT_INTO.html), but it is preferred since it is less likely to be confused with other uses of the `SELECT INTO` syntax. Furthermore, `CREATE TABLE AS` offers a superset of the functionality offered by `SELECT INTO`.
 
 `CREATE TABLE AS` can be used for fast data loading from external table data sources. See [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html).
 
-## Examples 
+## Examples
 
 Create a new table `films_recent` consisting of only recent entries from the table `films`:
 
@@ -107,7 +107,7 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
   EXECUTE recentfilms('2020-01-01');
 ```
 
-## Compatibility 
+## Compatibility
 
 `CREATE TABLE AS` conforms to the SQL standard, with the following exceptions:
 
@@ -117,7 +117,7 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
 -   The `WITH` clause is a Greenplum Database extension; storage parameters are not part of the standard.
 -   The Greenplum Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
 
-## See Also 
+## See Also
 
 [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html), [CREATE TABLE](CREATE_TABLE.html), [EXECUTE](EXECUTE.html), [SELECT](SELECT.html), [SELECT INTO](SELECT_INTO.html), [VALUES](VALUES.html)
 
