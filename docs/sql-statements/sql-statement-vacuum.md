@@ -31,7 +31,7 @@ With append-optimized tables, `VACUUM` compacts a table by first vacuuming the i
 
 When the option list is surrounded by parentheses, the options can be written in any order. Without parentheses, options must be specified in exactly the order shown above. The parenthesized syntax was added in Cloudberry Database 6.0; the unparenthesized syntax is deprecated.
 
-> **Important** For information on the use of `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE`, see [Notes](#section6).
+> **Important**: For information on the use of `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE`, see [Notes](#section6).
 
 **Outputs**
 
@@ -63,13 +63,13 @@ INDEX_CLEANUP
 AO_AUX_ONLY
 :   Runs `VACUUM` against all auxiliary tables of an append-optimized table. It does not run `VACUUM` against the append-optimized table. If run against a non append-optimized table without any child partitions, no action takes place. If run against a heap table with an append-optimized partition, it vacuums the auxiliary tables of this partition.
 
-<ao_table>
+`<ao_table>`
 :    The name of a table to vacuum its auxiliary tables, ideally an append-optimized table.
 
-<table>
+`<table>`
 :   The name (optionally schema-qualified) of a specific table to vacuum. Defaults to all tables in the current database.
 
-<column>
+`<column>`
 :   The name of a specific column to analyze. Defaults to all columns. If a column list is specified, `ANALYZE` is implied.
 
 ## Notes
@@ -95,8 +95,6 @@ As an alternative to `VACUUM FULL`, you can re-create the table with a `CREATE T
 For append-optimized tables, `VACUUM` requires enough available disk space to accommodate the new segment file during the `VACUUM` process. If the ratio of hidden rows to total rows in a segment file is less than a threshold value (10, by default), the segment file is not compacted. The threshold value can be configured with the `gp_appendonly_compaction_threshold` server configuration parameter. `VACUUM FULL` ignores the threshold and rewrites the segment file regardless of the ratio. `VACUUM` can be deactivated for append-optimized tables using the `gp_appendonly_compaction` server configuration parameter. See Server Configuration Parameters for information about the server configuration parameters.
 
 If a concurrent serializable transaction is detected when an append-optimized table is being vacuumed, the current and subsequent segment files are not compacted. If a segment file has been compacted but a concurrent serializable transaction is detected in the transaction that drops the original segment file, the drop is skipped. This could leave one or two segment files in an "awaiting drop" state after the vacuum has completed.
-
-For more information about concurrency control in Cloudberry Database, see "Routine System Maintenance Tasks" in *Cloudberry Database Administrator Guide*.
 
 ## Examples
 
@@ -131,6 +129,3 @@ There is no `VACUUM` statement in the SQL standard.
 ## See Also
 
 [ANALYZE](/docs/sql-statements/sql-statement-analyze.md)
-
-
-
