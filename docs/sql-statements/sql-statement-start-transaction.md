@@ -25,11 +25,11 @@ Refer to [SET TRANSACTION](SET_TRANSACTION.html) for information on the meaning 
 
 ## Compatibility
 
-In the standard, it is not necessary to issue `START TRANSACTION` to start a transaction block: any SQL command implicitly begins a block. Greenplum Database's behavior can be seen as implicitly issuing a `COMMIT` after each command that does not follow `START TRANSACTION` \(or `BEGIN`\), and it is therefore often called 'autocommit'. Other relational database systems may offer an autocommit feature as a convenience.
+In the standard, it is not necessary to issue `START TRANSACTION` to start a transaction block: any SQL command implicitly begins a block. Greenplum Database's behavior can be seen as implicitly issuing a `COMMIT` after each command that does not follow `START TRANSACTION` (or `BEGIN`), and it is therefore often called 'autocommit'. Other relational database systems may offer an autocommit feature as a convenience.
 
-The `DEFERRABLE` transaction\_mode is a Greenplum Database language extension.
+The `DEFERRABLE` transaction_mode is a Greenplum Database language extension.
 
-The SQL standard requires commas between successive transaction\_modes, but for historical reasons Greenplum Database allows the commas to be omitted.
+The SQL standard requires commas between successive transaction_modes, but for historical reasons Greenplum Database allows the commas to be omitted.
 
 See also the compatibility section of [SET TRANSACTION](SET_TRANSACTION.html).
 

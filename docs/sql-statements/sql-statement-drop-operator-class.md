@@ -20,20 +20,20 @@ IF EXISTS
 :   Do not throw an error if the operator class does not exist. A notice is issued in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing operator class.
+:   The name (optionally schema-qualified) of an existing operator class.
 
-index\_method
+index_method
 :   The name of the index access method the operator class is for.
 
 CASCADE
-:   Automatically drop objects that depend on the operator class \(such as indexes\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the operator class (such as indexes), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the operator class if any objects depend on it. This is the default.
 
 ## Notes
 
-`DROP OPERATOR CLASS` will not drop the operator family containing the class, even if there is nothing else left in the family \(in particular, in the case where the family was implicitly created by `CREATE OPERATOR CLASS`\). An empty operator family is harmless, but for the sake of tidiness you might wish to remove the family with `DROP OPERATOR FAMILY`; or perhaps better, use `DROP OPERATOR FAMILY` in the first place.
+`DROP OPERATOR CLASS` will not drop the operator family containing the class, even if there is nothing else left in the family (in particular, in the case where the family was implicitly created by `CREATE OPERATOR CLASS`). An empty operator family is harmless, but for the sake of tidiness you might wish to remove the family with `DROP OPERATOR FAMILY`; or perhaps better, use `DROP OPERATOR FAMILY` in the first place.
 
 ## Examples
 

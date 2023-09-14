@@ -24,11 +24,11 @@ Only superusers can define new access methods.
 name
 :   The name of the access method to create.
 
-access\_method\_type
+access_method_type
 :   The type of access method to define. Only `TABLE` and `INDEX` types are supported at present.
 
-handler\_function
-:   handler\_function is the name \(possibly schema-qualified\) of a previously registered function that represents the access method. The handler function must be declared to take a single argument of type `internal`, and its return type depends on the type of access method; for `TABLE` access methods, it must be `table_am_handler` and for `INDEX` access methods, it must be `index_am_handler`. The C-level API that the handler function must implement varies depending on the type of access method. The table access method API is described in [Table Access Method Interface Definition](https://www.postgresql.org/docs/12/tableam.html) in the PostgreSQL documentation. The index access method API is described in [Index Access Method Interface Definition](https://www.postgresql.org/docs/12/indexam.html).
+handler_function
+:   handler_function is the name (possibly schema-qualified) of a previously registered function that represents the access method. The handler function must be declared to take a single argument of type `internal`, and its return type depends on the type of access method; for `TABLE` access methods, it must be `table_am_handler` and for `INDEX` access methods, it must be `index_am_handler`. The C-level API that the handler function must implement varies depending on the type of access method. The table access method API is described in [Table Access Method Interface Definition](https://www.postgresql.org/docs/12/tableam.html) in the PostgreSQL documentation. The index access method API is described in [Index Access Method Interface Definition](https://www.postgresql.org/docs/12/indexam.html).
 
 ## Examples
 

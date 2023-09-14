@@ -1,6 +1,6 @@
 # CREATE ROLE
 
-Defines a new database role \(user or group\).
+Defines a new database role (user or group).
 
 ## Synopsis
 
@@ -55,21 +55,21 @@ NOSUPERUSER
 
 CREATEDB
 NOCREATEDB
-:   These clauses define a role's ability to create databases. If `CREATEDB` is specified, the role being defined will be allowed to create new databases. Specifying `NOCREATEDB` \(the default\) will deny a role the ability to create databases.
+:   These clauses define a role's ability to create databases. If `CREATEDB` is specified, the role being defined will be allowed to create new databases. Specifying `NOCREATEDB` (the default) will deny a role the ability to create databases.
 
 CREATEROLE
 NOCREATEROLE
-:   These clauses determine whether a role will be permitted to create new roles (that is, execute `CREATE ROLE`). If `CREATEROLE` is specified, the role being defined will be allowed to create new roles, alter other roles, and drop other roles. `NOCREATEROLE` \(the default\) will deny a role the ability to create roles or modify roles other than their own.
+:   These clauses determine whether a role will be permitted to create new roles (that is, execute `CREATE ROLE`). If `CREATEROLE` is specified, the role being defined will be allowed to create new roles, alter other roles, and drop other roles. `NOCREATEROLE` (the default) will deny a role the ability to create roles or modify roles other than their own.
 
 CREATEEXTTABLE
 NOCREATEEXTTABLE
-:   If `CREATEEXTTABLE` is specified, the role being defined is allowed to create external tables. The default `type` is `readable` and the default `protocol` is `gpfdist`, if not specified. Valid types are `gpfdist`, `gpfdists`, `http`, and `https`. `NOCREATEEXTTABLE` \(the default type\) denies the role the ability to create external tables. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.
+:   If `CREATEEXTTABLE` is specified, the role being defined is allowed to create external tables. The default `type` is `readable` and the default `protocol` is `gpfdist`, if not specified. Valid types are `gpfdist`, `gpfdists`, `http`, and `https`. `NOCREATEEXTTABLE` (the default type) denies the role the ability to create external tables. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.
 
 :   Use the `GRANT...ON PROTOCOL` command to allow users to create and use external tables with a custom protocol type, including the `s3` and `pxf` protocols included with Greenplum Database.
 
 INHERIT
 NOINHERIT
-:   These clauses determine whether a role "inherits" the privileges of roles it is a member of. If specified, `INHERIT` \(the default\) allows the role to use whatever database privileges have been granted to all roles it is directly or indirectly a member of. With `NOINHERIT`, membership in another role only grants the ability to `SET ROLE` to that other role; the privileges of the other role are only available after having done so.
+:   These clauses determine whether a role "inherits" the privileges of roles it is a member of. If specified, `INHERIT` (the default) allows the role to use whatever database privileges have been granted to all roles it is directly or indirectly a member of. With `NOINHERIT`, membership in another role only grants the ability to `SET ROLE` to that other role; the privileges of the other role are only available after having done so.
 
 LOGIN
 NOLOGIN
@@ -77,11 +77,11 @@ NOLOGIN
 
 REPLICATION
 NOREPLICATION
-:   These clauses determine whether a role is a replication role. A role must have this attribute \(or be a superuser\) in order to be able to connect to the server in replication mode \(physical or logical replication\) and in order to be able to create or drop replication slots. A role having the `REPLICATION` attribute is a very highly privileged role, and should only be used on roles actually used for replication. If not specified, `NOREPLICATION` is the default. You must be a superuser to create a new role having the `REPLICATION` attribute.
+:   These clauses determine whether a role is a replication role. A role must have this attribute (or be a superuser) in order to be able to connect to the server in replication mode (physical or logical replication) and in order to be able to create or drop replication slots. A role having the `REPLICATION` attribute is a very highly privileged role, and should only be used on roles actually used for replication. If not specified, `NOREPLICATION` is the default. You must be a superuser to create a new role having the `REPLICATION` attribute.
 
 BYPASSRLS
 NOBYPASSRLS
-:   These clauses determine whether a role bypasses every row-level security \(RLS\) policy. `NOBYPASSRLS` is the default. You must be a superuser to create a new role having the `BYPASSRLS` attribute.
+:   These clauses determine whether a role bypasses every row-level security (RLS) policy. `NOBYPASSRLS` is the default. You must be a superuser to create a new role having the `BYPASSRLS` attribute.
 
 :   Note that `pg_dump` will set row_security to `OFF` by default, to ensure all contents of a table are dumped out. If the user running `pg_dump` does not have appropriate permissions, an error will be returned. However, superusers and the owner of the table being dumped always bypass RLS.
 
@@ -90,32 +90,32 @@ CONNECTION LIMIT connlimit
 
 [ ENCRYPTED ] PASSWORD 'password'
 PASSWORD NULL
-:   Sets the role's password. \(A password is only of use for roles having the `LOGIN` attribute, but you can nonetheless define one for roles without it.\) If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.
+:   Sets the role's password. (A password is only of use for roles having the `LOGIN` attribute, but you can nonetheless define one for roles without it.) If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.
     <div class="note><b>Note:</b>  Specifying an empty string will also set the password to null, but that was not the case before Greenplum Database version 7. In earlier versions, an empty string could be used, or not, depending on the authentication method and the exact version, and `libpq` would refuse to use it in any case. To avoid the ambiguity, specifying an empty string should be avoided.</div>
-:   The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption` \(since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format\). This allows reloading of encrypted passwords during dump/restore.
+:   The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption` (since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format). This allows reloading of encrypted passwords during dump/restore.
 
 VALID UNTIL 'timestamp'
 :   The VALID UNTIL clause sets a date and time after which the role's password is no longer valid. If this clause is omitted the password will never expire.
 
-IN ROLE role\_name
-:   Adds the new role as a member of the named roles. \(Note that there is no option to add the new role as an administrator; use a separate `GRANT` command to do that.\)
+IN ROLE role_name
+:   Adds the new role as a member of the named roles. (Note that there is no option to add the new role as an administrator; use a separate `GRANT` command to do that.)
 
-IN GROUP role\_name
+IN GROUP role_name
 :   `IN GROUP` is an obsolete spelling of `IN ROLE`.
 
-ROLE role\_name
-:   Adds the named roles as members of this role. \(This in effect makes the new role a "group".\)
+ROLE role_name
+:   Adds the named roles as members of this role. (This in effect makes the new role a "group".)
 
 ADMIN rolename
 :   The `ADMIN` clause is like `ROLE`, but the named roles are added to the new role `WITH ADMIN OPTION`, giving them the right to grant membership in this role to others.
 
-USER role\_name
+USER role_name
 :   The `USER` clause is an obsolete spelling of the `ROLE` clause.
 
 SYSID uid
 :   The `SYSID` clause is ignored, but is accepted for backwards compatibility.
 
-RESOURCE GROUP group\_name
+RESOURCE GROUP group_name
 :   The name of the resource group to assign to the new role. The role will be subject to the concurrent transaction, memory, and CPU limits configured for the resource group. You can assign a single resource group to one or more roles.
 
 :   If you do not specify a resource group for a new role, the role is automatically assigned the default resource group for the role's capability, `admin_group` for `SUPERUSER` roles, `default_group` for non-admin roles.
@@ -126,14 +126,14 @@ RESOURCE GROUP group\_name
 
 :   You cannot assign a resource group that you create for an external component to a role.
 
-RESOURCE QUEUE queue\_name
+RESOURCE QUEUE queue_name
 :   The name of the resource queue to which the new user-level role is to be assigned. Only roles with `LOGIN` privilege can be assigned to a resource queue. The special keyword `NONE` means that the role is assigned to the default resource queue. A role can only belong to one resource queue.
 
 :   Roles with the `SUPERUSER` attribute are exempt from resource queue limits. For a superuser role, queries always run immediately regardless of limits imposed by an assigned resource queue.
 
-DENY deny\_point
-DENY BETWEEN deny\_point AND deny\_point
-:   The `DENY` and `DENY BETWEEN` keywords set time-based constraints that are enforced at login. `DENY` sets a day or a day and time to deny access. `DENY BETWEEN` sets an interval during which access is denied. Both use the parameter deny\_point that has the following format:
+DENY deny_point
+DENY BETWEEN deny_point AND deny_point
+:   The `DENY` and `DENY BETWEEN` keywords set time-based constraints that are enforced at login. `DENY` sets a day or a day and time to deny access. `DENY BETWEEN` sets an interval during which access is denied. Both use the parameter deny_point that has the following format:
 
 ```
 DAY day [ TIME 'time' ]
@@ -154,7 +154,7 @@ For `time`:
 { 00-23 : 00-59 | 01-12 : 00-59 { AM | PM }}
 ```
 
-The `DENY BETWEEN` clause uses two deny\_point parameters:
+The `DENY BETWEEN` clause uses two deny_point parameters:
 
 ```
 DENY BETWEEN <deny_point> AND <deny_point>
@@ -168,13 +168,13 @@ The preferred way to add and remove role members of roles is to use [GRANT](GRAN
 
 The `VALID UNTIL` clause defines an expiration time for a password only, not for the role *per se*. The expiration time is not enforced when logging in using a non-password-based authentication method.
 
-The `INHERIT` attribute governs inheritance of grantable privileges \(access privileges for database objects and role memberships\). It does not apply to the special role attributes set by `CREATE ROLE` and `ALTER ROLE`. For example, being a member of a role with `CREATEDB` privilege does not immediately grant the ability to create databases, even if `INHERIT` is set; it would be necessary to become that role via [SET ROLE](SET_ROLE.html) before creating a database.
+The `INHERIT` attribute governs inheritance of grantable privileges (access privileges for database objects and role memberships). It does not apply to the special role attributes set by `CREATE ROLE` and `ALTER ROLE`. For example, being a member of a role with `CREATEDB` privilege does not immediately grant the ability to create databases, even if `INHERIT` is set; it would be necessary to become that role via [SET ROLE](SET_ROLE.html) before creating a database.
 
 The `INHERIT` attribute is the default for reasons of backwards compatibility. In prior releases of Greenplum Database, users always had access to all privileges of groups they were members of. However, `NOINHERIT` provides a closer match to the semantics specified in the SQL standard.
 
-Be careful with the `CREATEROLE` privilege. There is no concept of inheritance for the privileges of a `CREATEROLE`-role. That means that even if a role does not have a certain privilege but is allowed to create other roles, it can easily create another role with different privileges than its own \(except for creating roles with superuser privileges\). For example, if a role has the `CREATEROLE` privilege but not the `CREATEDB` privilege, it can create a new role with the `CREATEDB` privilege. Therefore, regard roles that have the `CREATEROLE` privilege as almost-superuser-roles.
+Be careful with the `CREATEROLE` privilege. There is no concept of inheritance for the privileges of a `CREATEROLE`-role. That means that even if a role does not have a certain privilege but is allowed to create other roles, it can easily create another role with different privileges than its own (except for creating roles with superuser privileges). For example, if a role has the `CREATEROLE` privilege but not the `CREATEDB` privilege, it can create a new role with the `CREATEDB` privilege. Therefore, regard roles that have the `CREATEROLE` privilege as almost-superuser-roles.
 
-Greenplum Database includes a program [createuser](../../utility_guide/ref/createuser.html) that has the same functionality as `CREATE ROLE` \(in fact, it calls this command\) but can be run from the command shell.
+Greenplum Database includes a program [createuser](../../utility_guide/ref/createuser.html) that has the same functionality as `CREATE ROLE` (in fact, it calls this command) but can be run from the command shell.
 
 The `CONNECTION LIMIT` option is only enforced approximately; if two new sessions start at about the same time when just one connection "slot" remains for the role, it is possible that both will fail. Also, the limit is never enforced for superusers.
 
@@ -194,7 +194,7 @@ Create a role with a password:
 CREATE USER davide WITH PASSWORD 'jw8s0F4';
 ```
 
-\(`CREATE USER` is the same as `CREATE ROLE` except that it implies `LOGIN`.\)
+(`CREATE USER` is the same as `CREATE ROLE` except that it implies `LOGIN`.)
 
 Create a role with a password that is valid until the end of 2022:
 

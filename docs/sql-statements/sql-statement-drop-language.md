@@ -24,7 +24,7 @@ name
 :   The name of an existing procedural language. For backward compatibility, the name may be enclosed by single quotes.
 
 CASCADE
-:   Automatically drop objects that depend on the language \(such as functions written in that language\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the language (such as functions written in that language), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the language if any objects depend on it. This is the default.

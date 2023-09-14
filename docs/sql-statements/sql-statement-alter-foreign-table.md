@@ -48,7 +48,7 @@ where <action> is one of:
 ADD COLUMN
 :   This form adds a new column to the foreign table, using the same syntax as [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html). Unlike the case when you add a column to a regular table, nothing happens to the underlying storage: this action simply declares that some new column is now accessible through the foreign table.
 
-DROP COLUMN \[ IF EXISTS \]
+DROP COLUMN [ IF EXISTS ]
 :   This form drops a column from a foreign table. You must specify `CASCADE` if any objects outside of the table depend on the column; for example, views. If you specify `IF EXISTS` and the column does not exist, no error is thrown. In this case, Greenplum Database issues a notice instead.
 
 IF EXISTS
@@ -66,16 +66,16 @@ SET/DROP NOT NULL
 SET STATISTICS
 :   This form sets the per-column statistics-gathering target for subsequent `ANALYZE` operations. See the similar form of [ALTER TABLE](ALTER_TABLE.html) for more details.
 
-SET \( attribute\_option = value \[, ...\] \] \)
-RESET \( attribute\_option \[, ... \] \)
+SET ( attribute_option = value [, ...] ] )
+RESET ( attribute_option [, ... ] )
 :   This form sets or resets per-attribute options. See the similar form of [ALTER TABLE](ALTER_TABLE.html) for more details.
 
 SET STORAGE
 :   This form sets the storage mode for a column. See the similar form of [ALTER TABLE](ALTER_TABLE.html) for more details. Note that the storage mode has no effect unless the table's foreign-data wrapper chooses to pay attention to it.
 
-ADD table\_constraint [ NOT VALID ]
+ADD table_constraint [ NOT VALID ]
 :   This form adds a new constraint to a foreign table, using the same syntax as [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html). Currently only `CHECK` constraints are supported.
-:   Unlike the case when adding a constraint to a regular table, nothing is done to verify the constraint is correct; rather, this action simply declares that some new condition should be assumed to hold for all rows in the foreign table. \(See the discussion in [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html).\) If the constraint is marked `NOT VALID`, then it isn't assumed to hold, but is only recorded for possible future use.
+:   Unlike the case when adding a constraint to a regular table, nothing is done to verify the constraint is correct; rather, this action simply declares that some new condition should be assumed to hold for all rows in the foreign table. (See the discussion in [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html).) If the constraint is marked `NOT VALID`, then it isn't assumed to hold, but is only recorded for possible future use.
 
 VALIDATE CONSTRAINT
 :   This form marks as valid a constraint that was previously marked as `NOT VALID`. No action is taken to verify the constraint, but future queries will assume that it holds.
@@ -83,16 +83,16 @@ VALIDATE CONSTRAINT
 DROP CONSTRAINT [ IF EXISTS ]
 :   This form drops the specified constraint on a foreign table. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. In this case a notice is issued instead.
 
-DISABLE/ENABLE \[ REPLICA \| ALWAYS \] TRIGGER
-:   These forms configure the firing of trigger\(s\) belonging to the foreign table. See the similar form of [ALTER TABLE](ALTER_TABLE.html) for more details.
+DISABLE/ENABLE [ REPLICA | ALWAYS ] TRIGGER
+:   These forms configure the firing of trigger(s) belonging to the foreign table. See the similar form of [ALTER TABLE](ALTER_TABLE.html) for more details.
 
 SET WITHOUT OIDS
 :   Backward compatibility syntax for removing the oid system column. As oid system columns cannot be added anymore, this never has an effect.
 
-INHERIT parent\_table
+INHERIT parent_table
 :   This form adds the target foreign table as a new child of the specified parent table. See the similar form of [ALTER TABLE](ALTER_TABLE.html) for more details.
 
-NO INHERIT parent\_table
+NO INHERIT parent_table
 :   This form removes the target foreign table from the list of children of the specified parent table.
 
 OWNER
@@ -104,60 +104,60 @@ RENAME
 SET SCHEMA
 :   This form moves the foreign table into another schema.
 
-OPTIONS \( \[ ADD \| SET \| DROP \] option \['value'\] \[, ... \] \)
-:   Change options for the foreign table. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique \(although it's OK for a table option and a column option to have the same name\). Greenplum Database also validates names and values using the server's foreign-data wrapper.
+OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
+:   Change options for the foreign table. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique (although it's OK for a table option and a column option to have the same name). Greenplum Database also validates names and values using the server's foreign-data wrapper.
 
 You can combine all of the actions except `RENAME` and `SET SCHEMA` into a list of multiple alterations for Greenplum Database to apply in parallel. For example, it is possible to add several columns and/or alter the type of several columns in a single command.
 
 If the command is written as `ALTER FOREIGN TABLE IF EXISTS ...` and the foreign table does not exist, no error is thrown. A notice is issued in this case.
 
-You must own the table to use `ALTER FOREIGN TABLE`. To change the schema of a foreign table, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the table's schema. \(These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the table. However, a superuser can alter ownership of any table anyway.\) To add a column or to alter a column type, you must also have `USAGE` privilege on the data type.
+You must own the table to use `ALTER FOREIGN TABLE`. To change the schema of a foreign table, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the table's schema. (These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the table. However, a superuser can alter ownership of any table anyway.) To add a column or to alter a column type, you must also have `USAGE` privilege on the data type.
 
 ## Parameters
 
 name
-:   The name \(possibly schema-qualified\) of an existing foreign table to alter. If `ONLY` is specified before the table name, only that table is altered. If `ONLY` is not specified, the table and all its descendant tables \(if any\) are altered. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
+:   The name (possibly schema-qualified) of an existing foreign table to alter. If `ONLY` is specified before the table name, only that table is altered. If `ONLY` is not specified, the table and all its descendant tables (if any) are altered. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
 
-column\_name
+column_name
 :   The name of a new or existing column.
 
-new\_column\_name
+new_column_name
 :   The new name for an existing column.
 
-new\_name
+new_name
 :   The new name for the foreign table.
 
-data\_type
+data_type
 :   The data type of the new column, or new data type for an existing column.
 
-table\_constraint
+table_constraint
 :   The new table constraint for the foreign table.
 
-constraint\_name
+constraint_name
 :   The name of an existing constraint to validate or drop.
 
 CASCADE
-:   Automatically drop objects that depend on the dropped column or constraint \(for example, views referencing the column\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the dropped column or constraint (for example, views referencing the column), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
 
-trigger\_name
+trigger_name
 :   Name of a single trigger to deactivate or enable.
 
 ALL
-:   Deactivate or activate all triggers belonging to the foreign table. \(This requires superuser privilege if any of the triggers are internally generated triggers. The core system does not add such triggers to foreign tables, but add-on code could do so.\)
+:   Deactivate or activate all triggers belonging to the foreign table. (This requires superuser privilege if any of the triggers are internally generated triggers. The core system does not add such triggers to foreign tables, but add-on code could do so.)
 
 USER
 :   Deactivate or activate all triggers belonging to the foreign table except for internally generated triggers.
 
-parent\_table
+parent_table
 :   A parent table to associate or de-associate with this foreign table.
 
-new\_owner
+new_owner
 :   The user name of the new owner of the foreign table.
 
-new\_schema
+new_schema
 :   The name of the schema to which the foreign table will be moved.
 
 ## Notes

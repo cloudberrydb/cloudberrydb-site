@@ -20,8 +20,8 @@ IF EXISTS
 name
 :   The name of the rule to remove.
 
-table\_name
-:   The name \(optionally schema-qualified\) of the table or view that the rule applies to.
+table_name
+:   The name (optionally schema-qualified) of the table or view that the rule applies to.
 
 CASCADE
 :   Automatically drop objects that depend on the rule, and in turn all objects that depend on those objects.

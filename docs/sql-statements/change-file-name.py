@@ -23,5 +23,5 @@ def process_directory(directory_path):
 
 # 主程序入口
 if __name__ == '__main__':
-    directory_path = "/Users/hashdata/Documents/GitHub/upstream/cloudberrydb-site/docs/sql-statements"  # 指定目录
+    directory_path = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-statements"  # 指定目录
     process_directory(directory_path)

@@ -20,10 +20,10 @@ The owner of a foreign server can drop user mappings for that server for any use
 IF EXISTS
 :   Do not throw an error if the user mapping does not exist. Greenplum Database issues a notice in this case.
 
-user\_name
+user_name
 :   User name of the mapping. `CURRENT_USER` and `USER` match the name of the current user. `PUBLIC` is used to match all present and future user names in the system.
 
-server\_name
+server_name
 :   Server name of the user mapping.
 
 ## Examples
@@ -36,7 +36,7 @@ DROP USER MAPPING IF EXISTS FOR bob SERVER foo;
 
 ## Compatibility
 
-`DROP SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\). The `IF EXISTS` clause is a Greenplum Database extension.
+`DROP SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Greenplum Database extension.
 
 ## See Also
 

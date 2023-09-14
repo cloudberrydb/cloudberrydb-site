@@ -18,7 +18,7 @@ DECLARE <name> [BINARY] [INSENSITIVE] [NO SCROLL] [PARALLEL RETRIEVE] CURSOR
 
 Normal cursors return data in text format, the same as a `SELECT` would produce. Since data is stored natively in binary format, the system must do a conversion to produce the text format. Once the information comes back in text form, the client application may need to convert it to a binary format to manipulate it. In addition, data in the text format is often larger in size than in the binary format. Binary cursors return the data in a binary representation that may be more easily manipulated. Nevertheless, if you intend to display the data as text anyway, retrieving it in text form will save you some effort on the client side.
 
-As an example, if a query returns a value of one from an integer column, you would get a string of 1 with a default cursor whereas with a binary cursor you would get a 4-byte field containing the internal representation of the value \(in big-endian byte order\).
+As an example, if a query returns a value of one from an integer column, you would get a string of 1 with a default cursor whereas with a binary cursor you would get a 4-byte field containing the internal representation of the value (in big-endian byte order).
 
 Binary cursors should be used carefully. Many applications, including `psql`, are not prepared to handle binary cursors and expect data to come back in the text format.
 
@@ -45,10 +45,10 @@ BINARY
     > **Note** Greenplum Database ignores the `BINARY` clause when you declare a `PARALLEL RETRIEVE` cursor.
 
 INSENSITIVE
-:   Indicates that data retrieved from the cursor should be unaffected by updates to the table\(s\) underlying the cursor that occur after the cursor is created. In Greenplum Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
+:   Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Greenplum Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
 
 NO SCROLL
-:   The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Greenplum Database; scrollable cursors \(`SCROLL`\) are not supported.
+:   The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Greenplum Database; scrollable cursors (`SCROLL`) are not supported.
 
 PARALLEL RETRIEVE
 :   Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Greenplum Database segments, in parallel.
@@ -81,9 +81,9 @@ The key words `BINARY`, `INSENSITIVE`, and `NO SCROLL` can appear in any order.
 
 ## Notes
 
-Unless `WITH HOLD` is specified, the cursor created by this command can only be used within the current transaction. Thus, `DECLARE` without `WITH HOLD` is useless outside a transaction block: the cursor would survive only to the completion of the statement. Therefore Greenplum Database reports an error if this command is used outside a transaction block. Use `BEGIN` and `COMMIT` \(or `ROLLBACK`\) to define a transaction block.
+Unless `WITH HOLD` is specified, the cursor created by this command can only be used within the current transaction. Thus, `DECLARE` without `WITH HOLD` is useless outside a transaction block: the cursor would survive only to the completion of the statement. Therefore Greenplum Database reports an error if this command is used outside a transaction block. Use `BEGIN` and `COMMIT` (or `ROLLBACK`) to define a transaction block.
 
-If `WITH HOLD` is specified and the transaction that created the cursor successfully commits, the cursor can continue to be accessed by subsequent transactions in the same session. \(But if the creating transaction ends prematurely, the cursor is removed.\) A cursor created with `WITH HOLD` is closed when an explicit `CLOSE` command is issued on it, or the session ends. In the current implementation, the rows represented by a held cursor are copied into a temporary file or memory area so that they remain available for subsequent transactions.
+If `WITH HOLD` is specified and the transaction that created the cursor successfully commits, the cursor can continue to be accessed by subsequent transactions in the same session. (But if the creating transaction ends prematurely, the cursor is removed.) A cursor created with `WITH HOLD` is closed when an explicit `CLOSE` command is issued on it, or the session ends. In the current implementation, the rows represented by a held cursor are copied into a temporary file or memory area so that they remain available for subsequent transactions.
 
 If you create a cursor with the `DECLARE` command in a transaction, you cannot use the `SET` command in the transaction until you close the cursor with the `CLOSE` command.
 
@@ -91,7 +91,7 @@ Scrollable cursors are not currently supported in Greenplum Database. You can on
 
 `DECLARE...FOR UPDATE` is not supported with append-optimized tables.
 
-You can see all available cursors by querying the [pg\_cursors](../system_catalogs/catalog_ref-views.html#pg_cursors) system view.
+You can see all available cursors by querying the [pg_cursors](../system_catalogs/catalog_ref-views.html#pg_cursors) system view.
 
 ## Examples
 
@@ -113,7 +113,7 @@ SQL standard allows cursors only in embedded SQL and in modules. Greenplum Datab
 
 Greenplum Database does not implement an `OPEN` statement for cursors. A cursor is considered to be open when it is declared.
 
-The SQL standard allows cursors to move both forward and backward. All Greenplum Database cursors are forward moving only \(not scrollable\).
+The SQL standard allows cursors to move both forward and backward. All Greenplum Database cursors are forward moving only (not scrollable).
 
 Binary cursors are a Greenplum Database extension.
 

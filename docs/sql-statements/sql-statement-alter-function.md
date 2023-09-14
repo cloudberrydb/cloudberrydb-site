@@ -41,12 +41,12 @@ where <action> is one of:
 
 `ALTER FUNCTION` changes the definition of a function.
 
-You must own the function to use `ALTER FUNCTION`. To change a function's schema, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the function's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the function. However, a superuser can alter ownership of any function anyway.\)
+You must own the function to use `ALTER FUNCTION`. To change a function's schema, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the function's schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the function. However, a superuser can alter ownership of any function anyway.)
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing function. If no argument list is specified, the name must be unique in its schema.
+:   The name (optionally schema-qualified) of an existing function. If no argument list is specified, the name must be unique in its schema.
 
 argmode
 :   The mode of an argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `ALTER FUNCTION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
@@ -55,18 +55,18 @@ argname
 :   The name of an argument. Note that [ALTER FUNCTION](ALTER_FUNCTION.html) does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
 
 argtype
-:   The data type\(s\) of the function's arguments \(optionally schema-qualified\), if any.
+:   The data type(s) of the function's arguments (optionally schema-qualified), if any.
 
-new\_name
+new_name
 :   The new name of the function.
 
-new\_owner
+new_owner
 :   The new owner of the function. Note that if the function is marked `SECURITY DEFINER`, it will subsequently run as the new owner.
 
-new\_schema
+new_schema
 :   The new schema for the function.
 
-extension\_name
+extension_name
 :   The name of the extension that the function is to depend on.
 
 CALLED ON NULL INPUT
@@ -79,8 +79,8 @@ STABLE
 VOLATILE
 :   Change the volatility of the function to the specified setting. See [CREATE FUNCTION](CREATE_FUNCTION.html) for details.
 
-\[ EXTERNAL \] SECURITY INVOKER
-\[ EXTERNAL \] SECURITY DEFINER
+[ EXTERNAL ] SECURITY INVOKER
+[ EXTERNAL ] SECURITY DEFINER
 :   Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information about this capability.
 
 PARALLEL
@@ -93,9 +93,9 @@ EXECUTE ON ANY
 EXECUTE ON COORDINATOR
 EXECUTE ON ALL SEGMENTS
 EXECUTE ON INITPLAN
-:   The `EXECUTE ON` attributes specify where \(coordinator or segment instance\) a function runs when it is invoked during the query execution process.
+:   The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
 
-:   `EXECUTE ON ANY` \(the default\) indicates that the function can be run on the coordinator, or any segment instance, and it returns the same result regardless of where it is run. Greenplum Database determines where the function runs.
+:   `EXECUTE ON ANY` (the default) indicates that the function can be run on the coordinator, or any segment instance, and it returns the same result regardless of where it is run. Greenplum Database determines where the function runs.
 
 :   `EXECUTE ON COORDINATOR` indicates that the function must run only on the coordinator instance.
 
@@ -105,17 +105,17 @@ EXECUTE ON INITPLAN
 
 :   For more information about the `EXECUTE ON` attributes, see [CREATE FUNCTION](CREATE_FUNCTION.html).
 
-COST execution\_cost
+COST execution_cost
 :   Change the estimated execution cost of the function. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
 
-ROWS result\_rows
+ROWS result_rows
 :   Change the estimated number of rows returned by a set-returning function. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
 
-SUPPORT support\_function
+SUPPORT support_function
 :   Set or change the planner support function to use for this function. You must be superuser to use this option.
 :   This option cannot be used to remove the support function altogether, since it must name a new support function. Use `CREATE OR REPLACE FUNCTION` if you require that.
 
-configuration\_parameter
+configuration_parameter
 value
 :   Set or change the value of a configuration parameter when the function is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the function-local setting is removed, and the function runs with the value present in its environment. Use `RESET ALL` to clear all function-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER FUNCTION` is run as the value to be applied when the function is entered.
 :   See [SET](SET.html) for more information about allowed parameter names and values.

@@ -22,7 +22,7 @@ IF EXISTS
 :   Do not throw an error if the text search template does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing text search template.
+:   The name (optionally schema-qualified) of an existing text search template.
 
 CASCADE
 :   Automatically drop objects that depend on the text search template, and in turn all objects that depend on those objects.

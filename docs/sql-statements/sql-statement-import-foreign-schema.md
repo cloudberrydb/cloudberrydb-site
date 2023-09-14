@@ -24,22 +24,22 @@ Support for importing foreign schemas is foreign-data wrapper-specific.
 
 ## Parameters
 
-remote\_schema
+remote_schema
 :   The remote schema to import from. The specific meaning of a remote schema depends on the foreign data wrapper in use.
 
-LIMIT TO \( table\_name [, ...] \)
+LIMIT TO ( table_name [, ...] )
 :   Import only foreign tables matching one of the given table names. Other tables existing in the foreign schema will be ignored.
 
-EXCEPT \( table\_name [, ...] \)
+EXCEPT ( table_name [, ...] )
 :   Exclude specified foreign tables from the import. All tables existing in the foreign schema will be imported except the ones listed here.
 
-server\_name
+server_name
 :   The name of the foreign server from which to import the table definitions.
 
-local\_schema
+local_schema
 :   The schema in which Greenplum Database will create the imported foreign tables.
 
-OPTIONS \( option 'value' \[, ... \] \)
+OPTIONS ( option 'value' [, ... ] )
 :   The options to be used during the import. The allowed option names and values are specific to each foreign-data wrapper.
 
 

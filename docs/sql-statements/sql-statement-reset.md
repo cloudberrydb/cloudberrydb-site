@@ -26,7 +26,7 @@ The transactional behavior of `RESET` is the same as `SET`: its effects will be 
 
 ## Parameters
 
-configuration\_parameter
+configuration_parameter
 :   The name of a settable run-time system configuration parameter. See [Server Configuration Parameters](../config_params/guc_config.html) for details.
 
 ALL

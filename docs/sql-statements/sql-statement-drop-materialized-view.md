@@ -18,10 +18,10 @@ IF EXISTS
 :   Do not throw an error if the materialized view does not exist. A notice is issued in this case.
 
 name
-:   The name \(optionally schema-qualified\) of a materialized view to be dropped.
+:   The name (optionally schema-qualified) of a materialized view to be dropped.
 
 CASCADE
-:   Automatically drop objects that depend on the materialized view \(such as other materialized views, or regular views\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the materialized view (such as other materialized views, or regular views), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the materialized view if any objects depend on it. This is the default.

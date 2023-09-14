@@ -21,7 +21,7 @@ name
 :   The name of an existing access method.
 
 CASCADE
-:   Automatically drop objects that depend on the access method \(such as operator classes, operator families, and indexes\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the access method (such as operator classes, operator families, and indexes), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the access method if any objects depend on it. This is the default.

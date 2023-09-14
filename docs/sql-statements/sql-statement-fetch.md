@@ -35,7 +35,7 @@ A cursor has an associated position, which is used by `FETCH`. The cursor positi
 
 The forms `NEXT`, `FIRST`, `ABSOLUTE`, `RELATIVE` fetch a single row after moving the cursor appropriately. If there is no such row, an empty result is returned, and the cursor is left positioned before the first row or after the last row as appropriate.
 
-The forms using `FORWARD` retrieve the indicated number of rows moving in the forward direction, leaving the cursor positioned on the last-returned row \(or after all rows, if the count exceeds the number of rows available\).
+The forms using `FORWARD` retrieve the indicated number of rows moving in the forward direction, leaving the cursor positioned on the last-returned row (or after all rows, if the count exceeds the number of rows available).
 
 `RELATIVE 0` and `FORWARD 0` request fetching the current row without moving the cursor, that is, re-fetching the most recently fetched row. This will succeed unless the cursor is positioned before the first row or after the last row, in which case no row is returned.
 
@@ -44,14 +44,14 @@ The forms using `FORWARD` retrieve the indicated number of rows moving in the fo
 
 ## Parameters
 
-forward\_direction
+forward_direction
 :   Defines the fetch direction and number of rows to fetch. Only forward fetches are allowed in Greenplum Database. It can be one of the following:
 
 NEXT
 :   Fetch the next row. This is the default if direction is omitted.
 
 FIRST
-:   Fetch the first row of the query \(same as `ABSOLUTE 1`\). Only allowed if it is the first `FETCH` operation using this cursor.
+:   Fetch the first row of the query (same as `ABSOLUTE 1`). Only allowed if it is the first `FETCH` operation using this cursor.
 
 ABSOLUTE count
 :   Fetch the specified row of the query. Position after last row if count is out of range. Only allowed if the row specified by count moves the cursor position forward.
@@ -60,13 +60,13 @@ RELATIVE count
 :   Fetch the specified row of the query count rows ahead of the current cursor position. `RELATIVE 0` re-fetches the current row, if any. Only allowed if count moves the cursor position forward.
 
 count
-:   Fetch the next count number of rows \(same as `FORWARD count`\).
+:   Fetch the next count number of rows (same as `FORWARD count`).
 
 ALL
-:   Fetch all remaining rows \(same as `FORWARD ALL`\).
+:   Fetch all remaining rows (same as `FORWARD ALL`).
 
 FORWARD
-:   Fetch the next row \(same as `NEXT`\).
+:   Fetch the next row (same as `NEXT`).
 
 FORWARD count
 :   Fetch the next count number of rows. `FORWARD 0` re-fetches the current row.
@@ -74,7 +74,7 @@ FORWARD count
 FORWARD ALL
 :   Fetch all remaining rows.
 
-cursor\_name
+cursor_name
 :   The name of an open cursor.
 
 ## Outputs
@@ -85,7 +85,7 @@ On successful completion, a `FETCH` command returns a command tag of the form
 FETCH <count>
 ```
 
-The count is the number of rows fetched \(possibly zero\). Note that in `psql`, the command tag will not actually be displayed, since `psql` displays the fetched rows instead.
+The count is the number of rows fetched (possibly zero). Note that in `psql`, the command tag will not actually be displayed, since `psql` displays the fetched rows instead.
 
 ## Notes
 

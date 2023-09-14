@@ -18,13 +18,13 @@ The owner of a foreign server can alter user mappings for that server for any us
 
 ## Parameters
 
-user\_name
+user_name
 :   User name of the mapping. `CURRENT_USER` and `USER` match the name of the current user. `PUBLIC` is used to match all present and future user names in the system.
 
-server\_name
+server_name
 :   Server name of the user mapping.
 
-OPTIONS \( \[ ADD \| SET \| DROP \] option \['value'\] \[, ... \] \)
+OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
 :   Change options for the user mapping. The new options override any previously specified options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Greenplum Database validates names and values using the server's foreign-data wrapper.
 
 ## Examples
@@ -37,7 +37,7 @@ ALTER USER MAPPING FOR bob SERVER foo OPTIONS (SET password 'public');
 
 ## Compatibility
 
-`ALTER USER MAPPING` conforms to ISO/IEC 9075-9 \(SQL/MED\). There is a subtle syntax issue: The standard omits the `FOR` key word. Since both `CREATE USER MAPPING` and `DROP USER MAPPING` use `FOR` in analogous positions, Greenplum Database diverges from the standard here in the interest of consistency and interoperability.
+`ALTER USER MAPPING` conforms to ISO/IEC 9075-9 (SQL/MED). There is a subtle syntax issue: The standard omits the `FOR` key word. Since both `CREATE USER MAPPING` and `DROP USER MAPPING` use `FOR` in analogous positions, Greenplum Database diverges from the standard here in the interest of consistency and interoperability.
 
 ## See Also
 

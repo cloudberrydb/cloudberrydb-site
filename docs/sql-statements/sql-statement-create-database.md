@@ -32,32 +32,32 @@ By default, the new database will be created by cloning the standard system data
 name
 :   The name of a database to create.
 
-user\_name
-:   The name of the database user who will own the new database, or `DEFAULT` to use the default owner \(the user running the command\). To create a database owned by another role, you must be a direct or indirect member of that role, or be a superuser.
+user_name
+:   The name of the database user who will own the new database, or `DEFAULT` to use the default owner (the user running the command). To create a database owned by another role, you must be a direct or indirect member of that role, or be a superuser.
 
 template
-:   The name of the template from which to create the new database, or `DEFAULT` to use the default template \(template1\).
+:   The name of the template from which to create the new database, or `DEFAULT` to use the default template (template1).
 
 encoding
-:   Character set encoding to use in the new database. Specify a string constant \(such as `'SQL_ASCII'`\), an integer encoding number, or `DEFAULT` to use the default encoding  \(namely, the encoding of the template database\). For more information, see [Character Set Support](../character_sets.html). Refer to the [Notes](#section5) for additional restrictions.
+:   Character set encoding to use in the new database. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default encoding  (namely, the encoding of the template database). For more information, see [Character Set Support](../character_sets.html). Refer to the [Notes](#section5) for additional restrictions.
 
-lc\_collate
-:   The collation order \(`LC_COLLATE`\) to use in the new database. This affects the sort order applied to strings, e.g. in queries with `ORDER BY`, as well as the order used in indexes on text columns. The default is to use the collation order of the template database. See the [Notes](#section5) for additional restrictions.
+lc_collate
+:   The collation order (`LC_COLLATE`) to use in the new database. This affects the sort order applied to strings, e.g. in queries with `ORDER BY`, as well as the order used in indexes on text columns. The default is to use the collation order of the template database. See the [Notes](#section5) for additional restrictions.
 
-lc\_ctype
-:   The character classification \(`LC_CTYPE`\) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#section5) for additional restrictions.
+lc_ctype
+:   The character classification (`LC_CTYPE`) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#section5) for additional restrictions.
 
-tablespace\_name
+tablespace_name
 :   The name of the tablespace that will be associated with the new database, or `DEFAULT` to use the template database's tablespace. This tablespace will be the default tablespace used for objects created in this database. See [CREATE TABLESPACE](CREATE_TABLESPACE.html) for more information.
 
 allowconn
-:   If `false`, then no one can connect to this database. The default is `true`, allowing connections \(except as restricted by other mechanisms, such as `GRANT/REVOKE CONNECT`\).
+:   If `false`, then no one can connect to this database. The default is `true`, allowing connections (except as restricted by other mechanisms, such as `GRANT/REVOKE CONNECT`).
 
 connlimit
 :   The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Greenplum Database superusers are exempt from this limit.
 
 istemplate
-:   If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false` \(the default\), then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.
+:   If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false` (the default), then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.
 
 Optional parameters can be written in any order, not only the order illustrated above.
 
@@ -71,11 +71,11 @@ Use [DROP DATABASE](DROP_DATABASE.HTML) to remove a database.
 
 The program [createdb](../../utility_guide/ref/createdb.html) is a wrapper program around this command, provided for convenience.
 
-Database-level configuration parameters \(set via [ALTER DATABASE](ALTER_DATABASE.html) and database-level permissions \(set via [GRANT](GRANT.html)\) are not copied from the template database.
+Database-level configuration parameters (set via [ALTER DATABASE](ALTER_DATABASE.html) and database-level permissions (set via [GRANT](GRANT.html)) are not copied from the template database.
 
-Although it is possible to copy a database other than `template1` by specifying its name as the template, this is not \(yet\) intended as a general-purpose `“COPY DATABASE”` facility. The principal limitation is that no other sessions can be connected to the template database while it is being copied. `CREATE DATABASE` will fail if any other connection exists when it starts; otherwise, new connections to the template database are locked out until `CREATE DATABASE` completes.
+Although it is possible to copy a database other than `template1` by specifying its name as the template, this is not (yet) intended as a general-purpose `“COPY DATABASE”` facility. The principal limitation is that no other sessions can be connected to the template database while it is being copied. `CREATE DATABASE` will fail if any other connection exists when it starts; otherwise, new connections to the template database are locked out until `CREATE DATABASE` completes.
 
-The character set encoding specified for the new database must be compatible with the chosen locale settings \(`LC_COLLATE` and `LC_CTYPE`\). If the locale is `C` \(or equivalently `POSIX`\), then all encodings are allowed, but for other locale settings there is only one encoding that will work properly. `CREATE DATABASE` will allow superusers to specify `SQL_ASCII` encoding regardless of the locale settings, but this choice is deprecated and may result in misbehavior of character-string functions if data that is not encoding-compatible with the locale is stored in the database.
+The character set encoding specified for the new database must be compatible with the chosen locale settings (`LC_COLLATE` and `LC_CTYPE`). If the locale is `C` (or equivalently `POSIX`), then all encodings are allowed, but for other locale settings there is only one encoding that will work properly. `CREATE DATABASE` will allow superusers to specify `SQL_ASCII` encoding regardless of the locale settings, but this choice is deprecated and may result in misbehavior of character-string functions if data that is not encoding-compatible with the locale is stored in the database.
 
 The encoding and locale settings must match those of the template database, except when `template0` is used as template. This is because other databases might contain data that does not match the specified encoding, or might contain indexes whose ordering is affected by `LC_COLLATE` and `LC_CTYPE`. Copying such data would result in a database that is corrupt according to the new settings. `template0`, however, is known to not contain any data or indexes that would be affected.
 
@@ -104,7 +104,7 @@ CREATE DATABASE music
     TEMPLATE template0;
 ```
 
-In this example, the `TEMPLATE template0` clause is required if the specialized locale is different from the one in `template1`. \(If it is not, then specifying the locale explicitly is redundant.\)
+In this example, the `TEMPLATE template0` clause is required if the specialized locale is different from the one in `template1`. (If it is not, then specifying the locale explicitly is redundant.)
 
 To create a database `music2` with a different locale and a different character set encoding:
 

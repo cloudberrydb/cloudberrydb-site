@@ -19,26 +19,26 @@ ALTER POLICY <name ON table_name>
 
 To use `ALTER POLICY`, you must own the table to which the policy applies.
 
-In the second form of `ALTER POLICY`, the role list, using\_expression, and check\_expression are replaced independently if specified. When one of those clauses is omitted, the corresponding part of the policy is unchanged.
+In the second form of `ALTER POLICY`, the role list, using_expression, and check_expression are replaced independently if specified. When one of those clauses is omitted, the corresponding part of the policy is unchanged.
 
 ## Parameters
 
 name
 :   The name of an existing policy to alter.
 
-table\_name
-:   The name \(optionally schema-qualified\) of the table that the policy is on.
+table_name
+:   The name (optionally schema-qualified) of the table that the policy is on.
 
-new\_name
+new_name
 :   The new name for the policy.
 
-role\_name
-:   The role\(s\) to which the policy applies. Multiple roles can be specified at one time. To apply the policy to all roles, use `PUBLIC`.
+role_name
+:   The role(s) to which the policy applies. Multiple roles can be specified at one time. To apply the policy to all roles, use `PUBLIC`.
 
-using\_expression
+using_expression
 :   The `USING` expression for the policy. See [CREATE POLICY](CREATE_POLICY.html) for details.
 
-check\_expression
+check_expression
 :   The `WITH CHECK` expression for the policy. See [CREATE POLICY](CREATE_POLICY.html) for details.
 
 ## Compatibility

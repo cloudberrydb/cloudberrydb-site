@@ -23,12 +23,12 @@ where <aggregate_signature> is:
 
 `ALTER AGGREGATE` changes the definition of an aggregate function.
 
-You must own the aggregate function to use `ALTER AGGREGATE`. To change the schema of an aggregate function, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the aggregate function's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the aggregate function. However, a superuser can alter ownership of any aggregate function anyway.\)
+You must own the aggregate function to use `ALTER AGGREGATE`. To change the schema of an aggregate function, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the aggregate function's schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the aggregate function. However, a superuser can alter ownership of any aggregate function anyway.)
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing aggregate function.
+:   The name (optionally schema-qualified) of an existing aggregate function.
 
 argmode
 :   The mode of an argument: `IN` or `VARIADIC`. If omitted, the default is `IN`.
@@ -39,13 +39,13 @@ argname
 argtype
 :   An input data type on which the aggregate function operates. To reference a zero-argument aggregate function, write `*` in place of the list of argument specifications  To reference an ordered-set aggregate function, write `ORDER BY` between the direct and aggregated argument specifications.
 
-new\_name
+new_name
 :   The new name of the aggregate function.
 
-new\_owner
+new_owner
 :   The new owner of the aggregate function.
 
-new\_schema
+new_schema
 :   The new schema for the aggregate function.
 
 ## Notes

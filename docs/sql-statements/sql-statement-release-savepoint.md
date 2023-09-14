@@ -12,13 +12,13 @@ RELEASE [SAVEPOINT] <savepoint_name>
 
 `RELEASE SAVEPOINT` destroys a savepoint previously defined in the current transaction.
 
-Destroying a savepoint makes it unavailable as a rollback point, but it has no other user visible behavior. It does not undo the effects of commands run after the savepoint was established. \(To do that, see [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html).\) Destroying a savepoint when it is no longer needed may allow the system to reclaim some resources earlier than transaction end.
+Destroying a savepoint makes it unavailable as a rollback point, but it has no other user visible behavior. It does not undo the effects of commands run after the savepoint was established. (To do that, see [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html).) Destroying a savepoint when it is no longer needed may allow the system to reclaim some resources earlier than transaction end.
 
 `RELEASE SAVEPOINT` also destroys all savepoints that were established *after* the named savepoint was established.
 
 ## Parameters
 
-savepoint\_name
+savepoint_name
 :   The name of the savepoint to destroy.
 
 ## Notes

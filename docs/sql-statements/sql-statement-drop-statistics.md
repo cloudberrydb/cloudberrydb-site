@@ -10,7 +10,7 @@ DROP STATISTICS [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 ## Description
 
-`DROP STATISTICS` removes statistics object\(s\) from the database. Only the statistics object's owner, the schema owner, or a superuser can drop a statistics object.
+`DROP STATISTICS` removes statistics object(s) from the database. Only the statistics object's owner, the schema owner, or a superuser can drop a statistics object.
 
 ## Parameters
 
@@ -18,7 +18,7 @@ DROP STATISTICS [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 :   Do not throw an error if the statistics object does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of the statistics object to drop.
+:   The name (optionally schema-qualified) of the statistics object to drop.
 
 CASCADE
 RESTRICT

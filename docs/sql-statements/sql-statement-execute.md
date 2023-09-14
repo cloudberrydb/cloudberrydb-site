@@ -12,7 +12,7 @@ EXECUTE <name> [ (<parameter> [, ...] ) ]
 
 `EXECUTE` is used to run a previously prepared statement. Since prepared statements only exist for the duration of a session, the prepared statement must have been created by a `PREPARE` statement run earlier in the current session.
 
-If the `PREPARE` statement that created the statement specified some parameters, a compatible set of parameters must be passed to the `EXECUTE` statement, or else Greenplum Database raises an error. Because \(unlike functions\) prepared statements are not overloaded based on the type or number of their parameters, the name of a prepared statement must be unique within a database session.
+If the `PREPARE` statement that created the statement specified some parameters, a compatible set of parameters must be passed to the `EXECUTE` statement, or else Greenplum Database raises an error. Because (unlike functions) prepared statements are not overloaded based on the type or number of their parameters, the name of a prepared statement must be unique within a database session.
 
 For more information on the creation and usage of prepared statements, see [PREPARE](PREPARE.html).
 

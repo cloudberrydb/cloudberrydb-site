@@ -33,7 +33,7 @@ option
 :   The name of a template-specific option to be set for this dictionary.
 
 value
-:   The value to use for a template-specific option. If the value is not a simple identifier or number, it must be quoted \(but you can always quote it, if you wish\).
+:   The value to use for a template-specific option. If the value is not a simple identifier or number, it must be quoted (but you can always quote it, if you wish).
 
 The options can appear in any order.
 

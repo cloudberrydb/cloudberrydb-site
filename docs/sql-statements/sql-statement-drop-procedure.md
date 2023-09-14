@@ -19,7 +19,7 @@ IF EXISTS
 :   Do not throw an error if the procedure does not exist. A notice is issued in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing procedure. If no argument list is specified, the name must be unique in its schema.
+:   The name (optionally schema-qualified) of an existing procedure. If no argument list is specified, the name must be unique in its schema.
 
 argmode
 :   The mode of an argument: `IN` or `VARIADIC`. If omitted, the default is `IN`.
@@ -28,7 +28,7 @@ argname
 :   The name of an argument. Note that `DROP PROCEDURE` does not actually pay any attention to argument names, since only the argument data types are needed to determine the procedure's identity.
 
 argtype
-:   The data type\(s\) of the procedure's arguments \(optionally schema-qualified\), if any.
+:   The data type(s) of the procedure's arguments (optionally schema-qualified), if any.
 
 CASCADE
 :   Automatically drop objects that depend on the procedure, and in turn all objects that depend on those objects.

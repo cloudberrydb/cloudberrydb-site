@@ -69,18 +69,18 @@ You can view comments using the `psql` meta-commands `\dd`, `\d+`, and `\l+`. Ot
 
 ## Parameters
 
-object\_name
-relation\_name.column\_name
-aggregate\_name
-constraint\_name
-function\_name
-operator\_name
-policy\_name
-procedure\_name
-routine\_name
-rule\_name
-trigger\_name
-:   The name of the object to be commented. Names of tables, aggregates, collations, conversions, domains, foreign tables, functions, indexes, operators, operator classes, operator families, procedures, routines, sequences, statistics, text search objects, types, views, and materialized views can be schema-qualified. When commenting on a column, relation\_name must refer to a table, view, materialized view, composite type, or foreign table.
+object_name
+relation_name.column_name
+aggregate_name
+constraint_name
+function_name
+operator_name
+policy_name
+procedure_name
+routine_name
+rule_name
+trigger_name
+:   The name of the object to be commented. Names of tables, aggregates, collations, conversions, domains, foreign tables, functions, indexes, operators, operator classes, operator families, procedures, routines, sequences, statistics, text search objects, types, views, and materialized views can be schema-qualified. When commenting on a column, relation_name must refer to a table, view, materialized view, composite type, or foreign table.
 
     > **Note** Greenplum Database does not support triggers.
 
@@ -88,10 +88,10 @@ table_name
 domain_name
 :   When creating a comment on a constraint, a trigger, a rule, or a policy, these parameters specify the name of the table or domain on which that object is defined.
 
-source\_type
+source_type
 :   The name of the source data type of the cast.
 
-target\_type
+target_type
 :   The name of the target data type of the cast.
 
 argmode
@@ -103,9 +103,9 @@ argname
 argtype
 :   The data type of a function, procedure, or aggregate argument.
 
-left\_type
-right\_type
-:   The data type\(s\) of the operator's arguments \(optionally schema-qualified\). Specify `NONE` for the missing argument of a prefix or postfix operator.
+left_type
+right_type
+:   The data type(s) of the operator's arguments (optionally schema-qualified). Specify `NONE` for the missing argument of a prefix or postfix operator.
 
 PROCEDURAL
 :   Greenplum Database ignores this noise word.

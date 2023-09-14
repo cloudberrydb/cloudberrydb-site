@@ -11,7 +11,7 @@ REFRESH MATERIALIZED VIEW [ CONCURRENTLY ] <name>
 
 ## Description
 
-`REFRESH MATERIALIZED VIEW` completely replaces the contents of a materialized view. The old contents are discarded. To run this command you must be the owner of the materialized view. If `WITH DATA` is specified \(or defaults\), the backing query is executed to provide the new data, and the materialized view is left in a scannable state. If `WITH NO DATA` is specified, no new data is generated, and the materialized view is left in an unscannable state.
+`REFRESH MATERIALIZED VIEW` completely replaces the contents of a materialized view. The old contents are discarded. To run this command you must be the owner of the materialized view. If `WITH DATA` is specified (or defaults), the backing query is executed to provide the new data, and the materialized view is left in a scannable state. If `WITH NO DATA` is specified, no new data is generated, and the materialized view is left in an unscannable state.
 
 You may not specify `CONCURRENTLY` and `WITH NO DATA` together.
 
@@ -24,9 +24,9 @@ CONCURRENTLY
 :   Even with this option, only one `REFRESH` at a time may run against any one materialized view.
 
 name
-:   The name \(optionally schema-qualified\) of the materialized view to refresh.
+:   The name (optionally schema-qualified) of the materialized view to refresh.
 
-WITH \[ NO \] DATA
+WITH [ NO ] DATA
 :   `WITH DATA` is the default and specifies that the materialized view query is run to provide new data, and the materialized view is left in a scannable state. If `WITH NO DATA` is specified, no new data is generated and the materialized view is left in an unscannable state.
 
 ## Notes

@@ -234,17 +234,17 @@ DROP IDENTITY [ IF EXISTS ]
 
 :   If `DROP IDENTITY IF EXISTS` is specified and the column is not an identity column, no error is thrown. In this case Greenplum Database issues a notice instead.
 
-SET sequence\_option
+SET sequence_option
 RESTART
 :   These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](ALTER_SEQUENCE.html) such as `INCREMENT BY`.
 
 SET STATISTICS
-:   Sets the per-column statistics-gathering target for subsequent [ANALYZE](ANALYZE.html) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target \([default_statistics_target](../config_params/guc-list.html#default_statistics_target). When set to 0, no statistics are collected.
+:   Sets the per-column statistics-gathering target for subsequent [ANALYZE](ANALYZE.html) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target ([default_statistics_target](../config_params/guc-list.html#default_statistics_target). When set to 0, no statistics are collected.
 
 :   `SET STATISTICS` acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
-SET ( attribute\_option = value [, ... ] )
-RESET ( attribute\_option [, ...] )
+SET ( attribute_option = value [, ... ] )
+RESET ( attribute_option [, ...] )
 :   Sets or resets per-attribute options. Currently, the only defined per-attribute options are `n_distinct` and `n_distinct_inherited`, which override the number-of-distinct-values estimates made by subsequent [ANALYZE](ANALYZE.html) operations. `n_distinct` affects the statistics for the table itself, while `n_distinct_inherited` affects the statistics gathered for the table plus its inheritance children. When set to a positive value, `ANALYZE` assumes that the column contains exactly the specified number of distinct non-null values. When set to a negative value, which must be greater than or equal to -1, `ANALYZE` assumes that the number of distinct non-null values in the column is linear in the size of the table; the exact count is to be computed by multiplying the estimated table size by the absolute value of the given number. For example, a value of -1 implies that all values in the column are distinct, while a value of -0.5 implies that each value appears twice on the average. This can be useful when the size of the table changes over time, since the multiplication by the number of rows in the table is not performed until query planning time. Specify the value 0 to revert to estimating the number of distinct values normally.
 
 :   Changing per-attribute options acquires a `SHARE UPDATE EXCLUSIVE` lock.
@@ -254,10 +254,10 @@ RESET ( attribute\_option [, ...] )
 SET STORAGE
 :   This form sets the storage mode for a column. This controls whether this column is held inline or in a secondary TOAST table, and whether the data should be compressed or not. `PLAIN` must be used for fixed-length values such as integer and is inline, uncompressed. `MAIN` is for inline, compressible data. `EXTERNAL` is for external, uncompressed data, and `EXTENDED` is for external, compressed data. `EXTENDED` is the default for most data types that support non-`PLAIN` storage. Use of `EXTERNAL` will make substring operations on very large text and bytea values run faster, at the penalty of increased storage space. Note that `SET STORAGE` doesn't itself change anything in the table, it just sets the strategy to be pursued during future table updates.
 
-SET ENCODING ( storage\_directive> [, ...] )
+SET ENCODING ( storage_directive> [, ...] )
 :   This form sets column encoding options for append-optimized, column-oriented tables.
 
-ADD table\_constraint [ NOT VALID ]
+ADD table_constraint [ NOT VALID ]
 :   Adds a new constraint to a table using the same syntax as [CREATE TABLE](CREATE_TABLE.html). The `NOT VALID` option is currently allowed only for foreign key and `CHECK` constraints.
 
 :   Normally, this form causes a scan of the table to verify that all existing rows in the table satisfy the new constraint.  If the constraint is marked `NOT VALID`, Greenplum Database skips the potentially-lengthy initial check to verify that all rows in the table satisfy the constraint. The constraint will still be enforced against subsequent inserts or updates (that is, they'll fail unless there is a matching row in the referenced table, in the case of foreign keys; and they'll fail unless the new row matches the specified check constraints). But the database will not assume that the constraint holds for all rows in the table, until it is validated by using the `VALIDATE CONSTRAINT` option. See the [Notes](#section5) for more information about using the `NOT VALID` option.
@@ -338,15 +338,15 @@ SET WITH (<set_with_parameter> = <value> [, ...])
 Although you can specify the table's access method using the <code>appendoptimized</code> and <code>orientation</code> storage parameters, VMware recommends that you use <code>SET ACCESS METHOD &lt;access_method></code> instead.
 </p>
 
-INHERIT parent\_table
+INHERIT parent_table
 :   Adds the target table as a new child of the specified parent table. Queries against the parent will include records of the target table. To be added as a child, the target table must already contain all of the same columns as the parent (it could have additional columns, too). The columns must have matching data types, and if they have `NOT NULL` constraints in the parent then they must also have `NOT NULL` constraints in the child.
 
 :    There must also be matching child-table constraints for all `CHECK` constraints of the parent, except those marked non-inheritable (that is, created with `ALTER TABLE ... ADD CONSTRAINT ... NO INHERIT`) in the parent, which are ignored; all child-table constraints matched must not be marked non-inheritable. `UNIQUE`, `PRIMARY KEY`, and `FOREIGN KEY` constraints are not currently considered.
 
-NO INHERIT parent\_table
+NO INHERIT parent_table
 :   This form removes the target table from the list of children of the specified parent table. Queries against the parent table will no longer include records drawn from the target table.
 
-OF type\_name
+OF type_name
 :   This form links the table to a composite type as though `CREATE TABLE OF` had formed it. The table's list of column names and types must precisely match that of the composite type. The table must not inherit from any other table. These restrictions ensure that `CREATE TABLE OF` would permit an equivalent table definition.
 
 NOT OF
@@ -370,7 +370,7 @@ SET DISTRIBUTED
 ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
 :   This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Greenplum does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html).)
 
-:   A partition using `FOR VALUES` uses the same syntax for partition\_bound\_spec> as [CREATE TABLE](CREATE_TABLE.html). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
+:   A partition using `FOR VALUES` uses the same syntax for partition_bound_spec> as [CREATE TABLE](CREATE_TABLE.html). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
 
 :   If the new partition is a regular table, Greenplum Database performs a full table scan to check that existing rows in the table do not violate the partition constraint. It is possible to avoid this scan by adding a valid `CHECK` constraint to the table that allows only rows satisfying the desired partition constraint before running this command. The `CHECK` constraint will be used to determine that the table need not be scanned to validate the partition constraint. This does not work, however, if any of the partition keys is an expression and the partition does not accept `NULL` values. If attaching a list partition that will not accept `NULL` values, also add a `NOT NULL` constraint to the partition key column, unless it's an expression.
 
@@ -385,7 +385,7 @@ ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
 DETACH PARTITION partition_name
 :   This form of the *modern partitioning syntax* detaches the specified partition of the target table. The detached partition continues to exist as a standalone table, but no longer has any ties to the table from which it was detached. Any indexes that were attached to the target table's indexes are detached.
 
-ALTER PARTITION \| DROP PARTITION \| RENAME PARTITION \| TRUNCATE PARTITION \| ADD PARTITION \| SPLIT PARTITION \| EXCHANGE PARTITION \| SET SUBPARTITION TEMPLATE
+ALTER PARTITION | DROP PARTITION | RENAME PARTITION | TRUNCATE PARTITION | ADD PARTITION | SPLIT PARTITION | EXCHANGE PARTITION | SET SUBPARTITION TEMPLATE
 :   These forms of the *classic partitioning syntax* change the structure of a partitioned table. You must go through the parent table to alter one of its child tables.
 
 > **Note** If you add a partition to a table that has sub-partition encodings, the new partition inherits the storage directives for the sub-partitions. For more information about the precedence of compression settings, see [Using Compression](../../admin_guide/ddl/ddl-storage.html#topic40).
@@ -394,7 +394,7 @@ You can combine all forms of `ALTER TABLE` that act on a single table into a lis
 
 You must own the table to use `ALTER TABLE`. To change the schema or tablespace of a table, you must also have `CREATE` privilege on the new schema or tablespace. To add the table as a new child of a parent table, you must own the parent table as well. Also, to attach a table as a new partition of the table, you must own the table being attached. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the table's schema. To add a column or alter a column type or use the `OF` clause, you must also have `USAGE` privilege on the data type. A superuser has these privileges automatically.
 
-> **Note** Memory usage increases significantly when a table has many partitions, if a table has compression, or if the blocksize for a table is large. If the number of relations associated with the table is large, this condition can force an operation on the table to use more memory. For example, if the table is an append-optimized column-oriented table and has a large number of columns, each column is a relation. An operation that accesses all of the columns in the table allocates associated buffers. If the table has 40 columns and 100 partitions, and the columns are compressed and the blocksize is 2 MB \(with a system factor of 3\), the system attempts to allocate 24 GB, that is \(40 ×100\) × \(2 ×3\) MB or 24 GB.
+> **Note** Memory usage increases significantly when a table has many partitions, if a table has compression, or if the blocksize for a table is large. If the number of relations associated with the table is large, this condition can force an operation on the table to use more memory. For example, if the table is an append-optimized column-oriented table and has a large number of columns, each column is a relation. An operation that accesses all of the columns in the table allocates associated buffers. If the table has 40 columns and 100 partitions, and the columns are compressed and the blocksize is 2 MB (with a system factor of 3), the system attempts to allocate 24 GB, that is (40 ×100) × (2 ×3) MB or 24 GB.
 
 ## Parameters
 
@@ -406,32 +406,32 @@ name
 
     > **Note** Adding or dropping a column, or changing a column's type, in a parent or descendant table only is not permitted. The parent table and its descendents must always have the same columns and types.
 
-column\_name
+column_name
 :   Name of a new or existing column. Note that Greenplum Database distribution key columns must be treated with special care. Altering or dropping these columns can change the distribution policy for the table.
 
-new\_column\_name
+new_column_name
 :   New name for an existing column.
 
-new\_name
+new_name
 :   New name for the table.
 
 type
 :   Data type of the new column, or new data type for an existing column. If changing the data type of a Greenplum distribution key column, you are only allowed to change it to a compatible type (for example, `text` to `varchar` is OK, but `text` to `int` is not).
 
-table\_constraint
+table_constraint
 :   New table constraint for the table. Note that foreign key constraints are currently not supported in Greenplum Database. Also a table is only allowed one unique constraint and the uniqueness must be within the Greenplum Database distribution key.
 
-constraint\_name
+constraint_name
 :   Name of an existing constraint to drop.
 
 ENCODING ( <storage_directive> [,...] )
 :   The `ENCODING` clause is valid only for append-optimized, column-oriented tables.
 
-:   When you add a column to an append-optimized, column-oriented table, Greenplum Database sets each data compression parameter for the column \(`compresstype`, `compresslevel`, and `blocksize`\) based on the following setting, in order of preference.
+:   When you add a column to an append-optimized, column-oriented table, Greenplum Database sets each data compression parameter for the column (`compresstype`, `compresslevel`, and `blocksize`) based on the following setting, in order of preference.
 
     1.  The compression parameter setting specified in the `ALTER TABLE` command `ENCODING` clause.
     2.  The table's data compression setting specified in the `WITH` clause when the table was created.
-    3.  The compression parameter setting specified in the server configuration parameter [gp\_default\_storage\_option](../config_params/guc-list.html).
+    3.  The compression parameter setting specified in the server configuration parameter [gp_default_storage_option](../config_params/guc-list.html).
     4.  The default compression parameter value.
 :   For more information about the supported `ENCODING` storage directives, refer to [CREATE TABLE](CREATE_TABLE.html).
 
@@ -441,7 +441,7 @@ CASCADE
 RESTRICT
 :   Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
 
-index\_name
+index_name
 :   The name of an existing index.
 
 storage_parameter
@@ -450,16 +450,16 @@ storage_parameter
 value
 :   The new value for the a table storage parameter. This might be a number or a word, depending on the parameter.
 
-parent\_table
+parent_table
 :   A parent table to associate or de-associate with this table.
 
-new\_owner
+new_owner
 :   The role name of the new owner of the table.
 
-new\_tablespace
+new_tablespace
 :   The name of the tablespace to which the table will be moved.
 
-new\_schema
+new_schema
 :   The name of the schema to which the table will be moved.
 
 partition_name
@@ -476,7 +476,7 @@ access_method
 Although you can specify the table's access method using <code>SET &lt;storage_parameter></code>, VMware recommends that you use <code>SET ACCESS METHOD &lt;access_method></code> instead.
 </p>
 
-SET WITH (reorganize=true\|false)
+SET WITH (reorganize=true|false)
 :   Use `reorganize=true` when the hash distribution policy has not changed or when you have changed from a hash to a random distribution, and you want to redistribute the data anyway.
 :   If you are setting the distribution policy, you must specify the `WITH (reorganize=<value>)` clause before the `DISTRIBUTED ...` clause.   
 :   Any attempt to reorganize an external table fails with an error.
@@ -486,27 +486,27 @@ SET WITH (reorganize=true\|false)
 
 Descriptions of additional parameters that are specific to the *classic partitioning syntax* follow.
 
-ALTER \[DEFAULT\] PARTITION
+ALTER [DEFAULT] PARTITION
 :   If altering a partition deeper than the first level of partitions, use `ALTER PARTITION` clauses to specify which sub-partition in the hierarchy you want to alter. For each partition level in the table hierarchy that is above the target partition, specify the partition that is related to the target partition in an `ALTER PARTITION` clause.
 
-DROP \[DEFAULT\] PARTITION
+DROP [DEFAULT] PARTITION
 :   Drops the specified partition. If the partition has sub-partitions, the sub-partitions are automatically dropped as well.
 
-TRUNCATE \[DEFAULT\] PARTITION
+TRUNCATE [DEFAULT] PARTITION
 :   Truncates the specified partition. If the partition has sub-partitions, the sub-partitions are automatically truncated as well.
 
-RENAME \[DEFAULT\] PARTITION
-:   Changes the partition name of a partition \(not the relation name\). Partitioned tables are created using the naming convention: `<`parentname`>_<`level`>_prt_<`partition\_name`>`.
+RENAME [DEFAULT] PARTITION
+:   Changes the partition name of a partition (not the relation name). Partitioned tables are created using the naming convention: `<`parentname`>_<`level`>_prt_<`partition_name`>`.
 
 ADD DEFAULT PARTITION
 :   Adds a default partition to an existing partition design. When data does not match to an existing partition, it is inserted into the default partition. Partition designs that do not have a default partition will reject incoming rows that do not match to an existing partition. Default partitions must be given a name.
 
 ADD PARTITION
-:   partition\_element - Using the existing partition type of the table (range or list), defines the boundaries of new partition you are adding.
+:   partition_element - Using the existing partition type of the table (range or list), defines the boundaries of new partition you are adding.
 
 :   name - A name for this new partition.
 
-:   **VALUES** - For list partitions, defines the value\(s\) that the partition will contain.
+:   **VALUES** - For list partitions, defines the value(s) that the partition will contain.
 
 :   **START** - For range partitions, defines the starting range value for the partition. By default, start values are `INCLUSIVE`. For example, if you declared a start date of '`2016-01-01`', then the partition would contain all dates greater than or equal to '`2016-01-01`'. The data type of the `START` expression must support a suitable `+` operator, for example `timestamp` or `integer` (not `float` or `text`) if it is defined with the `EXCLUSIVE` keyword. Typically the data type of the `START` expression is the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
 
@@ -516,26 +516,26 @@ ADD PARTITION
 
 :   **TABLESPACE** - The name of the tablespace in which the partition is to be created.
 
-:   subpartition\_spec - Only allowed on partition designs that were created without a sub-partition template. Declares a sub-partition specification for the new partition you are adding. If the partitioned table was originally defined using a sub-partition template, then the template will be used to generate the sub-partitions automatically.
+:   subpartition_spec - Only allowed on partition designs that were created without a sub-partition template. Declares a sub-partition specification for the new partition you are adding. If the partitioned table was originally defined using a sub-partition template, then the template will be used to generate the sub-partitions automatically.
 
-EXCHANGE \[DEFAULT\] PARTITION
-:   Exchanges another table into the partition hierarchy into the place of an existing partition. In a multi-level partition design, you can only exchange the lowest level partitions \(those that contain data\).
+EXCHANGE [DEFAULT] PARTITION
+:   Exchanges another table into the partition hierarchy into the place of an existing partition. In a multi-level partition design, you can only exchange the lowest level partitions (those that contain data).
 
-:   **WITH TABLE** table\_name - The name of the table you are swapping into the partition design. You can exchange a table where the table data is stored in the database. For example, the table is created with the `CREATE TABLE` command. The table must have the same number of columns, column order, column names, column types, and distribution policy as the parent table.
+:   **WITH TABLE** table_name - The name of the table you are swapping into the partition design. You can exchange a table where the table data is stored in the database. For example, the table is created with the `CREATE TABLE` command. The table must have the same number of columns, column order, column names, column types, and distribution policy as the parent table.
 
-:   With the `EXCHANGE PARTITION` clause, you can also exchange a readable external table \(created with the `CREATE EXTERNAL TABLE` command\) into the partition hierarchy in the place of an existing leaf partition.
+:   With the `EXCHANGE PARTITION` clause, you can also exchange a readable external table (created with the `CREATE EXTERNAL TABLE` command) into the partition hierarchy in the place of an existing leaf partition.
 
 :   Exchanging a leaf partition with an external table is not supported if the partitioned table contains a column with a check constraint or a `NOT NULL` constraint.
 
 :   You cannot exchange a partition with a replicated table. Exchanging a partition with a partitioned table or a child partition of a partitioned table is not supported.
 
-:   **WITH** \| **WITHOUT VALIDATION** - No-op (always validate the data against the partition constraint).
+:   **WITH** | **WITHOUT VALIDATION** - No-op (always validate the data against the partition constraint).
 
 SET SUBPARTITION TEMPLATE
-:   Modifies the sub-partition template for an existing partition. After a new sub-partition template is set, all new partitions added will have the new sub-partition design \(existing partitions are not modified\).
+:   Modifies the sub-partition template for an existing partition. After a new sub-partition template is set, all new partitions added will have the new sub-partition design (existing partitions are not modified).
 
 SPLIT DEFAULT PARTITION
-:   Splits a default partition. In a multi-level partition, only a range partition can be split, not a list partition, and you can only split the lowest level default partitions \(those that contain data\). Splitting a default partition creates a new partition containing the values specified and leaves the default partition containing any values that do not match to an existing partition.
+:   Splits a default partition. In a multi-level partition, only a range partition can be split, not a list partition, and you can only split the lowest level default partitions (those that contain data). Splitting a default partition creates a new partition containing the values specified and leaves the default partition containing any values that do not match to an existing partition.
 
 :   **AT** - For list partitioned tables, specifies a single list value that should be used as the criteria for the split.
 
@@ -543,16 +543,16 @@ SPLIT DEFAULT PARTITION
 
 :   **END** - For range partitioned tables, specifies an ending value for the new partition.
 
-:   **INTO** - Allows you to specify a name for the new partition. When using the `INTO` clause to split a default partition, the second partition name specified should always be that of the existing default partition. If you do not know the name of the default partition, you can look it up using the pg\_partitions view.
+:   **INTO** - Allows you to specify a name for the new partition. When using the `INTO` clause to split a default partition, the second partition name specified should always be that of the existing default partition. If you do not know the name of the default partition, you can look it up using the pg_partitions view.
 
 SPLIT PARTITION
-:   Splits an existing partition into two partitions. In a multi-level partition, only a range partition can be split, not a list partition, and you can only split the lowest level partitions \(those that contain data\).
+:   Splits an existing partition into two partitions. In a multi-level partition, only a range partition can be split, not a list partition, and you can only split the lowest level partitions (those that contain data).
 
 :   **AT** - Specifies a single value that should be used as the criteria for the split. The partition will be divided into two new partitions with the split value specified being the starting range for the latter partition.
 
 :   **INTO** - Allows you to specify names for the two new partitions created by the split.
 
-partition\_name
+partition_name
 :   The given name of a partition. You can obtain the the table names of the leaf partitions of a partitioned table using the `pg_partition_tree() function.
 
 FOR ('value')
@@ -578,7 +578,7 @@ To force immediate reclamation of space occupied by a dropped column, you can ru
 
 This table lists the `ALTER TABLE` operations that require a table rewrite when performed on tables defined with the specified type of table storage.
 
-|Operation \(See Note\)|Append-Optimized, Column-Oriented|Append-Optimized|Heap|
+|Operation (See Note)|Append-Optimized, Column-Oriented|Append-Optimized|Heap|
 |----------------------|---------------------------------|----------------|----|
 |`ALTER COLUMN TYPE`|No|Yes|Yes|
 |`ADD COLUMN`|No|No|No|
@@ -596,7 +596,7 @@ A recursive `DROP COLUMN` operation will remove a descendant table's column only
 
 The actions for identity columns (`ADD GENERATED`, `SET` etc., `DROP IDENTITY`), as well as the actions `CLUSTER`, `OWNER`, and `TABLESPACE` never recurse to descendant tables; that is, they always act as though `ONLY` were specified. Adding a constraint recurses only for `CHECK` constraints that are not marked `NO INHERIT`.
 
-Greenplum Database does not currently support foreign key constraints. For a unique constraint to be enforced in Greenplum Database, the table must be hash-distributed \(not `DISTRIBUTED RANDOMLY`\), and all of the distribution key columns must be the same as the initial columns of the unique constraint columns.
+Greenplum Database does not currently support foreign key constraints. For a unique constraint to be enforced in Greenplum Database, the table must be hash-distributed (not `DISTRIBUTED RANDOMLY`), and all of the distribution key columns must be the same as the initial columns of the unique constraint columns.
 
 Greenplum Database does not permit changing any part of a system catalog table.
 
@@ -889,7 +889,7 @@ ALTER TABLE sales EXCHANGE PARTITION FOR ('2016-01-01') WITH
 TABLE jan08;
 ```
 
-Split the default partition \(where the existing default partition's name is `other`\) to add a new monthly partition for January 2017:
+Split the default partition (where the existing default partition's name is `other`) to add a new monthly partition for January 2017:
 
 ```
 ALTER TABLE sales SPLIT DEFAULT PARTITION 

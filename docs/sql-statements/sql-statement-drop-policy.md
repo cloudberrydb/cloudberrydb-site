@@ -20,8 +20,8 @@ IF EXISTS
 name
 :   The name of the policy to drop.
 
-table\_name
-:   The name \(optionally schema-qualified\) of the table that the policy is on.
+table_name
+:   The name (optionally schema-qualified) of the table that the policy is on.
 
 CASCADE
 RESTRICT

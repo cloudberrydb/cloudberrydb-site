@@ -49,11 +49,11 @@ WITH ( MODULUS <numeric_literal>, REMAINDER <numeric_literal> )
 
 `CREATE FOREIGN TABLE` creates a new foreign table in the current database. The user who creates the foreign table becomes its owner.
 
-If you schema-qualify the table name \(for example, `CREATE FOREIGN TABLE myschema.mytable ...`\), Greenplum Database creates the table in the specified schema. Otherwise, the foreign table is created in the current schema. The name of the foreign table must be distinct from the name of any other foreign table, table, sequence, index, view, or materialized view in the same schema.
+If you schema-qualify the table name (for example, `CREATE FOREIGN TABLE myschema.mytable ...`), Greenplum Database creates the table in the specified schema. Otherwise, the foreign table is created in the current schema. The name of the foreign table must be distinct from the name of any other foreign table, table, sequence, index, view, or materialized view in the same schema.
 
 Because `CREATE FOREIGN TABLE` automatically creates a data type that represents the composite type corresponding to one row of the foreign table, foreign tables cannot have the same name as any existing data type in the same schema.
 
-If the `PARTITION OF` clause is specified, then the table is created as a partition of parent\_table with specified bounds.
+If the `PARTITION OF` clause is specified, then the table is created as a partition of parent_table with specified bounds.
 
 To create a foreign table, you must have `USAGE` privilege on the foreign server, as well as `USAGE` privilege on all column types used in the table.
 
@@ -62,26 +62,26 @@ To create a foreign table, you must have `USAGE` privilege on the foreign server
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
 
-table\_name
-:   The name \(optionally schema-qualified\) of the foreign table to create.
+table_name
+:   The name (optionally schema-qualified) of the foreign table to create.
 
-column\_name
+column_name
 :   The name of a column to create in the new foreign table.
 
-data\_type
+data_type
 :   The data type of the column, including array specifiers.
 
 COLLATE collation
-:   The `COLLATE` clause assigns a collation to the column \(which must be of a collatable data type\). If not specified, the column data type's default collation is used.
+:   The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
 
-INHERITS \( parent\_table [, ... ] \)
+INHERITS ( parent_table [, ... ] )
 :   The optional `INHERITS` clause specifies a list of tables from which the new foreign table automatically inherits all columns. Parent tables can be plain tables or foreign tables. See the similar form of [CREATE TABLE](CREATE_TABLE.html) for more details.
 
-PARTITION OF parent\_table { FOR VALUES partition\_bound\_spec | DEFAULT }
-:   This form can be used to create the foreign table as partition of the given parent table with specified partition bound values. See the similar form of [CREATE TABLE](CREATE_TABLE.html) for more details. Note that it is currently not allowed to create the foreign table as a partition of the parent table if there are `UNIQUE` indexes on the parent table. \(See also [ALTER TABLE ATTACH PARTITION](ALTER_TABLE.html).\)
+PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }
+:   This form can be used to create the foreign table as partition of the given parent table with specified partition bound values. See the similar form of [CREATE TABLE](CREATE_TABLE.html) for more details. Note that it is currently not allowed to create the foreign table as a partition of the parent table if there are `UNIQUE` indexes on the parent table. (See also [ALTER TABLE ATTACH PARTITION](ALTER_TABLE.html).)
 
-CONSTRAINT constraint\_name
-:   An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `col must be positive` can be used to communicate helpful constraint information to client applications. \(Double-quotes are needed to specify constraint names that contain spaces.\) If a constraint name is not specified, the system generates a name.
+CONSTRAINT constraint_name
+:   An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `col must be positive` can be used to communicate helpful constraint information to client applications. (Double-quotes are needed to specify constraint names that contain spaces.) If a constraint name is not specified, the system generates a name.
 
 NOT NULL
 :   The column is not allowed to contain null values.
@@ -96,25 +96,25 @@ CHECK ( expression ) [ NO INHERIT ]
 :   Currently, `CHECK` expressions cannot contain subqueries nor refer to variables other than columns of the current row. The system column `tableoid` may be referenced, but not any other system column.
 :   A constraint marked with `NO INHERIT` will not propagate to child tables.
 
-DEFAULT default\_expr
+DEFAULT default_expr
 :   The `DEFAULT` clause assigns a default value for the column whose definition it appears within. The value is any variable-free expression; Greenplum Database does not allow subqueries and cross-references to other columns in the current table. The data type of the default expression must match the data type of the column.
 :   Greenplum Database uses the default expression in any insert operation that does not specify a value for the column. If there is no default for a column, then the default is null.
 
-GENERATED ALWAYS AS \( generation\_expr \) STORED
+GENERATED ALWAYS AS ( generation_expr ) STORED
 :   This clause creates the column as a generated column. The column cannot be written to, and when read the result of the specified expression will be returned.
-:   The keyword `STORED` is required to signify that the column will be computed on write. \(The computed value will be presented to the foreign-data wrapper for storage and must be returned on reading.\)
+:   The keyword `STORED` is required to signify that the column will be computed on write. (The computed value will be presented to the foreign-data wrapper for storage and must be returned on reading.)
 :   The generation expression can refer to other columns in the table, but not other generated columns. Any functions and operators used must be immutable. References to other tables are not allowed.
 
-server\_name
+server_name
 :   The name of an existing server to use for the foreign table. For details on defining a server, see [CREATE SERVER](CREATE_SERVER.html).
 
-OPTIONS \( option 'value' \[, ... \] \)
-:   The options for the new foreign table or one of its columns. While option names must be unique, a table option and a column option may have the same name. The option names and values are foreign-data wrapper-specific. Greenplum Database validates the options and values using the foreign-data wrapper's validator\_function.
+OPTIONS ( option 'value' [, ... ] )
+:   The options for the new foreign table or one of its columns. While option names must be unique, a table option and a column option may have the same name. The option names and values are foreign-data wrapper-specific. Greenplum Database validates the options and values using the foreign-data wrapper's validator_function.
 
-mpp\_execute \{ 'coordinator' \| 'any' \| 'all segments' \}
+mpp_execute { 'coordinator' | 'any' | 'all segments' }
 :   A Greenplum Database-specific option that identifies the host from which the foreign-data wrapper reads or writes data:
 
-    -   `coordinator` \(the default\)—Read or write data from the coordinator host.
+    -   `coordinator` (the default)—Read or write data from the coordinator host.
     -   `any`—Read data from either the coordinator host or any one segment, depending on which path costs less.
     -   `all segments`—Read or write data from all segments. To support this option value, the foreign-data wrapper must have a policy that matches the segments to data.
 
@@ -126,7 +126,7 @@ mpp\_execute \{ 'coordinator' \| 'any' \| 'all segments' \}
 
 ## Notes
 
-Constraints on foreign tables \(such as `CHECK` or `NOT NULL` clauses\) are not enforced by Greenplum Database, and most foreign-data wrappers do not attempt to enforce them either; that is, the constraint is simply assumed to hold true. There would be little point in such enforcement since it would only apply to rows inserted or updated via the foreign table, and not to rows modified by other means, such as directly on the remote server. Instead, a constraint attached to a foreign table should represent a constraint that is being enforced by the remote server.
+Constraints on foreign tables (such as `CHECK` or `NOT NULL` clauses) are not enforced by Greenplum Database, and most foreign-data wrappers do not attempt to enforce them either; that is, the constraint is simply assumed to hold true. There would be little point in such enforcement since it would only apply to rows inserted or updated via the foreign table, and not to rows modified by other means, such as directly on the remote server. Instead, a constraint attached to a foreign table should represent a constraint that is being enforced by the remote server.
 
 Some special-purpose foreign-data wrappers might be the only access mechanism for the data they access, and in that case it might be appropriate for the foreign-data wrapper itself to perform constraint enforcement. But you should not assume that a wrapper does that unless its documentation says so.
 

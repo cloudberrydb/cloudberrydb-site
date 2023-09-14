@@ -22,14 +22,14 @@ ALTER VIEW [ IF EXISTS ] <name> RESET ( <view_option_name> [, ... ] )
 
 ## Description
 
-`ALTER VIEW` changes various auxiliary properties of a view. \(If you want to modify the view's defining query, use `CREATE OR REPLACE VIEW`\).
+`ALTER VIEW` changes various auxiliary properties of a view. (If you want to modify the view's defining query, use `CREATE OR REPLACE VIEW`).
 
 You must own the view to use `ALTER VIEW`. To change a view's schema you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the view's schema. These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the view. However, a superuser can alter ownership of any view.
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing view.
+:   The name (optionally schema-qualified) of an existing view.
 
 IF EXISTS
 :   Do not throw an error if the view does not exist. Greenplum Database issues a notice in this case.
@@ -37,23 +37,23 @@ IF EXISTS
 SET/DROP DEFAULT
 :   These forms set or remove the default value for a column. A view column's default value is substituted into any `INSERT` or `UPDATE` command whose target is the view, before applying any rules or triggers for the view. The view's default will therefore take precedence over any default values from underlying relations.
 
-new\_owner
+new_owner
 :   The user name of the new owner of the view.
 
-new\_name
+new_name
 :   The new name of the view.
 
-new\_schema
+new_schema
 :   The new schema for the view.
 
-SET ( view\_option\_name [= view\_option\_value] [, ... ] )
-RESET ( view\_option\_name [, ... ] )
+SET ( view_option_name [= view_option_value] [, ... ] )
+RESET ( view_option_name [, ... ] )
 :   Sets or resets a view option. Currently supported options are:
 
-    check\_option \(string\)
+    check_option (string)
     :   Changes the check option of the view. The value must be `local` or `cascaded`.
 
-    security\_barrier \(boolean\)
+    security_barrier (boolean)
     :   Changes the security-barrier property of the view. The value must be a Boolean value, such as `true` or `false`.
 
 ## Notes

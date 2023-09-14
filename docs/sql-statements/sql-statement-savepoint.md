@@ -16,7 +16,7 @@ A savepoint is a special mark inside a transaction that allows all commands that
 
 ## Parameters
 
-savepoint\_name
+savepoint_name
 :   The name of the new savepoint. If savepoints with the same name already exist, they are inaccessible until newer identically-named savepoints are released.
 
 ## Notes
@@ -81,7 +81,7 @@ The above transaction shows row 3 being rolled back first, then row 2.
 
 ## Compatibility
 
-SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Greenplum Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. \(Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html) and [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html).\) Otherwise, `SAVEPOINT` is fully SQL conforming.
+SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Greenplum Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. (Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html) and [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html).) Otherwise, `SAVEPOINT` is fully SQL conforming.
 
 ## See Also
 

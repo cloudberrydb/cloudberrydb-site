@@ -38,7 +38,7 @@ name
 :   The name of the resource group to alter.
 
 CONCURRENCY integer
-:   The maximum number of concurrent transactions, including active and idle transactions, that are permitted for this resource group. The `CONCURRENCY` value must be an integer in the range \[0 .. `max_connections`\]. The default `CONCURRENCY` value for resource groups defined for roles is 20.
+:   The maximum number of concurrent transactions, including active and idle transactions, that are permitted for this resource group. The `CONCURRENCY` value must be an integer in the range [0 .. `max_connections`]. The default `CONCURRENCY` value for resource groups defined for roles is 20.
 
 :   You must set `CONCURRENCY` to `0` for resource groups that you create for external components.
 
@@ -78,7 +78,7 @@ The value range is `0-500`. The default value is `0`, which means that the cost 
 
 ## Notes
 
-Use [CREATE ROLE](CREATE_ROLE.html) or [ALTER ROLE](ALTER_ROLE.html) to assign a specific resource group to a role \(user\).
+Use [CREATE ROLE](CREATE_ROLE.html) or [ALTER ROLE](ALTER_ROLE.html) to assign a specific resource group to a role (user).
 
 You cannot submit an `ALTER RESOURCE GROUP` command in an explicit transaction or sub-transaction.
 

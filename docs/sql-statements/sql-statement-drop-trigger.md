@@ -21,7 +21,7 @@ name
 :   The name of the trigger to remove.
 
 table
-:   The name \(optionally schema-qualified\) of the table for which the trigger is defined.
+:   The name (optionally schema-qualified) of the table for which the trigger is defined.
 
 CASCADE
 :   Automatically drop objects that depend on the trigger.

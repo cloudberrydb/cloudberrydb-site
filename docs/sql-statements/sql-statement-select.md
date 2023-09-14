@@ -132,7 +132,7 @@ However, a `WITH` query can be marked `NOT MATERIALIZED` to remove this guarante
 
 By default, a side-effect-free `WITH` query is folded into the primary query if it is used exactly once in the primary query's `FROM` clause. This allows joint optimization of the two query levels in situations where that should be semantically invisible. However, such folding can be prevented by marking the `WITH` query as `MATERIALIZED`. That might be useful, for example, if the `WITH` query is being used as an optimization fence to prevent the planner from choosing a bad plan. Greenplum Database versions before 7 never did such folding, so queries written for older versions might rely on `WITH` to act as an optimization fence.
 
-See [WITH Queries \(Common Table Expressions\)](../../admin_guide/query/topics/CTE-query.html) in the *Greenplum Database Administrator Guide* for additional information.
+See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html) in the *Greenplum Database Administrator Guide* for additional information.
 
 
 ### The FROM Clause
@@ -453,7 +453,7 @@ The `UNION` clause has this general form:
 
 The `UNION` operator computes the set union of the rows returned by the involved `SELECT` statements. A row is in the set union of two result sets if it appears in at least one of the result sets. The two `SELECT` statements that represent the direct operands of the `UNION` must produce the same number of columns, and corresponding columns must be of compatible data types.
 
-The result of `UNION` does not contain any duplicate rows unless the `ALL` option is specified. `ALL` prevents elimination of duplicates. (Therefore, `UNION ALL` is usually significantly quicker than `UNION`; use `ALL` when you can.\) `DISTINCT` can be specified to explicitly specify the default behavior of eliminating duplicate rows.
+The result of `UNION` does not contain any duplicate rows unless the `ALL` option is specified. `ALL` prevents elimination of duplicates. (Therefore, `UNION ALL` is usually significantly quicker than `UNION`; use `ALL` when you can.) `DISTINCT` can be specified to explicitly specify the default behavior of eliminating duplicate rows.
 
 Multiple `UNION` operators in the same `SELECT` statement are evaluated left to right, unless otherwise indicated by parentheses.
 
@@ -589,7 +589,7 @@ Otherwise, table locking for a `SELECT` query that contains a locking clause beh
 
 For more information on each row-level lock mode, refer to [Explicit Locking](https://www.postgresql.org/docs/12/explicit-locking.html) in the PostgreSQL documentation.
 
-To prevent the operation from waiting for other transactions to commit, use either the `NOWAIT` option or the `SKIP LOCKED` option. With `NOWAIT`, the statement reports an error, rather than waiting, if a selected row cannot be locked immediately. With `SKIP LOCKED`, any selected rows that cannot be immediately locked are skipped. Skipping locked rows provides an inconsistent view of the data, so this is not suitable for general purpose work, but can be used to avoid lock contention with multiple consumers accessing a queue-like table. Note that `NOWAIT` and `SKIP LOCKED` apply only to the row-level lock\(s\) — the required `ROW SHARE` table-level lock is still taken in the ordinary way. You can use [LOCK](LOCK.html) with the `NOWAIT` option first, if you need to acquire the table-level lock without waiting.
+To prevent the operation from waiting for other transactions to commit, use either the `NOWAIT` option or the `SKIP LOCKED` option. With `NOWAIT`, the statement reports an error, rather than waiting, if a selected row cannot be locked immediately. With `SKIP LOCKED`, any selected rows that cannot be immediately locked are skipped. Skipping locked rows provides an inconsistent view of the data, so this is not suitable for general purpose work, but can be used to avoid lock contention with multiple consumers accessing a queue-like table. Note that `NOWAIT` and `SKIP LOCKED` apply only to the row-level lock(s) — the required `ROW SHARE` table-level lock is still taken in the ordinary way. You can use [LOCK](LOCK.html) with the `NOWAIT` option first, if you need to acquire the table-level lock without waiting.
 
 If specific tables are named in a locking clause, then only rows coming from those tables are locked; any other tables used in the `SELECT` are simply read as usual. A locking clause without a table list affects all tables used in the statement. If a locking clause is applied to a view or sub-query, it affects all tables used in the view or sub-query. However, these clauses do not apply to `WITH` queries referenced by the primary query. If you want row locking to occur within a `WITH` query, specify a locking clause within the `WITH` query.
 
@@ -745,7 +745,7 @@ GROUP BY region, product;
 
 The example could have been written without the `WITH` clause but would have required two levels of nested sub-`SELECT` statements.
 
-This example uses the `WITH RECURSIVE` clause to find all subordinates \(direct or indirect\) of the employee Mary, and their level of indirectness, from a table that shows only direct subordinates:
+This example uses the `WITH RECURSIVE` clause to find all subordinates (direct or indirect) of the employee Mary, and their level of indirectness, from a table that shows only direct subordinates:
 
 ```
 WITH RECURSIVE employee_recursive(distance, employee_name, manager_name) AS (

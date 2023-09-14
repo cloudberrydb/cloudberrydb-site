@@ -21,7 +21,7 @@ name
 :   The name of an existing server.
 
 CASCADE
-:   Automatically drop objects that depend on the server \(such as user mappings\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the server (such as user mappings), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the server if any object depends on it. This is the default.
@@ -36,7 +36,7 @@ DROP SERVER IF EXISTS foo;
 
 ## Compatibility
 
-`DROP SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\). The `IF EXISTS` clause is a Greenplum Database extension.
+`DROP SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Greenplum Database extension.
 
 ## See Also
 

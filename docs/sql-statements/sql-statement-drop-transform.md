@@ -19,10 +19,10 @@ To drop a transform, you must own the type and the language. These are the same 
 IF EXISTS
 :   Do not throw an error if the transform does not exist. Greenplum Database issues a notice in this case.
 
-type\_name
+type_name
 :   The name of the data type of the transform.
 
-lang\_name
+lang_name
 :   The name of the language of the transform.
 
 CASCADE

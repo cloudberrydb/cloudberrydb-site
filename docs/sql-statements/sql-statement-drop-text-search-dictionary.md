@@ -18,7 +18,7 @@ IF EXISTS
 :   Do not throw an error if the text search dictionary does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing text search dictionary.
+:   The name (optionally schema-qualified) of an existing text search dictionary.
 
 CASCADE
 :   Automatically drop objects that depend on the text search dictionary, and in turn all objects that depend on those objects.

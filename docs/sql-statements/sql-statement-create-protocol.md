@@ -28,13 +28,13 @@ TRUSTED
 name
 :   The name of the data access protocol. The protocol name is case sensitive. The name must be unique among the protocols in the database.
 
-readfunc= 'read\_call\_handler'
+readfunc= 'read_call_handler'
 :   The name of a previously registered function that Greenplum Database calls to read data from an external data source. The command must specify either a read call handler or a write call handler.
 
-writefunc= 'write\_call\_handler'
+writefunc= 'write_call_handler'
 :   The name of a previously registered function that Greenplum Database calls to write data to an external data source. The command must specify either a read call handler or a write call handler.
 
-validatorfunc='validate\_handler'
+validatorfunc='validate_handler'
 :   An optional validator function that validates the URL specified in the `CREATE EXTERNAL TABLE` command.
 
 ## Notes

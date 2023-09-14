@@ -16,11 +16,11 @@ The `SET` command changes server configuration parameters. Any configuration par
 
 If `SET` or `SET SESSION` is issued within a transaction that is later cancelled, the effects of the `SET` command disappear when the transaction is rolled back. Once the surrounding transaction is committed, the effects will persist until the end of the session, unless overridden by another `SET`.
 
-The effects of `SET LOCAL` last only till the end of the current transaction, whether committed or not. A special case is `SET` followed by `SET LOCAL` within a single transaction: the `SET LOCAL` value will be seen until the end of the transaction, but afterwards \(if the transaction is committed\) the `SET` value will take effect.
+The effects of `SET LOCAL` last only till the end of the current transaction, whether committed or not. A special case is `SET` followed by `SET LOCAL` within a single transaction: the `SET LOCAL` value will be seen until the end of the transaction, but afterwards (if the transaction is committed) the `SET` value will take effect.
 
 The effects of `SET` or `SET LOCAL` are also canceled by rolling back to a savepoint that is earlier than the command.
 
-If `SET LOCAL` is used within a function that includes a `SET` option for the same configuration parameter \(see [CREATE FUNCTION](CREATE_FUNCTION.html)\), the effects of the `SET LOCAL` command disappear at function exit; the value in effect when the function was called is restored anyway. This allows `SET LOCAL` to be used for dynamic or repeated changes of a parameter within a function, while retaining the convenience of using the `SET` option to save and restore the caller's value. Note that a regular `SET` command overrides any surrounding function's `SET` option; its effects persist unless rolled back.
+If `SET LOCAL` is used within a function that includes a `SET` option for the same configuration parameter (see [CREATE FUNCTION](CREATE_FUNCTION.html)), the effects of the `SET LOCAL` command disappear at function exit; the value in effect when the function was called is restored anyway. This allows `SET LOCAL` to be used for dynamic or repeated changes of a parameter within a function, while retaining the convenience of using the `SET` option to save and restore the caller's value. Note that a regular `SET` command overrides any surrounding function's `SET` option; its effects persist unless rolled back.
 
 See [Server Configuration Parameters](../config_params/guc_config.html) for information about server parameters.
 
@@ -32,7 +32,7 @@ SESSION
 LOCAL
 :   Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Issuing this outside of a transaction block emits a warning and otherwise has no effect.
 
-configuration\_parameter
+configuration_parameter
 :   The name of a settable Greenplum Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See [Server Configuration Parameters](../config_params/guc_config.html) for details.
 
 value
@@ -60,12 +60,12 @@ TIME ZONE
 
     - `'PST8PDT'`
     - `'Europe/Rome'`
-    - `-7` \(time zone 7 hours west from UTC\)
-    - `INTERVAL '-08:00' HOUR TO MINUTE` \(time zone 8 hours west from UTC\).
+    - `-7` (time zone 7 hours west from UTC)
+    - `INTERVAL '-08:00' HOUR TO MINUTE` (time zone 8 hours west from UTC).
 
     LOCAL
     DEFAULT
-    :   Set the time zone to your local time zone \(that is, server's default value of timezone\).
+    :   Set the time zone to your local time zone (that is, server's default value of timezone).
 
     See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#DATATYPE-TIMEZONES) section of the PostgreSQL documentation for more information about time zones in Greenplum Database.
 
@@ -89,7 +89,7 @@ Set the style of date to traditional POSTGRES with "day before month" input conv
 SET datestyle TO postgres, dmy;
 ```
 
-Set the time zone for San Mateo, California \(Pacific Time\):
+Set the time zone for San Mateo, California (Pacific Time):
 
 ```
 SET TIME ZONE 'PST8PDT';

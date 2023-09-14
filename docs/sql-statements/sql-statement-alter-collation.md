@@ -16,21 +16,21 @@ ALTER COLLATION <name> SET SCHEMA <new_schema>
 
 `ALTER COLLATION` changes the definition of a collation.
 
-You must own the collation to use `ALTER COLLATION`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the collation's schema. \(These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the collation. However, a superuser can alter ownership of any collation anyway.\)
+You must own the collation to use `ALTER COLLATION`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the collation's schema. (These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the collation. However, a superuser can alter ownership of any collation anyway.)
 
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing collation.
+:   The name (optionally schema-qualified) of an existing collation.
 
-new\_name
+new_name
 :   The new name of the collation.
 
-new\_owner
+new_owner
 :   The new owner of the collation.
 
-new\_schema
+new_schema
 :   The new schema for the collation.
 
 REFRESH VERSION
@@ -61,7 +61,7 @@ SELECT pg_describe_object(refclassid, refobjid, refobjsubid) AS "Collation",
 
 ## Examples
 
-To rename the collation de\_DE to `german`:
+To rename the collation de_DE to `german`:
 
 ```
 ALTER COLLATION "de_DE" RENAME TO german;

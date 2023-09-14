@@ -15,7 +15,7 @@ CREATE STATISTICS [ IF NOT EXISTS ] <statistics_name>
 
 `CREATE STATISTICS` creates a new extended statistics object tracking data about the specified table, foreign table, or materialized view. The statistics object is created in the current database and will be owned by the user issuing the command.
 
-If a schema name is given \(for example, `CREATE STATISTICS myschema.mystat ...`\) then the statistics object is created in the specified schema. Otherwise it is created in the current schema. The name of the statistics object must be distinct from the name of any other statistics object in the same schema.
+If a schema name is given (for example, `CREATE STATISTICS myschema.mystat ...`) then the statistics object is created in the specified schema. Otherwise it is created in the current schema. The name of the statistics object must be distinct from the name of any other statistics object in the same schema.
 
 ## Parameters
 
@@ -23,21 +23,21 @@ IF NOT EXISTS
 
 :   Do not throw an error if a statistics object with the same name already exists. Greenplum Database issues a notice in this case. Note that only the name of the statistics object is considered here, not the details of its definition.
 
-statistics\_name
-:   The name \(optionally schema-qualified\) of the statistics object to create.
+statistics_name
+:   The name (optionally schema-qualified) of the statistics object to create.
 
-statistics\_kind
+statistics_kind
 :   A statistics kind to be computed in this statistics object. Currently supported kinds are `ndistinct`, which enables n-distinct statistics, `dependencies`, which enables functional dependency statistics, and `mcv` which enables most-common values lists. If this clause is omitted, all supported statistics kinds are included in the statistics object.
 
-column\_name
+column_name
 :   The name of a table column to be covered by the computed statistics. You must specify at least two column names; the order of the column names is insignificant.
 
-table\_name
-:   The name \(optionally schema-qualified\) of the table containing the column\(s\) on which the statistics are computed; see [ANALYZE](ANALYZE.html) for an explanation of inheritance and partition handling.
+table_name
+:   The name (optionally schema-qualified) of the table containing the column(s) on which the statistics are computed; see [ANALYZE](ANALYZE.html) for an explanation of inheritance and partition handling.
 
 ## Notes
 
-You must be the owner of a table to create a statistics object that reads it. Once created, however, the ownership of the statistics object is independent of the underlying table\(s\).
+You must be the owner of a table to create a statistics object that reads it. Once created, however, the ownership of the statistics object is independent of the underlying table(s).
 
 ## Examples
 
@@ -67,7 +67,7 @@ EXPLAIN ANALYZE SELECT * FROM t1 WHERE (a = 1) AND (b = 0);
 
 Without functional-dependency statistics, the planner assumes that the two `WHERE` conditions are independent, and would multiply their selectivities together to arrive at a much-too-small row count estimate. With such statistics, the planner recognizes that the `WHERE` conditions are redundant and does not underestimate the row count.
 
-Create table `t2` with two perfectly correlated columns \(containing identical data\), and a MCV list on those columns:
+Create table `t2` with two perfectly correlated columns (containing identical data), and a MCV list on those columns:
 
 ```
 CREATE TABLE t2 (

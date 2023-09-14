@@ -20,7 +20,7 @@ IF EXISTS
 :   Do not throw an error if the text search parser does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing text search parser.
+:   The name (optionally schema-qualified) of an existing text search parser.
 
 CASCADE
 :   Automatically drop objects that depend on the text search parser, and in turn all objects that depend on those objects.

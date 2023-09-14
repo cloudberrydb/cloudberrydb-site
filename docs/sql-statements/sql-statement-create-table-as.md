@@ -26,10 +26,10 @@ CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXI
 
 ## Parameters
 
-GLOBAL \| LOCAL
+GLOBAL | LOCAL
 :   Ignored for compatibility. These keywords are deprecated; refer to [CREATE TABLE](CREATE_TABLE.html) for details.
 
-TEMPORARY \| TEMP
+TEMPORARY | TEMP
 :   If specified, the new table is created as a temporary table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
 
 UNLOGGED
@@ -38,21 +38,21 @@ UNLOGGED
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists; simply issue a notice and leave the table unmodified.
 
-table\_name
+table_name
 :   The name (optionally schema-qualified) of the new table to be created.
 
-column\_name
+column_name
 :   The name of a column in the new table. If column names are not provided, they are taken from the output column names of the query.
 
-USING access\_method
-:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type [TABLE](SELECT.html#table-command). Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default\_table\_access\_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
+USING access_method
+:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type [TABLE](SELECT.html#table-command). Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default_table_access_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
 
 :   <p class="note">
 <strong>Note:</strong>
 Although you can specify the table's access method using <code>WITH (appendoptimized=true|false, orientation=row|column)</code> VMware recommends that you use <code>USING <access_method></code> instead.
 </p>
 
-WITH ( storage\_parameter=value )
+WITH ( storage_parameter=value )
 :   The `WITH` clause specifies optional storage parameters for the new table. Refer to the [Storage Parameters](CREATE_TABLE.html#storage_parameters) section on the `CREATE TABLE` reference page for more information.
 
 ON COMMIT
@@ -64,13 +64,13 @@ ON COMMIT
 
 :   DROP — Greenplum Database drops the temporary table at the end of the current transaction block.
 
-TABLESPACE tablespace\_name
-:   The tablespace\_name parameter is the name of the tablespace in which the new table is to be created. If not specified, the database's [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp\_tablespaces](../config_params/guc-list.html#temp_tablespaces) if the table is temporary.
+TABLESPACE tablespace_name
+:   The tablespace_name parameter is the name of the tablespace in which the new table is to be created. If not specified, the database's [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp_tablespaces](../config_params/guc-list.html#temp_tablespaces) if the table is temporary.
 
 AS query
 :   A [SELECT](SELECT.html), [TABLE](SELECT.html#table-command), or [VALUES](VALUES.html) command, or an [EXECUTE](EXECUTE.html) command that runs a prepared `SELECT`, `TABLE`, or `VALUES` query.
 
-DISTRIBUTED BY \( column \[opclass\] \[, ... \] \)
+DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
 :   Used to declare the Greenplum Database distribution policy for the table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.

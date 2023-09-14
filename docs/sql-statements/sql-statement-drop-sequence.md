@@ -10,7 +10,7 @@ DROP SEQUENCE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 ## Description
 
-`DROP SEQUENCE` removes sequence number generators. You must own the sequence to drop it \(or be a superuser\).
+`DROP SEQUENCE` removes sequence number generators. You must own the sequence to drop it (or be a superuser).
 
 ## Parameters
 
@@ -18,7 +18,7 @@ IF EXISTS
 :   Do not throw an error if the sequence does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of the sequence to remove.
+:   The name (optionally schema-qualified) of the sequence to remove.
 
 CASCADE
 :   Automatically drop objects that depend on the sequence, and in turn all objects that depend on those objects.

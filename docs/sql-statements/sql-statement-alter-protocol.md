@@ -21,7 +21,7 @@ These restrictions are in place to ensure that altering the owner only makes cha
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing protocol.
+:   The name (optionally schema-qualified) of an existing protocol.
 
 newname
 :   The new name of the protocol.

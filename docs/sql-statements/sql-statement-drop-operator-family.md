@@ -20,9 +20,9 @@ IF EXISTS
 :   Do not throw an error if the operator family does not exist. A notice is issued in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing operator family.
+:   The name (optionally schema-qualified) of an existing operator family.
 
-index\_method
+index_method
 :   The name of the index access method the operator family is for.
 
 CASCADE

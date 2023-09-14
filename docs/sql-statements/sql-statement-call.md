@@ -17,7 +17,7 @@ If the procedure has any output parameters, then a result row will be returned, 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of the procedure.
+:   The name (optionally schema-qualified) of the procedure.
 
 argument
 :   An input argument for the procedure call.
@@ -26,7 +26,7 @@ argument
 
 The user must have `EXECUTE` privilege on the procedure in order to be allowed to invoke it.
 
-To call a function \(not a procedure\), use [SELECT](SELECT.html) instead.
+To call a function (not a procedure), use [SELECT](SELECT.html) instead.
 
 If `CALL` is invoked in a transaction block, then the called procedure cannot run transaction control statements. Transaction control statements are only allowed if `CALL` is invoked in its own transaction.
 

@@ -18,7 +18,7 @@ You cannot drop the pre-defined `admin_group` and `default_group` resource group
 
 ## Parameters
 
-group\_name
+group_name
 :   The name of the resource group to remove.
 
 ## Notes

@@ -18,7 +18,7 @@ IF EXISTS
 :   Do not throw an error if the text search configuration does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing text search configuration.
+:   The name (optionally schema-qualified) of an existing text search configuration.
 
 CASCADE
 :   Automatically drop objects that depend on the text search configuration, and in turn all objects that depend on those objects.

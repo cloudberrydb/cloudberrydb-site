@@ -53,15 +53,15 @@ and <aggregate_signature> is:
 `ALTER EXTENSION` changes the definition of an installed extension. There are several subforms:
 
 UPDATE
-:   This form updates the extension to a newer version. The extension must supply a suitable update script \(or series of scripts\) that can modify the currently-installed version into the requested version.
+:   This form updates the extension to a newer version. The extension must supply a suitable update script (or series of scripts) that can modify the currently-installed version into the requested version.
 
 SET SCHEMA
 :   This form moves the extension member objects into another schema. The extension must be *relocatable* for this command to succeed.
 
-ADD member\_object
+ADD member_object
 :   This form adds an existing object to the extension. This is mainly useful in extension update scripts. The object will subsequently be treated as a member of the extension; notably, it can only be dropped by dropping the extension.
 
-DROP member\_object
+DROP member_object
 :   This form removes a member object from the extension. This is mainly useful in extension update scripts. The object is not dropped, only disassociated from the extension.
 
 See [Packaging Related Objects into an Extension](https://www.postgresql.org/docs/12/extend-extensions.html) for more information about these operations.
@@ -73,24 +73,24 @@ You must own the extension to use `ALTER EXTENSION`. The `ADD` and `DROP` forms 
 name
 :   The name of an installed extension.
 
-new\_version
-:   The new version of the extension. The new\_version can be either an identifier or a string literal. If not specified, `ALTER EXTENSION UPDATE` attempts to update to whatever is shown as the default version in the extension's control file.
+new_version
+:   The new version of the extension. The new_version can be either an identifier or a string literal. If not specified, `ALTER EXTENSION UPDATE` attempts to update to whatever is shown as the default version in the extension's control file.
 
-new\_schema
+new_schema
 :   The new schema for the extension.
 
-object\_name
-aggregate\_name
-function\_name
-operator\_name
-procedure\_name
-routine\_name
+object_name
+aggregate_name
+function_name
+operator_name
+procedure_name
+routine_name
 :   The name of an object to be added to or removed from the extension. Names of tables, aggregates, domains, foreign tables, functions, operators, operator classes, operator families, procedures, routines, sequences, text search objects, types, and views can be schema-qualified.
 
-source\_type
+source_type
 :   The name of the source data type of the cast.
 
-target\_type
+target_type
 :   The name of the target data type of the cast.
 
 argmode
@@ -102,17 +102,17 @@ argname
 argtype
 :   The data type of a function, procedure, or aggregate argument.
 
-left\_type
-right\_type
-:   The data types of the operator's arguments \(optionally schema-qualified\) . Specify `NONE` for the missing argument of a prefix or postfix operator.
+left_type
+right_type
+:   The data types of the operator's arguments (optionally schema-qualified) . Specify `NONE` for the missing argument of a prefix or postfix operator.
 
 PROCEDURAL
 :   This is a noise word.
 
-type\_name
+type_name
 :   The name of the data type of the transform.
 
-lang\_name
+lang_name
 :   The name of the language of the transform.
 
 ## Examples

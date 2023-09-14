@@ -28,15 +28,15 @@ IF NOT EXISTS
 :   Do not throw an error if a collation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing collation is anything like the one that would have been created.
 
 name
-:   The name of the collation. The collation name can be schema-qualified. If it is not, the collation is defined in the current schema. The collation name must be unique within that schema. \(The system catalogs can contain collations with the same name for other encodings, but these are ignored if the database encoding does not match.\)
+:   The name of the collation. The collation name can be schema-qualified. If it is not, the collation is defined in the current schema. The collation name must be unique within that schema. (The system catalogs can contain collations with the same name for other encodings, but these are ignored if the database encoding does not match.)
 
 locale
 :   This is a shortcut for setting `LC_COLLATE` and `LC_CTYPE` at once. If you specify this, you cannot specify either of those parameters.
 
-lc\_collate
+lc_collate
 :   Use the specified operating system locale for the `LC_COLLATE` locale category.
 
-lc\_ctype
+lc_ctype
 :   Use the specified operating system locale for the `LC_CTYPE` locale category.
 
 provider
@@ -50,7 +50,7 @@ version
 :   Specifies the version string to store with the collation. Normally, this should be omitted, which will cause the version to be computed from the actual version of the collation as provided by the operating system. This option is intended to be used by `pg_upgrade` for copying the version from an existing installation.
 :   See also [ALTER COLLATION](ALTER_COLLATION.html) for how to handle collation version mismatches.
 
-existing\_collation
+existing_collation
 :   The name of an existing collation to copy. The new collation will have the same properties as the existing one, but it will be an independent object.
 
 ## Notes
@@ -65,7 +65,7 @@ When using the `libc` collation provider, the, locale must be applicable to the 
 
 ## Examples
 
-To create a collation from the operating system locale `fr_FR.utf8` \(assuming the current database encoding is `UTF8`\):
+To create a collation from the operating system locale `fr_FR.utf8` (assuming the current database encoding is `UTF8`):
 
 ```
 CREATE COLLATION french (LOCALE = 'fr_FR.utf8');

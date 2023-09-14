@@ -40,7 +40,7 @@ But the following query will be rejected in Greenplum Database because it operat
 INSERT INTO product VALUES (setval('myserial', 201), 'gizmo');
 ```
 
-In a regular \(non-distributed\) database, functions that operate on the sequence go to the local sequence table to get values as they are needed. In Greenplum Database, however, keep in mind that each segment is its own distinct database process. Therefore the segments need a single point of truth to go for sequence values so that all segments get incremented correctly and the sequence moves forward in the right order. A sequence server process runs on the coordinator and is the point-of-truth for a sequence in a Greenplum distributed database. Segments get sequence values at runtime from the coordinator.
+In a regular (non-distributed) database, functions that operate on the sequence go to the local sequence table to get values as they are needed. In Greenplum Database, however, keep in mind that each segment is its own distinct database process. Therefore the segments need a single point of truth to go for sequence values so that all segments get incremented correctly and the sequence moves forward in the right order. A sequence server process runs on the coordinator and is the point-of-truth for a sequence in a Greenplum distributed database. Segments get sequence values at runtime from the coordinator.
 
 Because of this distributed sequence design, there are some limitations on the functions that operate on a sequence in Greenplum Database:
 
@@ -57,20 +57,20 @@ Although you cannot update a sequence directly, you can use a query like:
 SELECT * FROM <sequence_name>;
 ```
 
-to examine the parameters and current state of a sequence. In particular, the last\_value field of the sequence shows the last value allocated by any session. \(Note that this value might be obsolete by the time it's printed, if other sessions are actively doing `nextval()` calls.\)
+to examine the parameters and current state of a sequence. In particular, the last_value field of the sequence shows the last value allocated by any session. (Note that this value might be obsolete by the time it's printed, if other sessions are actively doing `nextval()` calls.)
 
 ## Parameters
 
-TEMPORARY \| TEMP
-:   If specified, the sequence object is created only for this session, and is automatically dropped on session exit. Existing permanent sequences with the same name are not visible \(in this session\) while the temporary sequence exists, unless they are referenced with schema-qualified names.
+TEMPORARY | TEMP
+:   If specified, the sequence object is created only for this session, and is automatically dropped on session exit. Existing permanent sequences with the same name are not visible (in this session) while the temporary sequence exists, unless they are referenced with schema-qualified names.
 
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the sequence that would have been created - it might not even be a sequence.
 
 name
-:   The name \(optionally schema-qualified\) of the sequence to be created.
+:   The name (optionally schema-qualified) of the sequence to be created.
 
-data\_type
+data_type
 :   The optional clause `AS data_type` specifies the data type of the sequence. Valid types are `smallint`, `integer`, and `bigint`. `bigint` is the default. The data type determines the default minimum and maximum values of the sequence.
 
 increment
@@ -88,22 +88,22 @@ start
 :   Allows the sequence to begin anywhere. The default starting value is `minvalue` for ascending sequences and `maxvalue` for descending ones.
 
 cache
-:   Specifies how many sequence numbers are to be preallocated and stored in memory for faster access. The default value is 20. The minimum value is 1 \(no cache\).
+:   Specifies how many sequence numbers are to be preallocated and stored in memory for faster access. The default value is 20. The minimum value is 1 (no cache).
 :   > **Note** When operating with a cache of sequence numbers (`cache > 1`), Greenplum Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
 
 CYCLE
 NO CYCLE
-:   Allows the sequence to wrap around when the `maxvalue` \(for ascending\) or `minvalue` \(for descending\) has been reached. If the limit is reached, the next number generated will be the `minvalue` \(for ascending\) or `maxvalue` \(for descending\). If `NO CYCLE` is specified, any calls to `nextval()` after the sequence has reached its maximum value will return an error. If neither `CYCLE` or `NO CYCLE` are specified, `NO CYCLE` is the default.
+:   Allows the sequence to wrap around when the `maxvalue` (for ascending) or `minvalue` (for descending) has been reached. If the limit is reached, the next number generated will be the `minvalue` (for ascending) or `maxvalue` (for descending). If `NO CYCLE` is specified, any calls to `nextval()` after the sequence has reached its maximum value will return an error. If neither `CYCLE` or `NO CYCLE` are specified, `NO CYCLE` is the default.
 
-OWNED BY table\_name.colume\_name
+OWNED BY table_name.colume_name
 OWNED BY NONE
-:   Causes the sequence to be associated with a specific table column, such that if that column \(or its whole table\) is dropped, the sequence will be automatically dropped as well. The specified table must have the same owner and be in the same schema as the sequence. `OWNED BY NONE`, the default, specifies that there is no such association.
+:   Causes the sequence to be associated with a specific table column, such that if that column (or its whole table) is dropped, the sequence will be automatically dropped as well. The specified table must have the same owner and be in the same schema as the sequence. `OWNED BY NONE`, the default, specifies that there is no such association.
 
 ## Notes
 
 Use `DROP SEQUENCE` to remove a sequence.
 
-Sequences are based on bigint arithmetic, so the range cannot exceed the range of an eight-byte integer \(-9223372036854775808 to 9223372036854775807\).
+Sequences are based on bigint arithmetic, so the range cannot exceed the range of an eight-byte integer (-9223372036854775808 to 9223372036854775807).
 
 Because `nextval()` and `setval()` calls are never rolled back, sequence objects cannot be used if "gapless" assignment of sequence numbers is needed. It is possible to build gapless assignment by using exclusive locking of a table containing a counter; but this solution is much more expensive than sequence objects, especially if many transactions need sequence numbers concurrently.
 
@@ -131,7 +131,7 @@ Reset the sequence counter value on the Greenplum Database coordinator:
 SELECT setval('myseq', 201);
 ```
 
-Illegal use of `setval()` in Greenplum Database \(setting sequence values on distributed data\):
+Illegal use of `setval()` in Greenplum Database (setting sequence values on distributed data):
 
 ```
 INSERT INTO product VALUES (setval('myseq', 201), 'gizmo'); 

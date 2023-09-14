@@ -10,7 +10,7 @@ DROP OWNED BY { <name> | CURRENT_USER | SESSION_USER } [, ...] [CASCADE | RESTRI
 
 ## Description
 
-`DROP OWNED` drops all of the objects in the current database that are owned by one of the specified roles. Any privileges granted to the given roles on objects in the current database or on shared objects \(databases, tablespaces\) will also be revoked.
+`DROP OWNED` drops all of the objects in the current database that are owned by one of the specified roles. Any privileges granted to the given roles on objects in the current database or on shared objects (databases, tablespaces) will also be revoked.
 
 ## Parameters
 
@@ -31,7 +31,7 @@ Using the `CASCADE` option may make the command recurse to objects owned by othe
 
 The [REASSIGN OWNED](REASSIGN_OWNED.html) command is an alternative that reassigns the ownership of all the database objects owned by one or more roles. However, `REASSIGN OWNED` does not deal with privileges for other objects.
 
-Databases and tablespaces owned by the role\(s\) will not be removed.
+Databases and tablespaces owned by the role(s) will not be removed.
 
 ## Examples
 

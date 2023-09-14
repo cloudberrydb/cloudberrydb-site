@@ -16,23 +16,23 @@ ALTER OPERATOR CLASS <name> USING <index_method> SET SCHEMA <new_schema>
 
 `ALTER OPERATOR CLASS` changes the definition of an operator class.
 
-You must own the operator class to use `ALTER OPERATOR CLASS`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the operator class's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the operator class. However, a superuser can alter ownership of any operator class anyway.\)
+You must own the operator class to use `ALTER OPERATOR CLASS`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the operator class's schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the operator class. However, a superuser can alter ownership of any operator class anyway.)
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing operator class.
+:   The name (optionally schema-qualified) of an existing operator class.
 
-index\_method
+index_method
 :   The name of the index method this operator class is for.
 
-new\_name
+new_name
 :   The new name of the operator class.
 
-new\_owner
+new_owner
 :   The new owner of the operator class
 
-new\_schema
+new_schema
 :   The new schema for the operator class.
 
 ## Compatibility

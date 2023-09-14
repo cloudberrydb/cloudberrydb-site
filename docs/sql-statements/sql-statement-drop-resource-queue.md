@@ -14,7 +14,7 @@ This command removes a resource queue from Greenplum Database. To drop a resourc
 
 ## Parameters
 
-queue\_name
+queue_name
 :   The name of a resource queue to remove.
 
 ## Notes
@@ -39,7 +39,7 @@ pg_roles.rolresqueue=pg_resqueue.oid;
 
 ## Examples
 
-Remove a role from a resource queue \(and move the role to the default resource queue, `pg_default`\):
+Remove a role from a resource queue (and move the role to the default resource queue, `pg_default`):
 
 ```
 ALTER ROLE bob RESOURCE QUEUE NONE;

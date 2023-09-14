@@ -26,25 +26,25 @@ IF NOT EXISTS
 
 :   Do not throw an error if a server with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing server is anything like the one that would have been created.
 
-server\_name
+server_name
 :   The name of the foreign server to create. The server name must be unique within the database.
 
-server\_type
+server_type
 :   Optional server type, potentially useful to foreign-data wrappers.
 
-server\_version
+server_version
 :   Optional server version, potentially useful to foreign-data wrappers.
 
-fdw\_name
+fdw_name
 :   Name of the foreign-data wrapper that manages the server.
 
-OPTIONS \( option 'value' \[, ... \] \)
+OPTIONS ( option 'value' [, ... ] )
 :   The options for the new foreign server. The options typically define the connection details of the server, but the actual names and values are dependent upon the server's foreign-data wrapper.
 
-mpp\_execute \{ 'coordinator' \| 'any' \| 'all segments' \}
+mpp_execute { 'coordinator' | 'any' | 'all segments' }
 :   A Greenplum Database-specific option that identifies the host from which the foreign-data wrapper reads or writes data:
 
-    -   `coordinator` \(the default\)—Read or write data from the coordinator host.
+    -   `coordinator` (the default)—Read or write data from the coordinator host.
     -   `any`—Read data from either the coordinator host or any one segment, depending on which path costs less.
     -   `all segments`—Read or write data from all segments. To support this option value, the foreign-data wrapper should have a policy that matches the segments to data.
 
@@ -54,14 +54,14 @@ mpp\_execute \{ 'coordinator' \| 'any' \| 'all segments' \}
 
     The `mpp_execute` option can be specified in multiple commands: `CREATE FOREIGN TABLE`, `CREATE SERVER`, and `CREATE FOREIGN DATA WRAPPER`. The foreign table setting takes precedence over the foreign server setting, followed by the foreign-data wrapper setting.
 
-num\_segments 'num'
+num_segments 'num'
 :   When `mpp_execute` is set to `'all segments'`, the Greenplum Database-specific `num_segments` option identifies the number of query executors that Greenplum Database spawns on the source Greenplum Database cluster. If you do not provide a value, num defaults to the number of segments in the source cluster.
 
     Support for the foreign server `num_segments` option is foreign-data wrapper-specific.
 
 ## Notes
 
-When using the dblink module \(see [dblink](../modules/dblink.html)\), you can use the foreign server name as an argument of the `dblink_connect()` function to provide the connection parameters. You must have the `USAGE` privilege on the foreign server to use it in this manner.
+When using the dblink module (see [dblink](../modules/dblink.html)), you can use the foreign server name as an argument of the `dblink_connect()` function to provide the connection parameters. You must have the `USAGE` privilege on the foreign server to use it in this manner.
 
 ## Examples
 
@@ -74,7 +74,7 @@ CREATE SERVER myserver FOREIGN DATA WRAPPER gpfdw1
 
 ## Compatibility
 
-`CREATE SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\).
+`CREATE SERVER` conforms to ISO/IEC 9075-9 (SQL/MED).
 
 ## See Also
 

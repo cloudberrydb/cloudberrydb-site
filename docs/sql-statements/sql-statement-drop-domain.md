@@ -18,10 +18,10 @@ IF EXISTS
 :   Do not throw an error if the domain does not exist. A notice is issued in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing domain.
+:   The name (optionally schema-qualified) of an existing domain.
 
 CASCADE
-:   Automatically drop objects that depend on the domain \(such as table columns\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the domain (such as table columns), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the domain if any objects depend on it. This is the default.

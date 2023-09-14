@@ -18,10 +18,10 @@ ALTER [ PROCEDURAL ] LANGUAGE <name> OWNER TO { <new_owner> | CURRENT_USER | SES
 name
 :   Name of a language.
 
-new\_name
+new_name
 :   The new name of the language.
 
-new\_owner
+new_owner
 :   The new owner of the language.
 
 ## Compatibility

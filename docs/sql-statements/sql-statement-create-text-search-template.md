@@ -28,10 +28,10 @@ Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.
 name
 :   The name of the text search template to be created. The name can be schema-qualified.
 
-init\_function
+init_function
 :   The name of the init function for the template.
 
-lexize\_function
+lexize_function
 :   The name of the lexize function for the template.
 
 The function names can be schema-qualified if necessary. Argument types are not given, since the argument list for each type of function is predetermined. The lexize function is required, but the init function is optional.

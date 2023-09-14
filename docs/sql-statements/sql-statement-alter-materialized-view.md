@@ -35,7 +35,7 @@ where <action> is one of:
 
 `ALTER MATERIALIZED VIEW` changes various auxiliary properties of an existing materialized view.
 
-You must own the materialized view to use `ALTER MATERIALIZED VIEW`. To change a materialized view's schema, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the materialized view's schema. \(These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the materialized view. However, a superuser can alter ownership of any view anyway.\)
+You must own the materialized view to use `ALTER MATERIALIZED VIEW`. To change a materialized view's schema, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the materialized view's schema. (These restrictions enforce that altering the owner doesn't do anything you couldn't do by dropping and recreating the materialized view. However, a superuser can alter ownership of any view anyway.)
 
 The `DEPENDS ON EXTENSION` form marks the materialized view as dependent on an extension, such that the materialized view will automatically be dropped if the extension is dropped.
 
@@ -44,24 +44,24 @@ The statement subforms and actions available for `ALTER MATERIALIZED VIEW` are a
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing materialized view.
+:   The name (optionally schema-qualified) of an existing materialized view.
 
-column\_name
+column_name
 :   Name of a new or existing column.
 
-extension\_name
+extension_name
 :   The name of the extension that the materialized view is to depend on.
 
-new\_column\_name
+new_column_name
 :   New name for an existing column.
 
-new\_owner
+new_owner
 :   The user name of the new owner of the materialized view.
 
-new\_name
+new_name
 :   The new name for the materialized view.
 
-new\_schema
+new_schema
 :   The new schema for the materialized view.
 
 ## Examples

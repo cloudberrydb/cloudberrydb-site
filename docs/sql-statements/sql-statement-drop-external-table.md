@@ -21,10 +21,10 @@ IF EXISTS
 :   Do not throw an error if the external table does not exist. Greenplum Database issues a notice in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing external table.
+:   The name (optionally schema-qualified) of an existing external table.
 
 CASCADE
-:   Automatically drop objects that depend on the external table \(such as views\).
+:   Automatically drop objects that depend on the external table (such as views).
 
 RESTRICT
 :   Refuse to drop the external table if any objects depend on it. This is the default.

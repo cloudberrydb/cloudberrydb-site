@@ -23,13 +23,13 @@ DEFAULT
 name
 :   The name of the conversion. The conversion name may be schema-qualified. If it is not, the conversion is defined in the current schema. The conversion name must be unique within a schema.
 
-source\_encoding
+source_encoding
 :   The source encoding name.
 
-dest\_encoding
+dest_encoding
 :   The destination encoding name.
 
-function\_name
+function_name
 :   The function used to perform the conversion. The function name may be schema-qualified. If it is not, the function will be looked up in the path. The function must have the following signature:
 
 :   ```
@@ -48,7 +48,7 @@ Use [DROP CONVERSION](DROP_CONVERSION.html) to remove a user-defined conversion.
 
 The privileges required to create a conversion might change in a feature release.
 
-Note that in this release of Greenplum Database, user-defined functions used in a user-defined conversion must be defined as `IMMUTABLE`. Any compiled code \(shared library files\) for custom functions must be placed in the same location on every host in your Greenplum Database array \(coordinator and all segments\). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files.
+Note that in this release of Greenplum Database, user-defined functions used in a user-defined conversion must be defined as `IMMUTABLE`. Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Greenplum Database array (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files.
 
 
 ## Examples

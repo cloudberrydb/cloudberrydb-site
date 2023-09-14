@@ -10,9 +10,9 @@ DROP ROLE [IF EXISTS] <name> [, ...]
 
 ## Description
 
-`DROP ROLE` removes the specified role\(s\). To drop a superuser role, you must be a superuser yourself. To drop non-superuser roles, you must have `CREATEROLE` privilege.
+`DROP ROLE` removes the specified role(s). To drop a superuser role, you must be a superuser yourself. To drop non-superuser roles, you must have `CREATEROLE` privilege.
 
-A role cannot be removed if it is still referenced in any database; an error will be raised if so. Before dropping the role, you must drop all the objects it owns \(or reassign their ownership\) and revoke any privileges the role has been granted on other objects. The [REASSIGN OWNED](REASSIGN_OWNED.html) and [DROP OWNED](DROP_OWNED.html) commands can be useful for this purpose.
+A role cannot be removed if it is still referenced in any database; an error will be raised if so. Before dropping the role, you must drop all the objects it owns (or reassign their ownership) and revoke any privileges the role has been granted on other objects. The [REASSIGN OWNED](REASSIGN_OWNED.html) and [DROP OWNED](DROP_OWNED.html) commands can be useful for this purpose.
 
 However, it is not necessary to remove role memberships involving the role; `DROP ROLE` automatically revokes any memberships of the target role in other roles, and of other roles in the target role. The other roles are not dropped nor otherwise affected.
 

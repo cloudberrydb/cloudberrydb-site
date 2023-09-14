@@ -30,25 +30,25 @@ ALTER DOMAIN <name> SET SCHEMA <new_schema>
 
 -   **SET/DROP DEFAULT** — These forms set or remove the default value for a domain. Note that defaults only apply to subsequent `INSERT` commands. They do not affect rows already in a table using the domain.
 -   **SET/DROP NOT NULL** — These forms change whether a domain is marked to allow NULL values or to reject NULL values. You may only `SET NOT NULL` when the columns using the domain contain no null values.
--   **ADD domain\_constraint \[ NOT VALID \]** — This form adds a new constraint to a domain using the same syntax as [CREATE DOMAIN](CREATE_DOMAIN.html). When a new constraint is added to a domain, all columns using that domain will be checked against the newly-added constraint. These checks can be suppressed by adding the new constraint using the `NOT VALID` option; the constraint can later be made valid using `ALTER DOMAIN ... VALIDATE CONSTRAINT`. Newly inserted or updated rows are always checked against all constraints, even those marked `NOT VALID`. `NOT VALID` is only accepted for `CHECK` constraints.
--   **DROP CONSTRAINT \[ IF EXISTS \]** — This form drops constraints on a domain. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. In this case a notice is issued instead.
+-   **ADD domain_constraint [ NOT VALID ]** — This form adds a new constraint to a domain using the same syntax as [CREATE DOMAIN](CREATE_DOMAIN.html). When a new constraint is added to a domain, all columns using that domain will be checked against the newly-added constraint. These checks can be suppressed by adding the new constraint using the `NOT VALID` option; the constraint can later be made valid using `ALTER DOMAIN ... VALIDATE CONSTRAINT`. Newly inserted or updated rows are always checked against all constraints, even those marked `NOT VALID`. `NOT VALID` is only accepted for `CHECK` constraints.
+-   **DROP CONSTRAINT [ IF EXISTS ]** — This form drops constraints on a domain. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. In this case a notice is issued instead.
 -   **RENAME CONSTRAINT** — This form changes the name of a constraint on a domain.
 -   **VALIDATE CONSTRAINT** — This form validates a constraint previously added as `NOT VALID`, that is, it verifies that all values in table columns of the domain satisfy the specified constraint.
 -   **OWNER** — This form changes the owner of the domain to the specified user.
 -   **RENAME** — This form changes the name of the domain.
 -   **SET SCHEMA** — This form changes the schema of the domain. Any constraints associated with the domain are moved into the new schema as well.
 
-You must own the domain to use `ALTER DOMAIN`. To change the schema of a domain, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the domain's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the domain. However, a superuser can alter ownership of any domain anyway.\)
+You must own the domain to use `ALTER DOMAIN`. To change the schema of a domain, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the domain's schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the domain. However, a superuser can alter ownership of any domain anyway.)
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing domain to alter.
+:   The name (optionally schema-qualified) of an existing domain to alter.
 
-domain\_constraint
+domain_constraint
 :   New domain constraint for the domain.
 
-constraint\_name
+constraint_name
 :   Name of an existing constraint to drop or rename.
 
 NOT VALID
@@ -60,23 +60,23 @@ CASCADE
 RESTRICT
 :   Refuse to drop the constraint if there are any dependent objects. This is the default behavior.
 
-new\_name
+new_name
 :   The new name for the domain.
 
-new\_constraint\_name
+new_constraint_name
 :   The new name for the constraint.
 
-new\_owner
+new_owner
 :   The user name of the new owner of the domain.
 
-new\_schema
+new_schema
 :   The new schema for the domain.
 
 ## Notes
 
 Although `ALTER DOMAIN ADD CONSTRAINT` attempts to verify that existing stored data satisfies the new constraint, this check is not bulletproof, because the command cannot “see” table rows that are newly inserted or updated and not yet committed. If there is a hazard that concurrent operations might insert bad data, the way to proceed is to add the constraint using the `NOT VALID` option, commit that command, wait until all transactions started before that commit have finished, and then issue `ALTER DOMAIN VALIDATE CONSTRAINT` to search for data violating the constraint. This method is reliable because once the constraint is committed, all new transactions are guaranteed to enforce it against new values of the domain type.
 
-Currently, `ALTER DOMAIN ADD CONSTRAINT`, `ALTER DOMAIN VALIDATE CONSTRAINT`, and `ALTER DOMAIN SET NOT NULL` will fail if the named domain or any derived domain is used within a container-type column \(a composite, array, or range column\) in any table in the database. They should eventually be improved to be able to verify the new constraint for such nested values.
+Currently, `ALTER DOMAIN ADD CONSTRAINT`, `ALTER DOMAIN VALIDATE CONSTRAINT`, and `ALTER DOMAIN SET NOT NULL` will fail if the named domain or any derived domain is used within a container-type column (a composite, array, or range column) in any table in the database. They should eventually be improved to be able to verify the new constraint for such nested values.
 
 ## Examples
 

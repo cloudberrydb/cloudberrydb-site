@@ -12,7 +12,7 @@ DROP SCHEMA [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 `DROP SCHEMA` removes schemas from the database.
 
-A schema can be dropped only by its owner or a superuser. Note that the owner can drop the schema \(and thereby all contained objects\) even if they do not own some of the objects within the schema.
+A schema can be dropped only by its owner or a superuser. Note that the owner can drop the schema (and thereby all contained objects) even if they do not own some of the objects within the schema.
 
 ## Parameters
 
@@ -23,14 +23,14 @@ name
 :   The name of the schema to remove.
 
 CASCADE
-:   Automatically drop objects \(tables, functions, etc.\) that are contained in the schema, and in turn all objects that depend on those objects.
+:   Automatically drop objects (tables, functions, etc.) that are contained in the schema, and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the schema if it contains any objects. This is the default.
 
 ## Notes
 
-Using the `CASCADE` option may result in the command removing objects in other schemas besides the one\(s\) named.
+Using the `CASCADE` option may result in the command removing objects in other schemas besides the one(s) named.
 
 ## Examples
 

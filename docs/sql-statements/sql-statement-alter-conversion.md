@@ -17,20 +17,20 @@ ALTER CONVERSION <name> SET SCHEMA <new_schema>
 
 `ALTER CONVERSION` changes the definition of a conversion.
 
-You must own the conversion to use `ALTER CONVERSION`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the conversion's schema. \(These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the conversion. However, a superuser can alter ownership of any conversion anyway.\)
+You must own the conversion to use `ALTER CONVERSION`. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the conversion's schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the conversion. However, a superuser can alter ownership of any conversion anyway.)
 
 ## Parameters
 
 name
-:   The name \(optionally schema-qualified\) of an existing conversion.
+:   The name (optionally schema-qualified) of an existing conversion.
 
-new\_name
+new_name
 :   The new name of the conversion.
 
-new\_owner
+new_owner
 :   The new owner of the conversion.
 
-new\_schema
+new_schema
 :   The new schema for the conversion.
 
 ## Examples

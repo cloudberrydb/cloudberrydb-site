@@ -42,7 +42,7 @@ name
 :   The name of the resource group.
 
 CONCURRENCY integer
-:   Optional. The maximum number of concurrent transactions, including active and idle transactions, that are permitted for this resource group. The `CONCURRENCY` value must be an integer in the range \[0 .. `max_connections`\]. The default `CONCURRENCY` value for resource groups defined for roles is 20.
+:   Optional. The maximum number of concurrent transactions, including active and idle transactions, that are permitted for this resource group. The `CONCURRENCY` value must be an integer in the range [0 .. `max_connections`]. The default `CONCURRENCY` value for resource groups defined for roles is 20.
 
 :   You must set `CONCURRENCY` to `0` for resource groups that you create for external components.
 

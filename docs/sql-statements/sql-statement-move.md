@@ -41,7 +41,7 @@ On successful completion, a `MOVE` command returns a command tag of the form
 MOVE <count>
 ```
 
-The count is the number of rows that a `FETCH` command with the same parameters would have returned \(possibly zero\).
+The count is the number of rows that a `FETCH` command with the same parameters would have returned (possibly zero).
 
 ## Examples
 
@@ -64,7 +64,7 @@ MOVE FORWARD 5 IN mycursor;
 MOVE 5
 ```
 
-Fetch the next row after that \(row 6\):
+Fetch the next row after that (row 6):
 
 ```
 FETCH 1 FROM mycursor;

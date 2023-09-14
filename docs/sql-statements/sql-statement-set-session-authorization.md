@@ -16,9 +16,9 @@ RESET SESSION AUTHORIZATION
 
 This command sets the session role identifier and the current role identifier of the current SQL-session context to be rolename. The role name may be written as either an identifier or a string literal. Using this command, it is possible, for example, to temporarily become an unprivileged user and later switch back to being a superuser.
 
-The session role identifier is initially set to be the \(possibly authenticated\) role name provided by the client. The current role identifier is normally equal to the session user identifier, but may change temporarily in the context of `setuid` functions and similar mechanisms; it can also be changed by [SET ROLE](SET_ROLE.html). The current user identifier is relevant for permission checking.
+The session role identifier is initially set to be the (possibly authenticated) role name provided by the client. The current role identifier is normally equal to the session user identifier, but may change temporarily in the context of `setuid` functions and similar mechanisms; it can also be changed by [SET ROLE](SET_ROLE.html). The current user identifier is relevant for permission checking.
 
-The session user identifier may be changed only if the initial session user \(the authenticated user\) had the superuser privilege. Otherwise, the command is accepted only if it specifies the authenticated user name.
+The session user identifier may be changed only if the initial session user (the authenticated user) had the superuser privilege. Otherwise, the command is accepted only if it specifies the authenticated user name.
 
 The `DEFAULT` and `RESET` forms reset the session and current user identifiers to be the originally authenticated user name. These forms may be run by any user.
 
@@ -55,7 +55,7 @@ SELECT SESSION_USER, CURRENT_USER;
 
 ## Compatibility
 
-The SQL standard allows some other expressions to appear in place of the literal rolename, but these options are not important in practice. Greenplum Database allows identifier syntax \(rolename\), which SQL does not. SQL does not allow this command during a transaction; Greenplum Database does not make this restriction. The `SESSION` and `LOCAL` modifiers are a Greenplum Database extension, as is the `RESET` syntax.
+The SQL standard allows some other expressions to appear in place of the literal rolename, but these options are not important in practice. Greenplum Database allows identifier syntax (rolename), which SQL does not. SQL does not allow this command during a transaction; Greenplum Database does not make this restriction. The `SESSION` and `LOCAL` modifiers are a Greenplum Database extension, as is the `RESET` syntax.
 
 ## See Also
 

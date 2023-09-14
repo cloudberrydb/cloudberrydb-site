@@ -216,10 +216,10 @@ The `PARTITION BY` and `PARTITION OF` clauses allow you to divide the table into
 
 ## Parameters
 
-GLOBAL \| LOCAL
+GLOBAL | LOCAL
 :   These keywords are present for SQL standard compatibility, but have no effect in Greenplum Database and are deprecated.
 
-TEMPORARY \| TEMP
+TEMPORARY | TEMP
 :   If specified, the table is created as a temporary table. Temporary tables are automatically dropped at the end of a session, or optionally at the end of the current transaction (see `ON COMMIT`). Existing permanent tables with the same name are not visible to the current session while the temporary table exists, unless they are referenced with schema-qualified names. Any indexes created on a temporary table are automatically temporary as well.
 
 :   Be sure to perform appropriate vacuum and analyze operations on temporary tables via session SQL commands. For example, if you are going to use a temporary table in complex queries, run `ANALYZE` on the temporary table after it is populated.
@@ -230,18 +230,18 @@ UNLOGGED
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
 
-table\_name
+table_name
 :   The name (optionally schema-qualified) of the table to be created.
 
-OF type\_name
+OF type_name
 :   Creates a *typed table*, which takes its structure from the specified composite type (name optionally schema-qualified). A typed table is tied to its type; for example, the table will be dropped if the type is dropped with `DROP TYPE ... CASCADE`.
 
 :   When a typed table is created, the data types of the columns are determined by the underlying composite type and are not specified by the `CREATE TABLE` command. But the `CREATE TABLE` command can add defaults and constraints to the table and can specify storage parameters.
 
-column\_name
+column_name
 :   The name of a column to be created in the new table.
 
-data\_type
+data_type
 :   The data type of the column. This may include array specifiers. For more information on the data types supported by Greenplum Database, refer to the [Data Types](../data_types.html) documentation.
 
 :   For table columns that contain textual data, Specify the data type `VARCHAR` or `TEXT`. Specifying the data type `CHAR` is not recommended. In Greenplum Database, the data types `VARCHAR` or `TEXT` handle padding added to the data (space characters added after the last non-space character) as significant characters, the data type `CHAR` does not. See [Notes](#section5).
@@ -251,8 +251,8 @@ COLLATE collation
 
     > **Note** The Greenplum Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Greenplum uses the Postgres Planner.
 
-ENCODING ( storage\_directive [, ...] )
-:   For a column, the optional `ENCODING` clause specifies the type of compression and block size for the column data. Valid column storage\_directives are `compresstype`, `compresslevel`, and `blocksize`.
+ENCODING ( storage_directive [, ...] )
+:   For a column, the optional `ENCODING` clause specifies the type of compression and block size for the column data. Valid column storage_directives are `compresstype`, `compresslevel`, and `blocksize`.
 
 :   This clause is valid only for append-optimized, column-oriented tables.
 
@@ -271,7 +271,7 @@ ENCODING ( storage\_directive [, ...] )
     :   The value `RLE_TYPE`, which is supported only for append-optimized, column-oriented tables, enables the run-length encoding (RLE) compression algorithm. RLE compresses data better than the Zstd or zlib compression algorithms when the same data value occurs in many consecutive rows.
     :   For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
 
-INHERITS \( parent\_table \[, …\]\)
+INHERITS ( parent_table [, …])
 :   The optional `INHERITS` clause specifies a list of tables from which the new table automatically inherits all columns. Parent tables can be plain tables or foreign tables.
 
 :   Use of `INHERITS` creates a persistent relationship between the new child table and its parent table(s). Schema modifications to the parent(s) normally propagate to children as well, and by default the data of the child table is included in scans of the parent(s).
@@ -284,7 +284,7 @@ INHERITS \( parent\_table \[, …\]\)
 
 :   If a column in the parent table is an identity column, that property is not inherited. You can declare a column in the child table an identity column if desired.
 
-PARTITION BY { RANGE | LIST | HASH } ( { column\_name | ( expression ) } [ opclass ] [, ...] )
+PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ opclass ] [, ...] )
 :   The optional `PARTITION BY` clause of the *modern partitioning syntax* specifies a strategy of partitioning the table. The table thus created is referred to as a partitioned table. The parenthesized list of columns or expressions forms the partition key for the table. When using range or hash partitioning, the partition key can include multiple columns or expressions (up to 32), but for list partitioning, the partition key must consist of a single column or expression.
 
 :   Range and list partitioning require a btree operator class, while hash partitioning requires a hash operator class. If no operator class is specified explicitly, the default operator class of the appropriate type will be used; if no default operator class exists, Greenplum raises an error. When hash partitioning is used, the operator class used must implement support function 2 (see [Index Method Support Routines](https://www.postgresql.org/docs/12/xindex.html#XINDEX-SUPPORT) in the PostgreSQL documentation for details).
@@ -297,12 +297,12 @@ PARTITION BY { RANGE | LIST | HASH } ( { column\_name | ( expression ) } [ opcla
 
 :   Refer to [Partitioning Large Tables](../../admin_guide/ddl/ddl-partition.html) for further discussion on table partitioning.
 
-PARTITION OF parent\_table { FOR VALUES partition\_bound\_spec | DEFAULT }
+PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }
 :   The `PARTITION OF` clause of the *modern partitioning syntax* creates the table as a *partition* of the specified parent table. You can create the table either as a partition for specific values using `FOR VALUES` or as a default partition using `DEFAULT`. Any indexes and constraints that exist in the parent table are cloned on the new partition.
 
-:   The partition\_bound\_spec must correspond to the partitioning method and partition key of the parent table, and must not overlap with any existing partition of that parent. The form with `IN` is used for list partitioning, the form with `FROM` and `TO` is used for range partitioning, and the form with `WITH` is used for hash partitioning.
+:   The partition_bound_spec must correspond to the partitioning method and partition key of the parent table, and must not overlap with any existing partition of that parent. The form with `IN` is used for list partitioning, the form with `FROM` and `TO` is used for range partitioning, and the form with `WITH` is used for hash partitioning.
 
-:   partition\_bound\_expr is any variable-free expression (subqueries, window functions, aggregate functions, and set-returning functions are not allowed). Its data type must match the data type of the corresponding partition key column. The expression is evaluated once at table creation time, so it can even contain volatile expressions such as `CURRENT_TIMESTAMP`.
+:   partition_bound_expr is any variable-free expression (subqueries, window functions, aggregate functions, and set-returning functions are not allowed). Its data type must match the data type of the corresponding partition key column. The expression is evaluated once at table creation time, so it can even contain volatile expressions such as `CURRENT_TIMESTAMP`.
 
 :   When creating a list partition, you can specify `NULL` to signify that the partition allows the partition key column to be null. However, there cannot be more than one such list partition for a given parent table. `NULL` cannot be specified for range partitions.
 
@@ -328,7 +328,7 @@ PARTITION OF parent\_table { FOR VALUES partition\_bound\_spec | DEFAULT }
 
 :   Operations such as `TRUNCATE` which normally affect a table and all of its inheritance children will cascade to all partitions, but may also be performed on an individual partition. Note that dropping a partition with `DROP TABLE` requires taking an `ACCESS EXCLUSIVE` lock on the parent table.
 
-LIKE source\_table \[like\_option `...`\]
+LIKE source_table [like_option `...`]
 :   The `LIKE` clause specifies a table from which the new table automatically copies all column names, their data types, not-null constraints, and distribution policy.
 
 :   > **Note** Storage properties and the partition structure are *not* copied to the new table.
@@ -337,7 +337,7 @@ LIKE source\_table \[like\_option `...`\]
 
 :   Also unlike `INHERITS`, columns and constraints copied by `LIKE` are not merged with similarly named columns and constraints. If the same name is specified explicitly or in another `LIKE` clause, Greenplum Database signals an error.
 
-:   The optional like\_option clauses specify which additional properties of the original table to copy. Specifying `INCLUDING` copies the property, specifying `EXCLUDING` omits the property. `EXCLUDING` is the default. If multiple specifications are made for the same kind of object, the last one is used. The available options are:
+:   The optional like_option clauses specify which additional properties of the original table to copy. Specifying `INCLUDING` copies the property, specifying `EXCLUDING` omits the property. `EXCLUDING` is the default. If multiple specifications are made for the same kind of object, the last one is used. The available options are:
 
     INCLUDING AM
     :   The access method of the original table will be copied.
@@ -379,10 +379,10 @@ LIKE source\_table \[like\_option `...`\]
 
 :   You can also use the `LIKE` clause to copy column definitions from views, foreign tables, or composite types. Greenplum Database ignores inapplicable options (for example, `INCLUDING INDEXES` from a view).
 
-CONSTRAINT constraint\_name
+CONSTRAINT constraint_name
 :   An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `column must be positive` can be used to communicate helpful constraint information to client applications. (Use double-quotes to specify constraint names that contain spaces.) If a constraint name is not specified, the system generates a name.
 
-    > **Note** The specified constraint\_name is used for the constraint, but a system-generated unique name is used for the index name. In some prior releases, the provided name was used for both the constraint name and the index name.
+    > **Note** The specified constraint_name is used for the constraint, but a system-generated unique name is used for the index name. In some prior releases, the provided name was used for both the constraint name and the index name.
 
 NOT NULL
 :   The column is not allowed to contain null values.
@@ -392,7 +392,7 @@ NULL
 
 :   This clause is only provided for compatibility with non-standard SQL databases. Its use is discouraged in new applications.
 
-CHECK \(expression\) \[ NO INHERIT \]
+CHECK (expression) [ NO INHERIT ]
 :   The `CHECK` clause specifies an expression producing a Boolean result which new or updated rows must satisfy for an insert or update operation to succeed. Expressions evaluating to `TRUE` or `UNKNOWN` succeed. Should any row of an insert or update operation produce a `FALSE` result, Greenplum raises an error exception, and the insert or update does not alter the database. A check constraint specified as a column constraint should reference that column's value only, while an expression appearing in a table constraint can reference multiple columns.
 
 :   Currently, `CHECK` expressions cannot contain subqueries nor refer to variables other than columns of the current row. You can reference the system column `tableoid`, but not any other system column.
@@ -401,7 +401,7 @@ CHECK \(expression\) \[ NO INHERIT \]
 
 :   When a table has multiple `CHECK` constraints, they will be tested for each row in alphabetical order by name, after checking `NOT NULL` constraints. (Previous Greenplum Database versions did not honor any particular firing order for `CHECK` constraints.)
 
-DEFAULT default\_expr
+DEFAULT default_expr
 :   The `DEFAULT` clause assigns a default data value for the column whose column definition it appears within. The value is any variable-free expression (in particular, cross-references to other columns in the current table are not allowed). Subqueries are not allowed either. The data type of the default expression must match the data type of the column. The default expression will be used in any insert operation that does not specify a value for the column. If there is no default for a column, then the default is null.
 
 GENERATED ALWAYS AS ( generation_expr ) STORED
@@ -414,8 +414,8 @@ GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( sequence_options ) ]
 :   The clauses `ALWAYS` and `BY DEFAULT` determine how the sequence value is given precedence over a user-specified value in an `INSERT` statement. If `ALWAYS` is specified, a user-specified value is only accepted if the `INSERT` statement specifies `OVERRIDING SYSTEM VALUE`. If `BY DEFAULT` is specified, then the user-specified value takes precedence. See [INSERT](INSERT.html) for details. (In the `COPY` command, ueser-specified values are always used regardless of this setting.)
 :   You can use the optional sequence_options clause to override the options of the sequence. See [CREATE SEQUENCE](CREATE_SEQUENCE.html) for details.
 
-UNIQUE \( column\_constraint \)
-UNIQUE \( column\_name \[, ... \] \) \[ INCLUDE \( column\_name \[, ...\]\) \] \( table\_constraint \)
+UNIQUE ( column_constraint )
+UNIQUE ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table_constraint )
 :   The `UNIQUE` constraint specifies that a group of one or more columns of a table may contain only unique values. The behavior of a unique table constraint is the same as that of a unique column constraint, with the additional capability to span multiple columns. The constraint therefore enforces that any two rows must differ in at least one of these columns.
 
 :   For the purpose of a unique constraint, null values are not considered equal. The column(s) that are unique must contain all the columns of the Greenplum distribution key. In addition, the `<key>` must contain all the columns in the partition key if the table is partitioned. Note that a `<key>` constraint in a partitioned table is not the same as a simple `UNIQUE INDEX`.
@@ -428,11 +428,11 @@ UNIQUE \( column\_name \[, ... \] \) \[ INCLUDE \( column\_name \[, ...\]\) \] \
 
 :   The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
 
-PRIMARY KEY \( column constraint \)
-PRIMARY KEY \( column\_name \[, ... \] \) \[ INCLUDE \( column\_name \[, ...\]\) \] \( table constraint \)
+PRIMARY KEY ( column constraint )
+PRIMARY KEY ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table constraint )
 :   The `PRIMARY KEY` constraint specifies that a column or columns of a table may contain only unique (non-duplicate), non-null values. You can specify only one primary key for a table, whether as a column constraint or a table constraint.
 
-:   The primary key constraint should name a set of columns that is different from the set of columns named by any unique constraint defined for the same table. \(Otherwise, the unique constraint is redundant and will be discarded.\)
+:   The primary key constraint should name a set of columns that is different from the set of columns named by any unique constraint defined for the same table. (Otherwise, the unique constraint is redundant and will be discarded.)
 
 :   `PRIMARY KEY` enforces the same data constraints as a combination of `UNIQUE` and `NOT NULL`, but identifying a set of columns as the primary key also provides metadata about the design of the schema, since a primary key implies that other tables can rely on this set of columns as a unique identifier for rows.
 
@@ -442,21 +442,21 @@ PRIMARY KEY \( column\_name \[, ... \] \) \[ INCLUDE \( column\_name \[, ...\]\)
 
 :   The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
 
-EXCLUDE [ USING index\_method ] ( exclude\_element WITH operator [, ... ] ) index\_parameters [ WHERE ( predicate ) ]
+EXCLUDE [ USING index_method ] ( exclude_element WITH operator [, ... ] ) index_parameters [ WHERE ( predicate ) ]
 :   The `EXCLUDE` clause defines an exclusion constraint, which guarantees that if any two rows are compared on the specified column(s) or expression(s) using the specified operator(s), not all of these comparisons will return `TRUE`. If all of the specified operators test for equality, this is equivalent to a `UNIQUE` constraint, although an ordinary unique constraint will be faster. However, exclusion constraints can specify constraints that are more general than simple equality. For example, you can specify a constraint that no two rows in the table contain overlapping circles by using the `&&` operator.
 
 :   Greenplum Database does not support specifying an exclusion constraint on a randomly-distributed table.
 
-:   Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index\_method. The operators are required to be commutative. Each exclude\_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](CREATE_INDEX.html).
+:   Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index_method. The operators are required to be commutative. Each exclude_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](CREATE_INDEX.html).
 
 :   The access method must support `amgettuple`; at present this means GIN cannot be used. Although it's allowed, there is little point in using B-tree or hash indexes with an exclusion constraint, because this does nothing that an ordinary unique constraint doesn't do better. So in practice the access method will always be GiST or SP-GiST.
 
 :   The predicate allows you to specify an exclusion constraint on a subset of the table; internally this creates a partial index. Note that parentheses are required around the predicate.
 
-REFERENCES reftable \[ \( refcolumn \) \]
-  \[ MATCH matchtype \] \[ON DELETE key\_action\] \[ON UPDATE key\_action\] \(column constraint\)
-FOREIGN KEY \(column\_name \[, ...\]\) REFERENCES reftable [ ( refcolumn [, ... ] ) ]
-  \[ MATCH matchtype \] \[ ON DELETE referential_action \] \[ ON UPDATE referential_action \] \(table constraint\)
+REFERENCES reftable [ ( refcolumn ) ]
+  [ MATCH matchtype ] [ON DELETE key_action] [ON UPDATE key_action] (column constraint)
+FOREIGN KEY (column_name [, ...]) REFERENCES reftable [ ( refcolumn [, ... ] ) ]
+  [ MATCH matchtype ] [ ON DELETE referential_action ] [ ON UPDATE referential_action ] (table constraint)
 :   The `REFERENCES` and `FOREIGN KEY` clauses specify referential integrity constraints (foreign key constraints). Greenplum accepts referential integrity constraints but does not enforce them.
 
 DEFERRABLE
@@ -469,15 +469,15 @@ INITIALLY IMMEDIATE
 INITIALLY DEFERRED
 :   If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](SET_CONSTRAINTS.html) command.
 
-USING access\_method
-:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default\_table\_access\_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
+USING access_method
+:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default_table_access_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
 
 :   <p class="note">
 <strong>Note:</strong>
 Although you can specify the table's access method using <code>WITH (appendoptimized=true|false, orientation=row|column)</code> VMware recommends that you use <code>USING <access_method></code> instead.
 </p>
   
-WITH ( storage\_parameter=value )
+WITH ( storage_parameter=value )
 :   The `WITH` clause specifies optional storage parameters for a table or index; see [Storage Parameters](#storage_parameters) below for details. For backward-compatibility the `WITH` clause for a table can also include `OIDS=FALSE` to specify that rows of the new table should not contain OIDs (object identifiers), `OIDS=TRUE`. is no longer supported.
 
 ON COMMIT
@@ -490,23 +490,23 @@ ON COMMIT
 :   **DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
 
 TABLESPACE tablespace
-:   The name of the tablespace in which the new table is to be created. If not specified, the database's  [default\_tablespace](../config_params/guc-list.html#default_tablespace) is consulted, or [temp\_tablespaces](../config_params/guc-list.html) if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
+:   The name of the tablespace in which the new table is to be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is consulted, or [temp_tablespaces](../config_params/guc-list.html) if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
 
 USING INDEX TABLESPACE tablespace
-:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's  [default\_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp\_tablespaces](../config_params/guc-list.html) if the table is temporary.
+:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp_tablespaces](../config_params/guc-list.html) if the table is temporary.
 
-DISTRIBUTED BY \( column \[opclass\] \[, ... \] \)
+DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
 :   Used to declare the Greenplum Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
 
-:   The Greenplum Database server configuration parameter [gp\_create\_table\_random\_default\_distribution](../config_params/guc-list.html#gp_create_table_random_default_distribution) controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Greenplum Database follows these rules to create a table if a distribution policy is not specified.
+:   The Greenplum Database server configuration parameter [gp_create_table_random_default_distribution](../config_params/guc-list.html#gp_create_table_random_default_distribution) controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Greenplum Database follows these rules to create a table if a distribution policy is not specified.
 
-    If the value of the parameter is `off` \(the default\), Greenplum Database chooses the table distribution key based on the command:
+    If the value of the parameter is `off` (the default), Greenplum Database chooses the table distribution key based on the command:
 
     -   If a `LIKE` or `INHERITS` clause is specified, then Greenplum copies the distribution key from the source or parent table.
     -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` constraints are specified, then Greenplum chooses the largest subset of all the key columns as the distribution key.
-    -   If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Greenplum chooses the first suitable column as the distribution key. \(Columns with geometric or user-defined data types are not eligible as Greenplum distribution key columns.\)
+    -   If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Greenplum chooses the first suitable column as the distribution key. (Columns with geometric or user-defined data types are not eligible as Greenplum distribution key columns.)
 
     If the value of the parameter is set to `on`, Greenplum Database follows these rules:
 
@@ -521,11 +521,11 @@ Descriptions of additional parameters that are specific to the *classic partitio
 
 > **Note** VMware recommends that you use the modern partitioning syntax.
 
-CREATE TABLE table\_name ... PARTITION BY
+CREATE TABLE table_name ... PARTITION BY
 
 :   When creating a partitioned table using the *classic syntax*, Greenplum Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The [pg_partitioned_table](../system_catalogs/pg_partitioned_table.html) system catalog contains information about the sub-partition tables.
 
-classic\_partition\_spec
+classic_partition_spec
 :   Declares the individual partitions to create. Each partition can be defined individually or, for range partitions, you can use the `EVERY` clause (with a `START` and optional `END` clause) to define an increment pattern to use to create the individual partitions.
 
 DEFAULT PARTITION name
@@ -564,7 +564,7 @@ The `WITH` clause can specify storage parameters for tables, and for indexes ass
 
 Note that you can also set storage parameters for a particular partition or sub-partition by declaring the `WITH` clause in the *classic syntax* partition specification. The lowest-level partition's settings have priority. 
 
-You can specify the defaults for some of the table storage options with the server configuration parameter [gp\_default\_storage\_options](../config_params/guc-list.html#gp_default_storage_options). For information about setting default storage options, see [Notes](#section5).
+You can specify the defaults for some of the table storage options with the server configuration parameter [gp_default_storage_options](../config_params/guc-list.html#gp_default_storage_options). For information about setting default storage options, see [Notes](#section5).
 
 > **Note** Because Greenplum Database does not permit autovacuuming user tables, it accepts, but does not apply, certain per-table parameter settings as noted below.
 
@@ -709,7 +709,7 @@ CREATE TABLE baby.rank (id int, rank int, year smallint, count int )
 DISTRIBUTED BY (rank, year);
 ```
 
-Create tables named `films` and `distributors` (the primary key will be used as the Greenplum distribution key by default\):
+Create tables named `films` and `distributors` (the primary key will be used as the Greenplum distribution key by default):
 
 ```
 CREATE TABLE films (

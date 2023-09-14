@@ -19,16 +19,16 @@ IF EXISTS
 :   Do not throw an error if the operator does not exist. A notice is issued in this case.
 
 name
-:   The name \(optionally schema-qualified\) of an existing operator.
+:   The name (optionally schema-qualified) of an existing operator.
 
-left\_type
+left_type
 :   The data type of the operator's left operand; write `NONE` if the operator has no left operand.
 
-right\_type
+right_type
 :   The data type of the operator's right operand; write `NONE` if the operator has no right operand.
 
 CASCADE
-:   Automatically drop objects that depend on the operator \(such as views using it\), and in turn all objects that depend on those objects.
+:   Automatically drop objects that depend on the operator (such as views using it), and in turn all objects that depend on those objects.
 
 RESTRICT
 :   Refuse to drop the operator if any objects depend on it. This is the default.

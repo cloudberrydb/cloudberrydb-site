@@ -30,16 +30,16 @@ Superusers automatically satisfy all of these criteria.
 name
 :   The name of an existing server.
 
-new\_version
+new_version
 :   The new server version.
 
-OPTIONS \( \[ ADD \| SET \| DROP \] option \['value'\] \[, ... \] \)
+OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
 :   Change the server's options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Greenplum Database validates names and values using the server's foreign-data wrapper library.
 
-new\_owner
+new_owner
 :   Specifies the new owner of the foreign server.
 
-new\_name
+new_name
 :   Specifies the new name of the foreign server.
 
 ## Examples
@@ -58,7 +58,7 @@ ALTER SERVER foo VERSION '9.1' OPTIONS (SET host 'baz');
 
 ## Compatibility
 
-`ALTER SERVER` conforms to ISO/IEC 9075-9 \(SQL/MED\). The `OWNER TO` and `RENAME` forms are Greenplum Database extensions.
+`ALTER SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `OWNER TO` and `RENAME` forms are Greenplum Database extensions.
 
 ## See Also
 
