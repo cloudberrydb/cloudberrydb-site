@@ -291,5 +291,5 @@ Possible limitations of the query clause are documented under [SELECT](SELECT.ht
 
 [SELECT](SELECT.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

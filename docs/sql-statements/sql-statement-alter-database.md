@@ -66,7 +66,7 @@ new_tablespace
 
 configuration_parameter value
 :   Set this database's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the database-specific setting is removed, so the system-wide default setting will be inherited in new sessions. Use `RESET ALL` to clear all database-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the database-specific value.
-:   See [SET](SET.html) and [Server Configuration Parameters](../config_params/guc_config.html) for more information about allowed parameter names and values.
+:   See [SET](SET.html) and Server Configuration Parameters for more information about allowed parameter names and values.
 
 ## Notes
 
@@ -94,5 +94,5 @@ The `ALTER DATABASE` statement is a Greenplum Database extension.
 
 [CREATE DATABASE](CREATE_DATABASE.html), [DROP DATABASE](DROP_DATABASE.html), [SET](SET.html), [CREATE TABLESPACE](CREATE_TABLESPACE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

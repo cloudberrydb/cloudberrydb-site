@@ -174,11 +174,11 @@ The `INHERIT` attribute is the default for reasons of backwards compatibility. I
 
 Be careful with the `CREATEROLE` privilege. There is no concept of inheritance for the privileges of a `CREATEROLE`-role. That means that even if a role does not have a certain privilege but is allowed to create other roles, it can easily create another role with different privileges than its own (except for creating roles with superuser privileges). For example, if a role has the `CREATEROLE` privilege but not the `CREATEDB` privilege, it can create a new role with the `CREATEDB` privilege. Therefore, regard roles that have the `CREATEROLE` privilege as almost-superuser-roles.
 
-Greenplum Database includes a program [createuser](../../utility_guide/ref/createuser.html) that has the same functionality as `CREATE ROLE` (in fact, it calls this command) but can be run from the command shell.
+Greenplum Database includes a program createuser that has the same functionality as `CREATE ROLE` (in fact, it calls this command) but can be run from the command shell.
 
 The `CONNECTION LIMIT` option is only enforced approximately; if two new sessions start at about the same time when just one connection "slot" remains for the role, it is possible that both will fail. Also, the limit is never enforced for superusers.
 
-You must exercise caution when specifying an unencrypted password with this command. The password will be transmitted to the server in clear-text, and it might also be logged in the client's command history or the server log. The client program [createuser](../../utility_guide/ref/createuser.html), however, transmits the password encrypted. Also, [psql](../../utility_guide/ref/psql.html) contains a command `\password` that can be used to safely change the password later.
+You must exercise caution when specifying an unencrypted password with this command. The password will be transmitted to the server in clear-text, and it might also be logged in the client's command history or the server log. The client program createuser, however, transmits the password encrypted. Also, psql contains a command `\password` that can be used to safely change the password later.
 
 ## Examples
 
@@ -249,7 +249,7 @@ The behavior specified by the SQL standard is most closely approximated by givin
 
 ## See Also
 
-[SET ROLE](SET_ROLE.html), [ALTER ROLE](ALTER_ROLE.html), [DROP ROLE](DROP_ROLE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html) [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [createuser](../../utility_guide/ref/createuser.html)
+[SET ROLE](SET_ROLE.html), [ALTER ROLE](ALTER_ROLE.html), [DROP ROLE](DROP_ROLE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html) [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), createuser
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -95,5 +95,5 @@ one `NOTIFY` event will be sent during the `UPDATE`, whether or not there are an
 
 [ALTER RULE](ALTER_RULE.html), [DROP RULE](DROP_RULE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

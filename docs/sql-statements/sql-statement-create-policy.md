@@ -152,7 +152,7 @@ Generally, the system will enforce filter conditions imposed using security poli
 
 Since policy expressions are added to the user's query directly, they will be run with the rights of the user running the overall query. Therefore, users who are using a given policy must be able to access any tables or functions referenced in the expression or they will simply receive a permission denied error when attempting to query the table that has row-level security enabled. This does not change how views work, however. As with normal queries and views, permission checks and policies for the tables which are referenced by a view will use the view owner's rights and any policies which apply to the view owner.
 
-Refer to [About Configuring Row-Level Security Policies](../../admin_guide/row_security.html) for more information and practical examples.
+Refer to About Configuring Row-Level Security Policies for more information and practical examples.
 
 ## Compatibility
 
@@ -162,5 +162,5 @@ Refer to [About Configuring Row-Level Security Policies](../../admin_guide/row_s
 
 [ALTER POLICY](ALTER_POLICY.html), [DROP POLICY](DROP_POLICY.html), [ALTER TABLE](ALTER_TABLE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

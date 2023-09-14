@@ -43,5 +43,5 @@ There is no `DROP STATISTICS` command in the SQL standard.
 
 [ALTER STATISTICS](ALTER_STATISTICS.html), [CREATE STATISTICS](CREATE_STATISTICS.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

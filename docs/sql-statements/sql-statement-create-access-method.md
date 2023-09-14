@@ -46,5 +46,5 @@ CREATE ACCESS METHOD heptree TYPE INDEX HANDLER heptree_handler;
 
 [DROP ACCESS METHOD](DROP_ACCESS_METHOD.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [CREATE OPERATOR FAMILY](CREATE_OPERATOR_FAMILY.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

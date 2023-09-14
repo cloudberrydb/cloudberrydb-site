@@ -67,5 +67,5 @@ The `IMPORT FOREIGN SCHEMA` command conforms to the SQL standard, except that th
 
 [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

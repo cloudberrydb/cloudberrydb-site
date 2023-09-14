@@ -157,5 +157,5 @@ Either `RESTRICT` or `CASCADE` is required according to the standard, but Greenp
 
 [ALTER DEFAULT PRIVILEGES](ALTER_DEFAULT_PRIVILEGES.html), [GRANT](GRANT.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

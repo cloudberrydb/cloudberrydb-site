@@ -126,5 +126,5 @@ This statement is partially compatible with the `ALTER PROCEDURE` statement in t
 
 [CREATE PROCEDURE](CREATE_PROCEDURE.html), [DROP PROCEDURE](DROP_PROCEDURE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

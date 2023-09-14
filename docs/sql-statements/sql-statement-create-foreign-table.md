@@ -170,5 +170,5 @@ CREATE FOREIGN TABLE measurement_y2016m07
 
 [ALTER FOREIGN TABLE](ALTER_FOREIGN_TABLE.html), [DROP FOREIGN TABLE](DROP_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -72,5 +72,5 @@ There is no `NOTIFY` statement in the SQL standard.
 
 [LISTEN](LISTEN.html), [UNLISTEN](UNLISTEN.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

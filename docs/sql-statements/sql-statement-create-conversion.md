@@ -67,5 +67,5 @@ CREATE CONVERSION myconv FOR 'UTF8' TO 'LATIN1' FROM myfunc;
 
 [ALTER CONVERSION](ALTER_CONVERSION.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP CONVERSION](DROP_CONVERSION.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

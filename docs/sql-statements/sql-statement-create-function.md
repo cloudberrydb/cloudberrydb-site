@@ -480,7 +480,7 @@ For parameter defaults, the SQL standard specifies only the syntax with the `DEF
 
 ## See Also
 
-[ALTER FUNCTION](ALTER_FUNCTION.html), [DROP FUNCTION](DROP_FUNCTION.html), [GRANT](GRANT.html), [LOAD](LOAD.html), [REVOKE](REVOKE.html), [createlang](../../utility_guide/ref/createdb.html)
+[ALTER FUNCTION](ALTER_FUNCTION.html), [DROP FUNCTION](DROP_FUNCTION.html), [GRANT](GRANT.html), [LOAD](LOAD.html), [REVOKE](REVOKE.html), createlang
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

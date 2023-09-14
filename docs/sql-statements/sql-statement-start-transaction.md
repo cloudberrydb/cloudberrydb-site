@@ -37,5 +37,5 @@ See also the compatibility section of [SET TRANSACTION](SET_TRANSACTION.html).
 
 [BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html), [SAVEPOINT](SAVEPOINT.html), [SET TRANSACTION](SET_TRANSACTION.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

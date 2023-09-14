@@ -49,5 +49,5 @@ check_expression
 
 [CREATE POLICY](CREATE_POLICY.html), [DROP POLICY](DROP_POLICY.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -25,7 +25,7 @@ For partitioned tables, `ANALYZE` collects additional statistics, HyperLogLog (H
 -   When aggregating NDV estimates across multiple leaf partitions, HLL statistics generate a more accurate NDV estimates than the standard table statistics.
 -   When updating HLL statistics, `ANALYZE` operations are required only on leaf partitions that have changed. For example, `ANALYZE` is required if the leaf partition data has changed, or if the leaf partition has been exchanged with another table. For more information about updating partitioned table statistics, see [Notes](#section5).
 
-> **Important** If you intend to run queries on partitioned tables with GPORCA enabled (the default), then you must collect statistics on the root partition of the partitioned table with the `ANALYZE` or `ANALYZE ROOTPARTITION` command. For information about collecting statistics on partitioned tables and when the `ROOTPARTITION` keyword is required, see [Notes](#section5). For information about GPORCA, see [Overview of GPORCA](../../admin_guide/query/topics/query-piv-opt-overview.html) in the *Greenplum Database Administrator Guide*.
+> **Important** If you intend to run queries on partitioned tables with GPORCA enabled (the default), then you must collect statistics on the root partition of the partitioned table with the `ANALYZE` or `ANALYZE ROOTPARTITION` command. For information about collecting statistics on partitioned tables and when the `ROOTPARTITION` keyword is required, see [Notes](#section5). For information about GPORCA, see Overview of GPORCA in the *Greenplum Database Administrator Guide*.
 
 > **Note** You can also use the Greenplum Database utility `analyzedb` to update table statistics. The `analyzedb` utility can update statistics for multiple tables concurrently. The utility can also check table statistics and update statistics only if the statistics are not current or do not exist. For information about the utility, see the *Greenplum Database Utility Guide*.
 
@@ -115,7 +115,7 @@ For a partitioned table that contains a leaf partition that has been exchanged t
 -   If `ANALYZE` or `ANALYZE ROOTPARTITION` is run on the root partition, external table partitions are not sampled and root table statistics do not include external table partition.
 -   If the `VERBOSE` clause is specified, an informational message is displayed: `skipping external table`.
 
-The Greenplum Database server configuration parameter [optimizer_analyze_root_partition](../config_params/guc-list.html) determines when statistics are collected on a root partitioned table. If the parameter is `on` (the default), the `ROOTPARTITION` keyword is not required to collect statistics on the root partition when you run `ANALYZE`. Root partition statistics are collected when you run `ANALYZE` on the root partition, or when you run `ANALYZE` on a leaf partition of the partitioned table and the other leaf partitions have statistics. If the parameter is `off`, you must run `ANALZYE ROOTPARTITION` to collect root partition statistics.
+The Greenplum Database server configuration parameter optimizer_analyze_root_partition determines when statistics are collected on a root partitioned table. If the parameter is `on` (the default), the `ROOTPARTITION` keyword is not required to collect statistics on the root partition when you run `ANALYZE`. Root partition statistics are collected when you run `ANALYZE` on the root partition, or when you run `ANALYZE` on a leaf partition of the partitioned table and the other leaf partitions have statistics. If the parameter is `off`, you must run `ANALZYE ROOTPARTITION` to collect root partition statistics.
 
 The statistics collected by `ANALYZE` usually include a list of some of the most common values in each column and a histogram showing the approximate data distribution in each column. One or both of these may be omitted if `ANALYZE` deems them uninteresting (for example, in a unique-key column, there are no common values) or if the column data type does not support the appropriate operators.
 
@@ -127,7 +127,7 @@ One of the values estimated by `ANALYZE` is the number of distinct values that a
 
 When Greenplum Database performs an `ANALYZE` operation to collect statistics for a table and detects that all the sampled table data pages are empty (do not contain valid data), Greenplum Database displays a message that a `VACUUM FULL` operation should be performed. If the sampled pages are empty, the table statistics will be inaccurate. Pages become empty after a large number of changes to the table, for example deleting a large number of rows. A `VACUUM FULL` operation removes the empty pages and allows an `ANALYZE` operation to collect accurate statistics.
 
-If there are no statistics for the table, the server configuration parameter [gp_enable_relsize_collection](../config_params/guc-list.html) controls whether the Postgres Planner uses a default statistics file or estimates the size of a table using the `pg_relation_size` function. By default, the Postgres Planner uses the default statistics file to estimate the number of rows if statistics are not available.
+If there are no statistics for the table, the server configuration parameter gp_enable_relsize_collection controls whether the Postgres Planner uses a default statistics file or estimates the size of a table using the `pg_relation_size` function. By default, the Postgres Planner uses the default statistics file to estimate the number of rows if statistics are not available.
 
 ## Examples
 
@@ -143,7 +143,7 @@ There is no `ANALYZE` statement in the SQL standard.
 
 ## See Also
 
-[ALTER TABLE](ALTER_TABLE.html), [EXPLAIN](EXPLAIN.html), [VACUUM](VACUUM.html), [analyzedb](../../utility_guide/ref/analyzedb.html).
+[ALTER TABLE](ALTER_TABLE.html), [EXPLAIN](EXPLAIN.html), [VACUUM](VACUUM.html), analyzedb.
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

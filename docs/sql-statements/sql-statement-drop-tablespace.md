@@ -12,7 +12,7 @@ DROP TABLESPACE [IF EXISTS] <name>
 
 `DROP TABLESPACE` removes a tablespace from the system.
 
-A tablespace can only be dropped by its owner or a superuser. The tablespace must be empty of all database objects before it can be dropped. It is possible that objects in other databases may still reside in the tablespace even if no objects in the current database are using the tablespace. Also, if the tablespace is listed in the [temp_tablespaces](../config_params/guc-list.html) setting of any active session, `DROP TABLESPACE` might fail due to temporary files residing in the tablespace.
+A tablespace can only be dropped by its owner or a superuser. The tablespace must be empty of all database objects before it can be dropped. It is possible that objects in other databases may still reside in the tablespace even if no objects in the current database are using the tablespace. Also, if the tablespace is listed in the temp_tablespaces setting of any active session, `DROP TABLESPACE` might fail due to temporary files residing in the tablespace.
 
 ## Parameters
 
@@ -54,5 +54,5 @@ DROP TABLESPACE mystuff;
 
 [CREATE TABLESPACE](CREATE_TABLESPACE.html), [ALTER TABLESPACE](ALTER_TABLESPACE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

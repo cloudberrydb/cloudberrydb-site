@@ -52,7 +52,7 @@ The default memory allotment can be overridden on a per-query basis using the `s
 
 The `MEMORY_LIMIT` value for all of your resource queues should not exceed the amount of physical memory of a segment host. If workloads are staggered over multiple queues, memory allocations can be oversubscribed. However, queries can be cancelled during execution if the segment host memory limit specified in `gp_vmem_protect_limit` is exceeded.
 
-For information about `statement_mem`, `max_statement`, and `gp_vmem_protect_limit`, see [Server Configuration Parameters](../config_params/guc_config.html).
+For information about `statement_mem`, `max_statement`, and `gp_vmem_protect_limit`, see Server Configuration Parameters.
 
 ## Parameters
 
@@ -142,5 +142,5 @@ CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5,
 
 [ALTER ROLE](ALTER_ROLE.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER RESOURCE QUEUE](ALTER_RESOURCE_QUEUE.html), [DROP RESOURCE QUEUE](DROP_RESOURCE_QUEUE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

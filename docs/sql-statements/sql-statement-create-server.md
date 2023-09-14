@@ -61,7 +61,7 @@ num_segments 'num'
 
 ## Notes
 
-When using the dblink module (see [dblink](../modules/dblink.html)), you can use the foreign server name as an argument of the `dblink_connect()` function to provide the connection parameters. You must have the `USAGE` privilege on the foreign server to use it in this manner.
+When using the dblink module (see dblink), you can use the foreign server name as an argument of the `dblink_connect()` function to provide the connection parameters. You must have the `USAGE` privilege on the foreign server to use it in this manner.
 
 ## Examples
 
@@ -80,5 +80,5 @@ CREATE SERVER myserver FOREIGN DATA WRAPPER gpfdw1
 
 [ALTER SERVER](ALTER_SERVER.html), [DROP SERVER](DROP_SERVER.html), [CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE USER MAPPING](CREATE_USER_MAPPING.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

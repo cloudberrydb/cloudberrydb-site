@@ -26,7 +26,7 @@ name
 
 `DROP DATABASE` cannot be run inside a transaction block.
 
-This command cannot be run while connected to the target database. Thus, it might be more convenient to use the program [dropdb](../../utility_guide/ref/dropdb.html) instead, which is a wrapper around this command.
+This command cannot be run while connected to the target database. Thus, it might be more convenient to use the program dropdb instead, which is a wrapper around this command.
 
 ## Examples
 
@@ -44,5 +44,5 @@ There is no `DROP DATABASE` statement in the SQL standard.
 
 [ALTER DATABASE](ALTER_DATABASE.html), [CREATE DATABASE](CREATE_DATABASE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

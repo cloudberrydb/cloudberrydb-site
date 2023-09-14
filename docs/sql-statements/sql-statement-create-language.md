@@ -59,7 +59,7 @@ VALIDATOR valfunction
 
 Use [DROP LANGUAGE](DROP_LANGUAGE.html) to drop procedural languages.
 
-The system catalog [pg_language](../system_catalogs/pg_language.html) records information about the currently installed languages. Also, the [psql](../../utility_guide/ref/psql.html) command `\dL` lists the installed languages.
+The system catalog pg_language records information about the currently installed languages. Also, the psql command `\dL` lists the installed languages.
 
 To create functions in a procedural language, a user must have the `USAGE` privilege for the language. By default, `USAGE` is granted to `PUBLIC` (everyone) for trusted languages. This may be revoked if desired.
 
@@ -94,5 +94,5 @@ CREATE LANGUAGE plsample
 
 [ALTER LANGUAGE](ALTER_LANGUAGE.html), [CREATE EXTENSION](CREATE_EXTENSION.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP LANGUAGE](DROP_LANGUAGE.html), [GRANT](GRANT.html), [DO](DO.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

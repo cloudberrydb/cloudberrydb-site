@@ -18,7 +18,7 @@ The `CREATE PROTOCOL` command must specify either a read call handler or a write
 
 The protocol name can be specified in a `CREATE EXTERNAL TABLE` command.
 
-For information about creating and enabling a custom data access protocol, refer to the [Example Custom Data Access Protocol](../../admin_guide/load/topics/g-example-custom-data-access-protocol.html) documentation.
+For information about creating and enabling a custom data access protocol, refer to the Example Custom Data Access Protocol documentation.
 
 ## Parameters
 
@@ -39,7 +39,7 @@ validatorfunc='validate_handler'
 
 ## Notes
 
-Greenplum Database handles external tables of type `file`, `gpfdist`, and `gpfdists` internally. See [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/s3_prereq) for information about enabling the `S3` protocol. Refer to [pxf:// Protocol](../../admin_guide/external/g-pxf-protocol.html) for information about using the `pxf` protocol.
+Greenplum Database handles external tables of type `file`, `gpfdist`, and `gpfdists` internally. See [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/s3_prereq) for information about enabling the `S3` protocol. Refer to pxf:// Protocol for information about using the `pxf` protocol.
 
 Any shared library that implements a data access protocol must be located in the same location on all Greenplum Database segment hosts. For example, the shared library can be in a location specified by the operating system environment variable `LD_LIBRARY_PATH` on all hosts. You can also specify the location when you define the handler function. For example, when you define the `s3` protocol in the `CREATE PROTOCOL` command, you specify `$libdir/gps3ext.so` as the location of the shared object, where `$libdir` is located at `$GPHOME/lib`.
 
@@ -51,5 +51,5 @@ Any shared library that implements a data access protocol must be located in the
 
 [ALTER PROTOCOL](ALTER_PROTOCOL.html), [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [DROP PROTOCOL](DROP_PROTOCOL.html), [GRANT](GRANT.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

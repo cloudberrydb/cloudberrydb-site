@@ -132,7 +132,7 @@ However, a `WITH` query can be marked `NOT MATERIALIZED` to remove this guarante
 
 By default, a side-effect-free `WITH` query is folded into the primary query if it is used exactly once in the primary query's `FROM` clause. This allows joint optimization of the two query levels in situations where that should be semantically invisible. However, such folding can be prevented by marking the `WITH` query as `MATERIALIZED`. That might be useful, for example, if the `WITH` query is being used as an optimization fence to prevent the planner from choosing a bad plan. Greenplum Database versions before 7 never did such folding, so queries written for older versions might rely on `WITH` to act as an optimization fence.
 
-See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html) in the *Greenplum Database Administrator Guide* for additional information.
+See WITH Queries (Common Table Expressions) in the *Greenplum Database Administrator Guide* for additional information.
 
 
 ### The FROM Clause
@@ -409,7 +409,7 @@ See [Window Expressions](../../admin_guide/query/topics/defining-queries.html#to
 
 The `SELECT` list (between the key words `SELECT` and `FROM`) specifies expressions that form the output rows of the `SELECT` statement. The expressions can (and usually do) refer to columns computed in the `FROM` clause.
 
-An expression in the `SELECT` list can be a constant value, a column reference, an operator invocation, a function call, an aggregate expression, a window expression, a scalar subquery, and so on. A number of constructs can be classified as an expression but do not follow any general syntax rules. These generally have the semantics of a function or operator. For information about SQL value expressions and function calls, see [Querying Data](../../admin_guide/query/topics/query.html) in the *Greenplum Database Administrator Guide*.
+An expression in the `SELECT` list can be a constant value, a column reference, an operator invocation, a function call, an aggregate expression, a window expression, a scalar subquery, and so on. A number of constructs can be classified as an expression but do not follow any general syntax rules. These generally have the semantics of a function or operator. For information about SQL value expressions and function calls, see Querying Data in the *Greenplum Database Administrator Guide*.
 
 Just as in a table, every output column of a `SELECT` has a name. In a simple `SELECT` this name is just used to label the column for display, but when the `SELECT` is a sub-query of a larger query, the name is seen by the larger query as the column name of the virtual table produced by the sub-query. To specify the name to use for an output column, write `AS <output_name>` after the column's expression. (You can omit `AS`, but only if the desired output name does not match any SQL keyword. For protection against possible future keyword additions, you can always either write `AS` or double-quote the output name.) If you do not specify a column name, Greenplum Database chooses a name automatically. If the column's expression is a simple column reference then the chosen name is the same as that column's name. In more complex cases, a function or type name may be used, or the system may fall back on a generated name such as `?column?` or `columnN`.
 
@@ -559,7 +559,7 @@ It is even possible for repeated executions of the same `LIMIT` query to return 
 
 ### The Locking Clause
 
-`FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` are *locking clauses*; they affect how `SELECT` locks rows as they are obtained from the table. The Global Deadlock Detector affects the locking used by `SELECT` queries that contain a locking clause (`FOR <lock_strength>`). The Global Deadlock Detector is enabled by setting the [gp_enable_global_deadlock_detector](../config_params/guc-list.html) configuration parameter to `on`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd) in the *Greenplum Database Administrator Guide* for information about the Global Deadlock Detector.
+`FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` are *locking clauses*; they affect how `SELECT` locks rows as they are obtained from the table. The Global Deadlock Detector affects the locking used by `SELECT` queries that contain a locking clause (`FOR <lock_strength>`). The Global Deadlock Detector is enabled by setting the gp_enable_global_deadlock_detector configuration parameter to `on`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd) in the *Greenplum Database Administrator Guide* for information about the Global Deadlock Detector.
 
 The locking clause has the general form:
 
@@ -870,5 +870,5 @@ To prevent data from becoming out-of-sync across the segments in Greenplum Datab
 
 [EXPLAIN](EXPLAIN.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -43,5 +43,5 @@ The command `COMMIT` conforms to the SQL standard. The form `COMMIT TRANSACTION`
 
 [BEGIN](BEGIN.html), [END](END.html), [ROLLBACK](ROLLBACK.html), [START TRANSACTION](START_TRANSACTION.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

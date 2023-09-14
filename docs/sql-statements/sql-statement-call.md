@@ -46,5 +46,5 @@ CALL do_db_maintenance();
 
 [CREATE PROCEDURE](CREATE_PROCEDURE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -58,5 +58,5 @@ This command conforms to the SQL standard, with these Greenplum Database extensi
 
 [CREATE PROCEDURE](CREATE_PROCEDURE.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -281,5 +281,5 @@ Privileges on databases, tablespaces, schemas, and languages are Greenplum Datab
 
 [ALTER DEFAULT PRIVILEGES](ALTER_DEFAULT_PRIVILEGES.html), [REVOKE](REVOKE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

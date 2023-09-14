@@ -111,5 +111,5 @@ ALTER INDEX coord_idx ALTER COLUMN 3 SET STATISTICS 1000;
 
 [CREATE INDEX](CREATE_INDEX.html), [REINDEX](REINDEX.html), [ALTER TABLE](ALTER_TABLE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

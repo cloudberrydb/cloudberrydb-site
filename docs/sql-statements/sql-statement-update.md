@@ -202,5 +202,5 @@ According to the standard, the source value for a parenthesized sub-list of targ
 
 [DECLARE](DECLARE.html), [DELETE](DELETE.html), [SELECT](SELECT.html), [INSERT](INSERT.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

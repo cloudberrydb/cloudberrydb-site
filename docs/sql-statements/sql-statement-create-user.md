@@ -47,5 +47,5 @@ The `CREATE USER` statement is a Greenplum Database extension. The SQL standard 
 
 [CREATE ROLE](CREATE_ROLE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

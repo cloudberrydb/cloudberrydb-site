@@ -41,5 +41,5 @@ There is no `ALTER STATISTICS` statement in the SQL standard.
 
 [CREATE STATISTICS](CREATE_STATISTICS.html), [DROP STATISTICS](DROP_STATISTICS.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -50,5 +50,5 @@ DROP TABLE films, distributors;
 
 [ALTER TABLE](ALTER_TABLE.html), [CREATE TABLE](CREATE_TABLE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

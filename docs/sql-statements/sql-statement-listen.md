@@ -49,5 +49,5 @@ There is no `LISTEN` statement in the SQL standard.
 
 [NOTIFY](NOTIFY.html), [UNLISTEN](UNLISTEN.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

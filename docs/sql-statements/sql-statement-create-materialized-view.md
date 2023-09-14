@@ -33,13 +33,13 @@ column_name
 :   The name of a column in the new materialized view. The column names are assigned based on position. The first column name is assigned to the first column of the query result, and so on. If a column name is not provided, it is taken from the output column names of the query.
 
 USING method
-:   This optional clause specifies the table access method to use to store the contents for the new materialized view; the method needs be an access method of type `TABLE`. If this option is not specified, the default table access method is chosen for the new materialized view. See [default_table_access_method](../config_params/guc-list.html) for more information.
+:   This optional clause specifies the table access method to use to store the contents for the new materialized view; the method needs be an access method of type `TABLE`. If this option is not specified, the default table access method is chosen for the new materialized view. See default_table_access_method for more information.
 
 WITH ( storage_parameter [= value] [, ... ] )
 :   This clause specifies optional storage parameters for the materialized view. All parameters supported for `CREATE TABLE` are also supported for `CREATE MATERIALIZED VIEW`. See [CREATE TABLE](CREATE_TABLE.html) for more information.
 
 TABLESPACE tablespace_name
-:   The tablespace_name is the name of the tablespace in which the new materialized view is to be created. If not specified, server configuration parameter [default_tablespace](../config_params/guc-list.html) is consulted.
+:   The tablespace_name is the name of the tablespace in which the new materialized view is to be created. If not specified, server configuration parameter default_tablespace is consulted.
 
 query
 :   A [SELECT](SELECT.html), [TABLE](SELECT.html#table-command), or [VALUES](VALUES.html) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
@@ -84,5 +84,5 @@ names, rank WHERE rank < '11' AND names.id=rank.id;
 
 [SELECT](SELECT.html), [VALUES](VALUES.html), [CREATE VIEW](CREATE_VIEW.html), [ALTER MATERIALIZED VIEW](ALTER_MATERIALIZED_VIEW.html), [DROP MATERIALIZED VIEW](DROP_MATERIALIZED_VIEW.html), [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

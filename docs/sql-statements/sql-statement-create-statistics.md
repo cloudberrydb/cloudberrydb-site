@@ -99,5 +99,5 @@ There is no `CREATE STATISTICS` statement in the SQL standard.
 
 [ALTER STATISTICS](ALTER_STATISTICS.html), [DROP STATISTICS](DROP_STATISTICS.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

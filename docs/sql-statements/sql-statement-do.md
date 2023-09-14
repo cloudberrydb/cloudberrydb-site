@@ -32,7 +32,7 @@ lang_name
 
 ## Notes
 
-The procedural language to be used must already have been installed into the current database by means of `CREATE EXTENSION`. The PL/pgSQL language is installed wih Greenplum Database and is registered by default every user-created database. The PL/Python and PL/Perl languages are installed by default, but not registered. Other languages are neither installed nor registered. The [pg_language](../system_catalogs/pg_language.html) system catalog contains information about the registered languages in a database.
+The procedural language to be used must already have been installed into the current database by means of `CREATE EXTENSION`. The PL/pgSQL language is installed wih Greenplum Database and is registered by default every user-created database. The PL/Python and PL/Perl languages are installed by default, but not registered. Other languages are neither installed nor registered. The pg_language system catalog contains information about the registered languages in a database.
 
 The user must have `USAGE` privilege for the procedural language, or must be a superuser if the language is untrusted. This is the same privilege requirement as for creating a function in the language.
 
@@ -63,5 +63,5 @@ There is no `DO` statement in the SQL standard.
 
 [CREATE LANGUAGE](CREATE_LANGUAGE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

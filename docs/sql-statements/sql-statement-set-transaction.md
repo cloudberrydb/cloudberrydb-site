@@ -87,5 +87,5 @@ The SQL standard requires commas between successive transaction_modes, but for h
 
 [BEGIN](BEGIN.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

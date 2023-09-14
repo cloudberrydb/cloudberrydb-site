@@ -1,27 +1,35 @@
 import os
 import re
 
-def remove_trailing_spaces_from_headers(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
+# 获取所有 .html.md 文件名，并去除 .md 后缀，只保留 .html
+def get_html_files_with_html_suffix(directory_path):
+    filenames = os.listdir(directory_path)
+    return [filename.replace('.md', '') for filename in filenames if filename.endswith('.html.md')]
 
-    # 判断行是否是标题行且是否有尾随空格，如果是，则删除尾随空格
-    modified_lines = [re.sub(r' +$', '', line) if re.match(r'^#+ .* +$', line) else line for line in lines]
+def modify_links_in_file(file_path, ref_files):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
+
+    # 使用正则表达式找到所有的引用格式 [xxx](ref_file.html)，并根据条件进行替换
+    modified_content = re.sub(
+        r'\[([^\]]+)\]\(([^)]+)\)',  # 正则表达式
+        lambda m: m.group(1) if m.group(2).endswith('.html') and m.group(2) not in ref_files and not m.group(2).startswith('https') else m.group(0),  # 替换逻辑
+        content
+    )
 
     with open(file_path, 'w', encoding='utf-8') as file:
-        file.writelines(modified_lines)
+        file.write(modified_content)
 
-def process_directory(directory_path):
-    # 列出给定目录下的所有文件
+def process_directory(directory_path, ref_files):
     filenames = os.listdir(directory_path)
-
-    # 遍历每个 .md 文件并处理
     for filename in filenames:
         if filename.endswith('.md'):
-            remove_trailing_spaces_from_headers(os.path.join(directory_path, filename))
+            modify_links_in_file(os.path.join(directory_path, filename), ref_files)
             print(f'Processed {filename}')
 
-# 主程序入口
 if __name__ == '__main__':
-    directory_path = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-statements"  # 指定目录
-    process_directory(directory_path)
+    ref_directory = "/Users/hashdata/Documents/GitHub/gpdb/gpdb-doc/markdown/ref_guide/sql_commands"
+    main_directory = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-statements"
+
+    ref_files = get_html_files_with_html_suffix(ref_directory)
+    process_directory(main_directory, ref_files)

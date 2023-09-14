@@ -86,5 +86,5 @@ This form of `CREATE TRANSFORM` is a Greenplum Database extension. There is a `C
 
 [CREATE FUNCTION](CREATE_FUNCTION.html), [CREATE LANGUAGE](CREATE_LANGUAGE.html), [CREATE TYPE](CREATE_TYPE.html), [DROP TRANSFORM](DROP_TRANSFORM.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

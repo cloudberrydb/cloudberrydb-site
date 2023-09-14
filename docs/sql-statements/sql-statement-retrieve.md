@@ -99,5 +99,5 @@ COMMIT;
 
 [DECLARE](DECLARE.html), [CLOSE](CLOSE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

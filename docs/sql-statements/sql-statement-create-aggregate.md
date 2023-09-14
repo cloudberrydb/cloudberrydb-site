@@ -296,5 +296,5 @@ Refer to [User-Defined Aggregates](https://www.postgresql.org/docs/12/xaggr.html
 
 [ALTER AGGREGATE](ALTER_AGGREGATE.html), [DROP AGGREGATE](DROP_AGGREGATE.html), [CREATE FUNCTION](CREATE_FUNCTION.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

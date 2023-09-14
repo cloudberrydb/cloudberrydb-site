@@ -89,5 +89,5 @@ The `SHOW` command is a Greenplum Database extension.
 
 [SET](SET.html), [RESET](RESET.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

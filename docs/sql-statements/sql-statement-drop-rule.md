@@ -45,5 +45,5 @@ DROP RULE sales_2006 ON sales;
 
 [ALTER RULE](ALTER_RULE.html), [CREATE RULE](CREATE_RULE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

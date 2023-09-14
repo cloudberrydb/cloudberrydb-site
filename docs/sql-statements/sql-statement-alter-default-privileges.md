@@ -92,7 +92,7 @@ role_name
 
 ## Notes
 
-Use [psql](../../utility_guide/ref/psql.html)'s `\ddp` command to obtain information about existing assignments of default privileges. The meaning of the privilege values is the same as explained for `\dp` under [GRANT](GRANT.html).
+Use psql's `\ddp` command to obtain information about existing assignments of default privileges. The meaning of the privilege values is the same as explained for `\dp` under [GRANT](GRANT.html).
 
 If you wish to drop a role for which the default privileges have been altered, it is necessary to reverse the changes in its default privileges or use `DROP OWNED BY` to get rid of the default privileges entry for the role.
 
@@ -134,5 +134,5 @@ There is no `ALTER DEFAULT PRIVILEGES` statement in the SQL standard.
 
 [GRANT](GRANT.html), [REVOKE](REVOKE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

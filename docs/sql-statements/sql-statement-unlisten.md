@@ -56,5 +56,5 @@ There is no `UNLISTEN` statement in the SQL standard.
 
 [LISTEN](LISTEN.html), [NOTIFY](NOTIFY.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

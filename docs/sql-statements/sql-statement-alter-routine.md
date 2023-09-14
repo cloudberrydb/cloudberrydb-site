@@ -58,5 +58,5 @@ This statement is partially compatible with the `ALTER ROUTINE` statement in the
 
 [ALTER AGGREGATE](ALTER_AGGREGATE.html), [ALTER FUNCTION](ALTER_FUNCTION.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html), [DROP ROUTINE](DROP_ROUTINE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

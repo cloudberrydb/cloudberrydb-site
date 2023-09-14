@@ -39,5 +39,5 @@ This command conforms to the SQL standard, with these Greenplum Database extensi
 
 [DROP AGGREGATE](DROP_AGGREGATE.html), [DROP FUNCTION](DROP_FUNCTION.html), [DROP PROCEDURE](DROP_PROCEDURE.html), [ALTER ROUTINE](ALTER_ROUTINE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

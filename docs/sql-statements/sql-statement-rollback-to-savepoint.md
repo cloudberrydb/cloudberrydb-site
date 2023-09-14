@@ -67,5 +67,5 @@ The SQL standard specifies that the key word `SAVEPOINT` is mandatory, but Green
 
 [BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html), [ROLLBACK](ROLLBACK.html), [SAVEPOINT](SAVEPOINT.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

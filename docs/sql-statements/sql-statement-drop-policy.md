@@ -43,5 +43,5 @@ DROP POLICY p1 ON my_table;
 
 [CREATE POLICY](CREATE_POLICY.html), [ALTER POLICY](ALTER_POLICY.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

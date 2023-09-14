@@ -42,5 +42,5 @@ DROP ACCESS METHOD heptree;
 
 [CREATE ACCESS METHOD](CREATE_ACCESS_METHOD.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

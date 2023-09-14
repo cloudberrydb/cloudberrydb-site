@@ -47,5 +47,5 @@ This form of `DROP TRANSFORM` is a Greenplum Database extension. See [CREATE TRA
 
 [CREATE TRANSFORM](CREATE_TRANSFORM.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

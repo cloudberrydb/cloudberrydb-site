@@ -110,5 +110,5 @@ A `CREATE PROCEDURE` command is defined in the SQL standard. The Greenplum Datab
 
 [ALTER PROCEDURE](ALTER_PROCEDURE.html), [DROP PROCEDURE](DROP_PROCEDURE.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [CALL](CALL.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

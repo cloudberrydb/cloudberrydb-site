@@ -242,7 +242,7 @@ column_name
 :   The name of a column to be created in the new table.
 
 data_type
-:   The data type of the column. This may include array specifiers. For more information on the data types supported by Greenplum Database, refer to the [Data Types](../data_types.html) documentation.
+:   The data type of the column. This may include array specifiers. For more information on the data types supported by Greenplum Database, refer to the Data Types documentation.
 
 :   For table columns that contain textual data, Specify the data type `VARCHAR` or `TEXT`. Specifying the data type `CHAR` is not recommended. In Greenplum Database, the data types `VARCHAR` or `TEXT` handle padding added to the data (space characters added after the last non-space character) as significant characters, the data type `CHAR` does not. See [Notes](#section5).
 
@@ -295,7 +295,7 @@ PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ opclas
 
 :   Partitioned tables do not support `EXCLUDE` constraints; however, you can define these constraints on individual partitions.
 
-:   Refer to [Partitioning Large Tables](../../admin_guide/ddl/ddl-partition.html) for further discussion on table partitioning.
+:   Refer to Partitioning Large Tables for further discussion on table partitioning.
 
 PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }
 :   The `PARTITION OF` clause of the *modern partitioning syntax* creates the table as a *partition* of the specified parent table. You can create the table either as a partition for specific values using `FOR VALUES` or as a default partition using `DEFAULT`. Any indexes and constraints that exist in the parent table are cloned on the new partition.
@@ -490,10 +490,10 @@ ON COMMIT
 :   **DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
 
 TABLESPACE tablespace
-:   The name of the tablespace in which the new table is to be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is consulted, or [temp_tablespaces](../config_params/guc-list.html) if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
+:   The name of the tablespace in which the new table is to be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is consulted, or temp_tablespaces if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
 
 USING INDEX TABLESPACE tablespace
-:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp_tablespaces](../config_params/guc-list.html) if the table is temporary.
+:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or temp_tablespaces if the table is temporary.
 
 DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
@@ -523,7 +523,7 @@ Descriptions of additional parameters that are specific to the *classic partitio
 
 CREATE TABLE table_name ... PARTITION BY
 
-:   When creating a partitioned table using the *classic syntax*, Greenplum Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The [pg_partitioned_table](../system_catalogs/pg_partitioned_table.html) system catalog contains information about the sub-partition tables.
+:   When creating a partitioned table using the *classic syntax*, Greenplum Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The pg_partitioned_table system catalog contains information about the sub-partition tables.
 
 classic_partition_spec
 :   Declares the individual partitions to create. Each partition can be defined individually or, for range partitions, you can use the `EVERY` clause (with a `START` and optional `END` clause) to define an increment pattern to use to create the individual partitions.
@@ -1148,5 +1148,5 @@ The Greenplum Database concept of a parallel or distributed database is not part
 
 [ALTER TABLE](ALTER_TABLE.html), [DROP TABLE](DROP_TABLE.html), [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE TABLESPACE](CREATE_TABLESPACE.html), [CREATE TYPE](CREATE_TYPE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -131,7 +131,7 @@ CREATE WRITABLE EXTERNAL WEB [TEMPORARY | TEMP] TABLE <table_name>
 
 The main difference between regular external tables and external web tables is their data sources. Regular readable external tables access static flat files, whereas external web tables access dynamic data sources – either on a web server or by running OS commands or scripts.
 
-See [Working with External Data](../../admin_guide/external/g-working-with-file-based-ext-tables.html) for detailed information about working with external tables.
+See Working with External Data for detailed information about working with external tables.
 
 ## Parameters
 
@@ -161,7 +161,7 @@ data_type
 :   The data type of the column.
 
 LOCATION ('protocol://[host[:port]]/path/file' [, ...])
-:   If you use the `pxf` protocol to access an external data source, refer to [pxf:// Protocol](../../admin_guide/external/g-pxf-protocol.html) for information about the `pxf` protocol.
+:   If you use the `pxf` protocol to access an external data source, refer to pxf:// Protocol for information about the `pxf` protocol.
 
 :   If you use the `s3` protocol to read or write to S3, refer to [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/section_stk_c2r_kx) for additional information about the `s3` protocol `LOCATION` clause syntax.
 
@@ -183,7 +183,7 @@ LOCATION ('protocol://[host[:port]]/path/file' [, ...])
 
     With two `gpfdist` locations listed as in the above example, half of the segments would send their output data to the `data1.out` file and the other half to the `data2.out` file.
 
-    With the option `#transform=trans_name`, you can specify a transform to apply when loading or extracting data. The trans_name is the name of the transform in the YAML configuration file you specify with the you run the `gpfdist` utility. For information about specifying a transform, see [gpfdist](../../utility_guide/ref/gpfdist.html) in the *Greenplum Utility Guide*.
+    With the option `#transform=trans_name`, you can specify a transform to apply when loading or extracting data. The trans_name is the name of the transform in the YAML configuration file you specify with the you run the `gpfdist` utility. For information about specifying a transform, see gpfdist in the *Greenplum Utility Guide*.
 
 ON COORDINATOR
 :   Restricts all table-related operations to the Greenplum coordinator segment. Permitted only on readable and writable external tables created with the `s3` or custom protocols. The `gpfdist`, `gpfdists`, `pxf`, and `file` protocols do not support `ON COORDINATOR`.
@@ -200,19 +200,19 @@ EXECUTE 'command' [ON ...]
     -   ON number means the command will be run by the specified number of segments. The particular segments are chosen randomly at runtime by the Greenplum Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Greenplum superuser (`gpadmin`).
     -   HOST means the command will be run by one segment on each segment host (once per segment host), regardless of the number of active segment instances per host.
     -   HOST segment_hostname means the command will be run by all active (primary) segment instances on the specified segment host.
-    -   SEGMENT segment_id means the command will be run only once by the specified segment. You can determine a segment instance's ID by looking at the content number in the system catalog table [gp_segment_configuration](../system_catalogs/gp_segment_configuration.html). The content ID of the Greenplum Database coordinator is always `-1`.
+    -   SEGMENT segment_id means the command will be run only once by the specified segment. You can determine a segment instance's ID by looking at the content number in the system catalog table gp_segment_configuration. The content ID of the Greenplum Database coordinator is always `-1`.
 
     For writable external tables, the command specified in the `EXECUTE` clause must be prepared to have data piped into it. Since all segments that have data to send will write their output to the specified command or program, the only available option for the `ON` clause is `ON ALL`.
 
 FORMAT 'TEXT | CSV' (options)
-:   When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](COPY.html) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Greenplum Database. For information about using a custom format, see [Loading and Unloading Data](../../admin_guide/load/topics/g-loading-and-unloading-data.html) in the *Greenplum Database Administrator Guide*.
+:   When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](COPY.html) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Greenplum Database. For information about using a custom format, see Loading and Unloading Data in the *Greenplum Database Administrator Guide*.
 
-:   If you use the `pxf` protocol to access an external data source, refer to [Accessing External Data with PXF](../../admin_guide/external/pxf-overview.html) for information about using PXF.
+:   If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
 
 FORMAT 'CUSTOM' (formatter=formatter_specification)
 :   Specifies a custom data format. The formatter_specification specifies the function to use to format the data, followed by comma-separated parameters to the formatter function. The length of the formatter specification, the string including `Formatter=`, can be up to approximately 50K bytes.
 
-:   If you use the `pxf` protocol to access an external data source, refer to [Accessing External Data with PXF](../../admin_guide/external/pxf-overview.html) for information about using PXF.
+:   If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
 
 :   For general information about using a custom format, see "Loading and Unloading Data" in the *Greenplum Database Administrator Guide*.
 
@@ -259,7 +259,7 @@ OPTIONS key 'value'[, key' value' ...]
 :   Optional. Specifies parameters and values as key-value pairs that are set to a custom data access protocol when the protocol is used as a external table protocol for an external table. It is the responsibility of the custom data access protocol to process and validate the key-value pairs.
 
 ENCODING 'encoding'
-:   Character set encoding to use for the external table. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default server encoding. See [Character Set Support](../character_sets.html).
+:   Character set encoding to use for the external table. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default server encoding. See Character Set Support.
 
 LOG ERRORS [PERSISTENTLY]
 :   This is an optional clause that can precede a `SEGMENT REJECT LIMIT` clause to log information about rows with formatting errors. The error log data is stored internally. If error log data exists for a specified external table, new data is appended to existing error log data. The error log data is not replicated to mirror segments.
@@ -407,5 +407,5 @@ When multiple Greenplum Database external tables are defined with the `gpfdist`,
 
 [CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE TABLE](CREATE_TABLE.html), [COPY](COPY.html), [SELECT INTO](SELECT_INTO.html), [INSERT](INSERT.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

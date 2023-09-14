@@ -431,7 +431,7 @@ ENCODING ( <storage_directive> [,...] )
 
     1.  The compression parameter setting specified in the `ALTER TABLE` command `ENCODING` clause.
     2.  The table's data compression setting specified in the `WITH` clause when the table was created.
-    3.  The compression parameter setting specified in the server configuration parameter [gp_default_storage_option](../config_params/guc-list.html).
+    3.  The compression parameter setting specified in the server configuration parameter gp_default_storage_option.
     4.  The default compression parameter value.
 :   For more information about the supported `ENCODING` storage directives, refer to [CREATE TABLE](CREATE_TABLE.html).
 
@@ -469,7 +469,7 @@ partition_bound_spec
 :   The partition bound specification for a new partition. Refer to [CREATE TABLE](CREATE_TABLE.html) for more details on the syntax of the same.
 
 access_method
-:   The method to use for accessing the table. Refer to [Choosing the Storage Model](../../admin_guide/ddl/ddl-storage.html) for more information on the table storage models and access methods available in Greenplum Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
+:   The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Greenplum Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
 
   <p class="note">
 <strong>Note:</strong>
@@ -924,5 +924,5 @@ The forms `ADD` (without `USING INDEX`), `DROP [COLUMN]`, `DROP IDENTITY`, `REST
 
 [CREATE TABLE](CREATE_TABLE.html), [DROP TABLE](DROP_TABLE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

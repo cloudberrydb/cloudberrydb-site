@@ -121,5 +121,5 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
 
 [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html), [CREATE TABLE](CREATE_TABLE.html), [EXECUTE](EXECUTE.html), [SELECT](SELECT.html), [SELECT INTO](SELECT_INTO.html), [VALUES](VALUES.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

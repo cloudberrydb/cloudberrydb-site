@@ -53,5 +53,5 @@ There is no `DROP OPERATOR CLASS` statement in the SQL standard.
 
 [ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR FAMILY](DROP_OPERATOR_FAMILY.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

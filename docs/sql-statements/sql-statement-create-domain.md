@@ -101,5 +101,5 @@ CREATE TABLE us_snail_addy (
 
 [ALTER DOMAIN](ALTER_DOMAIN.html), [DROP DOMAIN](DROP_DOMAIN.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

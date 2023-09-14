@@ -196,5 +196,5 @@ Notice that although the recursive view's name is schema-qualified in this `CREA
 
 [ALTER VIEW](ALTER_VIEW.html), [DROP VIEW](DROP_VIEW.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

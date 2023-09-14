@@ -22,7 +22,7 @@ The effects of `SET` or `SET LOCAL` are also canceled by rolling back to a savep
 
 If `SET LOCAL` is used within a function that includes a `SET` option for the same configuration parameter (see [CREATE FUNCTION](CREATE_FUNCTION.html)), the effects of the `SET LOCAL` command disappear at function exit; the value in effect when the function was called is restored anyway. This allows `SET LOCAL` to be used for dynamic or repeated changes of a parameter within a function, while retaining the convenience of using the `SET` option to save and restore the caller's value. Note that a regular `SET` command overrides any surrounding function's `SET` option; its effects persist unless rolled back.
 
-See [Server Configuration Parameters](../config_params/guc_config.html) for information about server parameters.
+See Server Configuration Parameters for information about server parameters.
 
 ## Parameters
 
@@ -33,7 +33,7 @@ LOCAL
 :   Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Issuing this outside of a transaction block emits a warning and otherwise has no effect.
 
 configuration_parameter
-:   The name of a settable Greenplum Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See [Server Configuration Parameters](../config_params/guc_config.html) for details.
+:   The name of a settable Greenplum Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See Server Configuration Parameters for details.
 
 value
 :   New value of the parameter. Values can be specified as string constants, identifiers, numbers, or comma-separated lists of these, as appropriate for the particular parameter. `DEFAULT` can be used to specify resetting the parameter to its default value (that is, whatever value it would have had if no `SET` had been issued in the current session). If specifying memory sizing or time units, enclose the value in single quotes.
@@ -109,5 +109,5 @@ SET TIME ZONE 'Europe/Rome';
 
 [RESET](RESET.html), [SHOW](SHOW.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

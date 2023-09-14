@@ -14,7 +14,7 @@ DECLARE <name> [BINARY] [INSENSITIVE] [NO SCROLL] [PARALLEL RETRIEVE] CURSOR
 
 `DECLARE` allows a user to create a cursor, which can be used to retrieve a small number of rows at a time out of a larger query. Cursors can return data using [FETCH](FETCH.html).
 
-> **Note** This page describes usage of cursors at the SQL command level. If you are trying to use cursors inside a PL/pgSQL function, the rules are different, see [PL/pgSQL](../../analytics/pl_sql.html).
+> **Note** This page describes usage of cursors at the SQL command level. If you are trying to use cursors inside a PL/pgSQL function, the rules are different, see PL/pgSQL.
 
 Normal cursors return data in text format, the same as a `SELECT` would produce. Since data is stored natively in binary format, the system must do a conversion to produce the text format. Once the information comes back in text form, the client application may need to convert it to a binary format to manipulate it. In addition, data in the text format is often larger in size than in the binary format. Binary cursors return the data in a binary representation that may be more easily manipulated. Nevertheless, if you intend to display the data as text anyway, retrieving it in text form will save you some effort on the client side.
 
@@ -123,5 +123,5 @@ The SQL standard makes no provisions for parallel retrieve cursors.
 
 [CLOSE](CLOSE.html), [DELETE](DELETE.html), [FETCH](FETCH.html), [MOVE](MOVE.html), [RETRIEVE](RETRIEVE.html), [SELECT](SELECT.html), [UPDATE](UPDATE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

@@ -192,5 +192,5 @@ COMMENT ON VIEW my_view IS 'View of departmental costs';
 
 There is no `COMMENT` command in the SQL standard.
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

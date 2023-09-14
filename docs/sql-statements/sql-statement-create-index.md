@@ -91,7 +91,7 @@ storage_parameter
 :   The name of an index-method-specific storage parameter. Each index method has its own set of allowed storage parameters. See [Index Storage Parameters](#section4isp) for details.
 
 tablespace_name
-	:   The tablespace in which to create the index. If not specified, [default_tablespace](../config_params/guc-list.html) is consulted, or [temp_tablespaces](../config_params/guc-list.html) for indexes on temporary tables.
+	:   The tablespace in which to create the index. If not specified, default_tablespace is consulted, or temp_tablespaces for indexes on temporary tables.
 
 predicate
 :   The constraint expression for a partial index.
@@ -111,7 +111,7 @@ vacuum_cleanup_index_scale_factor
 GiST indexes additionally accept this parameter:
 
 `buffering`
-:   Determines whether Greenplum Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/12/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches [effective_cache_size](../config_params/guc-list.html). The default is `AUTO`.
+:   Determines whether Greenplum Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/12/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches effective_cache_size. The default is `AUTO`.
 
 GIN indexes accept different parameters:
 
@@ -225,5 +225,5 @@ Greenplum Database does not support the concurrent creation of indexes (`CONCURR
 
 [ALTER INDEX](ALTER_INDEX.html), [DROP INDEX](DROP_INDEX.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

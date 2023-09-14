@@ -48,7 +48,7 @@ CASCADE
 
 Before you can use `CREATE EXTENSION` to load an extension into a database, the extension's supporting files must be installed. The supporting files must be installed in the same location on all Greenplum Database hosts. For information about creating new extensions, see the PostgreSQL [Packaging Related Objects into an Extension](https://www.postgresql.org/docs/12/extend-extensions.html) documentation.
 
-The extensions currently available for loading can be identified from the [pg_available_extensions](../system_catalogs/pg_available_extensions.html) or [pg_available_extension_versions](../system_catalogs/pg_available_extension_versions.html) system views.
+The extensions currently available for loading can be identified from the pg_available_extensions or pg_available_extension_versions system views.
 
 <div class="note">Installing an extension as superuser requires trusting that the extension's author wrote the extension installation script in a secure fashion. It is not terribly difficult for a malicious user to create trojan-horse objects that will compromise later execution of a carelessly-written extension script, allowing that user to acquire superuser privileges. However, trojan-horse objects are only hazardous if they are in the <code>search_path</code> during script execution, meaning that they are in the extension's installation target schema or in the schema of some extension it depends on. Therefore, a good rule of thumb when dealing with extensions whose scripts have not been carefully vetted is to install them only into schemas for which <code>CREATE</code> privilege has not been and will not be granted to any untrusted users. Likewise for any extensions they depend on.<p>
 The extensions supplied with Greenplum Database are believed to be secure against installation-time attacks of this sort, except for a few that depend on other extensions. As stated in the documentation for those extensions, they should be installed into secure schemas, or installed into the same schemas as the extensions they depend on, or both.</p></div>
@@ -76,5 +76,5 @@ CREATE EXTENSION hstore;
 
 [ALTER EXTENSION](ALTER_EXTENSION.html), [DROP EXTENSION](DROP_EXTENSION.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 

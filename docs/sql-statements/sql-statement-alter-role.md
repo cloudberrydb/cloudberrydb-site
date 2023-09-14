@@ -110,7 +110,7 @@ value
 
 :   Role-specific variable settings take effect only at login; [SET ROLE](SET_ROLE.html) and [SET SESSION AUTHORIZATION](SET_SESSION_AUTHORIZATION.html) do not process role-specific variable settings.
 
-:   See [SET](SET.html) and [Server Configuration Parameters](../config_params/guc_config.html) for more information about allowed parameter names and values.
+:   See [SET](SET.html) and Server Configuration Parameters for more information about allowed parameter names and values.
 
 group_name
 :   The name of the resource group to assign to this role. Specifying the group_name `NONE` removes the role's current resource group assignment and assigns a default resource group based on the role's capability. `SUPERUSER` roles are assigned the `admin_group` resource group, while the `default_group` resource group is assigned to non-admin roles.
@@ -126,7 +126,7 @@ Use [CREATE ROLE](CREATE_ROLE.html) to add a new role, and [DROP ROLE](DROP_ROLE
 
 `ALTER ROLE` cannot change a role's memberships; use [GRANT](GRANT.html) and [REVOKE](REVOKE.html) to do that.
 
-You must exercise caution when specifying an unencrypted password with this command. The password will be transmitted to the server in clear text, and it might also be logged in the client's command history or the server log. The [psql](../../utility_guide/ref/psql.html) command-line client contains a meta-command `\password` that can be used to change a role's password without exposing the clear text password.
+You must exercise caution when specifying an unencrypted password with this command. The password will be transmitted to the server in clear text, and it might also be logged in the client's command history or the server log. The psql command-line client contains a meta-command `\password` that can be used to change a role's password without exposing the clear text password.
 
 It is also possible to tie a session default to a specific database rather than to a role; see [ALTER DATABASE](ALTER_DATABASE.html). If there is a conflict, database-role-specific settings override role-specific ones, which in turn override database-specific ones.
 
@@ -212,5 +212,5 @@ The `ALTER ROLE` statement is a Greenplum Database extension.
 
 [CREATE ROLE](CREATE_ROLE.html), [DROP ROLE](DROP_ROLE.html), [ALTER DATABASE](ALTER_DATABASE.html), [SET](SET.html), [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html)
 
-**Parent topic:** [SQL Commands](../sql_commands/sql_ref.html)
+**Parent topic:** SQL Commands
 
