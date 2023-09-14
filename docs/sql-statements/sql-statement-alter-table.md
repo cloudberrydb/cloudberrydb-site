@@ -139,7 +139,7 @@ and <set_with_parameter> is:
 
 Classic partitioning syntax elements include:
 
-```
+```sql
 ALTER TABLE <name>
    [ ALTER PARTITION { <partition_name> | FOR (<value>) } [...] ] <partition_action>
 
@@ -239,7 +239,7 @@ RESTART
 :   These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](/docs/sql-statements/sql-statement-alter-sequence.md) such as `INCREMENT BY`.
 
 SET STATISTICS
-:   Sets the per-column statistics-gathering target for subsequent [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target ([default_statistics_target](../config_params/guc-list.html#default_statistics_target). When set to 0, no statistics are collected.
+:   Sets the per-column statistics-gathering target for subsequent [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target (`default_statistics_target`). When set to 0, no statistics are collected.
 
 :   `SET STATISTICS` acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
@@ -324,19 +324,19 @@ SET { LOGGED | UNLOGGED }
 :   This form changes the table from unlogged to logged or vice-versa. It cannot be applied to a temporary table.
 
 SET ( storage_\parameter [= value] [, ... ] )
-:   This form changes one or more table-level options. See [Storage Parameters](CREATE_TABLE.html#storage_parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](/docs/sql-statements/sql-statement-vacuum.md), [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#section5). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
+:   This form changes one or more table-level options. See [Storage Parameters](/docs/sql-statements/sql-statement-create-table.md#storage-parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](/docs/sql-statements/sql-statement-vacuum.md), [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#section5). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
 
 :   Cloudberry Database takes a `SHARE UPDATE EXCLUSIVE` lock when setting `fillfactor`, toast and autovacuum storage parameters, and the planner parameter `parallel_workers`.
 
 RESET ( storage_parameter [, ... ] )
 :   This form resets one or more table level options to their defaults. As with `SET`, a table rewrite might be required to update the table entirely.
 
-SET WITH (<set_with_parameter> = <value> [, ...])
+`SET WITH (<set_with_parameter> = <value> [, ...])`
 :   You can use this form of the command to reorganize the table, or to set the table access method and also optionally set storage parameters.
-  <p class="note">
-<strong>Note:</strong>
-Although you can specify the table's access method using the <code>appendoptimized</code> and <code>orientation</code> storage parameters, VMware recommends that you use <code>SET ACCESS METHOD &lt;access_method></code> instead.
-</p>
+
+> **Note:**
+>
+> Although you can specify the table's access method using the `appendoptimized` and `orientation` storage parameters, we recommend that you use `SET ACCESS METHOD <access_method>` instead.
 
 INHERIT parent_table
 :   Adds the target table as a new child of the specified parent table. Queries against the parent will include records of the target table. To be added as a child, the target table must already contain all of the same columns as the parent (it could have additional columns, too). The columns must have matching data types, and if they have `NOT NULL` constraints in the parent then they must also have `NOT NULL` constraints in the child.
@@ -367,7 +367,7 @@ SET DISTRIBUTED
 :  While Cloudberry Database permits changing the distribution policy of a writable external table, the operation never results in physical redistribution of the external data.
 
 
-ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
+`ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }`
 :   This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Greenplum does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md).)
 
 :   A partition using `FOR VALUES` uses the same syntax for partition_bound_spec> as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
@@ -380,7 +380,7 @@ ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
 
 :   Attaching a partition acquires a `SHARE UPDATE EXCLUSIVE` lock on the parent table, in addition to the `ACCESS EXCLUSIVE` locks on the table being attached and on the default partition (if any).
 
-:   Additional locks must also be held on all sub-partitions if the table being attached is itself a partitioned table. Likewise if the default partition is itself a partitioned table. The locking of the sub-partitions can be avoided by adding a `CHECK` constraint as described in [Partitioning Large Tables](../../admin_guide/ddl/ddl-partition.html.md).
+:   Additional locks must also be held on all sub-partitions if the table being attached is itself a partitioned table. Likewise if the default partition is itself a partitioned table. The locking of the sub-partitions can be avoided by adding a `CHECK` constraint as described in Partitioning Large Tables.
 
 DETACH PARTITION partition_name
 :   This form of the *modern partitioning syntax* detaches the specified partition of the target table. The detached partition continues to exist as a standalone table, but no longer has any ties to the table from which it was detached. Any indexes that were attached to the target table's indexes are detached.
@@ -388,7 +388,7 @@ DETACH PARTITION partition_name
 ALTER PARTITION | DROP PARTITION | RENAME PARTITION | TRUNCATE PARTITION | ADD PARTITION | SPLIT PARTITION | EXCHANGE PARTITION | SET SUBPARTITION TEMPLATE
 :   These forms of the *classic partitioning syntax* change the structure of a partitioned table. You must go through the parent table to alter one of its child tables.
 
-> **Note** If you add a partition to a table that has sub-partition encodings, the new partition inherits the storage directives for the sub-partitions. For more information about the precedence of compression settings, see [Using Compression](../../admin_guide/ddl/ddl-storage.html#topic40).
+> **Note** If you add a partition to a table that has sub-partition encodings, the new partition inherits the storage directives for the sub-partitions.
 
 You can combine all forms of `ALTER TABLE` that act on a single table into a list of multiple alterations to apply together, except `RENAME`, `SET SCHEMA`, `ATTACH PARTITION`, and `DETACH PARTITION`. For example, it is possible to add several columns and/or alter the type of several columns in a single command. This is particularly useful with large tables, since only one pass over the table need be made.
 
@@ -424,7 +424,7 @@ table_constraint
 constraint_name
 :   Name of an existing constraint to drop.
 
-ENCODING ( <storage_directive> [,...] )
+`ENCODING ( <storage_directive> [,...] )`
 :   The `ENCODING` clause is valid only for append-optimized, column-oriented tables.
 
 :   When you add a column to an append-optimized, column-oriented table, Cloudberry Database sets each data compression parameter for the column (`compresstype`, `compresslevel`, and `blocksize`) based on the following setting, in order of preference.
@@ -445,7 +445,7 @@ index_name
 :   The name of an existing index.
 
 storage_parameter
-:   The name of a table storage parameter. Refer to the [Storage Parameters](CREATE_TABLE.html#storage_parameters) section on the `CREATE TABLE` reference page for a list of parameters.
+:   The name of a table storage parameter. Refer to the [Storage Parameters](/docs/sql-statements/sql-statement-create-table.md#storage-parameters) section on the `CREATE TABLE` reference page for a list of parameters.
 
 value
 :   The new value for the a table storage parameter. This might be a number or a word, depending on the parameter.
@@ -471,10 +471,9 @@ partition_bound_spec
 access_method
 :   The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Cloudberry Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
 
-  <p class="note">
-<strong>Note:</strong>
-Although you can specify the table's access method using <code>SET &lt;storage_parameter></code>, VMware recommends that you use <code>SET ACCESS METHOD &lt;access_method></code> instead.
-</p>
+> **Note:**
+>
+> Although you can specify the table's access method using `SET <storage_parameter>`, we recommend that you use `SET ACCESS METHOD <access_method>` instead.
 
 SET WITH (reorganize=true|false)
 :   Use `reorganize=true` when the hash distribution policy has not changed or when you have changed from a hash to a random distribution, and you want to redistribute the data anyway.

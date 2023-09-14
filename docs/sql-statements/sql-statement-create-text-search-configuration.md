@@ -21,8 +21,6 @@ If a schema name is provided then the text search configuration is created in th
 
 The user who defines a text search configuration becomes its owner.
 
-Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.html#full-text-search) for further information.
-
 ## Parameters
 
 name

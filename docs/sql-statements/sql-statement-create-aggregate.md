@@ -154,7 +154,7 @@ state_data_type
 :   The data type for the aggregate's state value.
 
 state_data_size
-:   The approximate average size (in bytes) of the aggregate's state value. If this parameter is omitted or is zero, a default estimate is used based on the state_data_type. The planner uses this value to estimate the memory required for a grouped aggregate query. The planner will consider using hash aggregation for such a query only if the hash table is estimated to fit in [work_mem](../config_params/guc-list.html#work_mem); therefore, large values of this parameter discourage use of hash aggregation.
+:   The approximate average size (in bytes) of the aggregate's state value. If this parameter is omitted or is zero, a default estimate is used based on the state_data_type. The planner uses this value to estimate the memory required for a grouped aggregate query. The planner will consider using hash aggregation for such a query only if the hash table is estimated to fit in `work_mem`; therefore, large values of this parameter discourage use of hash aggregation.
 
 ffunc
 :   The name of the final function called to compute the aggregate result after all input rows have been traversed. The function must take a single argument of type state_data_type. The return data type of the aggregate is defined as the return type of this function. If `ffunc` is not specified, then the ending state value is used as the aggregate result, and the return type is state_data_type.

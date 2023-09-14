@@ -39,7 +39,7 @@ validatorfunc='validate_handler'
 
 ## Notes
 
-Cloudberry Database handles external tables of type `file`, `gpfdist`, and `gpfdists` internally. See [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/s3_prereq) for information about enabling the `S3` protocol. Refer to pxf:// Protocol for information about using the `pxf` protocol.
+Cloudberry Database handles external tables of type `file`, `gpfdist`, and `gpfdists` internally.
 
 Any shared library that implements a data access protocol must be located in the same location on all Cloudberry Database segment hosts. For example, the shared library can be in a location specified by the operating system environment variable `LD_LIBRARY_PATH` on all hosts. You can also specify the location when you define the handler function. For example, when you define the `s3` protocol in the `CREATE PROTOCOL` command, you specify `$libdir/gps3ext.so` as the location of the shared object, where `$libdir` is located at `$GPHOME/lib`.
 

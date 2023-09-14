@@ -160,10 +160,8 @@ LIKE other_table
 data_type
 :   The data type of the column.
 
-LOCATION ('protocol://[host[:port]]/path/file' [, ...])
+`LOCATION ('protocol://[host[:port]]/path/file' [, ...])`
 :   If you use the `pxf` protocol to access an external data source, refer to pxf:// Protocol for information about the `pxf` protocol.
-
-:   If you use the `s3` protocol to read or write to S3, refer to [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/section_stk_c2r_kx) for additional information about the `s3` protocol `LOCATION` clause syntax.
 
 :   For readable external tables, specifies the URI of the external data source(s) to be used to populate the external table or web table. Regular readable external tables allow the `gpfdist` or `file` protocols. External web tables allow the `http` protocol. If `port` is omitted, port `8080` is assumed for `http` and `gpfdist` protocols. If using the `gpfdist` protocol, the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). Also, `gpfdist` can use wildcards or other C-style pattern matching (for example, a whitespace character is `[[:space:]]`) to denote multiple files in a directory. For example:
 
@@ -174,7 +172,7 @@ LOCATION ('protocol://[host[:port]]/path/file' [, ...])
     'http://intranet.example.com/finance/expenses.csv'
     ```
 
-     For writable external tables, specifies the URI location of the `gpfdist` process or S3 protocol that will collect data output from the Greenplum segments and write it to one or more named files. For `gpfdist` the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). If multiple `gpfdist` locations are listed, the segments sending data will be evenly divided across the available output locations. For example:
+    For writable external tables, specifies the URI location of the `gpfdist` process or S3 protocol that will collect data output from the Greenplum segments and write it to one or more named files. For `gpfdist` the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). If multiple `gpfdist` locations are listed, the segments sending data will be evenly divided across the available output locations. For example:
 
     ```
     'gpfdist://outputhost:8081/data1.out',
@@ -188,9 +186,9 @@ LOCATION ('protocol://[host[:port]]/path/file' [, ...])
 ON COORDINATOR
 :   Restricts all table-related operations to the Greenplum coordinator segment. Permitted only on readable and writable external tables created with the `s3` or custom protocols. The `gpfdist`, `gpfdists`, `pxf`, and `file` protocols do not support `ON COORDINATOR`.
 
-:   > **Note** Be aware of potential resource impacts when reading from or writing to external tables you create with the `ON COORDINATOR` clause. You may encounter performance issues when you restrict table operations solely to the Greenplum coordinator segment.
+:    > **Note** Be aware of potential resource impacts when reading from or writing to external tables you create with the `ON COORDINATOR` clause. You may encounter performance issues when you restrict table operations solely to the Greenplum coordinator segment.
 
-EXECUTE 'command' [ON ...]
+`EXECUTE 'command' [ON ...]`
 :   Allowed for readable external web tables or writable external tables only. For readable external web tables, specifies the OS command to be run by the segment instances. The command can be a single OS command or a script. The `ON` clause is used to specify which segment instances will run the given command.
 
     -   ON ALL is the default. The command will be run by every active (primary) segment instance on all segment hosts in the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Greenplum superuser (`gpadmin`).
@@ -204,12 +202,12 @@ EXECUTE 'command' [ON ...]
 
     For writable external tables, the command specified in the `EXECUTE` clause must be prepared to have data piped into it. Since all segments that have data to send will write their output to the specified command or program, the only available option for the `ON` clause is `ON ALL`.
 
-FORMAT 'TEXT | CSV' (options)
+`FORMAT 'TEXT | CSV' (options)`
 :   When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](/docs/sql-statements/sql-statement-copy.md) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Cloudberry Database. For information about using a custom format, see Loading and Unloading Data in the *Cloudberry Database Administrator Guide*.
 
 :   If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
 
-FORMAT 'CUSTOM' (formatter=formatter_specification)
+`FORMAT 'CUSTOM' (formatter=formatter_specification)`
 :   Specifies a custom data format. The formatter_specification specifies the function to use to format the data, followed by comma-separated parameters to the formatter function. The length of the formatter specification, the string including `Formatter=`, can be up to approximately 50K bytes.
 
 :   If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
@@ -226,7 +224,7 @@ NULL
 
 :   As an example for the `text` format, this `FORMAT` clause can be used to specify that the string of two single quotes (`''`) is a `NULL` value.
 
-:   ```
+```sql
 FORMAT 'text' (delimiter ',' null '\'\'\'\'' )
 ```
 
@@ -277,7 +275,7 @@ SEGMENT REJECT LIMIT count [ROWS | PERCENT]
 
 :   > **Note** When reading an external table, Cloudberry Database limits the initial number of rows that can contain formatting errors if the `SEGMENT REJECT LIMIT` is not triggered first or is not specified. If the first 1000 rows are rejected, the `COPY` operation is stopped and rolled back.
 
-You can change the limit for the number of initial rejected rows with the Cloudberry Database server configuration parameter [gp_initial_bad_row_limit](../config_params/guc_config.html#gp_initial_bad_row_limit).
+You can change the limit for the number of initial rejected rows with the Cloudberry Database server configuration parameter `gp_initial_bad_row_limit`.
 
 DISTRIBUTED BY ({column [opclass]}, [ ... ] )
 DISTRIBUTED RANDOMLY
@@ -360,7 +358,7 @@ INSERT INTO campaign_out SELECT * FROM campaign WHERE customer_id=123;
 
 ## Notes
 
-When you specify the `LOG ERRORS` clause, Cloudberry Database captures errors that occur while reading the external table data. For information about the error log format, see [Viewing Bad Rows in the Error Log](../../admin_guide/load/topics/g-viewing-bad-rows-in-the-error-table-or-error-log.html#topic58).
+When you specify the `LOG ERRORS` clause, Cloudberry Database captures errors that occur while reading the external table data.
 
 You can view and manage the captured error log data. The functions to manage log data depend on whether the data is persistent (the `PERSISTENTLY` keyword is used with the `LOG ERRORS` clause).
 

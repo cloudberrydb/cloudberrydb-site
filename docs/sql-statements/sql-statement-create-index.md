@@ -129,7 +129,7 @@ pages_per_range
 :   Defines the number of table blocks that make up one block range for each entry of a BRIN index (see the [BRIN Index Introduction](https://www.postgresql.org/docs/12/brin-intro.html) in the PostgreSQL documentation for details). The default is 128.
 
 autosummarize
-:   Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance] (https://www.postgresql.org/docs/12/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
+:   Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance](https://www.postgresql.org/docs/12/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
 
 ## Notes
 Refer to the [Indexes](https://www.postgresql.org/docs/12/indexes.html) topics in the PostgreSQL documentation for information about when indexes can be used, when they are not used, and in which particular situations they can be useful.
@@ -145,7 +145,7 @@ For index methods that support ordered scans (currently, only B-tree), you can s
 
 The system regularly collects statistics on all of a table's columns. Newly-created non-expression indexes can immediately use these statistics to determine an index's usefulness. For new expression indexes, you must run [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) to generate statistics for these indexes.
 
-For most index methods, the speed of creating an index is dependent on the setting of [maintenance_work_mem](../config_params/guc-list.html#maintenance_work_mem). Larger values will reduce the time needed for index creation, so long as you don't make it larger than the amount of memory really available, which would drive the machine into swapping.
+For most index methods, the speed of creating an index is dependent on the setting of `maintenance_work_mem`. Larger values will reduce the time needed for index creation, so long as you don't make it larger than the amount of memory really available, which would drive the machine into swapping.
 
 `bitmap` indexes perform best for columns that have between 100 and 100,000 distinct values. For a column with more than 100,000 distinct values, the performance and space efficiency of a bitmap index decline. The size of a bitmap index is proportional to the number of rows in the table times the number of distinct values in the indexed column.
 

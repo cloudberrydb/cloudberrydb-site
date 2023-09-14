@@ -26,7 +26,7 @@ You must have the `DELETE` privilege on the table to delete from it, as well as 
 
 > **Note** The `RETURNING` clause is not supported when deleting from append-optimized tables.
 
-> **Note** As the default, Cloudberry Database acquires an `EXCLUSIVE` lock on tables for `DELETE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
+> **Note** As the default, Cloudberry Database acquires an `EXCLUSIVE` lock on tables for `DELETE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` operations on heap tables is `ROW EXCLUSIVE`.
 
 ## Parameters
 
@@ -35,7 +35,7 @@ with_query
 
 :   For a `DELETE` command that includes a `WITH` clause, the clause can only contain `SELECT` statements, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
 
-:   See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](/docs/sql-statements/sql-statement-select.md) for details.
+:   See [SELECT](/docs/sql-statements/sql-statement-select.md) for details.
 
 table_name
 :   The name (optionally schema-qualified) of the table to delete rows from. If you specify `ONLY` before the table name, Cloudberry Database deletes matching rows from the named table only. If `ONLY` is not specified, matching rows are also deleted from any tables inheriting from the named table. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
@@ -91,7 +91,7 @@ DELETE FROM films
   WHERE producer_id IN (SELECT id FROM producers WHERE name = 'foo');
 ```
 
-For a partitioned table, all of the child tables are locked during the `DELETE` operation when the Global Deadlock Detector is not enabled (the default). Only some of the leaf child tables are locked when the Global Deadlock Detector is enabled. For information about the Global Deadlock Detector, see [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
+For a partitioned table, all of the child tables are locked during the `DELETE` operation when the Global Deadlock Detector is not enabled (the default). Only some of the leaf child tables are locked when the Global Deadlock Detector is enabled.
 
 ## Examples
 

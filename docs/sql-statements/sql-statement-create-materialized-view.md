@@ -42,7 +42,7 @@ TABLESPACE tablespace_name
 :   The tablespace_name is the name of the tablespace in which the new materialized view is to be created. If not specified, server configuration parameter default_tablespace is consulted.
 
 query
-:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](SELECT.html#table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
+:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](/docs/sql-statements/sql-statement-select.md#the-table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
 
 WITH [ NO ] DATA
 :   This clause specifies whether or not the materialized view should be populated with data at creation time. `WITH DATA` is the default, populate the materialized view. For `WITH NO DATA`, the materialized view is not populated with data, is flagged as unscannable, and cannot be queried until `REFRESH MATERIALIZED VIEW` is used to populate the materialized view.

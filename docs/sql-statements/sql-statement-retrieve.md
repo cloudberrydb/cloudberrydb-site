@@ -10,11 +10,12 @@ RETRIEVE { <count> | ALL } FROM ENDPOINT <endpoint_name>
 
 ## Description
 
-`RETRIEVE` retrieves rows using a previously-created parallel retrieve cursor. You retrieve the rows in individual retrieve sessions, separate direct connections to individual segment endpoints that will serve the results for each individual segment. When you initiate a retrieve session, you must specify [gp_retrieve_conn=true](../config_params/guc-list.html#gp_retrieve_conn) on the connection request. Because a retrieve session is independent of the parallel retrieve cursors or their corresponding endpoints, you can `RETRIEVE` from multiple endpoints in the same retrieve session.
+`RETRIEVE` retrieves rows using a previously-created parallel retrieve cursor. You retrieve the rows in individual retrieve sessions, separate direct connections to individual segment endpoints that will serve the results for each individual segment. When you initiate a retrieve session, you must specify `gp_retrieve_conn=true` on the connection request. Because a retrieve session is independent of the parallel retrieve cursors or their corresponding endpoints, you can `RETRIEVE` from multiple endpoints in the same retrieve session.
 
 A parallel retrieve cursor has an associated position, which is used by `RETRIEVE`. The cursor position can be before the first row of the query result, on any particular row of the result, or after the last row of the result.
 
-> **Note**
+> **Note:**
+>
 > Because Cloudberry Database does not support scrollable cursors, the `RETRIEVE` command moves a parallel retrieve cursor only forward in position.
 
 When it is created, a parallel retrieve cursor is positioned before the first row. After retrieving some rows, the cursor is positioned on the row most recently retrieved.

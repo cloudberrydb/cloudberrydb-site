@@ -45,15 +45,15 @@ column_name
 :   The name of a column in the new table. If column names are not provided, they are taken from the output column names of the query.
 
 USING access_method
-:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type [TABLE](SELECT.html#table-command). Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default_table_access_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
+:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type [TABLE](/docs/sql-statements/sql-statement-select.md#the-table-command). Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the default_table_access_method server configuration parameter.
 
-:   <p class="note">
-<strong>Note:</strong>
-Although you can specify the table's access method using <code>WITH (appendoptimized=true|false, orientation=row|column)</code> VMware recommends that you use <code>USING <access_method></code> instead.
-</p>
+
+> **Note:**
+>
+> Although you can specify the table's access method using `WITH (appendoptimized=true|false, orientation=row|column)`. We recommend that you use `USING <access_method>` instead.
 
 WITH ( storage_parameter=value )
-:   The `WITH` clause specifies optional storage parameters for the new table. Refer to the [Storage Parameters](CREATE_TABLE.html#storage_parameters) section on the `CREATE TABLE` reference page for more information.
+:   The `WITH` clause specifies optional storage parameters for the new table. Refer to the [Storage Parameters](/docs/sql-statements/sql-statement-create-table.md#storage-parameters) section on the `CREATE TABLE` reference page for more information.
 
 ON COMMIT
 :   The behavior of temporary tables at the end of a transaction block can be controlled using `ON COMMIT`. The three options are:
@@ -65,10 +65,10 @@ ON COMMIT
 :   DROP — Cloudberry Database drops the temporary table at the end of the current transaction block.
 
 TABLESPACE tablespace_name
-:   The tablespace_name parameter is the name of the tablespace in which the new table is to be created. If not specified, the database's [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp_tablespaces](../config_params/guc-list.html#temp_tablespaces) if the table is temporary.
+:   The tablespace_name parameter is the name of the tablespace in which the new table is to be created. If not specified, the database's `default_tablespace` is used, or `temp_tablespaces` if the table is temporary.
 
 AS query
-:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](SELECT.html#table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command, or an [EXECUTE](/docs/sql-statements/sql-statement-execute.md) command that runs a prepared `SELECT`, `TABLE`, or `VALUES` query.
+:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](/docs/sql-statements/sql-statement-select.md#the-table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command, or an [EXECUTE](/docs/sql-statements/sql-statement-execute.md) command that runs a prepared `SELECT`, `TABLE`, or `VALUES` query.
 
 DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY

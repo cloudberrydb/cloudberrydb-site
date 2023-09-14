@@ -49,9 +49,9 @@ If `SET TRANSACTION` is run without a prior [START TRANSACTION](/docs/sql-statem
 
 It is possible to dispense with `SET TRANSACTION` by instead specifying the desired transaction_modes in `BEGIN` or `START TRANSACTION`. But that option is not available for `SET TRANSACTION SNAPSHOT`.
 
-The session default transaction modes can also be set or examined via the configuration parameters [default_transaction_isolation](../config_params/guc-list.html#default_transaction_isolation), [default_transaction_read_only](../config_params/guc-list.html#default_transaction_read_only), and [default_transaction_deferrable](../config_params/guc-list.html#default_transaction_deferrable). (In fact `SET SESSION CHARACTERISTICS` is just a verbose equivalent for setting these variables with `SET`.) This means the defaults can be set in the configuration file, via `ALTER DATABASE`, etc.
+The session default transaction modes can also be set or examined via the configuration parameters `default_transaction_isolation`, `default_transaction_read_only`, and `default_transaction_deferrable`. (In fact `SET SESSION CHARACTERISTICS` is just a verbose equivalent for setting these variables with `SET`.) This means the defaults can be set in the configuration file, via `ALTER DATABASE`, etc.
 
-The current transaction's modes can similarly be set or examined via the configuration parameters [transaction_isolation](../config_params/guc-list.html#transaction_isolation), [transaction_read_only](../config_params/guc-list.html#transaction_read_only), and [transaction_deferrable](../config_params/guc-list.html#transaction_deferrable). Setting one of these parameters acts the same as the corresponding `SET TRANSACTION` option, with the same restrictions on when it can be done. However, these parameters cannot be set in the configuration file, or from any source other than live SQL.
+The current transaction's modes can similarly be set or examined via the configuration parameters `transaction_isolation`, `transaction_read_only`, and `transaction_deferrable`. Setting one of these parameters acts the same as the corresponding `SET TRANSACTION` option, with the same restrictions on when it can be done. However, these parameters cannot be set in the configuration file, or from any source other than live SQL.
 
 ## Examples
 

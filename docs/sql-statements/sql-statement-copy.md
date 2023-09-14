@@ -241,18 +241,16 @@ When you specify the `LOG ERRORS` clause, Cloudberry Database captures errors th
 
 -   Use the built-in SQL function `gp_read_error_log('table_name')`. It requires `SELECT` privilege on table_name. This example displays the error log information for data loaded into table `ext_expenses` with a `COPY` command:
 
-    ```
+    ```sql
     SELECT * from gp_read_error_log('ext_expenses');
     ```
-
-    For information about the error log format, see [Viewing Bad Rows in the Error Log](../../admin_guide/load/topics/g-viewing-bad-rows-in-the-error-table-or-error-log.html#topic58) in the *Cloudberry Database Administrator Guide*.
 
     The function returns `FALSE` if table_name does not exist.
 
 -   If error log data exists for the specified table, the new error log data is appended to existing error log data. The error log information is not replicated to mirror segments.
 -   Use the built-in SQL function `gp_truncate_error_log('table_name')` to delete the error log data for table_name. It requires the table owner privilege This example deletes the error log information captured when moving data into the table `ext_expenses`:
 
-    ```
+    ```sql
     SELECT gp_truncate_error_log('ext_expenses'); 
     ```
 

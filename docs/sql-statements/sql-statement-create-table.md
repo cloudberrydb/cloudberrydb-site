@@ -211,9 +211,6 @@ If you supply the `DISTRIBUTED REPLICATED` clause, Cloudberry Database distribut
 
 The `PARTITION BY` and `PARTITION OF` clauses allow you to divide the table into multiple sub-tables (or parts) that, taken together, make up the parent table and share its schema.
 
-> **Note** Cloudberry Database supports both *classic* and *modern* partitioning syntaxes. Refer to [Choosing the Partitioning Syntax](../../admin_guide/ddl/ddl-partition.html#choose) for more information, including guidance on selecting the appropriate syntax for a partitioned table.
-
-
 ## Parameters
 
 GLOBAL | LOCAL
@@ -257,8 +254,6 @@ ENCODING ( storage_directive [, ...] )
 :   This clause is valid only for append-optimized, column-oriented tables.
 
 :   Column compression settings are inherited from the table level to the partition level to the sub-partition level. The lowest-level settings have priority.
-
-:   For more information about using column compression, refer to [Adding Column-Level Compression](../../admin_guide/ddl/ddl-storage.html#topic43).
 
     blocksize
     :   Set to the size, in bytes, for each block in a table. The `blocksize` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768.
@@ -470,14 +465,13 @@ INITIALLY DEFERRED
 :   If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](/docs/sql-statements/sql-statement-set-constraints.md) command.
 
 USING access_method
-:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default_table_access_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
+:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the `default_table_access_method` server configuration parameter.
 
-:   <p class="note">
-<strong>Note:</strong>
-Although you can specify the table's access method using <code>WITH (appendoptimized=true|false, orientation=row|column)</code> VMware recommends that you use <code>USING <access_method></code> instead.
-</p>
-  
-WITH ( storage_parameter=value )
+> **Note:**
+>
+> Although you can specify the table's access method using `WITH (appendoptimized=true|false, orientation=row|column)`, we recommend that you use `USING <access_method>` instead.
+
+`WITH ( storage_parameter=value )`
 :   The `WITH` clause specifies optional storage parameters for a table or index; see [Storage Parameters](#storage_parameters) below for details. For backward-compatibility the `WITH` clause for a table can also include `OIDS=FALSE` to specify that rows of the new table should not contain OIDs (object identifiers), `OIDS=TRUE`. is no longer supported.
 
 ON COMMIT
@@ -490,17 +484,17 @@ ON COMMIT
 :   **DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
 
 TABLESPACE tablespace
-:   The name of the tablespace in which the new table is to be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is consulted, or temp_tablespaces if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
+:   The name of the tablespace in which the new table is to be created. If not specified, the database's `default_tablespace` is consulted, or temp_tablespaces if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
 
 USING INDEX TABLESPACE tablespace
-:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's  [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or temp_tablespaces if the table is temporary.
+:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's `default_tablespace` is used, or temp_tablespaces if the table is temporary.
 
 DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
 :   Used to declare the Cloudberry Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
 
-:   The Cloudberry Database server configuration parameter [gp_create_table_random_default_distribution](../config_params/guc-list.html#gp_create_table_random_default_distribution) controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Cloudberry Database follows these rules to create a table if a distribution policy is not specified.
+:   The Cloudberry Database server configuration parameter `gp_create_table_random_default_distribution` controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Cloudberry Database follows these rules to create a table if a distribution policy is not specified.
 
     If the value of the parameter is `off` (the default), Cloudberry Database chooses the table distribution key based on the command:
 
@@ -519,7 +513,7 @@ DISTRIBUTED REPLICATED
 
 Descriptions of additional parameters that are specific to the *classic partitioning syntax* follow.
 
-> **Note** VMware recommends that you use the modern partitioning syntax.
+> **Note**: We recommend that you use the modern partitioning syntax.
 
 CREATE TABLE table_name ... PARTITION BY
 
@@ -560,11 +554,11 @@ SUBPARTITION TEMPLATE
 
 ### Storage Parameters
 
-The `WITH` clause can specify storage parameters for tables, and for indexes associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint. Storage parameters for indexes are documented on the [CREATE INDEX](CREATE_INDEX.html.md) reference page. The storage parameters currently available for tables are listed below. For many of these parameters, as shown, there is an additional parameter with the same name prefixed with `toast.`, which controls the behavior of the table's secondary TOAST table, if any. If a table parameter value is set and the equivalent `toast.` parameter is not, the TOAST table will use the table's parameter value. Specifying these parameters for partitioned tables is not supported, but you may specify them for individual leaf partitions.
+The `WITH` clause can specify storage parameters for tables, and for indexes associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint. Storage parameters for indexes are documented on the [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md) reference page. The storage parameters currently available for tables are listed below. For many of these parameters, as shown, there is an additional parameter with the same name prefixed with `toast.`, which controls the behavior of the table's secondary TOAST table, if any. If a table parameter value is set and the equivalent `toast.` parameter is not, the TOAST table will use the table's parameter value. Specifying these parameters for partitioned tables is not supported, but you may specify them for individual leaf partitions.
 
 Note that you can also set storage parameters for a particular partition or sub-partition by declaring the `WITH` clause in the *classic syntax* partition specification. The lowest-level partition's settings have priority. 
 
-You can specify the defaults for some of the table storage options with the server configuration parameter [gp_default_storage_options](../config_params/guc-list.html#gp_default_storage_options). For information about setting default storage options, see [Notes](#section5).
+You can specify the defaults for some of the table storage options with the server configuration parameter `gp_default_storage_options`. For information about setting default storage options, see [Notes](#section5).
 
 > **Note** Because Cloudberry Database does not permit autovacuuming user tables, it accepts, but does not apply, certain per-table parameter settings as noted below.
 
@@ -594,8 +588,6 @@ compresstype
 
 :   For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
 
-:   For information about using table compression, see [Choosing the Table Storage Model](../../admin_guide/ddl/ddl-storage.html#topic1) in the *Cloudberry Database Administrator Guide*.
-
 fillfactor
 :   The fillfactor for a table is a percentage between 10 and 100. 100 (complete packing) is the default. When a smaller fillfactor is specified, `INSERT` operations pack table pages only to the indicated percentage; the remaining space on each page is reserved for updating rows on that page. This gives `UPDATE` a chance to place the updated copy of a row on the same page as the original, which is more efficient than placing it on a different page. For a table whose entries are never updated, complete packing is the best choice, but in heavily updated tables smaller fillfactors are appropriate. This parameter cannot be set for TOAST tables.
 
@@ -611,7 +603,7 @@ parallel_workers (integer)
 :   Sets the number of workers that should be used to assist a parallel scan of this table. If not set, Greenplum determines a value based on the relation size. The actual number of workers chosen by the planner or by utility statements that use parallel scans may be less, for example due to the setting of `max_worker_processes`.
 
 autovacuum_enabled, toast.autovacuum_enabled (boolean)
-:   Enables or disables the autovacuum daemon for a particular table. If `true`, the autovacuum daemon will perform automatic `VACUUM` and/or `ANALYZE` operations on this table following the rules discussed in [The Autovacuum Daemon](https://www.postgresql.org/docs/12/routine-vacuuming.html#AUTOVACUUM) in the PostgreSQL documentation. If `false`, Greenplum does not autovacuum the table, except to prevent transaction ID wraparound. Note that the autovacuum daemon does not run at all (except to prevent transaction ID wraparound) if the [autovacuum](../config_params/guc-list.html#autovacuum) parameter is `false`; setting individual tables' storage parameters does not override that. So there is seldom much point in explicitly setting this storage parameter to `true`, only to `false`.
+:   Enables or disables the autovacuum daemon for a particular table. If `true`, the autovacuum daemon will perform automatic `VACUUM` and/or `ANALYZE` operations on this table following the rules discussed in [The Autovacuum Daemon](https://www.postgresql.org/docs/12/routine-vacuuming.html#AUTOVACUUM) in the PostgreSQL documentation. If `false`, Greenplum does not autovacuum the table, except to prevent transaction ID wraparound. Note that the autovacuum daemon does not run at all (except to prevent transaction ID wraparound) if the `autovacuum` parameter is `false`; setting individual tables' storage parameters does not override that. So there is seldom much point in explicitly setting this storage parameter to `true`, only to `false`.
 
 vacuum_index_cleanup, toast.vacuum_index_cleanup (boolean)
 :   Enables or disables index cleanup when `VACUUM` is run on this table. The default value is `true`. Disabling index cleanup can speed up `VACUUM` very significantly, but may also lead to severely bloated indexes if table modifications are frequent. The `INDEX_CLEANUP` parameter of `VACUUM`, if specified, overrides the value of this option.
@@ -621,11 +613,11 @@ vacuum_truncate, toast.vacuum_truncate (boolean)
 :   Enables or disables vacuum to attempt to truncate any empty pages at the end of this table. The default value is `true`. If `true`, `VACUUM` and autovacuum truncate the empty pages, and the disk space for the truncated pages is returned to the operating system. Note that the truncation requires an `ACCESS EXCLUSIVE` lock on the table. The `TRUNCATE` parameter of `VACUUM`, if specified, overrides the value of this option.
 
 autovacuum_vacuum_threshold, toast.autovacuum_vacuum_threshold (integer)
-:   Per-table value for the [autovacuum_vacuum_threshold](../config_params/guc-list.html#autovacuum_vacuum_threshold) server configuration parameter.
+:   Per-table value for the `autovacuum_vacuum_threshold` server configuration parameter.
 :   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
 autovacuum_vacuum_scale_factor, toast.autovacuum_vacuum_scale_factor (floating point)
-:   Per-table value for the [autovacuum_vacuum_scale_factor](../config_params/guc-list.html#autovacuum_vacuum_scale_factor) server configuration parameter.
+:   Per-table value for the `autovacuum_vacuum_scale_factor` server configuration parameter.
 :   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
 autovacuum_analyze_threshold (integer)
@@ -643,11 +635,11 @@ autovacuum_vacuum_cost_limit, toast.autovacuum_vacuum_cost_limit (integer)
 :   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
 autovacuum_freeze_min_age, toast.autovacuum_freeze_min_age (integer)
-:   Per-table value for the [vacuum_freeze_min_age](../config_params/guc-list.html#vacuum_freeze_min_age) parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_min_age` parameters that are larger than half of the system-wide `autovacuum_freeze_max_age` setting.
+:   Per-table value for the `vacuum_freeze_min_age` parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_min_age` parameters that are larger than half of the system-wide `autovacuum_freeze_max_age` setting.
 :   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
 autovacuum_freeze_max_age, toast.autovacuum_freeze_max_age (integer)
-:   Per-table value for the [autovacuum_freeze_max_age](../config_params/guc-list.html#autovacuum_freeze_max_age) server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_max_age` parameters that are larger than the system-wide setting (it can only be set smaller).
+:   Per-table value for the `autovacuum_freeze_max_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_max_age` parameters that are larger than the system-wide setting (it can only be set smaller).
 :   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
 autovacuum_freeze_table_age, toast.autovacuum_freeze_table_age (integer)

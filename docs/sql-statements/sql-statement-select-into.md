@@ -45,7 +45,7 @@ All other parameters for `SELECT INTO` are described in detail on the [SELECT](/
 
 [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) is functionally similar to `SELECT INTO`. `CREATE TABLE AS` is the recommended syntax, since this form of `SELECT INTO` is not available in ECPG or PL/pgSQL, because they interpret the `INTO` clause differently. Also, `CREATE TABLE AS` offers a superset of the functionality provided by `SELECT INTO`.
 
-In contrast to `CREATE TABLE AS`, `SELECT INTO` does not allow specifying properties like a table's access method with `USING <method>` or the table's tablespace with `TABLESPACE <tablespace_name>`. Use [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) if necessary. Therefore, the default table access method is chosen for the new table. See [default_table_access_method](../config_params/guc-list.html#default_table_access_method) for more information.
+In contrast to `CREATE TABLE AS`, `SELECT INTO` does not allow specifying properties like a table's access method with `USING <method>` or the table's tablespace with `TABLESPACE <tablespace_name>`. Use [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) if necessary. Therefore, the default table access method is chosen for the new table.
 
 ## Examples
 

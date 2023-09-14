@@ -91,7 +91,7 @@ Scrollable cursors are not currently supported in Cloudberry Database. You can o
 
 `DECLARE...FOR UPDATE` is not supported with append-optimized tables.
 
-You can see all available cursors by querying the [pg_cursors](../system_catalogs/catalog_ref-views.html#pg_cursors) system view.
+You can see all available cursors by querying the `pg_cursors` system view.
 
 ## Examples
 

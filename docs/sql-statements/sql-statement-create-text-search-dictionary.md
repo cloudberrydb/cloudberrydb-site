@@ -19,8 +19,6 @@ If a schema name is given then the text search dictionary is created in the spec
 
 The user who defines a text search dictionary becomes its owner.
 
-Refer to [Using Full Text Search](../../admin_guide/textsearch/full-text-search.html#full-text-search) for further information.
-
 ## Parameters
 
 name
