@@ -155,7 +155,7 @@ TABLESAMPLE sampling_method ( argument [, ...] ) [ REPEATABLE ( seed ) ]
 :   The optional `REPEATABLE` clause specifies a seed number or expression to use for generating random numbers within the sampling method. The seed value can be any non-null floating-point value. Two queries that specify the same seed and argument values will select the same sample of the table, if the table has not been changed meanwhile. But different seed values usually produce different samples. If `REPEATABLE` is not specified, then Greenplum Database selects a new random sample for each query, based upon a system-generated seed. Note that some add-on sampling methods do not accept `REPEATABLE`, and will always produce new samples on each use.
 
 select
-:   A sub-`SELECT` can appear in the `FROM` clause. This acts as though its output were created as a temporary table for the duration of this single `SELECT` command. Note that the sub-`SELECT` must be surrounded by parentheses, and an alias *must* be provided for it. A [VALUES](VALUES.html) command can also be used here. See "Non-standard Clauses" in the [Compatibility](#compatibility) section for limitations of using correlated sub-selects in Greenplum Database.
+:   A sub-`SELECT` can appear in the `FROM` clause. This acts as though its output were created as a temporary table for the duration of this single `SELECT` command. Note that the sub-`SELECT` must be surrounded by parentheses, and an alias *must* be provided for it. A [VALUES](/docs/sql-statements/sql-statement-values.md) command can also be used here. See "Non-standard Clauses" in the [Compatibility](#compatibility) section for limitations of using correlated sub-selects in Greenplum Database.
 
 with_query_name
 :   A `WITH` query is referenced in the `FROM` clause by specifying its name, just as though the name were a table name. You can provide an alias in the same way as for a table.
@@ -527,7 +527,7 @@ Note that ordering options apply only to the expression they follow; for example
 
 Character-string data is sorted according to the locale-specific collation order that was established when the database was created. You can override this at need by including a `COLLATE` clause in the expression, for example `ORDER BY mycolumn COLLATE "en_US"`.
 
-Character-string data is sorted according to the collation that applies to the column being sorted. That can be overridden as needed by including a `COLLATE` clause in the expression, for example `ORDER BY mycolumn COLLATE "en_US"`. For information about defining collations, see [CREATE COLLATION](CREATE_COLLATION.html).
+Character-string data is sorted according to the collation that applies to the column being sorted. That can be overridden as needed by including a `COLLATE` clause in the expression, for example `ORDER BY mycolumn COLLATE "en_US"`. For information about defining collations, see [CREATE COLLATION](/docs/sql-statements/sql-statement-create-collation.md).
 
 ### The LIMIT Clause
 
@@ -589,7 +589,7 @@ Otherwise, table locking for a `SELECT` query that contains a locking clause beh
 
 For more information on each row-level lock mode, refer to [Explicit Locking](https://www.postgresql.org/docs/12/explicit-locking.html) in the PostgreSQL documentation.
 
-To prevent the operation from waiting for other transactions to commit, use either the `NOWAIT` option or the `SKIP LOCKED` option. With `NOWAIT`, the statement reports an error, rather than waiting, if a selected row cannot be locked immediately. With `SKIP LOCKED`, any selected rows that cannot be immediately locked are skipped. Skipping locked rows provides an inconsistent view of the data, so this is not suitable for general purpose work, but can be used to avoid lock contention with multiple consumers accessing a queue-like table. Note that `NOWAIT` and `SKIP LOCKED` apply only to the row-level lock(s) — the required `ROW SHARE` table-level lock is still taken in the ordinary way. You can use [LOCK](LOCK.html) with the `NOWAIT` option first, if you need to acquire the table-level lock without waiting.
+To prevent the operation from waiting for other transactions to commit, use either the `NOWAIT` option or the `SKIP LOCKED` option. With `NOWAIT`, the statement reports an error, rather than waiting, if a selected row cannot be locked immediately. With `SKIP LOCKED`, any selected rows that cannot be immediately locked are skipped. Skipping locked rows provides an inconsistent view of the data, so this is not suitable for general purpose work, but can be used to avoid lock contention with multiple consumers accessing a queue-like table. Note that `NOWAIT` and `SKIP LOCKED` apply only to the row-level lock(s) — the required `ROW SHARE` table-level lock is still taken in the ordinary way. You can use [LOCK](/docs/sql-statements/sql-statement-lock.md) with the `NOWAIT` option first, if you need to acquire the table-level lock without waiting.
 
 If specific tables are named in a locking clause, then only rows coming from those tables are locked; any other tables used in the `SELECT` are simply read as usual. A locking clause without a table list affects all tables used in the statement. If a locking clause is applied to a view or sub-query, it affects all tables used in the view or sub-query. However, these clauses do not apply to `WITH` queries referenced by the primary query. If you want row locking to occur within a `WITH` query, specify a locking clause within the `WITH` query.
 
@@ -864,11 +864,11 @@ The `MATERIALIZED` and `NOT MATERIALIZED` options of `WITH` are extensions of th
 
 **Limited Use of STABLE and VOLATILE Functions**
 
-To prevent data from becoming out-of-sync across the segments in Greenplum Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment database level if it contains SQL or modifies the database in any way. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
+To prevent data from becoming out-of-sync across the segments in Greenplum Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment database level if it contains SQL or modifies the database in any way. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 ## See Also
 
-[EXPLAIN](EXPLAIN.html)
+[EXPLAIN](/docs/sql-statements/sql-statement-explain.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -17,7 +17,7 @@ CREATE TABLESPACE <tablespace_name>
 
 A tablespace allows superusers to define an alternative host file system location where the data files containing database objects (such as tables and indexes) reside.
 
-A user with appropriate privileges can pass tablespace_name to [CREATE DATABASE](CREATE_DATABASE.html), [CREATE TABLE](CREATE_TABLE.html), or [CREATE INDEX](CREATE_INDEX.html) to direct Greenplum Database to store the data files for these objects within the specified tablespace.
+A user with appropriate privileges can pass tablespace_name to [CREATE DATABASE](/docs/sql-statements/sql-statement-create-database.md), [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md), or [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md) to direct Greenplum Database to store the data files for these objects within the specified tablespace.
 
 In Greenplum Database, the file system location must exist on all hosts including the hosts running the coordinator, standby mirror, each primary segment, and each mirror segment.
 
@@ -82,7 +82,7 @@ The example specifies the same location for the two segment instances. You can a
 
 ## See Also
 
-[CREATE DATABASE](CREATE_DATABASE.html), [CREATE TABLE](CREATE_TABLE.html), [CREATE INDEX](CREATE_INDEX.html), [DROP TABLESPACE](DROP_TABLESPACE.html), [ALTER TABLESPACE](ALTER_TABLESPACE.html)
+[CREATE DATABASE](/docs/sql-statements/sql-statement-create-database.md), [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md), [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md), [DROP TABLESPACE](/docs/sql-statements/sql-statement-drop-tablespace.md), [ALTER TABLESPACE](/docs/sql-statements/sql-statement-alter-tablespace.md)
 
-**Parent topic:** SQL Commands
+
 

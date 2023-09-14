@@ -21,7 +21,7 @@ VACUUM AO_AUX_ONLY <ao_table>
 
 With no parameter, `VACUUM` processes every table in the current database. With a parameter, `VACUUM` processes only that table.
 
-`VACUUM ANALYZE` performs a `VACUUM` and then an `ANALYZE` for each selected table. This is a handy combination form for routine maintenance scripts. See [ANALYZE](ANALYZE.html) for more details about its processing.
+`VACUUM ANALYZE` performs a `VACUUM` and then an `ANALYZE` for each selected table. This is a handy combination form for routine maintenance scripts. See [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) for more details about its processing.
 
 `VACUUM` (without `FULL`) marks deleted and obsoleted data in tables and indexes for future reuse and reclaims space for re-use only if the space is at the end of the table and an exclusive table lock can be easily obtained. Unused space at the start or middle of a table remains as is. With heap tables, this form of the command can operate in parallel with normal reading and writing of the table, as an exclusive lock is not obtained. However, extra space is not returned to the operating system (in most cases); it's just kept available for re-use within the same table. `VACUUM FULL` rewrites the entire contents of the table into a new disk file with no extra space, allowing unused space to be returned to the operating system. This form is much slower and requires an exclusive lock on each table while it is being processed.
 
@@ -130,7 +130,7 @@ There is no `VACUUM` statement in the SQL standard.
 
 ## See Also
 
-[ANALYZE](ANALYZE.html)
+[ANALYZE](/docs/sql-statements/sql-statement-analyze.md)
 
-**Parent topic:** SQL Commands
+
 

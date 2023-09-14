@@ -56,7 +56,7 @@ This command conforms to the SQL standard, with these Greenplum Database extensi
 
 ## See Also
 
-[CREATE PROCEDURE](CREATE_PROCEDURE.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html)
+[CREATE PROCEDURE](/docs/sql-statements/sql-statement-create-procedure.md), [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md)
 
-**Parent topic:** SQL Commands
+
 

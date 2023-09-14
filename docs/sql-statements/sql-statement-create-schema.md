@@ -101,7 +101,7 @@ The `IF NOT EXISTS` option is a Greenplum Database extension.
 
 ## See Also
 
-[ALTER SCHEMA](ALTER_SCHEMA.html), [DROP SCHEMA](DROP_SCHEMA.html)
+[ALTER SCHEMA](/docs/sql-statements/sql-statement-alter-schema.md), [DROP SCHEMA](/docs/sql-statements/sql-statement-drop-schema.md)
 
-**Parent topic:** SQL Commands
+
 

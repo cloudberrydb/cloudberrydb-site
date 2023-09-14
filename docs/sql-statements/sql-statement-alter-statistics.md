@@ -39,7 +39,7 @@ There is no `ALTER STATISTICS` statement in the SQL standard.
 
 ## See Also
 
-[CREATE STATISTICS](CREATE_STATISTICS.html), [DROP STATISTICS](DROP_STATISTICS.html)
+[CREATE STATISTICS](/docs/sql-statements/sql-statement-create-statistics.md), [DROP STATISTICS](/docs/sql-statements/sql-statement-drop-statistics.md)
 
-**Parent topic:** SQL Commands
+
 

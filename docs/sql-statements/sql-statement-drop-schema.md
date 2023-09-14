@@ -46,7 +46,7 @@ DROP SCHEMA mystuff CASCADE;
 
 ## See Also
 
-[CREATE SCHEMA](CREATE_SCHEMA.html), [ALTER SCHEMA](ALTER_SCHEMA.html)
+[CREATE SCHEMA](/docs/sql-statements/sql-statement-create-schema.md), [ALTER SCHEMA](/docs/sql-statements/sql-statement-alter-schema.md)
 
-**Parent topic:** SQL Commands
+
 

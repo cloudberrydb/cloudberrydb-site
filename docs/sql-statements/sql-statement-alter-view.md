@@ -84,7 +84,7 @@ INSERT INTO a_view(id) VALUES(2);  -- ts will receive the current time
 
 ## See Also
 
-[CREATE VIEW](CREATE_VIEW.html), [DROP VIEW](DROP_VIEW.html)
+[CREATE VIEW](/docs/sql-statements/sql-statement-create-view.md), [DROP VIEW](/docs/sql-statements/sql-statement-drop-view.md)
 
-**Parent topic:** SQL Commands
+
 

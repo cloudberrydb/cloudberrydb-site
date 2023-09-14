@@ -36,7 +36,7 @@ WARNING:  tablespace with oid "16415" is not empty
 DROP TABLESPACE
 ```
 
-The table data in the tablespace directory is not dropped. You can use the [ALTER TABLE](ALTER_TABLE.html) command to change the tablespace defined for the table and move the data to an existing tablespace.
+The table data in the tablespace directory is not dropped. You can use the [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md) command to change the tablespace defined for the table and move the data to an existing tablespace.
 
 ## Examples
 
@@ -52,7 +52,7 @@ DROP TABLESPACE mystuff;
 
 ## See Also
 
-[CREATE TABLESPACE](CREATE_TABLESPACE.html), [ALTER TABLESPACE](ALTER_TABLESPACE.html)
+[CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md), [ALTER TABLESPACE](/docs/sql-statements/sql-statement-alter-tablespace.md)
 
-**Parent topic:** SQL Commands
+
 

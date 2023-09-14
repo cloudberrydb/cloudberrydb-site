@@ -64,19 +64,19 @@ extension_name
 
 [ EXTERNAL ] SECURITY INVOKER
 [ EXTERNAL ] SECURITY DEFINER
-:   Change whether the procedure is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE PROCEDURE](CREATE_PROCEDURE.html) for more information about this capability.
+:   Change whether the procedure is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE PROCEDURE](/docs/sql-statements/sql-statement-create-procedure.md) for more information about this capability.
 
 configuration_parameter
 value
 :   Set or change the value of a configuration parameter when the procedure is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the procedure-local setting is removed, and the procedure runs with the value present in its environment. Use `RESET ALL` to clear all procedure-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER PROCEDURE` is run as the value to be applied when the procedure is entered.
-:   See [SET](SET.html) for more information about allowed parameter names and values.
+:   See [SET](/docs/sql-statements/sql-statement-set.md) for more information about allowed parameter names and values.
 
 RESTRICT
 :   Ignored for conformance with the SQL standard.
 
 ## Notes
 
-Greenplum Database has limitations on the use of functions defined as `STABLE` or `VOLATILE`. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
+Greenplum Database has limitations on the use of functions defined as `STABLE` or `VOLATILE`. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 ## Examples
 
@@ -124,7 +124,7 @@ This statement is partially compatible with the `ALTER PROCEDURE` statement in t
 
 ## See Also
 
-[CREATE PROCEDURE](CREATE_PROCEDURE.html), [DROP PROCEDURE](DROP_PROCEDURE.html)
+[CREATE PROCEDURE](/docs/sql-statements/sql-statement-create-procedure.md), [DROP PROCEDURE](/docs/sql-statements/sql-statement-drop-procedure.md)
 
-**Parent topic:** SQL Commands
+
 

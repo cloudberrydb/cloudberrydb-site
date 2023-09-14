@@ -47,7 +47,7 @@ This command fails if any of the extension objects are in use in the database. F
 
 ## See Also
 
-[CREATE EXTENSION](CREATE_EXTENSION.html), [ALTER EXTENSION](ALTER_EXTENSION.html)
+[CREATE EXTENSION](/docs/sql-statements/sql-statement-create-extension.md), [ALTER EXTENSION](/docs/sql-statements/sql-statement-alter-extension.md)
 
-**Parent topic:** SQL Commands
+
 

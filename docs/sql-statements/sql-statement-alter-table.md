@@ -203,7 +203,7 @@ and <subpartition_element> is:
 `ALTER TABLE` changes the definition of an existing table. There are several subforms described below. Note that the lock level required may differ for each subform. An `ACCESS EXCLUSIVE` lock is acquired unless explicitly noted. When multiple subcommands are provided, Greenplum Database acquires the strictest lock required by any subcommand.
 
 ADD COLUMN [ IF NOT EXISTS ]
-:    Adds a new column to the table, using the same syntax as [CREATE TABLE](CREATE_TABLE.html). If `IF NOT EXISTS` is specified and a column already exists with this name, no error is thrown.
+:    Adds a new column to the table, using the same syntax as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). If `IF NOT EXISTS` is specified and a column already exists with this name, no error is thrown.
 
 DROP COLUMN [ IF EXISTS ]
 :   Drops a column from a table. Note that if you drop table columns that are being used as the Greenplum Database distribution key, the distribution policy for the table will be changed to `DISTRIBUTED RANDOMLY`. Indexes and table constraints involving the column are automatically dropped as well. Multivariate statistics referencing the dropped column will also be removed if the removal of the column would cause the statistics to contain data for only a single column. You need to specify `CASCADE` if anything outside of the table depends on the column, such as views. If `IF EXISTS` is specified and the column does not exist, no error is thrown; Greenplum Database issues a notice instead.
@@ -230,22 +230,22 @@ DROP NOT NULL
 ADD GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY
 SET GENERATED { ALWAYS | BY DEFAULT }
 DROP IDENTITY [ IF EXISTS ]
-:   These forms change whether a column is an identity column or change the generation attribute of an existing identity column. See [CREATE TABLE](CREATE_TABLE.html) for details.
+:   These forms change whether a column is an identity column or change the generation attribute of an existing identity column. See [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 :   If `DROP IDENTITY IF EXISTS` is specified and the column is not an identity column, no error is thrown. In this case Greenplum Database issues a notice instead.
 
 SET sequence_option
 RESTART
-:   These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](ALTER_SEQUENCE.html) such as `INCREMENT BY`.
+:   These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](/docs/sql-statements/sql-statement-alter-sequence.md) such as `INCREMENT BY`.
 
 SET STATISTICS
-:   Sets the per-column statistics-gathering target for subsequent [ANALYZE](ANALYZE.html) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target ([default_statistics_target](../config_params/guc-list.html#default_statistics_target). When set to 0, no statistics are collected.
+:   Sets the per-column statistics-gathering target for subsequent [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target ([default_statistics_target](../config_params/guc-list.html#default_statistics_target). When set to 0, no statistics are collected.
 
 :   `SET STATISTICS` acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 SET ( attribute_option = value [, ... ] )
 RESET ( attribute_option [, ...] )
-:   Sets or resets per-attribute options. Currently, the only defined per-attribute options are `n_distinct` and `n_distinct_inherited`, which override the number-of-distinct-values estimates made by subsequent [ANALYZE](ANALYZE.html) operations. `n_distinct` affects the statistics for the table itself, while `n_distinct_inherited` affects the statistics gathered for the table plus its inheritance children. When set to a positive value, `ANALYZE` assumes that the column contains exactly the specified number of distinct non-null values. When set to a negative value, which must be greater than or equal to -1, `ANALYZE` assumes that the number of distinct non-null values in the column is linear in the size of the table; the exact count is to be computed by multiplying the estimated table size by the absolute value of the given number. For example, a value of -1 implies that all values in the column are distinct, while a value of -0.5 implies that each value appears twice on the average. This can be useful when the size of the table changes over time, since the multiplication by the number of rows in the table is not performed until query planning time. Specify the value 0 to revert to estimating the number of distinct values normally.
+:   Sets or resets per-attribute options. Currently, the only defined per-attribute options are `n_distinct` and `n_distinct_inherited`, which override the number-of-distinct-values estimates made by subsequent [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) operations. `n_distinct` affects the statistics for the table itself, while `n_distinct_inherited` affects the statistics gathered for the table plus its inheritance children. When set to a positive value, `ANALYZE` assumes that the column contains exactly the specified number of distinct non-null values. When set to a negative value, which must be greater than or equal to -1, `ANALYZE` assumes that the number of distinct non-null values in the column is linear in the size of the table; the exact count is to be computed by multiplying the estimated table size by the absolute value of the given number. For example, a value of -1 implies that all values in the column are distinct, while a value of -0.5 implies that each value appears twice on the average. This can be useful when the size of the table changes over time, since the multiplication by the number of rows in the table is not performed until query planning time. Specify the value 0 to revert to estimating the number of distinct values normally.
 
 :   Changing per-attribute options acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
@@ -258,13 +258,13 @@ SET ENCODING ( storage_directive> [, ...] )
 :   This form sets column encoding options for append-optimized, column-oriented tables.
 
 ADD table_constraint [ NOT VALID ]
-:   Adds a new constraint to a table using the same syntax as [CREATE TABLE](CREATE_TABLE.html). The `NOT VALID` option is currently allowed only for foreign key and `CHECK` constraints.
+:   Adds a new constraint to a table using the same syntax as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). The `NOT VALID` option is currently allowed only for foreign key and `CHECK` constraints.
 
 :   Normally, this form causes a scan of the table to verify that all existing rows in the table satisfy the new constraint.  If the constraint is marked `NOT VALID`, Greenplum Database skips the potentially-lengthy initial check to verify that all rows in the table satisfy the constraint. The constraint will still be enforced against subsequent inserts or updates (that is, they'll fail unless there is a matching row in the referenced table, in the case of foreign keys; and they'll fail unless the new row matches the specified check constraints). But the database will not assume that the constraint holds for all rows in the table, until it is validated by using the `VALIDATE CONSTRAINT` option. See the [Notes](#section5) for more information about using the `NOT VALID` option.
 
 :   Most forms of `ADD <table_constraint>` require an `ACCESS EXCLUSIVE` lock.
 
-:   Additional restrictions apply when unique or primary key constraints are added to partitioned tables; see [CREATE TABLE](CREATE_TABLE.html).
+:   Additional restrictions apply when unique or primary key constraints are added to partitioned tables; see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
 ADD table_constraint_using_index
 :   This form adds a new `PRIMARY KEY` or `UNIQUE` constraint to a table based on an existing unique index. All the columns of the index will be included in the constraint.
@@ -292,31 +292,31 @@ DROP CONSTRAINT [IF EXISTS]
 
 DISABLE ROW LEVEL SECURITY
 ENABLE ROW LEVEL SECURITY
-:   These forms control the application of row security policies belonging to the table. If enabled and no policies exist for the table, then Greenplum Database applies a default-deny policy. Note that policies can exist for a table even if row level security is disabled - in this case, the policies will NOT be applied and the policies will be ignored. See also [CREATE POLICY](CREATE_POLICY.html).
+:   These forms control the application of row security policies belonging to the table. If enabled and no policies exist for the table, then Greenplum Database applies a default-deny policy. Note that policies can exist for a table even if row level security is disabled - in this case, the policies will NOT be applied and the policies will be ignored. See also [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md).
 
 NO FORCE ROW LEVEL SECURITY
 FORCE ROW LEVEL SECURITY
-:   These forms control the application of row security policies belonging to the table when the user is the table owner. If enabled, row level security policies will be applied when the user is the table owner. If disabled (the default) then row level security will not be applied when the user is the table owner. See also [CREATE POLICY](CREATE_POLICY.html).
+:   These forms control the application of row security policies belonging to the table when the user is the table owner. If enabled, row level security policies will be applied when the user is the table owner. If disabled (the default) then row level security will not be applied when the user is the table owner. See also [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md).
 
 CLUSTER ON
-:   Selects the default index for future [CLUSTER](CLUSTER.html) operations. It does not actually re-cluster the table.
+:   Selects the default index for future [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) operations. It does not actually re-cluster the table.
 
 :   Changing cluster options acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 REPACK BY COLUMNS
-:   Physically reorders a table based on one or more columns to improve physical correlation. You specify one or more columns, and an optional column order. If not specified, the default is `ASC`. The command is equivalent to the [CLUSTER](CLUSTER.html) command, but it uses the provided column list instead of an index to determine the sorting order. 
+:   Physically reorders a table based on one or more columns to improve physical correlation. You specify one or more columns, and an optional column order. If not specified, the default is `ASC`. The command is equivalent to the [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) command, but it uses the provided column list instead of an index to determine the sorting order. 
 
 :   The command is especially useful for tables that are loaded in small batches. You may combine `REPACK BY COLUMNS` with most other `ALTER TABLE` commands that do not require a rewrite of the table. You may use `REPACK BY COLUMNS` to add compression or change the existing compression settings of a table while physically reordering the table, which results in better compression and storage. See [Examples](#section6) for more details.
 
 SET WITHOUT CLUSTER
-:   Removes the most recently used [CLUSTER](CLUSTER.html) index specification from the table. This affects future cluster operations that do not specify an index.
+:   Removes the most recently used [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) index specification from the table. This affects future cluster operations that do not specify an index.
 
 :   Changing cluster options acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 SET TABLESPACE
 :   Changes the table's tablespace to the specified tablespace and moves the data file(s) associated with the table to the new tablespace. Indexes on the table, if any, are not moved; but they can be moved separately with additional `SET TABLESPACE` commands. When applied to a partitioned table, nothing is moved, but any partitions created afterwards with `CREATE TABLE ... PARTITION OF` will use that tablespace, unless the `TABLESPACE` clause is used to override it.
 
-:   All tables in the current database in a tablespace can be moved by using the `ALL IN TABLESPACE` form, which will lock all tables to be moved first and then move each one. This form also supports `OWNED BY`, which will only move tables owned by the roles specified. If the `NOWAIT` option is specified then the command will fail if it is unable to acquire all of the locks required immediately. Note that system catalogs are not moved by this command, use `ALTER DATABASE` or explicit `ALTER TABLE` invocations instead if desired. The `information_schema` relations are not considered part of the system catalogs and will be moved. See also [CREATE TABLESPACE](CREATE_TABLESPACE.html).
+:   All tables in the current database in a tablespace can be moved by using the `ALL IN TABLESPACE` form, which will lock all tables to be moved first and then move each one. This form also supports `OWNED BY`, which will only move tables owned by the roles specified. If the `NOWAIT` option is specified then the command will fail if it is unable to acquire all of the locks required immediately. Note that system catalogs are not moved by this command, use `ALTER DATABASE` or explicit `ALTER TABLE` invocations instead if desired. The `information_schema` relations are not considered part of the system catalogs and will be moved. See also [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md).
 
 :   If changing the tablespace of a partitioned table, all child tables will also be moved to the new tablespace.
 
@@ -324,7 +324,7 @@ SET { LOGGED | UNLOGGED }
 :   This form changes the table from unlogged to logged or vice-versa. It cannot be applied to a temporary table.
 
 SET ( storage_\parameter [= value] [, ... ] )
-:   This form changes one or more table-level options. See [Storage Parameters](CREATE_TABLE.html#storage_parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](VACUUM.html), [CLUSTER](CLUSTER.html) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#section5). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
+:   This form changes one or more table-level options. See [Storage Parameters](CREATE_TABLE.html#storage_parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](/docs/sql-statements/sql-statement-vacuum.md), [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#section5). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
 
 :   Greenplum Database takes a `SHARE UPDATE EXCLUSIVE` lock when setting `fillfactor`, toast and autovacuum storage parameters, and the planner parameter `parallel_workers`.
 
@@ -368,13 +368,13 @@ SET DISTRIBUTED
 
 
 ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
-:   This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Greenplum does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html).)
+:   This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Greenplum does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md).)
 
-:   A partition using `FOR VALUES` uses the same syntax for partition_bound_spec> as [CREATE TABLE](CREATE_TABLE.html). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
+:   A partition using `FOR VALUES` uses the same syntax for partition_bound_spec> as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
 
 :   If the new partition is a regular table, Greenplum Database performs a full table scan to check that existing rows in the table do not violate the partition constraint. It is possible to avoid this scan by adding a valid `CHECK` constraint to the table that allows only rows satisfying the desired partition constraint before running this command. The `CHECK` constraint will be used to determine that the table need not be scanned to validate the partition constraint. This does not work, however, if any of the partition keys is an expression and the partition does not accept `NULL` values. If attaching a list partition that will not accept `NULL` values, also add a `NOT NULL` constraint to the partition key column, unless it's an expression.
 
-:   If the new partition is a foreign table, nothing is done to verify that all of the rows in the foreign table obey the partition constraint. (See the discussion in [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html) about constraints on the foreign table.)
+:   If the new partition is a foreign table, nothing is done to verify that all of the rows in the foreign table obey the partition constraint. (See the discussion in [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md) about constraints on the foreign table.)
 
 :   When a table has a default partition, defining a new partition changes the partition constraint for the default partition. The default partition can't contain any rows that would need to be moved to the new partition, and will be scanned to verify that none are present. This scan, like the scan of the new partition, can be avoided if an appropriate `CHECK` constraint is present. Also like the scan of the new partition, it is always skipped when the default partition is a foreign table.
 
@@ -433,7 +433,7 @@ ENCODING ( <storage_directive> [,...] )
     2.  The table's data compression setting specified in the `WITH` clause when the table was created.
     3.  The compression parameter setting specified in the server configuration parameter gp_default_storage_option.
     4.  The default compression parameter value.
-:   For more information about the supported `ENCODING` storage directives, refer to [CREATE TABLE](CREATE_TABLE.html).
+:   For more information about the supported `ENCODING` storage directives, refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
 CASCADE
 :   Automatically drop objects that depend on the dropped column or constraint (for example, views referencing the column), and in turn all objects that depend on those objects.
@@ -466,7 +466,7 @@ partition_name
 :   The name of the table to attach as a new partition or to detach from this table.
 
 partition_bound_spec
-:   The partition bound specification for a new partition. Refer to [CREATE TABLE](CREATE_TABLE.html) for more details on the syntax of the same.
+:   The partition bound specification for a new partition. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more details on the syntax of the same.
 
 access_method
 :   The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Greenplum Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
@@ -512,7 +512,7 @@ ADD PARTITION
 
 :   **END** - For range partitions, defines the ending range value for the partition. By default, end values are `EXCLUSIVE`. For example, if you declared an end date of '`2016-02-01`', then the partition would contain all dates less than but not equal to '`2016-02-01`'. The data type of the `END` expression must support a suitable `+` operator, for example `timestamp` or `integer` (not `float` or `text`) if it is defined with the `INCLUSIVE` keyword. Typically the data type of the `END` expression is the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
 
-:   **WITH** - Sets the table storage options for a partition. For example, you may want older partitions to be append-optimized tables and newer partitions to be regular heap tables. See [CREATE TABLE](CREATE_TABLE.html) for a description of the storage options.
+:   **WITH** - Sets the table storage options for a partition. For example, you may want older partitions to be append-optimized tables and newer partitions to be regular heap tables. See [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for a description of the storage options.
 
 :   **TABLESPACE** - The name of the tablespace in which the partition is to be created.
 
@@ -600,7 +600,7 @@ Greenplum Database does not currently support foreign key constraints. For a uni
 
 Greenplum Database does not permit changing any part of a system catalog table.
 
-Refer to [CREATE TABLE](CREATE_TABLE.html) for a further description of valid parameters.
+Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for a further description of valid parameters.
 
 Be aware of the following when altering partitioned tables using the *classic syntax*:
 
@@ -922,7 +922,7 @@ The forms `ADD` (without `USING INDEX`), `DROP [COLUMN]`, `DROP IDENTITY`, `REST
 
 ## See Also
 
-[CREATE TABLE](CREATE_TABLE.html), [DROP TABLE](DROP_TABLE.html)
+[CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md), [DROP TABLE](/docs/sql-statements/sql-statement-drop-table.md)
 
-**Parent topic:** SQL Commands
+
 

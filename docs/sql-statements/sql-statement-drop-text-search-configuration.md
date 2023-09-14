@@ -42,7 +42,7 @@ There is no `DROP TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
 ## See Also
 
-[ALTER TEXT SEARCH CONFIGURATION](ALTER_TEXT_SEARCH_CONFIGURATION.html), [CREATE TEXT SEARCH CONFIGURATION](CREATE_TEXT_SEARCH_CONFIGURATION.html)
+[ALTER TEXT SEARCH CONFIGURATION](/docs/sql-statements/sql-statement-alter-text-search-configuration.md), [CREATE TEXT SEARCH CONFIGURATION](/docs/sql-statements/sql-statement-create-text-search-configuration.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -205,7 +205,7 @@ EXECUTE 'command' [ON ...]
     For writable external tables, the command specified in the `EXECUTE` clause must be prepared to have data piped into it. Since all segments that have data to send will write their output to the specified command or program, the only available option for the `ON` clause is `ON ALL`.
 
 FORMAT 'TEXT | CSV' (options)
-:   When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](COPY.html) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Greenplum Database. For information about using a custom format, see Loading and Unloading Data in the *Greenplum Database Administrator Guide*.
+:   When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](/docs/sql-statements/sql-statement-copy.md) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Greenplum Database. For information about using a custom format, see Loading and Unloading Data in the *Greenplum Database Administrator Guide*.
 
 :   If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
 
@@ -405,7 +405,7 @@ When multiple Greenplum Database external tables are defined with the `gpfdist`,
 
 ## See Also
 
-[CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE TABLE](CREATE_TABLE.html), [COPY](COPY.html), [SELECT INTO](SELECT_INTO.html), [INSERT](INSERT.html)
+[CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md), [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md), [COPY](/docs/sql-statements/sql-statement-copy.md), [SELECT INTO](/docs/sql-statements/sql-statement-select-into.md), [INSERT](/docs/sql-statements/sql-statement-insert.md)
 
-**Parent topic:** SQL Commands
+
 

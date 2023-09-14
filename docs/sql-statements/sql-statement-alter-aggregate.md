@@ -50,7 +50,7 @@ new_schema
 
 ## Notes
 
-The recommended syntax for referencing an ordered-set aggregate is to write `ORDER BY` between the direct and aggregated argument specifications, in the same style as in [CREATE AGGREGATE](CREATE_AGGREGATE.html). However, it will also work to omit `ORDER BY` and just run the direct and aggregated argument specifications into a single list. In this abbreviated form, if `VARIADIC "any"` was used in both the direct and aggregated argument lists, write `VARIADIC "any"` only once.
+The recommended syntax for referencing an ordered-set aggregate is to write `ORDER BY` between the direct and aggregated argument specifications, in the same style as in [CREATE AGGREGATE](/docs/sql-statements/sql-statement-create-aggregate.md). However, it will also work to omit `ORDER BY` and just run the direct and aggregated argument specifications into a single list. In this abbreviated form, if `VARIADIC "any"` was used in both the direct and aggregated argument lists, write `VARIADIC "any"` only once.
 
 ## Examples
 
@@ -84,7 +84,4 @@ There is no `ALTER AGGREGATE` statement in the SQL standard.
 
 ## See Also
 
-[CREATE AGGREGATE](CREATE_AGGREGATE.html), [DROP AGGREGATE](DROP_AGGREGATE.html)
-
-**Parent topic:** SQL Commands
-
+[CREATE AGGREGATE](/docs/sql-statements/sql-statement-create-aggregate.md), [DROP AGGREGATE](/docs/sql-statements/sql-statement-drop-aggregate.md)

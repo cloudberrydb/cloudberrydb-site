@@ -54,7 +54,7 @@ REFRESH MATERIALIZED VIEW annual_statistics_basis WITH NO DATA;
 
 ## See Also
 
-[ALTER MATERIALIZED VIEW](ALTER_MATERIALIZED_VIEW.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html), [DROP MATERIALIZED VIEW](DROP_MATERIALIZED_VIEW.html)
+[ALTER MATERIALIZED VIEW](/docs/sql-statements/sql-statement-alter-materialized-view.md), [CREATE MATERIALIZED VIEW](/docs/sql-statements/sql-statement-create-materialized-view.md), [DROP MATERIALIZED VIEW](/docs/sql-statements/sql-statement-drop-materialized-view.md)
 
-**Parent topic:** SQL Commands
+
 

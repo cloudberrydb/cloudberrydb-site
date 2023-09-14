@@ -69,7 +69,7 @@ There is no `ALTER TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
 ## See Also
 
-[CREATE TEXT SEARCH CONFIGURATION](CREATE_TEXT_SEARCH_CONFIGURATION.html), [DROP TEXT SEARCH CONFIGURATION](DROP_TEXT_SEARCH_CONFIGURATION.html)
+[CREATE TEXT SEARCH CONFIGURATION](/docs/sql-statements/sql-statement-create-text-search-configuration.md), [DROP TEXT SEARCH CONFIGURATION](/docs/sql-statements/sql-statement-drop-text-search-configuration.md)
 
-**Parent topic:** SQL Commands
+
 

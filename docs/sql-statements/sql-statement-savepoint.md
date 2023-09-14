@@ -21,7 +21,7 @@ savepoint_name
 
 ## Notes
 
-Use [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html) to rollback to a savepoint. Use [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html) to destroy a savepoint, keeping the effects of commands run after it was established.
+Use [ROLLBACK TO SAVEPOINT](/docs/sql-statements/sql-statement-rollback-to-savepoint.md) to rollback to a savepoint. Use [RELEASE SAVEPOINT](/docs/sql-statements/sql-statement-release-savepoint.md) to destroy a savepoint, keeping the effects of commands run after it was established.
 
 Savepoints can be established only inside a transaction block. You can define multiple savepoints within a transaction.
 
@@ -81,11 +81,11 @@ The above transaction shows row 3 being rolled back first, then row 2.
 
 ## Compatibility
 
-SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Greenplum Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. (Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html) and [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html).) Otherwise, `SAVEPOINT` is fully SQL conforming.
+SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Greenplum Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. (Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](/docs/sql-statements/sql-statement-rollback-to-savepoint.md) and [RELEASE SAVEPOINT](/docs/sql-statements/sql-statement-release-savepoint.md).) Otherwise, `SAVEPOINT` is fully SQL conforming.
 
 ## See Also
 
-[BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html), [ROLLBACK](ROLLBACK.html), [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [COMMIT](/docs/sql-statements/sql-statement-commit.md), [RELEASE SAVEPOINT](/docs/sql-statements/sql-statement-release-savepoint.md), [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md), [ROLLBACK TO SAVEPOINT](/docs/sql-statements/sql-statement-rollback-to-savepoint.md)
 
-**Parent topic:** SQL Commands
+
 

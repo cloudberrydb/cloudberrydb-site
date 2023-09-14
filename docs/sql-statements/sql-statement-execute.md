@@ -14,7 +14,7 @@ EXECUTE <name> [ (<parameter> [, ...] ) ]
 
 If the `PREPARE` statement that created the statement specified some parameters, a compatible set of parameters must be passed to the `EXECUTE` statement, or else Greenplum Database raises an error. Because (unlike functions) prepared statements are not overloaded based on the type or number of their parameters, the name of a prepared statement must be unique within a database session.
 
-For more information on the creation and usage of prepared statements, see [PREPARE](PREPARE.html).
+For more information on the creation and usage of prepared statements, see [PREPARE](/docs/sql-statements/sql-statement-prepare.md).
 
 ## Parameters
 
@@ -44,7 +44,7 @@ The SQL standard includes an `EXECUTE` statement, but it is only for use in embe
 
 ## See Also
 
-[DEALLOCATE](DEALLOCATE.html), [PREPARE](PREPARE.html)
+[DEALLOCATE](/docs/sql-statements/sql-statement-deallocate.md), [PREPARE](/docs/sql-statements/sql-statement-prepare.md)
 
-**Parent topic:** SQL Commands
+
 

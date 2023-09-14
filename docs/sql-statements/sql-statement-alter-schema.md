@@ -33,7 +33,7 @@ There is no `ALTER SCHEMA` statement in the SQL standard.
 
 ## See Also
 
-[CREATE SCHEMA](CREATE_SCHEMA.html), [DROP SCHEMA](DROP_SCHEMA.html)
+[CREATE SCHEMA](/docs/sql-statements/sql-statement-create-schema.md), [DROP SCHEMA](/docs/sql-statements/sql-statement-drop-schema.md)
 
-**Parent topic:** SQL Commands
+
 

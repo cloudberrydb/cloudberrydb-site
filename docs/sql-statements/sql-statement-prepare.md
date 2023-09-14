@@ -12,9 +12,9 @@ PREPARE <name> [ (<data_type> [, ...] ) ] AS <statement>
 
 `PREPARE` creates a prepared statement. A prepared statement is a server-side object that can be used to optimize performance. When the `PREPARE` statement is run, the specified statement is parsed, analyzed, and rewritten. When an `EXECUTE` command is subsequently issued, the prepared statement is planned and run. This division of labor avoids repetitive parse analysis work, while allowing the execution plan to depend on the specific parameter values supplied.
 
-Prepared statements can take parameters, values that are substituted into the statement when it is run. When creating the prepared statement, refer to parameters by position, using `$1`, `$2`, etc. You can optionally specify a corresponding list of parameter data types. When a parameter's data type is not specified or is declared as `unknown`, the type is inferred from the context in which the parameter is first referenced (if possible). When running the statement, specify the actual values for these parameters in the [EXECUTE](EXECUTE.html) statement.
+Prepared statements can take parameters, values that are substituted into the statement when it is run. When creating the prepared statement, refer to parameters by position, using `$1`, `$2`, etc. You can optionally specify a corresponding list of parameter data types. When a parameter's data type is not specified or is declared as `unknown`, the type is inferred from the context in which the parameter is first referenced (if possible). When running the statement, specify the actual values for these parameters in the [EXECUTE](/docs/sql-statements/sql-statement-execute.md) statement.
 
-Prepared statements last only for the duration of the current database session. When the session ends, the prepared statement is forgotten, so it must be recreated before being used again. This also means that a single prepared statement cannot be used by multiple simultaneous database clients; however, each client can create their own prepared statement to use. You can manually clean up a prepared statement using the [DEALLOCATE](DEALLOCATE.html) command.
+Prepared statements last only for the duration of the current database session. When the session ends, the prepared statement is forgotten, so it must be recreated before being used again. This also means that a single prepared statement cannot be used by multiple simultaneous database clients; however, each client can create their own prepared statement to use. You can manually clean up a prepared statement using the [DEALLOCATE](/docs/sql-statements/sql-statement-deallocate.md) command.
 
 Prepared statements have the largest performance advantage when a single session is being used to run a large number of similar statements. The performance difference will be particularly significant if the statements are complex to plan or rewrite, for example, if the query involves a join of many tables or requires the application of several rules. If the statement is relatively simple to plan and rewrite but relatively expensive to run, the performance advantage of prepared statements will be less noticeable.
 
@@ -37,7 +37,7 @@ By default (with the default value, `auto`, for the server configuration paramet
 
 You can override this heuristic, forcing the server to use either generic or custom plans, by setting `plan_cache_mode` to `force_generic_plan` or `force_custom_plan` respectively. This setting is primarily useful if the generic plan's cost estimate is badly off for some reason, allowing it to be chosen even though its actual cost is much more than that of a custom plan.
 
-To examine the query plan Greenplum Database is using for a prepared statement, use [EXPLAIN](EXPLAIN.html), for example:
+To examine the query plan Greenplum Database is using for a prepared statement, use [EXPLAIN](/docs/sql-statements/sql-statement-explain.md), for example:
 
 ```
 EXPLAIN EXECUTE <name>(<parameter_values>);
@@ -45,7 +45,7 @@ EXPLAIN EXECUTE <name>(<parameter_values>);
 
 If a generic plan is in use, it will contain parameter symbols `$n`, while a custom plan will have the supplied parameter values substituted into it.
 
-For more information on query planning and the statistics collected by Greenplum Database for that purpose, see the [ANALYZE](ANALYZE.html) documentation.
+For more information on query planning and the statistics collected by Greenplum Database for that purpose, see the [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) documentation.
 
 Although the main point of a prepared statement is to avoid repeated parse analysis and planning of the statement, Greenplum will force re-analysis and re-planning of the statement before using it whenever database objects used in the statement have undergone definitional (DDL) changes since the previous use of the prepared statement. Also, if the value of [search_path](../config_params/guc-list.html#search_path) changes from one use to the next, the statement will be re-parsed using the new `search_path`. These rules make use of a prepared statement semantically almost equivalent to re-submitting the same query text over and over, but with a performance benefit if no object definitions are changed, especially if the best plan remains the same across uses. An example of a case where the semantic equivalence is not perfect is that if the statement refers to a table by an unqualified name, and then a new table of the same name is created in a schema appearing earlier in the `search_path`, no automatic re-parse will occur since no object used in the statement changed. However, if some other change forces a re-parse, the new table will be referenced in subsequent uses.
 
@@ -76,7 +76,7 @@ The SQL standard includes a `PREPARE` statement, but it can only be used in embe
 
 ## See Also
 
-[EXECUTE](EXECUTE.html), [DEALLOCATE](DEALLOCATE.html)
+[EXECUTE](/docs/sql-statements/sql-statement-execute.md), [DEALLOCATE](/docs/sql-statements/sql-statement-deallocate.md)
 
-**Parent topic:** SQL Commands
+
 

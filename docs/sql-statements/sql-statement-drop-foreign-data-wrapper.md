@@ -40,7 +40,7 @@ DROP FOREIGN DATA WRAPPER dbi;
 
 ## See Also
 
-[CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [ALTER FOREIGN DATA WRAPPER](ALTER_FOREIGN_DATA_WRAPPER.html)
+[CREATE FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-create-foreign-data-wrapper.md), [ALTER FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-alter-foreign-data-wrapper.md)
 
-**Parent topic:** SQL Commands
+
 

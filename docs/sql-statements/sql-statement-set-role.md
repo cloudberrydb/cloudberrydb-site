@@ -67,7 +67,7 @@ Greenplum Database allows identifier syntax (rolename), while the SQL standard r
 
 ## See Also
 
-[SET SESSION AUTHORIZATION](SET_SESSION_AUTHORIZATION.html)
+[SET SESSION AUTHORIZATION](/docs/sql-statements/sql-statement-set-session-authorization.md)
 
-**Parent topic:** SQL Commands
+
 

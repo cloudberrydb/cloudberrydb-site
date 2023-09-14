@@ -41,7 +41,7 @@ The `DROP COLLATION` command conforms to the SQL standard, apart from the `IF EX
 
 ## See Also
 
-[ALTER COLLATION](ALTER_COLLATION.html), [CREATE COLLATION](CREATE_COLLATION.html)
+[ALTER COLLATION](/docs/sql-statements/sql-statement-alter-collation.md), [CREATE COLLATION](/docs/sql-statements/sql-statement-create-collation.md)
 
-**Parent topic:** SQL Commands
+
 

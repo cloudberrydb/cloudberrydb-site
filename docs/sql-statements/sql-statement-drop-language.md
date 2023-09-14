@@ -43,7 +43,7 @@ There is no `DROP LANGUAGE` statement in the SQL standard.
 
 ## See Also
 
-[ALTER LANGUAGE](ALTER_LANGUAGE.html), [CREATE LANGUAGE](CREATE_LANGUAGE.html)
+[ALTER LANGUAGE](/docs/sql-statements/sql-statement-alter-language.md), [CREATE LANGUAGE](/docs/sql-statements/sql-statement-create-language.md)
 
-**Parent topic:** SQL Commands
+
 

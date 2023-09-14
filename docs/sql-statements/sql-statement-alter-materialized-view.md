@@ -39,7 +39,7 @@ You must own the materialized view to use `ALTER MATERIALIZED VIEW`. To change a
 
 The `DEPENDS ON EXTENSION` form marks the materialized view as dependent on an extension, such that the materialized view will automatically be dropped if the extension is dropped.
 
-The statement subforms and actions available for `ALTER MATERIALIZED VIEW` are a subset of those available for `ALTER TABLE`, and have the same meaning when used for materialized views. See the descriptions for [ALTER TABLE](ALTER_TABLE.html) for details.
+The statement subforms and actions available for `ALTER MATERIALIZED VIEW` are a subset of those available for `ALTER TABLE`, and have the same meaning when used for materialized views. See the descriptions for [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md) for details.
 
 ## Parameters
 
@@ -78,7 +78,7 @@ ALTER MATERIALIZED VIEW foo RENAME TO bar;
 
 ## See Also
 
-[CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html), [DROP MATERIALIZED VIEW](DROP_MATERIALIZED_VIEW.html), [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html)
+[CREATE MATERIALIZED VIEW](/docs/sql-statements/sql-statement-create-materialized-view.md), [DROP MATERIALIZED VIEW](/docs/sql-statements/sql-statement-drop-materialized-view.md), [REFRESH MATERIALIZED VIEW](/docs/sql-statements/sql-statement-refresh-materialized-view.md)
 
-**Parent topic:** SQL Commands
+
 

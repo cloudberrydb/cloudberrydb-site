@@ -40,7 +40,7 @@ DROP FOREIGN TABLE films, distributors;
 
 ## See Also
 
-[ALTER FOREIGN TABLE](ALTER_FOREIGN_TABLE.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html)
+[ALTER FOREIGN TABLE](/docs/sql-statements/sql-statement-alter-foreign-table.md), [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md)
 
-**Parent topic:** SQL Commands
+
 

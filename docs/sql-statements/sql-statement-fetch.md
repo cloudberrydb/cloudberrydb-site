@@ -26,7 +26,7 @@ where <forward_direction> can be empty or one of:
 
 `FETCH` retrieves rows using a previously-created cursor.
 
-> **Note** You cannot `FETCH` from a `PARALLEL RETRIEVE CURSOR`, you must [RETRIEVE](RETRIEVE.html) the rows from it.
+> **Note** You cannot `FETCH` from a `PARALLEL RETRIEVE CURSOR`, you must [RETRIEVE](/docs/sql-statements/sql-statement-retrieve.md) the rows from it.
 
 A cursor has an associated position, which is used by `FETCH`. The cursor position can be before the first row of the query result, on any particular row of the result, or after the last row of the result. When created, a cursor is positioned before the first row. After fetching some rows, the cursor is positioned on the row most recently retrieved. If `FETCH` runs off the end of the available rows then the cursor is left positioned after the last row. `FETCH ALL` will always leave the cursor positioned after the last row.
 
@@ -147,7 +147,7 @@ The SQL standard allows only `FROM` preceding the cursor name; the option to use
 
 ## See Also
 
-[DECLARE](DECLARE.html), [CLOSE](CLOSE.html), [MOVE](MOVE.html)
+[DECLARE](/docs/sql-statements/sql-statement-declare.md), [CLOSE](/docs/sql-statements/sql-statement-close.md), [MOVE](/docs/sql-statements/sql-statement-move.md)
 
-**Parent topic:** SQL Commands
+
 

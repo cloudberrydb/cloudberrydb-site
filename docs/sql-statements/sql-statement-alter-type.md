@@ -33,7 +33,7 @@ where <storage_directive> is:
 `ALTER TYPE` changes the definition of an existing type. There are several subforms:
 
 **`ADD ATTRIBUTE`**
-:   Adds a new attribute to a composite type, using the same syntax as [CREATE TYPE](CREATE_TYPE.html).
+:   Adds a new attribute to a composite type, using the same syntax as [CREATE TYPE](/docs/sql-statements/sql-statement-create-type.md).
 
 **`DROP ATTRIBUTE [ IF EXISTS ]`**
 :   Drops an attribute from a composite type. If `IF EXISTS` is specified and the attribute does not exist, no error is thrown. In this case Greenplum Database issues a notice instead.
@@ -171,7 +171,7 @@ The variants to add and drop attributes are part of the SQL standard; the other 
 
 ## See Also
 
-[CREATE TYPE](CREATE_TYPE.html), [DROP TYPE](DROP_TYPE.html)
+[CREATE TYPE](/docs/sql-statements/sql-statement-create-type.md), [DROP TYPE](/docs/sql-statements/sql-statement-drop-type.md)
 
-**Parent topic:** SQL Commands
+
 

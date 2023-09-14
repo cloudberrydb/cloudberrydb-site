@@ -18,7 +18,7 @@ CREATE [ OR REPLACE ] [ TRUSTED ] [ PROCEDURAL ] LANGUAGE <name>
 
 `CREATE LANGUAGE` registers a new procedural language with a Greenplum database. Subsequently, functions and procedures can be defined in this new language.
 
-> **Note** Procedural languages for Greenplum Database have been made into "extensions," and should therefore be installed with [CREATE EXTENSION](CREATE_EXTENSION.html), not `CREATE LANGUAGE`. Using `CREATE LANGUAGE` directly should be restricted to extension installation scripts. If you have a "bare" language in your database, perhaps as a result of an upgrade, you can convert it to an extension using `CREATE EXTENSION <langname> FROM unpackaged`.
+> **Note** Procedural languages for Greenplum Database have been made into "extensions," and should therefore be installed with [CREATE EXTENSION](/docs/sql-statements/sql-statement-create-extension.md), not `CREATE LANGUAGE`. Using `CREATE LANGUAGE` directly should be restricted to extension installation scripts. If you have a "bare" language in your database, perhaps as a result of an upgrade, you can convert it to an extension using `CREATE EXTENSION <langname> FROM unpackaged`.
 
 `CREATE LANGUAGE` effectively associates the language name with handler function(s) that are responsible for executing functions written in the language.
 
@@ -47,7 +47,7 @@ HANDLER call_handler
 :   The name of a previously registered function that will be called to run the procedural language's functions. The call handler for a procedural language must be written in a compiled language such as C with version 1 call convention and registered with Greenplum Database as a function taking no arguments and returning the `language_handler` type, a placeholder type that is simply used to identify the function as a call handler.
 
 INLINE inline_handler
-:   The name of a previously registered function that is called to run an anonymous code block in this language that is created with the [DO](DO.html) command. If no inline_handler function is specified, the language does not support anonymous code blocks. The handler function must take one argument of type `internal`, which is the [DO](DO.html) command internal representation. The function typically returns `void`. The return value of the handler is ignored.
+:   The name of a previously registered function that is called to run an anonymous code block in this language that is created with the [DO](/docs/sql-statements/sql-statement-do.md) command. If no inline_handler function is specified, the language does not support anonymous code blocks. The handler function must take one argument of type `internal`, which is the [DO](/docs/sql-statements/sql-statement-do.md) command internal representation. The function typically returns `void`. The return value of the handler is ignored.
 
 VALIDATOR valfunction
 :   The name of a previously registered function that will be called when a new function in the language is created, to validate the new function. If no validator function is specified, then Greenplum Database will not check a new function when it is created. The validator function must take one argument of type `oid`, which will be the OID of the to-be-created function, and will typically return `void`.
@@ -57,7 +57,7 @@ VALIDATOR valfunction
 
 ## Notes
 
-Use [DROP LANGUAGE](DROP_LANGUAGE.html) to drop procedural languages.
+Use [DROP LANGUAGE](/docs/sql-statements/sql-statement-drop-language.md) to drop procedural languages.
 
 The system catalog pg_language records information about the currently installed languages. Also, the psql command `\dL` lists the installed languages.
 
@@ -92,7 +92,7 @@ CREATE LANGUAGE plsample
 
 ## See Also
 
-[ALTER LANGUAGE](ALTER_LANGUAGE.html), [CREATE EXTENSION](CREATE_EXTENSION.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP LANGUAGE](DROP_LANGUAGE.html), [GRANT](GRANT.html), [DO](DO.html)
+[ALTER LANGUAGE](/docs/sql-statements/sql-statement-alter-language.md), [CREATE EXTENSION](/docs/sql-statements/sql-statement-create-extension.md), [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [DROP LANGUAGE](/docs/sql-statements/sql-statement-drop-language.md), [GRANT](/docs/sql-statements/sql-statement-grant.md), [DO](/docs/sql-statements/sql-statement-do.md)
 
-**Parent topic:** SQL Commands
+
 

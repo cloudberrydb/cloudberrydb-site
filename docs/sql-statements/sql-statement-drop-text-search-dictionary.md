@@ -42,7 +42,7 @@ There is no `CREATE TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
 ## See Also
 
-[ALTER TEXT SEARCH DICTIONARY](ALTER_TEXT_SEARCH_DICTIONARY.html), [CREATE TEXT SEARCH DICTIONARY](CREATE_TEXT_SEARCH_DICTIONARY.html)
+[ALTER TEXT SEARCH DICTIONARY](/docs/sql-statements/sql-statement-alter-text-search-dictionary.md), [CREATE TEXT SEARCH DICTIONARY](/docs/sql-statements/sql-statement-create-text-search-dictionary.md)
 
-**Parent topic:** SQL Commands
+
 

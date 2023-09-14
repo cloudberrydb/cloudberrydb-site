@@ -40,7 +40,7 @@ DROP SERVER IF EXISTS foo;
 
 ## See Also
 
-[CREATE SERVER](CREATE_SERVER.html), [ALTER SERVER](ALTER_SERVER.html)
+[CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md), [ALTER SERVER](/docs/sql-statements/sql-statement-alter-server.md)
 
-**Parent topic:** SQL Commands
+
 

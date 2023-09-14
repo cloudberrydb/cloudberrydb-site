@@ -37,7 +37,7 @@ LOAD '/usr/local/greenplum-db/lib/myfuncs.so';
 
 ## See Also
 
-[CREATE FUNCTION](CREATE_FUNCTION.html)
+[CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md)
 
-**Parent topic:** SQL Commands
+
 

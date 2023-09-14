@@ -40,7 +40,7 @@ DROP VIEW topten;
 
 ## See Also
 
-[CREATE VIEW](CREATE_VIEW.html), [ALTER VIEW](ALTER_VIEW.html)
+[CREATE VIEW](/docs/sql-statements/sql-statement-create-view.md), [ALTER VIEW](/docs/sql-statements/sql-statement-alter-view.md)
 
-**Parent topic:** SQL Commands
+
 

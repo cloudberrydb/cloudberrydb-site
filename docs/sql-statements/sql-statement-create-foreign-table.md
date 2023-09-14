@@ -75,10 +75,10 @@ COLLATE collation
 :   The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
 
 INHERITS ( parent_table [, ... ] )
-:   The optional `INHERITS` clause specifies a list of tables from which the new foreign table automatically inherits all columns. Parent tables can be plain tables or foreign tables. See the similar form of [CREATE TABLE](CREATE_TABLE.html) for more details.
+:   The optional `INHERITS` clause specifies a list of tables from which the new foreign table automatically inherits all columns. Parent tables can be plain tables or foreign tables. See the similar form of [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more details.
 
 PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }
-:   This form can be used to create the foreign table as partition of the given parent table with specified partition bound values. See the similar form of [CREATE TABLE](CREATE_TABLE.html) for more details. Note that it is currently not allowed to create the foreign table as a partition of the parent table if there are `UNIQUE` indexes on the parent table. (See also [ALTER TABLE ATTACH PARTITION](ALTER_TABLE.html).)
+:   This form can be used to create the foreign table as partition of the given parent table with specified partition bound values. See the similar form of [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more details. Note that it is currently not allowed to create the foreign table as a partition of the parent table if there are `UNIQUE` indexes on the parent table. (See also [ALTER TABLE ATTACH PARTITION](/docs/sql-statements/sql-statement-alter-table.md).)
 
 CONSTRAINT constraint_name
 :   An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `col must be positive` can be used to communicate helpful constraint information to client applications. (Double-quotes are needed to specify constraint names that contain spaces.) If a constraint name is not specified, the system generates a name.
@@ -106,7 +106,7 @@ GENERATED ALWAYS AS ( generation_expr ) STORED
 :   The generation expression can refer to other columns in the table, but not other generated columns. Any functions and operators used must be immutable. References to other tables are not allowed.
 
 server_name
-:   The name of an existing server to use for the foreign table. For details on defining a server, see [CREATE SERVER](CREATE_SERVER.html).
+:   The name of an existing server to use for the foreign table. For details on defining a server, see [CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md).
 
 OPTIONS ( option 'value' [, ... ] )
 :   The options for the new foreign table or one of its columns. While option names must be unique, a table option and a column option may have the same name. The option names and values are foreign-data wrapper-specific. Greenplum Database validates the options and values using the foreign-data wrapper's validator_function.
@@ -164,11 +164,11 @@ CREATE FOREIGN TABLE measurement_y2016m07
 
 ## Compatibility
 
-`CREATE FOREIGN TABLE` largely conforms to the SQL standard; however, much as with [CREATE TABLE](CREATE_TABLE.html), Greenplum Database permits `NULL` constraints and zero-column foreign tables. The ability to specify column default values is a Greenplum Database extension, as is the `mpp_execute` option. Table inheritance, in the form defined by Greenplum Database, is nonstandard.
+`CREATE FOREIGN TABLE` largely conforms to the SQL standard; however, much as with [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md), Greenplum Database permits `NULL` constraints and zero-column foreign tables. The ability to specify column default values is a Greenplum Database extension, as is the `mpp_execute` option. Table inheritance, in the form defined by Greenplum Database, is nonstandard.
 
 ## See Also
 
-[ALTER FOREIGN TABLE](ALTER_FOREIGN_TABLE.html), [DROP FOREIGN TABLE](DROP_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html)
+[ALTER FOREIGN TABLE](/docs/sql-statements/sql-statement-alter-foreign-table.md), [DROP FOREIGN TABLE](/docs/sql-statements/sql-statement-drop-foreign-table.md), [CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -30,7 +30,7 @@ There is no `ALTER LANGUAGE` statement in the SQL standard.
 
 ## See Also
 
-[CREATE LANGUAGE](CREATE_LANGUAGE.html), [DROP LANGUAGE](DROP_LANGUAGE.html)
+[CREATE LANGUAGE](/docs/sql-statements/sql-statement-create-language.md), [DROP LANGUAGE](/docs/sql-statements/sql-statement-drop-language.md)
 
-**Parent topic:** SQL Commands
+
 

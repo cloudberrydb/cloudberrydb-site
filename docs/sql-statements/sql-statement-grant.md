@@ -148,7 +148,7 @@ You can also use the `GRANT` command to specify which users can access a trusted
     ```
 
 
-You can also use this command to grant users permissions to create and use `s3` and `pxf` external tables. However, external tables of type `http`, `https`, `gpfdist`, and `gpfdists`, are implemented internally in Greenplum Database instead of as custom protocols. For these types, use the `CREATE ROLE` or `ALTER ROLE` command to set the `CREATEEXTTABLE` or `NOCREATEEXTTABLE` attribute for each user. See [CREATE ROLE](CREATE_ROLE.html) for syntax and examples.
+You can also use this command to grant users permissions to create and use `s3` and `pxf` external tables. However, external tables of type `http`, `https`, `gpfdist`, and `gpfdists`, are implemented internally in Greenplum Database instead of as custom protocols. For these types, use the `CREATE ROLE` or `ALTER ROLE` command to set the `CREATEEXTTABLE` or `NOCREATEEXTTABLE` attribute for each user. See [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) for syntax and examples.
 
 ## Parameters
 
@@ -219,7 +219,7 @@ WITH ADMIN OPTION
 
 ## Notes
 
-The [REVOKE](REVOKE.html) command is used to revoke access privileges.
+The [REVOKE](/docs/sql-statements/sql-statement-revoke.md) command is used to revoke access privileges.
 
 Greenplum Database unifies the concepts of users and groups into a single kind of entity called a role. It is therefore not necessary to use the keyword `GROUP` to identify whether a grantee is a user or a group. `GROUP` is still allowed in the command, but it is a noise word.
 
@@ -237,7 +237,7 @@ If the role executing `GRANT` holds the required privileges indirectly via more 
 
 Granting permission on a table does not automatically extend permissions to any sequences used by the table, including sequences tied to `SERIAL` columns. Permissions on a sequence must be set separately.
 
-The `GRANT` command cannot be used to set privileges for the protocols `file`, `gpfdist`, or `gpfdists`. These protocols are implemented internally in Greenplum Database. Instead, use the [CREATE ROLE](CREATE_ROLE.html) or [ALTER ROLE](ALTER_ROLE.html) command to set the `CREATEEXTTABLE` attribute for the role.
+The `GRANT` command cannot be used to set privileges for the protocols `file`, `gpfdist`, or `gpfdists`. These protocols are implemented internally in Greenplum Database. Instead, use the [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) or [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) command to set the `CREATEEXTTABLE` attribute for the role.
 
 Use `psql`'s `\dp` meta-command to obtain information about existing privileges for tables and columns. There are other `\d` meta-commands that you can use to display the privileges of non-table objects.
 
@@ -279,7 +279,7 @@ Privileges on databases, tablespaces, schemas, and languages are Greenplum Datab
 
 ## See Also
 
-[ALTER DEFAULT PRIVILEGES](ALTER_DEFAULT_PRIVILEGES.html), [REVOKE](REVOKE.html)
+[ALTER DEFAULT PRIVILEGES](/docs/sql-statements/sql-statement-alter-default-privileges.md), [REVOKE](/docs/sql-statements/sql-statement-revoke.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -63,7 +63,7 @@ To create a composite type, you must have `USAGE` privilege on all attribute typ
 
 The second form of `CREATE TYPE` creates an enumerated (`ENUM`) type, as described in [Enumerated Types](https://www.postgresql.org/docs/12/datatype-enum.html) in the PostgreSQL documentation. `ENUM` types take a list of quoted labels, each of which must be less than `NAMEDATALEN` bytes long (64).
 
-It is possible to create an enumerated type with zero labels, but such a type cannot be used to hold values before at least one label is added using [ALTER TYPE](ALTER_TYPE.html).
+It is possible to create an enumerated type with zero labels, but such a type cannot be used to hold values before at least one label is added using [ALTER TYPE](/docs/sql-statements/sql-statement-alter-type.md).
 
 **Range Types**
 
@@ -313,7 +313,7 @@ The ability to create a composite type with zero attributes is a Greenplum Datab
 
 ## See Also
 
-[ALTER TYPE](ALTER_TYPE.html), [CREATE DOMAIN](CREATE_DOMAIN.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP TYPE](DROP_TYPE.html)
+[ALTER TYPE](/docs/sql-statements/sql-statement-alter-type.md), [CREATE DOMAIN](/docs/sql-statements/sql-statement-create-domain.md), [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [DROP TYPE](/docs/sql-statements/sql-statement-drop-type.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -106,7 +106,7 @@ ALTER SEQUENCE serial RESTART WITH 105;
 
 ## See Also
 
-[CREATE SEQUENCE](CREATE_SEQUENCE.html), [DROP SEQUENCE](DROP_SEQUENCE.html), [ALTER TABLE](ALTER_TABLE.html)
+[CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md), [DROP SEQUENCE](/docs/sql-statements/sql-statement-drop-sequence.md), [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md)
 
-**Parent topic:** SQL Commands
+
 

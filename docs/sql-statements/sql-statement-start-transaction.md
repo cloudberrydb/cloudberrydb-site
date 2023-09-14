@@ -16,11 +16,11 @@ where <transaction_mode> is one of:
 
 ## Description
 
-`START TRANSACTION` begins a new transaction block. If the isolation level, read/write mode, or deferrable mode is specified, the new transaction has those characteristics, as if [SET TRANSACTION](SET_TRANSACTION.html) was run. This is the same as the [BEGIN](BEGIN.html) command.
+`START TRANSACTION` begins a new transaction block. If the isolation level, read/write mode, or deferrable mode is specified, the new transaction has those characteristics, as if [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md) was run. This is the same as the [BEGIN](/docs/sql-statements/sql-statement-begin.md) command.
 
 ## Parameters
 
-Refer to [SET TRANSACTION](SET_TRANSACTION.html) for information on the meaning of the parameters to this statement.
+Refer to [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md) for information on the meaning of the parameters to this statement.
 
 
 ## Compatibility
@@ -31,11 +31,11 @@ The `DEFERRABLE` transaction_mode is a Greenplum Database language extension.
 
 The SQL standard requires commas between successive transaction_modes, but for historical reasons Greenplum Database allows the commas to be omitted.
 
-See also the compatibility section of [SET TRANSACTION](SET_TRANSACTION.html).
+See also the compatibility section of [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md).
 
 ## See Also
 
-[BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html), [SAVEPOINT](SAVEPOINT.html), [SET TRANSACTION](SET_TRANSACTION.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [COMMIT](/docs/sql-statements/sql-statement-commit.md), [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md), [SAVEPOINT](/docs/sql-statements/sql-statement-savepoint.md), [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md)
 
-**Parent topic:** SQL Commands
+
 

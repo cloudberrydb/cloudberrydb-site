@@ -22,7 +22,7 @@ Greenplum Database supports `CLUSTER` operations on append-optimized tables only
 
 When a table is clustered, it is physically reordered on disk based on the index information. Clustering is a one-time operation: when the table is subsequently updated, the changes are not clustered. That is, no attempt is made to store new or updated rows according to their index order. If you wish, you can periodically recluster by issuing the command again. Setting the table's `FILLFACTOR` storage parameter to less than 100% can aid in preserving cluster ordering during updates, because updated rows are kept on the same page if enough space is available there.
 
-When a table is clustered using this command, Greenplum Database remembers on which index it was clustered. The form `CLUSTER <table_name>` reclusters the table on the same index that it was clustered before. You can use the `CLUSTER` or `SET WITHOUT CLUSTER` forms of [ALTER TABLE](ALTER_TABLE.html) to set the index to use for future cluster operations, or to clear any previous setting. `CLUSTER` without any parameter reclusters all previously clustered tables in the current database that the calling user owns, or all tables if called by a superuser. This form of `CLUSTER` cannot be run inside a transaction block.
+When a table is clustered using this command, Greenplum Database remembers on which index it was clustered. The form `CLUSTER <table_name>` reclusters the table on the same index that it was clustered before. You can use the `CLUSTER` or `SET WITHOUT CLUSTER` forms of [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md) to set the index to use for future cluster operations, or to clear any previous setting. `CLUSTER` without any parameter reclusters all previously clustered tables in the current database that the calling user owns, or all tables if called by a superuser. This form of `CLUSTER` cannot be run inside a transaction block.
 
 When a table is being clustered, an `ACCESS EXCLUSIVE` lock is acquired on it. This prevents any other database operations (both reads and writes) from operating on the table until the `CLUSTER` is finished.
 
@@ -49,7 +49,7 @@ When a sequential scan and sort is used, a temporary sort file is also created, 
 
 It is advisable to set the maintenance_work_mem configuration parameter to a reasonably large value (but not more than the amount of RAM you can dedicate to the `CLUSTER` operation) before clustering.
 
-Because the query optimizer records statistics about the ordering of tables, it is advisable to run [ANALYZE](ANALYZE.html) on the newly clustered table. Otherwise, the planner may make poor query plan choices.
+Because the query optimizer records statistics about the ordering of tables, it is advisable to run [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) on the newly clustered table. Otherwise, the planner may make poor query plan choices.
 
 Because `CLUSTER` remembers which indexes are clustered, you can cluster the tables you want clustered manually the first time, then set up a periodic maintenance script that runs `CLUSTER` without any parameters, so that the desired tables are periodically reclustered.
 
@@ -79,7 +79,7 @@ There is no `CLUSTER` statement in the SQL standard.
 
 ## See Also
 
-[CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE INDEX](CREATE_INDEX.html)
+[CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md), [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md)
 
-**Parent topic:** SQL Commands
+
 

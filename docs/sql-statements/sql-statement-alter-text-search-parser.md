@@ -34,7 +34,7 @@ There is no `ALTER TEXT SEARCH PARSER` statement in the SQL standard.
 
 ## See Also
 
-[CREATE TEXT SEARCH PARSER](CREATE_TEXT_SEARCH_PARSER.html), [DROP TEXT SEARCH PARSER](DROP_TEXT_SEARCH_PARSER.html)
+[CREATE TEXT SEARCH PARSER](/docs/sql-statements/sql-statement-create-text-search-parser.md), [DROP TEXT SEARCH PARSER](/docs/sql-statements/sql-statement-drop-text-search-parser.md)
 
-**Parent topic:** SQL Commands
+
 

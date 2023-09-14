@@ -40,7 +40,7 @@ DROP ACCESS METHOD heptree;
 
 ## See Also
 
-[CREATE ACCESS METHOD](CREATE_ACCESS_METHOD.html)
+[CREATE ACCESS METHOD](/docs/sql-statements/sql-statement-create-access-method.md)
 
-**Parent topic:** SQL Commands
+
 

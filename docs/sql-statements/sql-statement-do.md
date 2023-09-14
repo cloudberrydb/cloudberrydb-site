@@ -61,7 +61,7 @@ There is no `DO` statement in the SQL standard.
 
 ## See Also
 
-[CREATE LANGUAGE](CREATE_LANGUAGE.html)
+[CREATE LANGUAGE](/docs/sql-statements/sql-statement-create-language.md)
 
-**Parent topic:** SQL Commands
+
 

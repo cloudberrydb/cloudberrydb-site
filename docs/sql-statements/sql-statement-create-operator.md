@@ -88,7 +88,7 @@ Any functions used to implement the operator must be defined as `IMMUTABLE`.
 
 It is not possible to specify an operator's lexical precedence in `CREATE OPERATOR`, because the parser's precedence behavior is hard-wired. See [Operator Precedence](https://www.postgresql.org/docs/12/sql-syntax-lexical.html#SQL-PRECEDENCE) in the PostgreSQL documentation for precedence details.
 
-Use [DROP OPERATOR](DROP_OPERATOR.html) to delete user-defined operators from a database. Use [ALTER OPERATOR](ALTER_OPERATOR.html) to modify operators in a database.
+Use [DROP OPERATOR](/docs/sql-statements/sql-statement-drop-operator.md) to delete user-defined operators from a database. Use [ALTER OPERATOR](/docs/sql-statements/sql-statement-alter-operator.md) to modify operators in a database.
 
 ## Examples
 
@@ -134,7 +134,7 @@ SELECT (a + b) AS c FROM test_complex;
 
 ## See Also
 
-[CREATE FUNCTION](CREATE_FUNCTION.html), [CREATE TYPE](CREATE_TYPE.html), [ALTER OPERATOR](ALTER_OPERATOR.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR](DROP_OPERATOR.html)
+[CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [CREATE TYPE](/docs/sql-statements/sql-statement-create-type.md), [ALTER OPERATOR](/docs/sql-statements/sql-statement-alter-operator.md), [CREATE OPERATOR CLASS](/docs/sql-statements/sql-statement-create-operator-class.md), [DROP OPERATOR](/docs/sql-statements/sql-statement-drop-operator.md)
 
-**Parent topic:** SQL Commands
+
 

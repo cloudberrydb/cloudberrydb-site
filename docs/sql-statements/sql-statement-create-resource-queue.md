@@ -36,7 +36,7 @@ Resource queues with a `MAX_COST` threshold set a maximum limit on the total cos
 
 When resource queue-based resource management is active, use the `MEMORY_LIMIT` and `ACTIVE_STATEMENTS` limits for resource queues rather than configuring cost-based limits. Even when using GPORCA, Greenplum Database may fall back to using the Postgres Planner for certain queries, so using cost-based limits can lead to unexpected results.
 
-If a value is not defined for `ACTIVE_STATEMENTS` or `MAX_COST`, it is set to `-1` by default (meaning no limit). After defining a resource queue, you must assign roles to the queue using the [ALTER ROLE](ALTER_ROLE.html) or [CREATE ROLE](CREATE_ROLE.html) command.
+If a value is not defined for `ACTIVE_STATEMENTS` or `MAX_COST`, it is set to `-1` by default (meaning no limit). After defining a resource queue, you must assign roles to the queue using the [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) or [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) command.
 
 You can optionally assign a `PRIORITY` to a resource queue to control the relative share of available CPU resources used by queries associated with the queue in relation to other resource queues. If a value is not defined for `PRIORITY`, queries associated with the queue have a default priority of `MEDIUM`.
 
@@ -140,7 +140,7 @@ CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5,
 
 ## See Also
 
-[ALTER ROLE](ALTER_ROLE.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER RESOURCE QUEUE](ALTER_RESOURCE_QUEUE.html), [DROP RESOURCE QUEUE](DROP_RESOURCE_QUEUE.html)
+[ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md), [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md), [ALTER RESOURCE QUEUE](/docs/sql-statements/sql-statement-alter-resource-queue.md), [DROP RESOURCE QUEUE](/docs/sql-statements/sql-statement-drop-resource-queue.md)
 
-**Parent topic:** SQL Commands
+
 

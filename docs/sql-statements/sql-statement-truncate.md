@@ -13,7 +13,7 @@ TRUNCATE [TABLE] [ONLY] <name> [ * ] [, ...]
 
 ## Description
 
-`TRUNCATE` quickly removes all rows from a table or set of tables. It has the same effect as an unqualified [DELETE](DELETE.html) on each table, but since it does not actually scan the tables it is faster. Furthermore, it reclaims disk space immediately, rather than requiring a subsequent [VACUUM](VACUUM.html) operation. This is most useful on large tables.
+`TRUNCATE` quickly removes all rows from a table or set of tables. It has the same effect as an unqualified [DELETE](/docs/sql-statements/sql-statement-delete.md) on each table, but since it does not actually scan the tables it is faster. Furthermore, it reclaims disk space immediately, rather than requiring a subsequent [VACUUM](/docs/sql-statements/sql-statement-vacuum.md) operation. This is most useful on large tables.
 
 You must have the `TRUNCATE` privilege on the table to truncate it.
 
@@ -70,7 +70,7 @@ The SQL:2008 standard includes a `TRUNCATE` command with the syntax `TRUNCATE TA
 
 ## See Also
 
-[DELETE](DELETE.html)
+[DELETE](/docs/sql-statements/sql-statement-delete.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -411,8 +411,8 @@ GENERATED ALWAYS AS ( generation_expr ) STORED
 
 GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( sequence_options ) ]
 :   This clause creates the column as an identity column. Greenplum Database attaches an implicit sequence to it, and automatically assigns a value from the sequence to the column in new rows. Such a column is implicitly `NOT NULL`.
-:   The clauses `ALWAYS` and `BY DEFAULT` determine how the sequence value is given precedence over a user-specified value in an `INSERT` statement. If `ALWAYS` is specified, a user-specified value is only accepted if the `INSERT` statement specifies `OVERRIDING SYSTEM VALUE`. If `BY DEFAULT` is specified, then the user-specified value takes precedence. See [INSERT](INSERT.html) for details. (In the `COPY` command, ueser-specified values are always used regardless of this setting.)
-:   You can use the optional sequence_options clause to override the options of the sequence. See [CREATE SEQUENCE](CREATE_SEQUENCE.html) for details.
+:   The clauses `ALWAYS` and `BY DEFAULT` determine how the sequence value is given precedence over a user-specified value in an `INSERT` statement. If `ALWAYS` is specified, a user-specified value is only accepted if the `INSERT` statement specifies `OVERRIDING SYSTEM VALUE`. If `BY DEFAULT` is specified, then the user-specified value takes precedence. See [INSERT](/docs/sql-statements/sql-statement-insert.md) for details. (In the `COPY` command, ueser-specified values are always used regardless of this setting.)
+:   You can use the optional sequence_options clause to override the options of the sequence. See [CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md) for details.
 
 UNIQUE ( column_constraint )
 UNIQUE ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table_constraint )
@@ -447,7 +447,7 @@ EXCLUDE [ USING index_method ] ( exclude_element WITH operator [, ... ] ) index_
 
 :   Greenplum Database does not support specifying an exclusion constraint on a randomly-distributed table.
 
-:   Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index_method. The operators are required to be commutative. Each exclude_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](CREATE_INDEX.html).
+:   Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index_method. The operators are required to be commutative. Each exclude_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md).
 
 :   The access method must support `amgettuple`; at present this means GIN cannot be used. Although it's allowed, there is little point in using B-tree or hash indexes with an exclusion constraint, because this does nothing that an ordinary unique constraint doesn't do better. So in practice the access method will always be GiST or SP-GiST.
 
@@ -461,13 +461,13 @@ FOREIGN KEY (column_name [, ...]) REFERENCES reftable [ ( refcolumn [, ... ] ) ]
 
 DEFERRABLE
 NOT DEFERRABLE
-:   The `[NOT] DEFERRABLE` clause controls whether the constraint can be deferred. A constraint that is not deferrable will be checked immediately after every command. Checking of constraints that are deferrable can be postponed until the end of the transaction (using the [`SET CONSTRAINTS`](SET_CONSTRAINTS.html) command). `NOT DEFERRABLE` is the default. Currently, only `UNIQUE`, `PRIMARY KEY`, and `EXCLUDE` constraints accept this clause. `NOT NULL` and `CHECK` constraints are not deferrable. `REFERENCES` (foreign key) constraints accept this clause but are not enforced. Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
+:   The `[NOT] DEFERRABLE` clause controls whether the constraint can be deferred. A constraint that is not deferrable will be checked immediately after every command. Checking of constraints that are deferrable can be postponed until the end of the transaction (using the [`SET CONSTRAINTS`](/docs/sql-statements/sql-statement-set-constraints.md) command). `NOT DEFERRABLE` is the default. Currently, only `UNIQUE`, `PRIMARY KEY`, and `EXCLUDE` constraints accept this clause. `NOT NULL` and `CHECK` constraints are not deferrable. `REFERENCES` (foreign key) constraints accept this clause but are not enforced. Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
 
 :   Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
 
 INITIALLY IMMEDIATE
 INITIALLY DEFERRED
-:   If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](SET_CONSTRAINTS.html) command.
+:   If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](/docs/sql-statements/sql-statement-set-constraints.md) command.
 
 USING access_method
 :   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the [default_table_access_method](../config_params/guc-list.html#default_table_access_method) server configuration parameter.
@@ -485,7 +485,7 @@ ON COMMIT
 
 :   **PRESERVE ROWS** - No special action is taken at the ends of transactions for temporary tables. This is the default behavior.
 
-:   **DELETE ROWS** - All rows in the temporary table will be deleted at the end of each transaction block. Essentially, Greenplum Database performs an automatic [TRUNCATE](TRUNCATE.html) at each commit. When used on a partitioned table, this operation is not cascaded to its partitions.
+:   **DELETE ROWS** - All rows in the temporary table will be deleted at the end of each transaction block. Essentially, Greenplum Database performs an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) at each commit. When used on a partitioned table, this operation is not cascaded to its partitions.
 
 :   **DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
 
@@ -672,7 +672,7 @@ log_autovacuum_min_duration, toast.log_autovacuum_min_duration (integer)
 
 ## Notes
 
-Greenplum Database automatically creates an index for each unique constraint and primary key constraint to enforce uniqueness, so it is not necessary to create an index explicitly for primary key columns. (See [CREATE INDEX](CREATE_INDEX.html) for more information.)
+Greenplum Database automatically creates an index for each unique constraint and primary key constraint to enforce uniqueness, so it is not necessary to create an index explicitly for primary key columns. (See [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md) for more information.)
 
 Unique constraints and primary keys are not inherited.
 
@@ -1146,7 +1146,7 @@ The Greenplum Database concept of a parallel or distributed database is not part
 
 ## See Also
 
-[ALTER TABLE](ALTER_TABLE.html), [DROP TABLE](DROP_TABLE.html), [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE TABLE AS](CREATE_TABLE_AS.html), [CREATE TABLESPACE](CREATE_TABLESPACE.html), [CREATE TYPE](CREATE_TYPE.html)
+[ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md), [DROP TABLE](/docs/sql-statements/sql-statement-drop-table.md), [CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md), [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md), [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md), [CREATE TYPE](/docs/sql-statements/sql-statement-create-type.md)
 
-**Parent topic:** SQL Commands
+
 

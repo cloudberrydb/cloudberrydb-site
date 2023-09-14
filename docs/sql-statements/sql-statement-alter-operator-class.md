@@ -41,7 +41,7 @@ There is no `ALTER OPERATOR CLASS` statement in the SQL standard.
 
 ## See Also
 
-[CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR CLASS](DROP_OPERATOR_CLASS.html), [ALTER OPERATOR FAMILY](ALTER_OPERATOR_FAMILY.html)
+[CREATE OPERATOR CLASS](/docs/sql-statements/sql-statement-create-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-statements/sql-statement-drop-operator-class.md), [ALTER OPERATOR FAMILY](/docs/sql-statements/sql-statement-alter-operator-family.md)
 
-**Parent topic:** SQL Commands
+
 

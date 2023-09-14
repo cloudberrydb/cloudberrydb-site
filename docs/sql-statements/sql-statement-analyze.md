@@ -85,7 +85,7 @@ column
 
 Foreign tables are analyzed only when explicitly selected. Not all foreign data wrappers support `ANALYZE`. If the table's wrapper does not support `ANALYZE`, the command prints a warning and does nothing.
 
-It is a good idea to run `ANALYZE` periodically, or just after making major changes in the contents of a table. Accurate statistics helps Greenplum Database choose the most appropriate query plan, and thereby improve the speed of query processing. A common strategy for read-mostly databases is to run [VACUUM](VACUUM.html) and `ANALYZE` once a day during a low-usage time of day. (This will not be sufficient if there is heavy update activity.) You can check for tables with missing statistics using the `gp_stats_missing` view, which is in the `gp_toolkit` schema:
+It is a good idea to run `ANALYZE` periodically, or just after making major changes in the contents of a table. Accurate statistics helps Greenplum Database choose the most appropriate query plan, and thereby improve the speed of query processing. A common strategy for read-mostly databases is to run [VACUUM](/docs/sql-statements/sql-statement-vacuum.md) and `ANALYZE` once a day during a low-usage time of day. (This will not be sufficient if there is heavy update activity.) You can check for tables with missing statistics using the `gp_stats_missing` view, which is in the `gp_toolkit` schema:
 
 ```
 SELECT * from gp_toolkit.gp_stats_missing;
@@ -123,7 +123,7 @@ For large tables, `ANALYZE` takes a random sample of the table contents, rather 
 
 The largest statistics target among the columns being analyzed determines the number of table rows sampled to prepare the statistics. Increasing the target causes a proportional increase in the time and space needed to do `ANALYZE`.
 
-One of the values estimated by `ANALYZE` is the number of distinct values that appear in each column. Because only a subset of the rows are examined, this estimate can sometimes be quite inaccurate, even with the largest possible statistics target. If this inaccuracy leads to bad query plans, a more accurate value can be determined manually and then installed with `ALTER TABLE ... ALTER COLUMN ... SET STATISTICS DISTINCT` (see [ALTER TABLE](ALTER_TABLE.html)).
+One of the values estimated by `ANALYZE` is the number of distinct values that appear in each column. Because only a subset of the rows are examined, this estimate can sometimes be quite inaccurate, even with the largest possible statistics target. If this inaccuracy leads to bad query plans, a more accurate value can be determined manually and then installed with `ALTER TABLE ... ALTER COLUMN ... SET STATISTICS DISTINCT` (see [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md)).
 
 When Greenplum Database performs an `ANALYZE` operation to collect statistics for a table and detects that all the sampled table data pages are empty (do not contain valid data), Greenplum Database displays a message that a `VACUUM FULL` operation should be performed. If the sampled pages are empty, the table statistics will be inaccurate. Pages become empty after a large number of changes to the table, for example deleting a large number of rows. A `VACUUM FULL` operation removes the empty pages and allows an `ANALYZE` operation to collect accurate statistics.
 
@@ -143,7 +143,7 @@ There is no `ANALYZE` statement in the SQL standard.
 
 ## See Also
 
-[ALTER TABLE](ALTER_TABLE.html), [EXPLAIN](EXPLAIN.html), [VACUUM](VACUUM.html), analyzedb.
+[ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md), [EXPLAIN](/docs/sql-statements/sql-statement-explain.md), [VACUUM](/docs/sql-statements/sql-statement-vacuum.md), analyzedb.
 
-**Parent topic:** SQL Commands
+
 

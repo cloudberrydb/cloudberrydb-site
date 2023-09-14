@@ -42,7 +42,7 @@ There is no `DROP DATABASE` statement in the SQL standard.
 
 ## See Also
 
-[ALTER DATABASE](ALTER_DATABASE.html), [CREATE DATABASE](CREATE_DATABASE.html)
+[ALTER DATABASE](/docs/sql-statements/sql-statement-alter-database.md), [CREATE DATABASE](/docs/sql-statements/sql-statement-create-database.md)
 
-**Parent topic:** SQL Commands
+
 

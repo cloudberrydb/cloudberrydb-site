@@ -38,7 +38,7 @@ To update the current definition of an existing function, use `CREATE OR REPLACE
 
 When `CREATE OR REPLACE FUNCTION` is used to replace an existing function, the ownership and permissions of the function do not change. All other function properties are assigned the values specified or implied in the command. You must own the function to replace it (this includes being a member of the owning role).
 
-If you drop and then recreate a function, the new function is not the same entity as the old; you will have to drop existing objects (rules, views, triggers, and so on) that refer to the old function. Use `CREATE OR REPLACE FUNCTION` to change a function definition without breaking objects that refer to the function. Also, [ALTER FUNCTION](ALTER_FUNCTION.html) can be used to change most of the auxiliary properties of an existing function.
+If you drop and then recreate a function, the new function is not the same entity as the old; you will have to drop existing objects (rules, views, triggers, and so on) that refer to the old function. Use `CREATE OR REPLACE FUNCTION` to change a function definition without breaking objects that refer to the function. Also, [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) can be used to change most of the auxiliary properties of an existing function.
 
 The user that creates the function becomes the owner of the function.
 
@@ -135,7 +135,7 @@ VOLATILE
 :   `VOLATILE` indicates that the function value can change even within a single table scan, so no optimizations can be made. Relatively few database functions are volatile in this sense; some examples are `random()`, `timeofday()`. But note that any function that has side-effects must be classified volatile, even if its result is quite predictable, to prevent calls from being optimized away; an example is `setval()`.
 
 LEAKPROOF
-:   `LEAKPROOF` indicates that the function has no side effects. It reveals no information about its arguments other than by its return value. For example, a function that throws an error message for some argument values but not others, or that includes the argument values in any error message, is not leakproof. This affects how the system executes queries against views created with the `security_barrier` option or tables with row level security enabled. The system will enforce conditions from security policies and security barrier views before any user-supplied conditions from the query itself that contain non-leakproof functions, in order to prevent the inadvertent exposure of data. Functions and operators marked as leakproof are assumed to be trustworthy, and may be executed before conditions from security policies and security barrier views. In addition, functions which do not take arguments or which are not passed any arguments from the security barrier view or table do not have to be marked as leakproof to be executed before security conditions. See [CREATE VIEW](CREATE_VIEW.html). This option can only be set by the superuser.
+:   `LEAKPROOF` indicates that the function has no side effects. It reveals no information about its arguments other than by its return value. For example, a function that throws an error message for some argument values but not others, or that includes the argument values in any error message, is not leakproof. This affects how the system executes queries against views created with the `security_barrier` option or tables with row level security enabled. The system will enforce conditions from security policies and security barrier views before any user-supplied conditions from the query itself that contain non-leakproof functions, in order to prevent the inadvertent exposure of data. Functions and operators marked as leakproof are assumed to be trustworthy, and may be executed before conditions from security policies and security barrier views. In addition, functions which do not take arguments or which are not passed any arguments from the security barrier view or table do not have to be marked as leakproof to be executed before security conditions. See [CREATE VIEW](/docs/sql-statements/sql-statement-create-view.md). This option can only be set by the superuser.
 
 CALLED ON NULL INPUT
 RETURNS NULL ON NULL INPUT
@@ -199,7 +199,7 @@ configuration_parameter
 value
 :   The `SET` clause applies a value to a session configuration parameter when the function is entered. The configuration parameter is restored to its prior value when the function exits. `SET FROM CURRENT` saves the value of the parameter that is current when `CREATE FUNCTION` is run as the value to be applied when the function is entered.
 :   If a `SET` clause is attached to a function, then the effects of a `SET LOCAL` command executed inside the function for the same variable are restricted to the function: the configuration parameter's prior value is still restored at function exit. However, an ordinary `SET` command (without `LOCAL`) overrides the `SET` clause, much as it would do for a previous `SET LOCAL` command: the effects of such a command will persist after function exit, unless the current transaction is rolled back.
-:   See [SET](SET.html) for more information about allowed parameter names and values.
+:   See [SET](/docs/sql-statements/sql-statement-set.md) for more information about allowed parameter names and values.
 
 definition
 :   A string constant defining the function; the meaning depends on the language. It may be an internal function name, the path to an object file, an SQL command, or text in a procedural language.
@@ -208,7 +208,7 @@ definition
 ](https://www.postgresql.org/docs/12/sql-syntax-lexical.html#SQL-SYNTAX-DOLLAR-QUOTING) in the PostgreSQL documentation) to write the function definition string, rather than the normal single quote syntax. Without dollar quoting, any single quotes or backslashes in the function definition must be escaped by doubling them.
 
 obj_file, link_symbol
-:   This form of the `AS` clause is used for dynamically loadable C language functions when the function name in the C language source code is not the same as the name of the SQL function. The string obj_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](LOAD.html) command. The string link_symbol is the name of the function in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL function being defined. The C names of all functions must be different, so you must give overloaded SQL functions different C names (for example, use the argument types as part of the C names).
+:   This form of the `AS` clause is used for dynamically loadable C language functions when the function name in the C language source code is not the same as the name of the SQL function. The string obj_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](/docs/sql-statements/sql-statement-load.md) command. The string link_symbol is the name of the function in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL function being defined. The C names of all functions must be different, so you must give overloaded SQL functions different C names (for example, use the argument types as part of the C names).
 :   When repeated `CREATE FUNCTION` calls refer to the same object file, the file is only loaded once per session. To unload and reload the file (perhaps during development), start a new session.
 :   Locating shared libraries either relative to `$libdir` (which is located at `$GPHOME/lib`) or through the dynamic library path (set by the `dynamic_library_path` server configuration parameter) will simplify version upgrades if the new installation is at a different location.
 
@@ -460,7 +460,7 @@ $$  LANGUAGE plpgsql
 
 The `SET` option was not available in earlier versions of Greenplum Database, and so older functions may contain rather complicated logic to save, set, and restore `search_path`. The `SET` option is far easier to use for this purpose.
 
-Another point to keep in mind is that by default, execute privilege is granted to `PUBLIC` for newly created functions (see [GRANT](GRANT.html) for more information). Frequently you will wish to restrict use of a security definer function to only some users. To do that, you must revoke the default `PUBLIC` privileges and then grant `EXECUTE` privilege selectively. To avoid having a window where the new function is accessible to all, create it and set the privileges within a single transaction. For example:
+Another point to keep in mind is that by default, execute privilege is granted to `PUBLIC` for newly created functions (see [GRANT](/docs/sql-statements/sql-statement-grant.md) for more information). Frequently you will wish to restrict use of a security definer function to only some users. To do that, you must revoke the default `PUBLIC` privileges and then grant `EXECUTE` privilege selectively. To avoid having a window where the new function is accessible to all, create it and set the privileges within a single transaction. For example:
 
 ```
 BEGIN;
@@ -480,7 +480,7 @@ For parameter defaults, the SQL standard specifies only the syntax with the `DEF
 
 ## See Also
 
-[ALTER FUNCTION](ALTER_FUNCTION.html), [DROP FUNCTION](DROP_FUNCTION.html), [GRANT](GRANT.html), [LOAD](LOAD.html), [REVOKE](REVOKE.html), createlang
+[ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md), [DROP FUNCTION](/docs/sql-statements/sql-statement-drop-function.md), [GRANT](/docs/sql-statements/sql-statement-grant.md), [LOAD](/docs/sql-statements/sql-statement-load.md), [REVOKE](/docs/sql-statements/sql-statement-revoke.md), createlang
 
-**Parent topic:** SQL Commands
+
 

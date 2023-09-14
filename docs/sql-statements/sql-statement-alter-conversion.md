@@ -53,7 +53,7 @@ There is no `ALTER CONVERSION` statement in the SQL standard.
 
 ## See Also
 
-[CREATE CONVERSION](CREATE_CONVERSION.html), [DROP CONVERSION](DROP_CONVERSION.html)
+[CREATE CONVERSION](/docs/sql-statements/sql-statement-create-conversion.md), [DROP CONVERSION](/docs/sql-statements/sql-statement-drop-conversion.md)
 
-**Parent topic:** SQL Commands
+
 

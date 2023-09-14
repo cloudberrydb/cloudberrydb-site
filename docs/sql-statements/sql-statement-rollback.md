@@ -19,11 +19,11 @@ TRANSACTION
 :   Optional key words. They have no effect.
 
 AND CHAIN
-:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](SET_TRANSACTION.html)) as the just finished one. Otherwise, no new transaction is started.
+:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md)) as the just finished one. Otherwise, no new transaction is started.
 
 ## Notes
 
-Use [COMMIT](COMMIT.html) to successfully end the current transaction.
+Use [COMMIT](/docs/sql-statements/sql-statement-commit.md) to successfully end the current transaction.
 
 Issuing `ROLLBACK` when not inside a transaction block emits a warning and otherwise has no effect. `ROLLBACK AND CHAIN` outside of a transaction block is an error.
 
@@ -41,7 +41,7 @@ The command `ROLLBACK` conforms to the SQL standard. The form `ROLLBACK TRANSACT
 
 ## See Also
 
-[BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK TO SAVEPOINT](ROLLBACK_TO_SAVEPOINT.html), [SAVEPOINT](SAVEPOINT.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [COMMIT](/docs/sql-statements/sql-statement-commit.md), [ROLLBACK TO SAVEPOINT](/docs/sql-statements/sql-statement-rollback-to-savepoint.md), [SAVEPOINT](/docs/sql-statements/sql-statement-savepoint.md)
 
-**Parent topic:** SQL Commands
+
 

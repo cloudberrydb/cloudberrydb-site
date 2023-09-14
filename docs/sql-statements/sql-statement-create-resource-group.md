@@ -32,7 +32,7 @@ Greenplum Database pre-defines two default resource groups: `admin_group` and `d
 
 To set appropriate limits for resource groups, the Greenplum Database administrator must be familiar with the queries typically run on the system, as well as the users/roles running those queries and the external components they may be using, such as PL/Containers.
 
-After creating a resource group for a role, assign the group to one or more roles using the [ALTER ROLE](ALTER_ROLE.html) or [CREATE ROLE](CREATE_ROLE.html) commands.
+After creating a resource group for a role, assign the group to one or more roles using the [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) or [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) commands.
 
 After you create a resource group to manage the CPU and memory resources of an external component, configure the external component to use the resource group. For example, configure the PL/Container runtime `resource_group_id`.
 
@@ -124,7 +124,7 @@ CREATE RESOURCE GROUP rgroup3 WITH (CPUSET='1;1-3', MEMORY_LIMIT=11);
 
 ## See Also
 
-[ALTER ROLE](ALTER_ROLE.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER RESOURCE GROUP](ALTER_RESOURCE_GROUP.html), [DROP RESOURCE GROUP](DROP_RESOURCE_GROUP.html)
+[ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md), [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md), [ALTER RESOURCE GROUP](/docs/sql-statements/sql-statement-alter-resource-group.md), [DROP RESOURCE GROUP](/docs/sql-statements/sql-statement-drop-resource-group.md)
 
-**Parent topic:** SQL Commands
+
 

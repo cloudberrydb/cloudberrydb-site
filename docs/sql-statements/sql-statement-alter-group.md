@@ -22,9 +22,9 @@ ALTER GROUP <group_name> RENAME TO <new_name>
 
 `ALTER GROUP` changes the attributes of a user group. This is an obsolete command, though still accepted for backwards compatibility, because users and groups are superseded by the more general concept of roles.
 
-The first two variants add users to a group or remove them from a group. (Any role can play the part of either a "user" or "group" for this purpose. These variants are effectively equivalent to granting or revoking membership in the role named as the "group"; so, the preferred way to do this is to use [GRANT](GRANT.html) or [REVOKE](REVOKE.html).
+The first two variants add users to a group or remove them from a group. (Any role can play the part of either a "user" or "group" for this purpose. These variants are effectively equivalent to granting or revoking membership in the role named as the "group"; so, the preferred way to do this is to use [GRANT](/docs/sql-statements/sql-statement-grant.md) or [REVOKE](/docs/sql-statements/sql-statement-revoke.md).
 
-The third variant changes the name of the group. This is exactly equivalent to renaming the role with [ALTER ROLE](ALTER_ROLE.html).
+The third variant changes the name of the group. This is exactly equivalent to renaming the role with [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md).
 
 ## Parameters
 
@@ -57,7 +57,7 @@ There is no `ALTER GROUP` statement in the SQL standard.
 
 ## See Also
 
-[ALTER ROLE](ALTER_ROLE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html)
+[ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md), [GRANT](/docs/sql-statements/sql-statement-grant.md), [REVOKE](/docs/sql-statements/sql-statement-revoke.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -34,7 +34,7 @@ index_method
 
 ## See Also
 
-[ALTER OPERATOR FAMILY](ALTER_OPERATOR_FAMILY.html), [DROP OPERATOR FAMILY](DROP_OPERATOR_FAMILY.html), [ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR CLASS](DROP_OPERATOR_CLASS.html)
+[ALTER OPERATOR FAMILY](/docs/sql-statements/sql-statement-alter-operator-family.md), [DROP OPERATOR FAMILY](/docs/sql-statements/sql-statement-drop-operator-family.md), [ALTER OPERATOR CLASS](/docs/sql-statements/sql-statement-alter-operator-class.md), [CREATE OPERATOR CLASS](/docs/sql-statements/sql-statement-create-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-statements/sql-statement-drop-operator-class.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -44,7 +44,7 @@ There is no `CREATE TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
 ## See Also
 
-[DROP TEXT SEARCH TEMPLATE](DROP_TEXT_SEARCH_TEMPLATE.html), [ALTER TEXT SEARCH TEMPLATE](ALTER_TEXT_SEARCH_TEMPLATE.html)
+[DROP TEXT SEARCH TEMPLATE](/docs/sql-statements/sql-statement-drop-text-search-template.md), [ALTER TEXT SEARCH TEMPLATE](/docs/sql-statements/sql-statement-alter-text-search-template.md)
 
-**Parent topic:** SQL Commands
+
 

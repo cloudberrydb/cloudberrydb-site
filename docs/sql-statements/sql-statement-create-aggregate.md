@@ -79,7 +79,7 @@ When replacing an existing definition, the argument types, result type, and numb
 
 If a schema name is given (for example, `CREATE AGGREGATE myschema.myagg ...`) then the aggregate function is created in the specified schema. Otherwise it is created in the current schema.
 
-An aggregate function is identified by its name and input data type(s). Two aggregate functions in the same schema can have the same name if they operate on different input types. The name and input data type(s) of an aggregate function must also be distinct from the name and input data type(s) of every ordinary function in the same schema. This behavior is identical to overloading of ordinary function names. See [CREATE FUNCTION](CREATE_FUNCTION.html).
+An aggregate function is identified by its name and input data type(s). Two aggregate functions in the same schema can have the same name if they operate on different input types. The name and input data type(s) of an aggregate function must also be distinct from the name and input data type(s) of every ordinary function in the same schema. This behavior is identical to overloading of ordinary function names. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md).
 
 A simple aggregate function is made from one or two ordinary functions; a state transition function sfunc, and an optional final calculation function ffunc.
 
@@ -207,7 +207,7 @@ sort_operator
 :   The associated sort operator for a `min()`- or `max()`-like aggregate. This is just an operator name (possibly schema-qualified). The operator is assumed to have the same input data types as the aggregate (which must be a single-argument normal aggregate).
 
 PARALLEL = { SAFE | RESTRICTED | UNSAFE }
-:   The meanings of `PARALLEL SAFE`, `PARALLEL RESTRICTED`, and `PARALLEL UNSAFE` are the same as in [CREATE FUNCTION](CREATE_FUNCTION.html). An aggregate will not be considered for parallelization if it is marked `PARALLEL UNSAFE` (which is the default!) or `PARALLEL RESTRICTED`. Note that the parallel-safety markings of the aggregate's support functions are not consulted by the planner, only the marking of the aggregate itself.
+:   The meanings of `PARALLEL SAFE`, `PARALLEL RESTRICTED`, and `PARALLEL UNSAFE` are the same as in [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md). An aggregate will not be considered for parallelization if it is marked `PARALLEL UNSAFE` (which is the default!) or `PARALLEL RESTRICTED`. Note that the parallel-safety markings of the aggregate's support functions are not consulted by the planner, only the marking of the aggregate itself.
 
 REPSAFE = boolean
 :   Specifies whether or not the aggregate can be safely executed on replicated slices. An order-agnostic aggregate would be considered safe in this context. The default value is `false`.
@@ -294,7 +294,7 @@ Refer to [User-Defined Aggregates](https://www.postgresql.org/docs/12/xaggr.html
 
 ## See Also
 
-[ALTER AGGREGATE](ALTER_AGGREGATE.html), [DROP AGGREGATE](DROP_AGGREGATE.html), [CREATE FUNCTION](CREATE_FUNCTION.html)
+[ALTER AGGREGATE](/docs/sql-statements/sql-statement-alter-aggregate.md), [DROP AGGREGATE](/docs/sql-statements/sql-statement-drop-aggregate.md), [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md)
 
-**Parent topic:** SQL Commands
+
 

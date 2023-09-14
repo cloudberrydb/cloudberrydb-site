@@ -73,7 +73,7 @@ NOINHERIT
 
 LOGIN
 NOLOGIN
-:   These clauses determine whether a role is allowed to log in; that is, whether the role can be given as the initial session authorization name during client connection. If specified, `LOGIN` allows a role to log in to a database. A role having the `LOGIN` attribute can be thought of as a user. Roles with `NOLOGIN` are useful for managing database privileges, but are not users in the usual sense of the word. If not specified, `NOLOGIN` is the default, except when `CREATE ROLE` is invoked through its alternative spelling [CREATE USER](CREATE_USER.html).
+:   These clauses determine whether a role is allowed to log in; that is, whether the role can be given as the initial session authorization name during client connection. If specified, `LOGIN` allows a role to log in to a database. A role having the `LOGIN` attribute can be thought of as a user. Roles with `NOLOGIN` are useful for managing database privileges, but are not users in the usual sense of the word. If not specified, `NOLOGIN` is the default, except when `CREATE ROLE` is invoked through its alternative spelling [CREATE USER](/docs/sql-statements/sql-statement-create-user.md).
 
 REPLICATION
 NOREPLICATION
@@ -162,13 +162,13 @@ DENY BETWEEN <deny_point> AND <deny_point>
 
 ## Notes
 
-Use [ALTER ROLE](ALTER_ROLE.html) to change the attributes of a role, and [DROP ROLE](DROP_ROLE.html) to remove a role. All the attributes specified by `CREATE ROLE` can be modified by later `ALTER ROLE` commands.
+Use [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) to change the attributes of a role, and [DROP ROLE](/docs/sql-statements/sql-statement-drop-role.md) to remove a role. All the attributes specified by `CREATE ROLE` can be modified by later `ALTER ROLE` commands.
 
-The preferred way to add and remove role members of roles is to use [GRANT](GRANT.html) and [REVOKE](REVOKE.html).
+The preferred way to add and remove role members of roles is to use [GRANT](/docs/sql-statements/sql-statement-grant.md) and [REVOKE](/docs/sql-statements/sql-statement-revoke.md).
 
 The `VALID UNTIL` clause defines an expiration time for a password only, not for the role *per se*. The expiration time is not enforced when logging in using a non-password-based authentication method.
 
-The `INHERIT` attribute governs inheritance of grantable privileges (access privileges for database objects and role memberships). It does not apply to the special role attributes set by `CREATE ROLE` and `ALTER ROLE`. For example, being a member of a role with `CREATEDB` privilege does not immediately grant the ability to create databases, even if `INHERIT` is set; it would be necessary to become that role via [SET ROLE](SET_ROLE.html) before creating a database.
+The `INHERIT` attribute governs inheritance of grantable privileges (access privileges for database objects and role memberships). It does not apply to the special role attributes set by `CREATE ROLE` and `ALTER ROLE`. For example, being a member of a role with `CREATEDB` privilege does not immediately grant the ability to create databases, even if `INHERIT` is set; it would be necessary to become that role via [SET ROLE](/docs/sql-statements/sql-statement-set-role.md) before creating a database.
 
 The `INHERIT` attribute is the default for reasons of backwards compatibility. In prior releases of Greenplum Database, users always had access to all privileges of groups they were members of. However, `NOINHERIT` provides a closer match to the semantics specified in the SQL standard.
 
@@ -249,7 +249,7 @@ The behavior specified by the SQL standard is most closely approximated by givin
 
 ## See Also
 
-[SET ROLE](SET_ROLE.html), [ALTER ROLE](ALTER_ROLE.html), [DROP ROLE](DROP_ROLE.html), [GRANT](GRANT.html), [REVOKE](REVOKE.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html) [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), createuser
+[SET ROLE](/docs/sql-statements/sql-statement-set-role.md), [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md), [DROP ROLE](/docs/sql-statements/sql-statement-drop-role.md), [GRANT](/docs/sql-statements/sql-statement-grant.md), [REVOKE](/docs/sql-statements/sql-statement-revoke.md), [CREATE RESOURCE QUEUE](/docs/sql-statements/sql-statement-create-resource-queue.md) [CREATE RESOURCE GROUP](/docs/sql-statements/sql-statement-create-resource-group.md), createuser
 
-**Parent topic:** SQL Commands
+
 

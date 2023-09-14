@@ -74,7 +74,7 @@ CREATE EXTENSION hstore;
 
 ## See Also
 
-[ALTER EXTENSION](ALTER_EXTENSION.html), [DROP EXTENSION](DROP_EXTENSION.html)
+[ALTER EXTENSION](/docs/sql-statements/sql-statement-alter-extension.md), [DROP EXTENSION](/docs/sql-statements/sql-statement-drop-extension.md)
 
-**Parent topic:** SQL Commands
+
 

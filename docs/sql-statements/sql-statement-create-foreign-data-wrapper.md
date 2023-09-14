@@ -81,7 +81,7 @@ Note, however, that the SQL/MED functionality as a whole is not yet conforming.
 
 ## See Also
 
-[ALTER FOREIGN DATA WRAPPER](ALTER_FOREIGN_DATA_WRAPPER.html), [DROP FOREIGN DATA WRAPPER](DROP_FOREIGN_DATA_WRAPPER.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE SERVER](CREATE_SERVER.html), [CREATE USER MAPPING](CREATE_USER_MAPPING.html)
+[ALTER FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-alter-foreign-data-wrapper.md), [DROP FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-drop-foreign-data-wrapper.md), [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md), [CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md), [CREATE USER MAPPING](/docs/sql-statements/sql-statement-create-user-mapping.md)
 
-**Parent topic:** SQL Commands
+
 

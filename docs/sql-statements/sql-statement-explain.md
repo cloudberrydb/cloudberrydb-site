@@ -220,7 +220,7 @@ There is no `EXPLAIN` statement defined in the SQL standard.
 
 ## See Also
 
-[ANALYZE](ANALYZE.html)
+[ANALYZE](/docs/sql-statements/sql-statement-analyze.md)
 
-**Parent topic:** SQL Commands
+
 

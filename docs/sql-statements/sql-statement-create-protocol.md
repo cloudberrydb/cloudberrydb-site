@@ -49,7 +49,7 @@ Any shared library that implements a data access protocol must be located in the
 
 ## See Also
 
-[ALTER PROTOCOL](ALTER_PROTOCOL.html), [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [DROP PROTOCOL](DROP_PROTOCOL.html), [GRANT](GRANT.html)
+[ALTER PROTOCOL](/docs/sql-statements/sql-statement-alter-protocol.md), [CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md), [DROP PROTOCOL](/docs/sql-statements/sql-statement-drop-protocol.md), [GRANT](/docs/sql-statements/sql-statement-grant.md)
 
-**Parent topic:** SQL Commands
+
 

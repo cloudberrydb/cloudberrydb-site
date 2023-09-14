@@ -30,22 +30,22 @@ SELECT [ALL | DISTINCT [ON ( <expression> [, ...] )]]
 
 TEMPORARY
 TEMP
-:   If specified, the table is created as a temporary table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
+:   If specified, the table is created as a temporary table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 UNLOGGED
-:   If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
+:   If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 new_table
 :   The name (optionally schema-qualified) of the table to be created.
 
-All other parameters for `SELECT INTO` are described in detail on the [SELECT](SELECT.html) reference page.
+All other parameters for `SELECT INTO` are described in detail on the [SELECT](/docs/sql-statements/sql-statement-select.md) reference page.
 
 
 ## Notes
 
-[CREATE TABLE AS](CREATE_TABLE_AS.html) is functionally similar to `SELECT INTO`. `CREATE TABLE AS` is the recommended syntax, since this form of `SELECT INTO` is not available in ECPG or PL/pgSQL, because they interpret the `INTO` clause differently. Also, `CREATE TABLE AS` offers a superset of the functionality provided by `SELECT INTO`.
+[CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) is functionally similar to `SELECT INTO`. `CREATE TABLE AS` is the recommended syntax, since this form of `SELECT INTO` is not available in ECPG or PL/pgSQL, because they interpret the `INTO` clause differently. Also, `CREATE TABLE AS` offers a superset of the functionality provided by `SELECT INTO`.
 
-In contrast to `CREATE TABLE AS`, `SELECT INTO` does not allow specifying properties like a table's access method with `USING <method>` or the table's tablespace with `TABLESPACE <tablespace_name>`. Use [CREATE TABLE AS](CREATE_TABLE_AS.html) if necessary. Therefore, the default table access method is chosen for the new table. See [default_table_access_method](../config_params/guc-list.html#default_table_access_method) for more information.
+In contrast to `CREATE TABLE AS`, `SELECT INTO` does not allow specifying properties like a table's access method with `USING <method>` or the table's tablespace with `TABLESPACE <tablespace_name>`. Use [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) if necessary. Therefore, the default table access method is chosen for the new table. See [default_table_access_method](../config_params/guc-list.html#default_table_access_method) for more information.
 
 ## Examples
 
@@ -57,11 +57,11 @@ SELECT * INTO films_recent FROM films WHERE date_prod >= '2016-01-01';
 
 ## Compatibility
 
-The SQL standard uses `SELECT INTO` to represent selecting values into scalar variables of a host program, rather than creating a new table. The Greenplum Database usage of `SELECT INTO` to represent table creation is historical. It is best to use [CREATE TABLE AS](CREATE_TABLE_AS.html) for this purpose in new applications.
+The SQL standard uses `SELECT INTO` to represent selecting values into scalar variables of a host program, rather than creating a new table. The Greenplum Database usage of `SELECT INTO` to represent table creation is historical. It is best to use [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) for this purpose in new applications.
 
 ## See Also
 
-[SELECT](SELECT.html), [CREATE TABLE AS](CREATE_TABLE_AS.html)
+[SELECT](/docs/sql-statements/sql-statement-select.md), [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md)
 
-**Parent topic:** SQL Commands
+
 

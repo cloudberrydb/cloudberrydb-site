@@ -25,9 +25,9 @@ newname
 
 ## Notes
 
-The ability to temporarily activate or deactivate a trigger is provided by [ALTER TABLE](ALTER_TABLE.html), not by `ALTER TRIGGER`, because `ALTER TRIGGER` has no convenient way to express the option of activating or deactivating all of a table's triggers at once.
+The ability to temporarily activate or deactivate a trigger is provided by [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md), not by `ALTER TRIGGER`, because `ALTER TRIGGER` has no convenient way to express the option of activating or deactivating all of a table's triggers at once.
 
-Note that Greenplum Database has limited support of triggers in this release. See [CREATE TRIGGER](CREATE_TRIGGER.html) for more information.
+Note that Greenplum Database has limited support of triggers in this release. See [CREATE TRIGGER](/docs/sql-statements/sql-statement-create-trigger.md) for more information.
 
 ## Examples
 
@@ -43,7 +43,7 @@ ALTER TRIGGER emp_stamp ON emp RENAME TO emp_track_chgs;
 
 ## See Also
 
-[ALTER TABLE](ALTER_TABLE.html), [CREATE TRIGGER](CREATE_TRIGGER.html), [DROP TRIGGER](DROP_TRIGGER.html)
+[ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md), [CREATE TRIGGER](/docs/sql-statements/sql-statement-create-trigger.md), [DROP TRIGGER](/docs/sql-statements/sql-statement-drop-trigger.md)
 
-**Parent topic:** SQL Commands
+
 

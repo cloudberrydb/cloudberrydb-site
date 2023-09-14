@@ -43,7 +43,7 @@ The `DROP TRIGGER` statement in Greenplum Database is not compatible with the SQ
 
 ## See Also
 
-[ALTER TRIGGER](ALTER_TRIGGER.html), [CREATE TRIGGER](CREATE_TRIGGER.html)
+[ALTER TRIGGER](/docs/sql-statements/sql-statement-alter-trigger.md), [CREATE TRIGGER](/docs/sql-statements/sql-statement-create-trigger.md)
 
-**Parent topic:** SQL Commands
+
 

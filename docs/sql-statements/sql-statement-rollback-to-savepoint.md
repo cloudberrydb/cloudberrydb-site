@@ -25,7 +25,7 @@ savepoint_name
 
 ## Notes
 
-Use [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html) to destroy a savepoint without discarding the effects of commands run after it was established.
+Use [RELEASE SAVEPOINT](/docs/sql-statements/sql-statement-release-savepoint.md) to destroy a savepoint without discarding the effects of commands run after it was established.
 
 Specifying a savepoint name that has not been established is an error.
 
@@ -65,7 +65,7 @@ The SQL standard specifies that the key word `SAVEPOINT` is mandatory, but Green
 
 ## See Also
 
-[BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [RELEASE SAVEPOINT](RELEASE_SAVEPOINT.html), [ROLLBACK](ROLLBACK.html), [SAVEPOINT](SAVEPOINT.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [COMMIT](/docs/sql-statements/sql-statement-commit.md), [RELEASE SAVEPOINT](/docs/sql-statements/sql-statement-release-savepoint.md), [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md), [SAVEPOINT](/docs/sql-statements/sql-statement-savepoint.md)
 
-**Parent topic:** SQL Commands
+
 

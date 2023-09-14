@@ -26,7 +26,7 @@ ALTER OPERATOR FAMILY <name> USING <index_method> SET SCHEMA <new_schema>
 
 `ALTER OPERATOR FAMILY` changes the definition of an operator family. You can add operators and support functions to the family, remove them from the family, or change the family's name or owner.
 
-When operators and support functions are added to a family with `ALTER OPERATOR FAMILY`, they are not part of any specific operator class within the family, but are just "loose" within the family. This indicates that these operators and functions are compatible with the family's semantics, but are not required for correct functioning of any specific index. (Operators and functions that are so required should be declared as part of an operator class, instead; see [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html).) You can drop loose members of a family from the family at any time, but members of an operator class cannot be dropped without dropping the whole class and any indexes that depend on it. Typically, single-data-type operators and functions are part of operator classes because they are needed to support an index on that specific data type, while cross-data-type operators and functions are made loose members of the family.
+When operators and support functions are added to a family with `ALTER OPERATOR FAMILY`, they are not part of any specific operator class within the family, but are just "loose" within the family. This indicates that these operators and functions are compatible with the family's semantics, but are not required for correct functioning of any specific index. (Operators and functions that are so required should be declared as part of an operator class, instead; see [CREATE OPERATOR CLASS](/docs/sql-statements/sql-statement-create-operator-class.md).) You can drop loose members of a family from the family at any time, but members of an operator class cannot be dropped without dropping the whole class and any indexes that depend on it. Typically, single-data-type operators and functions are part of operator classes because they are needed to support an index on that specific data type, while cross-data-type operators and functions are made loose members of the family.
 
 You must be a superuser to use `ALTER OPERATOR FAMILY`. (This restriction is made because an erroneous operator family definition could confuse or even crash the server.)
 
@@ -138,7 +138,7 @@ There is no `ALTER OPERATOR FAMILY` statement in the SQL standard.
 
 ## See Also
 
-[CREATE OPERATOR FAMILY](CREATE_OPERATOR_FAMILY.html), [DROP OPERATOR FAMILY](DROP_OPERATOR_FAMILY.html), [ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR CLASS](DROP_OPERATOR_CLASS.html)
+[CREATE OPERATOR FAMILY](/docs/sql-statements/sql-statement-create-operator-family.md), [DROP OPERATOR FAMILY](/docs/sql-statements/sql-statement-drop-operator-family.md), [ALTER OPERATOR CLASS](/docs/sql-statements/sql-statement-alter-operator-class.md), [CREATE OPERATOR CLASS](/docs/sql-statements/sql-statement-create-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-statements/sql-statement-drop-operator-class.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -66,11 +66,11 @@ new_tablespace
 
 configuration_parameter value
 :   Set this database's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the database-specific setting is removed, so the system-wide default setting will be inherited in new sessions. Use `RESET ALL` to clear all database-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the database-specific value.
-:   See [SET](SET.html) and Server Configuration Parameters for more information about allowed parameter names and values.
+:   See [SET](/docs/sql-statements/sql-statement-set.md) and Server Configuration Parameters for more information about allowed parameter names and values.
 
 ## Notes
 
-It is also possible to tie a session default to a specific role rather than to a database; see [ALTER ROLE](ALTER_ROLE.html). Role-specific settings override database-specific ones if there is a conflict.
+It is also possible to tie a session default to a specific role rather than to a database; see [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md). Role-specific settings override database-specific ones if there is a conflict.
 
 ## Examples
 
@@ -92,7 +92,7 @@ The `ALTER DATABASE` statement is a Greenplum Database extension.
 
 ## See Also
 
-[CREATE DATABASE](CREATE_DATABASE.html), [DROP DATABASE](DROP_DATABASE.html), [SET](SET.html), [CREATE TABLESPACE](CREATE_TABLESPACE.html)
+[CREATE DATABASE](/docs/sql-statements/sql-statement-create-database.md), [DROP DATABASE](/docs/sql-statements/sql-statement-drop-database.md), [SET](/docs/sql-statements/sql-statement-set.md), [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md)
 
-**Parent topic:** SQL Commands
+
 

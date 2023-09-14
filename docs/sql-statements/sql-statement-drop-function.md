@@ -50,7 +50,7 @@ A `DROP FUNCTION` statement is defined in the SQL standard, but it is not compat
 
 ## See Also
 
-[CREATE FUNCTION](CREATE_FUNCTION.html), [ALTER FUNCTION](ALTER_FUNCTION.html)
+[CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md)
 
-**Parent topic:** SQL Commands
+
 

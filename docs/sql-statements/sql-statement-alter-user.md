@@ -48,7 +48,7 @@ where <role_specification> can be:
 
 ## Description
 
-`ALTER USER` is an alias for [ALTER ROLE](ALTER_ROLE.html).
+`ALTER USER` is an alias for [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md).
 
 ## Compatibility
 
@@ -56,7 +56,7 @@ The `ALTER USER` statement is a Greenplum Database extension. The SQL standard l
 
 ## See Also
 
-[ALTER ROLE](ALTER_ROLE.html)
+[ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md)
 
-**Parent topic:** SQL Commands
+
 

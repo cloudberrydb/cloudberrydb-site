@@ -55,7 +55,7 @@ Use of the `RETURNING` clause requires `SELECT` privilege on all columns mention
 This section covers parameters that may be used when only inserting new rows. Parameters exclusively used with the `ON CONFLICT` clause are described separately.
 
 with_query
-:   The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `INSERT` query.  See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](SELECT.html) for details.
+:   The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `INSERT` query.  See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](/docs/sql-statements/sql-statement-select.md) for details.
 
 :   It is possible for the query (`SELECT` statement) to also contain a `WITH` clause. In such a case both sets of with_query can be referenced within the `INSERT` query, but the second one takes precedence since it is more closely nested.
 
@@ -86,7 +86,7 @@ DEFAULT
 :   The corresponding column will be filled with its default value.
 
 query
-:   A query (`SELECT` statement) that supplies the rows to be inserted. Refer to the [SELECT](SELECT.html) statement for a description of the syntax.
+:   A query (`SELECT` statement) that supplies the rows to be inserted. Refer to the [SELECT](/docs/sql-statements/sql-statement-select.md) statement for a description of the syntax.
 
 output_expression
 :   An expression to be computed and returned by the `INSERT` command after each row is inserted or updated. The expression can use any column names of the table named by table_name. Write `*` to return all columns of the inserted row(s).
@@ -285,11 +285,11 @@ INSERT INTO distributors (did, dname) VALUES (10, 'Conrad International')
 
 The SQL standard specifies that `OVERRIDING SYSTEM VALUE` can only be specified if an identity column that is generated always exists. Greenplum Database allows the clause in any case and ignores it if it is not applicable.
 
-Possible limitations of the query clause are documented under [SELECT](SELECT.html).
+Possible limitations of the query clause are documented under [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 ## See Also
 
-[SELECT](SELECT.html)
+[SELECT](/docs/sql-statements/sql-statement-select.md)
 
-**Parent topic:** SQL Commands
+
 

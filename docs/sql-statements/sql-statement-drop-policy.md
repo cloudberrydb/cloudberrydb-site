@@ -41,7 +41,7 @@ DROP POLICY p1 ON my_table;
 
 ## See Also
 
-[CREATE POLICY](CREATE_POLICY.html), [ALTER POLICY](ALTER_POLICY.html)
+[CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md), [ALTER POLICY](/docs/sql-statements/sql-statement-alter-policy.md)
 
-**Parent topic:** SQL Commands
+
 

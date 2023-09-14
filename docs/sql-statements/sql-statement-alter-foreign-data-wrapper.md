@@ -70,7 +70,7 @@ ALTER FOREIGN DATA WRAPPER dbi VALIDATOR bob.myvalidator;
 
 ## See Also
 
-[CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [DROP FOREIGN DATA WRAPPER](DROP_FOREIGN_DATA_WRAPPER.html)
+[CREATE FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-create-foreign-data-wrapper.md), [DROP FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-drop-foreign-data-wrapper.md)
 
-**Parent topic:** SQL Commands
+
 

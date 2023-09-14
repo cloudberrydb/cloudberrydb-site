@@ -36,7 +36,7 @@ Be sure to remove any shared libraries that were used by the protocol from the G
 
 ## See Also
 
-[CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE PROTOCOL](CREATE_PROTOCOL.html)
+[CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md), [CREATE PROTOCOL](/docs/sql-statements/sql-statement-create-protocol.md)
 
-**Parent topic:** SQL Commands
+
 

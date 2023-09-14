@@ -43,7 +43,7 @@ to_sql_function_name[(argument_type [, ...])]
 
 ## Notes
 
-Use [DROP TRANSFORM](DROP_TRANSFORM.html) to remove transforms.
+Use [DROP TRANSFORM](/docs/sql-statements/sql-statement-drop-transform.md) to remove transforms.
 
 ## Examples
 
@@ -84,7 +84,7 @@ This form of `CREATE TRANSFORM` is a Greenplum Database extension. There is a `C
 
 ## See Also
 
-[CREATE FUNCTION](CREATE_FUNCTION.html), [CREATE LANGUAGE](CREATE_LANGUAGE.html), [CREATE TYPE](CREATE_TYPE.html), [DROP TRANSFORM](DROP_TRANSFORM.html)
+[CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [CREATE LANGUAGE](/docs/sql-statements/sql-statement-create-language.md), [CREATE TYPE](/docs/sql-statements/sql-statement-create-type.md), [DROP TRANSFORM](/docs/sql-statements/sql-statement-drop-transform.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -45,7 +45,7 @@ The `SET TRANSACTION SNAPSHOT` command allows a new transaction to run with the 
 
 ## Notes
 
-If `SET TRANSACTION` is run without a prior [START TRANSACTION](START_TRANSACTION.html) or [BEGIN](BEGIN.html), it emits a warning and otherwise has no effect.
+If `SET TRANSACTION` is run without a prior [START TRANSACTION](/docs/sql-statements/sql-statement-start-transaction.md) or [BEGIN](/docs/sql-statements/sql-statement-begin.md), it emits a warning and otherwise has no effect.
 
 It is possible to dispense with `SET TRANSACTION` by instead specifying the desired transaction_modes in `BEGIN` or `START TRANSACTION`. But that option is not available for `SET TRANSACTION SNAPSHOT`.
 
@@ -85,7 +85,7 @@ The SQL standard requires commas between successive transaction_modes, but for h
 
 ## See Also
 
-[BEGIN](BEGIN.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md)
 
-**Parent topic:** SQL Commands
+
 

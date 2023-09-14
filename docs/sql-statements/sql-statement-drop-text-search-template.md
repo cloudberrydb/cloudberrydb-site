@@ -46,7 +46,7 @@ There is no `DROP TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
 ## See Also
 
-[ALTER TEXT SEARCH TEMPLATE](ALTER_TEXT_SEARCH_TEMPLATE.html), [CREATE TEXT SEARCH TEMPLATE](CREATE_TEXT_SEARCH_TEMPLATE.html)
+[ALTER TEXT SEARCH TEMPLATE](/docs/sql-statements/sql-statement-alter-text-search-template.md), [CREATE TEXT SEARCH TEMPLATE](/docs/sql-statements/sql-statement-create-text-search-template.md)
 
-**Parent topic:** SQL Commands
+
 

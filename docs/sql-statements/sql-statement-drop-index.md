@@ -45,7 +45,7 @@ DROP INDEX title_idx;
 
 ## See Also
 
-[ALTER INDEX](ALTER_INDEX.html), [CREATE INDEX](CREATE_INDEX.html)
+[ALTER INDEX](/docs/sql-statements/sql-statement-alter-index.md), [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md)
 
-**Parent topic:** SQL Commands
+
 

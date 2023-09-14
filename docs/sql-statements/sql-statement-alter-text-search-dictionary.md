@@ -69,7 +69,7 @@ There is no `ALTER TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
 ## See Also
 
-[CREATE TEXT SEARCH DICTIONARY](CREATE_TEXT_SEARCH_DICTIONARY.html), [DROP TEXT SEARCH DICTIONARY](DROP_TEXT_SEARCH_DICTIONARY.html)
+[CREATE TEXT SEARCH DICTIONARY](/docs/sql-statements/sql-statement-create-text-search-dictionary.md), [DROP TEXT SEARCH DICTIONARY](/docs/sql-statements/sql-statement-drop-text-search-dictionary.md)
 
-**Parent topic:** SQL Commands
+
 

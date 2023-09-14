@@ -40,7 +40,7 @@ This command conforms to the SQL standard, except for the `IF EXISTS` option, wh
 
 ## See Also
 
-[ALTER DOMAIN](ALTER_DOMAIN.html), [CREATE DOMAIN](CREATE_DOMAIN.html)
+[ALTER DOMAIN](/docs/sql-statements/sql-statement-alter-domain.md), [CREATE DOMAIN](/docs/sql-statements/sql-statement-create-domain.md)
 
-**Parent topic:** SQL Commands
+
 

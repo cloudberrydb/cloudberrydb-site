@@ -27,7 +27,7 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 :   Renaming an index acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 **SET TABLESPACE**
-:   Changes the index's tablespace to the specified tablespace and moves the data file(s) associated with the index to the new tablespace. To change the tablespace of an index, you must own the index and have `CREATE` privilege on the new tablespace. All indexes in the current database in a tablespace can be moved by using the `ALL IN TABLESPACE` form, which will lock all indexes to be moved and then move each one. This form also supports `OWNED BY`, which will only move indexes owned by the roles specified. If the `NOWAIT` option is specified then the command will fail if it is unable to acquire all of the locks required immediately. Note that system catalogs will not be moved by this command, use `ALTER DATABASE` or explicit `ALTER INDEX` invocations instead if desired. See also [CREATE TABLESPACE](CREATE_TABLESPACE.html).
+:   Changes the index's tablespace to the specified tablespace and moves the data file(s) associated with the index to the new tablespace. To change the tablespace of an index, you must own the index and have `CREATE` privilege on the new tablespace. All indexes in the current database in a tablespace can be moved by using the `ALL IN TABLESPACE` form, which will lock all indexes to be moved and then move each one. This form also supports `OWNED BY`, which will only move indexes owned by the roles specified. If the `NOWAIT` option is specified then the command will fail if it is unable to acquire all of the locks required immediately. Note that system catalogs will not be moved by this command, use `ALTER DATABASE` or explicit `ALTER INDEX` invocations instead if desired. See also [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md).
 
 **ATTACH PARTITION**
 :   Causes the named index to become attached to the altered index. The named index must be on a partition of the table containing the index being altered, and have an equivalent definition. An attached index cannot be dropped by itself, and will automatically be dropped if its parent index is dropped.
@@ -36,7 +36,7 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 :   This form marks the index as dependent on the extension, such that if the extension is dropped, the index will automatically be dropped as well.
 
 **SET ( storage_parameter [= value] [, ... ] )**
-:   Changes one or more index-method-specific storage parameters for the index. See [CREATE INDEX](CREATE_INDEX.html) for details on the available parameters. Note that the index contents will not be modified immediately by this command; depending on the parameter you might need to rebuild the index with [REINDEX](REINDEX.html) to get the desired effects.
+:   Changes one or more index-method-specific storage parameters for the index. See [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md) for details on the available parameters. Note that the index contents will not be modified immediately by this command; depending on the parameter you might need to rebuild the index with [REINDEX](/docs/sql-statements/sql-statement-reindex.md) to get the desired effects.
 
 **RESET ( storage_parameter [, ... ] )**
 :   Resets one or more index-method-specific storage parameters for the index to their defaults. As with `SET`, a `REINDEX` may be needed to update the index entirely.
@@ -69,7 +69,7 @@ value
 
 ## Notes
 
-These operations are also possible using [ALTER TABLE](ALTER_TABLE.html). `ALTER INDEX` is in fact just an alias for the forms of `ALTER TABLE` that apply to indexes.
+These operations are also possible using [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md). `ALTER INDEX` is in fact just an alias for the forms of `ALTER TABLE` that apply to indexes.
 
 There was formerly an `ALTER INDEX OWNER` variant, but this is now ignored (with a warning). An index cannot have an owner different from its table's owner. Changing the table's owner automatically changes the index as well.
 
@@ -109,7 +109,7 @@ ALTER INDEX coord_idx ALTER COLUMN 3 SET STATISTICS 1000;
 
 ## See Also
 
-[CREATE INDEX](CREATE_INDEX.html), [REINDEX](REINDEX.html), [ALTER TABLE](ALTER_TABLE.html)
+[CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md), [REINDEX](/docs/sql-statements/sql-statement-reindex.md), [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md)
 
-**Parent topic:** SQL Commands
+
 

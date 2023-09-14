@@ -12,7 +12,7 @@ DECLARE <name> [BINARY] [INSENSITIVE] [NO SCROLL] [PARALLEL RETRIEVE] CURSOR
 
 ## Description
 
-`DECLARE` allows a user to create a cursor, which can be used to retrieve a small number of rows at a time out of a larger query. Cursors can return data using [FETCH](FETCH.html).
+`DECLARE` allows a user to create a cursor, which can be used to retrieve a small number of rows at a time out of a larger query. Cursors can return data using [FETCH](/docs/sql-statements/sql-statement-fetch.md).
 
 > **Note** This page describes usage of cursors at the SQL command level. If you are trying to use cursors inside a PL/pgSQL function, the rules are different, see PL/pgSQL.
 
@@ -24,7 +24,7 @@ Binary cursors should be used carefully. Many applications, including `psql`, ar
 
 > **Note** When the client application uses the 'extended query' protocol to issue a `FETCH` command, the Bind protocol message specifies whether data is to be retrieved in text or binary format. This choice overrides the way that the cursor is defined. The concept of a binary cursor as such is thus obsolete when using extended query protocol — any cursor can be treated as either text or binary.
 
-A cursor can be specified in the `WHERE CURRENT OF` clause of the [UPDATE](UPDATE.html) or [DELETE](DELETE.html) statement to update or delete table data. The `UPDATE` or `DELETE` statement can only be run on the server, for example in an interactive `psql` session or a script.
+A cursor can be specified in the `WHERE CURRENT OF` clause of the [UPDATE](/docs/sql-statements/sql-statement-update.md) or [DELETE](/docs/sql-statements/sql-statement-delete.md) statement to update or delete table data. The `UPDATE` or `DELETE` statement can only be run on the server, for example in an interactive `psql` session or a script.
 
 **Parallel Retrieve Cursors**
 
@@ -32,7 +32,7 @@ Greenplum Database supports a special type of cursor, a *parallel retrieve curso
 
 Parallel retrieve cursors do not support the `WITH HOLD` clause. Greenplum Database ignores the `BINARY` clause when you declare a parallel retrieve cursor.
 
-You open a special retrieve session to each parallel retrieve cursor endpoint, and use the [RETRIEVE](RETRIEVE.html) command to retrieve the query results from a parallel retrieve cursor.
+You open a special retrieve session to each parallel retrieve cursor endpoint, and use the [RETRIEVE](/docs/sql-statements/sql-statement-retrieve.md) command to retrieve the query results from a parallel retrieve cursor.
 
 ## Parameters
 
@@ -60,9 +60,9 @@ WITHOUT HOLD
     > **Note** Greenplum Database does not support declaring a `PARALLEL RETRIEVE` cursor with the `WITH HOLD` clause. `WITH HOLD` also cannot not be specified when the `query` includes a `FOR UPDATE` or `FOR SHARE` clause.
 
 query
-:   A [SELECT](SELECT.html) or [VALUES](VALUES.html) command which will provide the rows to be returned by the cursor.
+:   A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the rows to be returned by the cursor.
 
-:   If the cursor is used in the `WHERE CURRENT OF` clause of the [UPDATE](UPDATE.html) or [DELETE](DELETE.html) command, the `SELECT` command must satisfy the following conditions:
+:   If the cursor is used in the `WHERE CURRENT OF` clause of the [UPDATE](/docs/sql-statements/sql-statement-update.md) or [DELETE](/docs/sql-statements/sql-statement-delete.md) command, the `SELECT` command must satisfy the following conditions:
 
     -   Cannot reference a view or external table.
     -   References only one table.
@@ -121,7 +121,7 @@ The SQL standard makes no provisions for parallel retrieve cursors.
 
 ## See Also
 
-[CLOSE](CLOSE.html), [DELETE](DELETE.html), [FETCH](FETCH.html), [MOVE](MOVE.html), [RETRIEVE](RETRIEVE.html), [SELECT](SELECT.html), [UPDATE](UPDATE.html)
+[CLOSE](/docs/sql-statements/sql-statement-close.md), [DELETE](/docs/sql-statements/sql-statement-delete.md), [FETCH](/docs/sql-statements/sql-statement-fetch.md), [MOVE](/docs/sql-statements/sql-statement-move.md), [RETRIEVE](/docs/sql-statements/sql-statement-retrieve.md), [SELECT](/docs/sql-statements/sql-statement-select.md), [UPDATE](/docs/sql-statements/sql-statement-update.md)
 
-**Parent topic:** SQL Commands
+
 

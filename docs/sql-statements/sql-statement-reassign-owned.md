@@ -27,7 +27,7 @@ new_role
 
 `REASSIGN OWNED` requires privileges on both the source role(s) and the target role.
 
-The [DROP OWNED](DROP_OWNED.html) command is an alternative that simply drops all of the database objects owned by one or more roles.
+The [DROP OWNED](/docs/sql-statements/sql-statement-drop-owned.md) command is an alternative that simply drops all of the database objects owned by one or more roles.
 
 The `REASSIGN OWNED` command does not affect any privileges granted to the old_roles on objects that are not owned by them. Likewise, it does not affect default privileges created with `ALTER DEFAULT PRIVILEGES`. Use `DROP OWNED` to revoke such privileges.
 
@@ -45,7 +45,7 @@ The `REASSIGN OWNED` command is a Greenplum Database extension.
 
 ## See Also
 
-[DROP OWNED](DROP_OWNED.html), [DROP ROLE](DROP_ROLE.html), [ALTER DATABASE](ALTER_DATABASE.html)
+[DROP OWNED](/docs/sql-statements/sql-statement-drop-owned.md), [DROP ROLE](/docs/sql-statements/sql-statement-drop-role.md), [ALTER DATABASE](/docs/sql-statements/sql-statement-alter-database.md)
 
-**Parent topic:** SQL Commands
+
 

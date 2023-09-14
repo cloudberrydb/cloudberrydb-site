@@ -79,7 +79,4 @@ There is no `ALTER COLLATION` statement in the SQL standard.
 
 ## See Also
 
-[CREATE COLLATION](CREATE_COLLATION.html), [DROP COLLATION](DROP_COLLATION.html)
-
-**Parent topic:** SQL Commands
-
+[CREATE COLLATION](/docs/sql-statements/sql-statement-create-collation.md), [DROP COLLATION](/docs/sql-statements/sql-statement-drop-collation.md)

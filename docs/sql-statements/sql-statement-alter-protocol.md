@@ -49,7 +49,7 @@ There is no `ALTER PROTOCOL` statement in the SQL standard.
 
 ## See Also
 
-[CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE PROTOCOL](CREATE_PROTOCOL.html), [DROP PROTOCOL](DROP_PROTOCOL.html)
+[CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md), [CREATE PROTOCOL](/docs/sql-statements/sql-statement-create-protocol.md), [DROP PROTOCOL](/docs/sql-statements/sql-statement-drop-protocol.md)
 
-**Parent topic:** SQL Commands
+
 

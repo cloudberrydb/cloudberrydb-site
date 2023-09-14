@@ -20,7 +20,7 @@ The effects of `SET LOCAL` last only till the end of the current transaction, wh
 
 The effects of `SET` or `SET LOCAL` are also canceled by rolling back to a savepoint that is earlier than the command.
 
-If `SET LOCAL` is used within a function that includes a `SET` option for the same configuration parameter (see [CREATE FUNCTION](CREATE_FUNCTION.html)), the effects of the `SET LOCAL` command disappear at function exit; the value in effect when the function was called is restored anyway. This allows `SET LOCAL` to be used for dynamic or repeated changes of a parameter within a function, while retaining the convenience of using the `SET` option to save and restore the caller's value. Note that a regular `SET` command overrides any surrounding function's `SET` option; its effects persist unless rolled back.
+If `SET LOCAL` is used within a function that includes a `SET` option for the same configuration parameter (see [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md)), the effects of the `SET LOCAL` command disappear at function exit; the value in effect when the function was called is restored anyway. This allows `SET LOCAL` to be used for dynamic or repeated changes of a parameter within a function, while retaining the convenience of using the `SET` option to save and restore the caller's value. Note that a regular `SET` command overrides any surrounding function's `SET` option; its effects persist unless rolled back.
 
 See Server Configuration Parameters for information about server parameters.
 
@@ -107,7 +107,7 @@ SET TIME ZONE 'Europe/Rome';
 
 ## See Also
 
-[RESET](RESET.html), [SHOW](SHOW.html)
+[RESET](/docs/sql-statements/sql-statement-reset.md), [SHOW](/docs/sql-statements/sql-statement-show.md)
 
-**Parent topic:** SQL Commands
+
 

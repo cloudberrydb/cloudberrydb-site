@@ -40,7 +40,7 @@ DROP SEQUENCE myserial;
 
 ## See Also
 
-[ALTER SEQUENCE](ALTER_SEQUENCE.html), [CREATE SEQUENCE](CREATE_SEQUENCE.html)
+[ALTER SEQUENCE](/docs/sql-statements/sql-statement-alter-sequence.md), [CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md)
 
-**Parent topic:** SQL Commands
+
 

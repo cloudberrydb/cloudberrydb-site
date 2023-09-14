@@ -20,20 +20,20 @@ CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXI
 
 ## Description
 
-`CREATE TABLE AS` creates a table and fills it with data computed by a [SELECT](SELECT.html) command. The table columns have the names and data types associated with the output columns of the `SELECT`, however you can override the column names by giving an explicit list of new column names.
+`CREATE TABLE AS` creates a table and fills it with data computed by a [SELECT](/docs/sql-statements/sql-statement-select.md) command. The table columns have the names and data types associated with the output columns of the `SELECT`, however you can override the column names by giving an explicit list of new column names.
 
 `CREATE TABLE AS` creates a new table and evaluates the query just once to fill the new table initially. The new table will not track subsequent changes to the source tables of the query.
 
 ## Parameters
 
 GLOBAL | LOCAL
-:   Ignored for compatibility. These keywords are deprecated; refer to [CREATE TABLE](CREATE_TABLE.html) for details.
+:   Ignored for compatibility. These keywords are deprecated; refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 TEMPORARY | TEMP
-:   If specified, the new table is created as a temporary table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
+:   If specified, the new table is created as a temporary table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 UNLOGGED
-:   If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
+:   If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists; simply issue a notice and leave the table unmodified.
@@ -60,7 +60,7 @@ ON COMMIT
 
 :   PRESERVE ROWS — Greenplum Database takes no special action at the ends of transactions for temporary tables. This is the default behavior.
 
-:   DELETE ROWS — Greenplum Database deletes all rows in the temporary table at the end of each transaction block. Essentially, an automatic [TRUNCATE](TRUNCATE.html) is done at each commit.
+:   DELETE ROWS — Greenplum Database deletes all rows in the temporary table at the end of each transaction block. Essentially, an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) is done at each commit.
 
 :   DROP — Greenplum Database drops the temporary table at the end of the current transaction block.
 
@@ -68,19 +68,19 @@ TABLESPACE tablespace_name
 :   The tablespace_name parameter is the name of the tablespace in which the new table is to be created. If not specified, the database's [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp_tablespaces](../config_params/guc-list.html#temp_tablespaces) if the table is temporary.
 
 AS query
-:   A [SELECT](SELECT.html), [TABLE](SELECT.html#table-command), or [VALUES](VALUES.html) command, or an [EXECUTE](EXECUTE.html) command that runs a prepared `SELECT`, `TABLE`, or `VALUES` query.
+:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](SELECT.html#table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command, or an [EXECUTE](/docs/sql-statements/sql-statement-execute.md) command that runs a prepared `SELECT`, `TABLE`, or `VALUES` query.
 
 DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
-:   Used to declare the Greenplum Database distribution policy for the table. Refer to [CREATE TABLE](CREATE_TABLE.html) for details.
+:   Used to declare the Greenplum Database distribution policy for the table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 
 ## Notes
 
-This command is functionally similar to [SELECT INTO](SELECT_INTO.html), but it is preferred since it is less likely to be confused with other uses of the `SELECT INTO` syntax. Furthermore, `CREATE TABLE AS` offers a superset of the functionality offered by `SELECT INTO`.
+This command is functionally similar to [SELECT INTO](/docs/sql-statements/sql-statement-select-into.md), but it is preferred since it is less likely to be confused with other uses of the `SELECT INTO` syntax. Furthermore, `CREATE TABLE AS` offers a superset of the functionality offered by `SELECT INTO`.
 
-`CREATE TABLE AS` can be used for fast data loading from external table data sources. See [CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html).
+`CREATE TABLE AS` can be used for fast data loading from external table data sources. See [CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md).
 
 ## Examples
 
@@ -113,13 +113,13 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
 
 -   The standard requires parentheses around the subquery clause; in Greenplum Database, these parentheses are optional.
 -   In the standard, the `WITH [NO] DATA` clause is required, in Greenplum Database it is optional.
--   Greenplum Database handles temporary tables differently from the standard; see [CREATE TABLE](CREATE_TABLE.html) for details.
+-   Greenplum Database handles temporary tables differently from the standard; see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 -   The `WITH` clause is a Greenplum Database extension; storage parameters are not part of the standard.
 -   The Greenplum Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
 
 ## See Also
 
-[CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html), [CREATE TABLE](CREATE_TABLE.html), [EXECUTE](EXECUTE.html), [SELECT](SELECT.html), [SELECT INTO](SELECT_INTO.html), [VALUES](VALUES.html)
+[CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md), [CREATE MATERIALIZED VIEW](/docs/sql-statements/sql-statement-create-materialized-view.md), [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md), [EXECUTE](/docs/sql-statements/sql-statement-execute.md), [SELECT](/docs/sql-statements/sql-statement-select.md), [SELECT INTO](/docs/sql-statements/sql-statement-select-into.md), [VALUES](/docs/sql-statements/sql-statement-values.md)
 
-**Parent topic:** SQL Commands
+
 

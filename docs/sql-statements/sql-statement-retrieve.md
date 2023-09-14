@@ -97,7 +97,7 @@ COMMIT;
 
 ## See Also
 
-[DECLARE](DECLARE.html), [CLOSE](CLOSE.html)
+[DECLARE](/docs/sql-statements/sql-statement-declare.md), [CLOSE](/docs/sql-statements/sql-statement-close.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -26,7 +26,7 @@ where action is one of:
 -   **ALTER COLUMN TYPE** — Changes the data type of a table column.
 -   **OWNER** — Changes the owner of the external table to the specified user.
 
-Use the [ALTER TABLE](ALTER_TABLE.html) command to perform these actions on an external table:
+Use the [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md) command to perform these actions on an external table:
 
 -   Set (change) the table schema.
 -   Rename the table.
@@ -88,7 +88,7 @@ ALTER EXTERNAL TABLE ext_leads ALTER COLUMN acct_code TYPE integer;
 
 ## See Also
 
-[CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html), [DROP EXTERNAL TABLE](DROP_EXTERNAL_TABLE.html), [ALTER TABLE](ALTER_TABLE.html)
+[CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md), [DROP EXTERNAL TABLE](/docs/sql-statements/sql-statement-drop-external-table.md), [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md)
 
-**Parent topic:** SQL Commands
+
 

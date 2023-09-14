@@ -24,7 +24,7 @@ ALL
 
 ## Notes
 
-Greenplum Database does not have an explicit `OPEN` cursor statement. A cursor is considered open when it is declared. Use the [DECLARE](DECLARE.html) statement to declare (and open) a cursor.
+Greenplum Database does not have an explicit `OPEN` cursor statement. A cursor is considered open when it is declared. Use the [DECLARE](/docs/sql-statements/sql-statement-declare.md) statement to declare (and open) a cursor.
 
 You can see all available cursors by querying the [pg_cursors](../system_catalogs/catalog_ref-views.html#pg_cursors) system view.
 
@@ -44,7 +44,7 @@ CLOSE portala;
 
 ## See Also
 
-[DECLARE](DECLARE.html), [FETCH](FETCH.html), [MOVE](MOVE.html), [RETRIEVE](RETRIEVE.html)
+[DECLARE](/docs/sql-statements/sql-statement-declare.md), [FETCH](/docs/sql-statements/sql-statement-fetch.md), [MOVE](/docs/sql-statements/sql-statement-move.md), [RETRIEVE](/docs/sql-statements/sql-statement-retrieve.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -25,7 +25,7 @@ group_name
 
 You cannot submit a `DROP RESOURCE GROUP` command in an explicit transaction or sub-transaction.
 
-Use [ALTER ROLE](ALTER_ROLE.html) to remove a resource group assigned to a specific user/role.
+Use [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) to remove a resource group assigned to a specific user/role.
 
 Perform the following query to view all of the currently active queries for all resource groups:
 
@@ -64,7 +64,7 @@ The `DROP RESOURCE GROUP` statement is a Greenplum Database extension.
 
 ## See Also
 
-[ALTER RESOURCE GROUP](ALTER_RESOURCE_GROUP.html), [CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [ALTER ROLE](ALTER_ROLE.html)
+[ALTER RESOURCE GROUP](/docs/sql-statements/sql-statement-alter-resource-group.md), [CREATE RESOURCE GROUP](/docs/sql-statements/sql-statement-create-resource-group.md), [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md)
 
-**Parent topic:** SQL Commands
+
 

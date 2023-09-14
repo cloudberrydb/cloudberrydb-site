@@ -20,7 +20,7 @@ PLANS
 :   Releases all cached query plans, forcing re-planning to occur the next time the associated prepared statement is used.
 
 SEQUENCES
-:   Discards all cached sequence-related state, including any preallocated sequence values that have not yet been returned by `nextval()`. (See [CREATE SEQUENCE](CREATE_SEQUENCE.html) for a description of preallocated sequence values.)
+:   Discards all cached sequence-related state, including any preallocated sequence values that have not yet been returned by `nextval()`. (See [CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md) for a description of preallocated sequence values.)
 
 TEMPORARY/TEMP
 :   Drops all temporary tables created in the current session.
@@ -48,5 +48,5 @@ ALL
 
 `DISCARD` is a Greenplum Database extension.
 
-**Parent topic:** SQL Commands
+
 

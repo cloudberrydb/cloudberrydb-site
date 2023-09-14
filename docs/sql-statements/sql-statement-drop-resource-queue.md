@@ -19,7 +19,7 @@ queue_name
 
 ## Notes
 
-Use [ALTER ROLE](ALTER_ROLE.html) to remove a user from a resource queue.
+Use [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) to remove a user from a resource queue.
 
 To see all the currently active queries for all resource queues, perform the following query of the `pg_locks` table joined with the `pg_roles` and `pg_resqueue` tables:
 
@@ -57,7 +57,7 @@ The `DROP RESOURCE QUEUE` statement is a Greenplum Database extension.
 
 ## See Also
 
-[ALTER RESOURCE QUEUE](ALTER_RESOURCE_QUEUE.html), [CREATE RESOURCE QUEUE](CREATE_RESOURCE_QUEUE.html), [ALTER ROLE](ALTER_ROLE.html)
+[ALTER RESOURCE QUEUE](/docs/sql-statements/sql-statement-alter-resource-queue.md), [CREATE RESOURCE QUEUE](/docs/sql-statements/sql-statement-create-resource-queue.md), [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md)
 
-**Parent topic:** SQL Commands
+
 

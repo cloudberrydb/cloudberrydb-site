@@ -26,14 +26,14 @@ expression
 :   A constant or expression to compute and insert at the indicated place in the resulting table (set of rows). In a `VALUES` list appearing at the top level of an `INSERT`, an expression can be replaced by `DEFAULT` to indicate that the destination column's default value should be inserted. `DEFAULT` cannot be used when `VALUES` appears in other contexts.
 
 sort_expression
-:   An expression or integer constant indicating how to sort the result rows. This expression may refer to the columns of the `VALUES` result as `column1`, `column2`, etc. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](SELECT.html).
+:   An expression or integer constant indicating how to sort the result rows. This expression may refer to the columns of the `VALUES` result as `column1`, `column2`, etc. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 operator
-:   A sorting operator. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](SELECT.html).
+:   A sorting operator. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 LIMIT count
 OFFSET start
-:   The maximum number of rows to return. For more details, see "The LIMIT Clause" in the parameters for [SELECT](SELECT.html).
+:   The maximum number of rows to return. For more details, see "The LIMIT Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 ## Notes
 
@@ -99,11 +99,11 @@ SELECT * FROM machines WHERE ip_address IN
 
 ## Compatibility
 
-`VALUES` conforms to the SQL standard. `LIMIT` and `OFFSET` are Greenplum Database extensions; see also under [SELECT](SELECT.html).
+`VALUES` conforms to the SQL standard. `LIMIT` and `OFFSET` are Greenplum Database extensions; see also under [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 ## See Also
 
-[INSERT](INSERT.html), [SELECT](SELECT.html)
+[INSERT](/docs/sql-statements/sql-statement-insert.md), [SELECT](/docs/sql-statements/sql-statement-select.md)
 
-**Parent topic:** SQL Commands
+
 

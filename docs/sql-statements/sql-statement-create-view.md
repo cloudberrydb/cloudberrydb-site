@@ -50,13 +50,13 @@ WITH ( view_option_name [= view_option_value] [, ... ] )
 :   This clause specifies optional parameters for a view; the following parameters are supported:
 
     check_option (string)
-    :   This parameter may be either `local` or `cascaded`, and is equivalent to specifying `WITH [ CASCADED | LOCAL ] CHECK OPTION` (see below). This option can be changed on existing views using [ALTER VIEW](ALTER_VIEW.html).
+    :   This parameter may be either `local` or `cascaded`, and is equivalent to specifying `WITH [ CASCADED | LOCAL ] CHECK OPTION` (see below). This option can be changed on existing views using [ALTER VIEW](/docs/sql-statements/sql-statement-alter-view.md).
 
     security_barrier (boolean)
     :   This should be used if the view is intended to provide row-level security. Refer to [Rules and Privileges](https://www.postgresql.org/docs/12/rules-privileges.html) in the PostgreSQL documentation for more information.
 
 query
-:   A [SELECT](SELECT.html) or [VALUES](VALUES.html) command which will provide the columns and rows of the view.
+:   A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the columns and rows of the view.
 
 WITH [ CASCADED | LOCAL ] CHECK OPTION
 :   This option controls the behavior of automatically updatable views. When this option is specified, `INSERT` and `UPDATE` commands on the view will be checked to ensure that new rows satisfy the view-defining condition (that is, the new rows are checked to ensure that they are visible through the view). If they are not, Greenplum Databvase rejects the update. If the `CHECK OPTION` is not specified, `INSERT` and `UPDATE` commands on the view are allowed to create rows that are not visible through the view. The following check options are supported:
@@ -71,7 +71,7 @@ WITH [ CASCADED | LOCAL ] CHECK OPTION
 
 ## Notes
 
-Use the [DROP VIEW](DROP_VIEW.html) statement to drop views.
+Use the [DROP VIEW](/docs/sql-statements/sql-statement-drop-view.md) statement to drop views.
 
 Ensure that the names and data types of the view's columns are assigned the way you want. For example:
 
@@ -113,7 +113,7 @@ If an automatically updatable view contains a `WHERE` condition, the condition r
 
 If an automatically updatable view is marked with the `security_barrier` property, then all of the view's `WHERE` conditions (and any conditions using operators which are marked as `LEAKPROOF`) will always be evaluated before any conditions that a user of the view has added. Refer to [Rules and Privileges](https://www.postgresql.org/docs/12/rules-privileges.html) in the PostgreSQL documenatation for full details. Note that, due to this, rows which are not ultimately returned (because they do not pass the user's `WHERE` conditions) may still end up being locked. You can use the `EXPLAIN` command to see which conditions are applied at the relation level (and therefore do not lock rows) and which are not.
 
-A more complex view that does not satisfy all of these conditions is read-only by default: the system will not allow an insert, update, or delete on the view. You can get the effect of an updatable view by creating rules (see [CREATE RULE](CREATE_RULE.html)).
+A more complex view that does not satisfy all of these conditions is read-only by default: the system will not allow an insert, update, or delete on the view. You can get the effect of an updatable view by creating rules (see [CREATE RULE](/docs/sql-statements/sql-statement-create-rule.md)).
 
 Note that the user performing the insert, update or delete on the view must have the corresponding insert, update or delete privilege on the view. In addition the view's owner must have the relevant privileges on the underlying base relations, but the user performing the update does not need any permissions on the underlying base relations (again, refer to [Rules and Privileges](https://www.postgresql.org/docs/12/rules-privileges.html) in the PostgreSQL documentation).
 
@@ -194,7 +194,7 @@ Notice that although the recursive view's name is schema-qualified in this `CREA
 
 ## See Also
 
-[ALTER VIEW](ALTER_VIEW.html), [DROP VIEW](DROP_VIEW.html), [CREATE MATERIALIZED VIEW](CREATE_MATERIALIZED_VIEW.html)
+[ALTER VIEW](/docs/sql-statements/sql-statement-alter-view.md), [DROP VIEW](/docs/sql-statements/sql-statement-drop-view.md), [CREATE MATERIALIZED VIEW](/docs/sql-statements/sql-statement-create-materialized-view.md)
 
-**Parent topic:** SQL Commands
+
 

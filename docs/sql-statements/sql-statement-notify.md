@@ -70,7 +70,7 @@ There is no `NOTIFY` statement in the SQL standard.
 
 ## See Also
 
-[LISTEN](LISTEN.html), [UNLISTEN](UNLISTEN.html)
+[LISTEN](/docs/sql-statements/sql-statement-listen.md), [UNLISTEN](/docs/sql-statements/sql-statement-unlisten.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -39,6 +39,6 @@ ALTER RULE notify_all ON emp RENAME TO notify_me;
 
 ## See Also
 
-[CREATE RULE](CREATE_RULE.html), [DROP RULE](DROP_RULE.html)
+[CREATE RULE](/docs/sql-statements/sql-statement-create-rule.md), [DROP RULE](/docs/sql-statements/sql-statement-drop-rule.md)
 
-**Parent topic:** SQL Commands
+

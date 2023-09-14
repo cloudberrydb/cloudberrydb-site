@@ -41,11 +41,11 @@ DROP TRANSFORM FOR hstore LANGUAGE plpython3u;
 
 ## Compatibility
 
-This form of `DROP TRANSFORM` is a Greenplum Database extension. See [CREATE TRANSFORM](CREATE_TRANSFORM.html) for details.
+This form of `DROP TRANSFORM` is a Greenplum Database extension. See [CREATE TRANSFORM](/docs/sql-statements/sql-statement-create-transform.md) for details.
 
 ## See Also
 
-[CREATE TRANSFORM](CREATE_TRANSFORM.html)
+[CREATE TRANSFORM](/docs/sql-statements/sql-statement-create-transform.md)
 
-**Parent topic:** SQL Commands
+
 

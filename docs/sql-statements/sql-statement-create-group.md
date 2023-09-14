@@ -40,7 +40,7 @@ where option can be:
 
 ## Description
 
-`CREATE GROUP` is an alias for [CREATE ROLE](CREATE_ROLE.html).
+`CREATE GROUP` is an alias for [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md).
 
 ## Compatibility
 
@@ -48,7 +48,7 @@ There is no `CREATE GROUP` statement in the SQL standard.
 
 ## See Also
 
-[CREATE ROLE](CREATE_ROLE.html)
+[CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md)
 
-**Parent topic:** SQL Commands
+
 

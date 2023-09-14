@@ -81,7 +81,7 @@ There is no `REINDEX` command in the SQL standard.
 
 ## See Also
 
-[CREATE INDEX](CREATE_INDEX.html), [DROP INDEX](DROP_INDEX.html), [VACUUM](VACUUM.html), reindexdb
+[CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md), [DROP INDEX](/docs/sql-statements/sql-statement-drop-index.md), [VACUUM](/docs/sql-statements/sql-statement-vacuum.md), reindexdb
 
-**Parent topic:** SQL Commands
+
 

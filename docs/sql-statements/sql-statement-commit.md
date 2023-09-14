@@ -19,11 +19,11 @@ TRANSACTION
 :   Optional key words. They have no effect.
 
 AND CHAIN
-:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](SET_TRANSACTION.html)) as the just finished one. Otherwise, no new transaction is started.
+:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md)) as the just finished one. Otherwise, no new transaction is started.
 
 ## Notes
 
-Use [ROLLBACK](ROLLBACK.html) to prematurely end a transaction.
+Use [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md) to prematurely end a transaction.
 
 Issuing `COMMIT` when not inside a transaction does no harm, but it will provoke a warning message. `COMMIT AND CHAIN` when not inside a transaction is an error.
 
@@ -41,7 +41,7 @@ The command `COMMIT` conforms to the SQL standard. The form `COMMIT TRANSACTION`
 
 ## See Also
 
-[BEGIN](BEGIN.html), [END](END.html), [ROLLBACK](ROLLBACK.html), [START TRANSACTION](START_TRANSACTION.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [END](/docs/sql-statements/sql-statement-end.md), [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md), [START TRANSACTION](/docs/sql-statements/sql-statement-start-transaction.md)
 
-**Parent topic:** SQL Commands
+
 

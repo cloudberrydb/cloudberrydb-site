@@ -56,7 +56,7 @@ There is no `CREATE TEXT SEARCH PARSER` statement in the SQL standard.
 
 ## See Also
 
-[ALTER TEXT SEARCH PARSER](ALTER_TEXT_SEARCH_PARSER.html), [DROP TEXT SEARCH PARSER](DROP_TEXT_SEARCH_PARSER.html)
+[ALTER TEXT SEARCH PARSER](/docs/sql-statements/sql-statement-alter-text-search-parser.md), [DROP TEXT SEARCH PARSER](/docs/sql-statements/sql-statement-drop-text-search-parser.md)
 
-**Parent topic:** SQL Commands
+
 

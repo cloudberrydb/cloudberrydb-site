@@ -21,7 +21,7 @@ CREATE DATABASE name
 
 `CREATE DATABASE` creates a new database.
 
-To create a database, you must be a superuser or have the special `CREATEDB` privilege. See [CREATE ROLE](CREATE_ROLE.html).
+To create a database, you must be a superuser or have the special `CREATEDB` privilege. See [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md).
 
 The creator becomes the owner of the new database by default. Superusers can create databases owned by other users by using the `OWNER` clause. They can even create databases owned by users with no special privileges. Non-superusers with `CREATEDB` privilege can only create databases owned by themselves.
 
@@ -48,7 +48,7 @@ lc_ctype
 :   The character classification (`LC_CTYPE`) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#section5) for additional restrictions.
 
 tablespace_name
-:   The name of the tablespace that will be associated with the new database, or `DEFAULT` to use the template database's tablespace. This tablespace will be the default tablespace used for objects created in this database. See [CREATE TABLESPACE](CREATE_TABLESPACE.html) for more information.
+:   The name of the tablespace that will be associated with the new database, or `DEFAULT` to use the template database's tablespace. This tablespace will be the default tablespace used for objects created in this database. See [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md) for more information.
 
 allowconn
 :   If `false`, then no one can connect to this database. The default is `true`, allowing connections (except as restricted by other mechanisms, such as `GRANT/REVOKE CONNECT`).
@@ -71,7 +71,7 @@ Use [DROP DATABASE](DROP_DATABASE.HTML) to remove a database.
 
 The program createdb is a wrapper program around this command, provided for convenience.
 
-Database-level configuration parameters (set via [ALTER DATABASE](ALTER_DATABASE.html) and database-level permissions (set via [GRANT](GRANT.html)) are not copied from the template database.
+Database-level configuration parameters (set via [ALTER DATABASE](/docs/sql-statements/sql-statement-alter-database.md) and database-level permissions (set via [GRANT](/docs/sql-statements/sql-statement-grant.md)) are not copied from the template database.
 
 Although it is possible to copy a database other than `template1` by specifying its name as the template, this is not (yet) intended as a general-purpose `“COPY DATABASE”` facility. The principal limitation is that no other sessions can be connected to the template database while it is being copied. `CREATE DATABASE` will fail if any other connection exists when it starts; otherwise, new connections to the template database are locked out until `CREATE DATABASE` completes.
 
@@ -125,7 +125,7 @@ There is no `CREATE DATABASE` statement in the SQL standard. Databases are equiv
 
 ## See Also
 
-[ALTER DATABASE](ALTER_DATABASE.html), [DROP DATABASE](DROP_DATABASE.html)
+[ALTER DATABASE](/docs/sql-statements/sql-statement-alter-database.md), [DROP DATABASE](/docs/sql-statements/sql-statement-drop-database.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -38,7 +38,7 @@ There is no `DROP CONVERSION` statement in the SQL standard. The standard has `C
 
 ## See Also
 
-[ALTER CONVERSION](ALTER_CONVERSION.html), [CREATE CONVERSION](CREATE_CONVERSION.html)
+[ALTER CONVERSION](/docs/sql-statements/sql-statement-alter-conversion.md), [CREATE CONVERSION](/docs/sql-statements/sql-statement-create-conversion.md)
 
-**Parent topic:** SQL Commands
+
 

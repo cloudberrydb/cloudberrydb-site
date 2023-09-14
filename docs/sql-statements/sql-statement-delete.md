@@ -16,7 +16,7 @@ DELETE FROM [ONLY] <table_name> [[AS] <alias>]
 
 `DELETE` deletes rows that satisfy the `WHERE` clause from the specified table. If the `WHERE` clause is absent, the effect is to delete all rows in the table. The result is a valid, but empty table.
 
-**Tip:** [TRUNCATE](TRUNCATE.html) provides a faster mechanism to remove all rows from a table.
+**Tip:** [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) provides a faster mechanism to remove all rows from a table.
 
 There are two ways to delete rows in a table using information contained in other tables in the database: using sub-selects, or specifying additional tables in the `USING` clause. Which technique is more appropriate depends on the specific circumstances.
 
@@ -35,7 +35,7 @@ with_query
 
 :   For a `DELETE` command that includes a `WITH` clause, the clause can only contain `SELECT` statements, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
 
-:   See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](SELECT.html) for details.
+:   See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](/docs/sql-statements/sql-statement-select.md) for details.
 
 table_name
 :   The name (optionally schema-qualified) of the table to delete rows from. If you specify `ONLY` before the table name, Greenplum Database deletes matching rows from the named table only. If `ONLY` is not specified, matching rows are also deleted from any tables inheriting from the named table. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
@@ -44,13 +44,13 @@ alias
 :   A substitute name for the target table. When an alias is provided, it completely hides the actual name of the table. For example, given `DELETE FROM foo AS f`, the remainder of the `DELETE` statement must refer to this table as `f` not `foo`.
 
 from_item
-:   A table expression allowing columns from other tables to appear in the `WHERE` condition. This uses the same syntax as the `FROM` clause of a [SELECT](SELECT.html) statement; for example, you can specify an alias for the table name. Do not repeat the target table in the from_item, unless you wish to set up a self-join (in which case it must appear with an alias in the from_item).
+:   A table expression allowing columns from other tables to appear in the `WHERE` condition. This uses the same syntax as the `FROM` clause of a [SELECT](/docs/sql-statements/sql-statement-select.md) statement; for example, you can specify an alias for the table name. Do not repeat the target table in the from_item, unless you wish to set up a self-join (in which case it must appear with an alias in the from_item).
 
 condition
 :   An expression that returns a value of type `boolean`. Greenplum Database deletes only those rows for which this expression returns `true`.
 
 cursor_name
-:   The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be deleted is the one most recently fetched from this cursor. The cursor must be a non-grouping query on the `DELETE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](DECLARE.html) for more information about using cursors with `WHERE CURRENT OF`.
+:   The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be deleted is the one most recently fetched from this cursor. The cursor must be a non-grouping query on the `DELETE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](/docs/sql-statements/sql-statement-declare.md) for more information about using cursors with `WHERE CURRENT OF`.
 
 :   The `DELETE...WHERE CURRENT OF` cursor statement can only be run on the server, for example in an interactive psql session or a script. Language extensions such as PL/pgSQL do not have support for updatable cursors.
 
@@ -132,7 +132,7 @@ This command conforms to the SQL standard, except that the `USING` and `RETURNIN
 
 ## See Also
 
-[TRUNCATE](TRUNCATE.html)
+[TRUNCATE](/docs/sql-statements/sql-statement-truncate.md)
 
-**Parent topic:** SQL Commands
+
 

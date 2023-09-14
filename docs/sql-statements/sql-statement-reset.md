@@ -18,7 +18,7 @@ RESET ALL
 SET <configuration_parameter> TO DEFAULT
 ```
 
-Refer to [SET](SET.html) for details.
+Refer to [SET](/docs/sql-statements/sql-statement-set.md) for details.
 
 The default value is defined as the value that the parameter would have had, had no `SET` ever been issued for it in the current session. The actual source of this value might be a compiled-in default, the coordinator `postgresql.conf` configuration file, command-line options, or per-database or per-user default settings. This is subtly different from defining it as "the value that the parameter had at session start", because if the value came from the configuration file, it will be reset to whatever is specified by the configuration file now. See Server Configuration Parameters for more information.
 
@@ -46,7 +46,7 @@ RESET statement_mem;
 
 ## See Also
 
-[SET](SET.html), [SHOW](SHOW.html)
+[SET](/docs/sql-statements/sql-statement-set.md), [SHOW](/docs/sql-statements/sql-statement-show.md)
 
-**Parent topic:** SQL Commands
+
 

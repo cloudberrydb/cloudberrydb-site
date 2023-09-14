@@ -26,7 +26,7 @@ argument
 
 The user must have `EXECUTE` privilege on the procedure in order to be allowed to invoke it.
 
-To call a function (not a procedure), use [SELECT](SELECT.html) instead.
+To call a function (not a procedure), use [SELECT](/docs/sql-statements/sql-statement-select.md) instead.
 
 If `CALL` is invoked in a transaction block, then the called procedure cannot run transaction control statements. Transaction control statements are only allowed if `CALL` is invoked in its own transaction.
 
@@ -44,7 +44,7 @@ CALL do_db_maintenance();
 
 ## See Also
 
-[CREATE PROCEDURE](CREATE_PROCEDURE.html)
+[CREATE PROCEDURE](/docs/sql-statements/sql-statement-create-procedure.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -146,7 +146,7 @@ INSERT INTO product VALUES (setval('myseq', 201), 'gizmo');
 
 ## See Also
 
-[ALTER SEQUENCE](ALTER_SEQUENCE.html), [DROP SEQUENCE](DROP_SEQUENCE.html)
+[ALTER SEQUENCE](/docs/sql-statements/sql-statement-alter-sequence.md), [DROP SEQUENCE](/docs/sql-statements/sql-statement-drop-sequence.md)
 
-**Parent topic:** SQL Commands
+
 

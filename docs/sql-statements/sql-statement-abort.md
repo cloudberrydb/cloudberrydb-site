@@ -10,7 +10,7 @@ ABORT [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 ## Description
 
-`ABORT` rolls back the current transaction and causes all the updates made by the transaction to be discarded. This command is identical in behavior to the standard SQL command [ROLLBACK](ROLLBACK.html), and is present only for historical reasons.
+`ABORT` rolls back the current transaction and causes all the updates made by the transaction to be discarded. This command is identical in behavior to the standard SQL command [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md), and is present only for historical reasons.
 
 ## Parameters
 
@@ -19,11 +19,11 @@ TRANSACTION
 :   Optional key words. They have no effect.
 
 AND CHAIN
-:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](SET_TRANSACTION.html)) as the just finished one. Otherwise, no new transaction is started.
+:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md)) as the just finished one. Otherwise, no new transaction is started.
 
 ## Notes
 
-Use [COMMIT](COMMIT.html) to successfully terminate a transaction.
+Use [COMMIT](/docs/sql-statements/sql-statement-commit.md) to successfully terminate a transaction.
 
 Issuing `ABORT` outside of a transaction block emits a warning and otherwise has no effect.
 
@@ -41,7 +41,7 @@ This command is a Greenplum Database extension present for historical reasons. `
 
 ## See Also
 
-[BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [COMMIT](/docs/sql-statements/sql-statement-commit.md), [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md)
 
-**Parent topic:** SQL Commands
+
 

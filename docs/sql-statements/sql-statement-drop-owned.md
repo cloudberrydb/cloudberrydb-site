@@ -29,7 +29,7 @@ RESTRICT
 
 Using the `CASCADE` option may make the command recurse to objects owned by other users.
 
-The [REASSIGN OWNED](REASSIGN_OWNED.html) command is an alternative that reassigns the ownership of all the database objects owned by one or more roles. However, `REASSIGN OWNED` does not deal with privileges for other objects.
+The [REASSIGN OWNED](/docs/sql-statements/sql-statement-reassign-owned.md) command is an alternative that reassigns the ownership of all the database objects owned by one or more roles. However, `REASSIGN OWNED` does not deal with privileges for other objects.
 
 Databases and tablespaces owned by the role(s) will not be removed.
 
@@ -47,7 +47,7 @@ The `DROP OWNED` command is a Greenplum Database extension.
 
 ## See Also
 
-[REASSIGN OWNED](REASSIGN_OWNED.html), [DROP ROLE](DROP_ROLE.html)
+[REASSIGN OWNED](/docs/sql-statements/sql-statement-reassign-owned.md), [DROP ROLE](/docs/sql-statements/sql-statement-drop-role.md)
 
-**Parent topic:** SQL Commands
+
 

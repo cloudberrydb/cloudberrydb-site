@@ -478,7 +478,7 @@ Note that in this syntax, `BINARY` and `CSV` are treated as independent keywords
 
 ## See Also
 
-[CREATE EXTERNAL TABLE](CREATE_EXTERNAL_TABLE.html)
+[CREATE EXTERNAL TABLE](/docs/sql-statements/sql-statement-create-external-table.md)
 
-**Parent topic:** SQL Commands
+
 

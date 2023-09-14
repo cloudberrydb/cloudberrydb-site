@@ -52,7 +52,7 @@ argmode
 :   The mode of an argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `ALTER FUNCTION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
 
 argname
-:   The name of an argument. Note that [ALTER FUNCTION](ALTER_FUNCTION.html) does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+:   The name of an argument. Note that [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
 
 argtype
 :   The data type(s) of the function's arguments (optionally schema-qualified), if any.
@@ -72,22 +72,22 @@ extension_name
 CALLED ON NULL INPUT
 RETURNS NULL ON NULL INPUT
 STRICT
-:   `CALLED ON NULL INPUT` changes the function so that it will be invoked when some or all of its arguments are null. `RETURNS NULL ON NULL INPUT` or `STRICT` changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
+:   `CALLED ON NULL INPUT` changes the function so that it will be invoked when some or all of its arguments are null. `RETURNS NULL ON NULL INPUT` or `STRICT` changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 IMMUTABLE
 STABLE
 VOLATILE
-:   Change the volatility of the function to the specified setting. See [CREATE FUNCTION](CREATE_FUNCTION.html) for details.
+:   Change the volatility of the function to the specified setting. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for details.
 
 [ EXTERNAL ] SECURITY INVOKER
 [ EXTERNAL ] SECURITY DEFINER
-:   Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information about this capability.
+:   Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information about this capability.
 
 PARALLEL
-:   Change whether the function is deemed safe for parallelism. See [CREATE FUNCTION](CREATE_FUNCTION.html) for details.
+:   Change whether the function is deemed safe for parallelism. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for details.
 
 LEAKPROOF
-:   Change whether the function is considered leakproof or not. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information about this capability.
+:   Change whether the function is considered leakproof or not. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information about this capability.
 
 EXECUTE ON ANY
 EXECUTE ON COORDINATOR
@@ -103,13 +103,13 @@ EXECUTE ON INITPLAN
 
 :   `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Greenplum Database when possible.
 
-:   For more information about the `EXECUTE ON` attributes, see [CREATE FUNCTION](CREATE_FUNCTION.html).
+:   For more information about the `EXECUTE ON` attributes, see [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md).
 
 COST execution_cost
-:   Change the estimated execution cost of the function. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
+:   Change the estimated execution cost of the function. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 ROWS result_rows
-:   Change the estimated number of rows returned by a set-returning function. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
+:   Change the estimated number of rows returned by a set-returning function. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 SUPPORT support_function
 :   Set or change the planner support function to use for this function. You must be superuser to use this option.
@@ -118,14 +118,14 @@ SUPPORT support_function
 configuration_parameter
 value
 :   Set or change the value of a configuration parameter when the function is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the function-local setting is removed, and the function runs with the value present in its environment. Use `RESET ALL` to clear all function-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER FUNCTION` is run as the value to be applied when the function is entered.
-:   See [SET](SET.html) for more information about allowed parameter names and values.
+:   See [SET](/docs/sql-statements/sql-statement-set.md) for more information about allowed parameter names and values.
 
 RESTRICT
 :   Ignored for conformance with the SQL standard.
 
 ## Notes
 
-Greenplum Database has limitations on the use of functions defined as `STABLE` or `VOLATILE`. See [CREATE FUNCTION](CREATE_FUNCTION.html) for more information.
+Greenplum Database has limitations on the use of functions defined as `STABLE` or `VOLATILE`. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 ## Examples
 
@@ -173,7 +173,7 @@ This statement is partially compatible with the `ALTER FUNCTION` statement in th
 
 ## See Also
 
-[CREATE FUNCTION](CREATE_FUNCTION.html), [DROP FUNCTION](DROP_FUNCTION.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html), [ALTER ROUTINE](ALTER_ROUTINE.html)
+[CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [DROP FUNCTION](/docs/sql-statements/sql-statement-drop-function.md), [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md), [ALTER ROUTINE](/docs/sql-statements/sql-statement-alter-routine.md)
 
-**Parent topic:** SQL Commands
+
 

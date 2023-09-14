@@ -10,7 +10,7 @@ END [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 ## Description
 
-`END` commits the current transaction. All changes made by the transaction become visible to others and are guaranteed to be durable if a crash occurs. This command is a Greenplum Database extension that is equivalent to [COMMIT](COMMIT.html).
+`END` commits the current transaction. All changes made by the transaction become visible to others and are guaranteed to be durable if a crash occurs. This command is a Greenplum Database extension that is equivalent to [COMMIT](/docs/sql-statements/sql-statement-commit.md).
 
 ## Parameters
 
@@ -19,11 +19,11 @@ TRANSACTION
 :   Optional keywords. They have no effect.
 
 AND CHAIN
-:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](SET_TRANSACTION.html)) as the just finished one. Otherwise, no new transaction is started.
+:   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md)) as the just finished one. Otherwise, no new transaction is started.
 
 ## Notes
 
-Use [ROLLBACK](ROLLBACK.html) to terminate a transaction.
+Use [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md) to terminate a transaction.
 
 Issuing `END` when not inside a transaction does no harm, but it will provoke a warning message.
 
@@ -37,11 +37,11 @@ END;
 
 ## Compatibility
 
-`END` is a Greenplum Database extension that provides functionality equivalent to [COMMIT](COMMIT.html), which is specified in the SQL standard.
+`END` is a Greenplum Database extension that provides functionality equivalent to [COMMIT](/docs/sql-statements/sql-statement-commit.md), which is specified in the SQL standard.
 
 ## See Also
 
-[BEGIN](BEGIN.html), [COMMIT](COMMIT.html), [ROLLBACK](ROLLBACK.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [COMMIT](/docs/sql-statements/sql-statement-commit.md), [ROLLBACK](/docs/sql-statements/sql-statement-rollback.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -78,7 +78,7 @@ CREATE SERVER myserver FOREIGN DATA WRAPPER gpfdw1
 
 ## See Also
 
-[ALTER SERVER](ALTER_SERVER.html), [DROP SERVER](DROP_SERVER.html), [CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [CREATE FOREIGN TABLE](CREATE_FOREIGN_TABLE.html), [CREATE USER MAPPING](CREATE_USER_MAPPING.html)
+[ALTER SERVER](/docs/sql-statements/sql-statement-alter-server.md), [DROP SERVER](/docs/sql-statements/sql-statement-drop-server.md), [CREATE FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-create-foreign-data-wrapper.md), [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md), [CREATE USER MAPPING](/docs/sql-statements/sql-statement-create-user-mapping.md)
 
-**Parent topic:** SQL Commands
+
 

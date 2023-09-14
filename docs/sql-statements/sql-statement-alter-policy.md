@@ -36,10 +36,10 @@ role_name
 :   The role(s) to which the policy applies. Multiple roles can be specified at one time. To apply the policy to all roles, use `PUBLIC`.
 
 using_expression
-:   The `USING` expression for the policy. See [CREATE POLICY](CREATE_POLICY.html) for details.
+:   The `USING` expression for the policy. See [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md) for details.
 
 check_expression
-:   The `WITH CHECK` expression for the policy. See [CREATE POLICY](CREATE_POLICY.html) for details.
+:   The `WITH CHECK` expression for the policy. See [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md) for details.
 
 ## Compatibility
 
@@ -47,7 +47,7 @@ check_expression
 
 ## See Also
 
-[CREATE POLICY](CREATE_POLICY.html), [DROP POLICY](DROP_POLICY.html)
+[CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md), [DROP POLICY](/docs/sql-statements/sql-statement-drop-policy.md)
 
-**Parent topic:** SQL Commands
+
 

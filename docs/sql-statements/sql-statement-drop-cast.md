@@ -41,7 +41,7 @@ There `DROP CAST` command conforms to the SQL standard.
 
 ## See Also
 
-[CREATE CAST](CREATE_CAST.html)
+[CREATE CAST](/docs/sql-statements/sql-statement-create-cast.md)
 
-**Parent topic:** SQL Commands
+
 

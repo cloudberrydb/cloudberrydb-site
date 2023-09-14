@@ -31,7 +31,7 @@ You must have the `UPDATE` privilege on the table, or at least on the column(s) 
 ## Parameters
 
 with_query
-:   The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `UPDATE` query. See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](SELECT.html) for details.
+:   The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `UPDATE` query. See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](/docs/sql-statements/sql-statement-select.md) for details.
 
 :   For an `UPDATE` command that includes a `WITH` clause, the clause can only contain `SELECT` commands, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
 
@@ -56,13 +56,13 @@ sub-SELECT
 :   A `SELECT` sub-query that produces as many output columns as are listed in the parenthesized column list preceding it. The sub-query must yield no more than one row when executed. If it yields one row, its column values are assigned to the target columns; if it yields no rows, NULL values are assigned to the target columns. The sub-query can refer to old values of the current row of the table being updated.
 
 from_item
-:   A table expression allowing columns from other tables to appear in the `WHERE` condition and the update expressions. This uses the same syntax as the `FROM` clause of a [SELECT](SELECT.html) statement; for example, you can specify an alias for the table name. Do not repeat the target table as a from_item unless you intend a self-join (in which case it must appear with an alias in the from_item).
+:   A table expression allowing columns from other tables to appear in the `WHERE` condition and the update expressions. This uses the same syntax as the `FROM` clause of a [SELECT](/docs/sql-statements/sql-statement-select.md) statement; for example, you can specify an alias for the table name. Do not repeat the target table as a from_item unless you intend a self-join (in which case it must appear with an alias in the from_item).
 
 condition
 :   An expression that returns a value of type `boolean`. Only rows for which this expression returns `true` will be updated.
 
 cursor_name
-:   The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be updated is the one most recently fetched from the cursor. The cursor must be a non-grouping query on the `UPDATE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](DECLARE.html) for more information about using cursors with `WHERE CURRENT OF`.
+:   The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be updated is the one most recently fetched from the cursor. The cursor must be a non-grouping query on the `UPDATE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](/docs/sql-statements/sql-statement-declare.md) for more information about using cursors with `WHERE CURRENT OF`.
 
 :   The `UPDATE...WHERE CURRENT OF` statement can only be run on the server, for example in an interactive psql session or a script. Language extensions such as PL/pgSQL do not have support for updatable cursors.
 
@@ -200,7 +200,7 @@ According to the standard, the source value for a parenthesized sub-list of targ
 
 ## See Also
 
-[DECLARE](DECLARE.html), [DELETE](DELETE.html), [SELECT](SELECT.html), [INSERT](INSERT.html)
+[DECLARE](/docs/sql-statements/sql-statement-declare.md), [DELETE](/docs/sql-statements/sql-statement-delete.md), [SELECT](/docs/sql-statements/sql-statement-select.md), [INSERT](/docs/sql-statements/sql-statement-insert.md)
 
-**Parent topic:** SQL Commands
+
 

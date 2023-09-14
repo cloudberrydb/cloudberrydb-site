@@ -78,7 +78,7 @@ The value range is `0-500`. The default value is `0`, which means that the cost 
 
 ## Notes
 
-Use [CREATE ROLE](CREATE_ROLE.html) or [ALTER ROLE](ALTER_ROLE.html) to assign a specific resource group to a role (user).
+Use [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) or [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) to assign a specific resource group to a role (user).
 
 You cannot submit an `ALTER RESOURCE GROUP` command in an explicit transaction or sub-transaction.
 
@@ -114,7 +114,7 @@ The `ALTER RESOURCE GROUP` statement is a Greenplum Database extension. This com
 
 ## See Also
 
-[CREATE RESOURCE GROUP](CREATE_RESOURCE_GROUP.html), [DROP RESOURCE GROUP](DROP_RESOURCE_GROUP.html), [CREATE ROLE](CREATE_ROLE.html), [ALTER ROLE](ALTER_ROLE.html)
+[CREATE RESOURCE GROUP](/docs/sql-statements/sql-statement-create-resource-group.md), [DROP RESOURCE GROUP](/docs/sql-statements/sql-statement-drop-resource-group.md), [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md), [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md)
 
-**Parent topic:** SQL Commands
+
 

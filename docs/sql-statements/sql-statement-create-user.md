@@ -37,7 +37,7 @@ where option can be:
 
 ## Description
 
-`CREATE USER` is an alias for [CREATE ROLE](CREATE_ROLE.html). The only difference is that when the command `CREATE USER` is invoked, `LOGIN` is assumed by default, whereas `NOLOGIN` is assumed when the command invoked is `CREATE ROLE`.
+`CREATE USER` is an alias for [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md). The only difference is that when the command `CREATE USER` is invoked, `LOGIN` is assumed by default, whereas `NOLOGIN` is assumed when the command invoked is `CREATE ROLE`.
 
 ## Compatibility
 
@@ -45,7 +45,7 @@ The `CREATE USER` statement is a Greenplum Database extension. The SQL standard 
 
 ## See Also
 
-[CREATE ROLE](CREATE_ROLE.html)
+[CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md)
 
-**Parent topic:** SQL Commands
+
 

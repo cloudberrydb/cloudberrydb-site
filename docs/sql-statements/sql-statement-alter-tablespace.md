@@ -54,7 +54,7 @@ There is no `ALTER TABLESPACE` statement in the SQL standard.
 
 ## See Also
 
-[CREATE TABLESPACE](CREATE_TABLESPACE.html), [DROP TABLESPACE](DROP_TABLESPACE.html)
+[CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md), [DROP TABLESPACE](/docs/sql-statements/sql-statement-drop-tablespace.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -71,7 +71,7 @@ value
 :   The `SET` clause applies a value to a session configuration parameter when the procedure is entered. The configuration parameter is restored to its prior value when the procedure exits. `SET FROM CURRENT` saves the value of the parameter that is current when `CREATE PROCEDURE` is run as the value to be applied when the procedure is entered.
 :   If a `SET` clause is attached to a procedure, then the effects of a `SET LOCAL` command executed inside the procedure for the same variable are restricted to the procedure: the configuration parameter's prior value is still restored at procedure exit. However, an ordinary `SET` command (without `LOCAL`) overrides the `SET` clause, much as it would do for a previous `SET LOCAL` command: the effects of such a command will persist after procedure exit, unless the current transaction is rolled back.
 :   If a `SET` clause is attached to a procedure, then that procedure cannot execute transaction control statements (for example, `COMMIT` and `ROLLBACK`, depending on the language).
-:   See [SET](SET.html) for more information about allowed parameter names and values.
+:   See [SET](/docs/sql-statements/sql-statement-set.md) for more information about allowed parameter names and values.
 
 definition
 :   A string constant defining the procedure; the meaning depends on the language. It may be an internal procedure name, the path to an object file, an SQL command, or text in a procedural language.
@@ -80,14 +80,14 @@ definition
 ](https://www.postgresql.org/docs/12/sql-syntax-lexical.html#SQL-SYNTAX-DOLLAR-QUOTING) in the PostgreSQL documentation) to write the procedure definition string, rather than the normal single quote syntax. Without dollar quoting, any single quotes or backslashes in the procedure definition must be escaped by doubling them.
 
 obj_file, link_symbol
-:   This form of the `AS` clause is used for dynamically loadable C language procedures when the procedure name in the C language source code is not the same as the name of the SQL procedure. The string obj_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](LOAD.html) command. The string link_symbol is the name of the procedure in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL procedure being defined.
+:   This form of the `AS` clause is used for dynamically loadable C language procedures when the procedure name in the C language source code is not the same as the name of the SQL procedure. The string obj_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](/docs/sql-statements/sql-statement-load.md) command. The string link_symbol is the name of the procedure in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL procedure being defined.
 :   When repeated `CREATE PROCEDURE` calls refer to the same object file, the file is only loaded once per session. To unload and reload the file (perhaps during development), start a new session.
 
 ## Notes
 
-See [CREATE FUNCTION](CREATE_FUNCTION.html) for more details on function creation that also apply to procedures.
+See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more details on function creation that also apply to procedures.
 
-Use [CALL](CALL.html) to execute a procedure.
+Use [CALL](/docs/sql-statements/sql-statement-call.md) to execute a procedure.
 
 ## Examples
 
@@ -104,11 +104,11 @@ CALL insert_data(1, 2);
 
 ## Compatibility
 
-A `CREATE PROCEDURE` command is defined in the SQL standard. The Greenplum Database version is similar but not fully compatible. For details see also [CREATE FUNCTION](CREATE_FUNCTION.html).
+A `CREATE PROCEDURE` command is defined in the SQL standard. The Greenplum Database version is similar but not fully compatible. For details see also [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md).
 
 ## See Also
 
-[ALTER PROCEDURE](ALTER_PROCEDURE.html), [DROP PROCEDURE](DROP_PROCEDURE.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [CALL](CALL.html)
+[ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md), [DROP PROCEDURE](/docs/sql-statements/sql-statement-drop-procedure.md), [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [CALL](/docs/sql-statements/sql-statement-call.md)
 
-**Parent topic:** SQL Commands
+
 

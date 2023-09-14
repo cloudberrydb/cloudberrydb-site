@@ -40,7 +40,7 @@ This command is similar to the corresponding command in the SQL standard, apart 
 
 ## See Also
 
-[ALTER TYPE](ALTER_TYPE.html), [CREATE TYPE](CREATE_TYPE.html)
+[ALTER TYPE](/docs/sql-statements/sql-statement-alter-type.md), [CREATE TYPE](/docs/sql-statements/sql-statement-create-type.md)
 
-**Parent topic:** SQL Commands
+
 

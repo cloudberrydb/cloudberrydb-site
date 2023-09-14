@@ -37,7 +37,7 @@ where <action> is one of (depending on the type of routine):
 
 ## Description
 
-`ALTER ROUTINE` changes the definition of a routine, which can be an aggregate function, a normal function, or a procedure. Refer to [ALTER AGGREGATE](ALTER_AGGREGATE.html), [ALTER FUNCTION](ALTER_FUNCTION.html), and [ALTER PROCEDURE](ALTER_PROCEDURE.html) for the description of the parameters, more examples, and further details.
+`ALTER ROUTINE` changes the definition of a routine, which can be an aggregate function, a normal function, or a procedure. Refer to [ALTER AGGREGATE](/docs/sql-statements/sql-statement-alter-aggregate.md), [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md), and [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md) for the description of the parameters, more examples, and further details.
 
 
 ## Examples
@@ -52,11 +52,11 @@ This command will work independent of whether `foo` is an aggregate, function, o
 
 ## Compatibility
 
-This statement is partially compatible with the `ALTER ROUTINE` statement in the SQL standard. Refer to [ALTER FUNCTION](ALTER_FUNCTION.html) and [ALTER PROCEDURE](ALTER_PROCEDURE.html) for more details. Allowing routine names to refer to aggregate functions is a Greenplum Database extension.
+This statement is partially compatible with the `ALTER ROUTINE` statement in the SQL standard. Refer to [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) and [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md) for more details. Allowing routine names to refer to aggregate functions is a Greenplum Database extension.
 
 ## See Also
 
-[ALTER AGGREGATE](ALTER_AGGREGATE.html), [ALTER FUNCTION](ALTER_FUNCTION.html), [ALTER PROCEDURE](ALTER_PROCEDURE.html), [DROP ROUTINE](DROP_ROUTINE.html)
+[ALTER AGGREGATE](/docs/sql-statements/sql-statement-alter-aggregate.md), [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md), [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md), [DROP ROUTINE](/docs/sql-statements/sql-statement-drop-routine.md)
 
-**Parent topic:** SQL Commands
+
 

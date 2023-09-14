@@ -43,7 +43,7 @@ RESTRICT
 
 ## Notes
 
-Alternative syntaxes for referencing ordered-set aggregates are described under [ALTER AGGREGATE](ALTER_AGGREGATE.html).
+Alternative syntaxes for referencing ordered-set aggregates are described under [ALTER AGGREGATE](/docs/sql-statements/sql-statement-alter-aggregate.md).
 
 ## Examples
 
@@ -71,7 +71,7 @@ There is no `DROP AGGREGATE` statement in the SQL standard.
 
 ## See Also
 
-[ALTER AGGREGATE](ALTER_AGGREGATE.html), [CREATE AGGREGATE](CREATE_AGGREGATE.html)
+[ALTER AGGREGATE](/docs/sql-statements/sql-statement-alter-aggregate.md), [CREATE AGGREGATE](/docs/sql-statements/sql-statement-create-aggregate.md)
 
-**Parent topic:** SQL Commands
+
 

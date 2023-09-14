@@ -10,7 +10,7 @@ DROP TABLE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 ## Description
 
-`DROP TABLE` removes tables from the database. Only the table owner, the schema owner, and superuser can drop a table. To empty a table of rows without removing the table definition, use [DELETE](DELETE.html) or [TRUNCATE](TRUNCATE.html).
+`DROP TABLE` removes tables from the database. Only the table owner, the schema owner, and superuser can drop a table. To empty a table of rows without removing the table definition, use [DELETE](/docs/sql-statements/sql-statement-delete.md) or [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md).
 
 `DROP TABLE` always removes any indexes, rules, triggers, and constraints that exist for the target table. However, to drop a table that is referenced by a view, `CASCADE` must be specified. `CASCADE` removes a dependent view entirely.
 
@@ -48,7 +48,7 @@ DROP TABLE films, distributors;
 
 ## See Also
 
-[ALTER TABLE](ALTER_TABLE.html), [CREATE TABLE](CREATE_TABLE.html)
+[ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md), [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md)
 
-**Parent topic:** SQL Commands
+
 

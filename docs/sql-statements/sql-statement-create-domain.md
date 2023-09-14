@@ -99,7 +99,7 @@ CREATE TABLE us_snail_addy (
 
 ## See Also
 
-[ALTER DOMAIN](ALTER_DOMAIN.html), [DROP DOMAIN](DROP_DOMAIN.html)
+[ALTER DOMAIN](/docs/sql-statements/sql-statement-alter-domain.md), [DROP DOMAIN](/docs/sql-statements/sql-statement-drop-domain.md)
 
-**Parent topic:** SQL Commands
+
 

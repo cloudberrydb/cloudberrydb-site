@@ -33,7 +33,7 @@ All functions and operators used in an index definition must be immutable. Their
 
 UNIQUE
 :   Checks for duplicate values in the table when the index is created (if data already exist) and each time data is added. Duplicate entries will generate an error. Unique indexes only apply to B-tree indexes.
-:   Additional restrictions apply when unique indexes are applied to partitioned tables; see [CREATE TABLE](CREATE_TABLE.html).
+:   Additional restrictions apply when unique indexes are applied to partitioned tables; see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing index is anything like the one that would have been created. Index name is required when `IF NOT EXISTS` is specified.
@@ -143,13 +143,13 @@ When `CREATE INDEX` is invoked on a partitioned table, the default behavior is t
 
 For index methods that support ordered scans (currently, only B-tree), you can specify the optional clauses `ASC`, `DESC`, `NULLS FIRST`, and/or `NULLS LAST` to modify the sort ordering of the index. Since an ordered index can be scanned either forward or backward, it is not normally useful to create a single-column `DESC` index — that sort ordering is already available with a regular index. The value of these options is that multicolumn indexes can be created that match the sort ordering requested by a mixed-ordering query, such as `SELECT ... ORDER BY x ASC, y DESC`. The `NULLS` options are useful if you need to support "nulls sort low" behavior, rather than the default "nulls sort high", in queries that depend on indexes to avoid sorting steps.
 
-The system regularly collects statistics on all of a table's columns. Newly-created non-expression indexes can immediately use these statistics to determine an index's usefulness. For new expression indexes, you must run [ANALYZE](ANALYZE.html) to generate statistics for these indexes.
+The system regularly collects statistics on all of a table's columns. Newly-created non-expression indexes can immediately use these statistics to determine an index's usefulness. For new expression indexes, you must run [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) to generate statistics for these indexes.
 
 For most index methods, the speed of creating an index is dependent on the setting of [maintenance_work_mem](../config_params/guc-list.html#maintenance_work_mem). Larger values will reduce the time needed for index creation, so long as you don't make it larger than the amount of memory really available, which would drive the machine into swapping.
 
 `bitmap` indexes perform best for columns that have between 100 and 100,000 distinct values. For a column with more than 100,000 distinct values, the performance and space efficiency of a bitmap index decline. The size of a bitmap index is proportional to the number of rows in the table times the number of distinct values in the indexed column.
 
-Use [DROP INDEX](DROP_INDEX.html) to remove an index.
+Use [DROP INDEX](/docs/sql-statements/sql-statement-drop-index.md) to remove an index.
 
 Like any long-running transaction, `CREATE INDEX` on a table can affect which tuples can be removed by concurrent `VACUUM` on any other table.
 
@@ -223,7 +223,7 @@ Greenplum Database does not support the concurrent creation of indexes (`CONCURR
 
 ## See Also
 
-[ALTER INDEX](ALTER_INDEX.html), [DROP INDEX](DROP_INDEX.html)
+[ALTER INDEX](/docs/sql-statements/sql-statement-alter-index.md), [DROP INDEX](/docs/sql-statements/sql-statement-drop-index.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -65,7 +65,7 @@ There is no `DROP OPERATOR` statement in the SQL standard.
 
 ## See Also
 
-[ALTER OPERATOR](ALTER_OPERATOR.html), [CREATE OPERATOR](CREATE_OPERATOR.html)
+[ALTER OPERATOR](/docs/sql-statements/sql-statement-alter-operator.md), [CREATE OPERATOR](/docs/sql-statements/sql-statement-create-operator.md)
 
-**Parent topic:** SQL Commands
+
 

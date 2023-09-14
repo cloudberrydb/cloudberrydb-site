@@ -59,7 +59,7 @@ COORDINATOR ONLY
 
 `LOCK TABLE` is useless outside of a transaction block: the lock would be held only to the completion of the `LOCK` statement. Therefore, Greenplum Database reports an error if `LOCK` is used outside of a transaction block. Use `BEGIN` and `END` to define a transaction block.
 
-`LOCK TABLE` only deals with table-level locks, and so the mode names involving `ROW` are all misnomers. These mode names should generally be read as indicating the intention of the user to acquire row-level locks within the locked table. Also, `ROW EXCLUSIVE` mode is a shareable table lock. Keep in mind that all the lock modes have identical semantics so far as `LOCK TABLE` is concerned, differing only in the rules about which modes conflict with which. For information on how to acquire an actual row-level lock, see the `FOR UPDATE/FOR SHARE` clause in the [SELECT](SELECT.html) reference documentation.
+`LOCK TABLE` only deals with table-level locks, and so the mode names involving `ROW` are all misnomers. These mode names should generally be read as indicating the intention of the user to acquire row-level locks within the locked table. Also, `ROW EXCLUSIVE` mode is a shareable table lock. Keep in mind that all the lock modes have identical semantics so far as `LOCK TABLE` is concerned, differing only in the rules about which modes conflict with which. For information on how to acquire an actual row-level lock, see the `FOR UPDATE/FOR SHARE` clause in the [SELECT](/docs/sql-statements/sql-statement-select.md) reference documentation.
 
 ## Examples
 
@@ -89,13 +89,13 @@ COMMIT WORK;
 
 ## Compatibility
 
-There is no `LOCK TABLE` in the SQL standard, which instead uses `SET TRANSACTION` to specify concurrency levels on transactions. Greenplum Database supports that too; see [SET TRANSACTION](SET_TRANSACTION.html) for details.
+There is no `LOCK TABLE` in the SQL standard, which instead uses `SET TRANSACTION` to specify concurrency levels on transactions. Greenplum Database supports that too; see [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md) for details.
 
 Except for `ACCESS SHARE`, `ACCESS EXCLUSIVE`, and `SHARE UPDATE EXCLUSIVE` lock modes, the Greenplum Database lock modes and the `LOCK TABLE` syntax are compatible with those present in Oracle.
 
 ## See Also
 
-[BEGIN](BEGIN.html), [SET TRANSACTION](SET_TRANSACTION.html), [SELECT](SELECT.html)
+[BEGIN](/docs/sql-statements/sql-statement-begin.md), [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md), [SELECT](/docs/sql-statements/sql-statement-select.md)
 
-**Parent topic:** SQL Commands
+
 

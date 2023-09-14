@@ -17,7 +17,7 @@ CREATE TRIGGER <name> {BEFORE | AFTER} {<event> [OR ...]}
 >*Important* Due to the distributed nature of a Greenplum Database system, the use of triggers on data is very limited in Greenplum Database. The function used in the trigger must be `IMMUTABLE`, meaning it cannot use information not directly present in its argument list. The function specified in the trigger also cannot run any SQL or modify distributed database objects in any way. Given that triggers are most often used to alter tables (for example, update these other rows when this row is updated), these limitations offer very little practical use of triggers in Greenplum Database. For that reason, Greenplum does not support the use of user-defined triggers in Greenplum Database. Triggers cannot be used on append-optimized tables.
 > Event Triggers, which capture only DDL events, _are_ supported in Greenplum Database. See the PostgreSQL documentation for [Event Triggers](https://www.postgresql.org/docs/12/event-triggers.html) for additional information.
 
-[SELECT](SELECT.html) does not modify any rows so you can not create `SELECT` triggers. Rules and views are more appropriate in such cases.
+[SELECT](/docs/sql-statements/sql-statement-select.md) does not modify any rows so you can not create `SELECT` triggers. Rules and views are more appropriate in such cases.
 
 ## Parameters
 
@@ -73,7 +73,7 @@ The `CREATE TRIGGER` statement in Greenplum Database implements a subset of the 
 
 ## See Also
 
-[CREATE FUNCTION](CREATE_FUNCTION.html), [ALTER TRIGGER](ALTER_TRIGGER.html), [DROP TRIGGER](DROP_TRIGGER.html), [CREATE RULE](CREATE_RULE.html)
+[CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [ALTER TRIGGER](/docs/sql-statements/sql-statement-alter-trigger.md), [DROP TRIGGER](/docs/sql-statements/sql-statement-drop-trigger.md), [CREATE RULE](/docs/sql-statements/sql-statement-create-rule.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -160,7 +160,7 @@ Refer to About Configuring Row-Level Security Policies for more information and 
 
 ## See Also
 
-[ALTER POLICY](ALTER_POLICY.html), [DROP POLICY](DROP_POLICY.html), [ALTER TABLE](ALTER_TABLE.html)
+[ALTER POLICY](/docs/sql-statements/sql-statement-alter-policy.md), [DROP POLICY](/docs/sql-statements/sql-statement-drop-policy.md), [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md)
 
-**Parent topic:** SQL Commands
+
 

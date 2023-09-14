@@ -17,7 +17,7 @@ CREATE MATERIALIZED VIEW [ IF  NOT EXISTS ] <table_name>
 
 ## Description
 
-`CREATE MATERIALIZED VIEW` defines a materialized view of a query. The query is run and used to populate the view at the time the command is issued (unless `WITH NO DATA` is used) and can be refreshed later using [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html).
+`CREATE MATERIALIZED VIEW` defines a materialized view of a query. The query is run and used to populate the view at the time the command is issued (unless `WITH NO DATA` is used) and can be refreshed later using [REFRESH MATERIALIZED VIEW](/docs/sql-statements/sql-statement-refresh-materialized-view.md).
 
 `CREATE MATERIALIZED VIEW` is similar to `CREATE TABLE AS`, except that it also remembers the query used to initialize the view, so that it can be refreshed later upon demand. To refresh materialized view data, use the `REFRESH MATERIALIZED VIEW` command. A materialized view has many of the same properties as a table, but there is no support for temporary materialized views.
 
@@ -36,13 +36,13 @@ USING method
 :   This optional clause specifies the table access method to use to store the contents for the new materialized view; the method needs be an access method of type `TABLE`. If this option is not specified, the default table access method is chosen for the new materialized view. See default_table_access_method for more information.
 
 WITH ( storage_parameter [= value] [, ... ] )
-:   This clause specifies optional storage parameters for the materialized view. All parameters supported for `CREATE TABLE` are also supported for `CREATE MATERIALIZED VIEW`. See [CREATE TABLE](CREATE_TABLE.html) for more information.
+:   This clause specifies optional storage parameters for the materialized view. All parameters supported for `CREATE TABLE` are also supported for `CREATE MATERIALIZED VIEW`. See [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more information.
 
 TABLESPACE tablespace_name
 :   The tablespace_name is the name of the tablespace in which the new materialized view is to be created. If not specified, server configuration parameter default_tablespace is consulted.
 
 query
-:   A [SELECT](SELECT.html), [TABLE](SELECT.html#table-command), or [VALUES](VALUES.html) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
+:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](SELECT.html#table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
 
 WITH [ NO ] DATA
 :   This clause specifies whether or not the materialized view should be populated with data at creation time. `WITH DATA` is the default, populate the materialized view. For `WITH NO DATA`, the materialized view is not populated with data, is flagged as unscannable, and cannot be queried until `REFRESH MATERIALIZED VIEW` is used to populate the materialized view.
@@ -50,7 +50,7 @@ WITH [ NO ] DATA
 DISTRIBUTED BY (column [opclass], [ ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
-:   Used to declare the Greenplum Database distribution policy for the materialized view data. For information about a table distribution policy, see [CREATE TABLE](CREATE_TABLE.html).
+:   Used to declare the Greenplum Database distribution policy for the materialized view data. For information about a table distribution policy, see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
 ## Notes
 
@@ -82,7 +82,7 @@ names, rank WHERE rank < '11' AND names.id=rank.id;
 
 ## See Also
 
-[SELECT](SELECT.html), [VALUES](VALUES.html), [CREATE VIEW](CREATE_VIEW.html), [ALTER MATERIALIZED VIEW](ALTER_MATERIALIZED_VIEW.html), [DROP MATERIALIZED VIEW](DROP_MATERIALIZED_VIEW.html), [REFRESH MATERIALIZED VIEW](REFRESH_MATERIALIZED_VIEW.html)
+[SELECT](/docs/sql-statements/sql-statement-select.md), [VALUES](/docs/sql-statements/sql-statement-values.md), [CREATE VIEW](/docs/sql-statements/sql-statement-create-view.md), [ALTER MATERIALIZED VIEW](/docs/sql-statements/sql-statement-alter-materialized-view.md), [DROP MATERIALIZED VIEW](/docs/sql-statements/sql-statement-drop-materialized-view.md), [REFRESH MATERIALIZED VIEW](/docs/sql-statements/sql-statement-refresh-materialized-view.md)
 
-**Parent topic:** SQL Commands
+
 

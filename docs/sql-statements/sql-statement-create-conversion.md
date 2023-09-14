@@ -44,7 +44,7 @@ conv_proc(
 
 ## Notes
 
-Use [DROP CONVERSION](DROP_CONVERSION.html) to remove a user-defined conversion.
+Use [DROP CONVERSION](/docs/sql-statements/sql-statement-drop-conversion.md) to remove a user-defined conversion.
 
 The privileges required to create a conversion might change in a feature release.
 
@@ -65,7 +65,7 @@ CREATE CONVERSION myconv FOR 'UTF8' TO 'LATIN1' FROM myfunc;
 
 ## See Also
 
-[ALTER CONVERSION](ALTER_CONVERSION.html), [CREATE FUNCTION](CREATE_FUNCTION.html), [DROP CONVERSION](DROP_CONVERSION.html)
+[ALTER CONVERSION](/docs/sql-statements/sql-statement-alter-conversion.md), [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md), [DROP CONVERSION](/docs/sql-statements/sql-statement-drop-conversion.md)
 
-**Parent topic:** SQL Commands
+
 

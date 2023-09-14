@@ -43,7 +43,7 @@ DROP RULE sales_2006 ON sales;
 
 ## See Also
 
-[ALTER RULE](ALTER_RULE.html), [CREATE RULE](CREATE_RULE.html)
+[ALTER RULE](/docs/sql-statements/sql-statement-alter-rule.md), [CREATE RULE](/docs/sql-statements/sql-statement-create-rule.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -95,7 +95,7 @@ where <role_specification> can be:
 
 `REVOKE` command revokes previously granted privileges from one or more roles. The key word `PUBLIC` refers to the implicitly defined group of all roles.
 
-See the description of the [GRANT](GRANT.html) command for the meaning of the privilege types.
+See the description of the [GRANT](/docs/sql-statements/sql-statement-grant.md) command for the meaning of the privilege types.
 
 Note that any particular role will have the sum of privileges granted directly to it, privileges granted to any role it is presently a member of, and privileges granted to `PUBLIC`. Thus, for example, revoking `SELECT` privilege from `PUBLIC` does not necessarily mean that all roles have lost `SELECT` privilege on the object: those who have it granted directly or via another role will still have it. Similarly, revoking `SELECT` from a user might not prevent that user from using `SELECT` if `PUBLIC` or another membership role still has `SELECT` rights.
 
@@ -111,7 +111,7 @@ When revoking membership in a role, `GRANT OPTION` is instead called `ADMIN OPTI
 
 ## Parameters
 
-See [GRANT](GRANT.html).
+See [GRANT](/docs/sql-statements/sql-statement-grant.md).
 
 ## Notes
 
@@ -149,13 +149,13 @@ REVOKE admins FROM joe;
 
 ## Compatibility
 
-The compatibility notes of the [GRANT](GRANT.html) command also apply to `REVOKE`.
+The compatibility notes of the [GRANT](/docs/sql-statements/sql-statement-grant.md) command also apply to `REVOKE`.
 
 Either `RESTRICT` or `CASCADE` is required according to the standard, but Greenplum Database assumes `RESTRICT` by default.
 
 ## See Also
 
-[ALTER DEFAULT PRIVILEGES](ALTER_DEFAULT_PRIVILEGES.html), [GRANT](GRANT.html)
+[ALTER DEFAULT PRIVILEGES](/docs/sql-statements/sql-statement-alter-default-privileges.md), [GRANT](/docs/sql-statements/sql-statement-grant.md)
 
-**Parent topic:** SQL Commands
+
 

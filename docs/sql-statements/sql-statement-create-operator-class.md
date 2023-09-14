@@ -111,7 +111,7 @@ CREATE OPERATOR CLASS gist__int_ops
 
 ## See Also
 
-[ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [DROP OPERATOR CLASS](DROP_OPERATOR_CLASS.html), [CREATE OPERATOR FAMILY](CREATE_OPERATOR_FAMILY.html), [ALTER OPERATOR FAMILY](ALTER_OPERATOR_FAMILY.html), [CREATE FUNCTION](CREATE_FUNCTION.html)
+[ALTER OPERATOR CLASS](/docs/sql-statements/sql-statement-alter-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-statements/sql-statement-drop-operator-class.md), [CREATE OPERATOR FAMILY](/docs/sql-statements/sql-statement-create-operator-family.md), [ALTER OPERATOR FAMILY](/docs/sql-statements/sql-statement-alter-operator-family.md), [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md)
 
-**Parent topic:** SQL Commands
+
 

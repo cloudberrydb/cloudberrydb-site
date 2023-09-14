@@ -141,7 +141,7 @@ ALTER EXTENSION hstore ADD FUNCTION populate_record(anyelement, hstore);
 
 ## See Also
 
-[CREATE EXTENSION](CREATE_EXTENSION.html), [DROP EXTENSION](DROP_EXTENSION.html)
+[CREATE EXTENSION](/docs/sql-statements/sql-statement-create-extension.md), [DROP EXTENSION](/docs/sql-statements/sql-statement-drop-extension.md)
 
-**Parent topic:** SQL Commands
+
 

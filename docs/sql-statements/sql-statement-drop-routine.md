@@ -11,7 +11,7 @@ DROP ROUTINE [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
 
 ## Description
 
-`DROP ROUTINE` removes the definition of an existing routine, which can be an aggregate function, a normal function, or a procedure. Refer to [DROP AGGREGATE](DROP_AGGREGATE.html), [DROP FUNCTION](DROP_FUNCTION.html), and [DROP PROCEDURE](DROP_PROCEDURE.html) for the description of the parameters, more examples, and further details.
+`DROP ROUTINE` removes the definition of an existing routine, which can be an aggregate function, a normal function, or a procedure. Refer to [DROP AGGREGATE](/docs/sql-statements/sql-statement-drop-aggregate.md), [DROP FUNCTION](/docs/sql-statements/sql-statement-drop-function.md), and [DROP PROCEDURE](/docs/sql-statements/sql-statement-drop-procedure.md) for the description of the parameters, more examples, and further details.
 
 ## Examples
 
@@ -37,7 +37,7 @@ This command conforms to the SQL standard, with these Greenplum Database extensi
 
 ## See Also
 
-[DROP AGGREGATE](DROP_AGGREGATE.html), [DROP FUNCTION](DROP_FUNCTION.html), [DROP PROCEDURE](DROP_PROCEDURE.html), [ALTER ROUTINE](ALTER_ROUTINE.html)
+[DROP AGGREGATE](/docs/sql-statements/sql-statement-drop-aggregate.md), [DROP FUNCTION](/docs/sql-statements/sql-statement-drop-function.md), [DROP PROCEDURE](/docs/sql-statements/sql-statement-drop-procedure.md), [ALTER ROUTINE](/docs/sql-statements/sql-statement-alter-routine.md)
 
-**Parent topic:** SQL Commands
+
 

@@ -51,7 +51,7 @@ There is no `DROP OPERATOR CLASS` statement in the SQL standard.
 
 ## See Also
 
-[ALTER OPERATOR CLASS](ALTER_OPERATOR_CLASS.html), [CREATE OPERATOR CLASS](CREATE_OPERATOR_CLASS.html), [DROP OPERATOR FAMILY](DROP_OPERATOR_FAMILY.html)
+[ALTER OPERATOR CLASS](/docs/sql-statements/sql-statement-alter-operator-class.md), [CREATE OPERATOR CLASS](/docs/sql-statements/sql-statement-create-operator-class.md), [DROP OPERATOR FAMILY](/docs/sql-statements/sql-statement-drop-operator-family.md)
 
-**Parent topic:** SQL Commands
+
 

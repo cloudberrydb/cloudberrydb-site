@@ -44,7 +44,7 @@ CREATE USER MAPPING FOR bob SERVER foo OPTIONS (user 'bob', password 'secret');
 
 ## See Also
 
-[ALTER USER MAPPING](ALTER_USER_MAPPING.html), [DROP USER MAPPING](DROP_USER_MAPPING.html), [CREATE FOREIGN DATA WRAPPER](CREATE_FOREIGN_DATA_WRAPPER.html), [CREATE SERVER](CREATE_SERVER.html)
+[ALTER USER MAPPING](/docs/sql-statements/sql-statement-alter-user-mapping.md), [DROP USER MAPPING](/docs/sql-statements/sql-statement-drop-user-mapping.md), [CREATE FOREIGN DATA WRAPPER](/docs/sql-statements/sql-statement-create-foreign-data-wrapper.md), [CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md)
 
-**Parent topic:** SQL Commands
+
 

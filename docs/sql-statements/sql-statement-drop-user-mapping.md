@@ -40,7 +40,7 @@ DROP USER MAPPING IF EXISTS FOR bob SERVER foo;
 
 ## See Also
 
-[CREATE USER MAPPING](CREATE_USER_MAPPING.html), [ALTER USER MAPPING](ALTER_USER_MAPPING.html)
+[CREATE USER MAPPING](/docs/sql-statements/sql-statement-create-user-mapping.md), [ALTER USER MAPPING](/docs/sql-statements/sql-statement-alter-user-mapping.md)
 
-**Parent topic:** SQL Commands
+
 

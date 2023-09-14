@@ -48,7 +48,7 @@ DETERMINISTIC
 
 version
 :   Specifies the version string to store with the collation. Normally, this should be omitted, which will cause the version to be computed from the actual version of the collation as provided by the operating system. This option is intended to be used by `pg_upgrade` for copying the version from an existing installation.
-:   See also [ALTER COLLATION](ALTER_COLLATION.html) for how to handle collation version mismatches.
+:   See also [ALTER COLLATION](/docs/sql-statements/sql-statement-alter-collation.md) for how to handle collation version mismatches.
 
 existing_collation
 :   The name of an existing collation to copy. The new collation will have the same properties as the existing one, but it will be an independent object.
@@ -57,11 +57,11 @@ existing_collation
 
 `CREATE COLLATION` takes a `SHARE ROW EXCLUSIVE` lock, which is self-conflicting, on the `pg_collation` system catalog, so only one `CREATE COLLATION` command can run at a time.
 
-Use [DROP COLLATION](DROP_COLLATION.html) to remove user-defined collations.
+Use [DROP COLLATION](/docs/sql-statements/sql-statement-drop-collation.md) to remove user-defined collations.
 
 See [Collation Support](https://www.postgresql.org/docs/12/collation.html) in the PostgreSQL documentation for more information about collation support in Greenplum Database.
 
-When using the `libc` collation provider, the, locale must be applicable to the current database encoding. See [CREATE DATABASE](CREATE_DATABASE.html) for the precise rules.
+When using the `libc` collation provider, the, locale must be applicable to the current database encoding. See [CREATE DATABASE](/docs/sql-statements/sql-statement-create-database.md) for the precise rules.
 
 ## Examples
 
@@ -91,7 +91,7 @@ There is a `CREATE COLLATION` statement in the SQL standard, but it is limited t
 
 ## See Also
 
-[ALTER COLLATION](ALTER_COLLATION.html), [DROP COLLATION](DROP_COLLATION.html)
+[ALTER COLLATION](/docs/sql-statements/sql-statement-alter-collation.md), [DROP COLLATION](/docs/sql-statements/sql-statement-drop-collation.md)
 
-**Parent topic:** SQL Commands
+
 

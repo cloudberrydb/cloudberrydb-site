@@ -33,7 +33,7 @@ column_name
 :   The name of a table column to be covered by the computed statistics. You must specify at least two column names; the order of the column names is insignificant.
 
 table_name
-:   The name (optionally schema-qualified) of the table containing the column(s) on which the statistics are computed; see [ANALYZE](ANALYZE.html) for an explanation of inheritance and partition handling.
+:   The name (optionally schema-qualified) of the table containing the column(s) on which the statistics are computed; see [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) for an explanation of inheritance and partition handling.
 
 ## Notes
 
@@ -97,7 +97,7 @@ There is no `CREATE STATISTICS` statement in the SQL standard.
 
 ## See Also
 
-[ALTER STATISTICS](ALTER_STATISTICS.html), [DROP STATISTICS](DROP_STATISTICS.html)
+[ALTER STATISTICS](/docs/sql-statements/sql-statement-alter-statistics.md), [DROP STATISTICS](/docs/sql-statements/sql-statement-drop-statistics.md)
 
-**Parent topic:** SQL Commands
+
 
