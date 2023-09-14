@@ -67,7 +67,7 @@ Optional parameters can be written in any order, not only the order illustrated 
 
 Errors along the line of “could not initialize database directory” are most likely related to insufficient permissions on the data directory, a full disk, or other file system problems.
 
-Use [DROP DATABASE](DROP_DATABASE.HTML) to remove a database.
+Use [DROP DATABASE](/docs/sql-statements/sql-statement-drop-database.md) to remove a database.
 
 The program createdb is a wrapper program around this command, provided for convenience.
 
