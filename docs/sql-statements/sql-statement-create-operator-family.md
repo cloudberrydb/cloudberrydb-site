@@ -22,11 +22,13 @@ Refer to [Interfacing Extensions to Indexes](https://www.postgresql.org/docs/12/
 
 ## Parameters
 
-name
-:   The (optionally schema-qualified) name of the operator family to be created.
+**`name`**
 
-index_method
-:   The name of the index method this operator family is for.
+The (optionally schema-qualified) name of the operator family to be created.
+
+**`index_method`**
+
+The name of the index method this operator family is for.
 
 ## Compatibility
 

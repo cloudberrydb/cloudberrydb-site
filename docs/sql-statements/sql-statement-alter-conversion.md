@@ -20,17 +20,21 @@ You must own the conversion to use `ALTER CONVERSION`. To alter the owner, you m
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing conversion.
+**`name`**
 
-new_name
-:   The new name of the conversion.
+The name (optionally schema-qualified) of an existing conversion.
 
-new_owner
-:   The new owner of the conversion.
+**`new_name`**
 
-new_schema
-:   The new schema for the conversion.
+The new name of the conversion.
+
+**`new_owner`**
+
+The new owner of the conversion.
+
+**`new_schema`**
+
+The new schema for the conversion.
 
 ## Examples
 

@@ -16,14 +16,17 @@ To use `ALTER RULE`, you must own the table or view that the rule applies to.
 
 ## Parameters
 
-name
-:   The name of an existing rule to alter.
+**`name`**
 
-table_name
-:   The name (optionally schema-qualified) of the table or view that the rule applies to.
+The name of an existing rule to alter.
 
-new_name
-:   The new name for the rule.
+**`table_name`**
+
+The name (optionally schema-qualified) of the table or view that the rule applies to.
+
+**`new_name`**
+
+The new name for the rule.
 
 ## Examples
 

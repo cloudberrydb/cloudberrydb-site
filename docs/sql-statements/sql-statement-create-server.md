@@ -26,17 +26,21 @@ IF NOT EXISTS
 
 :   Do not throw an error if a server with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing server is anything like the one that would have been created.
 
-server_name
-:   The name of the foreign server to create. The server name must be unique within the database.
+**`server_name`**
 
-server_type
-:   Optional server type, potentially useful to foreign-data wrappers.
+The name of the foreign server to create. The server name must be unique within the database.
 
-server_version
-:   Optional server version, potentially useful to foreign-data wrappers.
+**`server_type`**
 
-fdw_name
-:   Name of the foreign-data wrapper that manages the server.
+Optional server type, potentially useful to foreign-data wrappers.
+
+**`server_version`**
+
+Optional server version, potentially useful to foreign-data wrappers.
+
+**`fdw_name`**
+
+Name of the foreign-data wrapper that manages the server.
 
 OPTIONS ( option 'value' [, ... ] )
 :   The options for the new foreign server. The options typically define the connection details of the server, but the actual names and values are dependent upon the server's foreign-data wrapper.

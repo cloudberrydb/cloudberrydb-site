@@ -16,14 +16,17 @@ For more information on prepared statements, see [PREPARE](/docs/sql-statements/
 
 ## Parameters
 
-PREPARE
-:   Optional key word which is ignored.
+**`PREPARE`**
 
-name
-:   The name of the prepared statement to deallocate.
+Optional key word which is ignored.
 
-ALL
-:   Deallocate all prepared statements
+**`name`**
+
+The name of the prepared statement to deallocate.
+
+**`ALL`**
+
+Deallocate all prepared statements
 
 ## Examples
 

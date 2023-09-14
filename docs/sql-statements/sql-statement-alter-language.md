@@ -15,14 +15,17 @@ ALTER [ PROCEDURAL ] LANGUAGE <name> OWNER TO { <new_owner> | CURRENT_USER | SES
 
 ## Parameters
 
-name
-:   Name of a language.
+**`name`**
 
-new_name
-:   The new name of the language.
+Name of a language.
 
-new_owner
-:   The new owner of the language.
+**`new_name`**
+
+The new name of the language.
+
+**`new_owner`**
+
+The new owner of the language.
 
 ## Compatibility
 

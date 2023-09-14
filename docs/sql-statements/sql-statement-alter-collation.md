@@ -21,17 +21,21 @@ You must own the collation to use `ALTER COLLATION`. To alter the owner, you mus
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing collation.
+**`name`**
 
-new_name
-:   The new name of the collation.
+The name (optionally schema-qualified) of an existing collation.
 
-new_owner
-:   The new owner of the collation.
+**`new_name`**
 
-new_schema
-:   The new schema for the collation.
+The new name of the collation.
+
+**`new_owner`**
+
+The new owner of the collation.
+
+**`new_schema`**
+
+The new schema for the collation.
 
 REFRESH VERSION
 :   Update the collation's version. See the [Notes](#section4a) below.

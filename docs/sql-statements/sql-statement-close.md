@@ -16,11 +16,13 @@ Every non-holdable open cursor is implicitly closed when a transaction is termin
 
 ## Parameters
 
-cursor_name
-:   The name of an open cursor to close.
+**`cursor_name`**
 
-ALL
-:   Close all open cursors.
+The name of an open cursor to close.
+
+**`ALL`**
+
+Close all open cursors.
 
 ## Notes
 

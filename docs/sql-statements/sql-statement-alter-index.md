@@ -48,23 +48,29 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 IF EXISTS
 :   Do not throw an error if the index does not exist. Cloudberry Database issues a notice in this case.
 
-column_number
-:   The ordinal number refers to the ordinal (left-to-right) position of the index column.
+**`column_number`**
 
-name
-:   The name (optionally schema-qualified) of an existing index to alter.
+The ordinal number refers to the ordinal (left-to-right) position of the index column.
 
-new_name
-:   New name for the index.
+**`name`**
 
-tablespace_name
-:   The tablespace to which the index will be moved.
+The name (optionally schema-qualified) of an existing index to alter.
 
-storage_parameter
-:   The name of an index-method-specific storage parameter.
+**`new_name`**
 
-value
-:   The new value for an index-method-specific storage parameter. This might be a number or a word depending on the parameter.
+New name for the index.
+
+**`tablespace_name`**
+
+The tablespace to which the index will be moved.
+
+**`storage_parameter`**
+
+The name of an index-method-specific storage parameter.
+
+**`value`**
+
+The new value for an index-method-specific storage parameter. This might be a number or a word depending on the parameter.
 
 ## Notes
 

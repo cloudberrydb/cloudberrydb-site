@@ -17,14 +17,17 @@ DROP SEQUENCE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 IF EXISTS
 :   Do not throw an error if the sequence does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name (optionally schema-qualified) of the sequence to remove.
+**`name`**
 
-CASCADE
-:   Automatically drop objects that depend on the sequence, and in turn all objects that depend on those objects.
+The name (optionally schema-qualified) of the sequence to remove.
 
-RESTRICT
-:   Refuse to drop the sequence if any objects depend on it. This is the default.
+**`CASCADE`**
+
+Automatically drop objects that depend on the sequence, and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the sequence if any objects depend on it. This is the default.
 
 ## Examples
 

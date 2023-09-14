@@ -14,20 +14,24 @@ DROP [PROCEDURAL] LANGUAGE [IF EXISTS] <name> [CASCADE | RESTRICT]
 
 ## Parameters
 
-PROCEDURAL
-:   Optional keyword - has no effect.
+**`PROCEDURAL`**
+
+Optional keyword - has no effect.
 
 IF EXISTS
 :   Do not throw an error if the language does not exist. A notice is issued in this case.
 
-name
-:   The name of an existing procedural language. For backward compatibility, the name may be enclosed by single quotes.
+**`name`**
 
-CASCADE
-:   Automatically drop objects that depend on the language (such as functions written in that language), and in turn all objects that depend on those objects.
+The name of an existing procedural language. For backward compatibility, the name may be enclosed by single quotes.
 
-RESTRICT
-:   Refuse to drop the language if any objects depend on it. This is the default.
+**`CASCADE`**
+
+Automatically drop objects that depend on the language (such as functions written in that language), and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the language if any objects depend on it. This is the default.
 
 ## Examples
 

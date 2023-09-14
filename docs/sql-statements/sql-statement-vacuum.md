@@ -39,29 +39,37 @@ When `VERBOSE` is specified, `VACUUM` emits progress messages to indicate which 
 
 ## Parameters
 
-FULL
-:   Selects a full vacuum, which may reclaim more space, but takes much longer and exclusively locks the table. This method also requires extra disk space, since it writes a new copy of the table and doesn't release the old copy until the operation is complete. Usually this should only be used when a significant amount of space needs to be reclaimed from within the table.
+**`FULL`**
 
-FREEZE
-:   Specifying `FREEZE` is equivalent to performing `VACUUM` with the `vacuum_freeze_min_age` server configuration parameter set to zero. See Server Configuration Parameters for information about `vacuum_freeze_min_age`.
+Selects a full vacuum, which may reclaim more space, but takes much longer and exclusively locks the table. This method also requires extra disk space, since it writes a new copy of the table and doesn't release the old copy until the operation is complete. Usually this should only be used when a significant amount of space needs to be reclaimed from within the table.
 
-VERBOSE
-:   Prints a detailed vacuum activity report for each table.
+**`FREEZE`**
 
-ANALYZE
-:   Updates statistics used by the planner to determine the most efficient way to run a query.
+Specifying `FREEZE` is equivalent to performing `VACUUM` with the `vacuum_freeze_min_age` server configuration parameter set to zero. See Server Configuration Parameters for information about `vacuum_freeze_min_age`.
 
-DISABLE_PAGE_SKIPPING
-:   Normally, `VACUUM` skips pages based on the visibility map. It always skips pages where all tuples are known to be frozen, and skips those where all tuples are known to be visible to all transactions except when performing an aggressive vacuum. Furthermore, except when performing an aggressive vacuum, it skips some pages in order to avoid waiting for other sessions to finish using them. This option disables all page-skipping behavior, you may use this option only when the contents of the visibility map are suspect, which should happen only if there is a hardware or software issue causing database corruption.
+**`VERBOSE`**
 
-SKIP_LOCKED
-:   Specifies that `VACUUM` should not wait for any conflicting locks to be released when beginning work on a relation: if it cannot lock a relation immediately without waiting, it skips the relation. Note that even with this option, `VACUUM` may still block when opening the relation's indexes. Additionally, `VACUUM ANALYZE` may still block when acquiring sample rows from partitions, table inheritance children, and some types of foreign tables. Also, while `VACUUM` ordinarily processes all partitions of specified partitioned tables, this option will cause `VACUUM` to skip all partitions if there is a conflicting lock on the partitioned table.
+Prints a detailed vacuum activity report for each table.
 
-INDEX_CLEANUP
-:   Specifies that `VACUUM` should attempt to remove index entries pointing to dead tuples. This is normally the desired behavior and is the default unless you override it by setting `vacuum_index_cleanup` to `false` for the table you run `VACUUM` against. Setting this option to `false` may be useful when you need to make vacuum run as quickly as possible, for example, to avoid imminent transaction ID wraparound. However, if you do not perform index cleanup regularly, performance may suffer, because as the table is modified, indexes accumulate dead tuples and the table itself accumulates dead line pointers that cannot be removed until index cleanup completes. This option has no effect for tables that do not have an index. If you use the `FULL` option, it will ignore the `INDEX_CLEANUP` option.
+**`ANALYZE`**
 
-AO_AUX_ONLY
-:   Runs `VACUUM` against all auxiliary tables of an append-optimized table. It does not run `VACUUM` against the append-optimized table. If run against a non append-optimized table without any child partitions, no action takes place. If run against a heap table with an append-optimized partition, it vacuums the auxiliary tables of this partition.
+Updates statistics used by the planner to determine the most efficient way to run a query.
+
+**`DISABLE_PAGE_SKIPPING`**
+
+Normally, `VACUUM` skips pages based on the visibility map. It always skips pages where all tuples are known to be frozen, and skips those where all tuples are known to be visible to all transactions except when performing an aggressive vacuum. Furthermore, except when performing an aggressive vacuum, it skips some pages in order to avoid waiting for other sessions to finish using them. This option disables all page-skipping behavior, you may use this option only when the contents of the visibility map are suspect, which should happen only if there is a hardware or software issue causing database corruption.
+
+**`SKIP_LOCKED`**
+
+Specifies that `VACUUM` should not wait for any conflicting locks to be released when beginning work on a relation: if it cannot lock a relation immediately without waiting, it skips the relation. Note that even with this option, `VACUUM` may still block when opening the relation's indexes. Additionally, `VACUUM ANALYZE` may still block when acquiring sample rows from partitions, table inheritance children, and some types of foreign tables. Also, while `VACUUM` ordinarily processes all partitions of specified partitioned tables, this option will cause `VACUUM` to skip all partitions if there is a conflicting lock on the partitioned table.
+
+**`INDEX_CLEANUP`**
+
+Specifies that `VACUUM` should attempt to remove index entries pointing to dead tuples. This is normally the desired behavior and is the default unless you override it by setting `vacuum_index_cleanup` to `false` for the table you run `VACUUM` against. Setting this option to `false` may be useful when you need to make vacuum run as quickly as possible, for example, to avoid imminent transaction ID wraparound. However, if you do not perform index cleanup regularly, performance may suffer, because as the table is modified, indexes accumulate dead tuples and the table itself accumulates dead line pointers that cannot be removed until index cleanup completes. This option has no effect for tables that do not have an index. If you use the `FULL` option, it will ignore the `INDEX_CLEANUP` option.
+
+**`AO_AUX_ONLY`**
+
+Runs `VACUUM` against all auxiliary tables of an append-optimized table. It does not run `VACUUM` against the append-optimized table. If run against a non append-optimized table without any child partitions, no action takes place. If run against a heap table with an append-optimized partition, it vacuums the auxiliary tables of this partition.
 
 `<ao_table>`
 :    The name of a table to vacuum its auxiliary tables, ideally an append-optimized table.

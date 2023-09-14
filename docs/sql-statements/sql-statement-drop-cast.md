@@ -17,15 +17,18 @@ DROP CAST [IF EXISTS] (<sourcetype> AS <targettype>) [CASCADE | RESTRICT]
 IF EXISTS
 :   Do not throw an error if the cast does not exist. A notice is issued in this case.
 
-sourcetype
-:   The name of the source data type of the cast.
+**`sourcetype`**
 
-targettype
-:   The name of the target data type of the cast.
+The name of the source data type of the cast.
+
+**`targettype`**
+
+The name of the target data type of the cast.
 
 CASCADE
-RESTRICT
-:   These keywords have no effect since there are no dependencies on casts.
+**`RESTRICT`**
+
+These keywords have no effect since there are no dependencies on casts.
 
 ## Examples
 

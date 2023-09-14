@@ -26,14 +26,17 @@ If `RETRIEVE` runs off the end of the available rows then the cursor is left pos
 
 ## Parameters
 
-count
-:   Retrieve the next count number of rows. count must be a positive number.
+**`count`**
 
-ALL
-:   Retrieve all remaining rows.
+Retrieve the next count number of rows. count must be a positive number.
 
-endpoint_name
-:   The name of the endpoint from which to retrieve the rows.
+**`ALL`**
+
+Retrieve all remaining rows.
+
+**`endpoint_name`**
+
+The name of the endpoint from which to retrieve the rows.
 
 ## Outputs
 

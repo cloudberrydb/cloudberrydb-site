@@ -19,8 +19,9 @@ A tablespace can only be dropped by its owner or a superuser. The tablespace mus
 IF EXISTS
 :   Do not throw an error if the tablespace does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name of the tablespace to remove.
+**`name`**
+
+The name of the tablespace to remove.
 
 ## Notes
 

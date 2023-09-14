@@ -20,20 +20,25 @@ You must own the operator class to use `ALTER OPERATOR CLASS`. To alter the owne
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing operator class.
+**`name`**
 
-index_method
-:   The name of the index method this operator class is for.
+The name (optionally schema-qualified) of an existing operator class.
 
-new_name
-:   The new name of the operator class.
+**`index_method`**
 
-new_owner
-:   The new owner of the operator class
+The name of the index method this operator class is for.
 
-new_schema
-:   The new schema for the operator class.
+**`new_name`**
+
+The new name of the operator class.
+
+**`new_owner`**
+
+The new owner of the operator class
+
+**`new_schema`**
+
+The new schema for the operator class.
 
 ## Compatibility
 

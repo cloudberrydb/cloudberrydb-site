@@ -16,11 +16,13 @@ If the procedure has any output parameters, then a result row will be returned, 
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of the procedure.
+**`name`**
 
-argument
-:   An input argument for the procedure call.
+The name (optionally schema-qualified) of the procedure.
+
+**`argument`**
+
+An input argument for the procedure call.
 
 ## Notes
 

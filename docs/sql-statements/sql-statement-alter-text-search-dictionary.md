@@ -21,23 +21,29 @@ You must be the owner of the dictionary to use `ALTER TEXT SEARCH DICTIONARY`.
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing text search dictionary.
+**`name`**
 
-option
-:   The name of a template-specific option to be set for this dictionary.
+The name (optionally schema-qualified) of an existing text search dictionary.
 
-value
-:   The new value to use for a template-specific option. If the equal sign and value are omitted, then any previous setting for the option is removed from the dictionary, allowing the default to be used.
+**`option`**
 
-new_name
-:   The new name of the text search dictionary.
+The name of a template-specific option to be set for this dictionary.
 
-new_owner
-:   The new owner of the text search dictionary.
+**`value`**
 
-new_schema
-:   The new schema for the text search dictionary.
+The new value to use for a template-specific option. If the equal sign and value are omitted, then any previous setting for the option is removed from the dictionary, allowing the default to be used.
+
+**`new_name`**
+
+The new name of the text search dictionary.
+
+**`new_owner`**
+
+The new owner of the text search dictionary.
+
+**`new_schema`**
+
+The new schema for the text search dictionary.
 
 Template-specific options can appear in any order.
 

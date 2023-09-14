@@ -17,14 +17,17 @@ DROP FOREIGN DATA WRAPPER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 IF EXISTS
 :   Do not throw an error if the foreign-data wrapper does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name of an existing foreign-data wrapper.
+**`name`**
 
-CASCADE
-:   Automatically drop objects that depend on the foreign-data wrapper (such as foreign tables and servers), and in turn all objects that depend on those objects.
+The name of an existing foreign-data wrapper.
 
-RESTRICT
-:   Refuse to drop the foreign-data wrapper if any object depends on it. This is the default.
+**`CASCADE`**
+
+Automatically drop objects that depend on the foreign-data wrapper (such as foreign tables and servers), and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the foreign-data wrapper if any object depends on it. This is the default.
 
 ## Examples
 

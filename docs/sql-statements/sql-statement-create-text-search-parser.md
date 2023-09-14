@@ -26,23 +26,29 @@ You must be a superuser to use `CREATE TEXT SEARCH PARSER`. (This restriction is
 
 ## Parameters
 
-name
-:   The name of the text search parser to be created. The name can be schema-qualified.
+**`name`**
 
-start_function
-:   The name of the start function for the parser.
+The name of the text search parser to be created. The name can be schema-qualified.
 
-gettoken_function
-:   The name of the get-next-token function for the parser.
+**`start_function`**
 
-end_function
-:   The name of the end function for the parser.
+The name of the start function for the parser.
 
-lextypes_function
-:   The name of the lextypes function for the parser (a function that returns information about the set of token types it produces).
+**`gettoken_function`**
 
-headline_function
-:   The name of the headline function for the parser (a function that summarizes a set of tokens).
+The name of the get-next-token function for the parser.
+
+**`end_function`**
+
+The name of the end function for the parser.
+
+**`lextypes_function`**
+
+The name of the lextypes function for the parser (a function that returns information about the set of token types it produces).
+
+**`headline_function`**
+
+The name of the headline function for the parser (a function that summarizes a set of tokens).
 
 The function names can be schema-qualified if necessary. Argument types are not given, since the argument list for each type of function is predetermined. All except the headline function are required.
 

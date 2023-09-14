@@ -30,11 +30,13 @@ It is common for a client that executes `NOTIFY` to be listening on the same not
 
 ## Parameters
 
-channel
-:   The name of a notification channel (any identifier).
+**`channel`**
 
-payload
-:   The "payload" string to be communicated along with the notification. This must be specified as a simple string literal. In the default configuration it must be shorter than 8000 bytes. (If binary data or large amounts of information need to be communicated, it's best to put it in a database table and send the key of the record.)
+The name of a notification channel (any identifier).
+
+**`payload`**
+
+The "payload" string to be communicated along with the notification. This must be specified as a simple string literal. In the default configuration it must be shorter than 8000 bytes. (If binary data or large amounts of information need to be communicated, it's best to put it in a database table and send the key of the record.)
 
 ## Notes
 

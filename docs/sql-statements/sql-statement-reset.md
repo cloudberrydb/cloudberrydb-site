@@ -26,11 +26,13 @@ The transactional behavior of `RESET` is the same as `SET`: its effects will be 
 
 ## Parameters
 
-configuration_parameter
-:   The name of a settable run-time system configuration parameter. See Server Configuration Parameters for details.
+**`configuration_parameter`**
 
-ALL
-:   Resets all settable run-time configuration parameters to their default values.
+The name of a settable run-time system configuration parameter. See Server Configuration Parameters for details.
+
+**`ALL`**
+
+Resets all settable run-time configuration parameters to their default values.
 
 ## Examples
 

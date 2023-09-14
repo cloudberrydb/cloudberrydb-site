@@ -28,14 +28,17 @@ To be able to create a domain, you must have `USAGE` privilege on the underlying
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of a domain to be created.
+**`name`**
 
-data_type
-:   The underlying data type of the domain. This may include array specifiers.
+The name (optionally schema-qualified) of a domain to be created.
 
-collation
-:   An optional collation for the domain. If no collation is specified, the domain has the same collation behavior as its underlying data type. The underlying type must be collatable if `COLLATE` is specified.
+**`data_type`**
+
+The underlying data type of the domain. This may include array specifiers.
+
+**`collation`**
+
+An optional collation for the domain. If no collation is specified, the domain has the same collation behavior as its underlying data type. The underlying type must be collatable if `COLLATE` is specified.
 
 DEFAULT expression
 :   Specifies a default value for columns of the domain data type. The value is any variable-free expression (but subqueries are not allowed). The data type of the default expression must match the data type of the domain. If no default value is specified, then the default value is the null value.
@@ -47,8 +50,9 @@ CONSTRAINT constraint_name
 NOT NULL
 :   Values of this domain are prevented from being null (but see the Notes below).
 
-NULL
-:   Values of this domain are allowed to be null. This is the default.
+**`NULL`**
+
+Values of this domain are allowed to be null. This is the default.
 :   This clause is only intended for compatibility with nonstandard SQL databases. Its use is discouraged in new applications.
 
 CHECK (expression)

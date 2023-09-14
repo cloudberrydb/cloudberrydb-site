@@ -32,17 +32,20 @@ GLOBAL | LOCAL
 TEMPORARY | TEMP
 :   If specified, the new table is created as a temporary table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
-UNLOGGED
-:   If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
+**`UNLOGGED`**
+
+If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists; simply issue a notice and leave the table unmodified.
 
-table_name
-:   The name (optionally schema-qualified) of the new table to be created.
+**`table_name`**
 
-column_name
-:   The name of a column in the new table. If column names are not provided, they are taken from the output column names of the query.
+The name (optionally schema-qualified) of the new table to be created.
+
+**`column_name`**
+
+The name of a column in the new table. If column names are not provided, they are taken from the output column names of the query.
 
 USING access_method
 :   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type [TABLE](/docs/sql-statements/sql-statement-select.md#the-table-command). Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the default_table_access_method server configuration parameter.

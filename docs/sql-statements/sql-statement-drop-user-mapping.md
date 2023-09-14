@@ -20,11 +20,13 @@ The owner of a foreign server can drop user mappings for that server for any use
 IF EXISTS
 :   Do not throw an error if the user mapping does not exist. Cloudberry Database issues a notice in this case.
 
-user_name
-:   User name of the mapping. `CURRENT_USER` and `USER` match the name of the current user. `PUBLIC` is used to match all present and future user names in the system.
+**`user_name`**
 
-server_name
-:   Server name of the user mapping.
+User name of the mapping. `CURRENT_USER` and `USER` match the name of the current user. `PUBLIC` is used to match all present and future user names in the system.
+
+**`server_name`**
+
+Server name of the user mapping.
 
 ## Examples
 

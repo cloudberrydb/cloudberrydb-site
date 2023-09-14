@@ -21,8 +21,9 @@ You must be a superuser or the protocol owner to drop a protocol.
 IF EXISTS
 :   Do not throw an error if the protocol does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name of an existing data access protocol.
+**`name`**
+
+The name of an existing data access protocol.
 
 ## Notes
 

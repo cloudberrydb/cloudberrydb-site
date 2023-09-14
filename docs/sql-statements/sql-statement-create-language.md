@@ -33,14 +33,17 @@ Ordinarily, the user must have the Cloudberry Database superuser privilege to re
 
 ## Parameters
 
-TRUSTED
-:   `TRUSTED` specifies that the language does not grant access to data that the user would not otherwise have. If this key word is omitted when registering the language, only users with the Cloudberry Database superuser privilege can use this language to create new functions.
+**`TRUSTED`**
 
-PROCEDURAL
-:   This is a noise word.
+`TRUSTED` specifies that the language does not grant access to data that the user would not otherwise have. If this key word is omitted when registering the language, only users with the Cloudberry Database superuser privilege can use this language to create new functions.
 
-name
-:   The name of the new procedural language. The name must be unique among the languages in the database.
+**`PROCEDURAL`**
+
+This is a noise word.
+
+**`name`**
+
+The name of the new procedural language. The name must be unique among the languages in the database.
 :   For backward compatibility, the name can be enclosed by single quotes.
 
 HANDLER call_handler

@@ -121,92 +121,121 @@ Why is there is an `ELEMENT` option, when the system makes the correct array typ
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of a type to be created.
+**`name`**
 
-attribute_name
-:   The name of an attribute (column) for the composite type.
+The name (optionally schema-qualified) of a type to be created.
 
-data_type
-:   The name of an existing data type to become a column of the composite type.
+**`attribute_name`**
 
-collation
-:   The name of an existing collation to be associated with a column of a composite type, or with a range type.
+The name of an attribute (column) for the composite type.
 
-label
-:   A string literal representing the textual label associated with one value of an enum type.
+**`data_type`**
 
-subtype
-:   The name of the element type that the range type will represent ranges of.
+The name of an existing data type to become a column of the composite type.
 
-subtype_operator_class
-:   The name of a b-tree operator class for the subtype.
+**`collation`**
 
-canonical_function
-:   The name of the canonicalization function for the range type.
+The name of an existing collation to be associated with a column of a composite type, or with a range type.
 
-subtype_diff_function
-:   The name of a difference function for the subtype.
+**`label`**
 
-input_function
-:   The name of a function that converts data from the type's external textual form to its internal form.
+A string literal representing the textual label associated with one value of an enum type.
 
-output_function
-:   The name of a function that converts data from the type's internal form to its external textual form.
+**`subtype`**
 
-receive_function
-:   The name of a function that converts data from the type's external binary form to its internal form.
+The name of the element type that the range type will represent ranges of.
 
-send_function
-:   The name of a function that converts data from the type's internal form to its external binary form.
+**`subtype_operator_class`**
 
-type_modifier_input_function
-:   The name of a function that converts an array of modifier(s) for the type to internal form.
+The name of a b-tree operator class for the subtype.
 
-type_modifier_output_function
-:   The name of a function that converts the internal form of the type's modifier(s) to external textual form.
+**`canonical_function`**
 
-analyze_function
-:   The name of a function that performs statistical analysis for the data type.
+The name of the canonicalization function for the range type.
 
-internallength
-:   A numeric constant that specifies the length in bytes of the new type's internal representation. The default assumption is that it is variable-length.
+**`subtype_diff_function`**
 
-alignment
-:   The storage alignment requirement of the data type. Must be one of `char`, `int2`, `int4`, or `double`. The default is `int4`.
+The name of a difference function for the subtype.
 
-storage
-:   The storage strategy for the data type. Must be one of `plain`, `external`, `extended`, or `main`. The default is `plain`.
+**`input_function`**
 
-like_type
-:   The name of an existing data type that the new type will have the same representation as. The values internallength, passedbyvalue, alignment, and storage, are copied from that type, unless overridden by explicit specification elsewhere in this `CREATE TYPE` command.
+The name of a function that converts data from the type's external textual form to its internal form.
 
-category
-:   The category code (a single ASCII character) for this type. The default is '`U`', signifying a user-defined type. You can find the other standard category codes in `pg_type` Category Codes. You may also assign unused ASCII characters to custom categories that you create.
+**`output_function`**
 
-preferred
-:   `true` if this type is a preferred type within its type category, else `false`. The default value is `false`. Be careful when you create a new preferred type within an existing type category; this could cause surprising behaviour changes.
+The name of a function that converts data from the type's internal form to its external textual form.
 
-default
-:   The default value for the data type. If this is omitted, the default is null.
+**`receive_function`**
 
-element
-:   The type being created is an array; this specifies the type of the array elements.
+The name of a function that converts data from the type's external binary form to its internal form.
 
-delimiter
-:   The delimiter character to be used between values in arrays made of this type.
+**`send_function`**
 
-collatable
-:   True if this type's operations can use collation information. The default is false.
+The name of a function that converts data from the type's internal form to its external binary form.
 
-compression_type
-:   Set to `ZLIB` (the default), `ZSTD`, or `RLE_TYPE` to specify the type of compression used in columns of this type.
+**`type_modifier_input_function`**
 
-compression_level
-:   For Zstd compression, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. For `RLE_TYPE`, the compression level can be set to an integer value from 1 (fastest compression) to 4 (highest compression ratio). The default compression level is 1.
+The name of a function that converts an array of modifier(s) for the type to internal form.
 
-blocksize
-:   Set to the size, in bytes, for each block in the column. The `BLOCKSIZE` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default block size is 32768.
+**`type_modifier_output_function`**
+
+The name of a function that converts the internal form of the type's modifier(s) to external textual form.
+
+**`analyze_function`**
+
+The name of a function that performs statistical analysis for the data type.
+
+**`internallength`**
+
+A numeric constant that specifies the length in bytes of the new type's internal representation. The default assumption is that it is variable-length.
+
+**`alignment`**
+
+The storage alignment requirement of the data type. Must be one of `char`, `int2`, `int4`, or `double`. The default is `int4`.
+
+**`storage`**
+
+The storage strategy for the data type. Must be one of `plain`, `external`, `extended`, or `main`. The default is `plain`.
+
+**`like_type`**
+
+The name of an existing data type that the new type will have the same representation as. The values internallength, passedbyvalue, alignment, and storage, are copied from that type, unless overridden by explicit specification elsewhere in this `CREATE TYPE` command.
+
+**`category`**
+
+The category code (a single ASCII character) for this type. The default is '`U`', signifying a user-defined type. You can find the other standard category codes in `pg_type` Category Codes. You may also assign unused ASCII characters to custom categories that you create.
+
+**`preferred`**
+
+`true` if this type is a preferred type within its type category, else `false`. The default value is `false`. Be careful when you create a new preferred type within an existing type category; this could cause surprising behaviour changes.
+
+**`default`**
+
+The default value for the data type. If this is omitted, the default is null.
+
+**`element`**
+
+The type being created is an array; this specifies the type of the array elements.
+
+**`delimiter`**
+
+The delimiter character to be used between values in arrays made of this type.
+
+**`collatable`**
+
+True if this type's operations can use collation information. The default is false.
+
+**`compression_type`**
+
+Set to `ZLIB` (the default), `ZSTD`, or `RLE_TYPE` to specify the type of compression used in columns of this type.
+
+**`compression_level`**
+
+For Zstd compression, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. For `RLE_TYPE`, the compression level can be set to an integer value from 1 (fastest compression) to 4 (highest compression ratio). The default compression level is 1.
+
+**`blocksize`**
+
+Set to the size, in bytes, for each block in the column. The `BLOCKSIZE` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default block size is 32768.
 
 ## Notes
 

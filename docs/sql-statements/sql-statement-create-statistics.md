@@ -23,17 +23,21 @@ IF NOT EXISTS
 
 :   Do not throw an error if a statistics object with the same name already exists. Cloudberry Database issues a notice in this case. Note that only the name of the statistics object is considered here, not the details of its definition.
 
-statistics_name
-:   The name (optionally schema-qualified) of the statistics object to create.
+**`statistics_name`**
 
-statistics_kind
-:   A statistics kind to be computed in this statistics object. Currently supported kinds are `ndistinct`, which enables n-distinct statistics, `dependencies`, which enables functional dependency statistics, and `mcv` which enables most-common values lists. If this clause is omitted, all supported statistics kinds are included in the statistics object.
+The name (optionally schema-qualified) of the statistics object to create.
 
-column_name
-:   The name of a table column to be covered by the computed statistics. You must specify at least two column names; the order of the column names is insignificant.
+**`statistics_kind`**
 
-table_name
-:   The name (optionally schema-qualified) of the table containing the column(s) on which the statistics are computed; see [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) for an explanation of inheritance and partition handling.
+A statistics kind to be computed in this statistics object. Currently supported kinds are `ndistinct`, which enables n-distinct statistics, `dependencies`, which enables functional dependency statistics, and `mcv` which enables most-common values lists. If this clause is omitted, all supported statistics kinds are included in the statistics object.
+
+**`column_name`**
+
+The name of a table column to be covered by the computed statistics. You must specify at least two column names; the order of the column names is insignificant.
+
+**`table_name`**
+
+The name (optionally schema-qualified) of the table containing the column(s) on which the statistics are computed; see [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) for an explanation of inheritance and partition handling.
 
 ## Notes
 

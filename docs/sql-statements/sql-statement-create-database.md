@@ -29,35 +29,45 @@ By default, the new database will be created by cloning the standard system data
 
 ## Parameters
 
-name
-:   The name of a database to create.
+**`name`**
 
-user_name
-:   The name of the database user who will own the new database, or `DEFAULT` to use the default owner (the user running the command). To create a database owned by another role, you must be a direct or indirect member of that role, or be a superuser.
+The name of a database to create.
 
-template
-:   The name of the template from which to create the new database, or `DEFAULT` to use the default template (template1).
+**`user_name`**
 
-encoding
-:   Character set encoding to use in the new database. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default encoding  (namely, the encoding of the template database). For more information, see Character Set Support. Refer to the [Notes](#section5) for additional restrictions.
+The name of the database user who will own the new database, or `DEFAULT` to use the default owner (the user running the command). To create a database owned by another role, you must be a direct or indirect member of that role, or be a superuser.
 
-lc_collate
-:   The collation order (`LC_COLLATE`) to use in the new database. This affects the sort order applied to strings, e.g. in queries with `ORDER BY`, as well as the order used in indexes on text columns. The default is to use the collation order of the template database. See the [Notes](#section5) for additional restrictions.
+**`template`**
 
-lc_ctype
-:   The character classification (`LC_CTYPE`) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#section5) for additional restrictions.
+The name of the template from which to create the new database, or `DEFAULT` to use the default template (template1).
 
-tablespace_name
-:   The name of the tablespace that will be associated with the new database, or `DEFAULT` to use the template database's tablespace. This tablespace will be the default tablespace used for objects created in this database. See [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md) for more information.
+**`encoding`**
 
-allowconn
-:   If `false`, then no one can connect to this database. The default is `true`, allowing connections (except as restricted by other mechanisms, such as `GRANT/REVOKE CONNECT`).
+Character set encoding to use in the new database. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default encoding  (namely, the encoding of the template database). For more information, see Character Set Support. Refer to the [Notes](#section5) for additional restrictions.
 
-connlimit
-:   The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Cloudberry Database superusers are exempt from this limit.
+**`lc_collate`**
 
-istemplate
-:   If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false` (the default), then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.
+The collation order (`LC_COLLATE`) to use in the new database. This affects the sort order applied to strings, e.g. in queries with `ORDER BY`, as well as the order used in indexes on text columns. The default is to use the collation order of the template database. See the [Notes](#section5) for additional restrictions.
+
+**`lc_ctype`**
+
+The character classification (`LC_CTYPE`) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#section5) for additional restrictions.
+
+**`tablespace_name`**
+
+The name of the tablespace that will be associated with the new database, or `DEFAULT` to use the template database's tablespace. This tablespace will be the default tablespace used for objects created in this database. See [CREATE TABLESPACE](/docs/sql-statements/sql-statement-create-tablespace.md) for more information.
+
+**`allowconn`**
+
+If `false`, then no one can connect to this database. The default is `true`, allowing connections (except as restricted by other mechanisms, such as `GRANT/REVOKE CONNECT`).
+
+**`connlimit`**
+
+The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Cloudberry Database superusers are exempt from this limit.
+
+**`istemplate`**
+
+If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false` (the default), then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.
 
 Optional parameters can be written in any order, not only the order illustrated above.
 

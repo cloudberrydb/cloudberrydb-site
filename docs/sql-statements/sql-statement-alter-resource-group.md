@@ -34,8 +34,9 @@ You can alter one limit type in a single `ALTER RESOURCE GROUP` call.
 
 ## Parameters
 
-name
-:   The name of the resource group to alter.
+**`name`**
+
+The name of the resource group to alter.
 
 CONCURRENCY integer
 :   The maximum number of concurrent transactions, including active and idle transactions, that are permitted for this resource group. The `CONCURRENCY` value must be an integer in the range [0 .. `max_connections`]. The default `CONCURRENCY` value for resource groups defined for roles is 20.

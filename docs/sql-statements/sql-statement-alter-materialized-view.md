@@ -43,26 +43,33 @@ The statement subforms and actions available for `ALTER MATERIALIZED VIEW` are a
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing materialized view.
+**`name`**
 
-column_name
-:   Name of a new or existing column.
+The name (optionally schema-qualified) of an existing materialized view.
 
-extension_name
-:   The name of the extension that the materialized view is to depend on.
+**`column_name`**
 
-new_column_name
-:   New name for an existing column.
+Name of a new or existing column.
 
-new_owner
-:   The user name of the new owner of the materialized view.
+**`extension_name`**
 
-new_name
-:   The new name for the materialized view.
+The name of the extension that the materialized view is to depend on.
 
-new_schema
-:   The new schema for the materialized view.
+**`new_column_name`**
+
+New name for an existing column.
+
+**`new_owner`**
+
+The user name of the new owner of the materialized view.
+
+**`new_name`**
+
+The new name for the materialized view.
+
+**`new_schema`**
+
+The new schema for the materialized view.
 
 ## Examples
 

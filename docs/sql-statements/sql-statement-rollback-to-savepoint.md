@@ -17,11 +17,13 @@ This command rolls back all commands that were run after the savepoint was estab
 ## Parameters
 
 WORK
-TRANSACTION
-:   Optional key words. They have no effect.
+**`TRANSACTION`**
 
-savepoint_name
-:   The name of the savepoint to roll back to.
+Optional key words. They have no effect.
+
+**`savepoint_name`**
+
+The name of the savepoint to roll back to.
 
 ## Notes
 

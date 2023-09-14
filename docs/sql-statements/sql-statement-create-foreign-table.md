@@ -62,14 +62,17 @@ To create a foreign table, you must have `USAGE` privilege on the foreign server
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
 
-table_name
-:   The name (optionally schema-qualified) of the foreign table to create.
+**`table_name`**
 
-column_name
-:   The name of a column to create in the new foreign table.
+The name (optionally schema-qualified) of the foreign table to create.
 
-data_type
-:   The data type of the column, including array specifiers.
+**`column_name`**
+
+The name of a column to create in the new foreign table.
+
+**`data_type`**
+
+The data type of the column, including array specifiers.
 
 COLLATE collation
 :   The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
@@ -86,8 +89,9 @@ CONSTRAINT constraint_name
 NOT NULL
 :   The column is not allowed to contain null values.
 
-NULL
-:   The column is allowed to contain null values. This is the default.
+**`NULL`**
+
+The column is allowed to contain null values. This is the default.
 
     This clause is provided only for compatibility with non-standard SQL databases. Its use is discouraged in new applications.
 
@@ -105,8 +109,9 @@ GENERATED ALWAYS AS ( generation_expr ) STORED
 :   The keyword `STORED` is required to signify that the column will be computed on write. (The computed value will be presented to the foreign-data wrapper for storage and must be returned on reading.)
 :   The generation expression can refer to other columns in the table, but not other generated columns. Any functions and operators used must be immutable. References to other tables are not allowed.
 
-server_name
-:   The name of an existing server to use for the foreign table. For details on defining a server, see [CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md).
+**`server_name`**
+
+The name of an existing server to use for the foreign table. For details on defining a server, see [CREATE SERVER](/docs/sql-statements/sql-statement-create-server.md).
 
 OPTIONS ( option 'value' [, ... ] )
 :   The options for the new foreign table or one of its columns. While option names must be unique, a table option and a column option may have the same name. The option names and values are foreign-data wrapper-specific. Cloudberry Database validates the options and values using the foreign-data wrapper's validator_function.

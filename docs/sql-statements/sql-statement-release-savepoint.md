@@ -18,8 +18,9 @@ Destroying a savepoint makes it unavailable as a rollback point, but it has no o
 
 ## Parameters
 
-savepoint_name
-:   The name of the savepoint to destroy.
+**`savepoint_name`**
+
+The name of the savepoint to destroy.
 
 ## Notes
 

@@ -235,8 +235,9 @@ DROP IDENTITY [ IF EXISTS ]
 :   If `DROP IDENTITY IF EXISTS` is specified and the column is not an identity column, no error is thrown. In this case Cloudberry Database issues a notice instead.
 
 SET sequence_option
-RESTART
-:   These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](/docs/sql-statements/sql-statement-alter-sequence.md) such as `INCREMENT BY`.
+**`RESTART`**
+
+These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](/docs/sql-statements/sql-statement-alter-sequence.md) such as `INCREMENT BY`.
 
 SET STATISTICS
 :   Sets the per-column statistics-gathering target for subsequent [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) operations. The target can be set in the range 0 to 10000, or set to -1 to revert to using the system default statistics target (`default_statistics_target`). When set to 0, no statistics are collected.
@@ -355,8 +356,9 @@ NOT OF
 OWNER TO
 :   Changes the owner of the table, sequence, view, materialized view, or foreign table to the specified user.
 
-RENAME
-:   Changes the name of a table (or an index, sequence, view, materialized view, or foreign table), the name of an individual column in a table, or the name of a constraint of the table. When renaming a constraint that has an underlying index, the index is renamed as well. There is no effect on the stored data.
+**`RENAME`**
+
+Changes the name of a table (or an index, sequence, view, materialized view, or foreign table), the name of an individual column in a table, or the name of a constraint of the table. When renaming a constraint that has an underlying index, the index is renamed as well. There is no effect on the stored data.
 
 SET SCHEMA
 :   Moves the table into another schema. Associated indexes, constraints, and sequences owned by table columns are moved as well.
@@ -401,28 +403,35 @@ You must own the table to use `ALTER TABLE`. To change the schema or tablespace 
 IF EXISTS
 :   Do not throw an error if the table does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name (possibly schema-qualified) of an existing table to alter. If `ONLY` is specified, only that table is altered. If `ONLY` is not specified, the table and all of its descendant tables (if any) are updated.  You can optionally specify `*` after the table name to explicitly indicate that descendant tables are included.
+**`name`**
+
+The name (possibly schema-qualified) of an existing table to alter. If `ONLY` is specified, only that table is altered. If `ONLY` is not specified, the table and all of its descendant tables (if any) are updated.  You can optionally specify `*` after the table name to explicitly indicate that descendant tables are included.
 
     > **Note** Adding or dropping a column, or changing a column's type, in a parent or descendant table only is not permitted. The parent table and its descendents must always have the same columns and types.
 
-column_name
-:   Name of a new or existing column. Note that Cloudberry Database distribution key columns must be treated with special care. Altering or dropping these columns can change the distribution policy for the table.
+**`column_name`**
 
-new_column_name
-:   New name for an existing column.
+Name of a new or existing column. Note that Cloudberry Database distribution key columns must be treated with special care. Altering or dropping these columns can change the distribution policy for the table.
 
-new_name
-:   New name for the table.
+**`new_column_name`**
 
-type
-:   Data type of the new column, or new data type for an existing column. If changing the data type of a Greenplum distribution key column, you are only allowed to change it to a compatible type (for example, `text` to `varchar` is OK, but `text` to `int` is not).
+New name for an existing column.
 
-table_constraint
-:   New table constraint for the table. Note that foreign key constraints are currently not supported in Cloudberry Database. Also a table is only allowed one unique constraint and the uniqueness must be within the Cloudberry Database distribution key.
+**`new_name`**
 
-constraint_name
-:   Name of an existing constraint to drop.
+New name for the table.
+
+**`type`**
+
+Data type of the new column, or new data type for an existing column. If changing the data type of a Greenplum distribution key column, you are only allowed to change it to a compatible type (for example, `text` to `varchar` is OK, but `text` to `int` is not).
+
+**`table_constraint`**
+
+New table constraint for the table. Note that foreign key constraints are currently not supported in Cloudberry Database. Also a table is only allowed one unique constraint and the uniqueness must be within the Cloudberry Database distribution key.
+
+**`constraint_name`**
+
+Name of an existing constraint to drop.
 
 `ENCODING ( <storage_directive> [,...] )`
 :   The `ENCODING` clause is valid only for append-optimized, column-oriented tables.
@@ -435,41 +444,53 @@ constraint_name
     4.  The default compression parameter value.
 :   For more information about the supported `ENCODING` storage directives, refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
-CASCADE
-:   Automatically drop objects that depend on the dropped column or constraint (for example, views referencing the column), and in turn all objects that depend on those objects.
+**`CASCADE`**
 
-RESTRICT
-:   Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
+Automatically drop objects that depend on the dropped column or constraint (for example, views referencing the column), and in turn all objects that depend on those objects.
 
-index_name
-:   The name of an existing index.
+**`RESTRICT`**
 
-storage_parameter
-:   The name of a table storage parameter. Refer to the [Storage Parameters](/docs/sql-statements/sql-statement-create-table.md#storage-parameters) section on the `CREATE TABLE` reference page for a list of parameters.
+Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
 
-value
-:   The new value for the a table storage parameter. This might be a number or a word, depending on the parameter.
+**`index_name`**
 
-parent_table
-:   A parent table to associate or de-associate with this table.
+The name of an existing index.
 
-new_owner
-:   The role name of the new owner of the table.
+**`storage_parameter`**
 
-new_tablespace
-:   The name of the tablespace to which the table will be moved.
+The name of a table storage parameter. Refer to the [Storage Parameters](/docs/sql-statements/sql-statement-create-table.md#storage-parameters) section on the `CREATE TABLE` reference page for a list of parameters.
 
-new_schema
-:   The name of the schema to which the table will be moved.
+**`value`**
 
-partition_name
-:   The name of the table to attach as a new partition or to detach from this table.
+The new value for the a table storage parameter. This might be a number or a word, depending on the parameter.
 
-partition_bound_spec
-:   The partition bound specification for a new partition. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more details on the syntax of the same.
+**`parent_table`**
 
-access_method
-:   The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Cloudberry Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
+A parent table to associate or de-associate with this table.
+
+**`new_owner`**
+
+The role name of the new owner of the table.
+
+**`new_tablespace`**
+
+The name of the tablespace to which the table will be moved.
+
+**`new_schema`**
+
+The name of the schema to which the table will be moved.
+
+**`partition_name`**
+
+The name of the table to attach as a new partition or to detach from this table.
+
+**`partition_bound_spec`**
+
+The partition bound specification for a new partition. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more details on the syntax of the same.
+
+**`access_method`**
+
+The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Cloudberry Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
 
 > **Note:**
 >
@@ -551,8 +572,9 @@ SPLIT PARTITION
 
 :   **INTO** - Allows you to specify names for the two new partitions created by the split.
 
-partition_name
-:   The given name of a partition. You can obtain the the table names of the leaf partitions of a partitioned table using the `pg_partition_tree() function.
+**`partition_name`**
+
+The given name of a partition. You can obtain the the table names of the leaf partitions of a partitioned table using the `pg_partition_tree() function.
 
 FOR ('value')
 :   Specifies a partition by declaring a value that falls within the partition boundary specification. If the value declared with `FOR` matches to both a partition and one of its sub-partitions (for example, if the value is a date and the table is partitioned by month and then by day), then `FOR` will operate on the first level where a match is found (for example, the monthly partition). If your intent is to operate on a sub-partition, you must declare so as follows: `ALTER TABLE name ALTER PARTITION FOR ('2016-10-01') DROP PARTITION FOR ('2016-10-01');`

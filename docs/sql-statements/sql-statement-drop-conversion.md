@@ -17,12 +17,14 @@ DROP CONVERSION [IF EXISTS] <name> [CASCADE | RESTRICT]
 IF EXISTS
 :   Do not throw an error if the conversion does not exist. A notice is issued in this case.
 
-name
-:   The name of the conversion. The conversion name may be schema-qualified.
+**`name`**
+
+The name of the conversion. The conversion name may be schema-qualified.
 
 CASCADE
-RESTRICT
-:   These keywords have no effect since there are no dependencies on conversions.
+**`RESTRICT`**
+
+These keywords have no effect since there are no dependencies on conversions.
 
 ## Examples
 

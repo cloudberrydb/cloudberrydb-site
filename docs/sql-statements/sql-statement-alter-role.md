@@ -57,9 +57,9 @@ where <role_specification> can be:
 **SET | RESET**
 :   Changes a role's session default for a specified configuration parameter, either for all databases or, when the `IN DATABASE` clause is specified, only for sessions in the named database. If `ALL` is specified instead of a role name, this changes the setting for all roles. Using `ALL` with `IN DATABASE` is effectively the same as using the command `ALTER DATABASE ... SET ...`.
 
-    Whenever the role subsequently starts a new session, the specified value becomes the session default, overriding whatever setting is present in the server configuration file (`postgresql.conf`) or has been received from the `postgres` command line. This only happens at login time; running [SET ROLE](/docs/sql-statements/sql-statement-set-role.md) or [SET SESSION AUTHORIZATION](/docs/sql-statements/sql-statement-set-session-authorization.md) does not cause new configuration values to be set. Settings set for all databases are overridden by database-specific settings attached to a role. Settings for specific databases or specific roles override settings for all roles.
+Whenever the role subsequently starts a new session, the specified value becomes the session default, overriding whatever setting is present in the server configuration file (`postgresql.conf`) or has been received from the `postgres` command line. This only happens at login time; running [SET ROLE](/docs/sql-statements/sql-statement-set-role.md) or [SET SESSION AUTHORIZATION](/docs/sql-statements/sql-statement-set-session-authorization.md) does not cause new configuration values to be set. Settings set for all databases are overridden by database-specific settings attached to a role. Settings for specific databases or specific roles override settings for all roles.
 
-    Superusers can change anyone's session defaults. Roles having `CREATEROLE` privilege can change defaults for non-superuser roles. Ordinary roles can only set defaults for themselves. Certain configuration variables cannot be set this way, or can only be set if a superuser issues the command. Only superusers can change a setting for all roles in all databases.
+Superusers can change anyone's session defaults. Roles having `CREATEROLE` privilege can change defaults for non-superuser roles. Ordinary roles can only set defaults for themselves. Certain configuration variables cannot be set this way, or can only be set if a superuser issues the command. Only superusers can change a setting for all roles in all databases.
 
 **RESOURCE QUEUE**
 :   Assigns the role to a resource queue. The role would then be subject to the limits assigned to the resource queue when issuing queries. Specify `NONE` to assign the role to the default resource queue. A role can belong to only one resource queue. For a role without `LOGIN` privilege, resource queues have no effect. See [CREATE RESOURCE QUEUE](/docs/sql-statements/sql-statement-create-resource-queue.md) for more information.
@@ -69,14 +69,17 @@ where <role_specification> can be:
 
 ## Parameters
 
-name
-:   The name of the role whose attributes are to be altered.
+**`name`**
 
-CURRENT_USER
-:   Alter the current user instead of an explicitly identified role.
+The name of the role whose attributes are to be altered.
 
-SESSION_USER
-:   Alter the current session user instead of an explicitly identified role.
+**`CURRENT_USER`**
+
+Alter the current user instead of an explicitly identified role.
+
+**`SESSION_USER`**
+
+Alter the current session user instead of an explicitly identified role.
 
 SUPERUSER
 NOSUPERUSER
@@ -98,27 +101,32 @@ PASSWORD NULL
 VALID UNTIL 'timestamp'
 :   These clauses alter attributes originally set by `CREATE ROLE`. For more information, see the [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) reference page.
 
-new_name
-:   The new name of the role.
+**`new_name`**
 
-database_name
-:   The name of the database in which to set the configuration parameter.
+The new name of the role.
+
+**`database_name`**
+
+The name of the database in which to set the configuration parameter.
 
 configuration_parameter
-value
-:   Set this role's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the role-specific parameter setting is removed, so the role will inherit the system-wide default setting in new sessions. Use `RESET ALL` to clear all role-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the role-specific value. If `IN DATABASE` is specified, the configuration parameter is set or removed for the given role and database only.
+**`value`**
+
+Set this role's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the role-specific parameter setting is removed, so the role will inherit the system-wide default setting in new sessions. Use `RESET ALL` to clear all role-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the role-specific value. If `IN DATABASE` is specified, the configuration parameter is set or removed for the given role and database only.
 
 :   Role-specific variable settings take effect only at login; [SET ROLE](/docs/sql-statements/sql-statement-set-role.md) and [SET SESSION AUTHORIZATION](/docs/sql-statements/sql-statement-set-session-authorization.md) do not process role-specific variable settings.
 
 :   See [SET](/docs/sql-statements/sql-statement-set.md) and Server Configuration Parameters for more information about allowed parameter names and values.
 
-group_name
-:   The name of the resource group to assign to this role. Specifying the group_name `NONE` removes the role's current resource group assignment and assigns a default resource group based on the role's capability. `SUPERUSER` roles are assigned the `admin_group` resource group, while the `default_group` resource group is assigned to non-admin roles.
+**`group_name`**
+
+The name of the resource group to assign to this role. Specifying the group_name `NONE` removes the role's current resource group assignment and assigns a default resource group based on the role's capability. `SUPERUSER` roles are assigned the `admin_group` resource group, while the `default_group` resource group is assigned to non-admin roles.
 
 :   You cannot assign a resource group that you create for an external component to a role.
 
-queue_name
-:   The name of the resource queue to which the user-level role is to be assigned. Only roles with `LOGIN` privilege can be assigned to a resource queue. To unassign a role from a resource queue and put it in the default resource queue, specify `NONE`. A role can belong only to one resource queue.
+**`queue_name`**
+
+The name of the resource queue to which the user-level role is to be assigned. Only roles with `LOGIN` privilege can be assigned to a resource queue. To unassign a role from a resource queue and put it in the default resource queue, specify `NONE`. A role can belong only to one resource queue.
 
 ## Notes
 

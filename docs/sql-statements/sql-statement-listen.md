@@ -22,8 +22,9 @@ The method a client application must use to detect notification events depends o
 
 ## Parameters
 
-channel
-:   The name of a notification channel (any identifier).
+**`channel`**
+
+The name of a notification channel (any identifier).
 
 ## Notes
 

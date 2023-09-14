@@ -29,14 +29,17 @@ SELECT [ALL | DISTINCT [ON ( <expression> [, ...] )]]
 ## Parameters
 
 TEMPORARY
-TEMP
-:   If specified, the table is created as a temporary table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
+**`TEMP`**
 
-UNLOGGED
-:   If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
+If specified, the table is created as a temporary table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
-new_table
-:   The name (optionally schema-qualified) of the table to be created.
+**`UNLOGGED`**
+
+If specified, the table is created as an unlogged table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
+
+**`new_table`**
+
+The name (optionally schema-qualified) of the table to be created.
 
 All other parameters for `SELECT INTO` are described in detail on the [SELECT](/docs/sql-statements/sql-statement-select.md) reference page.
 

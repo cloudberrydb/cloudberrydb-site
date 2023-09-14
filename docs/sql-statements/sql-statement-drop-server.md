@@ -17,14 +17,17 @@ DROP SERVER [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 IF EXISTS
 :   Do not throw an error if the server does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name of an existing server.
+**`name`**
 
-CASCADE
-:   Automatically drop objects that depend on the server (such as user mappings), and in turn all objects that depend on those objects.
+The name of an existing server.
 
-RESTRICT
-:   Refuse to drop the server if any object depends on it. This is the default.
+**`CASCADE`**
+
+Automatically drop objects that depend on the server (such as user mappings), and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the server if any object depends on it. This is the default.
 
 ## Examples
 

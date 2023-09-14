@@ -27,20 +27,24 @@ Superusers automatically satisfy all of these criteria.
 
 ## Parameters
 
-name
-:   The name of an existing server.
+**`name`**
 
-new_version
-:   The new server version.
+The name of an existing server.
+
+**`new_version`**
+
+The new server version.
 
 OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
 :   Change the server's options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Cloudberry Database validates names and values using the server's foreign-data wrapper library.
 
-new_owner
-:   Specifies the new owner of the foreign server.
+**`new_owner`**
 
-new_name
-:   Specifies the new name of the foreign server.
+Specifies the new owner of the foreign server.
+
+**`new_name`**
+
+Specifies the new name of the foreign server.
 
 ## Examples
 

@@ -19,8 +19,9 @@ DROP DATABASE [IF EXISTS] <name>
 IF EXISTS
 :   Do not throw an error if the database does not exist. A notice is issued in this case.
 
-name
-:   The name of the database to remove.
+**`name`**
+
+The name of the database to remove.
 
 ## Notes
 

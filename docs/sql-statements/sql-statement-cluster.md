@@ -28,14 +28,16 @@ When a table is being clustered, an `ACCESS EXCLUSIVE` lock is acquired on it. T
 
 ## Parameters
 
-index_name
-:   The name of an index.
+**`index_name`**
+
+The name of an index.
 
 `VERBOSE`
 :   Prints a progress report as each table is clustered.
 
-table_name
-:   The name (optionally schema-qualified) of a table.
+**`table_name`**
+
+The name (optionally schema-qualified) of a table.
 
 ## Notes
 

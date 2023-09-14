@@ -45,49 +45,61 @@ You must own the function to use `ALTER FUNCTION`. To change a function's schema
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing function. If no argument list is specified, the name must be unique in its schema.
+**`name`**
 
-argmode
-:   The mode of an argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `ALTER FUNCTION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
+The name (optionally schema-qualified) of an existing function. If no argument list is specified, the name must be unique in its schema.
 
-argname
-:   The name of an argument. Note that [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+**`argmode`**
 
-argtype
-:   The data type(s) of the function's arguments (optionally schema-qualified), if any.
+The mode of an argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `ALTER FUNCTION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
 
-new_name
-:   The new name of the function.
+**`argname`**
 
-new_owner
-:   The new owner of the function. Note that if the function is marked `SECURITY DEFINER`, it will subsequently run as the new owner.
+The name of an argument. Note that [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
 
-new_schema
-:   The new schema for the function.
+**`argtype`**
 
-extension_name
-:   The name of the extension that the function is to depend on.
+The data type(s) of the function's arguments (optionally schema-qualified), if any.
+
+**`new_name`**
+
+The new name of the function.
+
+**`new_owner`**
+
+The new owner of the function. Note that if the function is marked `SECURITY DEFINER`, it will subsequently run as the new owner.
+
+**`new_schema`**
+
+The new schema for the function.
+
+**`extension_name`**
+
+The name of the extension that the function is to depend on.
 
 CALLED ON NULL INPUT
 RETURNS NULL ON NULL INPUT
-STRICT
-:   `CALLED ON NULL INPUT` changes the function so that it will be invoked when some or all of its arguments are null. `RETURNS NULL ON NULL INPUT` or `STRICT` changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
+**`STRICT`**
+
+`CALLED ON NULL INPUT` changes the function so that it will be invoked when some or all of its arguments are null. `RETURNS NULL ON NULL INPUT` or `STRICT` changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 IMMUTABLE
 STABLE
-VOLATILE
-:   Change the volatility of the function to the specified setting. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for details.
+**`VOLATILE`**
+
+Change the volatility of the function to the specified setting. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for details.
 
 [ EXTERNAL ] SECURITY INVOKER
 [ EXTERNAL ] SECURITY DEFINER
 :   Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information about this capability.
 
-PARALLEL
-:   Change whether the function is deemed safe for parallelism. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for details.
+**`PARALLEL`**
 
-LEAKPROOF
-:   Change whether the function is considered leakproof or not. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information about this capability.
+Change whether the function is deemed safe for parallelism. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for details.
+
+**`LEAKPROOF`**
+
+Change whether the function is considered leakproof or not. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information about this capability.
 
 EXECUTE ON ANY
 EXECUTE ON COORDINATOR
@@ -116,12 +128,14 @@ SUPPORT support_function
 :   This option cannot be used to remove the support function altogether, since it must name a new support function. Use `CREATE OR REPLACE FUNCTION` if you require that.
 
 configuration_parameter
-value
-:   Set or change the value of a configuration parameter when the function is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the function-local setting is removed, and the function runs with the value present in its environment. Use `RESET ALL` to clear all function-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER FUNCTION` is run as the value to be applied when the function is entered.
+**`value`**
+
+Set or change the value of a configuration parameter when the function is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the function-local setting is removed, and the function runs with the value present in its environment. Use `RESET ALL` to clear all function-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER FUNCTION` is run as the value to be applied when the function is entered.
 :   See [SET](/docs/sql-statements/sql-statement-set.md) for more information about allowed parameter names and values.
 
-RESTRICT
-:   Ignored for conformance with the SQL standard.
+**`RESTRICT`**
+
+Ignored for conformance with the SQL standard.
 
 ## Notes
 

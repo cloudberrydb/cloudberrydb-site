@@ -23,23 +23,29 @@ In the second form of `ALTER POLICY`, the role list, using_expression, and check
 
 ## Parameters
 
-name
-:   The name of an existing policy to alter.
+**`name`**
 
-table_name
-:   The name (optionally schema-qualified) of the table that the policy is on.
+The name of an existing policy to alter.
 
-new_name
-:   The new name for the policy.
+**`table_name`**
 
-role_name
-:   The role(s) to which the policy applies. Multiple roles can be specified at one time. To apply the policy to all roles, use `PUBLIC`.
+The name (optionally schema-qualified) of the table that the policy is on.
 
-using_expression
-:   The `USING` expression for the policy. See [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md) for details.
+**`new_name`**
 
-check_expression
-:   The `WITH CHECK` expression for the policy. See [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md) for details.
+The new name for the policy.
+
+**`role_name`**
+
+The role(s) to which the policy applies. Multiple roles can be specified at one time. To apply the policy to all roles, use `PUBLIC`.
+
+**`using_expression`**
+
+The `USING` expression for the policy. See [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md) for details.
+
+**`check_expression`**
+
+The `WITH CHECK` expression for the policy. See [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md) for details.
 
 ## Compatibility
 

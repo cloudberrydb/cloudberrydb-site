@@ -22,14 +22,17 @@ Within larger commands, `VALUES` is syntactically allowed anywhere that `SELECT`
 
 ## Parameters
 
-expression
-:   A constant or expression to compute and insert at the indicated place in the resulting table (set of rows). In a `VALUES` list appearing at the top level of an `INSERT`, an expression can be replaced by `DEFAULT` to indicate that the destination column's default value should be inserted. `DEFAULT` cannot be used when `VALUES` appears in other contexts.
+**`expression`**
 
-sort_expression
-:   An expression or integer constant indicating how to sort the result rows. This expression may refer to the columns of the `VALUES` result as `column1`, `column2`, etc. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
+A constant or expression to compute and insert at the indicated place in the resulting table (set of rows). In a `VALUES` list appearing at the top level of an `INSERT`, an expression can be replaced by `DEFAULT` to indicate that the destination column's default value should be inserted. `DEFAULT` cannot be used when `VALUES` appears in other contexts.
 
-operator
-:   A sorting operator. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
+**`sort_expression`**
+
+An expression or integer constant indicating how to sort the result rows. This expression may refer to the columns of the `VALUES` result as `column1`, `column2`, etc. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
+
+**`operator`**
+
+A sorting operator. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 LIMIT count
 OFFSET start

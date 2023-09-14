@@ -19,17 +19,21 @@ To drop a transform, you must own the type and the language. These are the same 
 IF EXISTS
 :   Do not throw an error if the transform does not exist. Cloudberry Database issues a notice in this case.
 
-type_name
-:   The name of the data type of the transform.
+**`type_name`**
 
-lang_name
-:   The name of the language of the transform.
+The name of the data type of the transform.
 
-CASCADE
-:   Automatically drop objects that depend on the transform, and in turn all objects that depend on those objects.
+**`lang_name`**
 
-RESTRICT
-:   Refuse to drop the transform if any objects depend on it. This is the default.
+The name of the language of the transform.
+
+**`CASCADE`**
+
+Automatically drop objects that depend on the transform, and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the transform if any objects depend on it. This is the default.
 
 ## Examples
 

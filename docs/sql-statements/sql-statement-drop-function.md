@@ -18,23 +18,29 @@ DROP FUNCTION [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
 IF EXISTS
 :   Do not throw an error if the function does not exist. A notice is issued in this case.
 
-name
-:   The name (optionally schema-qualified) of an existing function.
+**`name`**
 
-argmode
-:   The mode of an argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `DROP FUNCTION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
+The name (optionally schema-qualified) of an existing function.
 
-argname
-:   The name of an argument. Note that `DROP FUNCTION` does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+**`argmode`**
 
-argtype
-:   The data type(s) of the function's arguments (optionally schema-qualified), if any.
+The mode of an argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `DROP FUNCTION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
 
-CASCADE
-:   Automatically drop objects that depend on the function (such as operators).
+**`argname`**
 
-RESTRICT
-:   Refuse to drop the function if any objects depend on it. This is the default.
+The name of an argument. Note that `DROP FUNCTION` does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+
+**`argtype`**
+
+The data type(s) of the function's arguments (optionally schema-qualified), if any.
+
+**`CASCADE`**
+
+Automatically drop objects that depend on the function (such as operators).
+
+**`RESTRICT`**
+
+Refuse to drop the function if any objects depend on it. This is the default.
 
 ## Examples
 

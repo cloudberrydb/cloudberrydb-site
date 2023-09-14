@@ -95,11 +95,13 @@ INHERIT parent_table
 NO INHERIT parent_table
 :   This form removes the target foreign table from the list of children of the specified parent table.
 
-OWNER
-:   This form changes the owner of the foreign table to the specified user.
+**`OWNER`**
 
-RENAME
-:   The `RENAME` forms change the name of a foreign table or the name of an individual column in a foreign table.
+This form changes the owner of the foreign table to the specified user.
+
+**`RENAME`**
+
+The `RENAME` forms change the name of a foreign table or the name of an individual column in a foreign table.
 
 SET SCHEMA
 :   This form moves the foreign table into another schema.
@@ -115,50 +117,65 @@ You must own the table to use `ALTER FOREIGN TABLE`. To change the schema of a f
 
 ## Parameters
 
-name
-:   The name (possibly schema-qualified) of an existing foreign table to alter. If `ONLY` is specified before the table name, only that table is altered. If `ONLY` is not specified, the table and all its descendant tables (if any) are altered. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
+**`name`**
 
-column_name
-:   The name of a new or existing column.
+The name (possibly schema-qualified) of an existing foreign table to alter. If `ONLY` is specified before the table name, only that table is altered. If `ONLY` is not specified, the table and all its descendant tables (if any) are altered. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
 
-new_column_name
-:   The new name for an existing column.
+**`column_name`**
 
-new_name
-:   The new name for the foreign table.
+The name of a new or existing column.
 
-data_type
-:   The data type of the new column, or new data type for an existing column.
+**`new_column_name`**
 
-table_constraint
-:   The new table constraint for the foreign table.
+The new name for an existing column.
 
-constraint_name
-:   The name of an existing constraint to validate or drop.
+**`new_name`**
 
-CASCADE
-:   Automatically drop objects that depend on the dropped column or constraint (for example, views referencing the column), and in turn all objects that depend on those objects.
+The new name for the foreign table.
 
-RESTRICT
-:   Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
+**`data_type`**
 
-trigger_name
-:   Name of a single trigger to deactivate or enable.
+The data type of the new column, or new data type for an existing column.
 
-ALL
-:   Deactivate or activate all triggers belonging to the foreign table. (This requires superuser privilege if any of the triggers are internally generated triggers. The core system does not add such triggers to foreign tables, but add-on code could do so.)
+**`table_constraint`**
 
-USER
-:   Deactivate or activate all triggers belonging to the foreign table except for internally generated triggers.
+The new table constraint for the foreign table.
 
-parent_table
-:   A parent table to associate or de-associate with this foreign table.
+**`constraint_name`**
 
-new_owner
-:   The user name of the new owner of the foreign table.
+The name of an existing constraint to validate or drop.
 
-new_schema
-:   The name of the schema to which the foreign table will be moved.
+**`CASCADE`**
+
+Automatically drop objects that depend on the dropped column or constraint (for example, views referencing the column), and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
+
+**`trigger_name`**
+
+Name of a single trigger to deactivate or enable.
+
+**`ALL`**
+
+Deactivate or activate all triggers belonging to the foreign table. (This requires superuser privilege if any of the triggers are internally generated triggers. The core system does not add such triggers to foreign tables, but add-on code could do so.)
+
+**`USER`**
+
+Deactivate or activate all triggers belonging to the foreign table except for internally generated triggers.
+
+**`parent_table`**
+
+A parent table to associate or de-associate with this foreign table.
+
+**`new_owner`**
+
+The user name of the new owner of the foreign table.
+
+**`new_schema`**
+
+The name of the schema to which the foreign table will be moved.
 
 ## Notes
 

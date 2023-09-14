@@ -24,11 +24,13 @@ The compilation and execution of anonymous blocks are combined in one step, whil
 
 ## Parameters
 
-code
-:   The procedural language code to be run. This must be specified as a string literal, just as with the `CREATE FUNCTION` command. Use of a dollar-quoted literal is recommended.
+**`code`**
 
-lang_name
-:   The name of the procedural language in which the code is written. The default is `plpgsql`.
+The procedural language code to be run. This must be specified as a string literal, just as with the `CREATE FUNCTION` command. Use of a dollar-quoted literal is recommended.
+
+**`lang_name`**
+
+The name of the procedural language in which the code is written. The default is `plpgsql`.
 
 ## Notes
 

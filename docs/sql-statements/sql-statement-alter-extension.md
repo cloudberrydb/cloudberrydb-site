@@ -52,8 +52,9 @@ and <aggregate_signature> is:
 
 `ALTER EXTENSION` changes the definition of an installed extension. There are several subforms:
 
-UPDATE
-:   This form updates the extension to a newer version. The extension must supply a suitable update script (or series of scripts) that can modify the currently-installed version into the requested version.
+**`UPDATE`**
+
+This form updates the extension to a newer version. The extension must supply a suitable update script (or series of scripts) that can modify the currently-installed version into the requested version.
 
 SET SCHEMA
 :   This form moves the extension member objects into another schema. The extension must be *relocatable* for this command to succeed.
@@ -70,50 +71,63 @@ You must own the extension to use `ALTER EXTENSION`. The `ADD` and `DROP` forms 
 
 ## Parameters
 
-name
-:   The name of an installed extension.
+**`name`**
 
-new_version
-:   The new version of the extension. The new_version can be either an identifier or a string literal. If not specified, `ALTER EXTENSION UPDATE` attempts to update to whatever is shown as the default version in the extension's control file.
+The name of an installed extension.
 
-new_schema
-:   The new schema for the extension.
+**`new_version`**
+
+The new version of the extension. The new_version can be either an identifier or a string literal. If not specified, `ALTER EXTENSION UPDATE` attempts to update to whatever is shown as the default version in the extension's control file.
+
+**`new_schema`**
+
+The new schema for the extension.
 
 object_name
 aggregate_name
 function_name
 operator_name
 procedure_name
-routine_name
-:   The name of an object to be added to or removed from the extension. Names of tables, aggregates, domains, foreign tables, functions, operators, operator classes, operator families, procedures, routines, sequences, text search objects, types, and views can be schema-qualified.
+**`routine_name`**
 
-source_type
-:   The name of the source data type of the cast.
+The name of an object to be added to or removed from the extension. Names of tables, aggregates, domains, foreign tables, functions, operators, operator classes, operator families, procedures, routines, sequences, text search objects, types, and views can be schema-qualified.
 
-target_type
-:   The name of the target data type of the cast.
+**`source_type`**
 
-argmode
-:   The mode of a function or aggregate argument: `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `ALTER EXTENSION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
+The name of the source data type of the cast.
 
-argname
-:   The name of a function or aggregate argument. Note that `ALTER EXTENSION` does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+**`target_type`**
 
-argtype
-:   The data type of a function, procedure, or aggregate argument.
+The name of the target data type of the cast.
+
+**`argmode`**
+
+The mode of a function or aggregate argument: `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `ALTER EXTENSION` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. So it is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
+
+**`argname`**
+
+The name of a function or aggregate argument. Note that `ALTER EXTENSION` does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+
+**`argtype`**
+
+The data type of a function, procedure, or aggregate argument.
 
 left_type
-right_type
-:   The data types of the operator's arguments (optionally schema-qualified) . Specify `NONE` for the missing argument of a prefix or postfix operator.
+**`right_type`**
 
-PROCEDURAL
-:   This is a noise word.
+The data types of the operator's arguments (optionally schema-qualified) . Specify `NONE` for the missing argument of a prefix or postfix operator.
 
-type_name
-:   The name of the data type of the transform.
+**`PROCEDURAL`**
 
-lang_name
-:   The name of the language of the transform.
+This is a noise word.
+
+**`type_name`**
+
+The name of the data type of the transform.
+
+**`lang_name`**
+
+The name of the language of the transform.
 
 ## Examples
 

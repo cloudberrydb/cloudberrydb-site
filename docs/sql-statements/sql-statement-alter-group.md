@@ -28,14 +28,17 @@ The third variant changes the name of the group. This is exactly equivalent to r
 
 ## Parameters
 
-group_name
-:   The name of the group (role) to modify.
+**`group_name`**
 
-user_name
-:   Users (roles) that are to be added to or removed from the group. The users (roles) must already exist; `ALTER GROUP` does not create or drop users.
+The name of the group (role) to modify.
 
-new_name
-:   The new name of the group.
+**`user_name`**
+
+Users (roles) that are to be added to or removed from the group. The users (roles) must already exist; `ALTER GROUP` does not create or drop users.
+
+**`new_name`**
+
+The new name of the group.
 
 ## Examples
 

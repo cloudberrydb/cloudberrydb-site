@@ -18,11 +18,13 @@ For more information on the creation and usage of prepared statements, see [PREP
 
 ## Parameters
 
-name
-:   The name of the prepared statement to run.
+**`name`**
 
-parameter
-:   The actual value of a parameter to the prepared statement. This must be an expression yielding a value that is compatible with the data type of this parameter, as was determined when the prepared statement was created.
+The name of the prepared statement to run.
+
+**`parameter`**
+
+The actual value of a parameter to the prepared statement. This must be an expression yielding a value that is compatible with the data type of this parameter, as was determined when the prepared statement was created.
 
 ## Outputs
 

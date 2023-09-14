@@ -31,15 +31,17 @@ All functions and operators used in an index definition must be immutable. Their
 
 ## Parameters
 
-UNIQUE
-:   Checks for duplicate values in the table when the index is created (if data already exist) and each time data is added. Duplicate entries will generate an error. Unique indexes only apply to B-tree indexes.
+**`UNIQUE`**
+
+Checks for duplicate values in the table when the index is created (if data already exist) and each time data is added. Duplicate entries will generate an error. Unique indexes only apply to B-tree indexes.
 :   Additional restrictions apply when unique indexes are applied to partitioned tables; see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing index is anything like the one that would have been created. Index name is required when `IF NOT EXISTS` is specified.
 
-INCLUDE
-:   The optional `INCLUDE` clause specifies a list of columns which will be included in the index as non-key columns. A non-key column cannot be used in an index scan search qualification, and it is disregarded for purposes of any uniqueness or exclusion constraint enforced by the index. However, an index-only scan can return the contents of non-key columns without having to visit the index's table, since they are available directly from the index entry. Thus, addition of non-key columns allows index-only scans to be used for queries that otherwise could not use them.
+**`INCLUDE`**
+
+The optional `INCLUDE` clause specifies a list of columns which will be included in the index as non-key columns. A non-key column cannot be used in an index scan search qualification, and it is disregarded for purposes of any uniqueness or exclusion constraint enforced by the index. However, an index-only scan can return the contents of non-key columns without having to visit the index's table, since they are available directly from the index entry. Thus, addition of non-key columns allows index-only scans to be used for queries that otherwise could not use them.
 
 :   Be conservative about adding non-key columns to an index, especially wide columns. If an index tuple exceeds the maximum size allowed for the index type, data insertion fails. In any case, non-key columns duplicate data from the index's table and bloat the size of the index, thus potentially slowing searches.
 
@@ -49,37 +51,47 @@ INCLUDE
 
 :   Currently, the B-tree and the GiST index access methods support `INCLUDE`. In B-tree and the GiST indexes, the values of columns listed in the `INCLUDE` clause are included in leaf tuples which correspond to heap tuples, but are not included in upper-level index entries used for tree navigation.
 
-name
-:   The name of the index to be created. The index is always created in the same schema as its parent table. If the name is omitted, Cloudberry Database chooses a suitable name based on the parent table's name and the indexed column name(s).
+**`name`**
 
-ONLY
-:   Indicates not to recurse creating indexes on partitions, if the table is partitioned. The default is to recurse.
+The name of the index to be created. The index is always created in the same schema as its parent table. If the name is omitted, Cloudberry Database chooses a suitable name based on the parent table's name and the indexed column name(s).
 
-table_name
-:   The name (optionally schema-qualified) of the table to be indexed.
+**`ONLY`**
 
-method
-:   The name of the index method to be used. Choices are `btree`, `bitmap`, `hash`, `gist`, `spgist`, `gin`, and `brin`. The default method is `btree`.
+Indicates not to recurse creating indexes on partitions, if the table is partitioned. The default is to recurse.
+
+**`table_name`**
+
+The name (optionally schema-qualified) of the table to be indexed.
+
+**`method`**
+
+The name of the index method to be used. Choices are `btree`, `bitmap`, `hash`, `gist`, `spgist`, `gin`, and `brin`. The default method is `btree`.
 
 :   GPORCA supports only B-tree, bitmap, GiST, GIN, and BRIN indexes. GPORCA ignores indexes created with unsupported indexing methods.
 
-column_name
-:   The name of a column of the table on which to create the index.
+**`column_name`**
 
-expression
-:   An expression based on one or more columns of the table. The expression usually must be written with surrounding parentheses, as shown in the syntax. However, the parentheses may be omitted if the expression has the form of a function call.
+The name of a column of the table on which to create the index.
 
-collation
-:   The name of the collation to use for the index. By default, the index uses the collation declared for the column to be indexed or the result collation of the expression to be indexed. Indexes with non-default collations can be useful for queries that involve expressions using non-default collations.
+**`expression`**
 
-opclass
-:   The name of an operator class.
+An expression based on one or more columns of the table. The expression usually must be written with surrounding parentheses, as shown in the syntax. However, the parentheses may be omitted if the expression has the form of a function call.
 
-ASC
-:   Specifies ascending sort order (which is the default).
+**`collation`**
 
-DESC
-:   Specifies descending sort order.
+The name of the collation to use for the index. By default, the index uses the collation declared for the column to be indexed or the result collation of the expression to be indexed. Indexes with non-default collations can be useful for queries that involve expressions using non-default collations.
+
+**`opclass`**
+
+The name of an operator class.
+
+**`ASC`**
+
+Specifies ascending sort order (which is the default).
+
+**`DESC`**
+
+Specifies descending sort order.
 
 NULLS FIRST
 :   Specifies that nulls sort before non-nulls. This is the default when `DESC` is specified.
@@ -87,14 +99,17 @@ NULLS FIRST
 NULLS LAST
 :   Specifies that nulls sort after non-nulls. This is the default when `DESC` is not specified.
 
-storage_parameter
-:   The name of an index-method-specific storage parameter. Each index method has its own set of allowed storage parameters. See [Index Storage Parameters](#section4isp) for details.
+**`storage_parameter`**
 
-tablespace_name
-	:   The tablespace in which to create the index. If not specified, default_tablespace is consulted, or temp_tablespaces for indexes on temporary tables.
+The name of an index-method-specific storage parameter. Each index method has its own set of allowed storage parameters. See [Index Storage Parameters](#section4isp) for details.
 
-predicate
-:   The constraint expression for a partial index.
+**`tablespace_name`**
+
+The tablespace in which to create the index. If not specified, default_tablespace is consulted, or temp_tablespaces for indexes on temporary tables.
+
+**`predicate`**
+
+The constraint expression for a partial index.
 
 ## Index Storage Parameters
 
@@ -105,8 +120,9 @@ The optional `WITH` clause specifies *storage parameters* for the index. Each in
 
 B-tree indexes additionally accept this parameter:
 
-vacuum_cleanup_index_scale_factor
-:   Per-index value for `vacuum_cleanup_index_scale_factor`.
+**`vacuum_cleanup_index_scale_factor`**
+
+Per-index value for `vacuum_cleanup_index_scale_factor`.
 
 GiST indexes additionally accept this parameter:
 
@@ -120,16 +136,19 @@ GIN indexes accept different parameters:
 
 :   **Note:** Turning `fastupdate` off via `ALTER INDEX` prevents future insertions from going into the list of pending index entries, but does not in itself flush previous entries. You might want to `VACUUM` the table or call `gin_clean_pending_list()` function afterward to ensure the pending list is emptied.
 
-gin_pending_list_limit
-:   Custom `gin_pending_list_limit` parameter. This value is specified in kilobytes.
+**`gin_pending_list_limit`**
+
+Custom `gin_pending_list_limit` parameter. This value is specified in kilobytes.
 
 BRIN indexes accept different parameters:
 
-pages_per_range
-:   Defines the number of table blocks that make up one block range for each entry of a BRIN index (see the [BRIN Index Introduction](https://www.postgresql.org/docs/12/brin-intro.html) in the PostgreSQL documentation for details). The default is 128.
+**`pages_per_range`**
 
-autosummarize
-:   Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance](https://www.postgresql.org/docs/12/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
+Defines the number of table blocks that make up one block range for each entry of a BRIN index (see the [BRIN Index Introduction](https://www.postgresql.org/docs/12/brin-intro.html) in the PostgreSQL documentation for details). The default is 128.
+
+**`autosummarize`**
+
+Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance](https://www.postgresql.org/docs/12/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
 
 ## Notes
 Refer to the [Indexes](https://www.postgresql.org/docs/12/indexes.html) topics in the PostgreSQL documentation for information about when indexes can be used, when they are not used, and in which particular situations they can be useful.

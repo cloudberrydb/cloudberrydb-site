@@ -21,8 +21,9 @@ Only superusers can create foreign-data wrappers.
 
 ## Parameters
 
-name
-:   The name of the foreign-data wrapper to create. The name must be unique within the database.
+**`name`**
+
+The name of the foreign-data wrapper to create. The name must be unique within the database.
 
 HANDLER handler_function
 :   The name of a previously registered function that Cloudberry Database calls to retrieve the execution functions for foreign tables. hander_function must take no arguments, and its return type must be `fdw_handler`.

@@ -17,12 +17,14 @@ DROP STATISTICS [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 `IF EXISTS`
 :   Do not throw an error if the statistics object does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name (optionally schema-qualified) of the statistics object to drop.
+**`name`**
+
+The name (optionally schema-qualified) of the statistics object to drop.
 
 CASCADE
-RESTRICT
-:   These key words have no effect, since there are no dependencies on statistics.
+**`RESTRICT`**
+
+These key words have no effect, since there are no dependencies on statistics.
 
 ## Examples
 

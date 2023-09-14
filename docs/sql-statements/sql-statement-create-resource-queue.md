@@ -56,8 +56,9 @@ For information about `statement_mem`, `max_statement`, and `gp_vmem_protect_lim
 
 ## Parameters
 
-name
-:   The name of the resource queue.
+**`name`**
+
+The name of the resource queue.
 
 ACTIVE_STATEMENTS integer
 :   Resource queues with an `ACTIVE_STATEMENTS` threshold limit the number of queries that can be run by roles assigned to that queue. It controls the number of active queries that are allowed to run at the same time. The value for `ACTIVE_STATEMENTS` should be an integer greater than 0.

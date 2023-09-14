@@ -63,8 +63,9 @@ ROOTPARTITION [ALL]
     ANALYZE ROOTPARTITION ALL;
     ```
 
-VERBOSE
-:   Enables display of progress messages. When specified, `ANALYZE` emits this information
+**`VERBOSE`**
+
+Enables display of progress messages. When specified, `ANALYZE` emits this information
 
     -   The table that is being processed.
     -   The query that is run to generate the sample table.
@@ -72,14 +73,17 @@ VERBOSE
     -   The queries that are issued to collect the different statistics for a single column.
     -   The statistics that are collected.
 
-SKIP_LOCKED
-:   Specifies that `ANALYZE` should not wait for any conflicting locks to be released when beginning work on a relation: if it cannot lock a relation immediately without waiting, it skips the relation. Note that even with this option, `ANALYZE` may still block when opening the relation's indexes or when acquiring sample rows from partitions, table inheritance children, and some types of foreign tables. Also, while `ANALYZE` ordinarily processes all partitions of specified partitioned tables, this option will cause `ANALYZE` to skip all partitions if there is a conflicting lock on the partitioned table.
+**`SKIP_LOCKED`**
 
-table
-:   The name (possibly schema-qualified) of a specific table to analyze. If omitted, all regular tables (but not foreign tables) in the current database are analyzed.
+Specifies that `ANALYZE` should not wait for any conflicting locks to be released when beginning work on a relation: if it cannot lock a relation immediately without waiting, it skips the relation. Note that even with this option, `ANALYZE` may still block when opening the relation's indexes or when acquiring sample rows from partitions, table inheritance children, and some types of foreign tables. Also, while `ANALYZE` ordinarily processes all partitions of specified partitioned tables, this option will cause `ANALYZE` to skip all partitions if there is a conflicting lock on the partitioned table.
 
-column
-:   The name of a specific column to analyze. Defaults to all columns.
+**`table`**
+
+The name (possibly schema-qualified) of a specific table to analyze. If omitted, all regular tables (but not foreign tables) in the current database are analyzed.
+
+**`column`**
+
+The name of a specific column to analyze. Defaults to all columns.
 
 ## Notes
 

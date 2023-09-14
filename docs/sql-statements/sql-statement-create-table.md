@@ -213,301 +213,366 @@ The `PARTITION BY` and `PARTITION OF` clauses allow you to divide the table into
 
 ## Parameters
 
-GLOBAL | LOCAL
-:   These keywords are present for SQL standard compatibility, but have no effect in Cloudberry Database and are deprecated.
+**`GLOBAL | LOCAL`**
 
-TEMPORARY | TEMP
-:   If specified, the table is created as a temporary table. Temporary tables are automatically dropped at the end of a session, or optionally at the end of the current transaction (see `ON COMMIT`). Existing permanent tables with the same name are not visible to the current session while the temporary table exists, unless they are referenced with schema-qualified names. Any indexes created on a temporary table are automatically temporary as well.
+These keywords are present for SQL standard compatibility, but have no effect in Cloudberry Database and are deprecated.
 
-:   Be sure to perform appropriate vacuum and analyze operations on temporary tables via session SQL commands. For example, if you are going to use a temporary table in complex queries, run `ANALYZE` on the temporary table after it is populated.
+**`TEMPORARY | TEMP`**
 
-UNLOGGED
-:   If specified, the table is created as an unlogged table. Data written to unlogged tables is not written to the write-ahead (WAL) log, which makes them considerably faster than ordinary tables. However, the contents of an unlogged table are not replicated to mirror segment instances. Also an unlogged table is not crash-safe: Cloudberry Database automatically truncates an unlogged table after a crash or unclean shutdown. Any indexes created on an unlogged table are automatically unlogged as well.
+If specified, the table is created as a temporary table. Temporary tables are automatically dropped at the end of a session, or optionally at the end of the current transaction (see `ON COMMIT`). Existing permanent tables with the same name are not visible to the current session while the temporary table exists, unless they are referenced with schema-qualified names. Any indexes created on a temporary table are automatically temporary as well.
 
-IF NOT EXISTS
-:   Do not throw an error if a relation with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
+Be sure to perform appropriate vacuum and analyze operations on temporary tables via session SQL commands. For example, if you are going to use a temporary table in complex queries, run `ANALYZE` on the temporary table after it is populated.
 
-table_name
-:   The name (optionally schema-qualified) of the table to be created.
+**`UNLOGGED`**
 
-OF type_name
-:   Creates a *typed table*, which takes its structure from the specified composite type (name optionally schema-qualified). A typed table is tied to its type; for example, the table will be dropped if the type is dropped with `DROP TYPE ... CASCADE`.
+If specified, the table is created as an unlogged table. Data written to unlogged tables is not written to the write-ahead (WAL) log, which makes them considerably faster than ordinary tables. However, the contents of an unlogged table are not replicated to mirror segment instances. Also an unlogged table is not crash-safe: Cloudberry Database automatically truncates an unlogged table after a crash or unclean shutdown. Any indexes created on an unlogged table are automatically unlogged as well.
 
-:   When a typed table is created, the data types of the columns are determined by the underlying composite type and are not specified by the `CREATE TABLE` command. But the `CREATE TABLE` command can add defaults and constraints to the table and can specify storage parameters.
+**`IF NOT EXISTS`**
 
-column_name
-:   The name of a column to be created in the new table.
+Do not throw an error if a relation with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
 
-data_type
-:   The data type of the column. This may include array specifiers. For more information on the data types supported by Cloudberry Database, refer to the Data Types documentation.
+**`table_name`**
 
-:   For table columns that contain textual data, Specify the data type `VARCHAR` or `TEXT`. Specifying the data type `CHAR` is not recommended. In Cloudberry Database, the data types `VARCHAR` or `TEXT` handle padding added to the data (space characters added after the last non-space character) as significant characters, the data type `CHAR` does not. See [Notes](#section5).
+The name (optionally schema-qualified) of the table to be created.
 
-COLLATE collation
-:   The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
+**`OF type_name`**
 
-    > **Note** The Greenplum Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Greenplum uses the Postgres Planner.
+Creates a *typed table*, which takes its structure from the specified composite type (name optionally schema-qualified). A typed table is tied to its type; for example, the table will be dropped if the type is dropped with `DROP TYPE ... CASCADE`.
 
-ENCODING ( storage_directive [, ...] )
-:   For a column, the optional `ENCODING` clause specifies the type of compression and block size for the column data. Valid column storage_directives are `compresstype`, `compresslevel`, and `blocksize`.
+When a typed table is created, the data types of the columns are determined by the underlying composite type and are not specified by the `CREATE TABLE` command. But the `CREATE TABLE` command can add defaults and constraints to the table and can specify storage parameters.
 
-:   This clause is valid only for append-optimized, column-oriented tables.
+**`column_name`**
 
-:   Column compression settings are inherited from the table level to the partition level to the sub-partition level. The lowest-level settings have priority.
+The name of a column to be created in the new table.
 
-    blocksize
-    :   Set to the size, in bytes, for each block in a table. The `blocksize` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768.
+**`data_type`**
 
-    compresslevel
-    :   For Zstd compression of append-optimized tables, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. For `RLE_TYPE`, the compression level can be an integer value from 1 (fastest compression) to 4 (highest compression ratio).
+The data type of the column. This may include array specifiers. For more information on the data types supported by Cloudberry Database, refer to the Data Types documentation.
 
-    compresstype
-    :   Set to `ZLIB` (the default), `ZSTD`, or `RLE_TYPE`, to specify the type of compression used. The value `NONE` deactivates compression. Zstd provides for both speed or a good compression ratio, tunable with the `compresslevel` option. zlib is provided for backwards-compatibility. Zstd outperforms these compression types on usual workloads.
-    :   The value `RLE_TYPE`, which is supported only for append-optimized, column-oriented tables, enables the run-length encoding (RLE) compression algorithm. RLE compresses data better than the Zstd or zlib compression algorithms when the same data value occurs in many consecutive rows.
-    :   For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
+For table columns that contain textual data, Specify the data type `VARCHAR` or `TEXT`. Specifying the data type `CHAR` is not recommended. In Cloudberry Database, the data types `VARCHAR` or `TEXT` handle padding added to the data (space characters added after the last non-space character) as significant characters, the data type `CHAR` does not. See [Notes](#section5).
 
-INHERITS ( parent_table [, …])
-:   The optional `INHERITS` clause specifies a list of tables from which the new table automatically inherits all columns. Parent tables can be plain tables or foreign tables.
+**`COLLATE` collation**
 
-:   Use of `INHERITS` creates a persistent relationship between the new child table and its parent table(s). Schema modifications to the parent(s) normally propagate to children as well, and by default the data of the child table is included in scans of the parent(s).
+The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
 
-:   If the same column name exists in more than one parent table, an error is reported unless the data types of the columns match in each of the parent tables. If there is no conflict, then the duplicate columns are merged to form a single column in the new table. If the column name list of the new table contains a column name that is also inherited, the data type must likewise match the inherited column(s), and the column definitions are merged into one. If the new table explicitly specifies a default value for the column, this default overrides any defaults from inherited declarations of the column. Otherwise, any parents that specify default values for the column must all specify the same default, or Greenplum reports an error.
+> **Note**: The Greenplum Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Greenplum uses the Postgres Planner.
 
-:   `CHECK` constraints are merged in essentially the same way as columns: if multiple parent tables or the new table definition contain identically-named `CHECK` constraints, these constraints must all have the same check expression, or an error will be reported. Constraints having the same name and expression will be merged into one copy. A constraint marked `NO INHERIT` in a parent will not be considered. Notice that an unnamed `CHECK` constraint in the new table will never be merged, since a unique name will always be chosen for it.
+**`ENCODING ( storage_directive [, ...] )`**
 
-:   Column `STORAGE` settings are also copied from parent tables.
+For a column, the optional `ENCODING` clause specifies the type of compression and block size for the column data. Valid column storage_directives are `compresstype`, `compresslevel`, and `blocksize`.
 
-:   If a column in the parent table is an identity column, that property is not inherited. You can declare a column in the child table an identity column if desired.
+This clause is valid only for append-optimized, column-oriented tables.
 
-PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ opclass ] [, ...] )
-:   The optional `PARTITION BY` clause of the *modern partitioning syntax* specifies a strategy of partitioning the table. The table thus created is referred to as a partitioned table. The parenthesized list of columns or expressions forms the partition key for the table. When using range or hash partitioning, the partition key can include multiple columns or expressions (up to 32), but for list partitioning, the partition key must consist of a single column or expression.
+Column compression settings are inherited from the table level to the partition level to the sub-partition level. The lowest-level settings have priority.
 
-:   Range and list partitioning require a btree operator class, while hash partitioning requires a hash operator class. If no operator class is specified explicitly, the default operator class of the appropriate type will be used; if no default operator class exists, Greenplum raises an error. When hash partitioning is used, the operator class used must implement support function 2 (see [Index Method Support Routines](https://www.postgresql.org/docs/12/xindex.html#XINDEX-SUPPORT) in the PostgreSQL documentation for details).
+**`blocksize`**
 
-:   > **Note** Only the modern partitioning syntax supports hash partitions.
+Set to the size, in bytes, for each block in a table. The `blocksize` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768.
 
-:   A partitioned table is divided into sub-tables (called partitions), which are typically created using separate `CREATE TABLE` commands. The partitioned table is itself empty. A data row inserted into the table is routed to a partition based on the value of columns or expressions in the partition key. If no existing partition matches the values in the new row, Cloudberry Database reports an error.
+**`compresslevel`**
 
-:   Partitioned tables do not support `EXCLUDE` constraints; however, you can define these constraints on individual partitions.
+For Zstd compression of append-optimized tables, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. For `RLE_TYPE`, the compression level can be an integer value from 1 (fastest compression) to 4 (highest compression ratio).
 
-:   Refer to Partitioning Large Tables for further discussion on table partitioning.
+**`compresstype`**
 
-PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }
-:   The `PARTITION OF` clause of the *modern partitioning syntax* creates the table as a *partition* of the specified parent table. You can create the table either as a partition for specific values using `FOR VALUES` or as a default partition using `DEFAULT`. Any indexes and constraints that exist in the parent table are cloned on the new partition.
+Set to `ZLIB` (the default), `ZSTD`, or `RLE_TYPE`, to specify the type of compression used. The value `NONE` deactivates compression. Zstd provides for both speed or a good compression ratio, tunable with the `compresslevel` option. zlib is provided for backwards-compatibility. Zstd outperforms these compression types on usual workloads.
 
-:   The partition_bound_spec must correspond to the partitioning method and partition key of the parent table, and must not overlap with any existing partition of that parent. The form with `IN` is used for list partitioning, the form with `FROM` and `TO` is used for range partitioning, and the form with `WITH` is used for hash partitioning.
+The value `RLE_TYPE`, which is supported only for append-optimized, column-oriented tables, enables the run-length encoding (RLE) compression algorithm. RLE compresses data better than the Zstd or zlib compression algorithms when the same data value occurs in many consecutive rows.
 
-:   partition_bound_expr is any variable-free expression (subqueries, window functions, aggregate functions, and set-returning functions are not allowed). Its data type must match the data type of the corresponding partition key column. The expression is evaluated once at table creation time, so it can even contain volatile expressions such as `CURRENT_TIMESTAMP`.
+For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
 
-:   When creating a list partition, you can specify `NULL` to signify that the partition allows the partition key column to be null. However, there cannot be more than one such list partition for a given parent table. `NULL` cannot be specified for range partitions.
+**`INHERITS ( parent_table [, …])`**
 
-:   When creating a range partition, the lower bound specified with `FROM` is an inclusive bound, whereas the upper bound specified with `TO` is an exclusive bound. That is, the values specified in the `FROM` list are valid values of the corresponding partition key columns for this partition, whereas those in the `TO` list are not. Note that this statement must be understood according to the rules of row-wise comparison (see [Row Constructor Comparison](https://www.postgresql.org/docs/12/functions-comparisons.html#ROW-WISE-COMPARISON) in the PostgreSQL documentation for more information.). For example, given `PARTITION BY RANGE (x, y)`, a partition bound `FROM (1, 2) TO (3, 4)` allows `x=1` with any `y>=2`, `x=2` with any non-null `y`, and `x=3` with any `y<4`.
+The optional `INHERITS` clause specifies a list of tables from which the new table automatically inherits all columns. Parent tables can be plain tables or foreign tables.
 
-:   The special values `MINVALUE` and `MAXVALUE` may be used when creating a range partition to indicate that there is no lower or upper bound on the column's value. For example, a partition defined using `FROM (MINVALUE) TO (10)` allows any values less than 10, and a partition defined using `FROM (10) TO (MAXVALUE)` allows any values greater than or equal to 10.
+Use of `INHERITS` creates a persistent relationship between the new child table and its parent table(s). Schema modifications to the parent(s) normally propagate to children as well, and by default the data of the child table is included in scans of the parent(s).
 
-:   When creating a range partition involving more than one column, it can also make sense to use `MAXVALUE` as part of the lower bound, and `MINVALUE` as part of the upper bound. For example, a partition defined using `FROM (0, MAXVALUE) TO (10, MAXVALUE)` allows any rows where the first partition key column is greater than 0 and less than or equal to 10. Similarly, a partition defined using `FROM ('a', MINVALUE) TO ('b', MINVALUE)` allows any rows where the first partition key column starts with "a".
+If the same column name exists in more than one parent table, an error is reported unless the data types of the columns match in each of the parent tables. If there is no conflict, then the duplicate columns are merged to form a single column in the new table. If the column name list of the new table contains a column name that is also inherited, the data type must likewise match the inherited column(s), and the column definitions are merged into one. If the new table explicitly specifies a default value for the column, this default overrides any defaults from inherited declarations of the column. Otherwise, any parents that specify default values for the column must all specify the same default, or Greenplum reports an error.
 
-:   Note that if `MINVALUE` or `MAXVALUE` is used for one column of a partitioning bound, the same value must be used for all subsequent columns. For example, `(10, MINVALUE, 0)` is not a valid bound; you must specify `(10, MINVALUE, MINVALUE)`.
+`CHECK` constraints are merged in essentially the same way as columns: if multiple parent tables or the new table definition contain identically-named `CHECK` constraints, these constraints must all have the same check expression, or an error will be reported. Constraints having the same name and expression will be merged into one copy. A constraint marked `NO INHERIT` in a parent will not be considered. Notice that an unnamed `CHECK` constraint in the new table will never be merged, since a unique name will always be chosen for it.
 
-:   Also note that some element types, such as timestamp, have a notion of "infinity", which is just another value that can be stored. This is different from `MINVALUE` and `MAXVALUE`, which are not real values that can be stored, but rather they are ways of saying that the value is unbounded. `MAXVALUE` can be thought of as being greater than any other value, including "infinity" and `MINVALUE` as being less than any other value, including "minus infinity". Thus the range `FROM ('infinity') TO (MAXVALUE)` is not an empty range; it allows precisely one value to be stored — "infinity".
+Column `STORAGE` settings are also copied from parent tables.
 
-:   If `DEFAULT` is specified, the table will be created as the default partition of the parent table. This option is not available for hash-partitioned tables. Greenplum routes a partition key value not fitting into any other partition of the given parent to the default partition.
+If a column in the parent table is an identity column, that property is not inherited. You can declare a column in the child table an identity column if desired.
 
-:   When a table has an existing `DEFAULT` partition and a new partition is added to it, the default partition must be scanned to verify that it does not contain any rows which properly belong in the new partition. If the default partition contains a large number of rows, this may be a slow operation. Greenplum skips the scan if the default partition is a foreign table or if it has a constraint which proves that it cannot contain rows which should be placed in the new partition.
+**`PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ opclass ] [, ...] )`**
 
-:   When creating a hash partition, you must specify a modulus and a remainder. The modulus must be a positive integer, and the remainder must be a non-negative integer less than the modulus. Typically, when initially setting up a hash-partitioned table, you should choose a modulus equal to the number of partitions and assign every table the same modulus and a different remainder (see examples below). However, it is not required that every partition have the same modulus, only that every modulus which occurs among the partitions of a hash-partitioned table is a factor of the next larger modulus. This allows the number of partitions to be increased incrementally without needing to move all the data at once. For example, suppose you have a hash-partitioned table with 8 partitions, each of which has modulus 8, but find it necessary to increase the number of partitions to 16. You can detach one of the modulus-8 partitions, create two new modulus-16 partitions covering the same portion of the key space (one with a remainder equal to the remainder of the detached partition, and the other with a remainder equal to that value plus 8), and repopulate them with data. You can then repeat this -- perhaps at a later time -- for each modulus-8 partition until none remain. While this may still involve a large amount of data movement at each step, it is still preferable to having to create a whole new table and move all the data at once.
+The optional `PARTITION BY` clause of the *modern partitioning syntax* specifies a strategy of partitioning the table. The table thus created is referred to as a partitioned table. The parenthesized list of columns or expressions forms the partition key for the table. When using range or hash partitioning, the partition key can include multiple columns or expressions (up to 32), but for list partitioning, the partition key must consist of a single column or expression.
 
-:   A partition must have the same column names and types as the partitioned table to which it belongs. Modifications to the column names or types of a partitioned table automatically propagate to all partitions. `CHECK` constraints are inherited automatically by every partition, but an individual partition may specify additional `CHECK` constraints; additional constraints with the same name and condition as in the parent will be merged with the parent constraint. Defaults may be specified separately for each partition. But note that a partition's default value is not applied when inserting a tuple through a partitioned table.
+Range and list partitioning require a btree operator class, while hash partitioning requires a hash operator class. If no operator class is specified explicitly, the default operator class of the appropriate type will be used; if no default operator class exists, Greenplum raises an error. When hash partitioning is used, the operator class used must implement support function 2 (see [Index Method Support Routines](https://www.postgresql.org/docs/12/xindex.html#XINDEX-SUPPORT) in the PostgreSQL documentation for details).
 
-:   Greenplum automatically routes rows inserted into a partitioned table to the correct partition. If no suitable partition exists, Cloudberry Database returns an error.
+> **Note** Only the modern partitioning syntax supports hash partitions.
 
-:   Operations such as `TRUNCATE` which normally affect a table and all of its inheritance children will cascade to all partitions, but may also be performed on an individual partition. Note that dropping a partition with `DROP TABLE` requires taking an `ACCESS EXCLUSIVE` lock on the parent table.
+A partitioned table is divided into sub-tables (called partitions), which are typically created using separate `CREATE TABLE` commands. The partitioned table is itself empty. A data row inserted into the table is routed to a partition based on the value of columns or expressions in the partition key. If no existing partition matches the values in the new row, Cloudberry Database reports an error.
 
-LIKE source_table [like_option `...`]
-:   The `LIKE` clause specifies a table from which the new table automatically copies all column names, their data types, not-null constraints, and distribution policy.
+Partitioned tables do not support `EXCLUDE` constraints; however, you can define these constraints on individual partitions.
 
-:   > **Note** Storage properties and the partition structure are *not* copied to the new table.
+Refer to Partitioning Large Tables for further discussion on table partitioning.
 
-:   Unlike `INHERITS`, the new table and original table are completely decoupled after creation is complete. Changes to the original table will not be applied to the new table, and it is not possible to include data of the new table in scans of the original table.
+**`PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }`**
 
-:   Also unlike `INHERITS`, columns and constraints copied by `LIKE` are not merged with similarly named columns and constraints. If the same name is specified explicitly or in another `LIKE` clause, Cloudberry Database signals an error.
+The `PARTITION OF` clause of the *modern partitioning syntax* creates the table as a *partition* of the specified parent table. You can create the table either as a partition for specific values using `FOR VALUES` or as a default partition using `DEFAULT`. Any indexes and constraints that exist in the parent table are cloned on the new partition.
 
-:   The optional like_option clauses specify which additional properties of the original table to copy. Specifying `INCLUDING` copies the property, specifying `EXCLUDING` omits the property. `EXCLUDING` is the default. If multiple specifications are made for the same kind of object, the last one is used. The available options are:
+The partition_bound_spec must correspond to the partitioning method and partition key of the parent table, and must not overlap with any existing partition of that parent. The form with `IN` is used for list partitioning, the form with `FROM` and `TO` is used for range partitioning, and the form with `WITH` is used for hash partitioning.
 
-    INCLUDING AM
-    :   The access method of the original table will be copied.
-    :   When you include `AM`, you must not explicitly specify the access method of the new table using the `WITH` or the `USING` clauses.
+`partition_bound_expr` is any variable-free expression (subqueries, window functions, aggregate functions, and set-returning functions are not allowed). Its data type must match the data type of the corresponding partition key column. The expression is evaluated once at table creation time, so it can even contain volatile expressions such as `CURRENT_TIMESTAMP`.
 
-    INCLUDING COMMENTS
-    :   Comments for the copied columns, constraints, and indexes will be copied. The default behavior is to exclude comments, resulting in the copied columns and constraints in the new table having no comments.
+When creating a list partition, you can specify `NULL` to signify that the partition allows the partition key column to be null. However, there cannot be more than one such list partition for a given parent table. `NULL` cannot be specified for range partitions.
 
-    INCLUDING CONSTRAINTS
-    :   `CHECK` constraints will be copied. No distinction is made between column constraints and table constraints. Not-null constraints are always copied to the new table.
+When creating a range partition, the lower bound specified with `FROM` is an inclusive bound, whereas the upper bound specified with `TO` is an exclusive bound. That is, the values specified in the `FROM` list are valid values of the corresponding partition key columns for this partition, whereas those in the `TO` list are not. Note that this statement must be understood according to the rules of row-wise comparison (see [Row Constructor Comparison](https://www.postgresql.org/docs/12/functions-comparisons.html#ROW-WISE-COMPARISON) in the PostgreSQL documentation for more information.). For example, given `PARTITION BY RANGE (x, y)`, a partition bound `FROM (1, 2) TO (3, 4)` allows `x=1` with any `y>=2`, `x=2` with any non-null `y`, and `x=3` with any `y<4`.
 
-    INCLUDING DEFAULTS
-    :   Default expressions for the copied column definitions will be copied. Otherwise, default expressions are not copied, resulting in the copied columns in the new table having null defaults. Note that copying defaults that call database-modification functions, such as `nextval`, may create a functional linkage between the original and new tables.
+The special values `MINVALUE` and `MAXVALUE` may be used when creating a range partition to indicate that there is no lower or upper bound on the column's value. For example, a partition defined using `FROM (MINVALUE) TO (10)` allows any values less than 10, and a partition defined using `FROM (10) TO (MAXVALUE)` allows any values greater than or equal to 10.
 
-    INCLUDING ENCODING
-    :   For an append-optimized, column-oriented original table, copies the per-column encodings.
+When creating a range partition involving more than one column, it can also make sense to use `MAXVALUE` as part of the lower bound, and `MINVALUE` as part of the upper bound. For example, a partition defined using `FROM (0, MAXVALUE) TO (10, MAXVALUE)` allows any rows where the first partition key column is greater than 0 and less than or equal to 10. Similarly, a partition defined using `FROM ('a', MINVALUE) TO ('b', MINVALUE)` allows any rows where the first partition key column starts with "a".
 
-    INCLUDING GENERATED
-    :   Any generation expressions of copied column definitions will be copied. By default, new columns will be regular base columns.
+Note that if `MINVALUE` or `MAXVALUE` is used for one column of a partitioning bound, the same value must be used for all subsequent columns. For example, `(10, MINVALUE, 0)` is not a valid bound; you must specify `(10, MINVALUE, MINVALUE)`.
 
-    INCLUDING IDENTITY
-    :   Any identity specifications of copied column definitions will be copied. A new sequence is created for each identity column of the new table, separate from the sequences associated with the old table.
+Also note that some element types, such as timestamp, have a notion of "infinity", which is just another value that can be stored. This is different from `MINVALUE` and `MAXVALUE`, which are not real values that can be stored, but rather they are ways of saying that the value is unbounded. `MAXVALUE` can be thought of as being greater than any other value, including "infinity" and `MINVALUE` as being less than any other value, including "minus infinity". Thus the range `FROM ('infinity') TO (MAXVALUE)` is not an empty range; it allows precisely one value to be stored — "infinity".
 
-    INCLUDING INDEXES
-    :   Indexes, `PRIMARY KEY`, `UNIQUE`, and `EXCLUDE` constraints on the original table will be created on the new table. Names for the new indexes and constraints are chosen according to the default rules, regardless of how the originals were named. (This behavior avoids possible duplicate-name failures for the new indexes.)
+If `DEFAULT` is specified, the table will be created as the default partition of the parent table. This option is not available for hash-partitioned tables. Greenplum routes a partition key value not fitting into any other partition of the given parent to the default partition.
 
-    INCLUDING RELOPT
-    :   Copies relation storage options from the original table. For append-optimized and append-optimized, column-oriented tables, copies the `blocksize`, `compresslevel`, and `compresstype.` For heap tables, copies the `fillfactor`. You can also specify relation [storage parameters](#storage_parameters).
-    : When you include `RELOPT` options, you must not explicitly specify relation storage options for the new table using the `WITH` clause.
+When a table has an existing `DEFAULT` partition and a new partition is added to it, the default partition must be scanned to verify that it does not contain any rows which properly belong in the new partition. If the default partition contains a large number of rows, this may be a slow operation. Greenplum skips the scan if the default partition is a foreign table or if it has a constraint which proves that it cannot contain rows which should be placed in the new partition.
 
-    INCLUDING STATISTICS
-    :   Extended statistics are copied to the new table.
+When creating a hash partition, you must specify a modulus and a remainder. The modulus must be a positive integer, and the remainder must be a non-negative integer less than the modulus. Typically, when initially setting up a hash-partitioned table, you should choose a modulus equal to the number of partitions and assign every table the same modulus and a different remainder (see examples below). However, it is not required that every partition have the same modulus, only that every modulus which occurs among the partitions of a hash-partitioned table is a factor of the next larger modulus. This allows the number of partitions to be increased incrementally without needing to move all the data at once. For example, suppose you have a hash-partitioned table with 8 partitions, each of which has modulus 8, but find it necessary to increase the number of partitions to 16. You can detach one of the modulus-8 partitions, create two new modulus-16 partitions covering the same portion of the key space (one with a remainder equal to the remainder of the detached partition, and the other with a remainder equal to that value plus 8), and repopulate them with data. You can then repeat this -- perhaps at a later time -- for each modulus-8 partition until none remain. While this may still involve a large amount of data movement at each step, it is still preferable to having to create a whole new table and move all the data at once.
 
-    INCLUDING STORAGE
-    :   `STORAGE` settings for the copied column definitions will be copied. The default behavior is to exclude `STORAGE` settings, resulting in the copied columns in the new table having type-specific default settings.
+A partition must have the same column names and types as the partitioned table to which it belongs. Modifications to the column names or types of a partitioned table automatically propagate to all partitions. `CHECK` constraints are inherited automatically by every partition, but an individual partition may specify additional `CHECK` constraints; additional constraints with the same name and condition as in the parent will be merged with the parent constraint. Defaults may be specified separately for each partition. But note that a partition's default value is not applied when inserting a tuple through a partitioned table.
 
-    INCLUDING ALL
-    :   `INCLUDING ALL` is an abbreviated form of all available options (It may be useful to specify  individual `EXCLUDING` clauses after `INCLUDING ALL` to select all but some specific options.)
+Greenplum automatically routes rows inserted into a partitioned table to the correct partition. If no suitable partition exists, Cloudberry Database returns an error.
 
-:   You can also use the `LIKE` clause to copy column definitions from views, foreign tables, or composite types. Cloudberry Database ignores inapplicable options (for example, `INCLUDING INDEXES` from a view).
+Operations such as `TRUNCATE` which normally affect a table and all of its inheritance children will cascade to all partitions, but may also be performed on an individual partition. Note that dropping a partition with `DROP TABLE` requires taking an `ACCESS EXCLUSIVE` lock on the parent table.
 
-CONSTRAINT constraint_name
-:   An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `column must be positive` can be used to communicate helpful constraint information to client applications. (Use double-quotes to specify constraint names that contain spaces.) If a constraint name is not specified, the system generates a name.
+**`LIKE source_table [like_option `...`]`**
 
-    > **Note** The specified constraint_name is used for the constraint, but a system-generated unique name is used for the index name. In some prior releases, the provided name was used for both the constraint name and the index name.
+The `LIKE` clause specifies a table from which the new table automatically copies all column names, their data types, not-null constraints, and distribution policy.
 
-NOT NULL
-:   The column is not allowed to contain null values.
+> **Note** Storage properties and the partition structure are *not* copied to the new table.
 
-NULL
-:   The column is allowed to contain null values. This is the default.
+Unlike `INHERITS`, the new table and original table are completely decoupled after creation is complete. Changes to the original table will not be applied to the new table, and it is not possible to include data of the new table in scans of the original table.
 
-:   This clause is only provided for compatibility with non-standard SQL databases. Its use is discouraged in new applications.
+Also unlike `INHERITS`, columns and constraints copied by `LIKE` are not merged with similarly named columns and constraints. If the same name is specified explicitly or in another `LIKE` clause, Cloudberry Database signals an error.
 
-CHECK (expression) [ NO INHERIT ]
-:   The `CHECK` clause specifies an expression producing a Boolean result which new or updated rows must satisfy for an insert or update operation to succeed. Expressions evaluating to `TRUE` or `UNKNOWN` succeed. Should any row of an insert or update operation produce a `FALSE` result, Greenplum raises an error exception, and the insert or update does not alter the database. A check constraint specified as a column constraint should reference that column's value only, while an expression appearing in a table constraint can reference multiple columns.
+The optional like_option clauses specify which additional properties of the original table to copy. Specifying `INCLUDING` copies the property, specifying `EXCLUDING` omits the property. `EXCLUDING` is the default. If multiple specifications are made for the same kind of object, the last one is used. The available options are:
 
-:   Currently, `CHECK` expressions cannot contain subqueries nor refer to variables other than columns of the current row. You can reference the system column `tableoid`, but not any other system column.
+**`INCLUDING AM`**
 
-:   A constraint marked with `NO INHERIT` will not propagate to child tables.
+The access method of the original table will be copied.
 
-:   When a table has multiple `CHECK` constraints, they will be tested for each row in alphabetical order by name, after checking `NOT NULL` constraints. (Previous Cloudberry Database versions did not honor any particular firing order for `CHECK` constraints.)
+When you include `AM`, you must not explicitly specify the access method of the new table using the `WITH` or the `USING` clauses.
 
-DEFAULT default_expr
-:   The `DEFAULT` clause assigns a default data value for the column whose column definition it appears within. The value is any variable-free expression (in particular, cross-references to other columns in the current table are not allowed). Subqueries are not allowed either. The data type of the default expression must match the data type of the column. The default expression will be used in any insert operation that does not specify a value for the column. If there is no default for a column, then the default is null.
+**`INCLUDING COMMENTS`**
 
-GENERATED ALWAYS AS ( generation_expr ) STORED
-:   This clause creates the column as a *generated column*. The column cannot be written to, and when read the result of the specified expression will be returned.
-:   The keyword `STORED` is required to signify that the column will be computed on write and will be stored on disk.
-:   The generation expression can refer to other columns in the table, but not other generated columns. Any functions and operators used must be immutable. References to other tables are not allowed.
+Comments for the copied columns, constraints, and indexes will be copied. The default behavior is to exclude comments, resulting in the copied columns and constraints in the new table having no comments.
 
-GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( sequence_options ) ]
-:   This clause creates the column as an identity column. Cloudberry Database attaches an implicit sequence to it, and automatically assigns a value from the sequence to the column in new rows. Such a column is implicitly `NOT NULL`.
-:   The clauses `ALWAYS` and `BY DEFAULT` determine how the sequence value is given precedence over a user-specified value in an `INSERT` statement. If `ALWAYS` is specified, a user-specified value is only accepted if the `INSERT` statement specifies `OVERRIDING SYSTEM VALUE`. If `BY DEFAULT` is specified, then the user-specified value takes precedence. See [INSERT](/docs/sql-statements/sql-statement-insert.md) for details. (In the `COPY` command, ueser-specified values are always used regardless of this setting.)
-:   You can use the optional sequence_options clause to override the options of the sequence. See [CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md) for details.
+**`INCLUDING CONSTRAINTS`**
 
-UNIQUE ( column_constraint )
-UNIQUE ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table_constraint )
-:   The `UNIQUE` constraint specifies that a group of one or more columns of a table may contain only unique values. The behavior of a unique table constraint is the same as that of a unique column constraint, with the additional capability to span multiple columns. The constraint therefore enforces that any two rows must differ in at least one of these columns.
+`CHECK` constraints will be copied. No distinction is made between column constraints and table constraints. Not-null constraints are always copied to the new table.
 
-:   For the purpose of a unique constraint, null values are not considered equal. The column(s) that are unique must contain all the columns of the Greenplum distribution key. In addition, the `<key>` must contain all the columns in the partition key if the table is partitioned. Note that a `<key>` constraint in a partitioned table is not the same as a simple `UNIQUE INDEX`.
+**`INCLUDING DEFAULTS`**
 
-:   Each unique constraint should name a set of columns that is different from the set of columns named by any other unique or primary key constraint defined for the table. (Otherwise, Greenplum discards redundant unique constraints.)
+Default expressions for the copied column definitions will be copied. Otherwise, default expressions are not copied, resulting in the copied columns in the new table having null defaults. Note that copying defaults that call database-modification functions, such as `nextval`, may create a functional linkage between the original and new tables.
 
-:   When establishing a unique constraint for a multi-level partition hierarchy, all of the columns in the partition key of the target partitioned table, as well as those of all its descendant partitioned tables, must be included in the constraint definition.
+**`INCLUDING ENCODING`**
 
-:   Adding a unique constraint automatically creates a unique btree index on the column or group of columns used in the constraint.
+For an append-optimized, column-oriented original table, copies the per-column encodings.
 
-:   The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
+**`INCLUDING GENERATED`**
 
-PRIMARY KEY ( column constraint )
-PRIMARY KEY ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table constraint )
-:   The `PRIMARY KEY` constraint specifies that a column or columns of a table may contain only unique (non-duplicate), non-null values. You can specify only one primary key for a table, whether as a column constraint or a table constraint.
+Any generation expressions of copied column definitions will be copied. By default, new columns will be regular base columns.
 
-:   The primary key constraint should name a set of columns that is different from the set of columns named by any unique constraint defined for the same table. (Otherwise, the unique constraint is redundant and will be discarded.)
+**`INCLUDING IDENTITY`**
 
-:   `PRIMARY KEY` enforces the same data constraints as a combination of `UNIQUE` and `NOT NULL`, but identifying a set of columns as the primary key also provides metadata about the design of the schema, since a primary key implies that other tables can rely on this set of columns as a unique identifier for rows.
+Any identity specifications of copied column definitions will be copied. A new sequence is created for each identity column of the new table, separate from the sequences associated with the old table.
 
-:   When placed on a partitioned table, `PRIMARY KEY` constraints share the restrictions previously described for `UNIQUE` constraints.
+**`INCLUDING INDEXES`**
 
-:   Adding a `PRIMARY KEY` constraint will automatically create a unique btree index on the column or group of columns used in the constraint.
+Indexes, `PRIMARY KEY`, `UNIQUE`, and `EXCLUDE` constraints on the original table will be created on the new table. Names for the new indexes and constraints are chosen according to the default rules, regardless of how the originals were named. (This behavior avoids possible duplicate-name failures for the new indexes.)
 
-:   The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
+**`INCLUDING RELOPT`**
 
-EXCLUDE [ USING index_method ] ( exclude_element WITH operator [, ... ] ) index_parameters [ WHERE ( predicate ) ]
-:   The `EXCLUDE` clause defines an exclusion constraint, which guarantees that if any two rows are compared on the specified column(s) or expression(s) using the specified operator(s), not all of these comparisons will return `TRUE`. If all of the specified operators test for equality, this is equivalent to a `UNIQUE` constraint, although an ordinary unique constraint will be faster. However, exclusion constraints can specify constraints that are more general than simple equality. For example, you can specify a constraint that no two rows in the table contain overlapping circles by using the `&&` operator.
+Copies relation storage options from the original table. For append-optimized and append-optimized, column-oriented tables, copies the `blocksize`, `compresslevel`, and `compresstype.` For heap tables, copies the `fillfactor`. You can also specify relation [storage parameters](#storage_parameters).
 
-:   Cloudberry Database does not support specifying an exclusion constraint on a randomly-distributed table.
+When you include `RELOPT` options, you must not explicitly specify relation storage options for the new table using the `WITH` clause.
 
-:   Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index_method. The operators are required to be commutative. Each exclude_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md).
+**`INCLUDING STATISTICS`**
 
-:   The access method must support `amgettuple`; at present this means GIN cannot be used. Although it's allowed, there is little point in using B-tree or hash indexes with an exclusion constraint, because this does nothing that an ordinary unique constraint doesn't do better. So in practice the access method will always be GiST or SP-GiST.
+Extended statistics are copied to the new table.
 
-:   The predicate allows you to specify an exclusion constraint on a subset of the table; internally this creates a partial index. Note that parentheses are required around the predicate.
+**`INCLUDING STORAGE`**
 
-REFERENCES reftable [ ( refcolumn ) ]
-  [ MATCH matchtype ] [ON DELETE key_action] [ON UPDATE key_action] (column constraint)
-FOREIGN KEY (column_name [, ...]) REFERENCES reftable [ ( refcolumn [, ... ] ) ]
-  [ MATCH matchtype ] [ ON DELETE referential_action ] [ ON UPDATE referential_action ] (table constraint)
-:   The `REFERENCES` and `FOREIGN KEY` clauses specify referential integrity constraints (foreign key constraints). Greenplum accepts referential integrity constraints but does not enforce them.
+`STORAGE` settings for the copied column definitions will be copied. The default behavior is to exclude `STORAGE` settings, resulting in the copied columns in the new table having type-specific default settings.
 
-DEFERRABLE
-NOT DEFERRABLE
-:   The `[NOT] DEFERRABLE` clause controls whether the constraint can be deferred. A constraint that is not deferrable will be checked immediately after every command. Checking of constraints that are deferrable can be postponed until the end of the transaction (using the [`SET CONSTRAINTS`](/docs/sql-statements/sql-statement-set-constraints.md) command). `NOT DEFERRABLE` is the default. Currently, only `UNIQUE`, `PRIMARY KEY`, and `EXCLUDE` constraints accept this clause. `NOT NULL` and `CHECK` constraints are not deferrable. `REFERENCES` (foreign key) constraints accept this clause but are not enforced. Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
+**`INCLUDING ALL`**
 
-:   Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
+`INCLUDING ALL` is an abbreviated form of all available options (It may be useful to specify  individual `EXCLUDING` clauses after `INCLUDING ALL` to select all but some specific options.)
 
-INITIALLY IMMEDIATE
-INITIALLY DEFERRED
-:   If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](/docs/sql-statements/sql-statement-set-constraints.md) command.
+You can also use the `LIKE` clause to copy column definitions from views, foreign tables, or composite types. Cloudberry Database ignores inapplicable options (for example, `INCLUDING INDEXES` from a view).
 
-USING access_method
-:   The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the `default_table_access_method` server configuration parameter.
+**`CONSTRAINT constraint_name`**
+
+An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `column must be positive` can be used to communicate helpful constraint information to client applications. (Use double-quotes to specify constraint names that contain spaces.) If a constraint name is not specified, the system generates a name.
+
+> **Note** The specified constraint_name is used for the constraint, but a system-generated unique name is used for the index name. In some prior releases, the provided name was used for both the constraint name and the index name.
+
+**`NOT NULL`**
+
+The column is not allowed to contain null values.
+
+**`NULL`**
+
+The column is allowed to contain null values. This is the default.
+
+This clause is only provided for compatibility with non-standard SQL databases. Its use is discouraged in new applications.
+
+**`CHECK (expression) [ NO INHERIT ]`**
+
+The `CHECK` clause specifies an expression producing a Boolean result which new or updated rows must satisfy for an insert or update operation to succeed. Expressions evaluating to `TRUE` or `UNKNOWN` succeed. Should any row of an insert or update operation produce a `FALSE` result, Greenplum raises an error exception, and the insert or update does not alter the database. A check constraint specified as a column constraint should reference that column's value only, while an expression appearing in a table constraint can reference multiple columns.
+
+Currently, `CHECK` expressions cannot contain subqueries nor refer to variables other than columns of the current row. You can reference the system column `tableoid`, but not any other system column.
+
+A constraint marked with `NO INHERIT` will not propagate to child tables.
+
+When a table has multiple `CHECK` constraints, they will be tested for each row in alphabetical order by name, after checking `NOT NULL` constraints. (Previous Cloudberry Database versions did not honor any particular firing order for `CHECK` constraints.)
+
+**`DEFAULT default_expr`**
+
+The `DEFAULT` clause assigns a default data value for the column whose column definition it appears within. The value is any variable-free expression (in particular, cross-references to other columns in the current table are not allowed). Subqueries are not allowed either. The data type of the default expression must match the data type of the column. The default expression will be used in any insert operation that does not specify a value for the column. If there is no default for a column, then the default is null.
+
+**`GENERATED ALWAYS AS ( generation_expr ) STORED`**
+
+This clause creates the column as a *generated column*. The column cannot be written to, and when read the result of the specified expression will be returned.
+
+The keyword `STORED` is required to signify that the column will be computed on write and will be stored on disk.
+
+The generation expression can refer to other columns in the table, but not other generated columns. Any functions and operators used must be immutable. References to other tables are not allowed.
+
+**`GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( sequence_options ) ]`**
+
+This clause creates the column as an identity column. Cloudberry Database attaches an implicit sequence to it, and automatically assigns a value from the sequence to the column in new rows. Such a column is implicitly `NOT NULL`.
+
+The clauses `ALWAYS` and `BY DEFAULT` determine how the sequence value is given precedence over a user-specified value in an `INSERT` statement. If `ALWAYS` is specified, a user-specified value is only accepted if the `INSERT` statement specifies `OVERRIDING SYSTEM VALUE`. If `BY DEFAULT` is specified, then the user-specified value takes precedence. See [INSERT](/docs/sql-statements/sql-statement-insert.md) for details. (In the `COPY` command, ueser-specified values are always used regardless of this setting.)
+
+You can use the optional sequence_options clause to override the options of the sequence. See [CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md) for details.
+
+**`UNIQUE ( column_constraint )`**
+
+**`UNIQUE ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table_constraint )`**
+
+The `UNIQUE` constraint specifies that a group of one or more columns of a table may contain only unique values. The behavior of a unique table constraint is the same as that of a unique column constraint, with the additional capability to span multiple columns. The constraint therefore enforces that any two rows must differ in at least one of these columns.
+
+For the purpose of a unique constraint, null values are not considered equal. The column(s) that are unique must contain all the columns of the Greenplum distribution key. In addition, the `<key>` must contain all the columns in the partition key if the table is partitioned. Note that a `<key>` constraint in a partitioned table is not the same as a simple `UNIQUE INDEX`.
+
+Each unique constraint should name a set of columns that is different from the set of columns named by any other unique or primary key constraint defined for the table. (Otherwise, Greenplum discards redundant unique constraints.)
+
+When establishing a unique constraint for a multi-level partition hierarchy, all of the columns in the partition key of the target partitioned table, as well as those of all its descendant partitioned tables, must be included in the constraint definition.
+
+Adding a unique constraint automatically creates a unique btree index on the column or group of columns used in the constraint.
+
+The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
+
+**`PRIMARY KEY ( column constraint )`**
+
+**`PRIMARY KEY ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table constraint )`**
+
+The `PRIMARY KEY` constraint specifies that a column or columns of a table may contain only unique (non-duplicate), non-null values. You can specify only one primary key for a table, whether as a column constraint or a table constraint.
+
+The primary key constraint should name a set of columns that is different from the set of columns named by any unique constraint defined for the same table. (Otherwise, the unique constraint is redundant and will be discarded.)
+
+`PRIMARY KEY` enforces the same data constraints as a combination of `UNIQUE` and `NOT NULL`, but identifying a set of columns as the primary key also provides metadata about the design of the schema, since a primary key implies that other tables can rely on this set of columns as a unique identifier for rows.
+
+When placed on a partitioned table, `PRIMARY KEY` constraints share the restrictions previously described for `UNIQUE` constraints.
+
+Adding a `PRIMARY KEY` constraint will automatically create a unique btree index on the column or group of columns used in the constraint.
+
+The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
+
+**`EXCLUDE [ USING index_method ] ( exclude_element WITH operator [, ... ] ) index_parameters [ WHERE ( predicate ) ]`**
+
+The `EXCLUDE` clause defines an exclusion constraint, which guarantees that if any two rows are compared on the specified column(s) or expression(s) using the specified operator(s), not all of these comparisons will return `TRUE`. If all of the specified operators test for equality, this is equivalent to a `UNIQUE` constraint, although an ordinary unique constraint will be faster. However, exclusion constraints can specify constraints that are more general than simple equality. For example, you can specify a constraint that no two rows in the table contain overlapping circles by using the `&&` operator.
+
+Cloudberry Database does not support specifying an exclusion constraint on a randomly-distributed table.
+
+Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index_method. The operators are required to be commutative. Each exclude_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md).
+
+The access method must support `amgettuple`; at present this means GIN cannot be used. Although it's allowed, there is little point in using B-tree or hash indexes with an exclusion constraint, because this does nothing that an ordinary unique constraint doesn't do better. So in practice the access method will always be GiST or SP-GiST.
+
+The predicate allows you to specify an exclusion constraint on a subset of the table; internally this creates a partial index. Note that parentheses are required around the predicate.
+
+**`REFERENCES reftable [ ( refcolumn ) ]`**
+
+**`  [ MATCH matchtype ] [ON DELETE key_action] [ON UPDATE key_action] (column constraint)`**
+
+**`FOREIGN KEY (column_name [, ...]) REFERENCES reftable [ ( refcolumn [, ... ] ) ]`**
+
+**`  [ MATCH matchtype ] [ ON DELETE referential_action ] [ ON UPDATE referential_action ] (table constraint)`**
+
+The `REFERENCES` and `FOREIGN KEY` clauses specify referential integrity constraints (foreign key constraints). Greenplum accepts referential integrity constraints but does not enforce them.
+
+**`DEFERRABLE`**
+
+**`NOT DEFERRABLE`**
+
+The `[NOT] DEFERRABLE` clause controls whether the constraint can be deferred. A constraint that is not deferrable will be checked immediately after every command. Checking of constraints that are deferrable can be postponed until the end of the transaction (using the [`SET CONSTRAINTS`](/docs/sql-statements/sql-statement-set-constraints.md) command). `NOT DEFERRABLE` is the default. Currently, only `UNIQUE`, `PRIMARY KEY`, and `EXCLUDE` constraints accept this clause. `NOT NULL` and `CHECK` constraints are not deferrable. `REFERENCES` (foreign key) constraints accept this clause but are not enforced. Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
+
+Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
+
+**`INITIALLY IMMEDIATE`**
+
+**`INITIALLY DEFERRED`**
+
+If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](/docs/sql-statements/sql-statement-set-constraints.md) command.
+
+**`USING access_method`**
+
+The optional `USING` clause specifies the table access method to use to store the contents for the new table you are creating; the method must be an access method of type `TABLE`. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO). The default access method is determined by the value of the `default_table_access_method` server configuration parameter.
 
 > **Note:**
 >
 > Although you can specify the table's access method using `WITH (appendoptimized=true|false, orientation=row|column)`, we recommend that you use `USING <access_method>` instead.
 
-`WITH ( storage_parameter=value )`
-:   The `WITH` clause specifies optional storage parameters for a table or index; see [Storage Parameters](#storage_parameters) below for details. For backward-compatibility the `WITH` clause for a table can also include `OIDS=FALSE` to specify that rows of the new table should not contain OIDs (object identifiers), `OIDS=TRUE`. is no longer supported.
+**`WITH ( storage_parameter=value )`**
 
-ON COMMIT
-:   You can control the behavior of temporary tables at the end of a transaction block using `ON COMMIT`. The three options are:
+The `WITH` clause specifies optional storage parameters for a table or index; see [Storage Parameters](#storage_parameters) below for details. For backward-compatibility the `WITH` clause for a table can also include `OIDS=FALSE` to specify that rows of the new table should not contain OIDs (object identifiers), `OIDS=TRUE`. is no longer supported.
 
-:   **PRESERVE ROWS** - No special action is taken at the ends of transactions for temporary tables. This is the default behavior.
+**`ON COMMIT`**
 
-:   **DELETE ROWS** - All rows in the temporary table will be deleted at the end of each transaction block. Essentially, Cloudberry Database performs an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) at each commit. When used on a partitioned table, this operation is not cascaded to its partitions.
+You can control the behavior of temporary tables at the end of a transaction block using `ON COMMIT`. The three options are:
 
-:   **DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
+**PRESERVE ROWS** - No special action is taken at the ends of transactions for temporary tables. This is the default behavior.
 
-TABLESPACE tablespace
-:   The name of the tablespace in which the new table is to be created. If not specified, the database's `default_tablespace` is consulted, or temp_tablespaces if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
+**DELETE ROWS** - All rows in the temporary table will be deleted at the end of each transaction block. Essentially, Cloudberry Database performs an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) at each commit. When used on a partitioned table, this operation is not cascaded to its partitions.
 
-USING INDEX TABLESPACE tablespace
-:   This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's `default_tablespace` is used, or temp_tablespaces if the table is temporary.
+**DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
 
-DISTRIBUTED BY ( column [opclass] [, ... ] )
-DISTRIBUTED RANDOMLY
-DISTRIBUTED REPLICATED
-:   Used to declare the Cloudberry Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
+**`TABLESPACE` tablespace**
 
-:   The Cloudberry Database server configuration parameter `gp_create_table_random_default_distribution` controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Cloudberry Database follows these rules to create a table if a distribution policy is not specified.
+The name of the tablespace in which the new table is to be created. If not specified, the database's `default_tablespace` is consulted, or temp_tablespaces if the table is temporary. For partitioned tables, since no storage is required for the table itself, the tablespace specified overrides `default_tablespace` as the default tablespace to use for any newly created partitions when no other tablespace is explicitly specified.
 
-    If the value of the parameter is `off` (the default), Cloudberry Database chooses the table distribution key based on the command:
+**`USING INDEX TABLESPACE` tablespace**
 
-    -   If a `LIKE` or `INHERITS` clause is specified, then Greenplum copies the distribution key from the source or parent table.
-    -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` constraints are specified, then Greenplum chooses the largest subset of all the key columns as the distribution key.
-    -   If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Greenplum chooses the first suitable column as the distribution key. (Columns with geometric or user-defined data types are not eligible as Greenplum distribution key columns.)
+This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's `default_tablespace` is used, or temp_tablespaces if the table is temporary.
 
-    If the value of the parameter is set to `on`, Cloudberry Database follows these rules:
+**`DISTRIBUTED BY ( column [opclass] [, ... ] )`**
 
-    -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are not specified, the distribution of the table is random (`DISTRIBUTED RANDOMLY`). Table distribution is random even if the table creation command contains the `LIKE` or `INHERITS` clause.
-    -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are specified, you must also specify a `DISTRIBUTED BY` clause If a `DISTRIBUTED BY` clause is not specified as part of the table creation command, the command fails.
+**`DISTRIBUTED RANDOMLY`**
 
-:   The `DISTRIBUTED REPLICATED` clause replicates the entire table to all Cloudberry Database segment instances. It can be used when it is necessary to run user-defined functions on segments when the functions require access to all rows in the table, or to improve query performance by preventing broadcast motions.
+**`DISTRIBUTED REPLICATED`**
+
+Used to declare the Cloudberry Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
+
+The Cloudberry Database server configuration parameter `gp_create_table_random_default_distribution` controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Cloudberry Database follows these rules to create a table if a distribution policy is not specified.
+
+If the value of the parameter is `off` (the default), Cloudberry Database chooses the table distribution key based on the command:
+
+-   If a `LIKE` or `INHERITS` clause is specified, then Greenplum copies the distribution key from the source or parent table.
+-   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` constraints are specified, then Greenplum chooses the largest subset of all the key columns as the distribution key.
+-   If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Greenplum chooses the first suitable column as the distribution key. (Columns with geometric or user-defined data types are not eligible as Greenplum distribution key columns.)
+
+If the value of the parameter is set to `on`, Cloudberry Database follows these rules:
+
+-   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are not specified, the distribution of the table is random (`DISTRIBUTED RANDOMLY`). Table distribution is random even if the table creation command contains the `LIKE` or `INHERITS` clause.
+-   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are specified, you must also specify a `DISTRIBUTED BY` clause If a `DISTRIBUTED BY` clause is not specified as part of the table creation command, the command fails.
+
+The `DISTRIBUTED REPLICATED` clause replicates the entire table to all Cloudberry Database segment instances. It can be used when it is necessary to run user-defined functions on segments when the functions require access to all rows in the table, or to improve query performance by preventing broadcast motions.
 
 ### Classic Partitioning Syntax Parameters
 
@@ -515,42 +580,53 @@ Descriptions of additional parameters that are specific to the *classic partitio
 
 > **Note**: We recommend that you use the modern partitioning syntax.
 
-CREATE TABLE table_name ... PARTITION BY
+**`CREATE TABLE table_name ... PARTITION BY`**
 
-:   When creating a partitioned table using the *classic syntax*, Cloudberry Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The pg_partitioned_table system catalog contains information about the sub-partition tables.
+When creating a partitioned table using the *classic syntax*, Cloudberry Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The pg_partitioned_table system catalog contains information about the sub-partition tables.
 
-classic_partition_spec
-:   Declares the individual partitions to create. Each partition can be defined individually or, for range partitions, you can use the `EVERY` clause (with a `START` and optional `END` clause) to define an increment pattern to use to create the individual partitions.
+**`classic_partition_spec`**
 
-DEFAULT PARTITION name
-:   Declares a default partition. When data does not match the bouds of an existing partition, Greenplum inserts it into the default partition. Partition designs that do not identify a default partition will reject incoming rows that do not match an existing partition.
+Declares the individual partitions to create. Each partition can be defined individually or, for range partitions, you can use the `EVERY` clause (with a `START` and optional `END` clause) to define an increment pattern to use to create the individual partitions.
 
-PARTITION name
-:   Declares a name to use for the partition. Partitions are created using the following naming convention: `<table_name>_<level#>_prt_<given_name>`.
+**`DEFAULT PARTITION name`**
 
-VALUES
-:   For list partitions, defines the value(s) that the partition will contain.
+Declares a default partition. When data does not match the bouds of an existing partition, Greenplum inserts it into the default partition. Partition designs that do not identify a default partition will reject incoming rows that do not match an existing partition.
 
-START
-:   For range partitions, defines the starting range value for the partition. By default, start values are `INCLUSIVE`. For example, if you declared a start date of '`2016-01-01`', then the partition would contain all dates greater than or equal to '`2016-01-01`'. The data type of the `START` expression must support a suitable `+` operator, for example `timestamp` or `integer` (not `float` or `text`) if it is defined with the `EXCLUSIVE` keyword. Typically the data type of the `START` expression is the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
+**`PARTITION name`**
 
-END
-:   For range partitions, defines the ending range value for the partition. By default, end values are `EXCLUSIVE`. For example, if you declared an end date of '`2016-02-01`', then the partition would contain all dates less than but not equal to '`2016-02-01`'. The data type of the `END` expression must support a suitable `+` operator, for example `timestamp` or `integer` (not `float` or `text`) if it is defined with the `INCLUSIVE` keyword. The data type of the `END` expression is typically the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
+Declares a name to use for the partition. Partitions are created using the following naming convention: `<table_name>_<level#>_prt_<given_name>`.
 
-EVERY
-:   For range partitions, defines how to increment the values from `START` to `END` to create individual partitions. The data type of the `EVERY` expression is typically the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
+**`VALUES`**
 
-WITH
-:   Sets the table storage options for a partition. For example, you may want older partitions to be append-optimized tables and newer partitions to be regular heap tables. See [Storage Parameters](#storage_parameters), below.
+For list partitions, defines the value(s) that the partition will contain.
 
-TABLESPACE
-:   The name of the tablespace in which the partition is to be created.
+**`START`**
 
-SUBPARTITION BY
-:   Declares one or more columns by which to sub-partition the first-level partitions of the table. For `LIST` partitioning, the partition key must consist of a single column or expression. The format of the sub-partition specification is similar to that of a partition specification described above.
+For range partitions, defines the starting range value for the partition. By default, start values are `INCLUSIVE`. For example, if you declared a start date of '`2016-01-01`', then the partition would contain all dates greater than or equal to '`2016-01-01`'. The data type of the `START` expression must support a suitable `+` operator, for example `timestamp` or `integer` (not `float` or `text`) if it is defined with the `EXCLUSIVE` keyword. Typically the data type of the `START` expression is the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
 
-SUBPARTITION TEMPLATE
-:   Instead of declaring each sub-partition definition individually for each partition, you can optionally declare a sub-partition template to be used to create the sub-partitions (lower level child tables). This sub-partition specification would then apply to all parent partitions.
+**`END`**
+
+For range partitions, defines the ending range value for the partition. By default, end values are `EXCLUSIVE`. For example, if you declared an end date of '`2016-02-01`', then the partition would contain all dates less than but not equal to '`2016-02-01`'. The data type of the `END` expression must support a suitable `+` operator, for example `timestamp` or `integer` (not `float` or `text`) if it is defined with the `INCLUSIVE` keyword. The data type of the `END` expression is typically the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
+
+**`EVERY`**
+
+For range partitions, defines how to increment the values from `START` to `END` to create individual partitions. The data type of the `EVERY` expression is typically the same type as the partition key column. If that is not the case, then you must explicitly cast to the intended data type.
+
+**`WITH`**
+
+Sets the table storage options for a partition. For example, you may want older partitions to be append-optimized tables and newer partitions to be regular heap tables. See [Storage Parameters](#storage_parameters), below.
+
+**`TABLESPACE`**
+
+The name of the tablespace in which the partition is to be created.
+
+**`SUBPARTITION BY`**
+
+Declares one or more columns by which to sub-partition the first-level partitions of the table. For `LIST` partitioning, the partition key must consist of a single column or expression. The format of the sub-partition specification is similar to that of a partition specification described above.
+
+**`SUBPARTITION TEMPLATE`**
+
+Instead of declaring each sub-partition definition individually for each partition, you can optionally declare a sub-partition template to be used to create the sub-partitions (lower level child tables). This sub-partition specification would then apply to all parent partitions.
 
 ### Storage Parameters
 
@@ -564,103 +640,141 @@ You can specify the defaults for some of the table storage options with the serv
 
 The following table storage parameters are available:
 
-analyze_hll_non_part_table
-:   Set this storage parameter to `true` to force collection of HLL statistics even if the table is not part of a partitioned table. This is useful if the table will be exchanged or added to a partitioned table, so that the table does not need to be re-analyzed. The default is `false`.
+**`analyze_hll_non_part_table`**
 
-appendoptimized
-:   Set to `TRUE` to create the table as an append-optimized table. If `FALSE` or not declared, the table will be created as a regular heap-storage table.
+Set this storage parameter to `true` to force collection of HLL statistics even if the table is not part of a partitioned table. This is useful if the table will be exchanged or added to a partitioned table, so that the table does not need to be re-analyzed. The default is `false`.
 
-blocksize
-:   Set to the size, in bytes, for each block in a table. The `blocksize` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768. The `blocksize` option is valid only if the table is append-optimized.
+**`appendoptimized`**
 
-checksum
-:   This option is valid only for append-optimized tables. The value `TRUE` is the default and enables CRC checksum validation for append-optimized tables. The checksum is calculated during block creation and is stored on disk. Checksum validation is performed during block reads. If the checksum calculated during the read does not match the stored checksum, the transaction is cancelled. If you set the value to `FALSE` to deactivate checksum validation, checking the table data for on-disk corruption will not be performed.
+Set to `TRUE` to create the table as an append-optimized table. If `FALSE` or not declared, the table will be created as a regular heap-storage table.
 
-compresslevel
-:   For Zstd compression of append-optimized tables, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. If not declared, the default is 1. For `RLE_TYPE`, the compression level can be an integer value from 1 (fastest compression) to 4 (highest compression ratio).
+**`blocksize`**
 
-:   The `compresslevel` option is valid only if the table is append-optimized.
+Set to the size, in bytes, for each block in a table. The `blocksize` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768. The `blocksize` option is valid only if the table is append-optimized.
 
-compresstype
-:   Set to `ZLIB` (the default), `ZSTD`, or `RLE_TYPE` to specify the type of compression used. The value `NONE` deactivates compression. Zstd provides for both speed and a good compression ratio, tunable with the `compresslevel` option. zlib is provided for backward compatibility. Zstd outperforms these compression types on usual workloads. The `compresstype` option is only valid if the table is append-optimized.
+**`checksum`**
 
-:   The value `RLE_TYPE`, which is supported only for append-optimized, column-oriented tables, enables the run-length encoding (RLE) compression algorithm. RLE compresses data better than the Zstd or zlib compression algorithms when the same data value occurs in many consecutive rows.
+This option is valid only for append-optimized tables. The value `TRUE` is the default and enables CRC checksum validation for append-optimized tables. The checksum is calculated during block creation and is stored on disk. Checksum validation is performed during block reads. If the checksum calculated during the read does not match the stored checksum, the transaction is cancelled. If you set the value to `FALSE` to deactivate checksum validation, checking the table data for on-disk corruption will not be performed.
 
-:   For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
+**`compresslevel`**
 
-fillfactor
-:   The fillfactor for a table is a percentage between 10 and 100. 100 (complete packing) is the default. When a smaller fillfactor is specified, `INSERT` operations pack table pages only to the indicated percentage; the remaining space on each page is reserved for updating rows on that page. This gives `UPDATE` a chance to place the updated copy of a row on the same page as the original, which is more efficient than placing it on a different page. For a table whose entries are never updated, complete packing is the best choice, but in heavily updated tables smaller fillfactors are appropriate. This parameter cannot be set for TOAST tables.
+For Zstd compression of append-optimized tables, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. If not declared, the default is 1. For `RLE_TYPE`, the compression level can be an integer value from 1 (fastest compression) to 4 (highest compression ratio).
 
-orientation
-:   Set to `column` for column-oriented storage, or `row` (the default) for row-oriented storage. This option is only valid if the table is append-optimized. Heap-storage tables can only be row-oriented.
+The `compresslevel` option is valid only if the table is append-optimized.
+
+**`compresstype`**
+
+Set to `ZLIB` (the default), `ZSTD`, or `RLE_TYPE` to specify the type of compression used. The value `NONE` deactivates compression. Zstd provides for both speed and a good compression ratio, tunable with the `compresslevel` option. zlib is provided for backward compatibility. Zstd outperforms these compression types on usual workloads. The `compresstype` option is only valid if the table is append-optimized.
+
+The value `RLE_TYPE`, which is supported only for append-optimized, column-oriented tables, enables the run-length encoding (RLE) compression algorithm. RLE compresses data better than the Zstd or zlib compression algorithms when the same data value occurs in many consecutive rows.
+
+For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
+
+**`fillfactor`**
+
+The fillfactor for a table is a percentage between 10 and 100. 100 (complete packing) is the default. When a smaller fillfactor is specified, `INSERT` operations pack table pages only to the indicated percentage; the remaining space on each page is reserved for updating rows on that page. This gives `UPDATE` a chance to place the updated copy of a row on the same page as the original, which is more efficient than placing it on a different page. For a table whose entries are never updated, complete packing is the best choice, but in heavily updated tables smaller fillfactors are appropriate. This parameter cannot be set for TOAST tables.
+
+**`orientation`**
+
+Set to `column` for column-oriented storage, or `row` (the default) for row-oriented storage. This option is only valid if the table is append-optimized. Heap-storage tables can only be row-oriented.
 
 *The following parameters are supported for heap tables only:*
 
-toast_tuple_target (integer)
-:   The `toast_tuple_target` specifies the minimum tuple length required before Greenplum attempts to compress and/or move long column values into TOAST tables, and is also the target length Greenplum tries to reduce the length below once toasting begins. This affects columns marked as External (for move), Main (for compression), or Extended (for both) and applies only to new tuples. There is no effect on existing rows. By default this parameter is set to allow at least 4 tuples per block, which with the default blocksize will be 8184 bytes. Valid values are between 128 bytes and the (blocksize - header), by default 8160 bytes. Changing this value may not be useful for very short or very long rows. Note that the default setting is often close to optimal, and it is possible that setting this parameter could have negative effects in some cases. You can not set this parameter for TOAST tables.
+**`toast_tuple_target (integer)`**
 
-parallel_workers (integer)
-:   Sets the number of workers that should be used to assist a parallel scan of this table. If not set, Greenplum determines a value based on the relation size. The actual number of workers chosen by the planner or by utility statements that use parallel scans may be less, for example due to the setting of `max_worker_processes`.
+The `toast_tuple_target` specifies the minimum tuple length required before Greenplum attempts to compress and/or move long column values into TOAST tables, and is also the target length Greenplum tries to reduce the length below once toasting begins. This affects columns marked as External (for move), Main (for compression), or Extended (for both) and applies only to new tuples. There is no effect on existing rows. By default this parameter is set to allow at least 4 tuples per block, which with the default blocksize will be 8184 bytes. Valid values are between 128 bytes and the (blocksize - header), by default 8160 bytes. Changing this value may not be useful for very short or very long rows. Note that the default setting is often close to optimal, and it is possible that setting this parameter could have negative effects in some cases. You can not set this parameter for TOAST tables.
 
-autovacuum_enabled, toast.autovacuum_enabled (boolean)
-:   Enables or disables the autovacuum daemon for a particular table. If `true`, the autovacuum daemon will perform automatic `VACUUM` and/or `ANALYZE` operations on this table following the rules discussed in [The Autovacuum Daemon](https://www.postgresql.org/docs/12/routine-vacuuming.html#AUTOVACUUM) in the PostgreSQL documentation. If `false`, Greenplum does not autovacuum the table, except to prevent transaction ID wraparound. Note that the autovacuum daemon does not run at all (except to prevent transaction ID wraparound) if the `autovacuum` parameter is `false`; setting individual tables' storage parameters does not override that. So there is seldom much point in explicitly setting this storage parameter to `true`, only to `false`.
+**`parallel_workers (integer)`**
 
-vacuum_index_cleanup, toast.vacuum_index_cleanup (boolean)
-:   Enables or disables index cleanup when `VACUUM` is run on this table. The default value is `true`. Disabling index cleanup can speed up `VACUUM` very significantly, but may also lead to severely bloated indexes if table modifications are frequent. The `INDEX_CLEANUP` parameter of `VACUUM`, if specified, overrides the value of this option.
-:   Setting this to `false` may be useful when you need to run `VACUUM` as quickly as possible, for example to prevent imminent transaction ID wraparound. However, if you do not perform index cleanup regularly, performance may suffer, because as the table is modified, indexes accumulate dead tuples and the table itself accumulates dead line pointers that cannot be removed until index cleanup completes.
+Sets the number of workers that should be used to assist a parallel scan of this table. If not set, Greenplum determines a value based on the relation size. The actual number of workers chosen by the planner or by utility statements that use parallel scans may be less, for example due to the setting of `max_worker_processes`.
 
-vacuum_truncate, toast.vacuum_truncate (boolean)
-:   Enables or disables vacuum to attempt to truncate any empty pages at the end of this table. The default value is `true`. If `true`, `VACUUM` and autovacuum truncate the empty pages, and the disk space for the truncated pages is returned to the operating system. Note that the truncation requires an `ACCESS EXCLUSIVE` lock on the table. The `TRUNCATE` parameter of `VACUUM`, if specified, overrides the value of this option.
+**`autovacuum_enabled, toast.autovacuum_enabled (boolean)`**
 
-autovacuum_vacuum_threshold, toast.autovacuum_vacuum_threshold (integer)
-:   Per-table value for the `autovacuum_vacuum_threshold` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+Enables or disables the autovacuum daemon for a particular table. If `true`, the autovacuum daemon will perform automatic `VACUUM` and/or `ANALYZE` operations on this table following the rules discussed in [The Autovacuum Daemon](https://www.postgresql.org/docs/12/routine-vacuuming.html#AUTOVACUUM) in the PostgreSQL documentation. If `false`, Greenplum does not autovacuum the table, except to prevent transaction ID wraparound. Note that the autovacuum daemon does not run at all (except to prevent transaction ID wraparound) if the `autovacuum` parameter is `false`; setting individual tables' storage parameters does not override that. So there is seldom much point in explicitly setting this storage parameter to `true`, only to `false`.
 
-autovacuum_vacuum_scale_factor, toast.autovacuum_vacuum_scale_factor (floating point)
-:   Per-table value for the `autovacuum_vacuum_scale_factor` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+**`vacuum_index_cleanup, toast.vacuum_index_cleanup (boolean)`**
 
-autovacuum_analyze_threshold (integer)
-:   Per-table value for the `autovacuum_analyze_threshold` server configuration parameter.
+Enables or disables index cleanup when `VACUUM` is run on this table. The default value is `true`. Disabling index cleanup can speed up `VACUUM` very significantly, but may also lead to severely bloated indexes if table modifications are frequent. The `INDEX_CLEANUP` parameter of `VACUUM`, if specified, overrides the value of this option.
 
-autovacuum_analyze_scale_factor (floating point)
-:   Per-table value for the `autovacuum_analyze_scale_factor` server configuration parameter.
+Setting this to `false` may be useful when you need to run `VACUUM` as quickly as possible, for example to prevent imminent transaction ID wraparound. However, if you do not perform index cleanup regularly, performance may suffer, because as the table is modified, indexes accumulate dead tuples and the table itself accumulates dead line pointers that cannot be removed until index cleanup completes.
 
-autovacuum_vacuum_cost_delay, toast.autovacuum_vacuum_cost_delay (floating point)
-:   Per-table value for the `autovacuum_vacuum_cost_delay` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+**`vacuum_truncate, toast.vacuum_truncate (boolean)`**
 
-autovacuum_vacuum_cost_limit, toast.autovacuum_vacuum_cost_limit (integer)
-:   Per-table value for the `autovacuum_vacuum_cost_limit` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+Enables or disables vacuum to attempt to truncate any empty pages at the end of this table. The default value is `true`. If `true`, `VACUUM` and autovacuum truncate the empty pages, and the disk space for the truncated pages is returned to the operating system. Note that the truncation requires an `ACCESS EXCLUSIVE` lock on the table. The `TRUNCATE` parameter of `VACUUM`, if specified, overrides the value of this option.
 
-autovacuum_freeze_min_age, toast.autovacuum_freeze_min_age (integer)
-:   Per-table value for the `vacuum_freeze_min_age` parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_min_age` parameters that are larger than half of the system-wide `autovacuum_freeze_max_age` setting.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+**`autovacuum_vacuum_threshold, toast.autovacuum_vacuum_threshold (integer)`**
 
-autovacuum_freeze_max_age, toast.autovacuum_freeze_max_age (integer)
-:   Per-table value for the `autovacuum_freeze_max_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_max_age` parameters that are larger than the system-wide setting (it can only be set smaller).
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+Per-table value for the `autovacuum_vacuum_threshold` server configuration parameter.
 
-autovacuum_freeze_table_age, toast.autovacuum_freeze_table_age (integer)
-:   Per-table value for the `vacuum_freeze_table_age` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
-autovacuum_multixact_freeze_min_age, toast.autovacuum_multixact_freeze_min_age (integer)
-:   Per-table value for the `vacuum_multixact_freeze_min_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_multixact_freeze_min_age` parameters that are larger than half of the system-wide `autovacuum_multixact_freeze_max_age` setting.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+**`autovacuum_vacuum_scale_factor, toast.autovacuum_vacuum_scale_factor (floating point)`**
 
-autovacuum_multixact_freeze_max_age, toast.autovacuum_multixact_freeze_max_age (integer)
-:   Per-table value for the `autovacuum_multixact_freeze_max_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_multixact_freeze_max_age` parameters that are larger than the system-wide setting (it can only be set smaller).
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+Per-table value for the `autovacuum_vacuum_scale_factor` server configuration parameter.
 
-autovacuum_multixact_freeze_table_age, toast.autovacuum_multixact_freeze_table_age (integer)
-:   Per-table value for the `vacuum_multixact_freeze_table_age` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
-log_autovacuum_min_duration, toast.log_autovacuum_min_duration (integer)
-:   Per-table value for the `log_autovacuum_min_duration` server configuration parameter.
-:   > **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+**`autovacuum_analyze_threshold (integer)`**
+
+Per-table value for the `autovacuum_analyze_threshold` server configuration parameter.
+
+**`autovacuum_analyze_scale_factor (floating point)`**
+
+Per-table value for the `autovacuum_analyze_scale_factor` server configuration parameter.
+
+**`autovacuum_vacuum_cost_delay, toast.autovacuum_vacuum_cost_delay (floating point)`**
+
+Per-table value for the `autovacuum_vacuum_cost_delay` server configuration parameter.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_vacuum_cost_limit, toast.autovacuum_vacuum_cost_limit (integer)`**
+
+Per-table value for the `autovacuum_vacuum_cost_limit` server configuration parameter.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_freeze_min_age, toast.autovacuum_freeze_min_age (integer)`**
+
+Per-table value for the `vacuum_freeze_min_age` parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_min_age` parameters that are larger than half of the system-wide `autovacuum_freeze_max_age` setting.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_freeze_max_age, toast.autovacuum_freeze_max_age (integer)`**
+
+Per-table value for the `autovacuum_freeze_max_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_freeze_max_age` parameters that are larger than the system-wide setting (it can only be set smaller).
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_freeze_table_age, toast.autovacuum_freeze_table_age (integer)`**
+
+Per-table value for the `vacuum_freeze_table_age` server configuration parameter.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_multixact_freeze_min_age, toast.autovacuum_multixact_freeze_min_age (integer)`**
+
+Per-table value for the `vacuum_multixact_freeze_min_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_multixact_freeze_min_age` parameters that are larger than half of the system-wide `autovacuum_multixact_freeze_max_age` setting.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_multixact_freeze_max_age, toast.autovacuum_multixact_freeze_max_age (integer)`**
+
+Per-table value for the `autovacuum_multixact_freeze_max_age` server configuration parameter. Note that autovacuum will ignore per-table `autovacuum_multixact_freeze_max_age` parameters that are larger than the system-wide setting (it can only be set smaller).
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`autovacuum_multixact_freeze_table_age, toast.autovacuum_multixact_freeze_table_age (integer)`**
+
+Per-table value for the `vacuum_multixact_freeze_table_age` server configuration parameter.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
+
+**`log_autovacuum_min_duration, toast.log_autovacuum_min_duration (integer)`**
+
+Per-table value for the `log_autovacuum_min_duration` server configuration parameter.
+
+> **Note** Greenplum accepts, but does not apply, values for these storage parameters.
 
 ## Notes
 

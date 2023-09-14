@@ -43,8 +43,9 @@ where queue_attribute is:
 
 ## Parameters
 
-name
-:   The name of the resource queue whose limits are to be altered.
+**`name`**
+
+The name of the resource queue whose limits are to be altered.
 
 ACTIVE_STATEMENTS integer
 :   The number of active statements submitted from users in this resource queue allowed on the system at any one time. The value for `ACTIVE_STATEMENTS` should be an integer greater than 0. To reset `ACTIVE_STATEMENTS` to have no limit, enter a value of `-1`.

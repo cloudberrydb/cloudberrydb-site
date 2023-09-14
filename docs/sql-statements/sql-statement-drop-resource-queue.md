@@ -14,8 +14,9 @@ This command removes a resource queue from Cloudberry Database. To drop a resour
 
 ## Parameters
 
-queue_name
-:   The name of a resource queue to remove.
+**`queue_name`**
+
+The name of a resource queue to remove.
 
 ## Notes
 

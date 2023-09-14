@@ -19,14 +19,17 @@ You must be a superuser to use `ALTER TEXT SEARCH TEMPLATE`.
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing text search template.
+**`name`**
 
-new_name
-:   The new name of the text search template.
+The name (optionally schema-qualified) of an existing text search template.
 
-new_schema
-:   The new schema for the text search template.
+**`new_name`**
+
+The new name of the text search template.
+
+**`new_schema`**
+
+The new schema for the text search template.
 
 ## Compatibility
 

@@ -36,16 +36,19 @@ You open a special retrieve session to each parallel retrieve cursor endpoint, a
 
 ## Parameters
 
-name
-:   The name of the cursor to be created.
+**`name`**
 
-BINARY
-:   Causes the cursor to return data in binary rather than in text format.
+The name of the cursor to be created.
+
+**`BINARY`**
+
+Causes the cursor to return data in binary rather than in text format.
 
     > **Note** Cloudberry Database ignores the `BINARY` clause when you declare a `PARALLEL RETRIEVE` cursor.
 
-INSENSITIVE
-:   Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Cloudberry Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
+**`INSENSITIVE`**
+
+Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Cloudberry Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
 
 NO SCROLL
 :   The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Cloudberry Database; scrollable cursors (`SCROLL`) are not supported.
@@ -59,8 +62,9 @@ WITHOUT HOLD
 
     > **Note** Cloudberry Database does not support declaring a `PARALLEL RETRIEVE` cursor with the `WITH HOLD` clause. `WITH HOLD` also cannot not be specified when the `query` includes a `FOR UPDATE` or `FOR SHARE` clause.
 
-query
-:   A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the rows to be returned by the cursor.
+**`query`**
+
+A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the rows to be returned by the cursor.
 
 :   If the cursor is used in the `WHERE CURRENT OF` clause of the [UPDATE](/docs/sql-statements/sql-statement-update.md) or [DELETE](/docs/sql-statements/sql-statement-delete.md) command, the `SELECT` command must satisfy the following conditions:
 

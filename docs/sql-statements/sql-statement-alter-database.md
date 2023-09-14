@@ -41,26 +41,33 @@ The remaining forms change the session default for a configuration parameter for
 
 ## Parameters
 
-name
-:   The name of the database whose attributes are to be altered.
+**`name`**
 
-allowconn
-:   If `false`, then no one can connect to this database.
+The name of the database whose attributes are to be altered.
 
-connlimit
-:   The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Cloudberry Database superusers are exempt from this limit.
+**`allowconn`**
 
-istemplate
-:   If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false`, then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.
+If `false`, then no one can connect to this database.
 
-new_name
-:   The new name of the database.
+**`connlimit`**
 
-new_owner
-:   The new owner of the database.
+The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Cloudberry Database superusers are exempt from this limit.
 
-new_tablespace
-:   The new default tablespace of the database.
+**`istemplate`**
+
+If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false`, then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.
+
+**`new_name`**
+
+The new name of the database.
+
+**`new_owner`**
+
+The new owner of the database.
+
+**`new_tablespace`**
+
+The new default tablespace of the database.
 :   This form of the command cannot be executed inside a transaction block.
 
 configuration_parameter value

@@ -44,14 +44,17 @@ The forms using `FORWARD` retrieve the indicated number of rows moving in the fo
 
 ## Parameters
 
-forward_direction
-:   Defines the fetch direction and number of rows to fetch. Only forward fetches are allowed in Cloudberry Database. It can be one of the following:
+**`forward_direction`**
 
-NEXT
-:   Fetch the next row. This is the default if direction is omitted.
+Defines the fetch direction and number of rows to fetch. Only forward fetches are allowed in Cloudberry Database. It can be one of the following:
 
-FIRST
-:   Fetch the first row of the query (same as `ABSOLUTE 1`). Only allowed if it is the first `FETCH` operation using this cursor.
+**`NEXT`**
+
+Fetch the next row. This is the default if direction is omitted.
+
+**`FIRST`**
+
+Fetch the first row of the query (same as `ABSOLUTE 1`). Only allowed if it is the first `FETCH` operation using this cursor.
 
 ABSOLUTE count
 :   Fetch the specified row of the query. Position after last row if count is out of range. Only allowed if the row specified by count moves the cursor position forward.
@@ -59,14 +62,17 @@ ABSOLUTE count
 RELATIVE count
 :   Fetch the specified row of the query count rows ahead of the current cursor position. `RELATIVE 0` re-fetches the current row, if any. Only allowed if count moves the cursor position forward.
 
-count
-:   Fetch the next count number of rows (same as `FORWARD count`).
+**`count`**
 
-ALL
-:   Fetch all remaining rows (same as `FORWARD ALL`).
+Fetch the next count number of rows (same as `FORWARD count`).
 
-FORWARD
-:   Fetch the next row (same as `NEXT`).
+**`ALL`**
+
+Fetch all remaining rows (same as `FORWARD ALL`).
+
+**`FORWARD`**
+
+Fetch the next row (same as `NEXT`).
 
 FORWARD count
 :   Fetch the next count number of rows. `FORWARD 0` re-fetches the current row.
@@ -74,8 +80,9 @@ FORWARD count
 FORWARD ALL
 :   Fetch all remaining rows.
 
-cursor_name
-:   The name of an open cursor.
+**`cursor_name`**
+
+The name of an open cursor.
 
 ## Outputs
 

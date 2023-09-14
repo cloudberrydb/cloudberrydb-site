@@ -18,26 +18,33 @@ REINDEX [ (VERBOSE) ] { INDEX | TABLE | SCHEMA | DATABASE | SYSTEM } <name>
 
 ## Parameters
 
-INDEX
-:   Recreate the specified index.
+**`INDEX`**
 
-TABLE
-:   Recreate all indexes of the specified table. If the table has a secondary "TOAST" table, that is reindexed as well.
+Recreate the specified index.
 
-SCHEMA
-:   Recreate all indexes of the specified schema. If a table of this schema has a secondary "TOAST" table, that is reindexed as well. Indexes on shared system catalogs are also processed. You cannot run this form of `REINDEX` inside a transaction block.
+**`TABLE`**
 
-DATABASE
-:   Recreate all indexes within the current database. Indexes on shared system catalogs are also processed. This form of `REINDEX` cannot be run inside a transaction block.
+Recreate all indexes of the specified table. If the table has a secondary "TOAST" table, that is reindexed as well.
 
-SYSTEM
-:   Recreate all indexes on system catalogs within the current database. Indexes on shared system catalogs are included. Indexes on user tables are not processed. This form of `REINDEX` cannot be run inside a transaction block.
+**`SCHEMA`**
 
-name
-:   The name of the specific index, table, or database to be reindexed. Index and table names may be schema-qualified. Presently, `REINDEX DATABASE` and `REINDEX SYSTEM` can only reindex the current database, so their parameter must match the current database's name.
+Recreate all indexes of the specified schema. If a table of this schema has a secondary "TOAST" table, that is reindexed as well. Indexes on shared system catalogs are also processed. You cannot run this form of `REINDEX` inside a transaction block.
 
-VERBOSE
-:   Prints a progress report as each index is reindexed.
+**`DATABASE`**
+
+Recreate all indexes within the current database. Indexes on shared system catalogs are also processed. This form of `REINDEX` cannot be run inside a transaction block.
+
+**`SYSTEM`**
+
+Recreate all indexes on system catalogs within the current database. Indexes on shared system catalogs are included. Indexes on user tables are not processed. This form of `REINDEX` cannot be run inside a transaction block.
+
+**`name`**
+
+The name of the specific index, table, or database to be reindexed. Index and table names may be schema-qualified. Presently, `REINDEX DATABASE` and `REINDEX SYSTEM` can only reindex the current database, so their parameter must match the current database's name.
+
+**`VERBOSE`**
+
+Prints a progress report as each index is reindexed.
 
 ## Notes
 

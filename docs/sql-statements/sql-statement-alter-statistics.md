@@ -20,17 +20,21 @@ You must own the statistics object to use `ALTER STATISTICS`. To change a statis
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of the statistics object to be altered.
+**`name`**
 
-new_owner
-:   The user name of the new owner of the statistics object.
+The name (optionally schema-qualified) of the statistics object to be altered.
 
-new_name
-:   The new name for the statistics object.
+**`new_owner`**
 
-new_schema
-:   The new schema for the statistics object.
+The user name of the new owner of the statistics object.
+
+**`new_name`**
+
+The new name for the statistics object.
+
+**`new_schema`**
+
+The new schema for the statistics object.
 
 
 ## Compatibility

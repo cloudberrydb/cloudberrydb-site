@@ -14,14 +14,17 @@ ALTER TRIGGER <name> ON <table> RENAME TO <newname>
 
 ## Parameters
 
-name
-:   The name of an existing trigger to alter.
+**`name`**
 
-table
-:   The name of the table on which this trigger acts.
+The name of an existing trigger to alter.
 
-newname
-:   The new name for the trigger.
+**`table`**
+
+The name of the table on which this trigger acts.
+
+**`newname`**
+
+The new name for the trigger.
 
 ## Notes
 

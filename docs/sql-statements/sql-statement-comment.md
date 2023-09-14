@@ -79,48 +79,61 @@ policy_name
 procedure_name
 routine_name
 rule_name
-trigger_name
-:   The name of the object to be commented. Names of tables, aggregates, collations, conversions, domains, foreign tables, functions, indexes, operators, operator classes, operator families, procedures, routines, sequences, statistics, text search objects, types, views, and materialized views can be schema-qualified. When commenting on a column, relation_name must refer to a table, view, materialized view, composite type, or foreign table.
+**`trigger_name`**
+
+The name of the object to be commented. Names of tables, aggregates, collations, conversions, domains, foreign tables, functions, indexes, operators, operator classes, operator families, procedures, routines, sequences, statistics, text search objects, types, views, and materialized views can be schema-qualified. When commenting on a column, relation_name must refer to a table, view, materialized view, composite type, or foreign table.
 
     > **Note** Cloudberry Database does not support triggers.
 
 table_name
-domain_name
-:   When creating a comment on a constraint, a trigger, a rule, or a policy, these parameters specify the name of the table or domain on which that object is defined.
+**`domain_name`**
 
-source_type
-:   The name of the source data type of the cast.
+When creating a comment on a constraint, a trigger, a rule, or a policy, these parameters specify the name of the table or domain on which that object is defined.
 
-target_type
-:   The name of the target data type of the cast.
+**`source_type`**
 
-argmode
-:   The mode of a function or aggregate argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `COMMENT` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. It is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
+The name of the source data type of the cast.
 
-argname
-:   The name of a function, procedure, or aggregate argument. Note that `COMMENT` does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+**`target_type`**
 
-argtype
-:   The data type of a function, procedure, or aggregate argument.
+The name of the target data type of the cast.
+
+**`argmode`**
+
+The mode of a function or aggregate argument: either `IN`, `OUT`, `INOUT`, or `VARIADIC`. If omitted, the default is `IN`. Note that `COMMENT` does not actually pay any attention to `OUT` arguments, since only the input arguments are needed to determine the function's identity. It is sufficient to list the `IN`, `INOUT`, and `VARIADIC` arguments.
+
+**`argname`**
+
+The name of a function, procedure, or aggregate argument. Note that `COMMENT` does not actually pay any attention to argument names, since only the argument data types are needed to determine the function's identity.
+
+**`argtype`**
+
+The data type of a function, procedure, or aggregate argument.
 
 left_type
-right_type
-:   The data type(s) of the operator's arguments (optionally schema-qualified). Specify `NONE` for the missing argument of a prefix or postfix operator.
+**`right_type`**
 
-PROCEDURAL
-:   Cloudberry Database ignores this noise word.
+The data type(s) of the operator's arguments (optionally schema-qualified). Specify `NONE` for the missing argument of a prefix or postfix operator.
 
-type_name
-:   The name of the data type of the transform.
+**`PROCEDURAL`**
 
-lang_name
-:   The name of the language of the transform.
+Cloudberry Database ignores this noise word.
 
-string_literal
-:   The new comment contents, written as a string literal.
+**`type_name`**
 
-NULL
-:   Specify `NULL` to drop the comment.
+The name of the data type of the transform.
+
+**`lang_name`**
+
+The name of the language of the transform.
+
+**`string_literal`**
+
+The new comment contents, written as a string literal.
+
+**`NULL`**
+
+Specify `NULL` to drop the comment.
 
 ## Notes
 

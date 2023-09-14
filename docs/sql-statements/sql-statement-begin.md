@@ -25,8 +25,9 @@ If the isolation level, read/write mode, or deferrable mode is specified, the ne
 ## Parameters
 
 WORK
-TRANSACTION
-:   Optional key words. They have no effect.
+**`TRANSACTION`**
+
+Optional key words. They have no effect.
 
 Refer to [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md) for information on the meaning of the other parameters to this statement.
 

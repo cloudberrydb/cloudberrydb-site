@@ -34,45 +34,57 @@ You must be a superuser to use `ALTER OPERATOR FAMILY`. (This restriction is mad
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing operator family.
+**`name`**
 
-index_method
-:   The name of the index method this operator family is for.
+The name (optionally schema-qualified) of an existing operator family.
 
-strategy_number
-:   The index method's strategy number for an operator associated with the operator family.
+**`index_method`**
 
-operator_name
-:   The name (optionally schema-qualified) of an operator associated with the operator family.
+The name of the index method this operator family is for.
 
-op_type
-:   In an `OPERATOR` clause, the operand data type(s) of the operator, or `NONE` to signify a left-unary or right-unary operator. Unlike the comparable syntax in `CREATE OPERATOR CLASS`, the operand data types must always be specified.
+**`strategy_number`**
+
+The index method's strategy number for an operator associated with the operator family.
+
+**`operator_name`**
+
+The name (optionally schema-qualified) of an operator associated with the operator family.
+
+**`op_type`**
+
+In an `OPERATOR` clause, the operand data type(s) of the operator, or `NONE` to signify a left-unary or right-unary operator. Unlike the comparable syntax in `CREATE OPERATOR CLASS`, the operand data types must always be specified.
 :   In an `ADD FUNCTION` clause, the operand data type(s) the function is intended to support, if different from the input data type(s) of the function. For B-tree comparison functions and hash functions it is not necessary to specify op_type since the function's input data type(s) are always the correct ones to use. For B-tree sort support functions and all functions in GiST, SP-GiST, and GIN operator classes, it is necessary to specify the operand data type(s) the function is to be used with.
 :   In a `DROP FUNCTION` clause, the operand data type(s) the function is intended to support must be specified.
 
-sort_family_name
-:   The name (optionally schema-qualified) of an existing `btree` operator family that describes the sort ordering associated with an ordering operator.
+**`sort_family_name`**
+
+The name (optionally schema-qualified) of an existing `btree` operator family that describes the sort ordering associated with an ordering operator.
 
 :   If neither `FOR SEARCH` nor `FOR ORDER BY` is specified, `FOR SEARCH` is the default.
 
-support_number
-:   The index method's support function number for a function associated with the operator family.
+**`support_number`**
 
-function_name
-:   The name (optionally schema-qualified) of a function that is an index method support function for the operator family. If no argument list is specified, the name must be unique in its schema.
+The index method's support function number for a function associated with the operator family.
 
-argument_type
-:   The parameter data type(s) of the function.
+**`function_name`**
 
-new_name
-:   The new name of the operator family.
+The name (optionally schema-qualified) of a function that is an index method support function for the operator family. If no argument list is specified, the name must be unique in its schema.
 
-new_owner
-:   The new owner of the operator family.
+**`argument_type`**
 
-new_schema
-:   The new schema for the operator family.
+The parameter data type(s) of the function.
+
+**`new_name`**
+
+The new name of the operator family.
+
+**`new_owner`**
+
+The new owner of the operator family.
+
+**`new_schema`**
+
+The new schema for the operator family.
 
 The `OPERATOR` and `FUNCTION` clauses can appear in any order.
 

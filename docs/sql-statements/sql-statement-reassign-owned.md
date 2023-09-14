@@ -15,11 +15,13 @@ REASSIGN OWNED BY { <old_role> | CURRENT_USER | SESSION_USER } [, ...]
 
 ## Parameters
 
-old_role
-:   The name of a role. The ownership of all the objects in the current database, and of all shared objects (databases, tablespaces), owned by this role will be reassigned to new_role.
+**`old_role`**
 
-new_role
-:   The name of the role that will be made the new owner of the affected objects.
+The name of a role. The ownership of all the objects in the current database, and of all shared objects (databases, tablespaces), owned by this role will be reassigned to new_role.
+
+**`new_role`**
+
+The name of the role that will be made the new owner of the affected objects.
 
 ## Notes
 

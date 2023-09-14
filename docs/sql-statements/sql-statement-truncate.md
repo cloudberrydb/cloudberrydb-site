@@ -19,8 +19,9 @@ You must have the `TRUNCATE` privilege on the table to truncate it.
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of a table to truncate. If `ONLY` is specified before the table name, only that table is truncated. If `ONLY` is not specified, the table and all its descendant tables (if any) are truncated. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
+**`name`**
+
+The name (optionally schema-qualified) of a table to truncate. If `ONLY` is specified before the table name, only that table is truncated. If `ONLY` is not specified, the table and all its descendant tables (if any) are truncated. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
 
 RESTART IDENTITY
 :   Automatically restart sequences owned by columns of the truncated table(s).
@@ -28,11 +29,13 @@ RESTART IDENTITY
 CONTINUE IDENTITY
 :   Do not change the values of sequences. This is the default.
 
-CASCADE
-:   Because this key word applies to foreign key references (which are not supported in Cloudberry Database) it has no effect.
+**`CASCADE`**
 
-RESTRICT
-:   Because this key word applies to foreign key references (which are not supported in Cloudberry Database) it has no effect.
+Because this key word applies to foreign key references (which are not supported in Cloudberry Database) it has no effect.
+
+**`RESTRICT`**
+
+Because this key word applies to foreign key references (which are not supported in Cloudberry Database) it has no effect.
 
 ## Notes
 

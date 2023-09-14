@@ -67,14 +67,17 @@ TEMPORARY | TEMP
 IF NOT EXISTS
 :   Do not throw an error if a relation with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the sequence that would have been created - it might not even be a sequence.
 
-name
-:   The name (optionally schema-qualified) of the sequence to be created.
+**`name`**
 
-data_type
-:   The optional clause `AS data_type` specifies the data type of the sequence. Valid types are `smallint`, `integer`, and `bigint`. `bigint` is the default. The data type determines the default minimum and maximum values of the sequence.
+The name (optionally schema-qualified) of the sequence to be created.
 
-increment
-:   Specifies which value is added to the current sequence value to create a new value. A positive value will make an ascending sequence, a negative one a descending sequence. The default value is `1`.
+**`data_type`**
+
+The optional clause `AS data_type` specifies the data type of the sequence. Valid types are `smallint`, `integer`, and `bigint`. `bigint` is the default. The data type determines the default minimum and maximum values of the sequence.
+
+**`increment`**
+
+Specifies which value is added to the current sequence value to create a new value. A positive value will make an ascending sequence, a negative one a descending sequence. The default value is `1`.
 
 minvalue
 NO MINVALUE
@@ -84,11 +87,13 @@ maxvalue
 NO MAXVALUE
 :   Determines the maximum value for the sequence. If this clause is not supplied or `NO MAXVALUE` is specified, then default values will be used. The defaults are 263-1 and -1 for ascending and descending sequences, respectively.
 
-start
-:   Allows the sequence to begin anywhere. The default starting value is `minvalue` for ascending sequences and `maxvalue` for descending ones.
+**`start`**
 
-cache
-:   Specifies how many sequence numbers are to be preallocated and stored in memory for faster access. The default value is 20. The minimum value is 1 (no cache).
+Allows the sequence to begin anywhere. The default starting value is `minvalue` for ascending sequences and `maxvalue` for descending ones.
+
+**`cache`**
+
+Specifies how many sequence numbers are to be preallocated and stored in memory for faster access. The default value is 20. The minimum value is 1 (no cache).
 :   > **Note** When operating with a cache of sequence numbers (`cache > 1`), Cloudberry Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
 
 CYCLE

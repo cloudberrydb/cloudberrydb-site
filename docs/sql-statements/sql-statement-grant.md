@@ -152,48 +152,60 @@ You can also use this command to grant users permissions to create and use `s3` 
 
 ## Parameters
 
-SELECT
-:   Allows `SELECT` from any column, or the specific columns listed, of the specified table, view, or sequence. Also allows the use of `COPY TO`. This privilege is also needed to reference existing column values in `UPDATE` or `DELETE`.
+**`SELECT`**
 
-INSERT
-:   Allows `INSERT` of a new row into the specified table. If specific columns are listed, only those columns may be assigned to in the `INSERT` command (other columns will receive default values). Also allows `COPY FROM`.
+Allows `SELECT` from any column, or the specific columns listed, of the specified table, view, or sequence. Also allows the use of `COPY TO`. This privilege is also needed to reference existing column values in `UPDATE` or `DELETE`.
 
-UPDATE
-:   Allows `UPDATE` of any column, or the specific columns listed, of the specified table. `SELECT ... FOR UPDATE` and `SELECT ... FOR SHARE` also require this privilege on at least one column, (as well as the `SELECT` privilege). For sequences, this privilege allows the use of the `nextval()` and `setval()` functions.
+**`INSERT`**
 
-DELETE
-:   Allows `DELETE` of a row from the specified table.
+Allows `INSERT` of a new row into the specified table. If specific columns are listed, only those columns may be assigned to in the `INSERT` command (other columns will receive default values). Also allows `COPY FROM`.
 
-REFERENCES
-:   This keyword is accepted, although foreign key constraints are currently not supported in Cloudberry Database. To create a foreign key constraint, it is necessary to have this privilege on both the referencing and referenced columns. The privilege may be granted for all columns of a table, or just specific columns.
+**`UPDATE`**
 
-TRIGGER
-:   Allows the creation of a trigger on the specified table.
+Allows `UPDATE` of any column, or the specific columns listed, of the specified table. `SELECT ... FOR UPDATE` and `SELECT ... FOR SHARE` also require this privilege on at least one column, (as well as the `SELECT` privilege). For sequences, this privilege allows the use of the `nextval()` and `setval()` functions.
+
+**`DELETE`**
+
+Allows `DELETE` of a row from the specified table.
+
+**`REFERENCES`**
+
+This keyword is accepted, although foreign key constraints are currently not supported in Cloudberry Database. To create a foreign key constraint, it is necessary to have this privilege on both the referencing and referenced columns. The privilege may be granted for all columns of a table, or just specific columns.
+
+**`TRIGGER`**
+
+Allows the creation of a trigger on the specified table.
 
     > **Note** Cloudberry Database does not support triggers.
 
-TRUNCATE
-:   Allows `TRUNCATE` of all rows from the specified table.
+**`TRUNCATE`**
 
-CREATE
-:   For databases, allows new schemas to be created within the database.
+Allows `TRUNCATE` of all rows from the specified table.
+
+**`CREATE`**
+
+For databases, allows new schemas to be created within the database.
 
 :   For schemas, allows new objects to be created within the schema. To rename an existing object, you must own the object and have this privilege for the containing schema.
 
 :   For tablespaces, allows tables and indexes to be created within the tablespace, and allows databases to be created that have the tablespace as their default tablespace. (Note that revoking this privilege will not alter the placement of existing objects.)
 
-CONNECT
-:   Allows the user to connect to the specified database. This privilege is checked at connection startup (in addition to checking any restrictions imposed by `pg_hba.conf`).
+**`CONNECT`**
+
+Allows the user to connect to the specified database. This privilege is checked at connection startup (in addition to checking any restrictions imposed by `pg_hba.conf`).
 
 TEMPORARY
-TEMP
-:   Allows temporary tables to be created while using the database.
+**`TEMP`**
 
-EXECUTE
-:   Allows the use of the specified function and the use of any operators that are implemented on top of the function. This is the only type of privilege that is applicable to functions. (This syntax works for aggregate functions, as well.)
+Allows temporary tables to be created while using the database.
 
-USAGE
-:   For procedural languages, allows the use of the specified language for the creation of functions in that language. This is the only type of privilege that is applicable to procedural languages.
+**`EXECUTE`**
+
+Allows the use of the specified function and the use of any operators that are implemented on top of the function. This is the only type of privilege that is applicable to functions. (This syntax works for aggregate functions, as well.)
+
+**`USAGE`**
+
+For procedural languages, allows the use of the specified language for the creation of functions in that language. This is the only type of privilege that is applicable to procedural languages.
 
 :   For schemas, allows access to objects contained in the specified schema (assuming that the objects' own privilege requirements are also met). Essentially this allows the grantee to look up objects within the schema.
 
@@ -208,8 +220,9 @@ USAGE
 ALL PRIVILEGES
 :   Grant all of the available privileges at once. The `PRIVILEGES` key word is optional in Cloudberry Database, though it is required by strict SQL.
 
-PUBLIC
-:   A special group-level role that denotes that the privileges are to be granted to all roles, including those that may be created later.
+**`PUBLIC`**
+
+A special group-level role that denotes that the privileges are to be granted to all roles, including those that may be created later.
 
 WITH GRANT OPTION
 :   The recipient of the privilege may in turn grant it to others.

@@ -26,11 +26,13 @@ CREATE MATERIALIZED VIEW [ IF  NOT EXISTS ] <table_name>
 IF NOT EXISTS
 :   Do not throw an error if a materialized view with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing materialized view is anything like the one that would have been created.
 
-table_name
-:   The name (optionally schema-qualified) of the materialized view to be created.
+**`table_name`**
 
-column_name
-:   The name of a column in the new materialized view. The column names are assigned based on position. The first column name is assigned to the first column of the query result, and so on. If a column name is not provided, it is taken from the output column names of the query.
+The name (optionally schema-qualified) of the materialized view to be created.
+
+**`column_name`**
+
+The name of a column in the new materialized view. The column names are assigned based on position. The first column name is assigned to the first column of the query result, and so on. If a column name is not provided, it is taken from the output column names of the query.
 
 USING method
 :   This optional clause specifies the table access method to use to store the contents for the new materialized view; the method needs be an access method of type `TABLE`. If this option is not specified, the default table access method is chosen for the new materialized view. See default_table_access_method for more information.
@@ -41,8 +43,9 @@ WITH ( storage_parameter [= value] [, ... ] )
 TABLESPACE tablespace_name
 :   The tablespace_name is the name of the tablespace in which the new materialized view is to be created. If not specified, server configuration parameter default_tablespace is consulted.
 
-query
-:   A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](/docs/sql-statements/sql-statement-select.md#the-table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
+**`query`**
+
+A [SELECT](/docs/sql-statements/sql-statement-select.md), [TABLE](/docs/sql-statements/sql-statement-select.md#the-table-command), or [VALUES](/docs/sql-statements/sql-statement-values.md) command. This query will run within a security-restricted operation; in particular, calls to functions that themselves create temporary tables will fail.
 
 WITH [ NO ] DATA
 :   This clause specifies whether or not the materialized view should be populated with data at creation time. `WITH DATA` is the default, populate the materialized view. For `WITH NO DATA`, the materialized view is not populated with data, is flagged as unscannable, and cannot be queried until `REFRESH MATERIALIZED VIEW` is used to populate the materialized view.

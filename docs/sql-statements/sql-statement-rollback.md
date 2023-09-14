@@ -15,8 +15,9 @@ ROLLBACK [WORK | TRANSACTION] [AND [NO] CHAIN]
 ## Parameters
 
 WORK
-TRANSACTION
-:   Optional key words. They have no effect.
+**`TRANSACTION`**
+
+Optional key words. They have no effect.
 
 AND CHAIN
 :   If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md)) as the just finished one. Otherwise, no new transaction is started.

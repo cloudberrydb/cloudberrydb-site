@@ -41,26 +41,33 @@ The `ALTER EXTERNAL TABLE` and `ALTER TABLE` commands cannot modify the type of 
 
 ## Parameters
 
-name
-:   The name (possibly schema-qualified) of an existing external table definition to alter.
+**`name`**
 
-column
-:   Name of an existing column.
+The name (possibly schema-qualified) of an existing external table definition to alter.
 
-new_column
-:   Name of a new column.
+**`column`**
 
-type
-:   Data type of the new column, or new data type for an existing column.
+Name of an existing column.
 
-new_owner
-:   The role name of the new owner of the external table.
+**`new_column`**
 
-CASCADE
-:   Automatically drop objects that depend on the dropped column, such as a view that references the column.
+Name of a new column.
 
-RESTRICT
-:   Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
+**`type`**
+
+Data type of the new column, or new data type for an existing column.
+
+**`new_owner`**
+
+The role name of the new owner of the external table.
+
+**`CASCADE`**
+
+Automatically drop objects that depend on the dropped column, such as a view that references the column.
+
+**`RESTRICT`**
+
+Refuse to drop the column or constraint if there are any dependent objects. This is the default behavior.
 
 ## Examples
 

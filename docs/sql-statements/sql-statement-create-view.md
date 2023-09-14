@@ -21,12 +21,15 @@ If a schema name is given (for example, `CREATE VIEW myschema.myview ...`) then 
 
 ## Parameters
 
-TEMPORARY | TEMP
-:   If specified, the view is created as a temporary view. Temporary views are automatically dropped at the end of the current session. Existing permanent relations with the same name are not visible to the current session while the temporary view exists, unless they are referenced with schema-qualified names. 
-:   If any of the tables referenced by the view are temporary, the view is created as a temporary view (whether `TEMPORARY` is specified or not).
+**`TEMPORARY | TEMP`**
 
-RECURSIVE
-:   Creates a recursive view. The syntax
+If specified, the view is created as a temporary view. Temporary views are automatically dropped at the end of the current session. Existing permanent relations with the same name are not visible to the current session while the temporary view exists, unless they are referenced with schema-qualified names.
+
+If any of the tables referenced by the view are temporary, the view is created as a temporary view (whether `TEMPORARY` is specified or not).
+
+**`RECURSIVE`**
+
+Creates a recursive view. The syntax
 
     ```
     CREATE RECURSIVE VIEW [ <schema> . ] <view_name> (<column_names>) AS SELECT <...>;
@@ -40,34 +43,43 @@ RECURSIVE
 
     A view column name list must be specified for a recursive view.
 
-name
-:   The name (optionally schema-qualified) of a view to be created.
+**`name`**
 
-column_name
-:   An optional list of names to be used for columns of the view. If not given, the column names are deduced from the query.
+The name (optionally schema-qualified) of a view to be created.
 
-WITH ( view_option_name [= view_option_value] [, ... ] )
-:   This clause specifies optional parameters for a view; the following parameters are supported:
+**`column_name`**
 
-    check_option (string)
-    :   This parameter may be either `local` or `cascaded`, and is equivalent to specifying `WITH [ CASCADED | LOCAL ] CHECK OPTION` (see below). This option can be changed on existing views using [ALTER VIEW](/docs/sql-statements/sql-statement-alter-view.md).
+An optional list of names to be used for columns of the view. If not given, the column names are deduced from the query.
 
-    security_barrier (boolean)
-    :   This should be used if the view is intended to provide row-level security. Refer to [Rules and Privileges](https://www.postgresql.org/docs/12/rules-privileges.html) in the PostgreSQL documentation for more information.
+**`WITH ( view_option_name [= view_option_value] [, ... ] )`**
 
-query
-:   A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the columns and rows of the view.
+This clause specifies optional parameters for a view; the following parameters are supported:
 
-WITH [ CASCADED | LOCAL ] CHECK OPTION
-:   This option controls the behavior of automatically updatable views. When this option is specified, `INSERT` and `UPDATE` commands on the view will be checked to ensure that new rows satisfy the view-defining condition (that is, the new rows are checked to ensure that they are visible through the view). If they are not, Greenplum Databvase rejects the update. If the `CHECK OPTION` is not specified, `INSERT` and `UPDATE` commands on the view are allowed to create rows that are not visible through the view. The following check options are supported:
+**`check_option (string)`**
 
-    LOCAL
-    :   New rows are only checked against the conditions defined directly in the view itself. Any conditions defined on underlying base views are not checked (unless they also specify the `CHECK OPTION`).
+This parameter may be either `local` or `cascaded`, and is equivalent to specifying `WITH [ CASCADED | LOCAL ] CHECK OPTION` (see below). This option can be changed on existing views using [ALTER VIEW](/docs/sql-statements/sql-statement-alter-view.md).
 
-    CASCADED
-    :   New rows are checked against the conditions of the view and all underlying base views. If the `CHECK OPTION` is specified, and neither `LOCAL` nor `CASCADED` is specified, then `CASCADED` is assumed.
+**`security_barrier (boolean)`**
 
-:   The `CHECK OPTION` may not be used with `RECURSIVE` views.
+This should be used if the view is intended to provide row-level security. Refer to [Rules and Privileges](https://www.postgresql.org/docs/12/rules-privileges.html) in the PostgreSQL documentation for more information.
+
+**`query`**
+
+A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the columns and rows of the view.
+
+**`WITH [ CASCADED | LOCAL ] CHECK OPTION`**
+
+This option controls the behavior of automatically updatable views. When this option is specified, `INSERT` and `UPDATE` commands on the view will be checked to ensure that new rows satisfy the view-defining condition (that is, the new rows are checked to ensure that they are visible through the view). If they are not, Greenplum Databvase rejects the update. If the `CHECK OPTION` is not specified, `INSERT` and `UPDATE` commands on the view are allowed to create rows that are not visible through the view. The following check options are supported:
+
+**`LOCAL`**
+
+New rows are only checked against the conditions defined directly in the view itself. Any conditions defined on underlying base views are not checked (unless they also specify the `CHECK OPTION`).
+
+**`CASCADED`**
+
+New rows are checked against the conditions of the view and all underlying base views. If the `CHECK OPTION` is specified, and neither `LOCAL` nor `CASCADED` is specified, then `CASCADED` is assumed.
+
+The `CHECK OPTION` may not be used with `RECURSIVE` views.
 
 ## Notes
 

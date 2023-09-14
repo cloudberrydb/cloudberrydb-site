@@ -64,11 +64,13 @@ To be able to create a cast, you must own the source or the target data type and
 
 ## Parameters
 
-sourcetype
-:   The name of the source data type of the cast.
+**`sourcetype`**
 
-targettype
-:   The name of the target data type of the cast.
+The name of the source data type of the cast.
+
+**`targettype`**
+
+The name of the target data type of the cast.
 
 funcname(argtype [, ...])
 :   The function used to perform the cast. The function name may be schema-qualified. If it is not, Cloudberry Database looks for the function in the schema search path. The function's result data type must match the target type of the cast.

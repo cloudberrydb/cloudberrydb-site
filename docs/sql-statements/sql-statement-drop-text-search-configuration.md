@@ -17,14 +17,17 @@ DROP TEXT SEARCH CONFIGURATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 IF EXISTS
 :   Do not throw an error if the text search configuration does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name (optionally schema-qualified) of an existing text search configuration.
+**`name`**
 
-CASCADE
-:   Automatically drop objects that depend on the text search configuration, and in turn all objects that depend on those objects.
+The name (optionally schema-qualified) of an existing text search configuration.
 
-RESTRICT
-:   Refuse to drop the text search configuration if any objects depend on it. This is the default.
+**`CASCADE`**
+
+Automatically drop objects that depend on the text search configuration, and in turn all objects that depend on those objects.
+
+**`RESTRICT`**
+
+Refuse to drop the text search configuration if any objects depend on it. This is the default.
 
 ## Examples
 

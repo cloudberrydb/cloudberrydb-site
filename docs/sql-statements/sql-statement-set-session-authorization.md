@@ -24,18 +24,22 @@ The `DEFAULT` and `RESET` forms reset the session and current user identifiers t
 
 ## Parameters
 
-SESSION
-:   Specifies that the command takes effect for the current session. This is the default.
+**`SESSION`**
 
-LOCAL
-:   Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Note that `SET LOCAL` will appear to have no effect if it is run outside of a transaction.
+Specifies that the command takes effect for the current session. This is the default.
 
-rolename
-:   The name of the role to assume.
+**`LOCAL`**
+
+Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Note that `SET LOCAL` will appear to have no effect if it is run outside of a transaction.
+
+**`rolename`**
+
+The name of the role to assume.
 
 NONE
-RESET
-:   Reset the session and current role identifiers to be that of the role used to log in.
+**`RESET`**
+
+Reset the session and current role identifiers to be that of the role used to log in.
 
 ## Examples
 

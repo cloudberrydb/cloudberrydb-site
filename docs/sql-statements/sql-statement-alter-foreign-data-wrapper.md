@@ -22,8 +22,9 @@ Only superusers can alter foreign-data wrappers. Additionally, only superusers c
 
 ## Parameters
 
-name
-:   The name of an existing foreign-data wrapper.
+**`name`**
+
+The name of an existing foreign-data wrapper.
 
 HANDLER handler_function
 :   Specifies a new handler function for the foreign-data wrapper.

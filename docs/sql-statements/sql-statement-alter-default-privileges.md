@@ -81,14 +81,17 @@ Default privileges that are specified per-schema are added to whatever the globa
 
 ## Parameters
 
-target_role
-:   The name of an existing role of which the current role is a member. If `FOR ROLE` is omitted, the current role is assumed.
+**`target_role`**
 
-schema_name
-:   The name of an existing schema. If specified, the default privileges are altered for objects later created in that schema. If `IN SCHEMA` is omitted, the global default privileges are altered. `IN SCHEMA` is not allowed when setting privileges for schemas, since schemas can't be nested.
+The name of an existing role of which the current role is a member. If `FOR ROLE` is omitted, the current role is assumed.
 
-role_name
-:   The name of an existing role to grant or revoke privileges for. This parameter, and all the other parameters in abbreviated_grant_or_revoke, act as described under [GRANT](/docs/sql-statements/sql-statement-grant.md) or [REVOKE](/docs/sql-statements/sql-statement-revoke.md), except that one is setting permissions for a whole class of objects rather than specific named objects.
+**`schema_name`**
+
+The name of an existing schema. If specified, the default privileges are altered for objects later created in that schema. If `IN SCHEMA` is omitted, the global default privileges are altered. `IN SCHEMA` is not allowed when setting privileges for schemas, since schemas can't be nested.
+
+**`role_name`**
+
+The name of an existing role to grant or revoke privileges for. This parameter, and all the other parameters in abbreviated_grant_or_revoke, act as described under [GRANT](/docs/sql-statements/sql-statement-grant.md) or [REVOKE](/docs/sql-statements/sql-statement-revoke.md), except that one is setting permissions for a whole class of objects rather than specific named objects.
 
 ## Notes
 

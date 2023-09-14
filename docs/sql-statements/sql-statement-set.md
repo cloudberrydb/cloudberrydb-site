@@ -26,48 +26,58 @@ See Server Configuration Parameters for information about server parameters.
 
 ## Parameters
 
-SESSION
-:   Specifies that the command takes effect for the current session. This is the default if neither `SESSION` nor `LOCAL` appears.
+**`SESSION`**
 
-LOCAL
-:   Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Issuing this outside of a transaction block emits a warning and otherwise has no effect.
+Specifies that the command takes effect for the current session. This is the default if neither `SESSION` nor `LOCAL` appears.
 
-configuration_parameter
-:   The name of a settable Cloudberry Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See Server Configuration Parameters for details.
+**`LOCAL`**
 
-value
-:   New value of the parameter. Values can be specified as string constants, identifiers, numbers, or comma-separated lists of these, as appropriate for the particular parameter. `DEFAULT` can be used to specify resetting the parameter to its default value (that is, whatever value it would have had if no `SET` had been issued in the current session). If specifying memory sizing or time units, enclose the value in single quotes.
+Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Issuing this outside of a transaction block emits a warning and otherwise has no effect.
+
+**`configuration_parameter`**
+
+The name of a settable Cloudberry Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See Server Configuration Parameters for details.
+
+**`value`**
+
+New value of the parameter. Values can be specified as string constants, identifiers, numbers, or comma-separated lists of these, as appropriate for the particular parameter. `DEFAULT` can be used to specify resetting the parameter to its default value (that is, whatever value it would have had if no `SET` had been issued in the current session). If specifying memory sizing or time units, enclose the value in single quotes.
 
 There are a few configuration parameters that can only be adjusted using the `SET` command or that have a special syntax:
 
-SCHEMA
-:   `SET SCHEMA '<value>'` is an alias for `SET <search_path> TO <value>`. Only one schema may be specified using this syntax.
+**`SCHEMA`**
 
-NAMES
-:   `SET NAMES <value>` is an alias for `SET client_encoding TO <value>`.
+`SET SCHEMA '<value>'` is an alias for `SET <search_path> TO <value>`. Only one schema may be specified using this syntax.
 
-SEED
-:   Sets the internal seed for the random number generator (the function `random()`). Allowed values are floating-point numbers between -1 and 1 inclusive.
+**`NAMES`**
 
-:   You can also set the seed by invoking the `setseed()` function:
+`SET NAMES <value>` is an alias for `SET client_encoding TO <value>`.
 
-    ```
-    SELECT setseed(value);
-    ```
+**`SEED`**
 
-TIME ZONE
-:   `SET TIME ZONE <value>` is an alias for `SET timezone TO <value>`. The syntax `SET TIME ZONE` allows special syntax for the time zone specification. Examples of valid values follow:
+Sets the internal seed for the random number generator (the function `random()`). Allowed values are floating-point numbers between -1 and 1 inclusive.
 
-    - `'PST8PDT'`
-    - `'Europe/Rome'`
-    - `-7` (time zone 7 hours west from UTC)
-    - `INTERVAL '-08:00' HOUR TO MINUTE` (time zone 8 hours west from UTC).
+You can also set the seed by invoking the `setseed()` function:
 
-    LOCAL
-    DEFAULT
-    :   Set the time zone to your local time zone (that is, server's default value of timezone).
+```sql
+SELECT setseed(value);
+```
 
-    See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#DATATYPE-TIMEZONES) section of the PostgreSQL documentation for more information about time zones in Cloudberry Database.
+**`TIME ZONE`**
+
+`SET TIME ZONE <value>` is an alias for `SET timezone TO <value>`. The syntax `SET TIME ZONE` allows special syntax for the time zone specification. Examples of valid values follow:
+
+- `'PST8PDT'`
+- `'Europe/Rome'`
+- `-7` (time zone 7 hours west from UTC)
+- `INTERVAL '-08:00' HOUR TO MINUTE` (time zone 8 hours west from UTC).
+
+**`LOCAL`**
+
+**`DEFAULT`**
+
+Set the time zone to your local time zone (that is, server's default value of timezone).
+
+See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#DATATYPE-TIMEZONES) section of the PostgreSQL documentation for more information about time zones in Cloudberry Database.
 
 ## Examples
 

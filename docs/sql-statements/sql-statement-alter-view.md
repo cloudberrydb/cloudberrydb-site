@@ -28,33 +28,43 @@ You must own the view to use `ALTER VIEW`. To change a view's schema you must al
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing view.
+**`name`**
 
-IF EXISTS
-:   Do not throw an error if the view does not exist. Cloudberry Database issues a notice in this case.
+The name (optionally schema-qualified) of an existing view.
 
-SET/DROP DEFAULT
-:   These forms set or remove the default value for a column. A view column's default value is substituted into any `INSERT` or `UPDATE` command whose target is the view, before applying any rules or triggers for the view. The view's default will therefore take precedence over any default values from underlying relations.
+**`IF EXISTS`**
 
-new_owner
-:   The user name of the new owner of the view.
+Do not throw an error if the view does not exist. Cloudberry Database issues a notice in this case.
 
-new_name
-:   The new name of the view.
+**`SET/DROP DEFAULT`**
 
-new_schema
-:   The new schema for the view.
+These forms set or remove the default value for a column. A view column's default value is substituted into any `INSERT` or `UPDATE` command whose target is the view, before applying any rules or triggers for the view. The view's default will therefore take precedence over any default values from underlying relations.
 
-SET ( view_option_name [= view_option_value] [, ... ] )
-RESET ( view_option_name [, ... ] )
-:   Sets or resets a view option. Currently supported options are:
+**`new_owner`**
 
-    check_option (string)
-    :   Changes the check option of the view. The value must be `local` or `cascaded`.
+The user name of the new owner of the view.
 
-    security_barrier (boolean)
-    :   Changes the security-barrier property of the view. The value must be a Boolean value, such as `true` or `false`.
+**`new_name`**
+
+The new name of the view.
+
+**`new_schema`**
+
+The new schema for the view.
+
+**`SET ( view_option_name [= view_option_value] [, ... ] )`**
+
+**`RESET ( view_option_name [, ... ] )`**
+
+Sets or resets a view option. Currently supported options are:
+
+**`check_option (string)`**
+
+Changes the check option of the view. The value must be `local` or `cascaded`.
+
+**`security_barrier (boolean)`**
+
+Changes the security-barrier property of the view. The value must be a Boolean value, such as `true` or `false`.
 
 ## Notes
 

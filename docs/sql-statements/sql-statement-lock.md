@@ -27,14 +27,15 @@ If a transaction of this sort is going to change the data in the table, then it 
 
 ## Parameters
 
-name
-:   The name (optionally schema-qualified) of an existing table to lock. If `ONLY` is specified, only that table is locked. If `ONLY` is not specified, the table and all its descendant tables (if any) are locked. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
+**`name`**
+
+The name (optionally schema-qualified) of an existing table to lock. If `ONLY` is specified, only that table is locked. If `ONLY` is not specified, the table and all its descendant tables (if any) are locked. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
 
 :   If multiple tables are given, tables are locked one-by-one in the order specified in the `LOCK TABLE` command.
 
-lockmode
+**`lockmode`**
 
-:   The lock mode specifies which locks this lock conflicts with. If no lock mode is specified, then `ACCESS EXCLUSIVE`, the most restrictive mode, is used. Lock modes are as follows:
+The lock mode specifies which locks this lock conflicts with. If no lock mode is specified, then `ACCESS EXCLUSIVE`, the most restrictive mode, is used. Lock modes are as follows:
 
     - ACCESS SHARE — Conflicts with the `ACCESS EXCLUSIVE` lock mode only. The `SELECT` command acquires a lock of this mode on referenced tables. In general, any query that only reads a table and does not modify it will acquire this lock mode.
     - ROW SHARE — Conflicts with the `EXCLUSIVE` and `ACCESS EXCLUSIVE` lock modes. The `SELECT FOR SHARE` command automatically acquires a lock of this mode on the target table(s) (in addition to `ACCESS SHARE` locks on any other tables that are referenced but not selected `FOR SHARE`).
@@ -47,8 +48,9 @@ lockmode
 
     > **Note:** As the default, Cloudberry Database acquires an `EXCLUSIVE` lock on tables for `DELETE`, `UPDATE`, and `SELECT FOR UPDATE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for the operations on heap tables is `ROW EXCLUSIVE`.
 
-NOWAIT
-:   Specifies that `LOCK TABLE` should not wait for any conflicting locks to be released: if the specified lock(s) cannot be acquired immediately without waiting, the transaction is cancelled.
+**`NOWAIT`**
+
+Specifies that `LOCK TABLE` should not wait for any conflicting locks to be released: if the specified lock(s) cannot be acquired immediately without waiting, the transaction is cancelled.
 
 COORDINATOR ONLY
 :   Specifies that when a `LOCK TABLE` command is issued, Cloudberry Database will lock tables on the coordinator only, rather than on the coordinator and all of the segments. This is particularly useful for metadata-only operations. 

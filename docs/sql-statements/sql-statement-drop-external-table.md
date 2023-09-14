@@ -14,20 +14,24 @@ DROP EXTERNAL [WEB] TABLE [IF EXISTS] <name> [CASCADE | RESTRICT]
 
 ## Parameters
 
-WEB
-:   Optional keyword for dropping external web tables.
+**`WEB`**
+
+Optional keyword for dropping external web tables.
 
 IF EXISTS
 :   Do not throw an error if the external table does not exist. Cloudberry Database issues a notice in this case.
 
-name
-:   The name (optionally schema-qualified) of an existing external table.
+**`name`**
 
-CASCADE
-:   Automatically drop objects that depend on the external table (such as views).
+The name (optionally schema-qualified) of an existing external table.
 
-RESTRICT
-:   Refuse to drop the external table if any objects depend on it. This is the default.
+**`CASCADE`**
+
+Automatically drop objects that depend on the external table (such as views).
+
+**`RESTRICT`**
+
+Refuse to drop the external table if any objects depend on it. This is the default.
 
 ## Examples
 

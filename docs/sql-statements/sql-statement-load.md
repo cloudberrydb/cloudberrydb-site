@@ -20,8 +20,9 @@ Non-superusers can only apply `LOAD` to library files located in `$libdir/plugin
 
 ## Parameters
 
-filename
-:   The path and file name of a shared library file. This file must exist in the same location on all hosts in your Cloudberry Database array.
+**`filename`**
+
+The path and file name of a shared library file. This file must exist in the same location on all hosts in your Cloudberry Database array.
 
 ## Examples
 

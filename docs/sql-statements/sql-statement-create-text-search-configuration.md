@@ -23,14 +23,17 @@ The user who defines a text search configuration becomes its owner.
 
 ## Parameters
 
-name
-:   The name of the text search configuration to be created. The name can be schema-qualified.
+**`name`**
 
-parser_name
-:   The name of the text search parser to use for this configuration.
+The name of the text search configuration to be created. The name can be schema-qualified.
 
-source_config
-:   The name of an existing text search configuration to copy.
+**`parser_name`**
+
+The name of the text search parser to use for this configuration.
+
+**`source_config`**
+
+The name of an existing text search configuration to copy.
 
 ## Notes
 

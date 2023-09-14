@@ -16,8 +16,9 @@ A savepoint is a special mark inside a transaction that allows all commands that
 
 ## Parameters
 
-savepoint_name
-:   The name of the new savepoint. If savepoints with the same name already exist, they are inaccessible until newer identically-named savepoints are released.
+**`savepoint_name`**
+
+The name of the new savepoint. If savepoints with the same name already exist, they are inaccessible until newer identically-named savepoints are released.
 
 ## Notes
 

@@ -138,8 +138,9 @@ See Working with External Data for detailed information about working with exter
 READABLE | WRITABLE
 :   Specifies the type of external table, readable being the default. Readable external tables are used for loading data into Cloudberry Database. Writable external tables are used for unloading data.
 
-WEB
-:   Creates a readable or writable external web table definition in Cloudberry Database. There are two forms of readable external web tables – those that access files via the `http://` protocol or those that access data by running OS commands. Writable external web tables output data to an executable program that can accept an input stream of data. External web tables are not rescannable during query execution.
+**`WEB`**
+
+Creates a readable or writable external web table definition in Cloudberry Database. There are two forms of readable external web tables – those that access files via the `http://` protocol or those that access data by running OS commands. Writable external web tables output data to an executable program that can accept an input stream of data. External web tables are not rescannable during query execution.
 
 :   The `s3` protocol does not support external web tables. You can, however, create an external web table that runs a third-party tool to read data from or write data to S3 directly.
 
@@ -148,17 +149,20 @@ TEMPORARY | TEMP
 
 :   An existing permanent table with the same name is not visible to the current session while the temporary table exists, unless you reference the permanent table with its schema-qualified name.
 
-table_name
-:   The name of the new external table.
+**`table_name`**
 
-column_name
-:   The name of a column to create in the external table definition. Unlike regular tables, external tables do not have column constraints or default values, so do not specify those.
+The name of the new external table.
+
+**`column_name`**
+
+The name of a column to create in the external table definition. Unlike regular tables, external tables do not have column constraints or default values, so do not specify those.
 
 LIKE other_table
 :   The `LIKE` clause specifies a table from which the new external table automatically copies all column names, data types and Greenplum distribution policy. If the original table specifies any column constraints or default column values, those will not be copied over to the new external table definition.
 
-data_type
-:   The data type of the column.
+**`data_type`**
+
+The data type of the column.
 
 `LOCATION ('protocol://[host[:port]]/path/file' [, ...])`
 :   If you use the `pxf` protocol to access an external data source, refer to pxf:// Protocol for information about the `pxf` protocol.
@@ -214,13 +218,15 @@ ON COORDINATOR
 
 :   For general information about using a custom format, see "Loading and Unloading Data" in the *Cloudberry Database Administrator Guide*.
 
-DELIMITER
-:   Specifies a single ASCII character that separates columns within each row (line) of data. The default is a tab character in `TEXT` mode, a comma in `CSV` mode. In `TEXT` mode for readable external tables, the delimiter can be set to `OFF` for special use cases in which unstructured data is loaded into a single-column table.
+**`DELIMITER`**
+
+Specifies a single ASCII character that separates columns within each row (line) of data. The default is a tab character in `TEXT` mode, a comma in `CSV` mode. In `TEXT` mode for readable external tables, the delimiter can be set to `OFF` for special use cases in which unstructured data is loaded into a single-column table.
 
 :   For the `s3` protocol, the delimiter cannot be a newline character (`\n`) or a carriage return character (`\r`).
 
-NULL
-:   Specifies the string that represents a `NULL` value. The default is `\N` (backslash-N) in `TEXT` mode, and an empty value with no quotations in `CSV` mode. You might prefer an empty string even in `TEXT` mode for cases where you do not want to distinguish `NULL` values from empty strings. When using external and web tables, any data item that matches this string will be considered a `NULL` value.
+**`NULL`**
+
+Specifies the string that represents a `NULL` value. The default is `\N` (backslash-N) in `TEXT` mode, and an empty value with no quotations in `CSV` mode. You might prefer an empty string even in `TEXT` mode for cases where you do not want to distinguish `NULL` values from empty strings. When using external and web tables, any data item that matches this string will be considered a `NULL` value.
 
 :   As an example for the `text` format, this `FORMAT` clause can be used to specify that the string of two single quotes (`''`) is a `NULL` value.
 
@@ -228,21 +234,25 @@ NULL
 FORMAT 'text' (delimiter ',' null '\'\'\'\'' )
 ```
 
-ESCAPE
-:   Specifies the single character that is used for C escape sequences (such as `\n`,`\t`,`\100`, and so on) and for escaping data characters that might otherwise be taken as row or column delimiters. Make sure to choose an escape character that is not used anywhere in your actual column data. The default escape character is a `\` (backslash) for text-formatted files and a `"` (double quote) for csv-formatted files, however it is possible to specify another character to represent an escape. It is also possible to deactivate escaping in text-formatted files by specifying the value `'OFF'` as the escape value. This is very useful for data such as text-formatted web log data that has many embedded backslashes that are not intended to be escapes.
+**`ESCAPE`**
 
-NEWLINE
-:   Specifies the newline used in your data files – `LF` (Line feed, 0x0A), `CR` (Carriage return, 0x0D), or `CRLF` (Carriage return plus line feed, 0x0D 0x0A). If not specified, a Cloudberry Database segment will detect the newline type by looking at the first row of data it receives and using the first newline type encountered.
+Specifies the single character that is used for C escape sequences (such as `\n`,`\t`,`\100`, and so on) and for escaping data characters that might otherwise be taken as row or column delimiters. Make sure to choose an escape character that is not used anywhere in your actual column data. The default escape character is a `\` (backslash) for text-formatted files and a `"` (double quote) for csv-formatted files, however it is possible to specify another character to represent an escape. It is also possible to deactivate escaping in text-formatted files by specifying the value `'OFF'` as the escape value. This is very useful for data such as text-formatted web log data that has many embedded backslashes that are not intended to be escapes.
 
-HEADER
-:   For readable external tables, specifies that the first line in the data file(s) is a header row (contains the names of the table columns) and should not be included as data for the table. If using multiple data source files, all files must have a header row.
+**`NEWLINE`**
+
+Specifies the newline used in your data files – `LF` (Line feed, 0x0A), `CR` (Carriage return, 0x0D), or `CRLF` (Carriage return plus line feed, 0x0D 0x0A). If not specified, a Cloudberry Database segment will detect the newline type by looking at the first row of data it receives and using the first newline type encountered.
+
+**`HEADER`**
+
+For readable external tables, specifies that the first line in the data file(s) is a header row (contains the names of the table columns) and should not be included as data for the table. If using multiple data source files, all files must have a header row.
 
 :   For the `s3` protocol, the column names in the header row cannot contain a newline character (`\n`) or a carriage return (`\r`).
 
 :   The `pxf` protocol does not support the `HEADER` formatting option.
 
-QUOTE
-:   Specifies the quotation character for `CSV` mode. The default is double-quote (`"`).
+**`QUOTE`**
+
+Specifies the quotation character for `CSV` mode. The default is double-quote (`"`).
 
 FORCE NOT NULL
 :   In `CSV` mode, processes each specified column as though it were quoted and hence not a `NULL` value. For the default null string in `CSV` mode (nothing between two delimiters), this causes missing values to be evaluated as zero-length strings.
