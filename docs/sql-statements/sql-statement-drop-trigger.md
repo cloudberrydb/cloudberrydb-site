@@ -4,7 +4,7 @@ Removes a trigger.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP TRIGGER [IF EXISTS] <name> ON <table> [CASCADE | RESTRICT]
 ```
 
@@ -39,7 +39,7 @@ DROP TRIGGER sendmail ON expenses;
 
 ## Compatibility
 
-The `DROP TRIGGER` statement in Greenplum Database is not compatible with the SQL standard. In the SQL standard, trigger names are not local to tables, so the command is simply `DROP TRIGGER name`.
+The `DROP TRIGGER` statement in Cloudberry Database is not compatible with the SQL standard. In the SQL standard, trigger names are not local to tables, so the command is simply `DROP TRIGGER name`.
 
 ## See Also
 

@@ -2,11 +2,11 @@
 
 Empties a table or set of tables of all rows.
 
-> **Note** Greenplum Database does not enforce referential integrity syntax (foreign key constraints). `TRUNCATE` truncates a table that is referenced in a foreign key constraint even if the `CASCADE` option is omitted.
+> **Note** Cloudberry Database does not enforce referential integrity syntax (foreign key constraints). `TRUNCATE` truncates a table that is referenced in a foreign key constraint even if the `CASCADE` option is omitted.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 TRUNCATE [TABLE] [ONLY] <name> [ * ] [, ...] 
     [ RESTART IDENTITY | CONTINUE IDENTITY ] [CASCADE | RESTRICT]
 ```
@@ -29,10 +29,10 @@ CONTINUE IDENTITY
 :   Do not change the values of sequences. This is the default.
 
 CASCADE
-:   Because this key word applies to foreign key references (which are not supported in Greenplum Database) it has no effect.
+:   Because this key word applies to foreign key references (which are not supported in Cloudberry Database) it has no effect.
 
 RESTRICT
-:   Because this key word applies to foreign key references (which are not supported in Greenplum Database) it has no effect.
+:   Because this key word applies to foreign key references (which are not supported in Cloudberry Database) it has no effect.
 
 ## Notes
 

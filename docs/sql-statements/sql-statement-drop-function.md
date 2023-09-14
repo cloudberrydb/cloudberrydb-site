@@ -4,7 +4,7 @@ Removes a function.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP FUNCTION [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
     [CASCADE | RESTRICT]
 ```

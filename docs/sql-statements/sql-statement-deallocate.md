@@ -4,7 +4,7 @@ Deallocates a prepared statement.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DEALLOCATE [PREPARE] { <name> | ALL }
 ```
 

@@ -4,7 +4,7 @@ Defines a new collation.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE COLLATION [ IF NOT EXISTS ] <name> (
     [ LOCALE = <locale>, ]    
     [ LC_COLLATE = <lc_collate>, ]    
@@ -43,7 +43,7 @@ provider
 :   Specifies the provider to use for locale services associated with this collation. Possible values are: `icu`, `libc`. `libc` is the default. The available choices depend on the operating system and build options.
 
 DETERMINISTIC
-:   Specifies whether the collation should use deterministic comparisons. The default is `true`. A deterministic comparison considers strings that are not byte-wise equal to be unequal even if they are considered logically equal by the comparison. Greenplum Database breaks ties using a byte-wise comparison. Comparison that is not deterministic can make the collation be, say, case- or accent-insensitive. For that, you need to choose an appropriate `LC_COLLATE` setting and set the collation to not deterministic here.
+:   Specifies whether the collation should use deterministic comparisons. The default is `true`. A deterministic comparison considers strings that are not byte-wise equal to be unequal even if they are considered logically equal by the comparison. Cloudberry Database breaks ties using a byte-wise comparison. Comparison that is not deterministic can make the collation be, say, case- or accent-insensitive. For that, you need to choose an appropriate `LC_COLLATE` setting and set the collation to not deterministic here.
 :   Nondeterministic collations are only supported with the `icu` provider.
 
 version
@@ -59,7 +59,7 @@ existing_collation
 
 Use [DROP COLLATION](/docs/sql-statements/sql-statement-drop-collation.md) to remove user-defined collations.
 
-See [Collation Support](https://www.postgresql.org/docs/12/collation.html) in the PostgreSQL documentation for more information about collation support in Greenplum Database.
+See [Collation Support](https://www.postgresql.org/docs/12/collation.html) in the PostgreSQL documentation for more information about collation support in Cloudberry Database.
 
 When using the `libc` collation provider, the, locale must be applicable to the current database encoding. See [CREATE DATABASE](/docs/sql-statements/sql-statement-create-database.md) for the precise rules.
 
@@ -87,7 +87,7 @@ This can be convenient to be able to use operating-system-independent collation 
 
 ## Compatibility
 
-There is a `CREATE COLLATION` statement in the SQL standard, but it is limited to copying an existing collation. The syntax to create a new collation is a Greenplum Database extension.
+There is a `CREATE COLLATION` statement in the SQL standard, but it is limited to copying an existing collation. The syntax to create a new collation is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Copies data between a file and a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 COPY <table_name> [(<column_name> [, ...])] 
      FROM {'<filename>' | PROGRAM '<command>' | STDIN}
      [ [ WITH ] ( <option> [, ...] ) ]
@@ -19,7 +19,6 @@ COPY { <table_name> [(<column_name> [, ...])] | (<query>)}
 where option can be one of:
 
 ```
-
 FORMAT <format_name>
 OIDS [ <boolean> ]
 FREEZE [ <boolean> ]
@@ -39,11 +38,11 @@ IGNORE EXTERNAL PARTITIONS
 
 ## Description
 
-`COPY` moves data between Greenplum Database tables and standard file-system files. `COPY TO` copies the contents of a table to a file (or multiple files based on the segment ID if copying `ON SEGMENT`), while `COPY FROM` copies data from a file to a table (appending the data to whatever is in the table already). `COPY TO` can also copy the results of a `SELECT` query.
+`COPY` moves data between Cloudberry Database tables and standard file-system files. `COPY TO` copies the contents of a table to a file (or multiple files based on the segment ID if copying `ON SEGMENT`), while `COPY FROM` copies data from a file to a table (appending the data to whatever is in the table already). `COPY TO` can also copy the results of a `SELECT` query.
 
 If a list of columns is specified, `COPY` will only copy the data in the specified columns to or from the file. If there are any columns in the table that are not in the column list, `COPY FROM` will insert the default values for those columns.
 
-`COPY` with a file name instructs the Greenplum Database coordinator host to directly read from or write to a file. The file must be accessible to the coordinator host and the name must be specified from the viewpoint of the coordinator host.
+`COPY` with a file name instructs the Cloudberry Database coordinator host to directly read from or write to a file. The file must be accessible to the coordinator host and the name must be specified from the viewpoint of the coordinator host.
 
 When `COPY` is used with the `ON SEGMENT` clause, the `COPY TO` causes segments to create individual segment-oriented files, which remain on the segment hosts. The filename argument for `ON SEGMENT` takes the string literal `<SEGID>` (required) and uses either the absolute path or the `<SEG_DATA_DIR>` string literal. When the `COPY` operation is run, the segment IDs and the paths of the segment data directories are substituted for the string literal values.
 
@@ -57,7 +56,7 @@ When `PROGRAM` is specified, the server runs the given command and reads from th
 
 When `STDIN` or `STDOUT` is specified, data is transmitted via the connection between the client and the coordinator. `STDIN` and `STDOUT` cannot be used with the `ON SEGMENT` clause.
 
-If `SEGMENT REJECT LIMIT` is used, then a `COPY FROM` operation will operate in single row error isolation mode. In this release, single row error isolation mode only applies to rows in the input file with format errors — for example, extra or missing attributes, attributes of a wrong data type, or invalid client encoding sequences. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in 'all-or-nothing' input mode. The user can specify the number of error rows acceptable (on a per-segment basis), after which the entire `COPY FROM` operation will be cancelled and no rows will be loaded. The count of error rows is per-segment, not per entire load operation. If the per-segment reject limit is not reached, then all rows not containing an error will be loaded and any error rows discarded. To keep error rows for further examination, specify the `LOG ERRORS` clause to capture error log information. The error information and the row is stored internally in Greenplum Database.
+If `SEGMENT REJECT LIMIT` is used, then a `COPY FROM` operation will operate in single row error isolation mode. In this release, single row error isolation mode only applies to rows in the input file with format errors — for example, extra or missing attributes, attributes of a wrong data type, or invalid client encoding sequences. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in 'all-or-nothing' input mode. The user can specify the number of error rows acceptable (on a per-segment basis), after which the entire `COPY FROM` operation will be cancelled and no rows will be loaded. The count of error rows is per-segment, not per entire load operation. If the per-segment reject limit is not reached, then all rows not containing an error will be loaded and any error rows discarded. To keep error rows for further examination, specify the `LOG ERRORS` clause to capture error log information. The error information and the row is stored internally in Cloudberry Database.
 
 **Outputs**
 
@@ -90,11 +89,11 @@ filename
 :   The path name of the input or output file. An input file name can be an absolute or relative path, but an output file name must be an absolute path. Windows users might need to use an `E''` string and double any backslashes used in the path name.
 
 PROGRAM 'command'
-:   Specify a command to run. In `COPY FROM`, the input is read from standard output of the command, and in `COPY TO`, the output is written to the standard input of the command. The command must be specified from the viewpoint of the Greenplum Database coordinator host system, and must be executable by the Greenplum Database administrator user (`gpadmin`).
+:   Specify a command to run. In `COPY FROM`, the input is read from standard output of the command, and in `COPY TO`, the output is written to the standard input of the command. The command must be specified from the viewpoint of the Cloudberry Database coordinator host system, and must be executable by the Cloudberry Database administrator user (`gpadmin`).
 
 :   The command is invoked by a shell. When passing arguments to the shell, strip or escape any special characters that have a special meaning for the shell. For security reasons, it is best to use a fixed command string, or at least avoid passing any user input in the string.
 
-:   When `ON SEGMENT` is specified, the command must be executable on all Greenplum Database primary segment hosts by the Greenplum Database administrator user (`gpadmin`). The command is run by each Greenplum segment instance. The `<SEGID>` is required in the command.
+:   When `ON SEGMENT` is specified, the command must be executable on all Cloudberry Database primary segment hosts by the Cloudberry Database administrator user (`gpadmin`). The command is run by each Greenplum segment instance. The `<SEGID>` is required in the command.
 
 :   See the `ON SEGMENT` clause for information about command syntax requirements and the data that is copied when the clause is specified.
 
@@ -173,7 +172,7 @@ ON SEGMENT
 :   For a `COPY FROM...ON SEGMENT` command, the table distribution policy is checked when data is copied into the table. By default, an error is returned if a data row violates the table distribution policy. You can deactivate the distribution policy check with the server configuration parameter `gp_enable_segment_copy_checking`. See [Notes](#section6).
 
 NEWLINE
-:   Specifies the newline used in your data files — `LF` (Line feed, 0x0A), `CR` (Carriage return, 0x0D), or `CRLF` (Carriage return plus line feed, 0x0D 0x0A). If not specified, a Greenplum Database segment will detect the newline type by looking at the first row of data it receives and using the first newline type encountered.
+:   Specifies the newline used in your data files — `LF` (Line feed, 0x0A), `CR` (Carriage return, 0x0D), or `CRLF` (Carriage return plus line feed, 0x0D 0x0A). If not specified, a Cloudberry Database segment will detect the newline type by looking at the first row of data it receives and using the first newline type encountered.
 
 CSV
 :   Selects Comma Separated Value (CSV) mode. See [CSV Format](#section9).
@@ -184,21 +183,21 @@ FILL MISSING FIELDS
 LOG ERRORS
 :   This is an optional clause that can precede a `SEGMENT REJECT LIMIT` clause to capture error log information about rows with formatting errors.
 
-:   Error log information is stored internally and is accessed with the Greenplum Database built-in SQL function `gp_read_error_log()`.
+:   Error log information is stored internally and is accessed with the Cloudberry Database built-in SQL function `gp_read_error_log()`.
 
 :   See [Notes](#section6) for information about the error log information and built-in functions for viewing and managing error log information.
 
 SEGMENT REJECT LIMIT count [ROWS | PERCENT]
-:   Runs a `COPY FROM` operation in single row error isolation mode. If the input rows have format errors they will be discarded provided that the reject limit count is not reached on any Greenplum Database segment instance during the load operation. The reject limit count can be specified as number of rows (the default) or percentage of total rows (1-100). If `PERCENT` is used, each segment starts calculating the bad row percentage only after the number of rows specified by the parameter `gp_reject_percent_threshold` has been processed. The default for `gp_reject_percent_threshold` is 300 rows. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in 'all-or-nothing' input mode. If the limit is not reached, all good rows will be loaded and any error rows discarded.
+:   Runs a `COPY FROM` operation in single row error isolation mode. If the input rows have format errors they will be discarded provided that the reject limit count is not reached on any Cloudberry Database segment instance during the load operation. The reject limit count can be specified as number of rows (the default) or percentage of total rows (1-100). If `PERCENT` is used, each segment starts calculating the bad row percentage only after the number of rows specified by the parameter `gp_reject_percent_threshold` has been processed. The default for `gp_reject_percent_threshold` is 300 rows. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in 'all-or-nothing' input mode. If the limit is not reached, all good rows will be loaded and any error rows discarded.
 
-:   > **Note** Greenplum Database limits the initial number of rows that can contain formatting errors if the `SEGMENT REJECT LIMIT` is not triggered first or is not specified. If the first 1000 rows are rejected, the `COPY` operation is stopped and rolled back.
+:   > **Note** Cloudberry Database limits the initial number of rows that can contain formatting errors if the `SEGMENT REJECT LIMIT` is not triggered first or is not specified. If the first 1000 rows are rejected, the `COPY` operation is stopped and rolled back.
 
-The limit for the number of initial rejected rows can be changed with the Greenplum Database server configuration parameter `gp_initial_bad_row_limit`. See Server Configuration Parameters for information about the parameter.
+The limit for the number of initial rejected rows can be changed with the Cloudberry Database server configuration parameter `gp_initial_bad_row_limit`. See Server Configuration Parameters for information about the parameter.
 
 IGNORE EXTERNAL PARTITIONS
 :   When copying data from partitioned tables, data are not copied from leaf partitions that are external tables. A message is added to the log file when data are not copied.
 
-:   If this clause is not specified and Greenplum Database attempts to copy data from a leaf partition that is an external table, an error is returned.
+:   If this clause is not specified and Cloudberry Database attempts to copy data from a leaf partition that is an external table, an error is returned.
 
 :   See the next section "Notes" for information about specifying an SQL query to copy data from leaf partitions that are external tables.
 
@@ -214,15 +213,15 @@ Similarly, to copy data from a partitioned table with a leaf partition that is a
 COPY (SELECT * from my_sales ) TO stdout
 ```
 
-The `BINARY` keyword causes all data to be stored/read as binary format rather than as text. It is somewhat faster than the normal text mode, but a binary-format file is less portable across machine architectures and Greenplum Database versions. Also, you cannot run `COPY FROM` in single row error isolation mode if the data is in binary format.
+The `BINARY` keyword causes all data to be stored/read as binary format rather than as text. It is somewhat faster than the normal text mode, but a binary-format file is less portable across machine architectures and Cloudberry Database versions. Also, you cannot run `COPY FROM` in single row error isolation mode if the data is in binary format.
 
 You must have `SELECT` privilege on the table whose values are read by `COPY TO`, and `INSERT` privilege on the table into which values are inserted by `COPY FROM`. It is sufficient to have column privileges on the columns listed in the command.
 
-Files named in a `COPY` command are read or written directly by the database server, not by the client application. Therefore, they must reside on or be accessible to the Greenplum Database coordinator host machine, not the client. They must be accessible to and readable or writable by the Greenplum Database system user (the user ID the server runs as), not the client. Only database superusers are permitted to name files with `COPY`, because this allows reading or writing any file that the server has privileges to access.
+Files named in a `COPY` command are read or written directly by the database server, not by the client application. Therefore, they must reside on or be accessible to the Cloudberry Database coordinator host machine, not the client. They must be accessible to and readable or writable by the Cloudberry Database system user (the user ID the server runs as), not the client. Only database superusers are permitted to name files with `COPY`, because this allows reading or writing any file that the server has privileges to access.
 
 `COPY FROM` will invoke any triggers and check constraints on the destination table. However, it will not invoke rewrite rules. Note that in this release, violations of constraints are not evaluated for single row error isolation mode.
 
-`COPY` input and output is affected by `DateStyle`. To ensure portability to other Greenplum Database installations that might use non-default `DateStyle` settings, `DateStyle` should be set to ISO before using `COPY TO`. It is also a good idea to avoid dumping data with IntervalStyle set to `sql_standard`, because negative interval values might be misinterpreted by a server that has a different setting for IntervalStyle.
+`COPY` input and output is affected by `DateStyle`. To ensure portability to other Cloudberry Database installations that might use non-default `DateStyle` settings, `DateStyle` should be set to ISO before using `COPY TO`. It is also a good idea to avoid dumping data with IntervalStyle set to `sql_standard`, because negative interval values might be misinterpreted by a server that has a different setting for IntervalStyle.
 
 Input data is interpreted according to `ENCODING` option or the current client encoding, and output data is encoded in `ENCODING` or the current client encoding, even if the data does not pass through the client but is read from or written to a file directly by the server.
 
@@ -238,7 +237,7 @@ Data from a table that is generated by a `COPY TO...ON SEGMENT` command can be u
 
 > **Note** If you run `COPY FROM...ON SEGMENT` and the server configuration parameter `gp_enable_segment_copy_checking` is `false`, manual redistribution of table data might be required. See the `ALTER TABLE` clause `WITH REORGANIZE`.
 
-When you specify the `LOG ERRORS` clause, Greenplum Database captures errors that occur while reading the external table data. You can view and manage the captured error log data.
+When you specify the `LOG ERRORS` clause, Cloudberry Database captures errors that occur while reading the external table data. You can view and manage the captured error log data.
 
 -   Use the built-in SQL function `gp_read_error_log('table_name')`. It requires `SELECT` privilege on table_name. This example displays the error log information for data loaded into table `ext_expenses` with a `COPY` command:
 
@@ -246,7 +245,7 @@ When you specify the `LOG ERRORS` clause, Greenplum Database captures errors tha
     SELECT * from gp_read_error_log('ext_expenses');
     ```
 
-    For information about the error log format, see [Viewing Bad Rows in the Error Log](../../admin_guide/load/topics/g-viewing-bad-rows-in-the-error-table-or-error-log.html#topic58) in the *Greenplum Database Administrator Guide*.
+    For information about the error log format, see [Viewing Bad Rows in the Error Log](../../admin_guide/load/topics/g-viewing-bad-rows-in-the-error-table-or-error-log.html#topic58) in the *Cloudberry Database Administrator Guide*.
 
     The function returns `FALSE` if table_name does not exist.
 
@@ -262,14 +261,14 @@ When you specify the `LOG ERRORS` clause, Greenplum Database captures errors tha
     Specify the `*` wildcard character to delete error log information for existing tables in the current database. Specify the string `*.*` to delete all database error log information, including error log information that was not deleted due to previous database issues. If \* is specified, database owner privilege is required. If `*.*` is specified, operating system super-user privilege is required.
 
 
-When a Greenplum Database user who is not a superuser runs a `COPY` command, the command can be controlled by a resource queue. The resource queue must be configured with the `ACTIVE_STATEMENTS` parameter that specifies a maximum limit on the number of queries that can be run by roles assigned to that queue. Greenplum Database does not apply a cost value or memory value to a `COPY` command, resource queues with only cost or memory limits do not affect the running of `COPY` commands.
+When a Cloudberry Database user who is not a superuser runs a `COPY` command, the command can be controlled by a resource queue. The resource queue must be configured with the `ACTIVE_STATEMENTS` parameter that specifies a maximum limit on the number of queries that can be run by roles assigned to that queue. Cloudberry Database does not apply a cost value or memory value to a `COPY` command, resource queues with only cost or memory limits do not affect the running of `COPY` commands.
 
 A non-superuser can run only these types of `COPY` commands:
 
 -   `COPY FROM` command where the source is `stdin`
 -   `COPY TO` command where the destination is `stdout`
 
-For information about resource queues, see "Resource Management with Resource Queues" in the *Greenplum Database Administrator Guide*.
+For information about resource queues, see "Resource Management with Resource Queues" in the *Cloudberry Database Administrator Guide*.
 
 ## File Formats
 
@@ -306,15 +305,15 @@ The following characters must be preceded by the escape character if they appear
 
 **CSV Format**
 
-This format option is used for importing and exporting the Comma Separated Value (CSV) file format used by many other programs, such as spreadsheets. Instead of the escaping rules used by Greenplum Database standard text format, it produces and recognizes the common CSV escaping mechanism.
+This format option is used for importing and exporting the Comma Separated Value (CSV) file format used by many other programs, such as spreadsheets. Instead of the escaping rules used by Cloudberry Database standard text format, it produces and recognizes the common CSV escaping mechanism.
 
 The values in each record are separated by the `DELIMITER` character. If the value contains the delimiter character, the `QUOTE` character, the `ESCAPE` character (which is double quote by default), the `NULL` string, a carriage return, or line feed character, then the whole value is prefixed and suffixed by the `QUOTE` character. You can also use `FORCE_QUOTE` to force quotes when outputting non-`NULL` values in specific columns.
 
-The CSV format has no standard way to distinguish a `NULL` value from an empty string. Greenplum Database `COPY` handles this by quoting. A `NULL` is output as the `NULL` parameter string and is not quoted, while a non-`NULL` value matching the `NULL` string is quoted. For example, with the default settings, a `NULL` is written as an unquoted empty string, while an empty string data value is written with double quotes (`""`). Reading values follows similar rules. You can use `FORCE_NOT_NULL` to prevent `NULL` input comparisons for specific columns. You can also use `FORCE_NULL` to convert quoted null string data values to `NULL`.
+The CSV format has no standard way to distinguish a `NULL` value from an empty string. Cloudberry Database `COPY` handles this by quoting. A `NULL` is output as the `NULL` parameter string and is not quoted, while a non-`NULL` value matching the `NULL` string is quoted. For example, with the default settings, a `NULL` is written as an unquoted empty string, while an empty string data value is written with double quotes (`""`). Reading values follows similar rules. You can use `FORCE_NOT_NULL` to prevent `NULL` input comparisons for specific columns. You can also use `FORCE_NULL` to convert quoted null string data values to `NULL`.
 
 Because backslash is not a special character in the `CSV` format, `\.`, the end-of-data marker, could also appear as a data value. To avoid any misinterpretation, a `\.` data value appearing as a lone entry on a line is automatically quoted on output, and on input, if quoted, is not interpreted as the end-of-data marker. If you are loading a file created by another application that has a single unquoted column and might have a value of `\.`, you might need to quote that value in the input file.
 
-> **Note** In `CSV` format, all characters are significant. A quoted value surrounded by white space, or any characters other than `DELIMITER`, will include those characters. This can cause errors if you import data from a system that pads CSV lines with white space out to some fixed width. If such a situation arises you might need to preprocess the CSV file to remove the trailing white space, before importing the data into Greenplum Database.
+> **Note** In `CSV` format, all characters are significant. A quoted value surrounded by white space, or any characters other than `DELIMITER`, will include those characters. This can cause errors if you import data from a system that pads CSV lines with white space out to some fixed width. If such a situation arises you might need to preprocess the CSV file to remove the trailing white space, before importing the data into Cloudberry Database.
 
 `CSV` format will both recognize and produce CSV files with quoted values containing embedded carriage returns and line feeds. Thus the files are not strictly one line per table row like text-format files
 
@@ -322,7 +321,7 @@ Because backslash is not a special character in the `CSV` format, `\.`, the end-
 
 **Binary Format**
 
-The `binary` format option causes all data to be stored/read as binary format rather than as text. It is somewhat faster than the text and `CSV` formats, but a binary-format file is less portable across machine architectures and Greenplum Database versions. Also, the binary format is very data type specific; for example it will not work to output binary data from a `smallint` column and read it into an `integer` column, even though that would work fine in text format.
+The `binary` format option causes all data to be stored/read as binary format rather than as text. It is somewhat faster than the text and `CSV` formats, but a binary-format file is less portable across machine architectures and Cloudberry Database versions. Also, the binary format is very data type specific; for example it will not work to output binary data from a `smallint` column and read it into an `integer` column, even though that would work fine in text format.
 
 The binary file format consists of a file header, zero or more tuples containing the row data, and a file trailer. Headers and data are in network byte order.
 
@@ -419,7 +418,7 @@ This example uses a `SELECT` statement to copy data to files on each segment:
 COPY (SELECT * FROM testtbl) TO '/tmp/mytst<SEGID>' ON SEGMENT;
 ```
 
-This example copies the data from the `lineitem` table and uses the `PROGRAM` clause to add the data to the `/tmp/lineitem_program.csv` file with `cat` utility. The file is placed on the Greenplum Database coordinator.
+This example copies the data from the `lineitem` table and uses the `PROGRAM` clause to add the data to the `/tmp/lineitem_program.csv` file with `cat` utility. The file is placed on the Cloudberry Database coordinator.
 
 ```
 COPY LINEITEM TO PROGRAM 'cat > /tmp/lineitem.csv' CSV; 
@@ -441,7 +440,7 @@ COPY LINEITEM_4 FROM PROGRAM 'cat /tmp/lineitem_program<SEGID>.csv' ON SEGMENT C
 
 There is no `COPY` statement in the SQL standard.
 
-The following syntax was used in earlier versions of Greenplum Database and is still supported:
+The following syntax was used in earlier versions of Cloudberry Database and is still supported:
 
 ```
 COPY <table_name> [(<column_name> [, ...])] FROM {'<filename>' | PROGRAM '<command>' | STDIN}

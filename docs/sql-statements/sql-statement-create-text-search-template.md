@@ -6,7 +6,7 @@ Defines a new text search template.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE TEXT SEARCH TEMPLATE <name> (
     [ INIT = <init_function> , ]
     LEXIZE = <lexize_function>

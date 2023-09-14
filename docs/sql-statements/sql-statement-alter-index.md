@@ -4,7 +4,7 @@ Changes the definition of an index.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER INDEX [ IF EXISTS ] <name> RENAME TO <new_name>
 ALTER INDEX [ IF EXISTS ] <name> SET TABLESPACE <tablespace_name>
 ALTER INDEX <name> ATTACH PARTITION <index_name>
@@ -15,7 +15,6 @@ ALTER INDEX [ IF EXISTS ] <name> ALTER [ COLUMN ] <column_number>
     SET STATISTICS <integer>
 ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
     SET TABLESPACE <new_tablespace> [ NOWAIT ]
-
 ```
 
 ## Description
@@ -47,7 +46,7 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the index does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the index does not exist. Cloudberry Database issues a notice in this case.
 
 column_number
 :   The ordinal number refers to the ordinal (left-to-right) position of the index column.
@@ -105,7 +104,7 @@ ALTER INDEX coord_idx ALTER COLUMN 3 SET STATISTICS 1000;
 
 ## Compatibility
 
-`ALTER INDEX` is a Greenplum Database extension to the SQL standard.
+`ALTER INDEX` is a Cloudberry Database extension to the SQL standard.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Removes a data access protocol from a database.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP PROTOCOL [IF EXISTS] <name>
 ```
 
@@ -19,7 +19,7 @@ You must be a superuser or the protocol owner to drop a protocol.
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the protocol does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the protocol does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of an existing data access protocol.
@@ -28,11 +28,11 @@ name
 
 Dropping a data access protocol, does not drop the protocol's call handlers. You must drop these functions manually.
 
-Be sure to remove any shared libraries that were used by the protocol from the Greenplum Database hosts.
+Be sure to remove any shared libraries that were used by the protocol from the Cloudberry Database hosts.
 
 ## Compatibility
 
-`DROP PROTOCOL` is a Greenplum Database extension.
+`DROP PROTOCOL` is a Cloudberry Database extension.
 
 ## See Also
 

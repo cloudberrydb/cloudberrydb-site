@@ -4,7 +4,7 @@ Listens for a notification.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 LISTEN <channel>
 ```
 

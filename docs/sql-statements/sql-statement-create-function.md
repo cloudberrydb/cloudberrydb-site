@@ -4,7 +4,7 @@ Defines a new function.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [OR REPLACE] FUNCTION <name>    
     ( [ [<argmode>] [<argname>] <argtype> [ { DEFAULT | = } <default_expr> ] [, ...] ] )
       [ RETURNS <rettype> 
@@ -48,7 +48,7 @@ For more information about creating functions, refer to the [User Defined Functi
 
 **Limited Use of VOLATILE and STABLE Functions**
 
-To prevent data from becoming out-of-sync across the segments in Greenplum Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment level if it contains SQL or modifies the database in any way. For example, functions such as `random()` or `timeofday()` are not allowed to run on distributed data in Greenplum Database because they could potentially cause inconsistent data between the segment instances.
+To prevent data from becoming out-of-sync across the segments in Cloudberry Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment level if it contains SQL or modifies the database in any way. For example, functions such as `random()` or `timeofday()` are not allowed to run on distributed data in Cloudberry Database because they could potentially cause inconsistent data between the segment instances.
 
 To ensure data consistency, `VOLATILE` and `STABLE` functions can safely be used in statements that are evaluated on and run from the coordinator. For example, the following statements are always run on the coordinator (statements without a `FROM` clause):
 
@@ -63,7 +63,7 @@ In cases where a statement has a `FROM` clause containing a distributed table an
 SELECT * FROM foo();
 ```
 
-One exception to this rule are functions that return a table reference (`rangeFuncs`) or functions that use the `refCursor` data type. Note that you cannot return a `refcursor` from any kind of function in Greenplum Database.
+One exception to this rule are functions that return a table reference (`rangeFuncs`) or functions that use the `refCursor` data type. Note that you cannot return a `refcursor` from any kind of function in Cloudberry Database.
 
 **Function Volatility and EXECUTE ON Attributes**
 
@@ -71,7 +71,7 @@ Volatility attributes (`IMMUTABLE`, `STABLE`, `VOLATILE`) and `EXECUTE ON` attri
 
 For example, a function defined with the `IMMUTABLE` attribute can be run at query planning time, while a function with the `VOLATILE` attribute must be run for every row in the query. A function with the `EXECUTE ON COORDINATOR` attribute is run only on the coordinator segment and a function with the `EXECUTE ON ALL SEGMENTS` attribute is run on all primary segment instances (not the coordinator).
 
-See [Using Functions and Operators](../../admin_guide/query/topics/functions-operators.html#topic26/in151167) in the *Greenplum Database Administrator Guide*.
+See [Using Functions and Operators](../../admin_guide/query/topics/functions-operators.html#topic26/in151167) in the *Cloudberry Database Administrator Guide*.
 
 **Functions And Replicated Tables**
 
@@ -126,7 +126,7 @@ WINDOW
 IMMUTABLE
 STABLE
 VOLATILE
-:   These attributes inform the query optimizer about the behavior of the function. At most one choice may be specified. If none of these appear, `VOLATILE` is the default assumption. Since Greenplum Database currently has limited use of `VOLATILE` functions, if a function is truly `IMMUTABLE`, you must declare it as so to be able to use it without restrictions.
+:   These attributes inform the query optimizer about the behavior of the function. At most one choice may be specified. If none of these appear, `VOLATILE` is the default assumption. Since Cloudberry Database currently has limited use of `VOLATILE` functions, if a function is truly `IMMUTABLE`, you must declare it as so to be able to use it without restrictions.
 
 :   `IMMUTABLE` indicates that the function cannot modify the database and always returns the same result when given the same argument values. It does not do database lookups or otherwise use information not directly present in its argument list. If this option is given, any call of the function with all-constant arguments can be immediately replaced with the function value.
 
@@ -155,13 +155,13 @@ EXECUTE ON ALL SEGMENTS
 EXECUTE ON INITPLAN
 :   The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
 
-:   `EXECUTE ON ANY` (the default) indicates that the function can be run on the coordinator, or any segment instance, and it returns the same result regardless of where it is run. Greenplum Database determines where the function runs.
+:   `EXECUTE ON ANY` (the default) indicates that the function can be run on the coordinator, or any segment instance, and it returns the same result regardless of where it is run. Cloudberry Database determines where the function runs.
 
 :   `EXECUTE ON COORDINATOR` indicates that the function must run only on the coordinator instance.
 
 :   `EXECUTE ON ALL SEGMENTS` indicates that the function must run on all primary segment instances, but not the coordinator, for each invocation. The overall result of the function is the `UNION ALL` of the results from all segment instances.
 
-:   `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Greenplum Database when possible.
+:   `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Cloudberry Database when possible.
 
     > **Note** `EXECUTE ON INITPLAN` is only supported in functions that are used in the `FROM` clause of a `CREATE TABLE AS` or `INSERT` command such as the `get_data()` function in these commands.
 
@@ -171,7 +171,7 @@ EXECUTE ON INITPLAN
     INSERT INTO t1 SELECT * FROM get_data();
     ```
 
-    Greenplum Database does not support the `EXECUTE ON INITPLAN` attribute in a function that is used in the `WITH` clause of a query, a CTE (common table expression). For example, specifying `EXECUTE ON INITPLAN` in function `get_data()` in this CTE is not supported.
+    Cloudberry Database does not support the `EXECUTE ON INITPLAN` attribute in a function that is used in the `WITH` clause of a query, a CTE (common table expression). For example, specifying `EXECUTE ON INITPLAN` in function `get_data()` in this CTE is not supported.
 
     ```
     WITH tbl_a AS (SELECT * FROM get_data() )
@@ -217,7 +217,7 @@ describe_function
 
 ## Overloading
 
-Greenplum Database allows function overloading; that is, the same name can be used for several different functions so long as they have distinct input argument types. Whether or not you use it, this capability entails security precautions when calling functions in databases where some users mistrust other users; refer to [Functions](https://www.postgresql.org/docs/12/typeconv-func.html) in the PostgreSQL documentation for more information.
+Cloudberry Database allows function overloading; that is, the same name can be used for several different functions so long as they have distinct input argument types. Whether or not you use it, this capability entails security precautions when calling functions in databases where some users mistrust other users; refer to [Functions](https://www.postgresql.org/docs/12/typeconv-func.html) in the PostgreSQL documentation for more information.
 
 Two functions are considered the same if they have the same names and input argument types, ignoring any `OUT` parameters. Thus for example these declarations conflict:
 
@@ -237,7 +237,7 @@ A call `foo(10)` will fail due to the ambiguity about which function should be c
 
 ## Notes
 
-Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Greenplum Database cluster (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files. It is recommended that you locate shared libraries either relative to `$libdir` (which is located at `$GPHOME/lib`) or through the dynamic library path (set by the `dynamic_library_path` server configuration parameter) on all coordinator segment instances in the Greenplum cluster.
+Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Cloudberry Database cluster (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files. It is recommended that you locate shared libraries either relative to `$libdir` (which is located at `$GPHOME/lib`) or through the dynamic library path (set by the `dynamic_library_path` server configuration parameter) on all coordinator segment instances in the Greenplum cluster.
 
 The full SQL type syntax is allowed for input arguments and return value. However, parenthesized type modifiers (e.g., the precision field for type `numeric`) are discarded by `CREATE FUNCTION`. Thus for example `CREATE FUNCTION foo (varchar(10)) ...` is exactly the same as `CREATE FUNCTION foo (varchar) ...`.
 
@@ -247,7 +247,7 @@ If a function is declared `STRICT` with a `VARIADIC` argument, the strictness ch
 
 **Using Functions with Queries on Distributed Data**
 
-In some cases, Greenplum Database does not support using functions in a query where the data in a table specified in the `FROM` clause is distributed over Greenplum Database segments. As an example, this SQL query contains the function `func()`:
+In some cases, Cloudberry Database does not support using functions in a query where the data in a table specified in the `FROM` clause is distributed over Cloudberry Database segments. As an example, this SQL query contains the function `func()`:
 
 ```
 SELECT func(a) FROM table1;
@@ -255,13 +255,13 @@ SELECT func(a) FROM table1;
 
 The function is not supported for use in the query if all of the following conditions are met:
 
--   The data of table `table1` is distributed over Greenplum Database segments.
+-   The data of table `table1` is distributed over Cloudberry Database segments.
 -   The function `func()` reads or modifies data from distributed tables.
 -   The function `func()` returns more than one row or takes an argument (`a`) that comes from `table1`.
 
 If any of the conditions are not met, the function is supported. Specifically, the function is supported if any of the following conditions apply:
 
--   The function `func()` does not access data from distributed tables, or accesses data that is only on the Greenplum Database coordinator.
+-   The function `func()` does not access data from distributed tables, or accesses data that is only on the Cloudberry Database coordinator.
 -   The table `table1` is a coordinator only table.
 -   The function `func()` returns only one row and only takes input arguments that are constant values. The function is supported if it can be changed to require no input arguments.
 
@@ -276,10 +276,10 @@ These are limitations for functions defined with the `EXECUTE ON COORDINATOR` or
 -   The function cannot be in the `SELECT` list of a query with a `FROM` clause.
 -   A query that includes the function falls back from GPORCA to the Postgres Planner.
 
-The attribute `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Greenplum Database. When possible, Greenplum Database handles the function on the coordinator instance in the following manner.
+The attribute `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Cloudberry Database. When possible, Cloudberry Database handles the function on the coordinator instance in the following manner.
 
-1.  First, Greenplum Database runs the function as part of an InitPlan node on the coordinator instance and holds the function output temporarily.
-2.  Then, in the MainPlan of the query plan, the function is called in an EntryDB (a special query executor (QE) that runs on the coordinator instance) and Greenplum Database returns the data that was captured when the function was run as part of the InitPlan node. The function is not run in the MainPlan.
+1.  First, Cloudberry Database runs the function as part of an InitPlan node on the coordinator instance and holds the function output temporarily.
+2.  Then, in the MainPlan of the query plan, the function is called in an EntryDB (a special query executor (QE) that runs on the coordinator instance) and Cloudberry Database returns the data that was captured when the function was run as part of the InitPlan node. The function is not run in the MainPlan.
 
 This simple example uses the function `get_data()` in a CTAS command to create a table using data from the table `country`. The function contains a `SELECT` command that retrieves data from the table `country` and uses the `EXECUTE ON INITPLAN` attribute.
 
@@ -458,7 +458,7 @@ $$  LANGUAGE plpgsql
     SET search_path = admin, pg_temp;
 ```
 
-The `SET` option was not available in earlier versions of Greenplum Database, and so older functions may contain rather complicated logic to save, set, and restore `search_path`. The `SET` option is far easier to use for this purpose.
+The `SET` option was not available in earlier versions of Cloudberry Database, and so older functions may contain rather complicated logic to save, set, and restore `search_path`. The `SET` option is far easier to use for this purpose.
 
 Another point to keep in mind is that by default, execute privilege is granted to `PUBLIC` for newly created functions (see [GRANT](/docs/sql-statements/sql-statement-grant.md) for more information). Frequently you will wish to restrict use of a security definer function to only some users. To do that, you must revoke the default `PUBLIC` privileges and then grant `EXECUTE` privilege selectively. To avoid having a window where the new function is accessible to all, create it and set the privileges within a single transaction. For example:
 
@@ -472,7 +472,7 @@ COMMIT;
 
 ## Compatibility
 
-`CREATE FUNCTION` is defined in SQL:1999 and later. The Greenplum Database version is similar but not fully compatible. The attributes are not portable, neither are the different available languages.
+`CREATE FUNCTION` is defined in SQL:1999 and later. The Cloudberry Database version is similar but not fully compatible. The attributes are not portable, neither are the different available languages.
 
 For compatibility with some other database systems, argmode can be written either before or after argname. But only the first way is standard-compliant.
 

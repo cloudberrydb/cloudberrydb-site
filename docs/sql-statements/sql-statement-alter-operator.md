@@ -4,7 +4,7 @@ Changes the definition of an operator.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER OPERATOR <name> ( {<left_type> | NONE} , {<right_type> | NONE} ) 
    OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }
 

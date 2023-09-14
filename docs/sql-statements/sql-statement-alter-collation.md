@@ -4,7 +4,7 @@ Changes the definition of a collation.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER COLLATION <name> REFRESH VERSION
 
 ALTER COLLATION <name> RENAME TO <new_name>

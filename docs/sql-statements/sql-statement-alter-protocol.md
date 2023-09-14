@@ -4,7 +4,7 @@ Changes the definition of a protocol.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER PROTOCOL <name> RENAME TO <newname>
 
 ALTER PROTOCOL <name> OWNER TO <newowner>

@@ -4,7 +4,7 @@ Changes the definition of a text search configuration.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TEXT SEARCH CONFIGURATION <name>
     ADD MAPPING FOR <token_type> [, ... ] WITH <dictionary_name> [, ... ]
 ALTER TEXT SEARCH CONFIGURATION <name>

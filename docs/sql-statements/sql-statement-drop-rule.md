@@ -4,7 +4,7 @@ Removes a rewrite rule.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP RULE [IF EXISTS] <name> ON <table_name> [CASCADE | RESTRICT]
 ```
 
@@ -15,7 +15,7 @@ DROP RULE [IF EXISTS] <name> ON <table_name> [CASCADE | RESTRICT]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the rule does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the rule does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of the rule to remove.
@@ -39,7 +39,7 @@ DROP RULE sales_2006 ON sales;
 
 ## Compatibility
 
-`DROP RULE` is a Greenplum Database extension, as is the entire query rewrite system.
+`DROP RULE` is a Cloudberry Database extension, as is the entire query rewrite system.
 
 ## See Also
 

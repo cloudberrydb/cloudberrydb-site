@@ -6,7 +6,7 @@ Removes a text search template.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP TEXT SEARCH TEMPLATE [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
@@ -19,7 +19,7 @@ You must be a superuser to use `ALTER TEXT SEARCH TEMPLATE`.
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the text search template does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the text search template does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (optionally schema-qualified) of an existing text search template.

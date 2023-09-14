@@ -4,13 +4,13 @@ Removes a resource queue.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP RESOURCE QUEUE <queue_name>
 ```
 
 ## Description
 
-This command removes a resource queue from Greenplum Database. To drop a resource queue, the queue cannot have any roles assigned to it, nor can it have any statements waiting in the queue. Only a superuser can drop a resource queue.
+This command removes a resource queue from Cloudberry Database. To drop a resource queue, the queue cannot have any roles assigned to it, nor can it have any statements waiting in the queue. Only a superuser can drop a resource queue.
 
 ## Parameters
 
@@ -53,7 +53,7 @@ DROP RESOURCE QUEUE adhoc;
 
 ## Compatibility
 
-The `DROP RESOURCE QUEUE` statement is a Greenplum Database extension.
+The `DROP RESOURCE QUEUE` statement is a Cloudberry Database extension.
 
 ## See Also
 

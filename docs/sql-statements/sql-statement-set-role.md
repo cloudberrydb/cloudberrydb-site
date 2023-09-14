@@ -4,7 +4,7 @@ Sets the current role identifier of the current session.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 SET [SESSION | LOCAL] ROLE <rolename>
 
 SET [SESSION | LOCAL] ROLE NONE
@@ -63,7 +63,7 @@ SELECT SESSION_USER, CURRENT_USER;
 
 ## Compatibility
 
-Greenplum Database allows identifier syntax (rolename), while the SQL standard requires the role name to be written as a string literal. SQL does not allow this command during a transaction; Greenplum Database does not make this restriction. The `SESSION` and `LOCAL` modifiers are a Greenplum Database extension, as is the `RESET` syntax.
+Cloudberry Database allows identifier syntax (rolename), while the SQL standard requires the role name to be written as a string literal. SQL does not allow this command during a transaction; Cloudberry Database does not make this restriction. The `SESSION` and `LOCAL` modifiers are a Cloudberry Database extension, as is the `RESET` syntax.
 
 ## See Also
 

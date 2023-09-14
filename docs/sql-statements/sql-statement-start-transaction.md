@@ -4,7 +4,7 @@ Starts a transaction block.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 START TRANSACTION [<transaction_mode>] [, ...]
 
 where <transaction_mode> is one of:
@@ -25,11 +25,11 @@ Refer to [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md
 
 ## Compatibility
 
-In the standard, it is not necessary to issue `START TRANSACTION` to start a transaction block: any SQL command implicitly begins a block. Greenplum Database's behavior can be seen as implicitly issuing a `COMMIT` after each command that does not follow `START TRANSACTION` (or `BEGIN`), and it is therefore often called 'autocommit'. Other relational database systems may offer an autocommit feature as a convenience.
+In the standard, it is not necessary to issue `START TRANSACTION` to start a transaction block: any SQL command implicitly begins a block. Cloudberry Database's behavior can be seen as implicitly issuing a `COMMIT` after each command that does not follow `START TRANSACTION` (or `BEGIN`), and it is therefore often called 'autocommit'. Other relational database systems may offer an autocommit feature as a convenience.
 
-The `DEFERRABLE` transaction_mode is a Greenplum Database language extension.
+The `DEFERRABLE` transaction_mode is a Cloudberry Database language extension.
 
-The SQL standard requires commas between successive transaction_modes, but for historical reasons Greenplum Database allows the commas to be omitted.
+The SQL standard requires commas between successive transaction_modes, but for historical reasons Cloudberry Database allows the commas to be omitted.
 
 See also the compatibility section of [SET TRANSACTION](/docs/sql-statements/sql-statement-set-transaction.md).
 

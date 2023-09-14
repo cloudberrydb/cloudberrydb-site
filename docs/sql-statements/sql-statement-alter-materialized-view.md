@@ -4,7 +4,7 @@ Changes the definition of a materialized view.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER MATERIALIZED VIEW [ IF EXISTS ] <name> <action> [, ... ]
 ALTER MATERIALIZED VIEW <name>
     DEPENDS ON EXTENSION <extension_name>
@@ -74,7 +74,7 @@ ALTER MATERIALIZED VIEW foo RENAME TO bar;
 
 ## Compatibility
 
-`ALTER MATERIALIZED VIEW` is a Greenplum Database extension of the SQL standard.
+`ALTER MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
 ## See Also
 

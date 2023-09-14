@@ -4,7 +4,7 @@ Changes the definition of a schema.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER SCHEMA <name> RENAME TO <new_name>
 
 ALTER SCHEMA <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }

@@ -4,7 +4,7 @@ Removes an index.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP INDEX [ CONCURRENTLY ] [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -41,7 +41,7 @@ DROP INDEX title_idx;
 
 ## Compatibility
 
-`DROP INDEX` is a Greenplum Database language extension. There are no provisions for indexes in the SQL standard.
+`DROP INDEX` is a Cloudberry Database language extension. There are no provisions for indexes in the SQL standard.
 
 ## See Also
 

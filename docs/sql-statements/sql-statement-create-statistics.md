@@ -4,7 +4,7 @@ Defines extended statistics.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE STATISTICS [ IF NOT EXISTS ] <statistics_name>
     [ ( <statistics_kind> [, ... ] ) ]
     ON <column_name>, <column_name> [, ...]
@@ -21,7 +21,7 @@ If a schema name is given (for example, `CREATE STATISTICS myschema.mystat ...`)
 
 IF NOT EXISTS
 
-:   Do not throw an error if a statistics object with the same name already exists. Greenplum Database issues a notice in this case. Note that only the name of the statistics object is considered here, not the details of its definition.
+:   Do not throw an error if a statistics object with the same name already exists. Cloudberry Database issues a notice in this case. Note that only the name of the statistics object is considered here, not the details of its definition.
 
 statistics_name
 :   The name (optionally schema-qualified) of the statistics object to create.

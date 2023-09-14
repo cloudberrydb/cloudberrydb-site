@@ -6,7 +6,7 @@ Removes a text search parser.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP TEXT SEARCH PARSER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
@@ -17,7 +17,7 @@ DROP TEXT SEARCH PARSER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the text search parser does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the text search parser does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (optionally schema-qualified) of an existing text search parser.

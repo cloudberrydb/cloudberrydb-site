@@ -4,7 +4,7 @@ Closes a cursor.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CLOSE { <cursor_name> | ALL }
 ```
 
@@ -24,7 +24,7 @@ ALL
 
 ## Notes
 
-Greenplum Database does not have an explicit `OPEN` cursor statement. A cursor is considered open when it is declared. Use the [DECLARE](/docs/sql-statements/sql-statement-declare.md) statement to declare (and open) a cursor.
+Cloudberry Database does not have an explicit `OPEN` cursor statement. A cursor is considered open when it is declared. Use the [DECLARE](/docs/sql-statements/sql-statement-declare.md) statement to declare (and open) a cursor.
 
 You can see all available cursors by querying the [pg_cursors](../system_catalogs/catalog_ref-views.html#pg_cursors) system view.
 
@@ -40,7 +40,7 @@ CLOSE portala;
 
 ## Compatibility
 
-`CLOSE` is fully conforming with the SQL standard. `CLOSE ALL` is a Greenplum Database extension.
+`CLOSE` is fully conforming with the SQL standard. `CLOSE ALL` is a Cloudberry Database extension.
 
 ## See Also
 

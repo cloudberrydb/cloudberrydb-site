@@ -4,7 +4,7 @@ Removes a procedural language.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP [PROCEDURAL] LANGUAGE [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 

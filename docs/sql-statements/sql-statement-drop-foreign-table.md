@@ -4,7 +4,7 @@ Removes a foreign table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP FOREIGN TABLE [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -15,7 +15,7 @@ DROP FOREIGN TABLE [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the foreign table does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the foreign table does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (optionally schema-qualified) of the foreign table to drop.
@@ -36,7 +36,7 @@ DROP FOREIGN TABLE films, distributors;
 
 ## Compatibility
 
-`DROP FOREIGN TABLE` conforms to ISO/IEC 9075-9 (SQL/MED), except that the standard only allows one foreign table to be dropped per command. The `IF EXISTS` clause is a Greenplum Database extension.
+`DROP FOREIGN TABLE` conforms to ISO/IEC 9075-9 (SQL/MED), except that the standard only allows one foreign table to be dropped per command. The `IF EXISTS` clause is a Cloudberry Database extension.
 
 ## See Also
 

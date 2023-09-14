@@ -4,7 +4,7 @@ Changes the definition of a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TABLE [IF EXISTS] [ONLY] <name> [ * ]
     <action> [, ... ]
 
@@ -200,13 +200,13 @@ and <subpartition_element> is:
 
 ## Description
 
-`ALTER TABLE` changes the definition of an existing table. There are several subforms described below. Note that the lock level required may differ for each subform. An `ACCESS EXCLUSIVE` lock is acquired unless explicitly noted. When multiple subcommands are provided, Greenplum Database acquires the strictest lock required by any subcommand.
+`ALTER TABLE` changes the definition of an existing table. There are several subforms described below. Note that the lock level required may differ for each subform. An `ACCESS EXCLUSIVE` lock is acquired unless explicitly noted. When multiple subcommands are provided, Cloudberry Database acquires the strictest lock required by any subcommand.
 
 ADD COLUMN [ IF NOT EXISTS ]
 :    Adds a new column to the table, using the same syntax as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). If `IF NOT EXISTS` is specified and a column already exists with this name, no error is thrown.
 
 DROP COLUMN [ IF EXISTS ]
-:   Drops a column from a table. Note that if you drop table columns that are being used as the Greenplum Database distribution key, the distribution policy for the table will be changed to `DISTRIBUTED RANDOMLY`. Indexes and table constraints involving the column are automatically dropped as well. Multivariate statistics referencing the dropped column will also be removed if the removal of the column would cause the statistics to contain data for only a single column. You need to specify `CASCADE` if anything outside of the table depends on the column, such as views. If `IF EXISTS` is specified and the column does not exist, no error is thrown; Greenplum Database issues a notice instead.
+:   Drops a column from a table. Note that if you drop table columns that are being used as the Cloudberry Database distribution key, the distribution policy for the table will be changed to `DISTRIBUTED RANDOMLY`. Indexes and table constraints involving the column are automatically dropped as well. Multivariate statistics referencing the dropped column will also be removed if the removal of the column would cause the statistics to contain data for only a single column. You need to specify `CASCADE` if anything outside of the table depends on the column, such as views. If `IF EXISTS` is specified and the column does not exist, no error is thrown; Cloudberry Database issues a notice instead.
 
 SET DATA TYPE
 :   This form changes the data type of a column of a table. Note that you cannot alter column data types that are being used as distribution or partitioning keys. Indexes and simple table constraints involving the column will be automatically converted to use the new column type by reparsing the originally supplied expression. The optional `COLLATE` clause specifies a collation for the new column; if omitted, the collation is the default for the new column type. The optional `USING` clause specifies how to compute the new column value from the old. If omitted, the default conversion is the same as an assignment cast from old data type to new. A `USING` clause must be provided if there is no implicit or assignment cast from old to new type.
@@ -223,7 +223,7 @@ SET NOT NULL
 DROP NOT NULL
 :   Changes whether a column is marked to allow null values or to reject null values.
 
-:   `SET NOT NULL` may only be applied to a column provided none of the records in the table contain a `NULL` value for the column. This is typically checked during the `ALTER TABLE` by scanning the entire table; however, if a valid `CHECK` constraint is found which proves no `NULL` can exist, then Greenplum Database skips the table scan.
+:   `SET NOT NULL` may only be applied to a column provided none of the records in the table contain a `NULL` value for the column. This is typically checked during the `ALTER TABLE` by scanning the entire table; however, if a valid `CHECK` constraint is found which proves no `NULL` can exist, then Cloudberry Database skips the table scan.
 
 :   If this table is a partition, you cannot `DROP NOT NULL` on a column if it is marked `NOT NULL` in the parent table. To drop the `NOT NULL` constraint from all the partitions, perform `DROP NOT NULL` on the parent table. Even if there is no `NOT NULL` constraint on the parent, such a constraint can still be added to individual partitions, if desired; that is, the children can disallow nulls even if the parent allows them, but not the other way around.
 
@@ -232,7 +232,7 @@ SET GENERATED { ALWAYS | BY DEFAULT }
 DROP IDENTITY [ IF EXISTS ]
 :   These forms change whether a column is an identity column or change the generation attribute of an existing identity column. See [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
-:   If `DROP IDENTITY IF EXISTS` is specified and the column is not an identity column, no error is thrown. In this case Greenplum Database issues a notice instead.
+:   If `DROP IDENTITY IF EXISTS` is specified and the column is not an identity column, no error is thrown. In this case Cloudberry Database issues a notice instead.
 
 SET sequence_option
 RESTART
@@ -260,7 +260,7 @@ SET ENCODING ( storage_directive> [, ...] )
 ADD table_constraint [ NOT VALID ]
 :   Adds a new constraint to a table using the same syntax as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). The `NOT VALID` option is currently allowed only for foreign key and `CHECK` constraints.
 
-:   Normally, this form causes a scan of the table to verify that all existing rows in the table satisfy the new constraint.  If the constraint is marked `NOT VALID`, Greenplum Database skips the potentially-lengthy initial check to verify that all rows in the table satisfy the constraint. The constraint will still be enforced against subsequent inserts or updates (that is, they'll fail unless there is a matching row in the referenced table, in the case of foreign keys; and they'll fail unless the new row matches the specified check constraints). But the database will not assume that the constraint holds for all rows in the table, until it is validated by using the `VALIDATE CONSTRAINT` option. See the [Notes](#section5) for more information about using the `NOT VALID` option.
+:   Normally, this form causes a scan of the table to verify that all existing rows in the table satisfy the new constraint.  If the constraint is marked `NOT VALID`, Cloudberry Database skips the potentially-lengthy initial check to verify that all rows in the table satisfy the constraint. The constraint will still be enforced against subsequent inserts or updates (that is, they'll fail unless there is a matching row in the referenced table, in the case of foreign keys; and they'll fail unless the new row matches the specified check constraints). But the database will not assume that the constraint holds for all rows in the table, until it is validated by using the `VALIDATE CONSTRAINT` option. See the [Notes](#section5) for more information about using the `NOT VALID` option.
 
 :   Most forms of `ADD <table_constraint>` require an `ACCESS EXCLUSIVE` lock.
 
@@ -288,11 +288,11 @@ VALIDATE CONSTRAINT
 :   This command acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 DROP CONSTRAINT [IF EXISTS]
-:   Drops the specified constraint on a table, along with any index underlying the constraint. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. Greenplum Database issues a notice in this case instead.
+:   Drops the specified constraint on a table, along with any index underlying the constraint. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. Cloudberry Database issues a notice in this case instead.
 
 DISABLE ROW LEVEL SECURITY
 ENABLE ROW LEVEL SECURITY
-:   These forms control the application of row security policies belonging to the table. If enabled and no policies exist for the table, then Greenplum Database applies a default-deny policy. Note that policies can exist for a table even if row level security is disabled - in this case, the policies will NOT be applied and the policies will be ignored. See also [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md).
+:   These forms control the application of row security policies belonging to the table. If enabled and no policies exist for the table, then Cloudberry Database applies a default-deny policy. Note that policies can exist for a table even if row level security is disabled - in this case, the policies will NOT be applied and the policies will be ignored. See also [CREATE POLICY](/docs/sql-statements/sql-statement-create-policy.md).
 
 NO FORCE ROW LEVEL SECURITY
 FORCE ROW LEVEL SECURITY
@@ -326,7 +326,7 @@ SET { LOGGED | UNLOGGED }
 SET ( storage_\parameter [= value] [, ... ] )
 :   This form changes one or more table-level options. See [Storage Parameters](CREATE_TABLE.html#storage_parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](/docs/sql-statements/sql-statement-vacuum.md), [CLUSTER](/docs/sql-statements/sql-statement-cluster.md) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#section5). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
 
-:   Greenplum Database takes a `SHARE UPDATE EXCLUSIVE` lock when setting `fillfactor`, toast and autovacuum storage parameters, and the planner parameter `parallel_workers`.
+:   Cloudberry Database takes a `SHARE UPDATE EXCLUSIVE` lock when setting `fillfactor`, toast and autovacuum storage parameters, and the planner parameter `parallel_workers`.
 
 RESET ( storage_parameter [, ... ] )
 :   This form resets one or more table level options to their defaults. As with `SET`, a table rewrite might be required to update the table entirely.
@@ -364,7 +364,7 @@ SET SCHEMA
 SET DISTRIBUTED
 :   Changes the distribution policy of a table. Changing a hash distribution policy, or changing to or from a replicated policy, will cause the table data to be physically redistributed on disk, which can be resource intensive. If you declare the same hash distribution policy or change from hash to random distribution, data will not be redistributed unless you declare `SET WITH (reorganize=true)`.
 
-:  While Greenplum Database permits changing the distribution policy of a writable external table, the operation never results in physical redistribution of the external data.
+:  While Cloudberry Database permits changing the distribution policy of a writable external table, the operation never results in physical redistribution of the external data.
 
 
 ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
@@ -372,7 +372,7 @@ ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }
 
 :   A partition using `FOR VALUES` uses the same syntax for partition_bound_spec> as [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
 
-:   If the new partition is a regular table, Greenplum Database performs a full table scan to check that existing rows in the table do not violate the partition constraint. It is possible to avoid this scan by adding a valid `CHECK` constraint to the table that allows only rows satisfying the desired partition constraint before running this command. The `CHECK` constraint will be used to determine that the table need not be scanned to validate the partition constraint. This does not work, however, if any of the partition keys is an expression and the partition does not accept `NULL` values. If attaching a list partition that will not accept `NULL` values, also add a `NOT NULL` constraint to the partition key column, unless it's an expression.
+:   If the new partition is a regular table, Cloudberry Database performs a full table scan to check that existing rows in the table do not violate the partition constraint. It is possible to avoid this scan by adding a valid `CHECK` constraint to the table that allows only rows satisfying the desired partition constraint before running this command. The `CHECK` constraint will be used to determine that the table need not be scanned to validate the partition constraint. This does not work, however, if any of the partition keys is an expression and the partition does not accept `NULL` values. If attaching a list partition that will not accept `NULL` values, also add a `NOT NULL` constraint to the partition key column, unless it's an expression.
 
 :   If the new partition is a foreign table, nothing is done to verify that all of the rows in the foreign table obey the partition constraint. (See the discussion in [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md) about constraints on the foreign table.)
 
@@ -399,7 +399,7 @@ You must own the table to use `ALTER TABLE`. To change the schema or tablespace 
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the table does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the table does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (possibly schema-qualified) of an existing table to alter. If `ONLY` is specified, only that table is altered. If `ONLY` is not specified, the table and all of its descendant tables (if any) are updated.  You can optionally specify `*` after the table name to explicitly indicate that descendant tables are included.
@@ -407,7 +407,7 @@ name
     > **Note** Adding or dropping a column, or changing a column's type, in a parent or descendant table only is not permitted. The parent table and its descendents must always have the same columns and types.
 
 column_name
-:   Name of a new or existing column. Note that Greenplum Database distribution key columns must be treated with special care. Altering or dropping these columns can change the distribution policy for the table.
+:   Name of a new or existing column. Note that Cloudberry Database distribution key columns must be treated with special care. Altering or dropping these columns can change the distribution policy for the table.
 
 new_column_name
 :   New name for an existing column.
@@ -419,7 +419,7 @@ type
 :   Data type of the new column, or new data type for an existing column. If changing the data type of a Greenplum distribution key column, you are only allowed to change it to a compatible type (for example, `text` to `varchar` is OK, but `text` to `int` is not).
 
 table_constraint
-:   New table constraint for the table. Note that foreign key constraints are currently not supported in Greenplum Database. Also a table is only allowed one unique constraint and the uniqueness must be within the Greenplum Database distribution key.
+:   New table constraint for the table. Note that foreign key constraints are currently not supported in Cloudberry Database. Also a table is only allowed one unique constraint and the uniqueness must be within the Cloudberry Database distribution key.
 
 constraint_name
 :   Name of an existing constraint to drop.
@@ -427,7 +427,7 @@ constraint_name
 ENCODING ( <storage_directive> [,...] )
 :   The `ENCODING` clause is valid only for append-optimized, column-oriented tables.
 
-:   When you add a column to an append-optimized, column-oriented table, Greenplum Database sets each data compression parameter for the column (`compresstype`, `compresslevel`, and `blocksize`) based on the following setting, in order of preference.
+:   When you add a column to an append-optimized, column-oriented table, Cloudberry Database sets each data compression parameter for the column (`compresstype`, `compresslevel`, and `blocksize`) based on the following setting, in order of preference.
 
     1.  The compression parameter setting specified in the `ALTER TABLE` command `ENCODING` clause.
     2.  The table's data compression setting specified in the `WITH` clause when the table was created.
@@ -469,7 +469,7 @@ partition_bound_spec
 :   The partition bound specification for a new partition. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for more details on the syntax of the same.
 
 access_method
-:   The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Greenplum Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
+:   The method to use for accessing the table. Refer to Choosing the Storage Model for more information on the table storage models and access methods available in Cloudberry Database. Set to `heap` to access the table as a heap-storage table, `ao_row` to access the table as an append-optimized table with row-oriented storage (AO), or `ao_column` to access the table as an append-optimized table with column-oriented storage (AO/CO).
 
   <p class="note">
 <strong>Note:</strong>
@@ -568,7 +568,7 @@ Adding a `CHECK` or `NOT NULL` constraint requires scanning the table to verify 
 
 Similarly, when attaching a new partition it may be scanned to verify that existing rows meet the partition constraint.
 
-Greenplum Database provides the option to specify multiple changes in a single `ALTER TABLE` so that multiple table scans or rewrites can be combined into a single pass over the table.
+Cloudberry Database provides the option to specify multiple changes in a single `ALTER TABLE` so that multiple table scans or rewrites can be combined into a single pass over the table.
 
 Scanning a large table to verify a new check constraint can take a long time, and other updates to the table are locked out until the `ALTER TABLE ADD CONSTRAINT` command is committed. The main purpose of the `NOT VALID` constraint option is to reduce the impact of adding a constraint on concurrent updates. With `NOT VALID`, the `ADD CONSTRAINT` command does not scan the table and can be committed immediately. After that, a `VALIDATE CONSTRAINT` command can be issued to verify that existing rows satisfy the constraint. The validation step does not need to lock out concurrent updates, since it knows that other transactions will be enforcing the constraint for rows that they insert or update; only pre-existing rows need to be checked. Hence, validation acquires only a `SHARE UPDATE EXCLUSIVE` lock on the table being altered. In addition to improving concurrency, it can be useful to use `NOT VALID` and `VALIDATE CONSTRAINT` in cases where the table is known to contain pre-existing violations. Once the constraint is in place, no new violations can be inserted, and you can correct the existing problems until `VALIDATE CONSTRAINT` finally succeeds.
 
@@ -586,7 +586,7 @@ This table lists the `ALTER TABLE` operations that require a table rewrite when 
 
 > **Important** The forms of `ALTER TABLE` that perform a table rewrite are not MVCC-safe. After a table rewrite, the table will appear empty to concurrent transactions if they are using a snapshot taken before the rewrite occurred. See [MVCC Caveats](https://www.postgresql.org/docs/12/mvcc-caveats.html) for more details.
 
-Take special care when altering or dropping columns that are part of the Greenplum Database distribution key as this can change the distribution policy for the table.
+Take special care when altering or dropping columns that are part of the Cloudberry Database distribution key as this can change the distribution policy for the table.
 
 The `USING` option of `SET DATA TYPE` can actually specify any expression involving the old values of the row; that is, it can refer to other columns as well as the one being converted. This allows very general conversions to be done with the `SET DATA TYPE` syntax. Because of this flexibility, the `USING` expression is not applied to the column's default value (if any); the result might not be a constant expression as required for a default. This means that when there is no implicit or assignment cast from old to new type, `SET DATA TYPE` might fail to convert the default even though a `USING` clause is supplied. In such cases, drop the default with `DROP DEFAULT`, perform the `ALTER TYPE`, and then use `SET DEFAULT` to add a suitable new default. Similar considerations apply to indexes and constraints involving the column.
 
@@ -596,9 +596,9 @@ A recursive `DROP COLUMN` operation will remove a descendant table's column only
 
 The actions for identity columns (`ADD GENERATED`, `SET` etc., `DROP IDENTITY`), as well as the actions `CLUSTER`, `OWNER`, and `TABLESPACE` never recurse to descendant tables; that is, they always act as though `ONLY` were specified. Adding a constraint recurses only for `CHECK` constraints that are not marked `NO INHERIT`.
 
-Greenplum Database does not currently support foreign key constraints. For a unique constraint to be enforced in Greenplum Database, the table must be hash-distributed (not `DISTRIBUTED RANDOMLY`), and all of the distribution key columns must be the same as the initial columns of the unique constraint columns.
+Cloudberry Database does not currently support foreign key constraints. For a unique constraint to be enforced in Cloudberry Database, the table must be hash-distributed (not `DISTRIBUTED RANDOMLY`), and all of the distribution key columns must be the same as the initial columns of the unique constraint columns.
 
-Greenplum Database does not permit changing any part of a system catalog table.
+Cloudberry Database does not permit changing any part of a system catalog table.
 
 Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for a further description of valid parameters.
 
@@ -916,7 +916,7 @@ In the previous command, the two `ALTER PARTITION` clauses identify which `regio
 
 ## Compatibility
 
-The forms `ADD` (without `USING INDEX`), `DROP [COLUMN]`, `DROP IDENTITY`, `RESTART`, `SET DEFAULT`, `SET DATA TYPE` (without `USING`), `SET GENERATED`, and `SET <sequence_option>` conform with the SQL standard. The other forms are Greenplum Database extensions of the SQL standard. Also, the ability to specify more than one manipulation in a single `ALTER TABLE` command is an extension.
+The forms `ADD` (without `USING INDEX`), `DROP [COLUMN]`, `DROP IDENTITY`, `RESTART`, `SET DEFAULT`, `SET DATA TYPE` (without `USING`), `SET GENERATED`, and `SET <sequence_option>` conform with the SQL standard. The other forms are Cloudberry Database extensions of the SQL standard. Also, the ability to specify more than one manipulation in a single `ALTER TABLE` command is an extension.
 
 `ALTER TABLE DROP COLUMN` can be used to drop the only column of a table, leaving a zero-column table. This is an extension of SQL, which disallows zero-column tables.
 

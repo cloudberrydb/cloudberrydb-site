@@ -4,7 +4,7 @@ Changes the definition of a domain.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER DOMAIN <name> { SET DEFAULT <expression> | DROP DEFAULT }
 
 ALTER DOMAIN <name> { SET | DROP } NOT NULL
@@ -118,7 +118,7 @@ ALTER DOMAIN zipcode SET SCHEMA customers;
 
 ## Compatibility
 
-`ALTER DOMAIN` conforms to the SQL standard, except for the `OWNER`, `RENAME`, `SET SCHEMA`, and `VALIDATE CONSTRAINT` variants, which are Greenplum Database extensions. The `NOT VALID` clause of the `ADD CONSTRAINT` variant is also a Greenplum Database extension.
+`ALTER DOMAIN` conforms to the SQL standard, except for the `OWNER`, `RENAME`, `SET SCHEMA`, and `VALIDATE CONSTRAINT` variants, which are Cloudberry Database extensions. The `NOT VALID` clause of the `ADD CONSTRAINT` variant is also a Cloudberry Database extension.
 
 ## See Also
 

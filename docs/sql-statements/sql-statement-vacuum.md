@@ -4,7 +4,7 @@ Garbage-collects and optionally analyzes a database.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 VACUUM [({ FULL | FREEZE | VERBOSE | ANALYZE | DISABLE_PAGE_SKIPPING | SKIP_LOCKED | INDEX_CLEANUP } [, ...])] [<table> [(<column> [, ...] )]]
         
 VACUUM [FULL] [FREEZE] [VERBOSE] [<table>]
@@ -17,7 +17,7 @@ VACUUM AO_AUX_ONLY <ao_table>
 
 ## Description
 
-`VACUUM` reclaims storage occupied by deleted tuples. In normal Greenplum Database operation, tuples that are deleted or obsoleted by an update are not physically removed from their table; they remain present on disk until a `VACUUM` is done. Therefore it is necessary to do `VACUUM` periodically, especially on frequently-updated tables.
+`VACUUM` reclaims storage occupied by deleted tuples. In normal Cloudberry Database operation, tuples that are deleted or obsoleted by an update are not physically removed from their table; they remain present on disk until a `VACUUM` is done. Therefore it is necessary to do `VACUUM` periodically, especially on frequently-updated tables.
 
 With no parameter, `VACUUM` processes every table in the current database. With a parameter, `VACUUM` processes only that table.
 
@@ -29,7 +29,7 @@ With append-optimized tables, `VACUUM` compacts a table by first vacuuming the i
 
 `VACUUM FULL` does more extensive processing, including moving of tuples across blocks to try to compact the table to the minimum number of disk blocks. This form is much slower and requires an Access Exclusive lock on each table while it is being processed. The Access Exclusive lock guarantees that the holder is the only transaction accessing the table in any way.
 
-When the option list is surrounded by parentheses, the options can be written in any order. Without parentheses, options must be specified in exactly the order shown above. The parenthesized syntax was added in Greenplum Database 6.0; the unparenthesized syntax is deprecated.
+When the option list is surrounded by parentheses, the options can be written in any order. Without parentheses, options must be specified in exactly the order shown above. The parenthesized syntax was added in Cloudberry Database 6.0; the unparenthesized syntax is deprecated.
 
 > **Important** For information on the use of `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE`, see [Notes](#section6).
 
@@ -76,9 +76,9 @@ AO_AUX_ONLY
 
 `VACUUM` cannot be run inside a transaction block.
 
-Vacuum active databases frequently (at least nightly), in order to remove expired rows. After adding or deleting a large number of rows, running the `VACUUM ANALYZE` command for the affected table might be useful. This updates the system catalogs with the results of all recent changes, and allows the Greenplum Database query optimizer to make better choices in planning queries.
+Vacuum active databases frequently (at least nightly), in order to remove expired rows. After adding or deleting a large number of rows, running the `VACUUM ANALYZE` command for the affected table might be useful. This updates the system catalogs with the results of all recent changes, and allows the Cloudberry Database query optimizer to make better choices in planning queries.
 
-> **Important** PostgreSQL has a separate optional server process called the *autovacuum daemon*, whose purpose is to automate the execution of `VACUUM` and `ANALYZE` commands. Greenplum Database enables the autovacuum daemon to perform `VACUUM` operations only on the Greenplum Database template database `template0`. Autovacuum is enabled for `template0` because connections are not allowed to `template0`. The autovacuum daemon performs `VACUUM` operations on `template0` to manage transaction IDs (XIDs) and help avoid transaction ID wraparound issues in `template0`.
+> **Important** PostgreSQL has a separate optional server process called the *autovacuum daemon*, whose purpose is to automate the execution of `VACUUM` and `ANALYZE` commands. Cloudberry Database enables the autovacuum daemon to perform `VACUUM` operations only on the Cloudberry Database template database `template0`. Autovacuum is enabled for `template0` because connections are not allowed to `template0`. The autovacuum daemon performs `VACUUM` operations on `template0` to manage transaction IDs (XIDs) and help avoid transaction ID wraparound issues in `template0`.
 
 Manual `VACUUM` operations must be performed in user-defined databases to manage transaction IDs (XIDs) in those databases.
 
@@ -86,7 +86,7 @@ Manual `VACUUM` operations must be performed in user-defined databases to manage
 
 `VACUUM` commands skip external and foreign tables.
 
-`VACUUM FULL` reclaims all expired row space, however it requires an exclusive lock on each table being processed, is a very expensive operation, and might take a long time to complete on large, distributed Greenplum Database tables. Perform `VACUUM FULL` operations during database maintenance periods.
+`VACUUM FULL` reclaims all expired row space, however it requires an exclusive lock on each table being processed, is a very expensive operation, and might take a long time to complete on large, distributed Cloudberry Database tables. Perform `VACUUM FULL` operations during database maintenance periods.
 
 The `FULL` option is not recommended for routine use, but might be useful in special cases. An example is when you have deleted or updated most of the rows in a table and would like the table to physically shrink to occupy less disk space and allow faster table scans. `VACUUM FULL` will usually shrink the table more than a plain `VACUUM` would.
 
@@ -96,7 +96,7 @@ For append-optimized tables, `VACUUM` requires enough available disk space to ac
 
 If a concurrent serializable transaction is detected when an append-optimized table is being vacuumed, the current and subsequent segment files are not compacted. If a segment file has been compacted but a concurrent serializable transaction is detected in the transaction that drops the original segment file, the drop is skipped. This could leave one or two segment files in an "awaiting drop" state after the vacuum has completed.
 
-For more information about concurrency control in Greenplum Database, see "Routine System Maintenance Tasks" in *Greenplum Database Administrator Guide*.
+For more information about concurrency control in Cloudberry Database, see "Routine System Maintenance Tasks" in *Cloudberry Database Administrator Guide*.
 
 ## Examples
 

@@ -4,7 +4,7 @@ Defines a cursor.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DECLARE <name> [BINARY] [INSENSITIVE] [NO SCROLL] [PARALLEL RETRIEVE] CURSOR 
      [{WITH | WITHOUT} HOLD] 
      FOR <query>
@@ -28,9 +28,9 @@ A cursor can be specified in the `WHERE CURRENT OF` clause of the [UPDATE](/docs
 
 **Parallel Retrieve Cursors**
 
-Greenplum Database supports a special type of cursor, a *parallel retrieve cursor*. You can use a parallel retrieve cursor to retrieve query results, in parallel, directly from the Greenplum Database segments, bypassing the Greenplum coordinator.
+Cloudberry Database supports a special type of cursor, a *parallel retrieve cursor*. You can use a parallel retrieve cursor to retrieve query results, in parallel, directly from the Cloudberry Database segments, bypassing the Greenplum coordinator.
 
-Parallel retrieve cursors do not support the `WITH HOLD` clause. Greenplum Database ignores the `BINARY` clause when you declare a parallel retrieve cursor.
+Parallel retrieve cursors do not support the `WITH HOLD` clause. Cloudberry Database ignores the `BINARY` clause when you declare a parallel retrieve cursor.
 
 You open a special retrieve session to each parallel retrieve cursor endpoint, and use the [RETRIEVE](/docs/sql-statements/sql-statement-retrieve.md) command to retrieve the query results from a parallel retrieve cursor.
 
@@ -42,22 +42,22 @@ name
 BINARY
 :   Causes the cursor to return data in binary rather than in text format.
 
-    > **Note** Greenplum Database ignores the `BINARY` clause when you declare a `PARALLEL RETRIEVE` cursor.
+    > **Note** Cloudberry Database ignores the `BINARY` clause when you declare a `PARALLEL RETRIEVE` cursor.
 
 INSENSITIVE
-:   Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Greenplum Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
+:   Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Cloudberry Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
 
 NO SCROLL
-:   The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Greenplum Database; scrollable cursors (`SCROLL`) are not supported.
+:   The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Cloudberry Database; scrollable cursors (`SCROLL`) are not supported.
 
 PARALLEL RETRIEVE
-:   Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Greenplum Database segments, in parallel.
+:   Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Cloudberry Database segments, in parallel.
 
 WITH HOLD
 WITHOUT HOLD
 :   `WITH HOLD` specifies that the cursor may continue to be used after the transaction that created it successfully commits. `WITHOUT HOLD` specifies that the cursor cannot be used outside of the transaction that created it. `WITHOUT HOLD` is the default.
 
-    > **Note** Greenplum Database does not support declaring a `PARALLEL RETRIEVE` cursor with the `WITH HOLD` clause. `WITH HOLD` also cannot not be specified when the `query` includes a `FOR UPDATE` or `FOR SHARE` clause.
+    > **Note** Cloudberry Database does not support declaring a `PARALLEL RETRIEVE` cursor with the `WITH HOLD` clause. `WITH HOLD` also cannot not be specified when the `query` includes a `FOR UPDATE` or `FOR SHARE` clause.
 
 query
 :   A [SELECT](/docs/sql-statements/sql-statement-select.md) or [VALUES](/docs/sql-statements/sql-statement-values.md) command which will provide the rows to be returned by the cursor.
@@ -81,13 +81,13 @@ The key words `BINARY`, `INSENSITIVE`, and `NO SCROLL` can appear in any order.
 
 ## Notes
 
-Unless `WITH HOLD` is specified, the cursor created by this command can only be used within the current transaction. Thus, `DECLARE` without `WITH HOLD` is useless outside a transaction block: the cursor would survive only to the completion of the statement. Therefore Greenplum Database reports an error if this command is used outside a transaction block. Use `BEGIN` and `COMMIT` (or `ROLLBACK`) to define a transaction block.
+Unless `WITH HOLD` is specified, the cursor created by this command can only be used within the current transaction. Thus, `DECLARE` without `WITH HOLD` is useless outside a transaction block: the cursor would survive only to the completion of the statement. Therefore Cloudberry Database reports an error if this command is used outside a transaction block. Use `BEGIN` and `COMMIT` (or `ROLLBACK`) to define a transaction block.
 
 If `WITH HOLD` is specified and the transaction that created the cursor successfully commits, the cursor can continue to be accessed by subsequent transactions in the same session. (But if the creating transaction ends prematurely, the cursor is removed.) A cursor created with `WITH HOLD` is closed when an explicit `CLOSE` command is issued on it, or the session ends. In the current implementation, the rows represented by a held cursor are copied into a temporary file or memory area so that they remain available for subsequent transactions.
 
 If you create a cursor with the `DECLARE` command in a transaction, you cannot use the `SET` command in the transaction until you close the cursor with the `CLOSE` command.
 
-Scrollable cursors are not currently supported in Greenplum Database. You can only use `FETCH` or `RETRIEVE` to move the cursor position forward, not backwards.
+Scrollable cursors are not currently supported in Cloudberry Database. You can only use `FETCH` or `RETRIEVE` to move the cursor position forward, not backwards.
 
 `DECLARE...FOR UPDATE` is not supported with append-optimized tables.
 
@@ -109,13 +109,13 @@ DECLARE myprcursor PARALLEL RETRIEVE CURSOR FOR SELECT * FROM mytable;
 
 ## Compatibility
 
-SQL standard allows cursors only in embedded SQL and in modules. Greenplum Database permits cursors to be used interactively.
+SQL standard allows cursors only in embedded SQL and in modules. Cloudberry Database permits cursors to be used interactively.
 
-Greenplum Database does not implement an `OPEN` statement for cursors. A cursor is considered to be open when it is declared.
+Cloudberry Database does not implement an `OPEN` statement for cursors. A cursor is considered to be open when it is declared.
 
-The SQL standard allows cursors to move both forward and backward. All Greenplum Database cursors are forward moving only (not scrollable).
+The SQL standard allows cursors to move both forward and backward. All Cloudberry Database cursors are forward moving only (not scrollable).
 
-Binary cursors are a Greenplum Database extension.
+Binary cursors are a Cloudberry Database extension.
 
 The SQL standard makes no provisions for parallel retrieve cursors.
 

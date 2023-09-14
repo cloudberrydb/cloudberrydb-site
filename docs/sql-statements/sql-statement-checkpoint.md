@@ -4,7 +4,7 @@ Forces a write-ahead log checkpoint.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CHECKPOINT
 ```
 
@@ -20,7 +20,7 @@ Only superusers may call `CHECKPOINT`.
 
 ## Compatibility
 
-The `CHECKPOINT` command is a Greenplum Database extension.
+The `CHECKPOINT` command is a Cloudberry Database extension.
 
 
 

@@ -4,7 +4,7 @@ Commits the current transaction.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 COMMIT [WORK | TRANSACTION] [AND [NO] CHAIN]
 ```
 
@@ -37,7 +37,7 @@ COMMIT;
 
 ## Compatibility
 
-The command `COMMIT` conforms to the SQL standard. The form `COMMIT TRANSACTION` is a Greenplum Database extension.
+The command `COMMIT` conforms to the SQL standard. The form `COMMIT TRANSACTION` is a Cloudberry Database extension.
 
 ## See Also
 

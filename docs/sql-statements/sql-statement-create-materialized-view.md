@@ -4,7 +4,7 @@ Defines a new materialized view.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE MATERIALIZED VIEW [ IF  NOT EXISTS ] <table_name>
     [ (<column_name> [, ...] ) ]
     [ USING <method> ]
@@ -50,7 +50,7 @@ WITH [ NO ] DATA
 DISTRIBUTED BY (column [opclass], [ ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
-:   Used to declare the Greenplum Database distribution policy for the materialized view data. For information about a table distribution policy, see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
+:   Used to declare the Cloudberry Database distribution policy for the materialized view data. For information about a table distribution policy, see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md).
 
 ## Notes
 
@@ -78,7 +78,7 @@ names, rank WHERE rank < '11' AND names.id=rank.id;
 
 ## Compatibility
 
-`CREATE MATERIALIZED VIEW` is a Greenplum Database extension of the SQL standard.
+`CREATE MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Changes the definition of a rule.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER RULE name ON <table_name> RENAME TO <new_name>
 ```
 
@@ -35,7 +35,7 @@ ALTER RULE notify_all ON emp RENAME TO notify_me;
 
 ## Compatibility
 
-`ALTER RULE` is a Greenplum Database extension, as is the entire query rewrite system.
+`ALTER RULE` is a Cloudberry Database extension, as is the entire query rewrite system.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Defines a new database role (user or group).
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE ROLE <name> [[WITH] <option> [ ... ]]
 ```
 
@@ -40,9 +40,9 @@ where option can be:
 
 ## Description
 
-`CREATE ROLE` adds a new role to a Greenplum Database system. A role is an entity that can own database objects and have database privileges. A role can be considered a user, a group, or both depending on how it is used. You must have `CREATEROLE` privilege or be a database superuser to use this command.
+`CREATE ROLE` adds a new role to a Cloudberry Database system. A role is an entity that can own database objects and have database privileges. A role can be considered a user, a group, or both depending on how it is used. You must have `CREATEROLE` privilege or be a database superuser to use this command.
 
-Note that roles are defined at the system-level and are valid for all databases in your Greenplum Database system.
+Note that roles are defined at the system-level and are valid for all databases in your Cloudberry Database system.
 
 ## Parameters
 
@@ -65,7 +65,7 @@ CREATEEXTTABLE
 NOCREATEEXTTABLE
 :   If `CREATEEXTTABLE` is specified, the role being defined is allowed to create external tables. The default `type` is `readable` and the default `protocol` is `gpfdist`, if not specified. Valid types are `gpfdist`, `gpfdists`, `http`, and `https`. `NOCREATEEXTTABLE` (the default type) denies the role the ability to create external tables. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.
 
-:   Use the `GRANT...ON PROTOCOL` command to allow users to create and use external tables with a custom protocol type, including the `s3` and `pxf` protocols included with Greenplum Database.
+:   Use the `GRANT...ON PROTOCOL` command to allow users to create and use external tables with a custom protocol type, including the `s3` and `pxf` protocols included with Cloudberry Database.
 
 INHERIT
 NOINHERIT
@@ -91,7 +91,7 @@ CONNECTION LIMIT connlimit
 [ ENCRYPTED ] PASSWORD 'password'
 PASSWORD NULL
 :   Sets the role's password. (A password is only of use for roles having the `LOGIN` attribute, but you can nonetheless define one for roles without it.) If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.
-    <div class="note><b>Note:</b>  Specifying an empty string will also set the password to null, but that was not the case before Greenplum Database version 7. In earlier versions, an empty string could be used, or not, depending on the authentication method and the exact version, and `libpq` would refuse to use it in any case. To avoid the ambiguity, specifying an empty string should be avoided.</div>
+    <div class="note><b>Note:</b>  Specifying an empty string will also set the password to null, but that was not the case before Cloudberry Database version 7. In earlier versions, an empty string could be used, or not, depending on the authentication method and the exact version, and `libpq` would refuse to use it in any case. To avoid the ambiguity, specifying an empty string should be avoided.</div>
 :   The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption` (since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format). This allows reloading of encrypted passwords during dump/restore.
 
 VALID UNTIL 'timestamp'
@@ -170,11 +170,11 @@ The `VALID UNTIL` clause defines an expiration time for a password only, not for
 
 The `INHERIT` attribute governs inheritance of grantable privileges (access privileges for database objects and role memberships). It does not apply to the special role attributes set by `CREATE ROLE` and `ALTER ROLE`. For example, being a member of a role with `CREATEDB` privilege does not immediately grant the ability to create databases, even if `INHERIT` is set; it would be necessary to become that role via [SET ROLE](/docs/sql-statements/sql-statement-set-role.md) before creating a database.
 
-The `INHERIT` attribute is the default for reasons of backwards compatibility. In prior releases of Greenplum Database, users always had access to all privileges of groups they were members of. However, `NOINHERIT` provides a closer match to the semantics specified in the SQL standard.
+The `INHERIT` attribute is the default for reasons of backwards compatibility. In prior releases of Cloudberry Database, users always had access to all privileges of groups they were members of. However, `NOINHERIT` provides a closer match to the semantics specified in the SQL standard.
 
 Be careful with the `CREATEROLE` privilege. There is no concept of inheritance for the privileges of a `CREATEROLE`-role. That means that even if a role does not have a certain privilege but is allowed to create other roles, it can easily create another role with different privileges than its own (except for creating roles with superuser privileges). For example, if a role has the `CREATEROLE` privilege but not the `CREATEDB` privilege, it can create a new role with the `CREATEDB` privilege. Therefore, regard roles that have the `CREATEROLE` privilege as almost-superuser-roles.
 
-Greenplum Database includes a program createuser that has the same functionality as `CREATE ROLE` (in fact, it calls this command) but can be run from the command shell.
+Cloudberry Database includes a program createuser that has the same functionality as `CREATE ROLE` (in fact, it calls this command) but can be run from the command shell.
 
 The `CONNECTION LIMIT` option is only enforced approximately; if two new sessions start at about the same time when just one connection "slot" remains for the role, it is possible that both will fail. Also, the limit is never enforced for superusers.
 
@@ -241,9 +241,9 @@ CREATE ROLE jonathan LOGIN RESOURCE QUEUE poweruser;
 CREATE ROLE <name> [WITH ADMIN <rolename>]
 ```
 
-Allowing multiple initial administrators, and all the other options of `CREATE ROLE`, are Greenplum Database extensions.
+Allowing multiple initial administrators, and all the other options of `CREATE ROLE`, are Cloudberry Database extensions.
 
-The SQL standard defines the concepts of users and roles, but it regards them as distinct concepts and leaves all commands defining users to be specified by the database implementation. In Greenplum Database users and roles are unified into a single type of object. Roles therefore have many more optional attributes than they do in the standard.
+The SQL standard defines the concepts of users and roles, but it regards them as distinct concepts and leaves all commands defining users to be specified by the database implementation. In Cloudberry Database users and roles are unified into a single type of object. Roles therefore have many more optional attributes than they do in the standard.
 
 The behavior specified by the SQL standard is most closely approximated by giving users the `NOINHERIT` attribute, while roles are given the `INHERIT` attribute.
 

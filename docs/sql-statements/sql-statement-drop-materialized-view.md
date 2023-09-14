@@ -4,7 +4,7 @@ Removes a materialized view.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP MATERIALIZED VIEW [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -36,7 +36,7 @@ DROP MATERIALIZED VIEW order_summary;
 
 ## Compatibility
 
-`DROP MATERIALIZED VIEW` is a Greenplum Database extension of the SQL standard.
+`DROP MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
 ## See Also
 

@@ -4,13 +4,13 @@ Commits the current transaction.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 END [WORK | TRANSACTION] [AND [NO] CHAIN]
 ```
 
 ## Description
 
-`END` commits the current transaction. All changes made by the transaction become visible to others and are guaranteed to be durable if a crash occurs. This command is a Greenplum Database extension that is equivalent to [COMMIT](/docs/sql-statements/sql-statement-commit.md).
+`END` commits the current transaction. All changes made by the transaction become visible to others and are guaranteed to be durable if a crash occurs. This command is a Cloudberry Database extension that is equivalent to [COMMIT](/docs/sql-statements/sql-statement-commit.md).
 
 ## Parameters
 
@@ -37,7 +37,7 @@ END;
 
 ## Compatibility
 
-`END` is a Greenplum Database extension that provides functionality equivalent to [COMMIT](/docs/sql-statements/sql-statement-commit.md), which is specified in the SQL standard.
+`END` is a Cloudberry Database extension that provides functionality equivalent to [COMMIT](/docs/sql-statements/sql-statement-commit.md), which is specified in the SQL standard.
 
 ## See Also
 

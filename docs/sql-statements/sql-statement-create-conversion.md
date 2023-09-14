@@ -4,7 +4,7 @@ Defines a new encoding conversion.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [DEFAULT] CONVERSION <name>
      FOR <source_encoding> TO <dest_encoding> FROM <function_name>
 ```
@@ -48,7 +48,7 @@ Use [DROP CONVERSION](/docs/sql-statements/sql-statement-drop-conversion.md) to 
 
 The privileges required to create a conversion might change in a feature release.
 
-Note that in this release of Greenplum Database, user-defined functions used in a user-defined conversion must be defined as `IMMUTABLE`. Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Greenplum Database array (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files.
+Note that in this release of Cloudberry Database, user-defined functions used in a user-defined conversion must be defined as `IMMUTABLE`. Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Cloudberry Database array (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files.
 
 
 ## Examples
@@ -61,7 +61,7 @@ CREATE CONVERSION myconv FOR 'UTF8' TO 'LATIN1' FROM myfunc;
 
 ## Compatibility
 
-`CREATE CONVERSION` is a Greenplum Database extension. There is no `CREATE CONVERSION` statement in the SQL standard, but there is a `CREATE TRANSLATION` statement that is very similar in purpose and syntax.
+`CREATE CONVERSION` is a Cloudberry Database extension. There is no `CREATE CONVERSION` statement in the SQL standard, but there is a `CREATE TRANSLATION` statement that is very similar in purpose and syntax.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Changes the limits of a resource queue.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER RESOURCE QUEUE <name> WITH ( <queue_attribute>=<value> [, ... ] ) 
 ```
 
@@ -66,9 +66,9 @@ PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}
 
 ## Notes
 
-GPORCA and the Postgres planner utilize different query costing models and may compute different costs for the same query. The Greenplum Database resource queue resource management scheme neither differentiates nor aligns costs between GPORCA and the Postgres Planner; it uses the literal cost value returned from the optimizer to throttle queries.
+GPORCA and the Postgres planner utilize different query costing models and may compute different costs for the same query. The Cloudberry Database resource queue resource management scheme neither differentiates nor aligns costs between GPORCA and the Postgres Planner; it uses the literal cost value returned from the optimizer to throttle queries.
 
-When resource queue-based resource management is active, use the `MEMORY_LIMIT` and `ACTIVE_STATEMENTS` limits for resource queues rather than configuring cost-based limits. Even when using GPORCA, Greenplum Database may fall back to using the Postgres Planner for certain queries, so using cost-based limits can lead to unexpected results.
+When resource queue-based resource management is active, use the `MEMORY_LIMIT` and `ACTIVE_STATEMENTS` limits for resource queues rather than configuring cost-based limits. Even when using GPORCA, Cloudberry Database may fall back to using the Postgres Planner for certain queries, so using cost-based limits can lead to unexpected results.
 
 ## Examples
 
@@ -112,7 +112,7 @@ ALTER RESOURCE QUEUE myqueue WITHOUT (MAX_COST, MEMORY_LIMIT);
 
 ## Compatibility
 
-The `ALTER RESOURCE QUEUE` statement is a Greenplum Database extension. This command does not exist in standard PostgreSQL.
+The `ALTER RESOURCE QUEUE` statement is a Cloudberry Database extension. This command does not exist in standard PostgreSQL.
 
 ## See Also
 

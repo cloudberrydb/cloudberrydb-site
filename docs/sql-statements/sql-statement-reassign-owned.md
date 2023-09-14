@@ -4,7 +4,7 @@ Changes the ownership of database objects owned by a database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 REASSIGN OWNED BY { <old_role> | CURRENT_USER | SESSION_USER } [, ...]
                TO { <new_role> | CURRENT_USER | SESSION_USER }
 ```
@@ -41,7 +41,7 @@ REASSIGN OWNED BY sally, bob TO admin;
 
 ## Compatibility
 
-The `REASSIGN OWNED` command is a Greenplum Database extension.
+The `REASSIGN OWNED` command is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Changes the definition of a trigger.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TRIGGER <name> ON <table> RENAME TO <newname>
 ```
 
@@ -27,7 +27,7 @@ newname
 
 The ability to temporarily activate or deactivate a trigger is provided by [ALTER TABLE](/docs/sql-statements/sql-statement-alter-table.md), not by `ALTER TRIGGER`, because `ALTER TRIGGER` has no convenient way to express the option of activating or deactivating all of a table's triggers at once.
 
-Note that Greenplum Database has limited support of triggers in this release. See [CREATE TRIGGER](/docs/sql-statements/sql-statement-create-trigger.md) for more information.
+Note that Cloudberry Database has limited support of triggers in this release. See [CREATE TRIGGER](/docs/sql-statements/sql-statement-create-trigger.md) for more information.
 
 ## Examples
 
@@ -39,7 +39,7 @@ ALTER TRIGGER emp_stamp ON emp RENAME TO emp_track_chgs;
 
 ## Compatibility
 
-`ALTER TRIGGER` is a Greenplum Database extension of the SQL standard.
+`ALTER TRIGGER` is a Cloudberry Database extension of the SQL standard.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Discards the session state.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DISCARD { ALL | PLANS | SEQUENCES | TEMPORARY | TEMP }
 ```
 
@@ -12,7 +12,7 @@ DISCARD { ALL | PLANS | SEQUENCES | TEMPORARY | TEMP }
 
 `DISCARD` releases internal resources associated with a database session. This command is useful for partially or fully resetting the session's state. There are several subcommands to release different types of resources; the `DISCARD ALL` variant subsumes all the others, and also resets additional state.
 
-Greenplum Database does not support invoking `DISCARD ALL` in a transaction.
+Cloudberry Database does not support invoking `DISCARD ALL` in a transaction.
 
 ## Parameters
 
@@ -46,7 +46,7 @@ ALL
 
 ## Compatibility
 
-`DISCARD` is a Greenplum Database extension.
+`DISCARD` is a Cloudberry Database extension.
 
 
 

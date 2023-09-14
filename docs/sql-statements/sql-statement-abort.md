@@ -4,7 +4,7 @@ Terminates the current transaction.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ABORT [WORK | TRANSACTION] [AND [NO] CHAIN]
 ```
 
@@ -37,7 +37,7 @@ ABORT;
 
 ## Compatibility
 
-This command is a Greenplum Database extension present for historical reasons. `ROLLBACK` is the equivalent standard SQL command.
+This command is a Cloudberry Database extension present for historical reasons. `ROLLBACK` is the equivalent standard SQL command.
 
 ## See Also
 

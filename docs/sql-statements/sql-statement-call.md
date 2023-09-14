@@ -4,7 +4,7 @@ Invokes a procedure.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CALL <name> ( [ <argument> ] [, ...] )
 ```
 

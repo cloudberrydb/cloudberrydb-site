@@ -4,7 +4,7 @@ Defines a new table from the results of a query.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
 SELECT [ALL | DISTINCT [ON ( <expression> [, ...] )]]
     * | <expression> [ [AS] <output_name> ] [, ...]
@@ -57,7 +57,7 @@ SELECT * INTO films_recent FROM films WHERE date_prod >= '2016-01-01';
 
 ## Compatibility
 
-The SQL standard uses `SELECT INTO` to represent selecting values into scalar variables of a host program, rather than creating a new table. The Greenplum Database usage of `SELECT INTO` to represent table creation is historical. It is best to use [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) for this purpose in new applications.
+The SQL standard uses `SELECT INTO` to represent selecting values into scalar variables of a host program, rather than creating a new table. The Cloudberry Database usage of `SELECT INTO` to represent table creation is historical. It is best to use [CREATE TABLE AS](/docs/sql-statements/sql-statement-create-table-as.md) for this purpose in new applications.
 
 ## See Also
 

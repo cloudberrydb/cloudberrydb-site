@@ -4,7 +4,7 @@ Defines a new row-level security policy for a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE POLICY <name> ON <table_name>
     [ AS { PERMISSIVE | RESTRICTIVE } ]
     [ FOR { ALL | SELECT | INSERT | UPDATE | DELETE } ]
@@ -15,7 +15,7 @@ CREATE POLICY <name> ON <table_name>
 
 ## Description
 
-The `CREATE POLICY` command defines a new row-level security policy for a table. Note that row-level security must be enabled on the table (using `ALTER TABLE ... ENABLE ROW LEVEL SECURITY`) in order for Greenplum Database to apply created policies.
+The `CREATE POLICY` command defines a new row-level security policy for a table. Note that row-level security must be enabled on the table (using `ALTER TABLE ... ENABLE ROW LEVEL SECURITY`) in order for Cloudberry Database to apply created policies.
 
 A policy grants the permission to select, insert, update, or delete rows that match the relevant policy expression. Existing table rows are checked against the expression specified in `USING`, while new rows that would be created via `INSERT` or `UPDATE` are checked against the expression specified in `WITH CHECK`. When a `USING` expression returns true for a given row, then that row is visible to the user, while if false or null is returned then the row is not visible. When a `WITH CHECK` expression returns true for a row, then that row is inserted or updated, while if false or null is returned then an error occurs.
 
@@ -156,7 +156,7 @@ Refer to About Configuring Row-Level Security Policies for more information and 
 
 ## Compatibility
 
-`CREATE POLICY` is a Greenplum Database extension to the SQL standard.
+`CREATE POLICY` is a Cloudberry Database extension to the SQL standard.
 
 ## See Also
 

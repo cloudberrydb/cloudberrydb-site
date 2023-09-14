@@ -4,7 +4,7 @@ Changes the definition of a database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER USER <role_specification> [WITH] <option> [ ... ]
 
 where option can be:
@@ -52,7 +52,7 @@ where <role_specification> can be:
 
 ## Compatibility
 
-The `ALTER USER` statement is a Greenplum Database extension. The SQL standard leaves the definition of users to the implementation.
+The `ALTER USER` statement is a Cloudberry Database extension. The SQL standard leaves the definition of users to the implementation.
 
 ## See Also
 

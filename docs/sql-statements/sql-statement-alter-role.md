@@ -4,7 +4,7 @@ Changes a database role (user or group).
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER ROLE <role_specification> [ WITH ] <option> [ ... ]
 
 where <option> can be:
@@ -46,7 +46,7 @@ where <role_specification> can be:
 
 ## Description
 
-`ALTER ROLE` changes the attributes of a Greenplum Database role. There are several variants of this command.
+`ALTER ROLE` changes the attributes of a Cloudberry Database role. There are several variants of this command.
 
 **WITH option**
 :   Changes many of the role attributes that can be specified in [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md). (All of the possible attributes are covered, execept that there are no options for adding or removing memberships; use [GRANT](/docs/sql-statements/sql-statement-grant.md) and [REVOKE](/docs/sql-statements/sql-statement-revoke.md) for that.) Attributes not mentioned in the command retain their previous settings. Database superusers can change any of these settings for any role. Roles having `CREATEROLE` privilege can change any of these settings except `SUPERUSER`, `REPLICATION`, and `BYPASSRLS`, but only for non-superuser and non-replication roles. Ordinary roles can only change their own password.
@@ -206,7 +206,7 @@ ALTER ROLE parttime_user RESOURCE GROUP rg_light;
 
 ## Compatibility
 
-The `ALTER ROLE` statement is a Greenplum Database extension.
+The `ALTER ROLE` statement is a Cloudberry Database extension.
 
 ## See Also
 

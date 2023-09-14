@@ -4,7 +4,7 @@ Defines a new access method.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE ACCESS METHOD <name>
     TYPE <access_method_type>
     HANDLER <handler_function>
@@ -40,7 +40,7 @@ CREATE ACCESS METHOD heptree TYPE INDEX HANDLER heptree_handler;
 
 ## Compatibility
 
-`CREATE ACCESS METHOD` is a Greenplum Database extension.
+`CREATE ACCESS METHOD` is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Defines a new table from the results of a query.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [ [ GLOBAL | LOCAL ] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXISTS ] <table_name>
         [ (<column_name> [, ...] ) ]
         [ USING <access_method> ]
@@ -58,11 +58,11 @@ WITH ( storage_parameter=value )
 ON COMMIT
 :   The behavior of temporary tables at the end of a transaction block can be controlled using `ON COMMIT`. The three options are:
 
-:   PRESERVE ROWS — Greenplum Database takes no special action at the ends of transactions for temporary tables. This is the default behavior.
+:   PRESERVE ROWS — Cloudberry Database takes no special action at the ends of transactions for temporary tables. This is the default behavior.
 
-:   DELETE ROWS — Greenplum Database deletes all rows in the temporary table at the end of each transaction block. Essentially, an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) is done at each commit.
+:   DELETE ROWS — Cloudberry Database deletes all rows in the temporary table at the end of each transaction block. Essentially, an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) is done at each commit.
 
-:   DROP — Greenplum Database drops the temporary table at the end of the current transaction block.
+:   DROP — Cloudberry Database drops the temporary table at the end of the current transaction block.
 
 TABLESPACE tablespace_name
 :   The tablespace_name parameter is the name of the tablespace in which the new table is to be created. If not specified, the database's [default_tablespace](../config_params/guc-list.html#default_tablespace) is used, or [temp_tablespaces](../config_params/guc-list.html#temp_tablespaces) if the table is temporary.
@@ -73,7 +73,7 @@ AS query
 DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
-:   Used to declare the Greenplum Database distribution policy for the table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
+:   Used to declare the Cloudberry Database distribution policy for the table. Refer to [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
 
 
 ## Notes
@@ -111,11 +111,11 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
 
 `CREATE TABLE AS` conforms to the SQL standard, with the following exceptions:
 
--   The standard requires parentheses around the subquery clause; in Greenplum Database, these parentheses are optional.
--   In the standard, the `WITH [NO] DATA` clause is required, in Greenplum Database it is optional.
--   Greenplum Database handles temporary tables differently from the standard; see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
--   The `WITH` clause is a Greenplum Database extension; storage parameters are not part of the standard.
--   The Greenplum Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
+-   The standard requires parentheses around the subquery clause; in Cloudberry Database, these parentheses are optional.
+-   In the standard, the `WITH [NO] DATA` clause is required, in Cloudberry Database it is optional.
+-   Cloudberry Database handles temporary tables differently from the standard; see [CREATE TABLE](/docs/sql-statements/sql-statement-create-table.md) for details.
+-   The `WITH` clause is a Cloudberry Database extension; storage parameters are not part of the standard.
+-   The Cloudberry Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Changes the definition of a text search dictionary.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TEXT SEARCH DICTIONARY <name> (
     <option> [ = <value> ] [, ... ]
 )

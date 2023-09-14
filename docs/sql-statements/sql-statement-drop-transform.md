@@ -4,7 +4,7 @@ Removes a transform.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP TRANSFORM [IF EXISTS] FOR <type_name> LANGUAGE <lang_name> [CASCADE | RESTRICT]
 ```
 
@@ -17,7 +17,7 @@ To drop a transform, you must own the type and the language. These are the same 
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the transform does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the transform does not exist. Cloudberry Database issues a notice in this case.
 
 type_name
 :   The name of the data type of the transform.
@@ -41,7 +41,7 @@ DROP TRANSFORM FOR hstore LANGUAGE plpython3u;
 
 ## Compatibility
 
-This form of `DROP TRANSFORM` is a Greenplum Database extension. See [CREATE TRANSFORM](/docs/sql-statements/sql-statement-create-transform.md) for details.
+This form of `DROP TRANSFORM` is a Cloudberry Database extension. See [CREATE TRANSFORM](/docs/sql-statements/sql-statement-create-transform.md) for details.
 
 ## See Also
 

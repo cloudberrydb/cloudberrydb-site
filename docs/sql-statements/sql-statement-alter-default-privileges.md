@@ -4,7 +4,7 @@ Changes default access privileges.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 
 ALTER DEFAULT PRIVILEGES
     [ FOR { ROLE | USER } <target_role> [, ...] ]
@@ -71,7 +71,7 @@ REVOKE [ GRANT OPTION FOR ]
 
 ## Description
 
-`ALTER DEFAULT PRIVILEGES` allows you to set the privileges that will be applied to objects created in the future. (It does not affect privileges assigned to already-existing objects.) Currently, only the privileges for schemas, tables (including views and foreign tables), sequences, functions, and types (including domains) can be altered. For this command, functions include aggregates and procedures. The words `FUNCTIONS` and `ROUTINES` are equivalent in this command. (`ROUTINES` is preferred going forward as the standard term for functions and procedures taken together. In earlier Greenplum Database releases, only the word `FUNCTIONS` was allowed. It is not possible to set default privileges for functions and procedures separately.)
+`ALTER DEFAULT PRIVILEGES` allows you to set the privileges that will be applied to objects created in the future. (It does not affect privileges assigned to already-existing objects.) Currently, only the privileges for schemas, tables (including views and foreign tables), sequences, functions, and types (including domains) can be altered. For this command, functions include aggregates and procedures. The words `FUNCTIONS` and `ROUTINES` are equivalent in this command. (`ROUTINES` is preferred going forward as the standard term for functions and procedures taken together. In earlier Cloudberry Database releases, only the word `FUNCTIONS` was allowed. It is not possible to set default privileges for functions and procedures separately.)
 
 You can change default privileges only for objects that will be created by yourself or by roles that you are a member of. The privileges can be set globally (i.e., for all objects created in the current database), or just for objects created in specified schemas.
 

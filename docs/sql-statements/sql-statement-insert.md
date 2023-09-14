@@ -4,7 +4,7 @@ Creates new rows in a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
 INSERT INTO <table_name> [ AS <alias> ] [( <column_name> [, ...] )]
    [ OVERRIDING { SYSTEM | USER } VALUE ]
@@ -36,7 +36,7 @@ The target column names may be listed in any order. If no list of column names i
 
 Each column not present in the explicit or implicit column list will be filled with a default value, either its declared default value or null if there is no default.
 
-If the expression for any column is not of the correct data type, Greenplum Database attempts automatic type conversion.
+If the expression for any column is not of the correct data type, Cloudberry Database attempts automatic type conversion.
 
 `INSERT` into tables that lack unique indexes will not be blocked by concurrent activity. Tables with unique indexes might block if concurrent sessions perform actions that lock or modify rows matching the unique index values being inserted; the details are covered in [Index Uniqueness Checks](https://www.postgresql.org/docs/12/index-unique-checks.html) in the PostgreSQL documentation. `ON CONFLICT` can be used to specify an alternative action to raising a unique constraint or exclusion constraint violation error. (See [ON CONFLICT Clause](#section5a) below.)
 
@@ -103,7 +103,7 @@ For a partitioned table, all the child tables are locked during the `INSERT` ope
 The optional `ON CONFLICT` clause specifies an alternative action to raising a unique violation or exclusion constraint violation error. For each individual row proposed for insertion, either the insertion proceeds, or, if an arbiter constraint or index specified by conflict_target is violated, the alternative conflict_action is taken. `ON CONFLICT DO NOTHING` simply avoids inserting a row as its alternative action. `ON CONFLICT DO UPDATE` updates the existing row that conflicts with the row proposed for insertion as its alternative action.
 
 
-conflict_target can perform unique index inference. When performing inference, it consists of one or more index_column_name columns and/or index_expression expressions, and an optional index_predicate. All table_name unique indexes that, without regard to order, contain exactly the conflict_target-specified columns/expressions are inferred (chosen) as arbiter indexes. If an index_predicate is specified, it must, as a further requirement for inference, satisfy arbiter indexes. Note that this means a non-partial unique index (a unique index without a predicate) will be inferred (and thus used by `ON CONFLICT`) if such an index satisfying every other criteria is available. If an attempt at inference is unsuccessful, Greenplum Database raises an error.
+conflict_target can perform unique index inference. When performing inference, it consists of one or more index_column_name columns and/or index_expression expressions, and an optional index_predicate. All table_name unique indexes that, without regard to order, contain exactly the conflict_target-specified columns/expressions are inferred (chosen) as arbiter indexes. If an index_predicate is specified, it must, as a further requirement for inference, satisfy arbiter indexes. Note that this means a non-partial unique index (a unique index without a predicate) will be inferred (and thus used by `ON CONFLICT`) if such an index satisfying every other criteria is available. If an attempt at inference is unsuccessful, Cloudberry Database raises an error.
 
 `ON CONFLICT DO UPDATE` guarantees an atomic `INSERT` or `UPDATE` outcome; provided there is no independent error, one of those two outcomes is guaranteed, even under high concurrency. This is also known as *UPSERT* — `UPDATE` or `INSERT`.
 
@@ -158,11 +158,11 @@ If the `INSERT` command contains a `RETURNING` clause, the result will be simila
 
 ## Notes
 
-If the specified table is a partitioned table, Greenplum Database routes each row to the appropriate partition and inserts into it. If the specified table is a partition, an error will occur if one of the input rows violates the partition constraint.
+If the specified table is a partitioned table, Cloudberry Database routes each row to the appropriate partition and inserts into it. If the specified table is a partition, an error will occur if one of the input rows violates the partition constraint.
 
 For a partitioned table, all of the child tables are locked during the `INSERT` operation when the Global Deadlock Detector is not enabled (the default). Only some of the leaf child tables are locked when the Global Deadlock Detector is enabled. For information about the Global Deadlock Detector, see [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
 
-Greenplum Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table.
+Cloudberry Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table.
 
 ## Examples
 
@@ -281,9 +281,9 @@ INSERT INTO distributors (did, dname) VALUES (10, 'Conrad International')
 
 ## Compatibility
 
-`INSERT` conforms to the SQL standard, except that the `RETURNING` clause is a Greenplum Database extension, as is the ability to use `WITH` with `INSERT`, and the ability to specify an alternative action with `ON CONFLICT`. Also, the case in which a column name list is omitted, but not all of the columns are filled from the `VALUES` clause or query, is disallowed by the standard.
+`INSERT` conforms to the SQL standard, except that the `RETURNING` clause is a Cloudberry Database extension, as is the ability to use `WITH` with `INSERT`, and the ability to specify an alternative action with `ON CONFLICT`. Also, the case in which a column name list is omitted, but not all of the columns are filled from the `VALUES` clause or query, is disallowed by the standard.
 
-The SQL standard specifies that `OVERRIDING SYSTEM VALUE` can only be specified if an identity column that is generated always exists. Greenplum Database allows the clause in any case and ignores it if it is not applicable.
+The SQL standard specifies that `OVERRIDING SYSTEM VALUE` can only be specified if an identity column that is generated always exists. Cloudberry Database allows the clause in any case and ignores it if it is not applicable.
 
 Possible limitations of the query clause are documented under [SELECT](/docs/sql-statements/sql-statement-select.md).
 

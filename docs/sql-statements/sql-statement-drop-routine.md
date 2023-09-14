@@ -4,7 +4,7 @@ Removes a routine.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP ROUTINE [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
     [CASCADE | RESTRICT]
 ```
@@ -25,7 +25,7 @@ This command will work independent of whether `foo` is an aggregate, function, o
 
 ## Compatibility
 
-This command conforms to the SQL standard, with these Greenplum Database extensions:
+This command conforms to the SQL standard, with these Cloudberry Database extensions:
 
 - The standard only allows one routine to be dropped per command.
 

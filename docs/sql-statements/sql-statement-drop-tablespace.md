@@ -4,7 +4,7 @@ Removes a tablespace.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP TABLESPACE [IF EXISTS] <name>
 ```
 
@@ -17,7 +17,7 @@ A tablespace can only be dropped by its owner or a superuser. The tablespace mus
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the tablespace does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the tablespace does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of the tablespace to remove.
@@ -26,7 +26,7 @@ name
 
 You cannot run `DROP TABLESPACE` inside a transaction block.
 
-Run `DROP TABLESPACE` during a period of low activity to avoid issues due to concurrent creation of tables and temporary objects. When a tablespace is dropped, there is a small window in which a table could be created in the tablespace that is currently being dropped. If this occurs, Greenplum Database returns a warning. This is an example of the `DROP TABLESPACE` warning.
+Run `DROP TABLESPACE` during a period of low activity to avoid issues due to concurrent creation of tables and temporary objects. When a tablespace is dropped, there is a small window in which a table could be created in the tablespace that is currently being dropped. If this occurs, Cloudberry Database returns a warning. This is an example of the `DROP TABLESPACE` warning.
 
 ```
 testdb=# DROP TABLESPACE mytest; 
@@ -48,7 +48,7 @@ DROP TABLESPACE mystuff;
 
 ## Compatibility
 
-`DROP TABLESPACE` is a Greenplum Database extension.
+`DROP TABLESPACE` is a Cloudberry Database extension.
 
 ## See Also
 

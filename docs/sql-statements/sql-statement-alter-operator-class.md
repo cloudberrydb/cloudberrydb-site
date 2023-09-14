@@ -4,7 +4,7 @@ Changes the definition of an operator class.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER OPERATOR CLASS <name> USING <index_method> RENAME TO <new_name>
 
 ALTER OPERATOR CLASS <name> USING <index_method> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }

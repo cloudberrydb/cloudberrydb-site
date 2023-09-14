@@ -4,7 +4,7 @@ Updates rows of a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
 UPDATE [ ONLY ] <table_name> [ [ AS ] <alias> ]
    SET { <column_name> = { <expression> | DEFAULT } |
@@ -22,11 +22,11 @@ UPDATE [ ONLY ] <table_name> [ [ AS ] <alias> ]
 
 There are two ways to modify a table using information contained in other tables in the database: using sub-selects, or specifying additional tables in the `FROM` clause. Which technique is more appropriate depends on the specific circumstances.
 
-The optional `RETURNING` clause causes `UPDATE` to compute and return value(s) based on each row actually updated. Greenplum Database can compute any expression using the table's columns, and/or columns of other tables mentioned in `FROM`. The new (post-update) values of the table's columns are used. The syntax of the `RETURNING` list is identical to that of the output list of `SELECT`.
+The optional `RETURNING` clause causes `UPDATE` to compute and return value(s) based on each row actually updated. Cloudberry Database can compute any expression using the table's columns, and/or columns of other tables mentioned in `FROM`. The new (post-update) values of the table's columns are used. The syntax of the `RETURNING` list is identical to that of the output list of `SELECT`.
 
 You must have the `UPDATE` privilege on the table, or at least on the column(s) that are listed to be updated. You must also have the `SELECT` privilege on any column whose values are read in the expressions or condition.
 
-> **Note** As the default, Greenplum Database acquires an `EXCLUSIVE` lock on tables for `UPDATE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
+> **Note** As the default, Cloudberry Database acquires an `EXCLUSIVE` lock on tables for `UPDATE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
 
 ## Parameters
 
@@ -132,7 +132,7 @@ temp_lo+15, DEFAULT)
 WHERE city = 'San Francisco' AND date = '2016-07-03';
 ```
 
-Increment the sales count of the salesperson who manages the account for Acme Corporation, using the `FROM` clause syntax (assuming both tables being joined are distributed in Greenplum Database on the `id` column):
+Increment the sales count of the salesperson who manages the account for Acme Corporation, using the `FROM` clause syntax (assuming both tables being joined are distributed in Cloudberry Database on the `id` column):
 
 ```
 UPDATE employees SET sales_count = sales_count + 1 FROM 
@@ -192,11 +192,11 @@ COMMIT;
 
 ## Compatibility
 
-This command conforms to the SQL standard, except that the `FROM` and `RETURNING` clauses are Greenplum Database extensions, as is the ability to use `WITH` with `UPDATE`.
+This command conforms to the SQL standard, except that the `FROM` and `RETURNING` clauses are Cloudberry Database extensions, as is the ability to use `WITH` with `UPDATE`.
 
-Some other database systems offer a `FROM` option in which the target table is supposed to be listed again within `FROM`. That is not how Greenplum Database interprets `FROM`. Be careful when porting applications that use this extension.
+Some other database systems offer a `FROM` option in which the target table is supposed to be listed again within `FROM`. That is not how Cloudberry Database interprets `FROM`. Be careful when porting applications that use this extension.
 
-According to the standard, the source value for a parenthesized sub-list of target column names can be any row-valued expression yielding the correct number of columns. Greenplum Database only allows the source value to be a [row constructor](https://www.postgresql.org/docs/12/sql-expressions.html#SQL-SYNTAX-ROW-CONSTRUCTORS) or a sub-`SELECT`. You can specify an individual column's updated value as `DEFAULT` in the row-constructor case, but not inside a sub-`SELECT`.
+According to the standard, the source value for a parenthesized sub-list of target column names can be any row-valued expression yielding the correct number of columns. Cloudberry Database only allows the source value to be a [row constructor](https://www.postgresql.org/docs/12/sql-expressions.html#SQL-SYNTAX-ROW-CONSTRUCTORS) or a sub-`SELECT`. You can specify an individual column's updated value as `DEFAULT` in the row-constructor case, but not inside a sub-`SELECT`.
 
 ## See Also
 

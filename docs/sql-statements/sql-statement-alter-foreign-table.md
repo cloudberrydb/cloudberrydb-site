@@ -4,7 +4,7 @@ Changes the definition of a foreign table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER FOREIGN TABLE [ IF EXISTS ] [ONLY] <name> [ * ]
     <action> [, ... ]
 ALTER FOREIGN TABLE [ IF EXISTS ] [ONLY] <name> [ * ]
@@ -49,13 +49,13 @@ ADD COLUMN
 :   This form adds a new column to the foreign table, using the same syntax as [CREATE FOREIGN TABLE](/docs/sql-statements/sql-statement-create-foreign-table.md). Unlike the case when you add a column to a regular table, nothing happens to the underlying storage: this action simply declares that some new column is now accessible through the foreign table.
 
 DROP COLUMN [ IF EXISTS ]
-:   This form drops a column from a foreign table. You must specify `CASCADE` if any objects outside of the table depend on the column; for example, views. If you specify `IF EXISTS` and the column does not exist, no error is thrown. In this case, Greenplum Database issues a notice instead.
+:   This form drops a column from a foreign table. You must specify `CASCADE` if any objects outside of the table depend on the column; for example, views. If you specify `IF EXISTS` and the column does not exist, no error is thrown. In this case, Cloudberry Database issues a notice instead.
 
 IF EXISTS
-:   If you specify `IF EXISTS` and the foreign table does not exist, no error is thrown. Greenplum Database issues a notice instead.
+:   If you specify `IF EXISTS` and the foreign table does not exist, no error is thrown. Cloudberry Database issues a notice instead.
 
 SET DATA TYPE
-:   This form changes the type of a column of a foreign table. Again, this has no effect on any underlying storage: this action simply changes the type that Greenplum Database believes the column to have.
+:   This form changes the type of a column of a foreign table. Again, this has no effect on any underlying storage: this action simply changes the type that Cloudberry Database believes the column to have.
 
 SET/DROP DEFAULT
 :   These forms set or remove the default value for a column. Default values apply only in subsequent `INSERT` or `UPDATE` commands; they do not cause rows already in the table to change.
@@ -105,9 +105,9 @@ SET SCHEMA
 :   This form moves the foreign table into another schema.
 
 OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
-:   Change options for the foreign table. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique (although it's OK for a table option and a column option to have the same name). Greenplum Database also validates names and values using the server's foreign-data wrapper.
+:   Change options for the foreign table. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique (although it's OK for a table option and a column option to have the same name). Cloudberry Database also validates names and values using the server's foreign-data wrapper.
 
-You can combine all of the actions except `RENAME` and `SET SCHEMA` into a list of multiple alterations for Greenplum Database to apply in parallel. For example, it is possible to add several columns and/or alter the type of several columns in a single command.
+You can combine all of the actions except `RENAME` and `SET SCHEMA` into a list of multiple alterations for Cloudberry Database to apply in parallel. For example, it is possible to add several columns and/or alter the type of several columns in a single command.
 
 If the command is written as `ALTER FOREIGN TABLE IF EXISTS ...` and the foreign table does not exist, no error is thrown. A notice is issued in this case.
 
@@ -185,7 +185,7 @@ ALTER FOREIGN TABLE myschema.distributors
 
 ## Compatibility
 
-The forms `ADD`, `DROP`, and `SET DATA TYPE` conform with the SQL standard. The other forms are Greenplum Database extensions of the SQL standard. The ability to specify more than one manipulation in a single `ALTER FOREIGN TABLE` command is also a Greenplum Database extension.
+The forms `ADD`, `DROP`, and `SET DATA TYPE` conform with the SQL standard. The other forms are Cloudberry Database extensions of the SQL standard. The ability to specify more than one manipulation in a single `ALTER FOREIGN TABLE` command is also a Cloudberry Database extension.
 
 You can use `ALTER FOREIGN TABLE ... DROP COLUMN` to drop the only column of a foreign table, leaving a zero-column table. This is an extension of SQL, which disallows zero-column foreign tables.
 

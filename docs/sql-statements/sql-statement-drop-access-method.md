@@ -4,7 +4,7 @@ Removes an access method
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP ACCESS METHOD [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
@@ -15,7 +15,7 @@ DROP ACCESS METHOD [IF EXISTS] <name> [CASCADE | RESTRICT]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the access method does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the access method does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of an existing access method.
@@ -36,7 +36,7 @@ DROP ACCESS METHOD heptree;
 
 ## Compatibility
 
-`DROP ACCESS METHOD` is a Greenplum Database extension.
+`DROP ACCESS METHOD` is a Cloudberry Database extension.
 
 ## See Also
 

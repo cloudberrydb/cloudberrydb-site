@@ -2,11 +2,11 @@
 
 Defines a new table.
 
-> **Note** Greenplum Database accepts, but does not enforce, referential integrity syntax (foreign key constraints).
+> **Note** Cloudberry Database accepts, but does not enforce, referential integrity syntax (foreign key constraints).
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [ [GLOBAL | LOCAL] {TEMPORARY | TEMP} | UNLOGGED ] TABLE [IF NOT EXISTS] <table_name> ( 
   [ { <column_name> <data_type> [ COLLATE <collation> ] [ ENCODING ( <storage_directive> [, ...] ) ] [<column_constraint> [ ... ] ]
     | <table_constraint>
@@ -201,23 +201,23 @@ If you specify a schema name, Greenplum creates the table in the specified schem
 
 The optional constraint clauses specify conditions that new or updated rows must satisfy for an insert or update operation to succeed. A constraint is an SQL object that helps define the set of valid values in the table in various ways.
 
-Greenplum Database accepts, but does not enforce, referential integrity (foreign key) constraints. The information is retained in the system catalogs but is otherwise ignored.
+Cloudberry Database accepts, but does not enforce, referential integrity (foreign key) constraints. The information is retained in the system catalogs but is otherwise ignored.
 
 You can define two types of constraints: table constraints and column constraints. A column constraint is defined as part of a column definition. A table constraint definition is not tied to a particular column, and it can encompass more than one column. Every column constraint can also be written as a table constraint; a column constraint is only a notational convenience for use when the constraint only affects one column.
 
-When creating a table, you specify an additional clause to declare the Greenplum Database distribution policy. If a `DISTRIBUTED BY`, `DISTRIBUTED RANDOMLY`, or `DISTRIBUTED REPLICATED` clause is not supplied, then Greenplum Database assigns a hash distribution policy to the table using either the `PRIMARY KEY` (if the table has one) or the first column of the table as the distribution key. Columns of geometric or user-defined data types are not eligible to be a Greenplum distribution key column. If a table does not have a column of an eligible data type, the rows are distributed based on a random distribution. To ensure an even distribution of data in your Greenplum Database system, you want to choose a distribution key that is unique for each record, or if that is not possible, then choose `DISTRIBUTED RANDOMLY`.
+When creating a table, you specify an additional clause to declare the Cloudberry Database distribution policy. If a `DISTRIBUTED BY`, `DISTRIBUTED RANDOMLY`, or `DISTRIBUTED REPLICATED` clause is not supplied, then Cloudberry Database assigns a hash distribution policy to the table using either the `PRIMARY KEY` (if the table has one) or the first column of the table as the distribution key. Columns of geometric or user-defined data types are not eligible to be a Greenplum distribution key column. If a table does not have a column of an eligible data type, the rows are distributed based on a random distribution. To ensure an even distribution of data in your Cloudberry Database system, you want to choose a distribution key that is unique for each record, or if that is not possible, then choose `DISTRIBUTED RANDOMLY`.
 
-If you supply the `DISTRIBUTED REPLICATED` clause, Greenplum Database distributes all rows of the table to all segments in the Greenplum Database system. You can use this option in cases where user-defined functions must run on the segments, and the functions require access to all rows of the table. Replicated functions can also be used to improve query performance by preventing broadcast motions for the table. The `DISTRIBUTED REPLICATED` clause cannot be used with the `PARTITION` clauses or the `INHERITS` clause. A replicated table also cannot be inherited by another table. The hidden system columns (`ctid`, `cmin`, `cmax`, `xmin`, `xmax`, and `gp_segment_id`) cannot be referenced in user queries on replicated tables because they have no single, unambiguous value. Greenplum Database returns a `column does not exist` error for the query.
+If you supply the `DISTRIBUTED REPLICATED` clause, Cloudberry Database distributes all rows of the table to all segments in the Cloudberry Database system. You can use this option in cases where user-defined functions must run on the segments, and the functions require access to all rows of the table. Replicated functions can also be used to improve query performance by preventing broadcast motions for the table. The `DISTRIBUTED REPLICATED` clause cannot be used with the `PARTITION` clauses or the `INHERITS` clause. A replicated table also cannot be inherited by another table. The hidden system columns (`ctid`, `cmin`, `cmax`, `xmin`, `xmax`, and `gp_segment_id`) cannot be referenced in user queries on replicated tables because they have no single, unambiguous value. Cloudberry Database returns a `column does not exist` error for the query.
 
 The `PARTITION BY` and `PARTITION OF` clauses allow you to divide the table into multiple sub-tables (or parts) that, taken together, make up the parent table and share its schema.
 
-> **Note** Greenplum Database supports both *classic* and *modern* partitioning syntaxes. Refer to [Choosing the Partitioning Syntax](../../admin_guide/ddl/ddl-partition.html#choose) for more information, including guidance on selecting the appropriate syntax for a partitioned table.
+> **Note** Cloudberry Database supports both *classic* and *modern* partitioning syntaxes. Refer to [Choosing the Partitioning Syntax](../../admin_guide/ddl/ddl-partition.html#choose) for more information, including guidance on selecting the appropriate syntax for a partitioned table.
 
 
 ## Parameters
 
 GLOBAL | LOCAL
-:   These keywords are present for SQL standard compatibility, but have no effect in Greenplum Database and are deprecated.
+:   These keywords are present for SQL standard compatibility, but have no effect in Cloudberry Database and are deprecated.
 
 TEMPORARY | TEMP
 :   If specified, the table is created as a temporary table. Temporary tables are automatically dropped at the end of a session, or optionally at the end of the current transaction (see `ON COMMIT`). Existing permanent tables with the same name are not visible to the current session while the temporary table exists, unless they are referenced with schema-qualified names. Any indexes created on a temporary table are automatically temporary as well.
@@ -225,10 +225,10 @@ TEMPORARY | TEMP
 :   Be sure to perform appropriate vacuum and analyze operations on temporary tables via session SQL commands. For example, if you are going to use a temporary table in complex queries, run `ANALYZE` on the temporary table after it is populated.
 
 UNLOGGED
-:   If specified, the table is created as an unlogged table. Data written to unlogged tables is not written to the write-ahead (WAL) log, which makes them considerably faster than ordinary tables. However, the contents of an unlogged table are not replicated to mirror segment instances. Also an unlogged table is not crash-safe: Greenplum Database automatically truncates an unlogged table after a crash or unclean shutdown. Any indexes created on an unlogged table are automatically unlogged as well.
+:   If specified, the table is created as an unlogged table. Data written to unlogged tables is not written to the write-ahead (WAL) log, which makes them considerably faster than ordinary tables. However, the contents of an unlogged table are not replicated to mirror segment instances. Also an unlogged table is not crash-safe: Cloudberry Database automatically truncates an unlogged table after a crash or unclean shutdown. Any indexes created on an unlogged table are automatically unlogged as well.
 
 IF NOT EXISTS
-:   Do not throw an error if a relation with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
+:   Do not throw an error if a relation with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the one that would have been created.
 
 table_name
 :   The name (optionally schema-qualified) of the table to be created.
@@ -242,9 +242,9 @@ column_name
 :   The name of a column to be created in the new table.
 
 data_type
-:   The data type of the column. This may include array specifiers. For more information on the data types supported by Greenplum Database, refer to the Data Types documentation.
+:   The data type of the column. This may include array specifiers. For more information on the data types supported by Cloudberry Database, refer to the Data Types documentation.
 
-:   For table columns that contain textual data, Specify the data type `VARCHAR` or `TEXT`. Specifying the data type `CHAR` is not recommended. In Greenplum Database, the data types `VARCHAR` or `TEXT` handle padding added to the data (space characters added after the last non-space character) as significant characters, the data type `CHAR` does not. See [Notes](#section5).
+:   For table columns that contain textual data, Specify the data type `VARCHAR` or `TEXT`. Specifying the data type `CHAR` is not recommended. In Cloudberry Database, the data types `VARCHAR` or `TEXT` handle padding added to the data (space characters added after the last non-space character) as significant characters, the data type `CHAR` does not. See [Notes](#section5).
 
 COLLATE collation
 :   The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
@@ -291,7 +291,7 @@ PARTITION BY { RANGE | LIST | HASH } ( { column_name | ( expression ) } [ opclas
 
 :   > **Note** Only the modern partitioning syntax supports hash partitions.
 
-:   A partitioned table is divided into sub-tables (called partitions), which are typically created using separate `CREATE TABLE` commands. The partitioned table is itself empty. A data row inserted into the table is routed to a partition based on the value of columns or expressions in the partition key. If no existing partition matches the values in the new row, Greenplum Database reports an error.
+:   A partitioned table is divided into sub-tables (called partitions), which are typically created using separate `CREATE TABLE` commands. The partitioned table is itself empty. A data row inserted into the table is routed to a partition based on the value of columns or expressions in the partition key. If no existing partition matches the values in the new row, Cloudberry Database reports an error.
 
 :   Partitioned tables do not support `EXCLUDE` constraints; however, you can define these constraints on individual partitions.
 
@@ -324,7 +324,7 @@ PARTITION OF parent_table { FOR VALUES partition_bound_spec | DEFAULT }
 
 :   A partition must have the same column names and types as the partitioned table to which it belongs. Modifications to the column names or types of a partitioned table automatically propagate to all partitions. `CHECK` constraints are inherited automatically by every partition, but an individual partition may specify additional `CHECK` constraints; additional constraints with the same name and condition as in the parent will be merged with the parent constraint. Defaults may be specified separately for each partition. But note that a partition's default value is not applied when inserting a tuple through a partitioned table.
 
-:   Greenplum automatically routes rows inserted into a partitioned table to the correct partition. If no suitable partition exists, Greenplum Database returns an error.
+:   Greenplum automatically routes rows inserted into a partitioned table to the correct partition. If no suitable partition exists, Cloudberry Database returns an error.
 
 :   Operations such as `TRUNCATE` which normally affect a table and all of its inheritance children will cascade to all partitions, but may also be performed on an individual partition. Note that dropping a partition with `DROP TABLE` requires taking an `ACCESS EXCLUSIVE` lock on the parent table.
 
@@ -335,7 +335,7 @@ LIKE source_table [like_option `...`]
 
 :   Unlike `INHERITS`, the new table and original table are completely decoupled after creation is complete. Changes to the original table will not be applied to the new table, and it is not possible to include data of the new table in scans of the original table.
 
-:   Also unlike `INHERITS`, columns and constraints copied by `LIKE` are not merged with similarly named columns and constraints. If the same name is specified explicitly or in another `LIKE` clause, Greenplum Database signals an error.
+:   Also unlike `INHERITS`, columns and constraints copied by `LIKE` are not merged with similarly named columns and constraints. If the same name is specified explicitly or in another `LIKE` clause, Cloudberry Database signals an error.
 
 :   The optional like_option clauses specify which additional properties of the original table to copy. Specifying `INCLUDING` copies the property, specifying `EXCLUDING` omits the property. `EXCLUDING` is the default. If multiple specifications are made for the same kind of object, the last one is used. The available options are:
 
@@ -377,7 +377,7 @@ LIKE source_table [like_option `...`]
     INCLUDING ALL
     :   `INCLUDING ALL` is an abbreviated form of all available options (It may be useful to specify  individual `EXCLUDING` clauses after `INCLUDING ALL` to select all but some specific options.)
 
-:   You can also use the `LIKE` clause to copy column definitions from views, foreign tables, or composite types. Greenplum Database ignores inapplicable options (for example, `INCLUDING INDEXES` from a view).
+:   You can also use the `LIKE` clause to copy column definitions from views, foreign tables, or composite types. Cloudberry Database ignores inapplicable options (for example, `INCLUDING INDEXES` from a view).
 
 CONSTRAINT constraint_name
 :   An optional name for a column or table constraint. If the constraint is violated, the constraint name is present in error messages, so constraint names like `column must be positive` can be used to communicate helpful constraint information to client applications. (Use double-quotes to specify constraint names that contain spaces.) If a constraint name is not specified, the system generates a name.
@@ -399,7 +399,7 @@ CHECK (expression) [ NO INHERIT ]
 
 :   A constraint marked with `NO INHERIT` will not propagate to child tables.
 
-:   When a table has multiple `CHECK` constraints, they will be tested for each row in alphabetical order by name, after checking `NOT NULL` constraints. (Previous Greenplum Database versions did not honor any particular firing order for `CHECK` constraints.)
+:   When a table has multiple `CHECK` constraints, they will be tested for each row in alphabetical order by name, after checking `NOT NULL` constraints. (Previous Cloudberry Database versions did not honor any particular firing order for `CHECK` constraints.)
 
 DEFAULT default_expr
 :   The `DEFAULT` clause assigns a default data value for the column whose column definition it appears within. The value is any variable-free expression (in particular, cross-references to other columns in the current table are not allowed). Subqueries are not allowed either. The data type of the default expression must match the data type of the column. The default expression will be used in any insert operation that does not specify a value for the column. If there is no default for a column, then the default is null.
@@ -410,7 +410,7 @@ GENERATED ALWAYS AS ( generation_expr ) STORED
 :   The generation expression can refer to other columns in the table, but not other generated columns. Any functions and operators used must be immutable. References to other tables are not allowed.
 
 GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY [ ( sequence_options ) ]
-:   This clause creates the column as an identity column. Greenplum Database attaches an implicit sequence to it, and automatically assigns a value from the sequence to the column in new rows. Such a column is implicitly `NOT NULL`.
+:   This clause creates the column as an identity column. Cloudberry Database attaches an implicit sequence to it, and automatically assigns a value from the sequence to the column in new rows. Such a column is implicitly `NOT NULL`.
 :   The clauses `ALWAYS` and `BY DEFAULT` determine how the sequence value is given precedence over a user-specified value in an `INSERT` statement. If `ALWAYS` is specified, a user-specified value is only accepted if the `INSERT` statement specifies `OVERRIDING SYSTEM VALUE`. If `BY DEFAULT` is specified, then the user-specified value takes precedence. See [INSERT](/docs/sql-statements/sql-statement-insert.md) for details. (In the `COPY` command, ueser-specified values are always used regardless of this setting.)
 :   You can use the optional sequence_options clause to override the options of the sequence. See [CREATE SEQUENCE](/docs/sql-statements/sql-statement-create-sequence.md) for details.
 
@@ -445,7 +445,7 @@ PRIMARY KEY ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table 
 EXCLUDE [ USING index_method ] ( exclude_element WITH operator [, ... ] ) index_parameters [ WHERE ( predicate ) ]
 :   The `EXCLUDE` clause defines an exclusion constraint, which guarantees that if any two rows are compared on the specified column(s) or expression(s) using the specified operator(s), not all of these comparisons will return `TRUE`. If all of the specified operators test for equality, this is equivalent to a `UNIQUE` constraint, although an ordinary unique constraint will be faster. However, exclusion constraints can specify constraints that are more general than simple equality. For example, you can specify a constraint that no two rows in the table contain overlapping circles by using the `&&` operator.
 
-:   Greenplum Database does not support specifying an exclusion constraint on a randomly-distributed table.
+:   Cloudberry Database does not support specifying an exclusion constraint on a randomly-distributed table.
 
 :   Exclusion constraints are implemented using an index, so each specified operator must be associated with an appropriate operator class for the index access method index_method. The operators are required to be commutative. Each exclude_element can optionally specify an operator class and/or ordering options; these are described fully under [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md).
 
@@ -485,7 +485,7 @@ ON COMMIT
 
 :   **PRESERVE ROWS** - No special action is taken at the ends of transactions for temporary tables. This is the default behavior.
 
-:   **DELETE ROWS** - All rows in the temporary table will be deleted at the end of each transaction block. Essentially, Greenplum Database performs an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) at each commit. When used on a partitioned table, this operation is not cascaded to its partitions.
+:   **DELETE ROWS** - All rows in the temporary table will be deleted at the end of each transaction block. Essentially, Cloudberry Database performs an automatic [TRUNCATE](/docs/sql-statements/sql-statement-truncate.md) at each commit. When used on a partitioned table, this operation is not cascaded to its partitions.
 
 :   **DROP** - The temporary table will be dropped at the end of the current transaction block. When used on a partitioned table, this action drops its partitions and when used on tables with inheritance children, it drops the dependent children.
 
@@ -498,22 +498,22 @@ USING INDEX TABLESPACE tablespace
 DISTRIBUTED BY ( column [opclass] [, ... ] )
 DISTRIBUTED RANDOMLY
 DISTRIBUTED REPLICATED
-:   Used to declare the Greenplum Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
+:   Used to declare the Cloudberry Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
 
-:   The Greenplum Database server configuration parameter [gp_create_table_random_default_distribution](../config_params/guc-list.html#gp_create_table_random_default_distribution) controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Greenplum Database follows these rules to create a table if a distribution policy is not specified.
+:   The Cloudberry Database server configuration parameter [gp_create_table_random_default_distribution](../config_params/guc-list.html#gp_create_table_random_default_distribution) controls the default table distribution policy if the DISTRIBUTED BY clause is not specified when you create a table. Cloudberry Database follows these rules to create a table if a distribution policy is not specified.
 
-    If the value of the parameter is `off` (the default), Greenplum Database chooses the table distribution key based on the command:
+    If the value of the parameter is `off` (the default), Cloudberry Database chooses the table distribution key based on the command:
 
     -   If a `LIKE` or `INHERITS` clause is specified, then Greenplum copies the distribution key from the source or parent table.
     -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` constraints are specified, then Greenplum chooses the largest subset of all the key columns as the distribution key.
     -   If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Greenplum chooses the first suitable column as the distribution key. (Columns with geometric or user-defined data types are not eligible as Greenplum distribution key columns.)
 
-    If the value of the parameter is set to `on`, Greenplum Database follows these rules:
+    If the value of the parameter is set to `on`, Cloudberry Database follows these rules:
 
     -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are not specified, the distribution of the table is random (`DISTRIBUTED RANDOMLY`). Table distribution is random even if the table creation command contains the `LIKE` or `INHERITS` clause.
     -   If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are specified, you must also specify a `DISTRIBUTED BY` clause If a `DISTRIBUTED BY` clause is not specified as part of the table creation command, the command fails.
 
-:   The `DISTRIBUTED REPLICATED` clause replicates the entire table to all Greenplum Database segment instances. It can be used when it is necessary to run user-defined functions on segments when the functions require access to all rows in the table, or to improve query performance by preventing broadcast motions.
+:   The `DISTRIBUTED REPLICATED` clause replicates the entire table to all Cloudberry Database segment instances. It can be used when it is necessary to run user-defined functions on segments when the functions require access to all rows in the table, or to improve query performance by preventing broadcast motions.
 
 ### Classic Partitioning Syntax Parameters
 
@@ -523,7 +523,7 @@ Descriptions of additional parameters that are specific to the *classic partitio
 
 CREATE TABLE table_name ... PARTITION BY
 
-:   When creating a partitioned table using the *classic syntax*, Greenplum Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The pg_partitioned_table system catalog contains information about the sub-partition tables.
+:   When creating a partitioned table using the *classic syntax*, Cloudberry Database creates the root partitioned table with the specified table name. Greenplum also creates a hierarchy of tables, child tables, that are the sub-partitions based on the partitioning options that you specify. The pg_partitioned_table system catalog contains information about the sub-partition tables.
 
 classic_partition_spec
 :   Declares the individual partitions to create. Each partition can be defined individually or, for range partitions, you can use the `EVERY` clause (with a `START` and optional `END` clause) to define an increment pattern to use to create the individual partitions.
@@ -566,7 +566,7 @@ Note that you can also set storage parameters for a particular partition or sub-
 
 You can specify the defaults for some of the table storage options with the server configuration parameter [gp_default_storage_options](../config_params/guc-list.html#gp_default_storage_options). For information about setting default storage options, see [Notes](#section5).
 
-> **Note** Because Greenplum Database does not permit autovacuuming user tables, it accepts, but does not apply, certain per-table parameter settings as noted below.
+> **Note** Because Cloudberry Database does not permit autovacuuming user tables, it accepts, but does not apply, certain per-table parameter settings as noted below.
 
 The following table storage parameters are available:
 
@@ -594,7 +594,7 @@ compresstype
 
 :   For columns of type `BIGINT`, `INTEGER`, `DATE`, `TIME`, or `TIMESTAMP`, delta compression is also applied if the `compresstype` option is set to `RLE_TYPE` compression. The delta compression algorithm is based on the delta between column values in consecutive rows and is designed to improve compression when data is loaded in sorted order or the compression is applied to column data that is in sorted order.
 
-:   For information about using table compression, see [Choosing the Table Storage Model](../../admin_guide/ddl/ddl-storage.html#topic1) in the *Greenplum Database Administrator Guide*.
+:   For information about using table compression, see [Choosing the Table Storage Model](../../admin_guide/ddl/ddl-storage.html#topic1) in the *Cloudberry Database Administrator Guide*.
 
 fillfactor
 :   The fillfactor for a table is a percentage between 10 and 100. 100 (complete packing) is the default. When a smaller fillfactor is specified, `INSERT` operations pack table pages only to the indicated percentage; the remaining space on each page is reserved for updating rows on that page. This gives `UPDATE` a chance to place the updated copy of a row on the same page as the original, which is more efficient than placing it on a different page. For a table whose entries are never updated, complete packing is the best choice, but in heavily updated tables smaller fillfactors are appropriate. This parameter cannot be set for TOAST tables.
@@ -672,23 +672,23 @@ log_autovacuum_min_duration, toast.log_autovacuum_min_duration (integer)
 
 ## Notes
 
-Greenplum Database automatically creates an index for each unique constraint and primary key constraint to enforce uniqueness, so it is not necessary to create an index explicitly for primary key columns. (See [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md) for more information.)
+Cloudberry Database automatically creates an index for each unique constraint and primary key constraint to enforce uniqueness, so it is not necessary to create an index explicitly for primary key columns. (See [CREATE INDEX](/docs/sql-statements/sql-statement-create-index.md) for more information.)
 
 Unique constraints and primary keys are not inherited.
 
 You cannot define a table with more than 1600 columns. (In practice, the effective limit is usually lower because of tuple-length constraints.)
 
-The Greenplum Database data types `VARCHAR` or `TEXT` handle padding added to the textual data (space characters added after the last non-space character) as significant characters; the data type `CHAR` does not.
+The Cloudberry Database data types `VARCHAR` or `TEXT` handle padding added to the textual data (space characters added after the last non-space character) as significant characters; the data type `CHAR` does not.
 
-In Greenplum Database, values of type `CHAR(<n>)` are padded with trailing spaces to the specified width `<n>`. The values are stored and displayed with the spaces. However, the padding spaces are treated as semantically insignificant. When the values are distributed, the trailing spaces are disregarded. The trailing spaces are also treated as semantically insignificant when comparing two values of data type `CHAR`, and the trailing spaces are removed when converting a character value to one of the other string types.
+In Cloudberry Database, values of type `CHAR(<n>)` are padded with trailing spaces to the specified width `<n>`. The values are stored and displayed with the spaces. However, the padding spaces are treated as semantically insignificant. When the values are distributed, the trailing spaces are disregarded. The trailing spaces are also treated as semantically insignificant when comparing two values of data type `CHAR`, and the trailing spaces are removed when converting a character value to one of the other string types.
 
-Greenplum Database requires certain special conditions for primary key and unique constraints with regards to columns that are the *distribution key* in a Greenplum table. For a unique constraint to be enforced in Greenplum Database, the table must be hash-distributed (not `DISTRIBUTED RANDOMLY`), and the constraint columns must be the same as, or a superset of, the table's distribution key columns.
+Cloudberry Database requires certain special conditions for primary key and unique constraints with regards to columns that are the *distribution key* in a Greenplum table. For a unique constraint to be enforced in Cloudberry Database, the table must be hash-distributed (not `DISTRIBUTED RANDOMLY`), and the constraint columns must be the same as, or a superset of, the table's distribution key columns.
 
 Replicated tables (`DISTRIBUTED REPLICATED`) can have both `PRIMARY KEY` and `UNIQUE` column constraints.
 
 A primary key constraint is simply a combination of a unique constraint and a not-null constraint.
 
-Foreign key constraints are not supported in Greenplum Database.
+Foreign key constraints are not supported in Cloudberry Database.
 
 For inherited tables, unique constraints, primary key constraints, indexes and table privileges are *not* inherited in the current implementation.
 
@@ -1074,11 +1074,11 @@ PARTITION BY RANGE (year)
 
 ### Temporary Tables
 
-In the SQL standard, temporary tables are defined just once and automatically exist (starting with empty contents) in every session that needs them. Greenplum Database instead requires each session to issue its own `CREATE TEMPORARY TABLE` command for each temporary table to be used. This allows different sessions to use the same temporary table name for different purposes, whereas the standard's approach constrains all instances of a given temporary table name to have the same table structure.
+In the SQL standard, temporary tables are defined just once and automatically exist (starting with empty contents) in every session that needs them. Cloudberry Database instead requires each session to issue its own `CREATE TEMPORARY TABLE` command for each temporary table to be used. This allows different sessions to use the same temporary table name for different purposes, whereas the standard's approach constrains all instances of a given temporary table name to have the same table structure.
 
-The standard's distinction between global and local temporary tables is not in Greenplum Database. Greenplum Database will accept the `GLOBAL` and `LOCAL` keywords in a temporary table declaration, but they have no effect and are deprecated.
+The standard's distinction between global and local temporary tables is not in Cloudberry Database. Cloudberry Database will accept the `GLOBAL` and `LOCAL` keywords in a temporary table declaration, but they have no effect and are deprecated.
 
-If the `ON COMMIT` clause is omitted, the SQL standard specifies that the default behavior as `ON COMMIT DELETE ROWS`. However, the default behavior in Greenplum Database is `ON COMMIT PRESERVE ROWS`. The `ON COMMIT DROP` option does not exist in the SQL standard.
+If the `ON COMMIT` clause is omitted, the SQL standard specifies that the default behavior as `ON COMMIT DELETE ROWS`. However, the default behavior in Cloudberry Database is `ON COMMIT PRESERVE ROWS`. The `ON COMMIT DROP` option does not exist in the SQL standard.
 
 ### Non-Deferred Uniqueness Constraints
 
@@ -1086,25 +1086,25 @@ When a `UNIQUE` or `PRIMARY KEY` constraint is not deferrable, Greeplum Database
 
 ### Column Check Constraints
 
-**Column Check Constraints** — The SQL standard states that `CHECK` column constraints may only refer to the column they apply to; only `CHECK` table constraints may refer to multiple columns. Greenplum Database does not enforce this restriction; it treats column and table check constraints alike.
+**Column Check Constraints** — The SQL standard states that `CHECK` column constraints may only refer to the column they apply to; only `CHECK` table constraints may refer to multiple columns. Cloudberry Database does not enforce this restriction; it treats column and table check constraints alike.
 
-**Exclude Constraint** — The `EXCLUDE` constraint type is a Greenplum Database extension.
+**Exclude Constraint** — The `EXCLUDE` constraint type is a Cloudberry Database extension.
 
-**NULL Constraint** — The `NULL` constraint is a Greenplum Database extension to the SQL standard that is included for compatibility with some other database systems (and for symmetry with the `NOT NULL` constraint). Since it is the default for any column, its presence is not required.
+**NULL Constraint** — The `NULL` constraint is a Cloudberry Database extension to the SQL standard that is included for compatibility with some other database systems (and for symmetry with the `NOT NULL` constraint). Since it is the default for any column, its presence is not required.
 
 ### Constraint Naming
 
 The SQL standard states that table and domain constraints must have names that are unique across the schema containing the table or domain. Greenplum is laxer: it only requires constraint names to be unique across the constraints attached to a particular table or domain. However, this extra freedom does not exist for index-based constraints (`UNIQUE`, `PRIMARY KEY`, and `EXCLUDE` constraints), because the associated index is named the same as the constraint, and index names must be unique across all relations within the same schema.
 
-Greenplum Database does not currently record names for `NOT NULL` constraints at all, so they are not subject to the uniqueness restriction.
+Cloudberry Database does not currently record names for `NOT NULL` constraints at all, so they are not subject to the uniqueness restriction.
 
 ### Inheritance
 
-Multiple inheritance via the `INHERITS` clause is a Greenplum Database language extension. SQL:1999 and later define single inheritance using a different syntax and different semantics. SQL:1999-style inheritance is not yet supported by Greenplum Database.
+Multiple inheritance via the `INHERITS` clause is a Cloudberry Database language extension. SQL:1999 and later define single inheritance using a different syntax and different semantics. SQL:1999-style inheritance is not yet supported by Cloudberry Database.
 
 ### Zero-Column Tables
 
-Greenplum Database allows a table of no columns to be created (for example, `CREATE TABLE foo();`). This is an extension from the SQL standard, which does not allow zero-column tables. Because zero-column tables are not in themselves very useful, disallowing them creates odd special cases for `ALTER TABLE DROP COLUMN`, so Greenplum ignores this spec restriction.
+Cloudberry Database allows a table of no columns to be created (for example, `CREATE TABLE foo();`). This is an extension from the SQL standard, which does not allow zero-column tables. Because zero-column tables are not in themselves very useful, disallowing them creates odd special cases for `ALTER TABLE DROP COLUMN`, so Greenplum ignores this spec restriction.
 
 ### Multiple Identity Columns
 
@@ -1116,32 +1116,32 @@ The option `STORED` is not standard but is also used by other SQL implementation
 
 ### LIKE Clause
 
-While a `LIKE` clause exists in the SQL standard, many of the options that Greenplum Database accepts for it are not in the standard, and some of the standard's options are not implemented by Greenplum Database.
+While a `LIKE` clause exists in the SQL standard, many of the options that Cloudberry Database accepts for it are not in the standard, and some of the standard's options are not implemented by Cloudberry Database.
 
 ### WITH Clause
 
-The `WITH` clause is a Greenplum Database extension; storage parameters are in the standard.
+The `WITH` clause is a Cloudberry Database extension; storage parameters are in the standard.
 
 
 ### Tablespaces
 
-The Greenplum Database concept of tablespaces is not part of the SQL standard. The clauses `TABLESPACE` and `USING INDEX TABLESPACE` are extensions.
+The Cloudberry Database concept of tablespaces is not part of the SQL standard. The clauses `TABLESPACE` and `USING INDEX TABLESPACE` are extensions.
 
 ### Typed Tables
 
-Typed tables implement a subset of the SQL standard. According to the standard, a typed table has columns corresponding to the underlying composite type as well as one other column that is the "self-referencing column". Greenplum Database does not support self-referencing columns explicitly.
+Typed tables implement a subset of the SQL standard. According to the standard, a typed table has columns corresponding to the underlying composite type as well as one other column that is the "self-referencing column". Cloudberry Database does not support self-referencing columns explicitly.
 
 ### PARTITION BY Clause
 
-Table partitioning via the `PARTITION BY` clause is a Greenplum Database extension.
+Table partitioning via the `PARTITION BY` clause is a Cloudberry Database extension.
 
 ### PARTITION OF Clause
 
-Table partitioning via the `PARTITION OF` clause is a Greenplum Database extension.
+Table partitioning via the `PARTITION OF` clause is a Cloudberry Database extension.
 
 ### Data Distribution
 
-The Greenplum Database concept of a parallel or distributed database is not part of the SQL standard. The `DISTRIBUTED` clauses are extensions.
+The Cloudberry Database concept of a parallel or distributed database is not part of the SQL standard. The `DISTRIBUTED` clauses are extensions.
 
 
 ## See Also

@@ -4,7 +4,7 @@ Removes an external table definition.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP EXTERNAL [WEB] TABLE [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
@@ -18,7 +18,7 @@ WEB
 :   Optional keyword for dropping external web tables.
 
 IF EXISTS
-:   Do not throw an error if the external table does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the external table does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (optionally schema-qualified) of an existing external table.

@@ -4,7 +4,7 @@ Defines or changes the comment of an object.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 COMMENT ON
 { ACCESS METHOD <object_name> |
   AGGREGATE <aggregate_name> (<aggregate_signature>) |
@@ -61,7 +61,7 @@ where <aggregate_signature> is:
 
 `COMMENT` stores a comment about a database object. Only one comment string is stored for each object, so to modify a comment, issue a new `COMMENT` command for the same object. To remove a comment, specify `NULL` in place of the text string. Comments are automatically dropped when the object is dropped.
 
-Greenplum Database acquires a `SHARE UPDATE EXCLUSIVE` lock on the object to be commented.
+Cloudberry Database acquires a `SHARE UPDATE EXCLUSIVE` lock on the object to be commented.
 
 For most kinds of object, only the object's owner can set the comment. Roles don't have owners, so the rule for `COMMENT ON ROLE` is that you must be superuser to comment on a superuser role, or have the `CREATEROLE` privilege to comment on non-superuser roles. Likewise, access methods don't have owners either; you must be superuser to comment on an access method. Of course, a superuser can comment on anything.
 
@@ -82,7 +82,7 @@ rule_name
 trigger_name
 :   The name of the object to be commented. Names of tables, aggregates, collations, conversions, domains, foreign tables, functions, indexes, operators, operator classes, operator families, procedures, routines, sequences, statistics, text search objects, types, views, and materialized views can be schema-qualified. When commenting on a column, relation_name must refer to a table, view, materialized view, composite type, or foreign table.
 
-    > **Note** Greenplum Database does not support triggers.
+    > **Note** Cloudberry Database does not support triggers.
 
 table_name
 domain_name
@@ -108,7 +108,7 @@ right_type
 :   The data type(s) of the operator's arguments (optionally schema-qualified). Specify `NONE` for the missing argument of a prefix or postfix operator.
 
 PROCEDURAL
-:   Greenplum Database ignores this noise word.
+:   Cloudberry Database ignores this noise word.
 
 type_name
 :   The name of the data type of the transform.

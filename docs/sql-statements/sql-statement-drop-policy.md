@@ -4,7 +4,7 @@ Removes a row-level security policy from a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP POLICY [ IF EXISTS ] <name> ON <table_name> [ CASCADE | RESTRICT ]
 ```
 
@@ -37,7 +37,7 @@ DROP POLICY p1 ON my_table;
 
 ## Compatibility
 
-`DROP POLICY` is a Greenplum Database extension to the SQL standard.
+`DROP POLICY` is a Cloudberry Database extension to the SQL standard.
 
 ## See Also
 

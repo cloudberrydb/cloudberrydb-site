@@ -4,7 +4,7 @@ Removes a cast.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP CAST [IF EXISTS] (<sourcetype> AS <targettype>) [CASCADE | RESTRICT]
 ```
 

@@ -6,7 +6,7 @@ Changes the definition of a text search parser.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TEXT SEARCH PARSER <name> RENAME TO <new_name>
 ALTER TEXT SEARCH PARSER <name> SET SCHEMA <new_schema>
 ```

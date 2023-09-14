@@ -4,7 +4,7 @@ Removes database objects owned by a database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP OWNED BY { <name> | CURRENT_USER | SESSION_USER } [, ...] [CASCADE | RESTRICT]
 ```
 
@@ -43,7 +43,7 @@ DROP OWNED BY sally;
 
 ## Compatibility
 
-The `DROP OWNED` command is a Greenplum Database extension.
+The `DROP OWNED` command is a Cloudberry Database extension.
 
 ## See Also
 

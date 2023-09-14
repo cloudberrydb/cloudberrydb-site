@@ -4,7 +4,7 @@ Changes the definition of a row-level security policy.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER POLICY <name> ON <table_name> RENAME TO <new_name>
 
 ALTER POLICY <name ON table_name>
@@ -43,7 +43,7 @@ check_expression
 
 ## Compatibility
 
-`ALTER POLICY` is a Greenplum Database extension to the SQL standard.
+`ALTER POLICY` is a Cloudberry Database extension to the SQL standard.
 
 ## See Also
 

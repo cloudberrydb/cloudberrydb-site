@@ -4,7 +4,7 @@ Defines a new domain.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE DOMAIN <name> [AS] <data_type>
        [ COLLATE <collation> ] 
        [ DEFAULT <expression> ]
@@ -54,7 +54,7 @@ NULL
 CHECK (expression)
 :   `CHECK` clauses specify integrity constraints or tests which values of the domain must satisfy. Each constraint must be an expression producing a Boolean result. It should use the key word `VALUE` to refer to the value being tested. Expressions evaluating to TRUE or UNKNOWN succeed. If the expression produces a FALSE result, an error is reported and the value is not allowed to be converted to the domain type.
 :   Currently, `CHECK` expressions cannot contain subqueries nor refer to variables other than `VALUE`.
-:   When a domain has multiple `CHECK` constraints, they will be tested in alphabetical order by name. (Greenplum Database versions before 7.0 did not honor any particular firing order for `CHECK` constraints.)
+:   When a domain has multiple `CHECK` constraints, they will be tested in alphabetical order by name. (Cloudberry Database versions before 7.0 did not honor any particular firing order for `CHECK` constraints.)
 
 ## Notes
 
@@ -70,7 +70,7 @@ It is very difficult to avoid such problems, because of SQL's general assumption
 
 Greeplum Database assumes that `CHECK` constraints' conditions are immutable, that is, they will always give the same result for the same input value. This assumption is what justifies examining `CHECK` constraints only when a value is first converted to be of a domain type, and not at other times. (This is essentially the same as the treatment of table `CHECK` constraints.)
 
-An example of a common way to break this assumption is to reference a user-defined function in a `CHECK` expression, and then change the behavior of that function. Greenplum Database does not disallow that, but it will not notice if there are stored values of the domain type that now violate the `CHECK` constraint. That would cause a subsequent database dump and restore to fail. The recommended way to handle such a change is to drop the constraint (using `ALTER DOMAIN`), adjust the function definition, and re-add the constraint, thereby rechecking it against stored data.
+An example of a common way to break this assumption is to reference a user-defined function in a `CHECK` expression, and then change the behavior of that function. Cloudberry Database does not disallow that, but it will not notice if there are stored values of the domain type that now violate the `CHECK` constraint. That would cause a subsequent database dump and restore to fail. The recommended way to handle such a change is to drop the constraint (using `ALTER DOMAIN`), adjust the function definition, and re-add the constraint, thereby rechecking it against stored data.
 
 ## Examples
 

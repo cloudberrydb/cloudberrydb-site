@@ -4,7 +4,7 @@ Removes a domain.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP DOMAIN [IF EXISTS] <name> [, ...]  [CASCADE | RESTRICT]
 ```
 
@@ -36,7 +36,7 @@ DROP DOMAIN us_postal_code;
 
 ## Compatibility
 
-This command conforms to the SQL standard, except for the `IF EXISTS` option, which is a Greenplum Database extension.
+This command conforms to the SQL standard, except for the `IF EXISTS` option, which is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Changes the definition of a tablespace.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TABLESPACE <name> RENAME TO <new_name>
 
 ALTER TABLESPACE <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }

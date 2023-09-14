@@ -4,7 +4,7 @@ Changes the limits of a resource group.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER RESOURCE GROUP <name> SET <group_attribute> <value>
 ```
 
@@ -26,7 +26,7 @@ You can set or reset the concurrency limit of a resource group that you create f
 
 When you alter the CPU resource management mode or limit of a resource group, the new mode or limit is immediately applied.
 
-When you alter a memory limit of a resource group that you create for roles, the new resource limit is immediately applied if current resource usage is less than or equal to the new value and there are no running transactions in the resource group. If the current resource usage exceeds the new memory limit value, or if there are running transactions in other resource groups that hold some of the resource, then Greenplum Database defers assigning the new limit until resource usage falls within the range of the new value.
+When you alter a memory limit of a resource group that you create for roles, the new resource limit is immediately applied if current resource usage is less than or equal to the new value and there are no running transactions in the resource group. If the current resource usage exceeds the new memory limit value, or if there are running transactions in other resource groups that hold some of the resource, then Cloudberry Database defers assigning the new limit until resource usage falls within the range of the new value.
 
 When you increase the memory limit of a resource group that you create for external components, the new resource limit is phased in as system memory resources become available. If you decrease the memory limit of a resource group that you create for external components, the behavior is component-specific. For example, if you decrease the memory limit of a resource group that you create for a PL/Container runtime, queries in a running container may fail with an out of memory error.
 
@@ -58,7 +58,7 @@ CPUSET <coordinator_cores>;<segment_cores>
 
 :   Specify cores as a comma-separated list of single core numbers or core number intervals. Define the coordinator host cores first, followed by segment host cores, and separate the two with a semicolon. You must enclose the full core configuration in single quotes. For example, '1;1,3-4' configures core 1 for the coordinator host, and cores 1, 3, and 4 for the segment hosts.
 
-:   > **Note** You can configure `CPUSET` for a resource group only after you have enabled resource group-based resource management for your Greenplum Database cluster.
+:   > **Note** You can configure `CPUSET` for a resource group only after you have enabled resource group-based resource management for your Cloudberry Database cluster.
 
 MEMORY_LIMIT integer
 :   The maximum available memory, in MB, to reserve for this resource group. This value determines the total amount of memory that all worker processes within a resource group can consume on a segment host during query execution. 
@@ -110,7 +110,7 @@ ALTER RESOURCE GROUP rgroup5 SET CPUSET '1;1';
 
 ## Compatibility
 
-The `ALTER RESOURCE GROUP` statement is a Greenplum Database extension. This command does not exist in standard PostgreSQL.
+The `ALTER RESOURCE GROUP` statement is a Cloudberry Database extension. This command does not exist in standard PostgreSQL.
 
 ## See Also
 

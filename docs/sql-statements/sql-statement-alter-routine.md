@@ -4,7 +4,7 @@ Changes the definition of a routine.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER ROUTINE <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ] 
    <action> [, ... ] [RESTRICT]
 
@@ -52,7 +52,7 @@ This command will work independent of whether `foo` is an aggregate, function, o
 
 ## Compatibility
 
-This statement is partially compatible with the `ALTER ROUTINE` statement in the SQL standard. Refer to [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) and [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md) for more details. Allowing routine names to refer to aggregate functions is a Greenplum Database extension.
+This statement is partially compatible with the `ALTER ROUTINE` statement in the SQL standard. Refer to [ALTER FUNCTION](/docs/sql-statements/sql-statement-alter-function.md) and [ALTER PROCEDURE](/docs/sql-statements/sql-statement-alter-procedure.md) for more details. Allowing routine names to refer to aggregate functions is a Cloudberry Database extension.
 
 ## See Also
 

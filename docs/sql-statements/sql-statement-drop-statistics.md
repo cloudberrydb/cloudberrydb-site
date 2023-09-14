@@ -4,7 +4,7 @@ Removes extended statistics.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP STATISTICS [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -15,7 +15,7 @@ DROP STATISTICS [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ## Parameters
 
 `IF EXISTS`
-:   Do not throw an error if the statistics object does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the statistics object does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (optionally schema-qualified) of the statistics object to drop.

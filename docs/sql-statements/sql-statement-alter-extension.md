@@ -4,7 +4,7 @@ Change the definition of an extension.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER EXTENSION <name> UPDATE [ TO <new_version> ]
 ALTER EXTENSION <name> SET SCHEMA <new_schema>
 ALTER EXTENSION <name> ADD <member_object>
@@ -137,7 +137,7 @@ ALTER EXTENSION hstore ADD FUNCTION populate_record(anyelement, hstore);
 
 ## Compatibility
 
-`ALTER EXTENSION` is a Greenplum Database extension.
+`ALTER EXTENSION` is a Cloudberry Database extension.
 
 ## See Also
 

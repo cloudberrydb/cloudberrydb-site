@@ -4,7 +4,7 @@ Changes the definition of an extended statistics object.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER STATISTICS <name> RENAME TO <new_name>
 
 ALTER STATISTICS <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }

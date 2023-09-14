@@ -4,7 +4,7 @@ Defines a new text search dictionary.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE TEXT SEARCH DICTIONARY <name> (
     TEMPLATE = <template>
     [, <option> = <value> [, ... ]]

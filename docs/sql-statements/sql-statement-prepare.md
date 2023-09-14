@@ -4,7 +4,7 @@ Prepares a statement for execution.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 PREPARE <name> [ (<data_type> [, ...] ) ] AS <statement>
 ```
 
@@ -33,11 +33,11 @@ statement
 
 A prepared statement can be run with either a *generic plan* or a *custom plan*. A generic plan is the same across all executions, while a custom plan is generated for a specific execution using the parameter values given in that call. Use of a generic plan avoids planning overhead, but in some situations a custom plan will be much more efficient to run because the planner can make use of knowledge of the parameter values. If the prepared statement has no parameters, a generic plan is always used.
 
-By default (with the default value, `auto`, for the server configuration parameter [plan_cache_mode](../config_params/guc-list.html#plan_cache_mode)), the server automatically chooses whether to use a generic or custom plan for a prepared statement that has parameters. The current rule for this is that the first five executions are done with custom plans and then Greenplum Database calculates the average estimated cost of those plans. Then a generic plan is created and its estimated cost is compared to the average custom-plan cost. Subsequent executions use the generic plan if its cost is not so much higher than the average custom-plan cost as to make repeated replanning seem preferable.
+By default (with the default value, `auto`, for the server configuration parameter [plan_cache_mode](../config_params/guc-list.html#plan_cache_mode)), the server automatically chooses whether to use a generic or custom plan for a prepared statement that has parameters. The current rule for this is that the first five executions are done with custom plans and then Cloudberry Database calculates the average estimated cost of those plans. Then a generic plan is created and its estimated cost is compared to the average custom-plan cost. Subsequent executions use the generic plan if its cost is not so much higher than the average custom-plan cost as to make repeated replanning seem preferable.
 
 You can override this heuristic, forcing the server to use either generic or custom plans, by setting `plan_cache_mode` to `force_generic_plan` or `force_custom_plan` respectively. This setting is primarily useful if the generic plan's cost estimate is badly off for some reason, allowing it to be chosen even though its actual cost is much more than that of a custom plan.
 
-To examine the query plan Greenplum Database is using for a prepared statement, use [EXPLAIN](/docs/sql-statements/sql-statement-explain.md), for example:
+To examine the query plan Cloudberry Database is using for a prepared statement, use [EXPLAIN](/docs/sql-statements/sql-statement-explain.md), for example:
 
 ```
 EXPLAIN EXECUTE <name>(<parameter_values>);
@@ -45,7 +45,7 @@ EXPLAIN EXECUTE <name>(<parameter_values>);
 
 If a generic plan is in use, it will contain parameter symbols `$n`, while a custom plan will have the supplied parameter values substituted into it.
 
-For more information on query planning and the statistics collected by Greenplum Database for that purpose, see the [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) documentation.
+For more information on query planning and the statistics collected by Cloudberry Database for that purpose, see the [ANALYZE](/docs/sql-statements/sql-statement-analyze.md) documentation.
 
 Although the main point of a prepared statement is to avoid repeated parse analysis and planning of the statement, Greenplum will force re-analysis and re-planning of the statement before using it whenever database objects used in the statement have undergone definitional (DDL) changes since the previous use of the prepared statement. Also, if the value of [search_path](../config_params/guc-list.html#search_path) changes from one use to the next, the statement will be re-parsed using the new `search_path`. These rules make use of a prepared statement semantically almost equivalent to re-submitting the same query text over and over, but with a performance benefit if no object definitions are changed, especially if the best plan remains the same across uses. An example of a case where the semantic equivalence is not perfect is that if the statement refers to a table by an unqualified name, and then a new table of the same name is created in a schema appearing earlier in the `search_path`, no automatic re-parse will occur since no object used in the statement changed. However, if some other change forces a re-parse, the new table will be referenced in subsequent uses.
 

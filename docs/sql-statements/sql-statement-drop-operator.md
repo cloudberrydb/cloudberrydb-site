@@ -4,7 +4,7 @@ Removes an operator.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP OPERATOR [IF EXISTS] <name> ( {<left_type> | NONE} , 
     {<right_type> | NONE} ) [, ...] [CASCADE | RESTRICT]
 ```

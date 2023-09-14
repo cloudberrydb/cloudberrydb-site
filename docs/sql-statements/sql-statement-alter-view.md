@@ -4,7 +4,7 @@ Changes properties of a view.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER VIEW [ IF EXISTS ] <name> ALTER [ COLUMN ] <column_name> SET DEFAULT <expression>
 
 ALTER VIEW [ IF EXISTS ] <name> ALTER [ COLUMN ] <column_name> DROP DEFAULT
@@ -32,7 +32,7 @@ name
 :   The name (optionally schema-qualified) of an existing view.
 
 IF EXISTS
-:   Do not throw an error if the view does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the view does not exist. Cloudberry Database issues a notice in this case.
 
 SET/DROP DEFAULT
 :   These forms set or remove the default value for a column. A view column's default value is substituted into any `INSERT` or `UPDATE` command whose target is the view, before applying any rules or triggers for the view. The view's default will therefore take precedence over any default values from underlying relations.
@@ -80,7 +80,7 @@ INSERT INTO a_view(id) VALUES(2);  -- ts will receive the current time
 
 ## Compatibility
 
-`ALTER VIEW` is a Greenplum Database extension of the SQL standard.
+`ALTER VIEW` is a Cloudberry Database extension of the SQL standard.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Shows the query plan of a statement.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 EXPLAIN [ ( <option> [, ...] ) ] <statement>
 EXPLAIN [ANALYZE] [VERBOSE] <statement>
 ```
@@ -24,7 +24,7 @@ where option can be one of:
 
 `EXPLAIN` displays the query plan that the Greenplum or Postgres Planner generates for the supplied statement. Query plans are a tree plan of nodes. Each node in the plan represents a single operation, such as table scan, join, aggregation or a sort.
 
-Plans should be read from the bottom up as each node feeds rows into the node directly above it. The bottom nodes of a plan are usually table scan operations (sequential, index or bitmap index scans). If the query requires joins, aggregations, or sorts (or other operations on the raw rows) then there will be additional nodes above the scan nodes to perform these operations. The topmost plan nodes are usually the Greenplum Database motion nodes (redistribute, explicit redistribute, broadcast, or gather motions). These are the operations responsible for moving rows between the segment instances during query processing.
+Plans should be read from the bottom up as each node feeds rows into the node directly above it. The bottom nodes of a plan are usually table scan operations (sequential, index or bitmap index scans). If the query requires joins, aggregations, or sorts (or other operations on the raw rows) then there will be additional nodes above the scan nodes to perform these operations. The topmost plan nodes are usually the Cloudberry Database motion nodes (redistribute, explicit redistribute, broadcast, or gather motions). These are the operations responsible for moving rows between the segment instances during query processing.
 
 The output of `EXPLAIN` has one line for each node in the plan tree, showing the basic node type plus the following cost estimates that the planner made for the execution of that plan node:
 
@@ -77,7 +77,7 @@ COSTS
 BUFFERS
 :   Include information on buffer usage. This parameter may be specified only when `ANALYZE` is also specified. If omitted, the default value is `false`, buffer usage information is not included.
 > **Note**
-> Greenplum Database does not support specifying `BUFFERS [true]` for distributed queries; ignore any displayed buffer usage information.
+> Cloudberry Database does not support specifying `BUFFERS [true]` for distributed queries; ignore any displayed buffer usage information.
 
 TIMING
 :   Include actual startup time and time spent in each node in the output. The overhead of repeatedly reading the system clock can slow down the query significantly on some systems, so it may be useful to set this parameter to `FALSE` when only actual row counts, and not exact times, are needed. Run time of the entire statement is always measured, even when node-level timing is turned off with this option. This parameter may only be used when `ANALYZE` is also enabled. It defaults to `TRUE`.
@@ -95,9 +95,9 @@ statement
 
 In order to allow the query optimizer to make reasonably informed decisions when optimizing queries, the `ANALYZE` statement should be run to record statistics about the distribution of data within the table. If you have not done this (or if the statistical distribution of the data in the table has changed significantly since the last time `ANALYZE` was run), the estimated costs are unlikely to conform to the real properties of the query, and consequently an inferior query plan may be chosen.
 
-An SQL statement that is run during the execution of an `EXPLAIN ANALYZE` command is excluded from Greenplum Database resource queues.
+An SQL statement that is run during the execution of an `EXPLAIN ANALYZE` command is excluded from Cloudberry Database resource queues.
 
-For more information about query profiling, see "Query Profiling" in the *Greenplum Database Administrator Guide*. For more information about resource queues, see "Resource Management with Resource Queues" in the *Greenplum Database Administrator Guide*.
+For more information about query profiling, see "Query Profiling" in the *Cloudberry Database Administrator Guide*. For more information about resource queues, see "Resource Management with Resource Queues" in the *Cloudberry Database Administrator Guide*.
 
 ## Examples
 
@@ -116,7 +116,7 @@ EXPLAIN SELECT * FROM names WHERE name = 'Joelle';
 
 If we read the plan from the bottom up, the query optimizer starts by doing a sequential scan of the `names` table. Notice that the `WHERE` clause is being applied as a *filter* condition. This means that the scan operation checks the condition for each row it scans, and outputs only the ones that pass the condition.
 
-The results of the scan operation are passed up to a *gather motion* operation. In Greenplum Database, a gather motion is when segments send rows up to the coordinator. In this case we have 3 segment instances sending to 1 coordinator instance (3:1). This operation is working on `slice1` of the parallel query execution plan. In Greenplum Database a query plan is divided into *slices* so that portions of the query plan can be worked on in parallel by the segments.
+The results of the scan operation are passed up to a *gather motion* operation. In Cloudberry Database, a gather motion is when segments send rows up to the coordinator. In this case we have 3 segment instances sending to 1 coordinator instance (3:1). This operation is working on `slice1` of the parallel query execution plan. In Cloudberry Database a query plan is divided into *slices* so that portions of the query plan can be worked on in parallel by the segments.
 
 The estimated startup cost for this plan is `00.00` (no cost) and a total cost of `431.27`. The planner is estimating that this query will return one row.
 

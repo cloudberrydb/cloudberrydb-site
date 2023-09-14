@@ -4,7 +4,7 @@ Imports table definitions from a foreign server.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 IMPORT FOREIGN SCHEMA <remote_schema>
     [ { LIMIT TO | EXCEPT } ( <table_name> [, ...] ) ]
     FROM SERVER <server_name>
@@ -37,7 +37,7 @@ server_name
 :   The name of the foreign server from which to import the table definitions.
 
 local_schema
-:   The schema in which Greenplum Database will create the imported foreign tables.
+:   The schema in which Cloudberry Database will create the imported foreign tables.
 
 OPTIONS ( option 'value' [, ... ] )
 :   The options to be used during the import. The allowed option names and values are specific to each foreign-data wrapper.
@@ -61,7 +61,7 @@ IMPORT FOREIGN SCHEMA foreign_films LIMIT TO (actors, directors)
 
 ## Compatibility
 
-The `IMPORT FOREIGN SCHEMA` command conforms to the SQL standard, except that the `OPTIONS` clause is a Greenplum Database extension.
+The `IMPORT FOREIGN SCHEMA` command conforms to the SQL standard, except that the `OPTIONS` clause is a Cloudberry Database extension.
 
 ## See Also
 

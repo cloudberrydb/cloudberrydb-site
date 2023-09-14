@@ -4,7 +4,7 @@ Changes the definition of an operator family.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER OPERATOR FAMILY <name> USING <index_method> ADD
   {  OPERATOR <strategy_number> <operator_name> ( <op_type>, <op_type> ) [ FOR SEARCH | FOR ORDER BY <sort_family_name> ]
     | FUNCTION <support_number> [ ( <op_type> [ , <op_type> ] ) ] <function_name> ( <argument_type> [, ...] )
@@ -84,7 +84,7 @@ Because the index machinery does not check access permissions on functions befor
 
 The operators should not be defined by SQL functions. A SQL function is likely to be inlined into the calling query, which will prevent the optimizer from recognizing that the query matches an index.
 
-Before Greenplum Database 6.0, the `OPERATOR` clause could include a `RECHECK` option. This option is no longer supported. Greenplum Database now determines whether an index operator is "lossy" on-the-fly at run time. This allows more efficient handling of cases where an operator might or might not be lossy.
+Before Cloudberry Database 6.0, the `OPERATOR` clause could include a `RECHECK` option. This option is no longer supported. Cloudberry Database now determines whether an index operator is "lossy" on-the-fly at run time. This allows more efficient handling of cases where an operator might or might not be lossy.
 
 ## Examples
 

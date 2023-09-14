@@ -4,7 +4,7 @@ Stops the current transaction.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ROLLBACK [WORK | TRANSACTION] [AND [NO] CHAIN]
 ```
 
@@ -37,7 +37,7 @@ ROLLBACK;
 
 ## Compatibility
 
-The command `ROLLBACK` conforms to the SQL standard. The form `ROLLBACK TRANSACTION` is a Greenplum Database extension.
+The command `ROLLBACK` conforms to the SQL standard. The form `ROLLBACK TRANSACTION` is a Cloudberry Database extension.
 
 ## See Also
 

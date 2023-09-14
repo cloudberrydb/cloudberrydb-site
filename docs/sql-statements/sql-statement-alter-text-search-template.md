@@ -6,7 +6,7 @@ Changes the definition of a text search template.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER TEXT SEARCH TEMPLATE <name> RENAME TO <new_name>
 ALTER TEXT SEARCH TEMPLATE <name> SET SCHEMA <new_schema>
 ```

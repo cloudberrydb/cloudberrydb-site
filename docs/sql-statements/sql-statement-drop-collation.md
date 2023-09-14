@@ -4,7 +4,7 @@ Removes a previously defined collation.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP COLLATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
@@ -37,7 +37,7 @@ DROP COLLATION german;
 
 ## Compatibility
 
-The `DROP COLLATION` command conforms to the SQL standard, apart from the `IF EXISTS` option, which is a Greenplum Database extension.
+The `DROP COLLATION` command conforms to the SQL standard, apart from the `IF EXISTS` option, which is a Cloudberry Database extension.
 
 ## See Also
 

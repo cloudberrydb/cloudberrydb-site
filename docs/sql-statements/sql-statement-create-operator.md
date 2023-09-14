@@ -4,7 +4,7 @@ Defines a new operator.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE OPERATOR <name> ( 
        { FUNCTION | PROCEDURE } = <function_name>
        [, LEFTARG = <left_type>] [, RIGHTARG = <right_type>]
@@ -24,7 +24,7 @@ There are a few restrictions on your choice of name:
 -   `--` and `/*` cannot appear anywhere in an operator name, since they will be taken as the start of a comment.
 -   A multicharacter operator name cannot end in `+` or `-`, unless the name also contains at least one of these characters: <code>~ ! @ # % ^ & | ` ?</code>
 
-    For example, `@-` is an allowed operator name, but `*-` is not. This restriction allows Greenplum Database to parse SQL-compliant commands without requiring spaces between tokens.
+    For example, `@-` is an allowed operator name, but `*-` is not. This restriction allows Cloudberry Database to parse SQL-compliant commands without requiring spaces between tokens.
 
 - The use of `=>` as an operator name is deprecated. It may be disallowed altogether in a future release.
 
@@ -32,7 +32,7 @@ The operator `!=` is mapped to `<>` on input, so these two names are always equi
 
 At least one of `LEFTARG` and `RIGHTARG` must be defined. For binary operators, both must be defined. For right unary operators, only `LEFTARG` should be defined, while for left unary operators only `RIGHTARG` should be defined.
 
-**Note:**  Right unary, also called postfix, operators are deprecated and may be removed in a future Greenplum Database release.
+**Note:**  Right unary, also called postfix, operators are deprecated and may be removed in a future Cloudberry Database release.
 
 The function_name function must have been previously defined using `CREATE FUNCTION`, must be `IMMUTABLE`, and must be defined to accept the correct number of arguments (either one or two) of the indicated types.
 
@@ -130,7 +130,7 @@ SELECT (a + b) AS c FROM test_complex;
 
 ## Compatibility
 
-`CREATE OPERATOR` is a Greenplum Database extension to the SQL standard. The SQL standard does not provide for user-defined operators.
+`CREATE OPERATOR` is a Cloudberry Database extension to the SQL standard. The SQL standard does not provide for user-defined operators.
 
 ## See Also
 

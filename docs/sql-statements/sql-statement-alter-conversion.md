@@ -4,7 +4,7 @@ Changes the definition of a conversion.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER CONVERSION <name> RENAME TO <new_name>
 
 ALTER CONVERSION <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }

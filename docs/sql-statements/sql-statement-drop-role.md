@@ -4,7 +4,7 @@ Removes a database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP ROLE [IF EXISTS] <name> [, ...]
 ```
 
@@ -34,7 +34,7 @@ DROP ROLE sally, bob;
 
 ## Compatibility
 
-The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped at a time, and it specifies different privilege requirements than Greenplum Database uses.
+The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped at a time, and it specifies different privilege requirements than Cloudberry Database uses.
 
 ## See Also
 

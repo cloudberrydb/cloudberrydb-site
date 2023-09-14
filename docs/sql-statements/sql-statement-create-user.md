@@ -4,7 +4,7 @@ Defines a new database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE USER <name> [[WITH] <option> [ ... ]]
 
 where option can be:
@@ -41,7 +41,7 @@ where option can be:
 
 ## Compatibility
 
-The `CREATE USER` statement is a Greenplum Database extension. The SQL standard leaves the definition of users to the implementation.
+The `CREATE USER` statement is a Cloudberry Database extension. The SQL standard leaves the definition of users to the implementation.
 
 ## See Also
 

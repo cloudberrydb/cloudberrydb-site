@@ -4,7 +4,7 @@ Deletes rows from a table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
 DELETE FROM [ONLY] <table_name> [[AS] <alias>]
       [USING <from_item> [, ...] ]
@@ -26,7 +26,7 @@ You must have the `DELETE` privilege on the table to delete from it, as well as 
 
 > **Note** The `RETURNING` clause is not supported when deleting from append-optimized tables.
 
-> **Note** As the default, Greenplum Database acquires an `EXCLUSIVE` lock on tables for `DELETE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
+> **Note** As the default, Cloudberry Database acquires an `EXCLUSIVE` lock on tables for `DELETE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd).
 
 ## Parameters
 
@@ -38,7 +38,7 @@ with_query
 :   See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b) and [SELECT](/docs/sql-statements/sql-statement-select.md) for details.
 
 table_name
-:   The name (optionally schema-qualified) of the table to delete rows from. If you specify `ONLY` before the table name, Greenplum Database deletes matching rows from the named table only. If `ONLY` is not specified, matching rows are also deleted from any tables inheriting from the named table. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
+:   The name (optionally schema-qualified) of the table to delete rows from. If you specify `ONLY` before the table name, Cloudberry Database deletes matching rows from the named table only. If `ONLY` is not specified, matching rows are also deleted from any tables inheriting from the named table. Optionally, you can specify `*` after the table name to explicitly indicate that descendant tables are included.
 
 alias
 :   A substitute name for the target table. When an alias is provided, it completely hides the actual name of the table. For example, given `DELETE FROM foo AS f`, the remainder of the `DELETE` statement must refer to this table as `f` not `foo`.
@@ -47,7 +47,7 @@ from_item
 :   A table expression allowing columns from other tables to appear in the `WHERE` condition. This uses the same syntax as the `FROM` clause of a [SELECT](/docs/sql-statements/sql-statement-select.md) statement; for example, you can specify an alias for the table name. Do not repeat the target table in the from_item, unless you wish to set up a self-join (in which case it must appear with an alias in the from_item).
 
 condition
-:   An expression that returns a value of type `boolean`. Greenplum Database deletes only those rows for which this expression returns `true`.
+:   An expression that returns a value of type `boolean`. Cloudberry Database deletes only those rows for which this expression returns `true`.
 
 cursor_name
 :   The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be deleted is the one most recently fetched from this cursor. The cursor must be a non-grouping query on the `DELETE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](/docs/sql-statements/sql-statement-declare.md) for more information about using cursors with `WHERE CURRENT OF`.
@@ -78,7 +78,7 @@ The `RETURNING` clause is not supported when deleting from append-optimized tabl
 
 The `WHERE CURRENT OF` clause is not supported with replicated tables.
 
-Greenplum Database lets you reference columns of other tables in the `WHERE` condition by specifying the other tables in the `USING` clause. For example, to delete all films produced by a given producer, one can run:
+Cloudberry Database lets you reference columns of other tables in the `WHERE` condition by specifying the other tables in the `USING` clause. For example, to delete all films produced by a given producer, one can run:
 
 ```
 DELETE FROM films USING producers
@@ -128,7 +128,7 @@ name = 'Hannah';
 
 ## Compatibility
 
-This command conforms to the SQL standard, except that the `USING` and `RETURNING` clauses are Greenplum Database extensions, as is the ability to use `WITH` with `DELETE`.
+This command conforms to the SQL standard, except that the `USING` and `RETURNING` clauses are Cloudberry Database extensions, as is the ability to use `WITH` with `DELETE`.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Removes a procedure.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP PROCEDURE [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
     [CASCADE | RESTRICT]
 ```
@@ -46,7 +46,7 @@ DROP PROCEDURE do_db_maintenance();
 
 ## Compatibility
 
-This command conforms to the SQL standard, with these Greenplum Database extensions:
+This command conforms to the SQL standard, with these Cloudberry Database extensions:
 
 - The standard only allows one procedure to be dropped per command.
 

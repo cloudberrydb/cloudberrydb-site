@@ -4,7 +4,7 @@ Rolls back the current transaction to a savepoint.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ROLLBACK [ WORK | TRANSACTION ] TO [ SAVEPOINT ] <savepoint_name>
 ```
 
@@ -61,7 +61,7 @@ COMMIT;
 
 ## Compatibility
 
-The SQL standard specifies that the key word `SAVEPOINT` is mandatory, but Greenplum Database (and Oracle) allow it to be omitted. SQL allows only `WORK`, not `TRANSACTION`, as a noise word after `ROLLBACK`. Also, SQL has an optional clause `AND [NO] CHAIN` which is not currently supported by Greenplum Database. Otherwise, this command conforms to the SQL standard.
+The SQL standard specifies that the key word `SAVEPOINT` is mandatory, but Cloudberry Database (and Oracle) allow it to be omitted. SQL allows only `WORK`, not `TRANSACTION`, as a noise word after `ROLLBACK`. Also, SQL has an optional clause `AND [NO] CHAIN` which is not currently supported by Cloudberry Database. Otherwise, this command conforms to the SQL standard.
 
 ## See Also
 

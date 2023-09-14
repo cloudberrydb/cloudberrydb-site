@@ -4,7 +4,7 @@ Defines a new sequence generator.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [TEMPORARY | TEMP] SEQUENCE [IF NOT EXISTS] <name>
        [ AS data_type ]
        [INCREMENT [BY] <increment>] 
@@ -34,22 +34,22 @@ You can also use the function `setval()` to operate on a sequence, but only for 
 SELECT setval('myserial', 201);
 ```
 
-But the following query will be rejected in Greenplum Database because it operates on distributed data:
+But the following query will be rejected in Cloudberry Database because it operates on distributed data:
 
 ```
 INSERT INTO product VALUES (setval('myserial', 201), 'gizmo');
 ```
 
-In a regular (non-distributed) database, functions that operate on the sequence go to the local sequence table to get values as they are needed. In Greenplum Database, however, keep in mind that each segment is its own distinct database process. Therefore the segments need a single point of truth to go for sequence values so that all segments get incremented correctly and the sequence moves forward in the right order. A sequence server process runs on the coordinator and is the point-of-truth for a sequence in a Greenplum distributed database. Segments get sequence values at runtime from the coordinator.
+In a regular (non-distributed) database, functions that operate on the sequence go to the local sequence table to get values as they are needed. In Cloudberry Database, however, keep in mind that each segment is its own distinct database process. Therefore the segments need a single point of truth to go for sequence values so that all segments get incremented correctly and the sequence moves forward in the right order. A sequence server process runs on the coordinator and is the point-of-truth for a sequence in a Greenplum distributed database. Segments get sequence values at runtime from the coordinator.
 
-Because of this distributed sequence design, there are some limitations on the functions that operate on a sequence in Greenplum Database:
+Because of this distributed sequence design, there are some limitations on the functions that operate on a sequence in Cloudberry Database:
 
 -   `lastval()` and `currval()` functions are not supported.
 -   `setval()` can only be used to set the value of the sequence generator on the coordinator, it cannot be used in subqueries to update records on distributed table data.
--   `nextval()` sometimes grabs a block of values from the coordinator for a segment to use, depending on the query. So values may sometimes be skipped in the sequence if all of the block turns out not to be needed at the segment level. Note that a regular PostgreSQL database does this too, so this is not something unique to Greenplum Database.
+-   `nextval()` sometimes grabs a block of values from the coordinator for a segment to use, depending on the query. So values may sometimes be skipped in the sequence if all of the block turns out not to be needed at the segment level. Note that a regular PostgreSQL database does this too, so this is not something unique to Cloudberry Database.
 
 > **Note**
-> The default sequence cache size in Greenplum Database is `20`.
+> The default sequence cache size in Cloudberry Database is `20`.
 
 Although you cannot update a sequence directly, you can use a query like:
 
@@ -65,7 +65,7 @@ TEMPORARY | TEMP
 :   If specified, the sequence object is created only for this session, and is automatically dropped on session exit. Existing permanent sequences with the same name are not visible (in this session) while the temporary sequence exists, unless they are referenced with schema-qualified names.
 
 IF NOT EXISTS
-:   Do not throw an error if a relation with the same name already exists. Greenplum Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the sequence that would have been created - it might not even be a sequence.
+:   Do not throw an error if a relation with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing relation is anything like the sequence that would have been created - it might not even be a sequence.
 
 name
 :   The name (optionally schema-qualified) of the sequence to be created.
@@ -89,7 +89,7 @@ start
 
 cache
 :   Specifies how many sequence numbers are to be preallocated and stored in memory for faster access. The default value is 20. The minimum value is 1 (no cache).
-:   > **Note** When operating with a cache of sequence numbers (`cache > 1`), Greenplum Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
+:   > **Note** When operating with a cache of sequence numbers (`cache > 1`), Cloudberry Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
 
 CYCLE
 NO CYCLE
@@ -125,13 +125,13 @@ Insert a row into a table that gets the next value of the sequence named `myseq`
 INSERT INTO distributors VALUES (nextval('myseq'), 'acme'); 
 ```
 
-Reset the sequence counter value on the Greenplum Database coordinator:
+Reset the sequence counter value on the Cloudberry Database coordinator:
 
 ```
 SELECT setval('myseq', 201);
 ```
 
-Illegal use of `setval()` in Greenplum Database (setting sequence values on distributed data):
+Illegal use of `setval()` in Cloudberry Database (setting sequence values on distributed data):
 
 ```
 INSERT INTO product VALUES (setval('myseq', 201), 'gizmo'); 
@@ -142,7 +142,7 @@ INSERT INTO product VALUES (setval('myseq', 201), 'gizmo');
 `CREATE SEQUENCE` conforms to the SQL standard, with the following exceptions:
 
 -   You obtain the next value using the `nextval()` function instead of the `NEXT VALUE FOR` expression specified in the SQL standard.
--   The `OWNED BY` clause is a Greenplum Database extension.
+-   The `OWNED BY` clause is a Cloudberry Database extension.
 
 ## See Also
 

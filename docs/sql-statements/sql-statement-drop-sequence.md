@@ -4,7 +4,7 @@ Removes a sequence.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP SEQUENCE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 ```
 
@@ -15,7 +15,7 @@ DROP SEQUENCE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the sequence does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the sequence does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name (optionally schema-qualified) of the sequence to remove.
@@ -36,7 +36,7 @@ DROP SEQUENCE myserial;
 
 ## Compatibility
 
-`DROP SEQUENCE` conforms to the SQL standard, except that the standard allows only one sequence to be dropped per command. Also, the `IF EXISTS` option is a Greenplum Database extension.
+`DROP SEQUENCE` conforms to the SQL standard, except that the standard allows only one sequence to be dropped per command. Also, the `IF EXISTS` option is a Cloudberry Database extension.
 
 ## See Also
 

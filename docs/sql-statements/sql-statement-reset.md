@@ -4,7 +4,7 @@ Restores the value of a run-time system configuration parameter to the default v
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 RESET <configuration_parameter>
 
 RESET ALL
@@ -42,7 +42,7 @@ RESET statement_mem;
 
 ## Compatibility
 
-`RESET` is a Greenplum Database extension.
+`RESET` is a Cloudberry Database extension.
 
 ## See Also
 

@@ -1,10 +1,10 @@
 # CREATE PROTOCOL
 
-Registers a custom data access protocol that can be specified when defining a Greenplum Database external table.
+Registers a custom data access protocol that can be specified when defining a Cloudberry Database external table.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [TRUSTED] PROTOCOL <name> (
    [readfunc='<read_call_handler>'] [, writefunc='<write_call_handler>']
    [, validatorfunc='<validate_handler>' ])
@@ -29,23 +29,23 @@ name
 :   The name of the data access protocol. The protocol name is case sensitive. The name must be unique among the protocols in the database.
 
 readfunc= 'read_call_handler'
-:   The name of a previously registered function that Greenplum Database calls to read data from an external data source. The command must specify either a read call handler or a write call handler.
+:   The name of a previously registered function that Cloudberry Database calls to read data from an external data source. The command must specify either a read call handler or a write call handler.
 
 writefunc= 'write_call_handler'
-:   The name of a previously registered function that Greenplum Database calls to write data to an external data source. The command must specify either a read call handler or a write call handler.
+:   The name of a previously registered function that Cloudberry Database calls to write data to an external data source. The command must specify either a read call handler or a write call handler.
 
 validatorfunc='validate_handler'
 :   An optional validator function that validates the URL specified in the `CREATE EXTERNAL TABLE` command.
 
 ## Notes
 
-Greenplum Database handles external tables of type `file`, `gpfdist`, and `gpfdists` internally. See [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/s3_prereq) for information about enabling the `S3` protocol. Refer to pxf:// Protocol for information about using the `pxf` protocol.
+Cloudberry Database handles external tables of type `file`, `gpfdist`, and `gpfdists` internally. See [s3:// Protocol](../../admin_guide/external/g-s3-protocol.html#amazon-emr/s3_prereq) for information about enabling the `S3` protocol. Refer to pxf:// Protocol for information about using the `pxf` protocol.
 
-Any shared library that implements a data access protocol must be located in the same location on all Greenplum Database segment hosts. For example, the shared library can be in a location specified by the operating system environment variable `LD_LIBRARY_PATH` on all hosts. You can also specify the location when you define the handler function. For example, when you define the `s3` protocol in the `CREATE PROTOCOL` command, you specify `$libdir/gps3ext.so` as the location of the shared object, where `$libdir` is located at `$GPHOME/lib`.
+Any shared library that implements a data access protocol must be located in the same location on all Cloudberry Database segment hosts. For example, the shared library can be in a location specified by the operating system environment variable `LD_LIBRARY_PATH` on all hosts. You can also specify the location when you define the handler function. For example, when you define the `s3` protocol in the `CREATE PROTOCOL` command, you specify `$libdir/gps3ext.so` as the location of the shared object, where `$libdir` is located at `$GPHOME/lib`.
 
 ## Compatibility
 
-`CREATE PROTOCOL` is a Greenplum Database extension.
+`CREATE PROTOCOL` is a Cloudberry Database extension.
 
 ## See Also
 

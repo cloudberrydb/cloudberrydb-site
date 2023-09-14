@@ -4,7 +4,7 @@ Changes the definition of a procedural language.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER [ PROCEDURAL ] LANGUAGE <name> RENAME TO <new_name>
 ALTER [ PROCEDURAL ] LANGUAGE <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }
 ```

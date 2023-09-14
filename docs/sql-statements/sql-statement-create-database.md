@@ -4,7 +4,7 @@ Creates a new database.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE DATABASE name
     [ [WITH] [OWNER [=] <user_name>]
           [TEMPLATE [=] <template>]
@@ -25,7 +25,7 @@ To create a database, you must be a superuser or have the special `CREATEDB` pri
 
 The creator becomes the owner of the new database by default. Superusers can create databases owned by other users by using the `OWNER` clause. They can even create databases owned by users with no special privileges. Non-superusers with `CREATEDB` privilege can only create databases owned by themselves.
 
-By default, the new database will be created by cloning the standard system database `template1`. A different template can be specified by writing `TEMPLATE name`. In particular, by writing `TEMPLATE template0`, you can create a clean database containing only the standard objects predefined by Greenplum Database. This is useful if you wish to avoid copying any installation-local objects that may have been added to `template1`.
+By default, the new database will be created by cloning the standard system database `template1`. A different template can be specified by writing `TEMPLATE name`. In particular, by writing `TEMPLATE template0`, you can create a clean database containing only the standard objects predefined by Cloudberry Database. This is useful if you wish to avoid copying any installation-local objects that may have been added to `template1`.
 
 ## Parameters
 
@@ -54,7 +54,7 @@ allowconn
 :   If `false`, then no one can connect to this database. The default is `true`, allowing connections (except as restricted by other mechanisms, such as `GRANT/REVOKE CONNECT`).
 
 connlimit
-:   The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Greenplum Database superusers are exempt from this limit.
+:   The maximum number of concurrent connections allowed to this database on the coordinator. The default is `-1`, no limit. Cloudberry Database superusers are exempt from this limit.
 
 istemplate
 :   If `true`, then this database can be cloned by any user with `CREATEDB` privileges; if `false` (the default), then only superusers or the owner of the database can clone it. Note that template databases cannot be dropped.

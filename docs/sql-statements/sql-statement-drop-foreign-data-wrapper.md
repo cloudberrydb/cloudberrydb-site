@@ -4,7 +4,7 @@ Removes a foreign-data wrapper.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP FOREIGN DATA WRAPPER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
@@ -15,7 +15,7 @@ DROP FOREIGN DATA WRAPPER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the foreign-data wrapper does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the foreign-data wrapper does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of an existing foreign-data wrapper.
@@ -36,7 +36,7 @@ DROP FOREIGN DATA WRAPPER dbi;
 
 ## Compatibility
 
-`DROP FOREIGN DATA WRAPPER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Greenplum Database extension.
+`DROP FOREIGN DATA WRAPPER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Cloudberry Database extension.
 
 ## See Also
 

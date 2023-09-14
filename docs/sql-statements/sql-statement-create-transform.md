@@ -4,7 +4,7 @@ Defines a new transform
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [ OR REPLACE ] TRANSFORM FOR <type_name> LANGUAGE <lang_name> (
   FROM SQL WITH FUNCTION <from_sql_function_name> [ (<argument_type> [, ...]) ],
   TO SQL WITH FUNCTION <to_sql_function_name> [ (<argument_type> [, ...]) ]
@@ -80,7 +80,7 @@ In practice, these commands would be wrapped up in an extension.
 
 ## Compatibility
 
-This form of `CREATE TRANSFORM` is a Greenplum Database extension. There is a `CREATE TRANSFORM` command in the SQL standard, but it is for adapting data types to client languages. That usage is not supported by Greenplum.
+This form of `CREATE TRANSFORM` is a Cloudberry Database extension. There is a `CREATE TRANSFORM` command in the SQL standard, but it is for adapting data types to client languages. That usage is not supported by Greenplum.
 
 ## See Also
 

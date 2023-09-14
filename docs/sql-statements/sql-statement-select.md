@@ -4,7 +4,7 @@ Retrieves rows from a table or view.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 [ WITH [ RECURSIVE ] <with_query> [, ...] ]
 SELECT [ALL | DISTINCT [ON (<expression> [, ...])]]
   [* | <expression> [[AS] <output_name>] [, ...]]
@@ -130,9 +130,9 @@ A key property of `WITH` queries is that they are evaluated only once per execut
 
 However, a `WITH` query can be marked `NOT MATERIALIZED` to remove this guarantee. In that case, the `WITH` query can be folded into the primary query much as though it were a simple sub-`SELECT` in the primary query's `FROM` clause. This results in duplicate computations if the primary query refers to that `WITH` query more than once; but if each such use requires only a few rows of the `WITH` query's total output, `NOT MATERIALIZED` can provide a net savings by allowing the queries to be optimized jointly. `NOT MATERIALIZED` is ignored if it is attached to a `WITH` query that is recursive or is not side-effect-free (for example, is not a plain `SELECT` containing no volatile functions).
 
-By default, a side-effect-free `WITH` query is folded into the primary query if it is used exactly once in the primary query's `FROM` clause. This allows joint optimization of the two query levels in situations where that should be semantically invisible. However, such folding can be prevented by marking the `WITH` query as `MATERIALIZED`. That might be useful, for example, if the `WITH` query is being used as an optimization fence to prevent the planner from choosing a bad plan. Greenplum Database versions before 7 never did such folding, so queries written for older versions might rely on `WITH` to act as an optimization fence.
+By default, a side-effect-free `WITH` query is folded into the primary query if it is used exactly once in the primary query's `FROM` clause. This allows joint optimization of the two query levels in situations where that should be semantically invisible. However, such folding can be prevented by marking the `WITH` query as `MATERIALIZED`. That might be useful, for example, if the `WITH` query is being used as an optimization fence to prevent the planner from choosing a bad plan. Cloudberry Database versions before 7 never did such folding, so queries written for older versions might rely on `WITH` to act as an optimization fence.
 
-See WITH Queries (Common Table Expressions) in the *Greenplum Database Administrator Guide* for additional information.
+See WITH Queries (Common Table Expressions) in the *Cloudberry Database Administrator Guide* for additional information.
 
 
 ### The FROM Clause
@@ -148,14 +148,14 @@ alias
 :   A substitute name for the `FROM` item containing the alias. An alias is used for brevity or to eliminate ambiguity for self-joins (where the same table is scanned multiple times). When you provide an alias, it completely hides the actual name of the table or function; for example given `FROM foo AS f`, the remainder of the `SELECT` must refer to this `FROM` item as `f` not `foo`. If you specify an alias, you can also specify a column alias list to provide substitute names for one or more columns of the table.
 
 TABLESAMPLE sampling_method ( argument [, ...] ) [ REPEATABLE ( seed ) ]
-:   A `TABLESAMPLE` clause after a table_name indicates that the specified sampling_method should be used to retrieve a subset of the rows in that table. This sampling precedes the application of any other filters such as `WHERE` clauses. The standard Greenplum Database distribution includes two sampling methods, `BERNOULLI` and `SYSTEM`. You can install other sampling methods in the database via extensions.
+:   A `TABLESAMPLE` clause after a table_name indicates that the specified sampling_method should be used to retrieve a subset of the rows in that table. This sampling precedes the application of any other filters such as `WHERE` clauses. The standard Cloudberry Database distribution includes two sampling methods, `BERNOULLI` and `SYSTEM`. You can install other sampling methods in the database via extensions.
 
 :   The `BERNOULLI` and `SYSTEM` sampling methods each accept a single argument which is the fraction of the table to sample, expressed as a percentage between 0 and 100. This argument can be any real-valued expression. (Other sampling methods might accept more or different arguments.) These two methods each return a randomly-chosen sample of the table that will contain approximately the specified percentage of the table's rows. The `BERNOULLI` method scans the whole table and selects or ignores individual rows independently with the specified probability. The `SYSTEM` method does block-level sampling with each block having the specified chance of being selected; all rows in each selected block are returned. The `SYSTEM` method is significantly faster than the `BERNOULLI` method when small sampling percentages are specified, but it may return a less-random sample of the table as a result of clustering effects.
 
-:   The optional `REPEATABLE` clause specifies a seed number or expression to use for generating random numbers within the sampling method. The seed value can be any non-null floating-point value. Two queries that specify the same seed and argument values will select the same sample of the table, if the table has not been changed meanwhile. But different seed values usually produce different samples. If `REPEATABLE` is not specified, then Greenplum Database selects a new random sample for each query, based upon a system-generated seed. Note that some add-on sampling methods do not accept `REPEATABLE`, and will always produce new samples on each use.
+:   The optional `REPEATABLE` clause specifies a seed number or expression to use for generating random numbers within the sampling method. The seed value can be any non-null floating-point value. Two queries that specify the same seed and argument values will select the same sample of the table, if the table has not been changed meanwhile. But different seed values usually produce different samples. If `REPEATABLE` is not specified, then Cloudberry Database selects a new random sample for each query, based upon a system-generated seed. Note that some add-on sampling methods do not accept `REPEATABLE`, and will always produce new samples on each use.
 
 select
-:   A sub-`SELECT` can appear in the `FROM` clause. This acts as though its output were created as a temporary table for the duration of this single `SELECT` command. Note that the sub-`SELECT` must be surrounded by parentheses, and an alias *must* be provided for it. A [VALUES](/docs/sql-statements/sql-statement-values.md) command can also be used here. See "Non-standard Clauses" in the [Compatibility](#compatibility) section for limitations of using correlated sub-selects in Greenplum Database.
+:   A sub-`SELECT` can appear in the `FROM` clause. This acts as though its output were created as a temporary table for the duration of this single `SELECT` command. Note that the sub-`SELECT` must be surrounded by parentheses, and an alias *must* be provided for it. A [VALUES](/docs/sql-statements/sql-statement-values.md) command can also be used here. See "Non-standard Clauses" in the [Compatibility](#compatibility) section for limitations of using correlated sub-selects in Cloudberry Database.
 
 with_query_name
 :   A `WITH` query is referenced in the `FROM` clause by specifying its name, just as though the name were a table name. You can provide an alias in the same way as for a table.
@@ -163,7 +163,7 @@ with_query_name
 :   The `WITH` query hides a table of the same name for the purposes of the primary query. If necessary, you can refer to a table of the same name by schema-qualifying the table's name.
 
 function_name
-:   Function calls can appear in the `FROM` clause. (This is especially useful for functions that return result sets, but any function can be used.) This acts as though the function's output were created as a temporary table for the duration of this single `SELECT` command. When you add the optional `WITH ORDINALITY` clause to the function call, Greenplum Database appends a new column after all of the function's output columns with numbering for each row.
+:   Function calls can appear in the `FROM` clause. (This is especially useful for functions that return result sets, but any function can be used.) This acts as though the function's output were created as a temporary table for the duration of this single `SELECT` command. When you add the optional `WITH ORDINALITY` clause to the function call, Cloudberry Database appends a new column after all of the function's output columns with numbering for each row.
 :   You can provide an alias in the same way as for a table. If an alias is specified, you can also specify a column alias list to provide substitute names for one or more attributes of the function's composite return type, including the column added by `ORDINALITY` if present.
 :   You can combine multiple function calls into a single `FROM`-clause item by surrounding them with `ROWS FROM( ... )`. The output of such an item is the concatenation of the first row from each function, then the second row from each function, etc. If some of the functions produce fewer rows than others, null values are substituted for the missing data, so that the total number of rows returned is always the same as for the function that produced the most rows.
 :   If the function has been defined as returning the `record` data type, then an alias or the key word `AS` must be present, followed by a column definition list in the form `( <column_name> <data_type> [, ... ] )`. The column definition list must match the actual number and types of columns returned by the function.
@@ -201,7 +201,7 @@ CROSS JOIN
 :   `CROSS JOIN` is equivalent to `INNER JOIN ON (TRUE)`, that is, no rows are removed by qualification. They produce a simple Cartesian product, the same result as you get from listing the two tables at the top level of `FROM`, but restricted by the join condition (if any).
 
 LATERAL
-:   The `LATERAL` key word can precede a sub-`SELECT FROM` item. This allows the sub-`SELECT` to refer to columns of `FROM` items that appear before it in the `FROM` list. (Without `LATERAL`, Greenplum Database evaluates each sub-`SELECT` independently and so cannot cross-reference any other `FROM` item.)
+:   The `LATERAL` key word can precede a sub-`SELECT FROM` item. This allows the sub-`SELECT` to refer to columns of `FROM` items that appear before it in the `FROM` list. (Without `LATERAL`, Cloudberry Database evaluates each sub-`SELECT` independently and so cannot cross-reference any other `FROM` item.)
 
 :   `LATERAL` can also precede a function-call `FROM` item. In this case it is a noise word, because the function expression can refer to earlier `FROM` items.
 
@@ -252,7 +252,7 @@ Keep in mind that all aggregate functions are evaluated before evaluating any "s
 
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified with `GROUP BY`.
 
-Greenplum Database has the following additional OLAP grouping extensions (often referred to as *supergroups*):
+Cloudberry Database has the following additional OLAP grouping extensions (often referred to as *supergroups*):
 
 ROLLUP
 :   A `ROLLUP` grouping is an extension to the `GROUP BY` clause that creates aggregate subtotals that roll up from the most detailed level to a grand total, following a list of grouping columns (or expressions). `ROLLUP` takes an ordered list of grouping columns, calculates the standard aggregate values specified in the `GROUP BY` clause, then creates progressively higher-level subtotals, moving from right to left through the list. Finally, it creates a grand total. A `ROLLUP` grouping can be thought of as a series of grouping sets. For example:
@@ -409,17 +409,17 @@ See [Window Expressions](../../admin_guide/query/topics/defining-queries.html#to
 
 The `SELECT` list (between the key words `SELECT` and `FROM`) specifies expressions that form the output rows of the `SELECT` statement. The expressions can (and usually do) refer to columns computed in the `FROM` clause.
 
-An expression in the `SELECT` list can be a constant value, a column reference, an operator invocation, a function call, an aggregate expression, a window expression, a scalar subquery, and so on. A number of constructs can be classified as an expression but do not follow any general syntax rules. These generally have the semantics of a function or operator. For information about SQL value expressions and function calls, see Querying Data in the *Greenplum Database Administrator Guide*.
+An expression in the `SELECT` list can be a constant value, a column reference, an operator invocation, a function call, an aggregate expression, a window expression, a scalar subquery, and so on. A number of constructs can be classified as an expression but do not follow any general syntax rules. These generally have the semantics of a function or operator. For information about SQL value expressions and function calls, see Querying Data in the *Cloudberry Database Administrator Guide*.
 
-Just as in a table, every output column of a `SELECT` has a name. In a simple `SELECT` this name is just used to label the column for display, but when the `SELECT` is a sub-query of a larger query, the name is seen by the larger query as the column name of the virtual table produced by the sub-query. To specify the name to use for an output column, write `AS <output_name>` after the column's expression. (You can omit `AS`, but only if the desired output name does not match any SQL keyword. For protection against possible future keyword additions, you can always either write `AS` or double-quote the output name.) If you do not specify a column name, Greenplum Database chooses a name automatically. If the column's expression is a simple column reference then the chosen name is the same as that column's name. In more complex cases, a function or type name may be used, or the system may fall back on a generated name such as `?column?` or `columnN`.
+Just as in a table, every output column of a `SELECT` has a name. In a simple `SELECT` this name is just used to label the column for display, but when the `SELECT` is a sub-query of a larger query, the name is seen by the larger query as the column name of the virtual table produced by the sub-query. To specify the name to use for an output column, write `AS <output_name>` after the column's expression. (You can omit `AS`, but only if the desired output name does not match any SQL keyword. For protection against possible future keyword additions, you can always either write `AS` or double-quote the output name.) If you do not specify a column name, Cloudberry Database chooses a name automatically. If the column's expression is a simple column reference then the chosen name is the same as that column's name. In more complex cases, a function or type name may be used, or the system may fall back on a generated name such as `?column?` or `columnN`.
 
 An output column's name can be used to refer to the column's value in `ORDER BY` and `GROUP BY` clauses, but not in the `WHERE` or `HAVING` clauses; there you must specify the expression instead.
 
 Instead of an expression, you can specify `*` in the output list as a shorthand for all the columns of the selected rows. Also, you can specify `<table_name>.*` as a shorthand for the columns coming from just that table. In these cases it is not possible to specify new names with `AS`; the output column names will be the same as the table columns' names.
 
-According to the SQL standard, the expressions in the output list should be computed before applying `DISTINCT`, `ORDER BY`, or `LIMIT`. This is obviously necessary when using `DISTINCT`, since otherwise it's not clear what values are being made distinct. However, in many cases it is convenient if output expressions are computed after `ORDER BY` and `LIMIT`; particularly if the output list contains any volatile or expensive functions. With that behavior, the order of function evaluations is more intuitive and there will not be evaluations corresponding to rows that never appear in the output. Greenplum Database effectively evaluates output expressions after sorting and limiting, so long as those expressions are not referenced in `DISTINCT`, `ORDER BY`, or `GROUP BY`. (As a counterexample, `SELECT f(x) FROM tab ORDER BY 1` clearly must evaluate `f(x)` before sorting.) Output expressions that contain set-returning functions are effectively evaluated after sorting and before limiting, so that `LIMIT` will act to cut off the output from a set-returning function.
+According to the SQL standard, the expressions in the output list should be computed before applying `DISTINCT`, `ORDER BY`, or `LIMIT`. This is obviously necessary when using `DISTINCT`, since otherwise it's not clear what values are being made distinct. However, in many cases it is convenient if output expressions are computed after `ORDER BY` and `LIMIT`; particularly if the output list contains any volatile or expensive functions. With that behavior, the order of function evaluations is more intuitive and there will not be evaluations corresponding to rows that never appear in the output. Cloudberry Database effectively evaluates output expressions after sorting and limiting, so long as those expressions are not referenced in `DISTINCT`, `ORDER BY`, or `GROUP BY`. (As a counterexample, `SELECT f(x) FROM tab ORDER BY 1` clearly must evaluate `f(x)` before sorting.) Output expressions that contain set-returning functions are effectively evaluated after sorting and before limiting, so that `LIMIT` will act to cut off the output from a set-returning function.
 
-> **Note** Greenplum Database versions prior to 7 did not provide any guarantees about the timing of evaluation of output expressions versus sorting and limiting; it depended on the form of the chosen query plan.
+> **Note** Cloudberry Database versions prior to 7 did not provide any guarantees about the timing of evaluation of output expressions versus sorting and limiting; it depended on the form of the chosen query plan.
 
 
 ### The DISTINCT Clause
@@ -542,14 +542,14 @@ OFFSET <start>
 
 If the `<count>` expression evaluates to NULL, it is treated as `LIMIT ALL`, that is, no limit. If `<start>` evaluates to NULL, it is treated the same as `OFFSET 0`.
 
-SQL:2008 introduced a different syntax to achieve the same result, which Greenplum Database also supports. It is:
+SQL:2008 introduced a different syntax to achieve the same result, which Cloudberry Database also supports. It is:
 
 ```
 OFFSET <start> [ ROW | ROWS ]
     FETCH { FIRST | NEXT } [ <count> ] { ROW | ROWS } ONLY
 ```
 
-In this syntax, the `<start>` or `<count>` value is required by the standard to be a literal constant, a parameter, or a variable name; as a Greenplum Database extension, other expressions are allowed, but will generally need to be enclosed in parentheses to avoid ambiguity. If `<count>` is omitted in a `FETCH` clause, it defaults to 1. `ROW` and `ROWS` as well as `FIRST` and `NEXT` are noise words that don't influence the effects of these clauses. According to the standard, the `OFFSET` clause must come before the `FETCH` clause if both are present; but Greenplum Database allows either order.
+In this syntax, the `<start>` or `<count>` value is required by the standard to be a literal constant, a parameter, or a variable name; as a Cloudberry Database extension, other expressions are allowed, but will generally need to be enclosed in parentheses to avoid ambiguity. If `<count>` is omitted in a `FETCH` clause, it defaults to 1. `ROW` and `ROWS` as well as `FIRST` and `NEXT` are noise words that don't influence the effects of these clauses. According to the standard, the `OFFSET` clause must come before the `FETCH` clause if both are present; but Cloudberry Database allows either order.
 
 When using `LIMIT`, it is a good idea to use an `ORDER BY` clause that constrains the result rows into a unique order. Otherwise you will get an unpredictable subset of the query's rows — you may be asking for the tenth through twentieth rows, but tenth through twentieth in what ordering? You don't know what ordering unless you specify `ORDER BY`.
 
@@ -559,7 +559,7 @@ It is even possible for repeated executions of the same `LIMIT` query to return 
 
 ### The Locking Clause
 
-`FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` are *locking clauses*; they affect how `SELECT` locks rows as they are obtained from the table. The Global Deadlock Detector affects the locking used by `SELECT` queries that contain a locking clause (`FOR <lock_strength>`). The Global Deadlock Detector is enabled by setting the gp_enable_global_deadlock_detector configuration parameter to `on`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd) in the *Greenplum Database Administrator Guide* for information about the Global Deadlock Detector.
+`FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` are *locking clauses*; they affect how `SELECT` locks rows as they are obtained from the table. The Global Deadlock Detector affects the locking used by `SELECT` queries that contain a locking clause (`FOR <lock_strength>`). The Global Deadlock Detector is enabled by setting the gp_enable_global_deadlock_detector configuration parameter to `on`. See [Global Deadlock Detector](../../admin_guide/dml.html#topic_gdd) in the *Cloudberry Database Administrator Guide* for information about the Global Deadlock Detector.
 
 The locking clause has the general form:
 
@@ -574,7 +574,7 @@ FOR <lock_strength> [OF <table_name> [ , ... ] ] [ NOWAIT | SKIP LOCKED ]
 -   `SHARE` - Locks the table with a `ROW SHARE` lock.
 -   `KEY SHARE` - Locks the table with a `ROW SHARE` lock.
 
-When the Global Deadlock Detector is deactivated (the default), Greenplum Database uses the specified lock.
+When the Global Deadlock Detector is deactivated (the default), Cloudberry Database uses the specified lock.
 
 When the Global Deadlock Detector is enabled, a `ROW SHARE` lock is used to lock the table for simple `SELECT` queries that contain a locking clause, and the query plans contain a `lockrows` node. Simple `SELECT` queries that contain a locking clause fulfill all the following conditions:
 
@@ -585,7 +585,7 @@ When the Global Deadlock Detector is enabled, a `ROW SHARE` lock is used to lock
 
 Otherwise, table locking for a `SELECT` query that contains a locking clause behaves as if the Global Deadlock Detector is deactivated.
 
-> **Note** The Global Deadlock Detector also affects the locking used by `DELETE` and `UPDATE` operations. By default, Greenplum Database acquires an `EXCLUSIVE` lock on tables for `DELETE` and `UPDATE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`.
+> **Note** The Global Deadlock Detector also affects the locking used by `DELETE` and `UPDATE` operations. By default, Cloudberry Database acquires an `EXCLUSIVE` lock on tables for `DELETE` and `UPDATE` operations on heap tables. When the Global Deadlock Detector is enabled, the lock mode for `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`.
 
 For more information on each row-level lock mode, refer to [Explicit Locking](https://www.postgresql.org/docs/12/explicit-locking.html) in the PostgreSQL documentation.
 
@@ -760,7 +760,7 @@ WITH RECURSIVE employee_recursive(distance, employee_name, manager_name) AS (
 SELECT distance, employee_name FROM employee_recursive;
 ```
 
-The typical form of a recursive query is an initial condition, followed by `UNION [ALL]`, followed by the recursive part of the query. Be sure that the recursive part of the query will eventually return no tuples, or else the query will loop indefinitely. See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b)in the *Greenplum Database Administrator Guide* for more examples.
+The typical form of a recursive query is an initial condition, followed by `UNION [ALL]`, followed by the recursive part of the query. Be sure that the recursive part of the query will eventually return no tuples, or else the query will loop indefinitely. See [WITH Queries (Common Table Expressions)](../../admin_guide/query/topics/CTE-query.html#topic_zhs_r1s_w1b)in the *Cloudberry Database Administrator Guide* for more examples.
 
 This example uses `LATERAL` to apply a set-returning function `get_product_names()` for each row of the `manufacturers` table:
 
@@ -782,7 +782,7 @@ The `SELECT` statement is compatible with the SQL standard, but there are some e
 
 **Omitted FROM Clauses**
 
-Greenplum Database allows one to omit the `FROM` clause. It has a straightforward use to compute the results of simple expressions. For example:
+Cloudberry Database allows one to omit the `FROM` clause. It has a straightforward use to compute the results of simple expressions. For example:
 
 ```
 SELECT 2+2;
@@ -796,19 +796,19 @@ Note that if a `FROM` clause is not specified, the query cannot reference any da
 SELECT distributors.* WHERE distributors.name = 'Westward';
 ```
 
-In earlier releases, setting a server configuration parameter, `add_missing_from`, to true allowed Greenplum Database to add an implicit entry to the query's `FROM` clause for each table referenced by the query. This is no longer allowed.
+In earlier releases, setting a server configuration parameter, `add_missing_from`, to true allowed Cloudberry Database to add an implicit entry to the query's `FROM` clause for each table referenced by the query. This is no longer allowed.
 
 
 **Empty SELECT Lists**
 
-The list of output expressions after `SELECT` can be empty, producing a zero-column result table. This is not valid syntax according to the SQL standard. Greenplum Database allows it to be consistent with allowing zero-column tables. However, an empty list is not allowed when `DISTINCT` is used.
+The list of output expressions after `SELECT` can be empty, producing a zero-column result table. This is not valid syntax according to the SQL standard. Cloudberry Database allows it to be consistent with allowing zero-column tables. However, an empty list is not allowed when `DISTINCT` is used.
 
 
 **Omitting the AS Key Word**
 
-In the SQL standard, the optional key word `AS` can be omitted before an output column name whenever the new column name is a valid column name (that is, not the same as any reserved keyword). Greenplum Database is slightly more restrictive: `AS` is required if the new column name matches any keyword at all, reserved or not. Recommended practice is to use `AS` or double-quote output column names, to prevent any possible conflict against future keyword additions.
+In the SQL standard, the optional key word `AS` can be omitted before an output column name whenever the new column name is a valid column name (that is, not the same as any reserved keyword). Cloudberry Database is slightly more restrictive: `AS` is required if the new column name matches any keyword at all, reserved or not. Recommended practice is to use `AS` or double-quote output column names, to prevent any possible conflict against future keyword additions.
 
-In `FROM` items, both the standard and Greenplum Database allow `AS` to be omitted before an alias that is an unreserved keyword. But this is impractical for output column names, because of syntactic ambiguities.
+In `FROM` items, both the standard and Cloudberry Database allow `AS` to be omitted before an alias that is an unreserved keyword. But this is impractical for output column names, because of syntactic ambiguities.
 
 **ONLY and Inheritance**
 
@@ -818,9 +818,9 @@ The SQL standard requires parentheses around the table name when writing `ONLY`,
 SELECT * FROM ONLY (tab1), ONLY (tab2) WHERE ...
 ```
 
-Greenplum Database considers these parentheses to be optional.
+Cloudberry Database considers these parentheses to be optional.
 
-Greenplum Database allows a trailing `*` to be written to explicitly specify the non-`ONLY` behavior of including child tables. The standard does not allow this.
+Cloudberry Database allows a trailing `*` to be written to explicitly specify the non-`ONLY` behavior of including child tables. The standard does not allow this.
 
 Note: The above points apply equally to all SQL commands supporting the `ONLY` option.
 
@@ -830,29 +830,29 @@ The `TABLESAMPLE` clause is currently accepted only on regular tables and materi
 
 **Function Calls in FROM**
 
-Greenplum Database allows you to write a function call directly as a member of the `FROM` list. In the SQL standard it would be necessary to wrap such a function call in a sub-`SELECT`; that is, the syntax `FROM func(...) alias` is approximately equivalent to `FROM LATERAL (SELECT func(...)) alias`. Note that `LATERAL` is considered to be implicit; this is because the standard requires `LATERAL` semantics for an `UNNEST()` item in `FROM`. Greenplum Database treats `UNNEST()` the same as other set-returning functions.
+Cloudberry Database allows you to write a function call directly as a member of the `FROM` list. In the SQL standard it would be necessary to wrap such a function call in a sub-`SELECT`; that is, the syntax `FROM func(...) alias` is approximately equivalent to `FROM LATERAL (SELECT func(...)) alias`. Note that `LATERAL` is considered to be implicit; this is because the standard requires `LATERAL` semantics for an `UNNEST()` item in `FROM`. Cloudberry Database treats `UNNEST()` the same as other set-returning functions.
 
 **Namespace Available to GROUP BY and ORDER BY**
 
-In the SQL-92 standard, an `ORDER BY` clause may only use output column names or numbers, while a `GROUP BY` clause may only use expressions based on input column names. Greenplum Database extends each of these clauses to allow the other choice as well (but it uses the standard's interpretation if there is ambiguity). Greenplum Database also allows both clauses to specify arbitrary expressions. Note that names appearing in an expression are always taken as input-column names, not as output column names.
+In the SQL-92 standard, an `ORDER BY` clause may only use output column names or numbers, while a `GROUP BY` clause may only use expressions based on input column names. Cloudberry Database extends each of these clauses to allow the other choice as well (but it uses the standard's interpretation if there is ambiguity). Cloudberry Database also allows both clauses to specify arbitrary expressions. Note that names appearing in an expression are always taken as input-column names, not as output column names.
 
-SQL:1999 and later use a slightly different definition which is not entirely upward compatible with SQL-92. In most cases, however, Greenplum Database interprets an `ORDER BY` or `GROUP BY` expression the same way SQL:1999 does.
+SQL:1999 and later use a slightly different definition which is not entirely upward compatible with SQL-92. In most cases, however, Cloudberry Database interprets an `ORDER BY` or `GROUP BY` expression the same way SQL:1999 does.
 
 **Functional Dependencies**
 
-Greenplum Database recognizes functional dependency (allowing columns to be omitted from `GROUP BY`) only when a table's primary key is included in the `GROUP BY` list. The SQL standard specifies additional conditions that should be recognized.
+Cloudberry Database recognizes functional dependency (allowing columns to be omitted from `GROUP BY`) only when a table's primary key is included in the `GROUP BY` list. The SQL standard specifies additional conditions that should be recognized.
 
 **LIMIT and OFFSET**
 
-The clauses `LIMIT` and `OFFSET` are Greenplum Database-specific syntax, also used by MySQL. The SQL:2008 standard has introduced the clauses `OFFSET .. FETCH {FIRST|NEXT} ...` for the same functionality, as shown above in [LIMIT Clause](#limitclause). This syntax is also used by IBM DB2. (Applications for Oracle frequently use a workaround involving the automatically generated `rownum` column, which is not available in Greenplum Database, to implement the effects of these clauses.)
+The clauses `LIMIT` and `OFFSET` are Cloudberry Database-specific syntax, also used by MySQL. The SQL:2008 standard has introduced the clauses `OFFSET .. FETCH {FIRST|NEXT} ...` for the same functionality, as shown above in [LIMIT Clause](#limitclause). This syntax is also used by IBM DB2. (Applications for Oracle frequently use a workaround involving the automatically generated `rownum` column, which is not available in Cloudberry Database, to implement the effects of these clauses.)
 
 **FOR NO KEY UPDATE, FOR UPDATE, FOR SHARE, and FOR KEY SHARE**
 
-Although `FOR UPDATE` appears in the SQL standard, the standard allows it only as an option of `DECLARE CURSOR`. Greenplum Database allows it in any `SELECT` query as well as in sub-`SELECT`s, but this is an extension. The `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` variants, as well as the `NOWAIT` and `SKIP LOCKED` options, do not appear in the standard.
+Although `FOR UPDATE` appears in the SQL standard, the standard allows it only as an option of `DECLARE CURSOR`. Cloudberry Database allows it in any `SELECT` query as well as in sub-`SELECT`s, but this is an extension. The `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` variants, as well as the `NOWAIT` and `SKIP LOCKED` options, do not appear in the standard.
 
 **Data-Modifying Statements in WITH**
 
-Greenplum Database allows `INSERT`, `UPDATE`, and `DELETE` to be used as `WITH` queries. This is not found in the SQL standard.
+Cloudberry Database allows `INSERT`, `UPDATE`, and `DELETE` to be used as `WITH` queries. This is not found in the SQL standard.
 
 **Nonstandard Clauses**
 
@@ -864,7 +864,7 @@ The `MATERIALIZED` and `NOT MATERIALIZED` options of `WITH` are extensions of th
 
 **Limited Use of STABLE and VOLATILE Functions**
 
-To prevent data from becoming out-of-sync across the segments in Greenplum Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment database level if it contains SQL or modifies the database in any way. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
+To prevent data from becoming out-of-sync across the segments in Cloudberry Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment database level if it contains SQL or modifies the database in any way. See [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md) for more information.
 
 ## See Also
 

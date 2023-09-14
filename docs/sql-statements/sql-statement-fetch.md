@@ -4,7 +4,7 @@ Retrieves rows from a query using a cursor.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 FETCH [ <forward_direction> { FROM | IN } ] <cursor_name>
 ```
 
@@ -31,7 +31,7 @@ where <forward_direction> can be empty or one of:
 A cursor has an associated position, which is used by `FETCH`. The cursor position can be before the first row of the query result, on any particular row of the result, or after the last row of the result. When created, a cursor is positioned before the first row. After fetching some rows, the cursor is positioned on the row most recently retrieved. If `FETCH` runs off the end of the available rows then the cursor is left positioned after the last row. `FETCH ALL` will always leave the cursor positioned after the last row.
 
 > **Note**
-> Because Greenplum Database does not support scrollable cursors, it is not possible to move a cursor position backwards. You can only move a cursor forward in position using `FETCH`.
+> Because Cloudberry Database does not support scrollable cursors, it is not possible to move a cursor position backwards. You can only move a cursor forward in position using `FETCH`.
 
 The forms `NEXT`, `FIRST`, `ABSOLUTE`, `RELATIVE` fetch a single row after moving the cursor appropriately. If there is no such row, an empty result is returned, and the cursor is left positioned before the first row or after the last row as appropriate.
 
@@ -45,7 +45,7 @@ The forms using `FORWARD` retrieve the indicated number of rows moving in the fo
 ## Parameters
 
 forward_direction
-:   Defines the fetch direction and number of rows to fetch. Only forward fetches are allowed in Greenplum Database. It can be one of the following:
+:   Defines the fetch direction and number of rows to fetch. Only forward fetches are allowed in Cloudberry Database. It can be one of the following:
 
 NEXT
 :   Fetch the next row. This is the default if direction is omitted.
@@ -89,7 +89,7 @@ The count is the number of rows fetched (possibly zero). Note that in `psql`, th
 
 ## Notes
 
-Greenplum Database does not support scrollable cursors, so you can only use `FETCH` to move the cursor position forward.
+Cloudberry Database does not support scrollable cursors, so you can only use `FETCH` to move the cursor position forward.
 
 `ABSOLUTE` fetches are not any faster than navigating to the desired row with a relative move: the underlying implementation must traverse all the intermediate rows anyway.
 
@@ -137,11 +137,11 @@ UPDATE films SET kind = 'Dramatic' WHERE CURRENT OF c_films;
 
 ## Compatibility
 
-SQL standard allows cursors only in embedded SQL and in modules. Greenplum Database permits cursors to be used interactively.
+SQL standard allows cursors only in embedded SQL and in modules. Cloudberry Database permits cursors to be used interactively.
 
 The variant of `FETCH` described here returns the data as if it were a `SELECT` result rather than placing it in host variables. Other than this point, `FETCH` is fully upward-compatible with the SQL standard.
 
-The `FETCH` forms involving `FORWARD`, as well as the forms `FETCH` count and `FETCH ALL`, in which `FORWARD` is implicit, are Greenplum Database extensions. `BACKWARD` is not supported.
+The `FETCH` forms involving `FORWARD`, as well as the forms `FETCH` count and `FETCH ALL`, in which `FORWARD` is implicit, are Cloudberry Database extensions. `BACKWARD` is not supported.
 
 The SQL standard allows only `FROM` preceding the cursor name; the option to use `IN`, or to leave them out altogether, is an extension.
 

@@ -4,13 +4,13 @@ Removes a resource group.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP RESOURCE GROUP <group_name>
 ```
 
 ## Description
 
-This command removes a resource group from Greenplum Database. Only a superuser can drop a resource group. When you drop a resource group, the memory and CPU resources reserved by the group are returned to Greenplum Database.
+This command removes a resource group from Cloudberry Database. Only a superuser can drop a resource group. When you drop a resource group, the memory and CPU resources reserved by the group are returned to Cloudberry Database.
 
 To drop a role resource group, the group cannot be assigned to any roles, nor can it have any statements pending or running in the group. If you drop a resource group that you created for an external component, the behavior is determined by the external component. For example, dropping a resource group that you assigned to a PL/Container runtime stops running containers in the group.
 
@@ -60,7 +60,7 @@ DROP RESOURCE GROUP adhoc;
 
 ## Compatibility
 
-The `DROP RESOURCE GROUP` statement is a Greenplum Database extension.
+The `DROP RESOURCE GROUP` statement is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Removes a foreign server descriptor.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP SERVER [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -15,7 +15,7 @@ DROP SERVER [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the server does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the server does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of an existing server.
@@ -36,7 +36,7 @@ DROP SERVER IF EXISTS foo;
 
 ## Compatibility
 
-`DROP SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Greenplum Database extension.
+`DROP SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Cloudberry Database extension.
 
 ## See Also
 

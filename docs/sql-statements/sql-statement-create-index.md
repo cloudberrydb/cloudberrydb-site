@@ -4,7 +4,7 @@ Defines a new index.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [UNIQUE] INDEX [[IF NOT EXISTS] <name>] ON [ONLY] <table_name> [USING <method>]
        ( {<column_name> | (<expression>)} [COLLATE <collation>] [<opclass>] [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] )
        [ INCLUDE ( column_name [, ...] ) ]
@@ -21,7 +21,7 @@ The key field(s) for the index are specified as column names, or alternatively a
 
 An index field can be an expression computed from the values of one or more columns of the table row. This feature can be used to obtain fast access to data based on some transformation of the basic data. For example, an index computed on `upper(col)` would allow the clause `WHERE upper(col) = 'JIM'` to use an index.
 
-Greenplum Database provides the index methods B-tree, hash, bitmap, GiST, SP-GiST, GIN, and BRIN. Users can also define their own index methods, but that is fairly complicated.
+Cloudberry Database provides the index methods B-tree, hash, bitmap, GiST, SP-GiST, GIN, and BRIN. Users can also define their own index methods, but that is fairly complicated.
 
 When the `WHERE` clause is present, a partial index is created. A partial index is an index that contains entries for only a portion of a table, usually a portion that is more useful for indexing than the rest of the table. For example, if you have a table that contains both billed and unbilled orders where the unbilled orders take up a small fraction of the total table and yet is most often selected, you can improve performance by creating an index on just that portion. Another possible application is to use `WHERE` with `UNIQUE` to enforce uniqueness over a subset of a table. See [Partial Indexes](https://www.postgresql.org/docs/12/indexes-partial.html) in the PostgreSQL documentation for more information.
 
@@ -50,7 +50,7 @@ INCLUDE
 :   Currently, the B-tree and the GiST index access methods support `INCLUDE`. In B-tree and the GiST indexes, the values of columns listed in the `INCLUDE` clause are included in leaf tuples which correspond to heap tuples, but are not included in upper-level index entries used for tree navigation.
 
 name
-:   The name of the index to be created. The index is always created in the same schema as its parent table. If the name is omitted, Greenplum Database chooses a suitable name based on the parent table's name and the indexed column name(s).
+:   The name of the index to be created. The index is always created in the same schema as its parent table. If the name is omitted, Cloudberry Database chooses a suitable name based on the parent table's name and the indexed column name(s).
 
 ONLY
 :   Indicates not to recurse creating indexes on partitions, if the table is partitioned. The default is to recurse.
@@ -111,7 +111,7 @@ vacuum_cleanup_index_scale_factor
 GiST indexes additionally accept this parameter:
 
 `buffering`
-:   Determines whether Greenplum Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/12/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches effective_cache_size. The default is `AUTO`.
+:   Determines whether Cloudberry Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/12/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches effective_cache_size. The default is `AUTO`.
 
 GIN indexes accept different parameters:
 
@@ -153,7 +153,7 @@ Use [DROP INDEX](/docs/sql-statements/sql-statement-drop-index.md) to remove an 
 
 Like any long-running transaction, `CREATE INDEX` on a table can affect which tuples can be removed by concurrent `VACUUM` on any other table.
 
-Prior releases of Greenplum Database also had an R-tree index method. This method has been removed because it had no significant advantages over the GiST method. If `USING rtree` is specified, `CREATE INDEX` will interpret it as `USING gist`, to simplify conversion of old databases to GiST.
+Prior releases of Cloudberry Database also had an R-tree index method. This method has been removed because it had no significant advantages over the GiST method. If `USING rtree` is specified, `CREATE INDEX` will interpret it as `USING gist`, to simplify conversion of old databases to GiST.
 
 ## Examples
 
@@ -217,9 +217,9 @@ SELECT * FROM points WHERE box(location,location) && '(0,0),(1,1)'::box;
 
 ## Compatibility
 
-`CREATE INDEX` is a Greenplum Database extension to the SQL standard. There are no provisions for indexes in the SQL standard.
+`CREATE INDEX` is a Cloudberry Database extension to the SQL standard. There are no provisions for indexes in the SQL standard.
 
-Greenplum Database does not support the concurrent creation of indexes (`CONCURRENTLY` keyword is not supported).
+Cloudberry Database does not support the concurrent creation of indexes (`CONCURRENTLY` keyword is not supported).
 
 ## See Also
 

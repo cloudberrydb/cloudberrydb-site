@@ -4,7 +4,7 @@ Positions a cursor.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 MOVE [ <forward_direction> [ FROM | IN ] ] <cursor_name>
 ```
 
@@ -29,7 +29,7 @@ where <forward_direction> can be empty or one of:
 
 > **Note** You cannot `MOVE` a `PARALLEL RETRIEVE CURSOR`.
 
-> **Note** Because Greenplum Database does not support scrollable cursors, it is not possible to move a cursor position backwards. You can only move a cursor forward in position using `MOVE`.
+> **Note** Because Cloudberry Database does not support scrollable cursors, it is not possible to move a cursor position backwards. You can only move a cursor forward in position using `MOVE`.
 
 The parameters for the `MOVE` command are identical to those of the `FETCH` command; refer to [FETCH](/docs/sql-statements/sql-statement-fetch.md) for details on syntax and usage.
 

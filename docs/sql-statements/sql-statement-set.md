@@ -1,10 +1,10 @@
 # SET
 
-Changes the value of a run-time Greenplum Database configuration parameter.
+Changes the value of a run-time Cloudberry Database configuration parameter.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 SET [ SESSION | LOCAL ] <configuration_parameter> { TO | = } { <value> | '<value>' | DEFAULT }
 
 SET [SESSION | LOCAL] TIME ZONE { <value> | '<value>' |  LOCAL | DEFAULT }
@@ -33,7 +33,7 @@ LOCAL
 :   Specifies that the command takes effect for only the current transaction. After `COMMIT` or `ROLLBACK`, the session-level setting takes effect again. Issuing this outside of a transaction block emits a warning and otherwise has no effect.
 
 configuration_parameter
-:   The name of a settable Greenplum Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See Server Configuration Parameters for details.
+:   The name of a settable Cloudberry Database run-time configuration parameter. Only parameters classified as *session* can be changed with `SET`. See Server Configuration Parameters for details.
 
 value
 :   New value of the parameter. Values can be specified as string constants, identifiers, numbers, or comma-separated lists of these, as appropriate for the particular parameter. `DEFAULT` can be used to specify resetting the parameter to its default value (that is, whatever value it would have had if no `SET` had been issued in the current session). If specifying memory sizing or time units, enclose the value in single quotes.
@@ -67,7 +67,7 @@ TIME ZONE
     DEFAULT
     :   Set the time zone to your local time zone (that is, server's default value of timezone).
 
-    See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#DATATYPE-TIMEZONES) section of the PostgreSQL documentation for more information about time zones in Greenplum Database.
+    See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#DATATYPE-TIMEZONES) section of the PostgreSQL documentation for more information about time zones in Cloudberry Database.
 
 ## Examples
 
@@ -103,7 +103,7 @@ SET TIME ZONE 'Europe/Rome';
 
 ## Compatibility
 
-`SET TIME ZONE` extends syntax defined in the SQL standard. The standard allows only numeric time zone offsets while Greenplum Database allows more flexible time-zone specifications. All other `SET` features are Greenplum Database extensions.
+`SET TIME ZONE` extends syntax defined in the SQL standard. The standard allows only numeric time zone offsets while Cloudberry Database allows more flexible time-zone specifications. All other `SET` features are Cloudberry Database extensions.
 
 ## See Also
 

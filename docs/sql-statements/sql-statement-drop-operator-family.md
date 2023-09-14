@@ -4,7 +4,7 @@ Removes an operator family.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP OPERATOR FAMILY [IF EXISTS] <name> USING <index_method> [CASCADE | RESTRICT]
 ```
 

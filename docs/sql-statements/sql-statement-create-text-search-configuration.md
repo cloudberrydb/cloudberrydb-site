@@ -4,7 +4,7 @@ Defines a new text search configuration.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE TEXT SEARCH CONFIGURATION <name> (
     PARSER = <parser_name> |
     COPY = <source_config>

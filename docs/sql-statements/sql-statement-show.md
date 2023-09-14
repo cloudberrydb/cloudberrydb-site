@@ -4,7 +4,7 @@ Shows the value of a run-time system configuration parameter.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 SHOW <name>
 
 SHOW ALL
@@ -12,7 +12,7 @@ SHOW ALL
 
 ## Description
 
-`SHOW` displays the current settings of Greenplum Database run-time system configuration parameters. You can set these parameters with the `SET` statement, by editing the `postgresql.conf` configuration file of the Greenplum Database coordinator, through the `PGOPTIONS` environment variable (when using libpq or a libpq-based application), or through command-line flags when starting the Greenplum server.
+`SHOW` displays the current settings of Cloudberry Database run-time system configuration parameters. You can set these parameters with the `SET` statement, by editing the `postgresql.conf` configuration file of the Cloudberry Database coordinator, through the `PGOPTIONS` environment variable (when using libpq or a libpq-based application), or through command-line flags when starting the Greenplum server.
 
 
 ## Parameters
@@ -23,7 +23,7 @@ name
 :   Some parameters viewable by `SHOW` are read-only — you can view their values but not set them:
 
     SERVER_VERSION
-    :   Shows the version number of the Greenplum Database server.
+    :   Shows the version number of the Cloudberry Database server.
 
     SERVER_ENCODING
     :   Shows the server-side character set encoding. You can show, but not set, this parameter because the encoding is determined at database creation time.
@@ -83,7 +83,7 @@ SHOW ALL;
 
 ## Compatibility
 
-The `SHOW` command is a Greenplum Database extension.
+The `SHOW` command is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Defines a new schema.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE SCHEMA <schema_name> [AUTHORIZATION <role_specification>] 
    [<schema_element> [ ... ]]
 
@@ -40,7 +40,7 @@ user_name
 schema_element
 :   An SQL statement defining an object to be created within the schema. Currently, only `CREATE TABLE`, `CREATE VIEW`, `CREATE INDEX`, `CREATE SEQUENCE`, `CREATE TRIGGER`, and `GRANT` are accepted as clauses within `CREATE SCHEMA`. Other kinds of objects may be created in separate commands after the schema is created.
 
-    > **Note** Greenplum Database does not support triggers.
+    > **Note** Cloudberry Database does not support triggers.
 
 `IF NOT EXISTS`
 :   Do nothing (except issuing a notice) if a schema with the same name already exists. schema_element subcommands cannot be included when this option is used.
@@ -91,13 +91,13 @@ CREATE VIEW hollywood.winners AS
 
 ## Compatibility
 
-The SQL standard allows a `DEFAULT CHARACTER SET` clause in `CREATE SCHEMA`, as well as more subcommand types than are presently accepted by Greenplum Database.
+The SQL standard allows a `DEFAULT CHARACTER SET` clause in `CREATE SCHEMA`, as well as more subcommand types than are presently accepted by Cloudberry Database.
 
-The SQL standard specifies that the subcommands in `CREATE SCHEMA` may appear in any order. The present Greenplum Database implementation does not handle all cases of forward references in subcommands; it may sometimes be necessary to reorder the subcommands in order to avoid forward references.
+The SQL standard specifies that the subcommands in `CREATE SCHEMA` may appear in any order. The present Cloudberry Database implementation does not handle all cases of forward references in subcommands; it may sometimes be necessary to reorder the subcommands in order to avoid forward references.
 
-According to the SQL standard, the owner of a schema always owns all objects within it. Greenplum Database allows schemas to contain objects owned by users other than the schema owner. This can happen only if the schema owner grants the `CREATE` privilege on the schema to someone else, or a superuser chooses to create objects in it.
+According to the SQL standard, the owner of a schema always owns all objects within it. Cloudberry Database allows schemas to contain objects owned by users other than the schema owner. This can happen only if the schema owner grants the `CREATE` privilege on the schema to someone else, or a superuser chooses to create objects in it.
 
-The `IF NOT EXISTS` option is a Greenplum Database extension.
+The `IF NOT EXISTS` option is a Cloudberry Database extension.
 
 ## See Also
 

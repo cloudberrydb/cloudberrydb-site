@@ -4,7 +4,7 @@ Defines a new operator family.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE OPERATOR FAMILY <name>  USING <index_method>  
 ```
 
@@ -30,7 +30,7 @@ index_method
 
 ## Compatibility
 
-`CREATE OPERATOR FAMILY` is a Greenplum Database extension. There is no `CREATE OPERATOR FAMILY` statement in the SQL standard.
+`CREATE OPERATOR FAMILY` is a Cloudberry Database extension. There is no `CREATE OPERATOR FAMILY` statement in the SQL standard.
 
 ## See Also
 

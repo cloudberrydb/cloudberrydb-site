@@ -4,7 +4,7 @@ Defines a new operator class.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE OPERATOR CLASS <name> [DEFAULT] FOR TYPE <data_type>  
   USING <index_method> [ FAMILY <family_name> ] AS 
   { OPERATOR <strategy_number> <operator_name> [ ( <op_type>, <op_type> ) ] [ FOR SEARCH | FOR ORDER BY <sort_family_name> ]
@@ -23,7 +23,7 @@ The user who defines an operator class becomes its owner. Presently, the creatin
 
 `CREATE OPERATOR CLASS` does not presently check whether the operator class definition includes all the operators and functions required by the index method, nor whether the operators and functions form a self-consistent set. It is the user's responsibility to define a valid operator class.
 
-Related operator classes can be grouped into operator families. To add a new operator class to an existing family, specify the `FAMILY` option in `CREATE OPERATOR CLASS`. Without this option, the new class is placed into a family named the same as the new class (Greenplum Database creates that family if it doesn't already exist).
+Related operator classes can be grouped into operator families. To add a new operator class to an existing family, specify the `FAMILY` option in `CREATE OPERATOR CLASS`. Without this option, the new class is placed into a family named the same as the new class (Cloudberry Database creates that family if it doesn't already exist).
 
 Refer to [Interfacing Extensions to Indexes](https://www.postgresql.org/docs/12/xindex.html) in the PostgreSQL documentation for more information.
 
@@ -82,7 +82,7 @@ The operators should not be defined by SQL functions. A SQL function is likely t
 
 Any functions used to implement the operator class must be defined as `IMMUTABLE`.
 
-Before Greenplum Database 6.0, the `OPERATOR` clause could include a `RECHECK` option. This option is no longer supported. Greenplum Database now determines whether an index operator is "lossy" on-the-fly at run time. This allows more efficient handling of cases where an operator might or might not be lossy.
+Before Cloudberry Database 6.0, the `OPERATOR` clause could include a `RECHECK` option. This option is no longer supported. Cloudberry Database now determines whether an index operator is "lossy" on-the-fly at run time. This allows more efficient handling of cases where an operator might or might not be lossy.
 
 ## Examples
 
@@ -107,7 +107,7 @@ CREATE OPERATOR CLASS gist__int_ops
 
 ## Compatibility
 
-`CREATE OPERATOR CLASS` is a Greenplum Database extension. There is no `CREATE OPERATOR CLASS` statement in the SQL standard.
+`CREATE OPERATOR CLASS` is a Cloudberry Database extension. There is no `CREATE OPERATOR CLASS` statement in the SQL standard.
 
 ## See Also
 

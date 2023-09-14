@@ -4,7 +4,7 @@ Computes a set of rows.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 VALUES ( <expression> [, ...] ) [, ...]
    [ORDER BY <sort_expression> [ ASC | DESC | USING <operator> ] [, ...] ]
    [LIMIT { <count> | ALL } ] 
@@ -85,7 +85,7 @@ target, increase) WHERE employees.depno = v.depno AND
 employees.sales >= v.target;
 ```
 
-Note that an `AS` clause is required when `VALUES` is used in a `FROM` clause, just as is true for `SELECT`. It is not required that the `AS` clause specify names for all the columns, but it is good practice to do so. The default column names for `VALUES` are `column1`, `column2`, etc. in Greenplum Database, but these names might be different in other database systems.
+Note that an `AS` clause is required when `VALUES` is used in a `FROM` clause, just as is true for `SELECT`. It is not required that the `AS` clause specify names for all the columns, but it is good practice to do so. The default column names for `VALUES` are `column1`, `column2`, etc. in Cloudberry Database, but these names might be different in other database systems.
 
 When `VALUES` is used in `INSERT`, the values are all automatically coerced to the data type of the corresponding destination column. When it is used in other contexts, it may be necessary to specify the correct data type. If the entries are all quoted literal constants, coercing the first is sufficient to determine the assumed type for all:
 
@@ -99,7 +99,7 @@ SELECT * FROM machines WHERE ip_address IN
 
 ## Compatibility
 
-`VALUES` conforms to the SQL standard. `LIMIT` and `OFFSET` are Greenplum Database extensions; see also under [SELECT](/docs/sql-statements/sql-statement-select.md).
+`VALUES` conforms to the SQL standard. `LIMIT` and `OFFSET` are Cloudberry Database extensions; see also under [SELECT](/docs/sql-statements/sql-statement-select.md).
 
 ## See Also
 

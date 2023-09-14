@@ -4,7 +4,7 @@ Removes an aggregate function.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP AGGREGATE [IF EXISTS] <name> ( <aggregate_signature> ) [, ...] [CASCADE | RESTRICT]
 
 where <aggregate_signature> is:

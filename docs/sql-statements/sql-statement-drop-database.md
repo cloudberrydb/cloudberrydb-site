@@ -4,7 +4,7 @@ Removes a database.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP DATABASE [IF EXISTS] <name>
 ```
 

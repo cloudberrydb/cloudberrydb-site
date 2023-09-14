@@ -6,7 +6,7 @@ Defines a new text search parser.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE TEXT SEARCH PARSER <name> (
     START = <start_function> ,
     GETTOKEN = <gettoken_function> ,

@@ -4,7 +4,7 @@ Removes a conversion.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP CONVERSION [IF EXISTS] <name> [CASCADE | RESTRICT]
 ```
 
@@ -34,7 +34,7 @@ DROP CONVERSION myname;
 
 ## Compatibility
 
-There is no `DROP CONVERSION` statement in the SQL standard. The standard has `CREATE TRANSLATION` and `DROP TRANSLATION` statements that are similar to the Greenplum Database `CREATE CONVERSION` and `DROP CONVERSION` statements.
+There is no `DROP CONVERSION` statement in the SQL standard. The standard has `CREATE TRANSLATION` and `DROP TRANSLATION` statements that are similar to the Cloudberry Database `CREATE CONVERSION` and `DROP CONVERSION` statements.
 
 ## See Also
 

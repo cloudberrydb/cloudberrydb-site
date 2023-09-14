@@ -4,7 +4,7 @@ Replaces the contents of a materialized view.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 REFRESH MATERIALIZED VIEW [ CONCURRENTLY ] <name>
     [ WITH [ NO ] DATA ]
 ```
@@ -50,7 +50,7 @@ REFRESH MATERIALIZED VIEW annual_statistics_basis WITH NO DATA;
 
 ## Compatibility
 
-`REFRESH MATERIALIZED VIEW` is a Greenplum Database extension of the SQL standard.
+`REFRESH MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
 ## See Also
 

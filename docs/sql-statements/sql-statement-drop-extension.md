@@ -1,10 +1,10 @@
 # DROP EXTENSION
 
-Removes an extension from a Greenplum database.
+Removes an extension from a Cloudberry Database.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP EXTENSION [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 ```
 
@@ -12,14 +12,14 @@ DROP EXTENSION [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 `DROP EXTENSION` removes extensions from the database. Dropping an extension causes its component objects to be dropped as well.
 
-> **Note** The supporting extension files that were installed to create the extension (for example, the library and `.control` files) are not deleted. The files must be manually removed from the Greenplum Database hosts.
+> **Note** The supporting extension files that were installed to create the extension (for example, the library and `.control` files) are not deleted. The files must be manually removed from the Cloudberry Database hosts.
 
 You must own the extension to use `DROP EXTENSION`.
 
 ## Parameters
 
 IF EXISTS
-:   Do not throw an error if the extension does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the extension does not exist. Cloudberry Database issues a notice in this case.
 
 name
 :   The name of an installed extension.
@@ -43,7 +43,7 @@ This command fails if any of the extension objects are in use in the database. F
 
 ## Compatibility
 
-`DROP EXTENSION` is a Greenplum Database extension.
+`DROP EXTENSION` is a Cloudberry Database extension.
 
 ## See Also
 

@@ -4,7 +4,7 @@ Defines a new procedure.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE [OR REPLACE] PROCEDURE <name>    
     ( [ [<argmode>] [<argname>] <argtype> [ { DEFAULT | = } <default_expr> ] [, ...] ] )
   { LANGUAGE <lang_name>
@@ -104,7 +104,7 @@ CALL insert_data(1, 2);
 
 ## Compatibility
 
-A `CREATE PROCEDURE` command is defined in the SQL standard. The Greenplum Database version is similar but not fully compatible. For details see also [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md).
+A `CREATE PROCEDURE` command is defined in the SQL standard. The Cloudberry Database version is similar but not fully compatible. For details see also [CREATE FUNCTION](/docs/sql-statements/sql-statement-create-function.md).
 
 ## See Also
 

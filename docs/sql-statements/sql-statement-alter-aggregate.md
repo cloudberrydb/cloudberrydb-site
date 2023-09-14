@@ -4,7 +4,7 @@ Changes the definition of an aggregate function
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER AGGREGATE <name> ( <aggregate_signature> )  RENAME TO <new_name>
 
 ALTER AGGREGATE <name> ( <aggregate_signature> )

@@ -4,7 +4,7 @@ Changes a role name or membership.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER GROUP <role_specification> ADD USER <user_name> [, ... ]
 
 ALTER GROUP <role_specification> DROP USER <user_name> [, ... ]

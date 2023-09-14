@@ -4,7 +4,7 @@ Defines a new database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 CREATE GROUP <name> [[WITH] <option> [ ... ]]
 ```
 

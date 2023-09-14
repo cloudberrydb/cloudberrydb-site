@@ -4,7 +4,7 @@ Changes the definition of a sequence generator.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 ALTER SEQUENCE [ IF EXISTS ] <name>
      [ AS <data_type> ]
      [INCREMENT [ BY ] <increment>] 
@@ -36,12 +36,12 @@ name
 :   The name (optionally schema-qualified) of a sequence to be altered.
 
 IF EXISTS
-:   Do not throw an error if the sequence does not exist. Greenplum Database issues a notice in this case.
+:   Do not throw an error if the sequence does not exist. Cloudberry Database issues a notice in this case.
 
 data_type
 :   The optional clause `AS data_type` changes the data type of the sequence. Valid types are `smallint`, `integer`, and `bigint`.
 
-:   Changing the data type automatically changes the minimum and maximum values of the sequence if and only if the previous minimum and maximum values were the minimum or maximum value of the old data type (in other words, if the sequence had been created using `NO MINVALUE` or `NO MAXVALUE`, implicitly or explicitly). Otherwise, the minimum and maximum values are preserved, unless new values are given as part of the same command. If the minimum and maximum values do not fit into the new data type, Greenplum Database generates an error.
+:   Changing the data type automatically changes the minimum and maximum values of the sequence if and only if the previous minimum and maximum values were the minimum or maximum value of the old data type (in other words, if the sequence had been created using `NO MINVALUE` or `NO MAXVALUE`, implicitly or explicitly). Otherwise, the minimum and maximum values are preserved, unless new values are given as part of the same command. If the minimum and maximum values do not fit into the new data type, Cloudberry Database generates an error.
 
 increment
 :   The clause `INCREMENT BY increment` is optional. A positive value will make an ascending sequence, a negative one a descending sequence. If unspecified, the old increment value will be maintained.
@@ -63,7 +63,7 @@ restart
 
 cache
 :   The clause `CACHE cache` enables sequence numbers to be preallocated and stored in memory for faster access. The minimum value is 1 (only one value can be generated at a time, i.e., no cache). If unspecified, the old cache value will be maintained.
-:   > **Note** When operating with a cache of sequence numbers (`cache > 1`), Greenplum Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
+:   > **Note** When operating with a cache of sequence numbers (`cache > 1`), Cloudberry Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
 
 CYCLE
 :   The optional `CYCLE` key word may be used to enable the sequence to wrap around when the `maxvalue` or `minvalue` has been reached by an ascending or descending sequence. If the limit is reached, the next number generated will be the respective `minvalue` or `maxvalue`.
@@ -102,7 +102,7 @@ ALTER SEQUENCE serial RESTART WITH 105;
 
 ## Compatibility
 
-`ALTER SEQUENCE` conforms to the SQL standard, except for the `AS`, `START WITH`, `OWNED BY`, `OWNER TO`, `RENAME TO`, and `SET SCHEMA` clauses, which are Greenplum Database extensions.
+`ALTER SEQUENCE` conforms to the SQL standard, except for the `AS`, `START WITH`, `OWNED BY`, `OWNER TO`, `RENAME TO`, and `SET SCHEMA` clauses, which are Cloudberry Database extensions.
 
 ## See Also
 

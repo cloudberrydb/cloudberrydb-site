@@ -4,7 +4,7 @@ Removes a database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP USER [IF EXISTS] <name> [, ...]
 ```
 
@@ -14,7 +14,7 @@ DROP USER [IF EXISTS] <name> [, ...]
 
 ## Compatibility
 
-The `DROP USER` statement is a Greenplum Database extension. The SQL standard leaves the definition of users to the implementation.
+The `DROP USER` statement is a Cloudberry Database extension. The SQL standard leaves the definition of users to the implementation.
 
 ## See Also
 

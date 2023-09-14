@@ -4,7 +4,7 @@ Defines access privileges.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 GRANT { {SELECT | INSERT | UPDATE | DELETE | REFERENCES | 
 TRIGGER | TRUNCATE } [, ...] | ALL [PRIVILEGES] }
     ON { [TABLE] [[[ONLY] <table_name> [, ...]] [, ...]]
@@ -123,7 +123,7 @@ Unlike the case with privileges, membership in a role cannot be granted to `PUBL
 
 **GRANT on Partitioned Tables**
 
-By default, when you grant privileges to a partitioned table, Greenplum Database recurses the operation to its child tables. To direct Greenplum to perform the `GRANT` on the partitioned table only, specify the `ONLY <table_name>` clause.
+By default, when you grant privileges to a partitioned table, Cloudberry Database recurses the operation to its child tables. To direct Greenplum to perform the `GRANT` on the partitioned table only, specify the `ONLY <table_name>` clause.
 
 **GRANT on Protocols**
 
@@ -148,7 +148,7 @@ You can also use the `GRANT` command to specify which users can access a trusted
     ```
 
 
-You can also use this command to grant users permissions to create and use `s3` and `pxf` external tables. However, external tables of type `http`, `https`, `gpfdist`, and `gpfdists`, are implemented internally in Greenplum Database instead of as custom protocols. For these types, use the `CREATE ROLE` or `ALTER ROLE` command to set the `CREATEEXTTABLE` or `NOCREATEEXTTABLE` attribute for each user. See [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) for syntax and examples.
+You can also use this command to grant users permissions to create and use `s3` and `pxf` external tables. However, external tables of type `http`, `https`, `gpfdist`, and `gpfdists`, are implemented internally in Cloudberry Database instead of as custom protocols. For these types, use the `CREATE ROLE` or `ALTER ROLE` command to set the `CREATEEXTTABLE` or `NOCREATEEXTTABLE` attribute for each user. See [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) for syntax and examples.
 
 ## Parameters
 
@@ -165,12 +165,12 @@ DELETE
 :   Allows `DELETE` of a row from the specified table.
 
 REFERENCES
-:   This keyword is accepted, although foreign key constraints are currently not supported in Greenplum Database. To create a foreign key constraint, it is necessary to have this privilege on both the referencing and referenced columns. The privilege may be granted for all columns of a table, or just specific columns.
+:   This keyword is accepted, although foreign key constraints are currently not supported in Cloudberry Database. To create a foreign key constraint, it is necessary to have this privilege on both the referencing and referenced columns. The privilege may be granted for all columns of a table, or just specific columns.
 
 TRIGGER
 :   Allows the creation of a trigger on the specified table.
 
-    > **Note** Greenplum Database does not support triggers.
+    > **Note** Cloudberry Database does not support triggers.
 
 TRUNCATE
 :   Allows `TRUNCATE` of all rows from the specified table.
@@ -206,7 +206,7 @@ USAGE
 :   For servers, this privilege enables the grantee to create foreign tables using the server, and also to create, alter, or drop their own user's user mappings associated with that server.
 
 ALL PRIVILEGES
-:   Grant all of the available privileges at once. The `PRIVILEGES` key word is optional in Greenplum Database, though it is required by strict SQL.
+:   Grant all of the available privileges at once. The `PRIVILEGES` key word is optional in Cloudberry Database, though it is required by strict SQL.
 
 PUBLIC
 :   A special group-level role that denotes that the privileges are to be granted to all roles, including those that may be created later.
@@ -221,7 +221,7 @@ WITH ADMIN OPTION
 
 The [REVOKE](/docs/sql-statements/sql-statement-revoke.md) command is used to revoke access privileges.
 
-Greenplum Database unifies the concepts of users and groups into a single kind of entity called a role. It is therefore not necessary to use the keyword `GROUP` to identify whether a grantee is a user or a group. `GROUP` is still allowed in the command, but it is a noise word.
+Cloudberry Database unifies the concepts of users and groups into a single kind of entity called a role. It is therefore not necessary to use the keyword `GROUP` to identify whether a grantee is a user or a group. `GROUP` is still allowed in the command, but it is a noise word.
 
 A user may perform `SELECT`, `INSERT`, and so forth, on a column if they hold that privilege for either the specific column or the whole table. Granting the privilege at the table level and then revoking it for one column does not do what you might wish: the table-level grant is unaffected by a column-level operation.
 
@@ -237,7 +237,7 @@ If the role executing `GRANT` holds the required privileges indirectly via more 
 
 Granting permission on a table does not automatically extend permissions to any sequences used by the table, including sequences tied to `SERIAL` columns. Permissions on a sequence must be set separately.
 
-The `GRANT` command cannot be used to set privileges for the protocols `file`, `gpfdist`, or `gpfdists`. These protocols are implemented internally in Greenplum Database. Instead, use the [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) or [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) command to set the `CREATEEXTTABLE` attribute for the role.
+The `GRANT` command cannot be used to set privileges for the protocols `file`, `gpfdist`, or `gpfdists`. These protocols are implemented internally in Cloudberry Database. Instead, use the [CREATE ROLE](/docs/sql-statements/sql-statement-create-role.md) or [ALTER ROLE](/docs/sql-statements/sql-statement-alter-role.md) command to set the `CREATEEXTTABLE` attribute for the role.
 
 Use `psql`'s `\dp` meta-command to obtain information about existing privileges for tables and columns. There are other `\d` meta-commands that you can use to display the privileges of non-table objects.
 
@@ -265,17 +265,17 @@ GRANT admins TO joe;
 
 ## Compatibility
 
-According to the SQL standard, the `PRIVILEGES` key word in `ALL PRIVILEGES` is required, but it is optional in Greenplum Database. The SQL standard does not support setting the privileges on more than one object per command.
+According to the SQL standard, the `PRIVILEGES` key word in `ALL PRIVILEGES` is required, but it is optional in Cloudberry Database. The SQL standard does not support setting the privileges on more than one object per command.
 
-Greenplum Database allows an object owner to revoke their own ordinary privileges: for example, a table owner can make the table read-only to theirself by revoking their own `INSERT`, `UPDATE`, `DELETE`, and `TRUNCATE` privileges. This is not possible according to the SQL standard. Greenplum Database treats the owner's privileges as having been granted by the owner to the owner; therefore they can revoke them too. In the SQL standard, the owner's privileges are granted by an assumed *system* entity. Not being *system*, the owner cannot revoke these rights.
+Cloudberry Database allows an object owner to revoke their own ordinary privileges: for example, a table owner can make the table read-only to theirself by revoking their own `INSERT`, `UPDATE`, `DELETE`, and `TRUNCATE` privileges. This is not possible according to the SQL standard. Cloudberry Database treats the owner's privileges as having been granted by the owner to the owner; therefore they can revoke them too. In the SQL standard, the owner's privileges are granted by an assumed *system* entity. Not being *system*, the owner cannot revoke these rights.
 
-The SQL standard allows the `GRANTED BY` option to be used in all forms of `GRANT`. Greenplum Database only supports it when granting role membership, and even then only superusers may use it in nontrivial ways.
+The SQL standard allows the `GRANTED BY` option to be used in all forms of `GRANT`. Cloudberry Database only supports it when granting role membership, and even then only superusers may use it in nontrivial ways.
 
 The SQL standard provides for a `USAGE` privilege on other kinds of objects: character sets, collations, translations.
 
-In the SQL standard, sequences only have a `USAGE` privilege, which controls the use of the `NEXT VALUE FOR` expression, which is equivalent to the function `nextval()` in Greenplum Database. The sequence privileges `SELECT` and `UPDATE` are Greenplum Database extensions. The application of the sequence `USAGE` privilege to the `currval()` function is also a Greenplum Database extension (as is the function itself).
+In the SQL standard, sequences only have a `USAGE` privilege, which controls the use of the `NEXT VALUE FOR` expression, which is equivalent to the function `nextval()` in Cloudberry Database. The sequence privileges `SELECT` and `UPDATE` are Cloudberry Database extensions. The application of the sequence `USAGE` privilege to the `currval()` function is also a Cloudberry Database extension (as is the function itself).
 
-Privileges on databases, tablespaces, schemas, and languages are Greenplum Database extensions.
+Privileges on databases, tablespaces, schemas, and languages are Cloudberry Database extensions.
 
 ## See Also
 

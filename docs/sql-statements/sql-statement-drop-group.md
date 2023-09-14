@@ -4,7 +4,7 @@ Removes a database role.
 
 ## Synopsis
 
-``` {#sql_command_synopsis}
+```sql
 DROP GROUP [IF EXISTS] <name> [, ...]
 ```
 
