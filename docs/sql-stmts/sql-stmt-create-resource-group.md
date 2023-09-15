@@ -132,6 +132,6 @@ CREATE RESOURCE GROUP rgroup3 WITH (CPUSET='1;1-3', MEMORY_LIMIT=11);
 
 `CREATE RESOURCE GROUP` is a Cloudberry Database extension. There is no provision for resource groups or resource management in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md), [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md), [ALTER RESOURCE GROUP](/docs/sql-stmts/sql-stmt-alter-resource-group.md), [DROP RESOURCE GROUP](/docs/sql-stmts/sql-stmt-drop-resource-group.md)

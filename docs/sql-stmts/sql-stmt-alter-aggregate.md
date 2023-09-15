@@ -93,6 +93,6 @@ ALTER AGGREGATE mypercentile(float8, integer) SET SCHEMA myschema;
 
 There is no `ALTER AGGREGATE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE AGGREGATE](/docs/sql-stmts/sql-stmt-create-aggregate.md), [DROP AGGREGATE](/docs/sql-stmts/sql-stmt-drop-aggregate.md)

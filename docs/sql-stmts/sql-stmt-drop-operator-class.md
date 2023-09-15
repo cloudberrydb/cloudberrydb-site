@@ -58,6 +58,6 @@ This command will not succeed if there are any existing indexes that use the ope
 
 There is no `DROP OPERATOR CLASS` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER OPERATOR CLASS](/docs/sql-stmts/sql-stmt-alter-operator-class.md), [CREATE OPERATOR CLASS](/docs/sql-stmts/sql-stmt-create-operator-class.md), [DROP OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-drop-operator-family.md)

@@ -95,6 +95,6 @@ names, rank WHERE rank < '11' AND names.id=rank.id;
 
 `CREATE MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [SELECT](/docs/sql-stmts/sql-stmt-select.md), [VALUES](/docs/sql-stmts/sql-stmt-values.md), [CREATE VIEW](/docs/sql-stmts/sql-stmt-create-view.md), [ALTER MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-alter-materialized-view.md), [DROP MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-drop-materialized-view.md), [REFRESH MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-refresh-materialized-view.md)

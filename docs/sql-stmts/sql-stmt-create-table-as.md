@@ -133,6 +133,6 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
 -  The `WITH` clause is a Cloudberry Database extension; storage parameters are not part of the standard.
 -  The Cloudberry Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
 
-## See Also
+## See also
 
 [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md), [CREATE MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-create-materialized-view.md), [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md), [EXECUTE](/docs/sql-stmts/sql-stmt-execute.md), [SELECT](/docs/sql-stmts/sql-stmt-select.md), [SELECT INTO](/docs/sql-stmts/sql-stmt-select-into.md), [VALUES](/docs/sql-stmts/sql-stmt-values.md)

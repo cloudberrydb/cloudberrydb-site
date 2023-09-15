@@ -128,6 +128,6 @@ ALTER SEQUENCE serial RESTART WITH 105;
 
 `ALTER SEQUENCE` conforms to the SQL standard, except for the `AS`, `START WITH`, `OWNED BY`, `OWNER TO`, `RENAME TO`, and `SET SCHEMA` clauses, which are Cloudberry Database extensions.
 
-## See Also
+## See also
 
 [CREATE SEQUENCE](/docs/sql-stmts/sql-stmt-create-sequence.md), [DROP SEQUENCE](/docs/sql-stmts/sql-stmt-drop-sequence.md), [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md)

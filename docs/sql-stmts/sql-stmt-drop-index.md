@@ -52,6 +52,6 @@ DROP INDEX title_idx;
 
 `DROP INDEX` is a Cloudberry Database language extension. There are no provisions for indexes in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER INDEX](/docs/sql-stmts/sql-stmt-alter-index.md), [CREATE INDEX](/docs/sql-stmts/sql-stmt-create-index.md)

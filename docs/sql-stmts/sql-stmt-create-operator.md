@@ -146,6 +146,6 @@ SELECT (a + b) AS c FROM test_complex;
 
 `CREATE OPERATOR` is a Cloudberry Database extension to the SQL standard. The SQL standard does not provide for user-defined operators.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [CREATE TYPE](/docs/sql-stmts/sql-stmt-create-type.md), [ALTER OPERATOR](/docs/sql-stmts/sql-stmt-alter-operator.md), [CREATE OPERATOR CLASS](/docs/sql-stmts/sql-stmt-create-operator-class.md), [DROP OPERATOR](/docs/sql-stmts/sql-stmt-drop-operator.md)

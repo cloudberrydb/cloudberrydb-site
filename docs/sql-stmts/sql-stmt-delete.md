@@ -142,6 +142,6 @@ name = 'Hannah';
 
 This command conforms to the SQL standard, except that the `USING` and `RETURNING` clauses are Cloudberry Database extensions, as is the ability to use `WITH` with `DELETE`.
 
-## See Also
+## See also
 
 [TRUNCATE](/docs/sql-stmts/sql-stmt-truncate.md)

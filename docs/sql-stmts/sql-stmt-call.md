@@ -48,6 +48,6 @@ CALL do_db_maintenance();
 
 `CALL` conforms to the SQL standard.
 
-## See Also
+## See also
 
 [CREATE PROCEDURE](/docs/sql-stmts/sql-stmt-create-procedure.md)

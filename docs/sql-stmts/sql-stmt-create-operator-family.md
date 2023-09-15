@@ -38,6 +38,6 @@ The name of the index method this operator family is for.
 
 `CREATE OPERATOR FAMILY` is a Cloudberry Database extension. There is no `CREATE OPERATOR FAMILY` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-alter-operator-family.md), [DROP OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-drop-operator-family.md), [ALTER OPERATOR CLASS](/docs/sql-stmts/sql-stmt-alter-operator-class.md), [CREATE OPERATOR CLASS](/docs/sql-stmts/sql-stmt-create-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-stmts/sql-stmt-drop-operator-class.md)

@@ -97,6 +97,6 @@ ALTER EXTERNAL TABLE ext_leads ALTER COLUMN acct_code TYPE integer;
 
 `ALTER EXTERNAL TABLE` is a Cloudberry Database extension. There is no `ALTER EXTERNAL TABLE` statement in the SQL standard or regular PostgreSQL.
 
-## See Also
+## See also
 
 [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md), [DROP EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-drop-external-table.md), [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md)

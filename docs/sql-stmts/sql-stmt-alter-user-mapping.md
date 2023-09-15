@@ -46,6 +46,6 @@ ALTER USER MAPPING FOR bob SERVER foo OPTIONS (SET password 'public');
 
 `ALTER USER MAPPING` conforms to ISO/IEC 9075-9 (SQL/MED). There is a subtle syntax issue: The standard omits the `FOR` key word. Since both `CREATE USER MAPPING` and `DROP USER MAPPING` use `FOR` in analogous positions, Cloudberry Database diverges from the standard here in the interest of consistency and interoperability.
 
-## See Also
+## See also
 
 [CREATE USER MAPPING](/docs/sql-stmts/sql-stmt-create-user-mapping.md), [DROP USER MAPPING](/docs/sql-stmts/sql-stmt-drop-user-mapping.md)

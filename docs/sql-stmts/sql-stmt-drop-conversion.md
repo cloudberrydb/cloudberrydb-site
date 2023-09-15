@@ -43,6 +43,6 @@ DROP CONVERSION myname;
 
 There is no `DROP CONVERSION` statement in the SQL standard. The standard has `CREATE TRANSLATION` and `DROP TRANSLATION` statements that are similar to the Cloudberry Database `CREATE CONVERSION` and `DROP CONVERSION` statements.
 
-## See Also
+## See also
 
 [ALTER CONVERSION](/docs/sql-stmts/sql-stmt-alter-conversion.md), [CREATE CONVERSION](/docs/sql-stmts/sql-stmt-create-conversion.md)

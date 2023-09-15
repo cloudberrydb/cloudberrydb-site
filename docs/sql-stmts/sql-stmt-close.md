@@ -48,6 +48,6 @@ CLOSE portala;
 
 `CLOSE` is fully conforming with the SQL standard. `CLOSE ALL` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [DECLARE](/docs/sql-stmts/sql-stmt-declare.md), [FETCH](/docs/sql-stmts/sql-stmt-fetch.md), [MOVE](/docs/sql-stmts/sql-stmt-move.md), [RETRIEVE](/docs/sql-stmts/sql-stmt-retrieve.md)

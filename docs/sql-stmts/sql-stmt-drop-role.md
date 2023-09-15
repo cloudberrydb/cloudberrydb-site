@@ -42,6 +42,6 @@ DROP ROLE sally, bob;
 
 The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped at a time, and it specifies different privilege requirements than Cloudberry Database uses.
 
-## See Also
+## See also
 
 [REASSIGN OWNED](/docs/sql-stmts/sql-stmt-reassign-owned.md), [DROP OWNED](/docs/sql-stmts/sql-stmt-drop-owned.md), [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md), [SET ROLE](/docs/sql-stmts/sql-stmt-set-role.md)

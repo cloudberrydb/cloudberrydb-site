@@ -137,6 +137,6 @@ That's because per-schema default privileges can only add privileges to the glob
 
 There is no `ALTER DEFAULT PRIVILEGES` statement in the SQL standard.
 
-## See Also
+## See also
 
 [GRANT](/docs/sql-stmts/sql-stmt-grant.md), [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md)

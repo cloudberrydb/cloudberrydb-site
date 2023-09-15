@@ -45,6 +45,6 @@ ROLLBACK;
 
 The command `ROLLBACK` conforms to the SQL standard. The form `ROLLBACK TRANSACTION` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [ROLLBACK TO SAVEPOINT](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md), [SAVEPOINT](/docs/sql-stmts/sql-stmt-savepoint.md)

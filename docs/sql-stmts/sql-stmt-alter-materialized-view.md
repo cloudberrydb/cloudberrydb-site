@@ -87,6 +87,6 @@ ALTER MATERIALIZED VIEW foo RENAME TO bar;
 
 `ALTER MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [CREATE MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-create-materialized-view.md), [DROP MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-drop-materialized-view.md), [REFRESH MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-refresh-materialized-view.md)

@@ -96,6 +96,6 @@ INSERT INTO a_view(id) VALUES(2);  -- ts will receive the current time
 
 `ALTER VIEW` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [CREATE VIEW](/docs/sql-stmts/sql-stmt-create-view.md), [DROP VIEW](/docs/sql-stmts/sql-stmt-drop-view.md)

@@ -16,7 +16,7 @@ SHOW ALL
 
 ## Description
 
-`SHOW` displays the current settings of Cloudberry Database run-time system configuration parameters. You can set these parameters with the `SET` statement, by editing the `postgresql.conf` configuration file of the Cloudberry Database coordinator, through the `PGOPTIONS` environment variable (when using libpq or a libpq-based application), or through command-line flags when starting the Greenplum server.
+`SHOW` displays the current settings of Cloudberry Database run-time system configuration parameters. You can set these parameters with the `SET` statement, by editing the `postgresql.conf` configuration file of the Cloudberry Database coordinator, through the `PGOPTIONS` environment variable (when using libpq or a libpq-based application), or through command-line flags when starting the Cloudberry Database server.
 
 
 ## Parameters
@@ -96,6 +96,6 @@ SHOW ALL;
 
 The `SHOW` command is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [SET](/docs/sql-stmts/sql-stmt-set.md), [RESET](/docs/sql-stmts/sql-stmt-reset.md)

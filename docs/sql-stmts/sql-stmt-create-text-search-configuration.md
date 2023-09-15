@@ -47,6 +47,6 @@ The `PARSER` and `COPY` options are mutually exclusive, because when an existing
 
 There is no `CREATE TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH CONFIGURATION](/docs/sql-stmts/sql-stmt-alter-text-search-configuration.md), [DROP TEXT SEARCH CONFIGURATION](/docs/sql-stmts/sql-stmt-drop-text-search-configuration.md)

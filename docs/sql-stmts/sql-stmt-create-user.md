@@ -47,6 +47,6 @@ where option can be:
 
 The `CREATE USER` statement is a Cloudberry Database extension. The SQL standard leaves the definition of users to the implementation.
 
-## See Also
+## See also
 
 [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md)

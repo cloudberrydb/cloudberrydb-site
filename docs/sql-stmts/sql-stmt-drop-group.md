@@ -20,6 +20,6 @@ DROP GROUP [IF EXISTS] <name> [, ...]
 
 There is no `DROP GROUP` statement in the SQL standard.
 
-## See Also
+## See also
 
 [DROP ROLE](/docs/sql-stmts/sql-stmt-drop-role.md)

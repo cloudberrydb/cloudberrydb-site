@@ -52,6 +52,6 @@ DROP TRANSFORM FOR hstore LANGUAGE plpython3u;
 
 This form of `DROP TRANSFORM` is a Cloudberry Database extension. See [CREATE TRANSFORM](/docs/sql-stmts/sql-stmt-create-transform.md) for details.
 
-## See Also
+## See also
 
 [CREATE TRANSFORM](/docs/sql-stmts/sql-stmt-create-transform.md)

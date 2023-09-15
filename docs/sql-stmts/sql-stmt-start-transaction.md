@@ -37,6 +37,6 @@ The SQL standard requires commas between successive transaction_modes, but for h
 
 See also the compatibility section of [SET TRANSACTION](/docs/sql-stmts/sql-stmt-set-transaction.md).
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md), [SAVEPOINT](/docs/sql-stmts/sql-stmt-savepoint.md), [SET TRANSACTION](/docs/sql-stmts/sql-stmt-set-transaction.md)

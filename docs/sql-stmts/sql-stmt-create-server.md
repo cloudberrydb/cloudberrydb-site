@@ -87,6 +87,6 @@ CREATE SERVER myserver FOREIGN DATA WRAPPER gpfdw1
 
 `CREATE SERVER` conforms to ISO/IEC 9075-9 (SQL/MED).
 
-## See Also
+## See also
 
 [ALTER SERVER](/docs/sql-stmts/sql-stmt-alter-server.md), [DROP SERVER](/docs/sql-stmts/sql-stmt-drop-server.md), [CREATE FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-create-foreign-data-wrapper.md), [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md), [CREATE USER MAPPING](/docs/sql-stmts/sql-stmt-create-user-mapping.md)

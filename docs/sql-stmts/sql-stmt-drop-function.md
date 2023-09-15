@@ -59,6 +59,6 @@ DROP FUNCTION sqrt(integer);
 
 A `DROP FUNCTION` statement is defined in the SQL standard, but it is not compatible with this command.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [ALTER FUNCTION](/docs/sql-stmts/sql-stmt-alter-function.md)

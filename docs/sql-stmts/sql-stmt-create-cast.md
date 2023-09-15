@@ -132,6 +132,6 @@ CREATE CAST (bigint AS int4) WITH FUNCTION int4(bigint) AS ASSIGNMENT;
 
 The `CREATE CAST` command conforms to the SQL standard, except that SQL does not make provisions for binary-coercible types or extra arguments to implementation functions. `AS IMPLICIT` is a Cloudberry Database extension, too.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [CREATE TYPE](/docs/sql-stmts/sql-stmt-create-type.md), [DROP CAST](/docs/sql-stmts/sql-stmt-drop-cast.md)

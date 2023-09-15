@@ -48,6 +48,6 @@ This command will not succeed if there are any existing indexes that reference t
 
 There is no `DROP TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH CONFIGURATION](/docs/sql-stmts/sql-stmt-alter-text-search-configuration.md), [CREATE TEXT SEARCH CONFIGURATION](/docs/sql-stmts/sql-stmt-create-text-search-configuration.md)

@@ -79,6 +79,6 @@ ALTER TEXT SEARCH CONFIGURATION my_config
 
 There is no `ALTER TEXT SEARCH CONFIGURATION` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE TEXT SEARCH CONFIGURATION](/docs/sql-stmts/sql-stmt-create-text-search-configuration.md), [DROP TEXT SEARCH CONFIGURATION](/docs/sql-stmts/sql-stmt-drop-text-search-configuration.md)

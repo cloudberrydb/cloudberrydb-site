@@ -103,6 +103,6 @@ ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
 
 The `ALTER DATABASE` statement is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE DATABASE](/docs/sql-stmts/sql-stmt-create-database.md), [DROP DATABASE](/docs/sql-stmts/sql-stmt-drop-database.md), [SET](/docs/sql-stmts/sql-stmt-set.md), [CREATE TABLESPACE](/docs/sql-stmts/sql-stmt-create-tablespace.md)

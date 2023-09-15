@@ -48,6 +48,6 @@ ALTER TRIGGER emp_stamp ON emp RENAME TO emp_track_chgs;
 
 `ALTER TRIGGER` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md), [CREATE TRIGGER](/docs/sql-stmts/sql-stmt-create-trigger.md), [DROP TRIGGER](/docs/sql-stmts/sql-stmt-drop-trigger.md)

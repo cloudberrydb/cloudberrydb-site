@@ -44,7 +44,7 @@ If a value is not defined for `ACTIVE_STATEMENTS` or `MAX_COST`, it is set to `-
 
 You can optionally assign a `PRIORITY` to a resource queue to control the relative share of available CPU resources used by queries associated with the queue in relation to other resource queues. If a value is not defined for `PRIORITY`, queries associated with the queue have a default priority of `MEDIUM`.
 
-Resource queues with an optional `MEMORY_LIMIT` threshold set a maximum limit on the amount of memory that all queries submitted through a resource queue can consume on a segment host. This determines the total amount of memory that all worker processes of a query can consume on a segment host during query execution. Greenplum recommends that `MEMORY_LIMIT` be used in conjunction with `ACTIVE_STATEMENTS` rather than with `MAX_COST`. The default amount of memory allotted per query on statement-based queues is: `MEMORY_LIMIT / ACTIVE_STATEMENTS`. The default amount of memory allotted per query on cost-based queues is: `MEMORY_LIMIT * (query_cost / MAX_COST)`.
+Resource queues with an optional `MEMORY_LIMIT` threshold set a maximum limit on the amount of memory that all queries submitted through a resource queue can consume on a segment host. This determines the total amount of memory that all worker processes of a query can consume on a segment host during query execution. Cloudberry Database recommends that `MEMORY_LIMIT` be used in conjunction with `ACTIVE_STATEMENTS` rather than with `MAX_COST`. The default amount of memory allotted per query on statement-based queues is: `MEMORY_LIMIT / ACTIVE_STATEMENTS`. The default amount of memory allotted per query on cost-based queues is: `MEMORY_LIMIT * (query_cost / MAX_COST)`.
 
 The default memory allotment can be overridden on a per-query basis using the `statement_mem` server configuration parameter, provided that `MEMORY_LIMIT` or `max_statement_mem` is not exceeded. For example, to allocate more memory to a particular query:
 
@@ -149,6 +149,6 @@ CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5,
 
 `CREATE RESOURCE QUEUE` is a Cloudberry Database extension. There is no provision for resource queues or resource management in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md), [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md), [ALTER RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-alter-resource-queue.md), [DROP RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-drop-resource-queue.md)

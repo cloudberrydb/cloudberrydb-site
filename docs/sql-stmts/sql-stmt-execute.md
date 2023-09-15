@@ -48,6 +48,6 @@ EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);
 
 The SQL standard includes an `EXECUTE` statement, but it is only for use in embedded SQL. This version of the `EXECUTE` statement also uses a somewhat different syntax.
 
-## See Also
+## See also
 
 [DEALLOCATE](/docs/sql-stmts/sql-stmt-deallocate.md), [PREPARE](/docs/sql-stmts/sql-stmt-prepare.md)

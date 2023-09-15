@@ -52,6 +52,6 @@ This command will not succeed if there are any existing text search dictionaries
 
 There is no `DROP TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH TEMPLATE](/docs/sql-stmts/sql-stmt-alter-text-search-template.md), [CREATE TEXT SEARCH TEMPLATE](/docs/sql-stmts/sql-stmt-create-text-search-template.md)

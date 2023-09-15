@@ -39,6 +39,6 @@ The new schema for the text search parser.
 
 There is no `ALTER TEXT SEARCH PARSER` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE TEXT SEARCH PARSER](/docs/sql-stmts/sql-stmt-create-text-search-parser.md), [DROP TEXT SEARCH PARSER](/docs/sql-stmts/sql-stmt-drop-text-search-parser.md)

@@ -104,6 +104,6 @@ This can be convenient to be able to use operating-system-independent collation 
 
 There is a `CREATE COLLATION` statement in the SQL standard, but it is limited to copying an existing collation. The syntax to create a new collation is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER COLLATION](/docs/sql-stmts/sql-stmt-alter-collation.md), [DROP COLLATION](/docs/sql-stmts/sql-stmt-drop-collation.md)

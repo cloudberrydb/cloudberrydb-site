@@ -127,7 +127,7 @@ Unlike the case with privileges, membership in a role cannot be granted to `PUBL
 
 **GRANT on Partitioned Tables**
 
-By default, when you grant privileges to a partitioned table, Cloudberry Database recurses the operation to its child tables. To direct Greenplum to perform the `GRANT` on the partitioned table only, specify the `ONLY <table_name>` clause.
+By default, when you grant privileges to a partitioned table, Cloudberry Database recurses the operation to its child tables. To direct Cloudberry Database to perform the `GRANT` on the partitioned table only, specify the `ONLY <table_name>` clause.
 
 **GRANT on Protocols**
 
@@ -298,6 +298,6 @@ In the SQL standard, sequences only have a `USAGE` privilege, which controls the
 
 Privileges on databases, tablespaces, schemas, and languages are Cloudberry Database extensions.
 
-## See Also
+## See also
 
 [ALTER DEFAULT PRIVILEGES](/docs/sql-stmts/sql-stmt-alter-default-privileges.md), [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md)

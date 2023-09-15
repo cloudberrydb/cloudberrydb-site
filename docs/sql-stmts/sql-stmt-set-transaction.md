@@ -87,6 +87,6 @@ In the SQL standard, there is one other transaction characteristic that can be s
 
 The SQL standard requires commas between successive transaction_modes, but for historical reasons Cloudberry Database allows the commas to be omitted.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md)

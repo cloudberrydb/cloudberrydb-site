@@ -43,7 +43,7 @@ The new schema for the collation.
 
 **`REFRESH VERSION`**
 
-Update the collation's version. See the [Notes](#section4a) below.
+Update the collation's version. See the [Notes](#notes) below.
 
 ## Notes
 
@@ -86,6 +86,6 @@ ALTER COLLATION "en_US" OWNER TO joe;
 
 There is no `ALTER COLLATION` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE COLLATION](/docs/sql-stmts/sql-stmt-create-collation.md), [DROP COLLATION](/docs/sql-stmts/sql-stmt-drop-collation.md)

@@ -45,6 +45,6 @@ COMMIT;
 
 The command `COMMIT` conforms to the SQL standard. The form `COMMIT TRANSACTION` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [END](/docs/sql-stmts/sql-stmt-end.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md), [START TRANSACTION](/docs/sql-stmts/sql-stmt-start-transaction.md)

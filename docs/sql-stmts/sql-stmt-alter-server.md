@@ -69,6 +69,6 @@ ALTER SERVER foo VERSION '9.1' OPTIONS (SET host 'baz');
 
 `ALTER SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `OWNER TO` and `RENAME` forms are Cloudberry Database extensions.
 
-## See Also
+## See also
 
 [CREATE SERVER](/docs/sql-stmts/sql-stmt-create-server.md), [DROP SERVER](/docs/sql-stmts/sql-stmt-drop-server.md)

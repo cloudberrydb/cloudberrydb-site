@@ -230,6 +230,6 @@ The forms `ADD`, `DROP`, and `SET DATA TYPE` conform with the SQL standard. The 
 
 You can use `ALTER FOREIGN TABLE ... DROP COLUMN` to drop the only column of a foreign table, leaving a zero-column table. This is an extension of SQL, which disallows zero-column foreign tables.
 
-## See Also
+## See also
 
 [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md), [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md), [DROP FOREIGN TABLE](/docs/sql-stmts/sql-stmt-drop-foreign-table.md)

@@ -45,6 +45,6 @@ The new schema for the statistics object.
 
 There is no `ALTER STATISTICS` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE STATISTICS](/docs/sql-stmts/sql-stmt-create-statistics.md), [DROP STATISTICS](/docs/sql-stmts/sql-stmt-drop-statistics.md)

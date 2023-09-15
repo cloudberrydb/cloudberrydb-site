@@ -113,6 +113,6 @@ CREATE TABLE us_snail_addy (
 
 `CREATE DOMAIN` conforms to the SQL standard.
 
-## See Also
+## See also
 
 [ALTER DOMAIN](/docs/sql-stmts/sql-stmt-alter-domain.md), [DROP DOMAIN](/docs/sql-stmts/sql-stmt-drop-domain.md)

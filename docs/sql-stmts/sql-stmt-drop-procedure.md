@@ -65,6 +65,6 @@ This command conforms to the SQL standard, with these Cloudberry Database extens
 
 - The ability to specify argument modes and names.
 
-## See Also
+## See also
 
 [CREATE PROCEDURE](/docs/sql-stmts/sql-stmt-create-procedure.md), [ALTER PROCEDURE](/docs/sql-stmts/sql-stmt-alter-procedure.md)

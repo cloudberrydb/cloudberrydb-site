@@ -58,6 +58,6 @@ This command will work independent of whether `foo` is an aggregate, function, o
 
 This statement is partially compatible with the `ALTER ROUTINE` statement in the SQL standard. Refer to [ALTER FUNCTION](/docs/sql-stmts/sql-stmt-alter-function.md) and [ALTER PROCEDURE](/docs/sql-stmts/sql-stmt-alter-procedure.md) for more details. Allowing routine names to refer to aggregate functions is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER AGGREGATE](/docs/sql-stmts/sql-stmt-alter-aggregate.md), [ALTER FUNCTION](/docs/sql-stmts/sql-stmt-alter-function.md), [ALTER PROCEDURE](/docs/sql-stmts/sql-stmt-alter-procedure.md), [DROP ROUTINE](/docs/sql-stmts/sql-stmt-drop-routine.md)

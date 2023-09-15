@@ -77,6 +77,6 @@ ALTER TEXT SEARCH DICTIONARY my_dict ( dummy );
 
 There is no `ALTER TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE TEXT SEARCH DICTIONARY](/docs/sql-stmts/sql-stmt-create-text-search-dictionary.md), [DROP TEXT SEARCH DICTIONARY](/docs/sql-stmts/sql-stmt-drop-text-search-dictionary.md)

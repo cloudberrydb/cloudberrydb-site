@@ -46,6 +46,6 @@ DROP SEQUENCE myserial;
 
 `DROP SEQUENCE` conforms to the SQL standard, except that the standard allows only one sequence to be dropped per command. Also, the `IF EXISTS` option is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER SEQUENCE](/docs/sql-stmts/sql-stmt-alter-sequence.md), [CREATE SEQUENCE](/docs/sql-stmts/sql-stmt-create-sequence.md)

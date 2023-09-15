@@ -46,6 +46,6 @@ DROP FOREIGN TABLE films, distributors;
 
 `DROP FOREIGN TABLE` conforms to ISO/IEC 9075-9 (SQL/MED), except that the standard only allows one foreign table to be dropped per command. The `IF EXISTS` clause is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER FOREIGN TABLE](/docs/sql-stmts/sql-stmt-alter-foreign-table.md), [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md)

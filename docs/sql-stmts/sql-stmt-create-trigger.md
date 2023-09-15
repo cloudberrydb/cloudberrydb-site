@@ -18,7 +18,7 @@ CREATE TRIGGER <name> {BEFORE | AFTER} {<event> [OR ...]}
 
 `CREATE TRIGGER` creates a new trigger. The trigger will be associated with the specified table and will run the specified function when certain events occur. If multiple triggers of the same kind are defined for the same event, they will be fired in alphabetical order by name.
 
->*Important* Due to the distributed nature of a Cloudberry Database system, the use of triggers on data is very limited in Cloudberry Database. The function used in the trigger must be `IMMUTABLE`, meaning it cannot use information not directly present in its argument list. The function specified in the trigger also cannot run any SQL or modify distributed database objects in any way. Given that triggers are most often used to alter tables (for example, update these other rows when this row is updated), these limitations offer very little practical use of triggers in Cloudberry Database. For that reason, Greenplum does not support the use of user-defined triggers in Cloudberry Database. Triggers cannot be used on append-optimized tables.
+>*Important* Due to the distributed nature of a Cloudberry Database system, the use of triggers on data is very limited in Cloudberry Database. The function used in the trigger must be `IMMUTABLE`, meaning it cannot use information not directly present in its argument list. The function specified in the trigger also cannot run any SQL or modify distributed database objects in any way. Given that triggers are most often used to alter tables (for example, update these other rows when this row is updated), these limitations offer very little practical use of triggers in Cloudberry Database. For that reason, Cloudberry Database does not support the use of user-defined triggers in Cloudberry Database. Triggers cannot be used on append-optimized tables.
 > Event Triggers, which capture only DDL events, _are_ supported in Cloudberry Database. See the PostgreSQL documentation for [Event Triggers](https://www.postgresql.org/docs/12/event-triggers.html) for additional information.
 
 [SELECT](/docs/sql-stmts/sql-stmt-select.md) does not modify any rows so you can not create `SELECT` triggers. Rules and views are more appropriate in such cases.
@@ -83,6 +83,6 @@ The `CREATE TRIGGER` statement in Cloudberry Database implements a subset of the
 -  SQL specifies that `BEFORE DELETE` triggers on cascaded deletes fire after the cascaded `DELETE` completes. The Cloudberry Database behavior is for `BEFORE DELETE` to always fire before the delete action, even a cascading one. This is considered more consistent.
 -  The ability to specify multiple actions for a single trigger using `OR` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [ALTER TRIGGER](/docs/sql-stmts/sql-stmt-alter-trigger.md), [DROP TRIGGER](/docs/sql-stmts/sql-stmt-drop-trigger.md), [CREATE RULE](/docs/sql-stmts/sql-stmt-create-rule.md)

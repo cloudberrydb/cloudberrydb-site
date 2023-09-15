@@ -140,6 +140,6 @@ The procedure will now execute with whatever search path is used by its caller.
 
 This statement is partially compatible with the `ALTER PROCEDURE` statement in the SQL standard. The standard allows more properties of a procedure to be modified, but does not provide the ability to rename a procedure, make a procedure a security definer, attach configuration parameter values to a procedure, or change the owner, schema, or volatility of a procedure. The standard also requires the `RESTRICT` key word, which is optional in Cloudberry Database.
 
-## See Also
+## See also
 
 [CREATE PROCEDURE](/docs/sql-stmts/sql-stmt-create-procedure.md), [DROP PROCEDURE](/docs/sql-stmts/sql-stmt-drop-procedure.md)

@@ -126,6 +126,6 @@ CREATE OPERATOR CLASS gist__int_ops
 
 `CREATE OPERATOR CLASS` is a Cloudberry Database extension. There is no `CREATE OPERATOR CLASS` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER OPERATOR CLASS](/docs/sql-stmts/sql-stmt-alter-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-stmts/sql-stmt-drop-operator-class.md), [CREATE OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-create-operator-family.md), [ALTER OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-alter-operator-family.md), [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md)

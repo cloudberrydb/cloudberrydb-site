@@ -34,7 +34,7 @@ Do not throw an error if an extension with the same name already exists. Cloudbe
 
 The name of the extension to be installed. Cloudberry Database will create the extension using details from the file `SHAREDIR/extension/<extension_name>.control`.
 
-`SHAREDIR` is the installation shared-data directory, for example `/usr/local/greenplum-db/share/postgresql`. The command `pg_config --sharedir` displays the directory.
+`SHAREDIR` is the installation shared-data directory, for example `/usr/local/cloudberry-db/share/postgresql`. The command `pg_config --sharedir` displays the directory.
 
 **`schema_name`**
 
@@ -85,6 +85,6 @@ CREATE EXTENSION hstore;
 
 `CREATE EXTENSION` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER EXTENSION](/docs/sql-stmts/sql-stmt-alter-extension.md), [DROP EXTENSION](/docs/sql-stmts/sql-stmt-drop-extension.md)

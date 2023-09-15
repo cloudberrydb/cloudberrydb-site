@@ -119,7 +119,7 @@ The tablespace in which to create the index. If not specified, default_tablespac
 
 The constraint expression for a partial index.
 
-## Index Storage Parameters
+## Index storage parameters
 
 The optional `WITH` clause specifies *storage parameters* for the index. Each index method has its own set of allowed storage parameters. The B-tree, bitmap, hash, GiST, and SP-GiST index methods all accept this parameter:
 
@@ -251,6 +251,6 @@ SELECT * FROM points WHERE box(location,location) && '(0,0),(1,1)'::box;
 
 Cloudberry Database does not support the concurrent creation of indexes (`CONCURRENTLY` keyword is not supported).
 
-## See Also
+## See also
 
 [ALTER INDEX](/docs/sql-stmts/sql-stmt-alter-index.md), [DROP INDEX](/docs/sql-stmts/sql-stmt-drop-index.md)

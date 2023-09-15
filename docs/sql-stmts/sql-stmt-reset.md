@@ -50,6 +50,6 @@ RESET statement_mem;
 
 `RESET` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [SET](/docs/sql-stmts/sql-stmt-set.md), [SHOW](/docs/sql-stmts/sql-stmt-show.md)

@@ -47,6 +47,6 @@ DROP POLICY p1 ON my_table;
 
 `DROP POLICY` is a Cloudberry Database extension to the SQL standard.
 
-## See Also
+## See also
 
 [CREATE POLICY](/docs/sql-stmts/sql-stmt-create-policy.md), [ALTER POLICY](/docs/sql-stmts/sql-stmt-alter-policy.md)

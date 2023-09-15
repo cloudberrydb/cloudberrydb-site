@@ -77,6 +77,6 @@ TRUNCATE films, distributors RESTART IDENTITY;
 
 The SQL:2008 standard includes a `TRUNCATE` command with the syntax `TRUNCATE TABLE tablename`. The clauses `CONTINUE IDENTITY`/`RESTART IDENTITY` also appear in that standard, but have slightly different though related meanings. Some of the concurrency behavior of this command is left implementation-defined by the standard, so the above notes should be considered and compared with other implementations if necessary.
 
-## See Also
+## See also
 
 [DELETE](/docs/sql-stmts/sql-stmt-delete.md)

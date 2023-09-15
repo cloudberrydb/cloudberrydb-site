@@ -46,6 +46,6 @@ DROP DATABASE testdb;
 
 There is no `DROP DATABASE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER DATABASE](/docs/sql-stmts/sql-stmt-alter-database.md), [CREATE DATABASE](/docs/sql-stmts/sql-stmt-create-database.md)

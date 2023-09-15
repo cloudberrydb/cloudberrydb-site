@@ -50,6 +50,6 @@ DROP LANGUAGE plsample;
 
 There is no `DROP LANGUAGE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER LANGUAGE](/docs/sql-stmts/sql-stmt-alter-language.md), [CREATE LANGUAGE](/docs/sql-stmts/sql-stmt-create-language.md)

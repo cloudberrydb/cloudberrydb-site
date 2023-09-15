@@ -65,6 +65,6 @@ SELECT SESSION_USER, CURRENT_USER;
 
 The SQL standard allows some other expressions to appear in place of the literal rolename, but these options are not important in practice. Cloudberry Database allows identifier syntax (rolename), which SQL does not. SQL does not allow this command during a transaction; Cloudberry Database does not make this restriction. The `SESSION` and `LOCAL` modifiers are a Cloudberry Database extension, as is the `RESET` syntax.
 
-## See Also
+## See also
 
 [SET ROLE](/docs/sql-stmts/sql-stmt-set-role.md)

@@ -50,6 +50,6 @@ DROP EXTERNAL TABLE IF EXISTS staging;
 
 There is no `DROP EXTERNAL TABLE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md), [ALTER EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-alter-external-table.md)

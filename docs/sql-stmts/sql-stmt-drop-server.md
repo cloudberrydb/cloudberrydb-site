@@ -46,6 +46,6 @@ DROP SERVER IF EXISTS foo;
 
 `DROP SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE SERVER](/docs/sql-stmts/sql-stmt-create-server.md), [ALTER SERVER](/docs/sql-stmts/sql-stmt-alter-server.md)

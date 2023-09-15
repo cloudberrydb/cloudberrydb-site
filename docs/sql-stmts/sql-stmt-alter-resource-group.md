@@ -122,6 +122,6 @@ ALTER RESOURCE GROUP rgroup5 SET CPUSET '1;1';
 
 The `ALTER RESOURCE GROUP` statement is a Cloudberry Database extension. This command does not exist in standard PostgreSQL.
 
-## See Also
+## See also
 
 [CREATE RESOURCE GROUP](/docs/sql-stmts/sql-stmt-create-resource-group.md), [DROP RESOURCE GROUP](/docs/sql-stmts/sql-stmt-drop-resource-group.md), [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md)

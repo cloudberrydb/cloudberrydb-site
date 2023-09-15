@@ -75,6 +75,6 @@ ALTER OPERATOR && (_int4, _int4) SET (RESTRICT = _int_contsel, JOIN = _int_contj
 
 There is no `ALTER OPERATOR` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE OPERATOR](/docs/sql-stmts/sql-stmt-create-operator.md), [DROP OPERATOR](/docs/sql-stmts/sql-stmt-drop-operator.md)

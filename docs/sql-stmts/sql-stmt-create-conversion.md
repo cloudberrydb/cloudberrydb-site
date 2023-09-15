@@ -72,6 +72,6 @@ CREATE CONVERSION myconv FOR 'UTF8' TO 'LATIN1' FROM myfunc;
 
 `CREATE CONVERSION` is a Cloudberry Database extension. There is no `CREATE CONVERSION` statement in the SQL standard, but there is a `CREATE TRANSLATION` statement that is very similar in purpose and syntax.
 
-## See Also
+## See also
 
 [ALTER CONVERSION](/docs/sql-stmts/sql-stmt-alter-conversion.md), [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [DROP CONVERSION](/docs/sql-stmts/sql-stmt-drop-conversion.md)

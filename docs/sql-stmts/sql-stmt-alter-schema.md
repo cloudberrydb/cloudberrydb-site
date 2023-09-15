@@ -38,6 +38,6 @@ The new owner of the schema.
 
 There is no `ALTER SCHEMA` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE SCHEMA](/docs/sql-stmts/sql-stmt-create-schema.md), [DROP SCHEMA](/docs/sql-stmts/sql-stmt-drop-schema.md)

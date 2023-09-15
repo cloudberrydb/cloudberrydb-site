@@ -60,23 +60,23 @@ TABLE [ ONLY ] <table_name> [ * ]
 
 `SELECT` retrieves rows from zero or more tables. The general processing of `SELECT` is as follows:
 
-1.  All queries in the `WITH` clause are computed. These effectively serve as temporary tables that can be referenced in the `FROM` list. A `WITH` query that is referenced more than once in `FROM` is computed only once, unless specified otherwise with `NOT MATERIALIZED`. (See [WITH Clause](#withclause) below.)
-2.  All elements in the `FROM` list are computed. (Each element in the `FROM` list is a real or virtual table.) If more than one element is specified in the `FROM` list, they are cross-joined together. (See [FROM Clause](#fromclause) below.)
-3.  If the `WHERE` clause is specified, all rows that do not satisfy the condition are eliminated from the output. (See [WHERE Clause](#whereclause) below.)
-4.  If the `GROUP BY` clause is specified, or if there are aggregate function calls, the output is combined into groups of rows that match on one or more values, and the results of aggregate functions are computed. If the `HAVING` clause is present, it eliminates groups that do not satisfy the given condition. (See [GROUP BY Clause](#groupbyclause) and [HAVING Clause](#havingclause) below.)
-5.  The actual output rows are computed using the `SELECT` output expressions for each selected row or row group. (See [SELECT List](#selectlist) below.)
-6.  `SELECT DISTINCT` eliminates duplicate rows from the result. `SELECT DISTINCT ON` eliminates rows that match on all the specified expressions. `SELECT ALL` (the default) will return all candidate rows, including duplicates. (See [DISTINCT Clause](#distinctclause) below.)
-7.  If a window expression is specified (and optional `WINDOW` clause), the output is organized according to the positional (row) or value-based (range) window frame. (See [WINDOW Clause](#windowclause) below.)
-9.  Using the operators `UNION`, `INTERSECT`, and `EXCEPT`, the output of more than one `SELECT` statement can be combined to form a single result set. The `UNION` operator returns all rows that are in one or both of the result sets. The `INTERSECT` operator returns all rows that are strictly in both result sets. The `EXCEPT` operator returns the rows that are in the first result set but not in the second. In all three cases, duplicate rows are eliminated unless `ALL` is specified. The noise word `DISTINCT` can be added to explicitly specify eliminating duplicate rows. Notice that `DISTINCT` is the default behavior here, even though `ALL` is the default for `SELECT` itself.  (See [UNION Clause](#unionclause), [INTERSECT Clause](#intersectclause), and [EXCEPT Clause](#exceptclause) below.)
-10. If the `ORDER BY` clause is specified, the returned rows are sorted in the specified order. If `ORDER BY` is not given, the rows are returned in whatever order the system finds fastest to produce. (See [ORDER BY Clause](#orderbyclause) below.)
-11. If the `LIMIT` (or `FETCH FIRST`) or `OFFSET` clause is specified, the `SELECT` command only returns a subset of the result rows. (See [LIMIT Clause](#limitclause) below.)
-12. If `FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, or `FOR KEY SHARE` is specified, the `SELECT` command locks the entire table against concurrent updates when the Global Deadlock Detector is deactivated (the default). When the Global Deadlock Detector is activated, it affects some simple `SELECT` statements that contain a locking clause. (See [The Locking Clause](#lockingclause) below.)
+1.  All queries in the `WITH` clause are computed. These effectively serve as temporary tables that can be referenced in the `FROM` list. A `WITH` query that is referenced more than once in `FROM` is computed only once, unless specified otherwise with `NOT MATERIALIZED`. (See [WITH Clause](#the-with-clause) below.)
+2.  All elements in the `FROM` list are computed. (Each element in the `FROM` list is a real or virtual table.) If more than one element is specified in the `FROM` list, they are cross-joined together. (See [FROM Clause](#the-from-clause) below.)
+3.  If the `WHERE` clause is specified, all rows that do not satisfy the condition are eliminated from the output. (See [WHERE Clause](#the-where-clause) below.)
+4.  If the `GROUP BY` clause is specified, or if there are aggregate function calls, the output is combined into groups of rows that match on one or more values, and the results of aggregate functions are computed. If the `HAVING` clause is present, it eliminates groups that do not satisfy the given condition. (See [GROUP BY Clause](#the-group-by-clause) and [HAVING Clause](#the-having-clause) below.)
+5.  The actual output rows are computed using the `SELECT` output expressions for each selected row or row group. (See [SELECT List](#the-select-list) below.)
+6. `SELECT DISTINCT` eliminates duplicate rows from the result. `SELECT DISTINCT ON` eliminates rows that match on all the specified expressions. `SELECT ALL` (the default) will return all candidate rows, including duplicates. (See [DISTINCT Clause](#the-distinct-clause) below.)
+7.  If a window expression is specified (and optional `WINDOW` clause), the output is organized according to the positional (row) or value-based (range) window frame. (See [WINDOW Clause](#the-window-clause) below.)
+9. Using the operators `UNION`, `INTERSECT`, and `EXCEPT`, the output of more than one `SELECT` statement can be combined to form a single result set. The `UNION` operator returns all rows that are in one or both of the result sets. The `INTERSECT` operator returns all rows that are strictly in both result sets. The `EXCEPT` operator returns the rows that are in the first result set but not in the second. In all three cases, duplicate rows are eliminated unless `ALL` is specified. The noise word `DISTINCT` can be added to explicitly specify eliminating duplicate rows. Notice that `DISTINCT` is the default behavior here, even though `ALL` is the default for `SELECT` itself.  (See [UNION Clause](#the-union-clause), [INTERSECT Clause](#the-intersect-clause), and [EXCEPT Clause](#the-except-clause) below.)
+10. If the `ORDER BY` clause is specified, the returned rows are sorted in the specified order. If `ORDER BY` is not given, the rows are returned in whatever order the system finds fastest to produce. (See [ORDER BY Clause](#the-order-by-clause) below.)
+11. If the `LIMIT` (or `FETCH FIRST`) or `OFFSET` clause is specified, the `SELECT` command only returns a subset of the result rows. (See [LIMIT Clause](#the-limit-clause) below.)
+12. If `FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, or `FOR KEY SHARE` is specified, the `SELECT` command locks the entire table against concurrent updates when the Global Deadlock Detector is deactivated (the default). When the Global Deadlock Detector is activated, it affects some simple `SELECT` statements that contain a locking clause. (See [The Locking Clause](#the-locking-clause) below.)
 
 You must have `SELECT` privilege on each column used in a `SELECT` command. The use of `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, or `FOR KEY SHARE` requires `UPDATE` privilege as well (for at least one column of each table so selected).
 
 ## Parameters
 
-### The WITH Clause
+### The `WITH` clause
 
 The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the primary query. The subqueries effectively act as temporary tables or views for the duration of the primary query. Each subquery can be a `SELECT`, `TABLE`, `VALUES`, `INSERT`, `UPDATE`, or `DELETE` statement. When writing a data-modifying statement (`INSERT`, `UPDATE`, or `DELETE`) in `WITH`, it is usual to include a `RETURNING` clause. It is the output of `RETURNING`, *not* the underlying table that the statement modifies, that forms the temporary table that is read by the primary query. If `RETURNING` is omitted, the statement is still run, but it produces no output so it cannot be referenced as a table by the primary query.
 
@@ -139,7 +139,7 @@ By default, a side-effect-free `WITH` query is folded into the primary query if 
 See WITH Queries (Common Table Expressions) in the *Cloudberry Database Administrator Guide* for additional information.
 
 
-### The FROM Clause
+### The `FROM` clause
 
 The `FROM` clause specifies one or more source tables for the `SELECT`. If multiple sources are specified, the result is the Cartesian product (cross join) of all the sources. But usually qualification conditions are added (via `WHERE`) to restrict the returned rows to a small subset of the Cartesian product.
 
@@ -230,9 +230,9 @@ A `LATERAL` item can appear at top level in the `FROM` list, or within a `JOIN` 
 
 When a `FROM` item contains `LATERAL` cross-references, evaluation proceeds as follows: for each row of the `FROM` item providing the cross-referenced column(s), or set of rows of multiple `FROM` items providing the columns, the `LATERAL` item is evaluated using that row or row set's values of the columns. The resulting row(s) are joined as usual with the rows they were computed from. This is repeated for each row or set of rows from the column source table(s).
 
-The column source table(s) must be `INNER` or `LEFT` joined to the `LATERAL` item, else there would not be a well-defined set of rows from which to compute each set of rows for the `LATERAL` item. Thus, although a construct such as `<X> RIGHT JOIN LATERAL <Y>` is syntactically valid, Greenplum does not permit `<Y>` to reference `<X>`.
+The column source table(s) must be `INNER` or `LEFT` joined to the `LATERAL` item, else there would not be a well-defined set of rows from which to compute each set of rows for the `LATERAL` item. Thus, although a construct such as `<X> RIGHT JOIN LATERAL <Y>` is syntactically valid, Cloudberry Database does not permit `<Y>` to reference `<X>`.
 
-### The WHERE Clause
+### The `WHERE` clause
 
 The optional `WHERE` clause has the general form:
 
@@ -242,8 +242,7 @@ WHERE <condition>
 
 where condition is any expression that evaluates to a result of type `boolean`. Any row that does not satisfy this condition will be eliminated from the output. A row satisfies the condition if it returns true when the actual row values are substituted for any variable references.
 
-
-### The GROUP BY Clause
+### The `GROUP BY` clause
 
 The optional `GROUP BY` clause has the general form:
 
@@ -322,7 +321,7 @@ If using the grouping extension clauses `ROLLUP`, `CUBE`, or `GROUPING SETS`, tw
 
 -  **group_id()** — For grouping extension queries that contain duplicate grouping sets, the `group_id` function is used to identify duplicate rows in the output. All *unique* grouping set output rows will have a `<group_id>` value of 0. For each duplicate grouping set detected, the `group_id` function assigns a `<group_id>` number greater than 0. All output rows in a particular duplicate grouping set are identified by the same `<group_id>` number.
 
-### The HAVING Clause
+### The `HAVING` clause
 
 The optional `HAVING` clause has the general form:
 
@@ -339,7 +338,7 @@ The presence of `HAVING` turns a query into a grouped query even if there is no 
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified with `HAVING`.
 
 
-### The WINDOW Clause
+### The `WINDOW` clause
 
 The optional `WINDOW` clause specifies the behavior of window functions appearing in the query's `SELECT` list or `ORDER BY` clause. The `WINDOW` clause has the general form:
 
@@ -429,11 +428,11 @@ Use either a `ROWS`, `RANGE`, or `GROUPS` clause to express the bounds of the wi
 
 If you do not specify a `ROWS`, a `RANGE` or a `GROUPS` clause, the window bound starts with the first row in the partition (`UNBOUNDED PRECEDING`) and ends with the current row (`CURRENT ROW`) if `ORDER BY` is used. If an `ORDER BY` is not specified, the window starts with the first row in the partition (`UNBOUNDED PRECEDING`) and ends with last row in the partition (`UNBOUNDED FOLLOWING`).
 
-The purpose of a `WINDOW` clause is to specify the behavior of window functions appearing in the query's [SELECT List](#selectlist) or [ORDER BY Clause](#orderbyclause). These functions can reference the `WINDOW` clause entries by name in their `OVER` clauses. A `WINDOW` clause entry does not have to be referenced anywhere, however; if it is not used in the query it is simply ignored. It is possible to use window functions without any `WINDOW` clause at all, since a window function call can specify its window definition directly in its `OVER` clause. However, the `WINDOW` clause saves typing when the same window definition is needed for more than one window function.
+The purpose of a `WINDOW` clause is to specify the behavior of window functions appearing in the query's [SELECT List](#the-select-list) or [ORDER BY Clause](#the-order-by-clause). These functions can reference the `WINDOW` clause entries by name in their `OVER` clauses. A `WINDOW` clause entry does not have to be referenced anywhere, however; if it is not used in the query it is simply ignored. It is possible to use window functions without any `WINDOW` clause at all, since a window function call can specify its window definition directly in its `OVER` clause. However, the `WINDOW` clause saves typing when the same window definition is needed for more than one window function.
 
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified with `WINDOW`.
 
-### The SELECT List
+### The `SELECT` list
 
 The `SELECT` list (between the key words `SELECT` and `FROM`) specifies expressions that form the output rows of the `SELECT` statement. The expressions can (and usually do) refer to columns computed in the `FROM` clause.
 
@@ -449,7 +448,7 @@ According to the SQL standard, the expressions in the output list should be comp
 
 > **Note** Cloudberry Database versions prior to 7 did not provide any guarantees about the timing of evaluation of output expressions versus sorting and limiting; it depended on the form of the chosen query plan.
 
-### The DISTINCT Clause
+### The `DISTINCT` clause
 
 If `SELECT DISTINCT` is specified, all duplicate rows are removed from the result set (one row is kept from each group of duplicates). `SELECT ALL` specifies the opposite: all rows are kept; that is the default.
 
@@ -468,7 +467,7 @@ The `DISTINCT ON` expression(s) must match the leftmost `ORDER BY` expression(s)
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified with `DISTINCT`.
 
 
-### The UNION Clause
+### The `UNION` clause
 
 The `UNION` clause has this general form:
 
@@ -486,7 +485,7 @@ Multiple `UNION` operators in the same `SELECT` statement are evaluated left to 
 
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified either for a `UNION` result or for any input of a `UNION`.
 
-### The INTERSECT Clause
+### The `INTERSECT` clause
 
 The `INTERSECT` clause has this general form:
 
@@ -504,7 +503,7 @@ Multiple `INTERSECT` operators in the same `SELECT` statement are evaluated left
 
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified either for an `INTERSECT` result or for any input of an `INTERSECT`.
 
-### The EXCEPT Clause
+### The `EXCEPT` clause
 
 The `EXCEPT` clause has this general form:
 
@@ -522,7 +521,7 @@ Multiple `EXCEPT` operators in the same `SELECT` statement are evaluated left to
 
 Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` cannot be specified either for an `EXCEPT` result or for any input of an `EXCEPT`.
 
-### The ORDER BY Clause
+### The `ORDER BY` clause
 
 The optional `ORDER BY` clause has this general form:
 
@@ -556,7 +555,7 @@ Character-string data is sorted according to the locale-specific collation order
 
 Character-string data is sorted according to the collation that applies to the column being sorted. That can be overridden as needed by including a `COLLATE` clause in the expression, for example `ORDER BY mycolumn COLLATE "en_US"`. For information about defining collations, see [CREATE COLLATION](/docs/sql-stmts/sql-stmt-create-collation.md).
 
-### The LIMIT Clause
+### The `LIMIT` clause
 
 The `LIMIT` clause consists of two independent sub-clauses:
 
@@ -582,9 +581,9 @@ When using `LIMIT`, it is a good idea to use an `ORDER BY` clause that constrain
 
 The query optimizer takes `LIMIT` into account when generating a query plan, so you are very likely to get different plans (yielding different row orders) depending on what you use for `LIMIT` and `OFFSET`. Thus, using different `LIMIT/OFFSET` values to select different subsets of a query result will give inconsistent results unless you enforce a predictable result ordering with `ORDER BY`. This is not a defect; it is an inherent consequence of the fact that SQL does not promise to deliver the results of a query in any particular order unless `ORDER BY` is used to constrain the order.
 
-It is even possible for repeated executions of the same `LIMIT` query to return different subsets of the rows of a table, if there is not an `ORDER BY` to enforce selection of a deterministic subset. Again, this is not a bug; Greenplum does not guarantee determinism of the results in such a case.
+It is even possible for repeated executions of the same `LIMIT` query to return different subsets of the rows of a table, if there is not an `ORDER BY` to enforce selection of a deterministic subset. Again, this is not a bug; Cloudberry Database does not guarantee determinism of the results in such a case.
 
-### The Locking Clause
+### The `LOCKING` clause
 
 `FOR UPDATE`, `FOR NO KEY UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` are *locking clauses*; they affect how `SELECT` locks rows as they are obtained from the table. The Global Deadlock Detector affects the locking used by `SELECT` queries that contain a locking clause (`FOR <lock_strength>`). The Global Deadlock Detector is enabled by setting the gp_enable_global_deadlock_detector configuration parameter to `on`.
 
@@ -645,7 +644,7 @@ Note that this will result in locking all rows of `mytable`, whereas `FOR UPDATE
 At the `REPEATABLE READ` or `SERIALIZABLE` transaction isolation level this would cause a serialization failure (with a `SQLSTATE` of `40001`), so there is no possibility of receiving rows out of order under these isolation levels.
 
 
-## The TABLE Command
+## The table command
 
 The command
 
@@ -893,6 +892,6 @@ The `MATERIALIZED` and `NOT MATERIALIZED` options of `WITH` are extensions of th
 
 To prevent data from becoming out-of-sync across the segments in Cloudberry Database, any function classified as `STABLE` or `VOLATILE` cannot be run at the segment database level if it contains SQL or modifies the database in any way. See [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md) for more information.
 
-## See Also
+## See also
 
 [EXPLAIN](/docs/sql-stmts/sql-stmt-explain.md)

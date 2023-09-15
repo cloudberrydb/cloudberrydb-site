@@ -39,6 +39,6 @@ This command conforms to the SQL standard, with these Cloudberry Database extens
 
 - Aggregate functions are an extension.
 
-## See Also
+## See also
 
 [DROP AGGREGATE](/docs/sql-stmts/sql-stmt-drop-aggregate.md), [DROP FUNCTION](/docs/sql-stmts/sql-stmt-drop-function.md), [DROP PROCEDURE](/docs/sql-stmts/sql-stmt-drop-procedure.md), [ALTER ROUTINE](/docs/sql-stmts/sql-stmt-alter-routine.md)

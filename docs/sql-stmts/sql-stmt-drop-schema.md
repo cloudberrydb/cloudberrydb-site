@@ -52,6 +52,6 @@ DROP SCHEMA mystuff CASCADE;
 
 `DROP SCHEMA` is fully conforming with the SQL standard, except that the standard only allows one schema to be dropped per command. Also, the `IF EXISTS` option is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE SCHEMA](/docs/sql-stmts/sql-stmt-create-schema.md), [ALTER SCHEMA](/docs/sql-stmts/sql-stmt-alter-schema.md)

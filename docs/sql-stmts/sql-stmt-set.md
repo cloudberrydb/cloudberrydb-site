@@ -119,6 +119,6 @@ SET TIME ZONE 'Europe/Rome';
 
 `SET TIME ZONE` extends syntax defined in the SQL standard. The standard allows only numeric time zone offsets while Cloudberry Database allows more flexible time-zone specifications. All other `SET` features are Cloudberry Database extensions.
 
-## See Also
+## See also
 
 [RESET](/docs/sql-stmts/sql-stmt-reset.md), [SHOW](/docs/sql-stmts/sql-stmt-show.md)

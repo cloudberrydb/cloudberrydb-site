@@ -73,7 +73,7 @@ A [SELECT](/docs/sql-stmts/sql-stmt-select.md) or [VALUES](/docs/sql-stmts/sql-s
 
 **`WITH [ CASCADED | LOCAL ] CHECK OPTION`**
 
-This option controls the behavior of automatically updatable views. When this option is specified, `INSERT` and `UPDATE` commands on the view will be checked to ensure that new rows satisfy the view-defining condition (that is, the new rows are checked to ensure that they are visible through the view). If they are not, Greenplum Databvase rejects the update. If the `CHECK OPTION` is not specified, `INSERT` and `UPDATE` commands on the view are allowed to create rows that are not visible through the view. The following check options are supported:
+This option controls the behavior of automatically updatable views. When this option is specified, `INSERT` and `UPDATE` commands on the view will be checked to ensure that new rows satisfy the view-defining condition (that is, the new rows are checked to ensure that they are visible through the view). If they are not, Cloudberry Database rejects the update. If the `CHECK OPTION` is not specified, `INSERT` and `UPDATE` commands on the view are allowed to create rows that are not visible through the view. The following check options are supported:
 
 **`LOCAL`**
 
@@ -109,7 +109,7 @@ When both `CREATE VIEW <view> ...` and `SELECT ... FROM <view>` specify an `ORDE
 
 When `CREATE OR REPLACE VIEW` is used on an existing view, only the view's defining `SELECT` rule is changed. Other view properties, including ownership, permissions, and non-`SELECT` rules, remain unchanged. You must own the view to replace it (this includes being a member of the owning role).
 
-## Updatable Views
+## Updatable views
 
 Simple views are automatically updatable: Cloudberry Database allows you to invoke `INSERT`, `UPDATE`, and `DELETE` statements on the view in the same way as on a regular table. A view is automatically updatable if it satisfies all of the following conditions:
 
@@ -208,6 +208,6 @@ Notice that although the recursive view's name is schema-qualified in this `CREA
 
 `CREATE OR REPLACE VIEW` is a Cloudberry Database extension. So is the concept of a temporary view.  The `WITH ( ... )` clause is an extension as well.
 
-## See Also
+## See also
 
 [ALTER VIEW](/docs/sql-stmts/sql-stmt-alter-view.md), [DROP VIEW](/docs/sql-stmts/sql-stmt-drop-view.md), [CREATE MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-create-materialized-view.md)

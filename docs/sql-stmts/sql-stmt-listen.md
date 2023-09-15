@@ -50,6 +50,6 @@ Asynchronous notification "virtual" received from server process with PID 8448.
 
 There is no `LISTEN` statement in the SQL standard.
 
-## See Also
+## See also
 
 [NOTIFY](/docs/sql-stmts/sql-stmt-notify.md), [UNLISTEN](/docs/sql-stmts/sql-stmt-unlisten.md)

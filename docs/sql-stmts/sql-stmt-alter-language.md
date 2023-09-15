@@ -35,6 +35,6 @@ The new owner of the language.
 
 There is no `ALTER LANGUAGE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE LANGUAGE](/docs/sql-stmts/sql-stmt-create-language.md), [DROP LANGUAGE](/docs/sql-stmts/sql-stmt-drop-language.md)

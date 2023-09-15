@@ -40,6 +40,6 @@ Be sure to remove any shared libraries that were used by the protocol from the C
 
 `DROP PROTOCOL` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md), [CREATE PROTOCOL](/docs/sql-stmts/sql-stmt-create-protocol.md)

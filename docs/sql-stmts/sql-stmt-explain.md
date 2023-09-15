@@ -26,7 +26,7 @@ where option can be one of:
 
 ## Description
 
-`EXPLAIN` displays the query plan that the Greenplum or Postgres Planner generates for the supplied statement. Query plans are a tree plan of nodes. Each node in the plan represents a single operation, such as table scan, join, aggregation or a sort.
+`EXPLAIN` displays the query plan that the Cloudberry Database or Postgres Planner generates for the supplied statement. Query plans are a tree plan of nodes. Each node in the plan represents a single operation, such as table scan, join, aggregation or a sort.
 
 Plans should be read from the bottom up as each node feeds rows into the node directly above it. The bottom nodes of a plan are usually table scan operations (sequential, index or bitmap index scans). If the query requires joins, aggregations, or sorts (or other operations on the raw rows) then there will be additional nodes above the scan nodes to perform these operations. The topmost plan nodes are usually the Cloudberry Database motion nodes (redistribute, explicit redistribute, broadcast, or gather motions). These are the operations responsible for moving rows between the segment instances during query processing.
 
@@ -230,6 +230,6 @@ EXPLAIN (FORMAT YAML) SELECT * FROM NAMES WHERE LOCATION='Sydney, Australia';
 
 There is no `EXPLAIN` statement defined in the SQL standard.
 
-## See Also
+## See also
 
 [ANALYZE](/docs/sql-stmts/sql-stmt-analyze.md)

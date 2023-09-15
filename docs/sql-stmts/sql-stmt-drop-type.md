@@ -46,6 +46,6 @@ DROP TYPE box;
 
 This command is similar to the corresponding command in the SQL standard, apart from the `IF EXISTS` option, which is a Cloudberry Database extension. But note that much of the `CREATE TYPE` command and the data type extension mechanisms in Cloudberry Database differ from the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TYPE](/docs/sql-stmts/sql-stmt-alter-type.md), [CREATE TYPE](/docs/sql-stmts/sql-stmt-create-type.md)

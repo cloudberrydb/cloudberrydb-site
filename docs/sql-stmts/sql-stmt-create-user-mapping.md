@@ -50,6 +50,6 @@ CREATE USER MAPPING FOR bob SERVER foo OPTIONS (user 'bob', password 'secret');
 
 `CREATE USER MAPPING` conforms to ISO/IEC 9075-9 (SQL/MED).
 
-## See Also
+## See also
 
 [ALTER USER MAPPING](/docs/sql-stmts/sql-stmt-alter-user-mapping.md), [DROP USER MAPPING](/docs/sql-stmts/sql-stmt-drop-user-mapping.md), [CREATE FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-create-foreign-data-wrapper.md), [CREATE SERVER](/docs/sql-stmts/sql-stmt-create-server.md)

@@ -66,6 +66,6 @@ SELECT * INTO films_recent FROM films WHERE date_prod >= '2016-01-01';
 
 The SQL standard uses `SELECT INTO` to represent selecting values into scalar variables of a host program, rather than creating a new table. The Cloudberry Database usage of `SELECT INTO` to represent table creation is historical. It is best to use [CREATE TABLE AS](/docs/sql-stmts/sql-stmt-create-table-as.md) for this purpose in new applications.
 
-## See Also
+## See also
 
 [SELECT](/docs/sql-stmts/sql-stmt-select.md), [CREATE TABLE AS](/docs/sql-stmts/sql-stmt-create-table-as.md)

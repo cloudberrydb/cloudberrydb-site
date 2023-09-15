@@ -244,6 +244,6 @@ ALTER ROLE parttime_user RESOURCE GROUP rg_light;
 
 The `ALTER ROLE` statement is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md), [DROP ROLE](/docs/sql-stmts/sql-stmt-drop-role.md), [ALTER DATABASE](/docs/sql-stmts/sql-stmt-alter-database.md), [SET](/docs/sql-stmts/sql-stmt-set.md), [CREATE RESOURCE GROUP](/docs/sql-stmts/sql-stmt-create-resource-group.md), [CREATE RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-create-resource-queue.md), [GRANT](/docs/sql-stmts/sql-stmt-grant.md), [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md)

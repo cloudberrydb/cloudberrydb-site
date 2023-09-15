@@ -27,7 +27,7 @@ For `INSERT` and `UPDATE` statements, `WITH CHECK` expressions are enforced befo
 
 Policy names are per-table. Therefore, one policy name can be used for many different tables and have a definition for each table which is appropriate to that table.
 
-Policies can be applied for specific commands or for specific roles. The default for newly-created policies is that they apply for all commands and roles, unless otherwise specified. Multiple policies may apply to a single command; see below for more details. The table in [Per-Command Policies](#section4a) summarizes how the different types of policies apply to specific commands.
+Policies can be applied for specific commands or for specific roles. The default for newly-created policies is that they apply for all commands and roles, unless otherwise specified. Multiple policies may apply to a single command; see below for more details. The table in [Per-Command Policies](#per-command-policies) summarizes how the different types of policies apply to specific commands.
 
 For policies that can have both `USING` and `WITH CHECK` expressions (`ALL` and `UPDATE`), if no `WITH CHECK` expression is defined, then the `USING` expression will be used both to determine which rows are visible (normal `USING` case) and which new rows will be allowed to be added (`WITH CHECK` case).
 
@@ -69,7 +69,7 @@ Any SQL conditional expression (returning `boolean`). The conditional expression
 
 Any SQL conditional expression (returning `boolean`). The conditional expression cannot contain any aggregate or window functions. This expression will be used in `INSERT` and `UPDATE` queries against the table if row-level security is enabled. Only rows for which the expression evaluates to true will be allowed. An error will be thrown if the expression evaluates to false or null for any of the records inserted or any of the records that result from the update. Note that the check_expression is evaluated against the proposed new contents of the row, not the original contents.
 
-## Per-Command Policies
+## Per-command policies
 
 **`ALL`**
 
@@ -119,7 +119,7 @@ A `DELETE` policy cannot have a `WITH CHECK` expression, as it only applies in c
 <sup>[a]</sup>If read access is required to the existing or new row (for example, a `WHERE` or `RETURNING` clause that refers to columns from the relation).
 
 
-## Application of Multiple Policies
+## Application of multiple policies
 
 When multiple policies of different command types apply to the same command (for example, `SELECT` and `UPDATE` policies applied to an `UPDATE` command), then the user must have both types of permissions (for example, permission to select rows from the relation as well as permission to update them). Thus the expressions for one type of policy are combined with the expressions for the other type of policy using the `AND` operator.
 
@@ -175,6 +175,6 @@ Refer to About Configuring Row-Level Security Policies for more information and 
 
 `CREATE POLICY` is a Cloudberry Database extension to the SQL standard.
 
-## See Also
+## See also
 
 [ALTER POLICY](/docs/sql-stmts/sql-stmt-alter-policy.md), [DROP POLICY](/docs/sql-stmts/sql-stmt-drop-policy.md), [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md)

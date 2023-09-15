@@ -39,6 +39,6 @@ The new schema for the text search template.
 
 There is no `ALTER TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE TEXT SEARCH TEMPLATE](/docs/sql-stmts/sql-stmt-create-text-search-template.md), [DROP TEXT SEARCH TEMPLATE](/docs/sql-stmts/sql-stmt-drop-text-search-template.md)

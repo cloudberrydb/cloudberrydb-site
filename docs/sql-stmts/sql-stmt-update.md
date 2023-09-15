@@ -214,6 +214,6 @@ Some other database systems offer a `FROM` option in which the target table is s
 
 According to the standard, the source value for a parenthesized sub-list of target column names can be any row-valued expression yielding the correct number of columns. Cloudberry Database only allows the source value to be a [row constructor](https://www.postgresql.org/docs/12/sql-expressions.html#SQL-SYNTAX-ROW-CONSTRUCTORS) or a sub-`SELECT`. You can specify an individual column's updated value as `DEFAULT` in the row-constructor case, but not inside a sub-`SELECT`.
 
-## See Also
+## See also
 
 [DECLARE](/docs/sql-stmts/sql-stmt-declare.md), [DELETE](/docs/sql-stmts/sql-stmt-delete.md), [SELECT](/docs/sql-stmts/sql-stmt-select.md), [INSERT](/docs/sql-stmts/sql-stmt-insert.md)

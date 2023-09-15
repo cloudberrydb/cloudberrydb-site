@@ -103,6 +103,6 @@ The MCV list gives the planner more detailed information about the specific valu
 
 There is no `CREATE STATISTICS` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER STATISTICS](/docs/sql-stmts/sql-stmt-alter-statistics.md), [DROP STATISTICS](/docs/sql-stmts/sql-stmt-drop-statistics.md)

@@ -84,6 +84,6 @@ CLUSTER;
 
 There is no `CLUSTER` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE TABLE AS](/docs/sql-stmts/sql-stmt-create-table-as.md), [CREATE INDEX](/docs/sql-stmts/sql-stmt-create-index.md)

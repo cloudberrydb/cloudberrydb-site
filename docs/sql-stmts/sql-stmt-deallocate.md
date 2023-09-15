@@ -44,6 +44,6 @@ DEALLOCATE insert_names;
 
 The SQL standard includes a `DEALLOCATE` statement, but it is only for use in embedded SQL.
 
-## See Also
+## See also
 
 [EXECUTE](/docs/sql-stmts/sql-stmt-execute.md), [PREPARE](/docs/sql-stmts/sql-stmt-prepare.md)

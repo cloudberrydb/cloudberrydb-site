@@ -49,6 +49,6 @@ CREATE ACCESS METHOD heptree TYPE INDEX HANDLER heptree_handler;
 
 `CREATE ACCESS METHOD` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [DROP ACCESS METHOD](/docs/sql-stmts/sql-stmt-drop-access-method.md), [CREATE OPERATOR CLASS](/docs/sql-stmts/sql-stmt-create-operator-class.md), [CREATE OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-create-operator-family.md)

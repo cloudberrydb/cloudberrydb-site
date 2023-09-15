@@ -125,6 +125,6 @@ ALTER INDEX coord_idx ALTER COLUMN 3 SET STATISTICS 1000;
 
 `ALTER INDEX` is a Cloudberry Database extension to the SQL standard.
 
-## See Also
+## See also
 
 [CREATE INDEX](/docs/sql-stmts/sql-stmt-create-index.md), [REINDEX](/docs/sql-stmts/sql-stmt-reindex.md), [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md)

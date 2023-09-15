@@ -46,6 +46,6 @@ DROP FOREIGN DATA WRAPPER dbi;
 
 `DROP FOREIGN DATA WRAPPER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-create-foreign-data-wrapper.md), [ALTER FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-alter-foreign-data-wrapper.md)

@@ -44,7 +44,7 @@ But the following query will be rejected in Cloudberry Database because it opera
 INSERT INTO product VALUES (setval('myserial', 201), 'gizmo');
 ```
 
-In a regular (non-distributed) database, functions that operate on the sequence go to the local sequence table to get values as they are needed. In Cloudberry Database, however, keep in mind that each segment is its own distinct database process. Therefore the segments need a single point of truth to go for sequence values so that all segments get incremented correctly and the sequence moves forward in the right order. A sequence server process runs on the coordinator and is the point-of-truth for a sequence in a Greenplum distributed database. Segments get sequence values at runtime from the coordinator.
+In a regular (non-distributed) database, functions that operate on the sequence go to the local sequence table to get values as they are needed. In Cloudberry Database, however, keep in mind that each segment is its own distinct database process. Therefore the segments need a single point of truth to go for sequence values so that all segments get incremented correctly and the sequence moves forward in the right order. A sequence server process runs on the coordinator and is the point-of-truth for a sequence in a Cloudberry Database distributed database. Segments get sequence values at runtime from the coordinator.
 
 Because of this distributed sequence design, there are some limitations on the functions that operate on a sequence in Cloudberry Database:
 
@@ -164,6 +164,6 @@ INSERT INTO product VALUES (setval('myseq', 201), 'gizmo');
 -  You obtain the next value using the `nextval()` function instead of the `NEXT VALUE FOR` expression specified in the SQL standard.
 -  The `OWNED BY` clause is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER SEQUENCE](/docs/sql-stmts/sql-stmt-alter-sequence.md), [DROP SEQUENCE](/docs/sql-stmts/sql-stmt-drop-sequence.md)

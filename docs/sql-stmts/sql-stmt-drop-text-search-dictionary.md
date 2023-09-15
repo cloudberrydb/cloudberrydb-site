@@ -48,6 +48,6 @@ This command will not succeed if there are any existing text search configuratio
 
 There is no `CREATE TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH DICTIONARY](/docs/sql-stmts/sql-stmt-alter-text-search-dictionary.md), [CREATE TEXT SEARCH DICTIONARY](/docs/sql-stmts/sql-stmt-create-text-search-dictionary.md)

@@ -67,6 +67,6 @@ DROP RESOURCE GROUP adhoc;
 
 The `DROP RESOURCE GROUP` statement is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER RESOURCE GROUP](/docs/sql-stmts/sql-stmt-alter-resource-group.md), [CREATE RESOURCE GROUP](/docs/sql-stmts/sql-stmt-create-resource-group.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md)

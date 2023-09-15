@@ -54,6 +54,6 @@ DROP TABLE films, distributors;
 
 `DROP TABLE` conforms to the SQL standard, except that the standard allows only one table to be dropped per command. Also, the `IF EXISTS` option is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md), [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md)

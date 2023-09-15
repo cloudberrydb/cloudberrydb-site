@@ -54,7 +54,7 @@ If a generic plan is in use, it will contain parameter symbols `$n`, while a cus
 
 For more information on query planning and the statistics collected by Cloudberry Database for that purpose, see the [ANALYZE](/docs/sql-stmts/sql-stmt-analyze.md) documentation.
 
-Although the main point of a prepared statement is to avoid repeated parse analysis and planning of the statement, Greenplum will force re-analysis and re-planning of the statement before using it whenever database objects used in the statement have undergone definitional (DDL) changes since the previous use of the prepared statement. Also, if the value of `search_path` changes from one use to the next, the statement will be re-parsed using the new `search_path`. These rules make use of a prepared statement semantically almost equivalent to re-submitting the same query text over and over, but with a performance benefit if no object definitions are changed, especially if the best plan remains the same across uses. An example of a case where the semantic equivalence is not perfect is that if the statement refers to a table by an unqualified name, and then a new table of the same name is created in a schema appearing earlier in the `search_path`, no automatic re-parse will occur since no object used in the statement changed. However, if some other change forces a re-parse, the new table will be referenced in subsequent uses.
+Although the main point of a prepared statement is to avoid repeated parse analysis and planning of the statement, Cloudberry Database will force re-analysis and re-planning of the statement before using it whenever database objects used in the statement have undergone definitional (DDL) changes since the previous use of the prepared statement. Also, if the value of `search_path` changes from one use to the next, the statement will be re-parsed using the new `search_path`. These rules make use of a prepared statement semantically almost equivalent to re-submitting the same query text over and over, but with a performance benefit if no object definitions are changed, especially if the best plan remains the same across uses. An example of a case where the semantic equivalence is not perfect is that if the statement refers to a table by an unqualified name, and then a new table of the same name is created in a schema appearing earlier in the `search_path`, no automatic re-parse will occur since no object used in the statement changed. However, if some other change forces a re-parse, the new table will be referenced in subsequent uses.
 
 You can see all prepared statements available in the session by querying the pg_prepared_statements system view.
 
@@ -81,6 +81,6 @@ EXECUTE usrrptplan(1, current_date);
 
 The SQL standard includes a `PREPARE` statement, but it can only be used in embedded SQL, and it uses a different syntax.
 
-## See Also
+## See also
 
 [EXECUTE](/docs/sql-stmts/sql-stmt-execute.md), [DEALLOCATE](/docs/sql-stmts/sql-stmt-deallocate.md)

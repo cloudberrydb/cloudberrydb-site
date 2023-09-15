@@ -58,6 +58,6 @@ NOTIFY virtual;
 
 There is no `UNLISTEN` statement in the SQL standard.
 
-## See Also
+## See also
 
 [LISTEN](/docs/sql-stmts/sql-stmt-listen.md), [NOTIFY](/docs/sql-stmts/sql-stmt-notify.md)

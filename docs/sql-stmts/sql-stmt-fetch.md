@@ -160,6 +160,6 @@ The `FETCH` forms involving `FORWARD`, as well as the forms `FETCH` count and `F
 
 The SQL standard allows only `FROM` preceding the cursor name; the option to use `IN`, or to leave them out altogether, is an extension.
 
-## See Also
+## See also
 
 [DECLARE](/docs/sql-stmts/sql-stmt-declare.md), [CLOSE](/docs/sql-stmts/sql-stmt-close.md), [MOVE](/docs/sql-stmts/sql-stmt-move.md)

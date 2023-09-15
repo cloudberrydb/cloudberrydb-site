@@ -164,7 +164,7 @@ The name of the new external table.
 The name of a column to create in the external table definition. Unlike regular tables, external tables do not have column constraints or default values, so do not specify those.
 
 LIKE other_table
-The `LIKE` clause specifies a table from which the new external table automatically copies all column names, data types and Greenplum distribution policy. If the original table specifies any column constraints or default column values, those will not be copied over to the new external table definition.
+The `LIKE` clause specifies a table from which the new external table automatically copies all column names, data types and Cloudberry distribution policy. If the original table specifies any column constraints or default column values, those will not be copied over to the new external table definition.
 
 **`data_type`**
 
@@ -183,7 +183,7 @@ For readable external tables, specifies the URI of the external data source(s) t
 'http://intranet.example.com/finance/expenses.csv'
 ```
 
-For writable external tables, specifies the URI location of the `gpfdist` process or S3 protocol that will collect data output from the Greenplum segments and write it to one or more named files. For `gpfdist` the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). If multiple `gpfdist` locations are listed, the segments sending data will be evenly divided across the available output locations. For example:
+For writable external tables, specifies the URI location of the `gpfdist` process or S3 protocol that will collect data output from the Cloudberry segments and write it to one or more named files. For `gpfdist` the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). If multiple `gpfdist` locations are listed, the segments sending data will be evenly divided across the available output locations. For example:
 
 ```sql
 'gpfdist://outputhost:8081/data1.out',
@@ -192,23 +192,23 @@ For writable external tables, specifies the URI location of the `gpfdist` proces
 
 With two `gpfdist` locations listed as in the above example, half of the segments would send their output data to the `data1.out` file and the other half to the `data2.out` file.
 
-With the option `#transform=trans_name`, you can specify a transform to apply when loading or extracting data. The trans_name is the name of the transform in the YAML configuration file you specify with the you run the `gpfdist` utility. For information about specifying a transform, see gpfdist in the *Greenplum Utility Guide*.
+With the option `#transform=trans_name`, you can specify a transform to apply when loading or extracting data. The trans_name is the name of the transform in the YAML configuration file you specify with the you run the `gpfdist` utility.
 
 **`ON COORDINATOR`**
 
-Restricts all table-related operations to the Greenplum coordinator segment. Permitted only on readable and writable external tables created with the `s3` or custom protocols. The `gpfdist`, `gpfdists`, `pxf`, and `file` protocols do not support `ON COORDINATOR`.
+Restricts all table-related operations to the Cloudberry Database coordinator segment. Permitted only on readable and writable external tables created with the `s3` or custom protocols. The `gpfdist`, `gpfdists`, `pxf`, and `file` protocols do not support `ON COORDINATOR`.
 
-> **Note** Be aware of potential resource impacts when reading from or writing to external tables you create with the `ON COORDINATOR` clause. You may encounter performance issues when you restrict table operations solely to the Greenplum coordinator segment.
+> **Note** Be aware of potential resource impacts when reading from or writing to external tables you create with the `ON COORDINATOR` clause. You may encounter performance issues when you restrict table operations solely to the Cloudberry Database coordinator segment.
 
 **`EXECUTE 'command' [ON ...]`**
 
 Allowed for readable external web tables or writable external tables only. For readable external web tables, specifies the OS command to be run by the segment instances. The command can be a single OS command or a script. The `ON` clause is used to specify which segment instances will run the given command.
 
--  ON ALL is the default. The command will be run by every active (primary) segment instance on all segment hosts in the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Greenplum superuser (`gpadmin`).
+-  ON ALL is the default. The command will be run by every active (primary) segment instance on all segment hosts in the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Cloudberry superuser (`gpadmin`).
 -  ON COORDINATOR runs the command on the coordinator host only.
     > **Note** Logging is not supported for external web tables when the `ON COORDINATOR` clause is specified.
 
--  ON number means the command will be run by the specified number of segments. The particular segments are chosen randomly at runtime by the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Greenplum superuser (`gpadmin`).
+-  ON number means the command will be run by the specified number of segments. The particular segments are chosen randomly at runtime by the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Cloudberry superuser (`gpadmin`).
 -  HOST means the command will be run by one segment on each segment host (once per segment host), regardless of the number of active segment instances per host.
 -  HOST segment_hostname means the command will be run by all active (primary) segment instances on the specified segment host.
 -  SEGMENT segment_id means the command will be run only once by the specified segment. You can determine a segment instance's ID by looking at the content number in the system catalog table gp_segment_configuration. The content ID of the Cloudberry Database coordinator is always `-1`.
@@ -295,11 +295,11 @@ The error log data is accessed with the Cloudberry Database built-in SQL functio
 
 If you use the `PERSISTENTLY` keyword, you must install the functions that manage the persistent error log information.
 
-See [Notes](#section8) for information about the error log information and built-in functions for viewing and managing error log information.
+See [Notes](#notes) for information about the error log information and built-in functions for viewing and managing error log information.
 
 **`SEGMENT REJECT LIMIT count [ROWS | PERCENT]`**
 
-Runs a `COPY FROM` operation in single row error isolation mode. If the input rows have format errors they will be discarded provided that the reject limit count is not reached on any Greenplum segment instance during the load operation. The reject limit count can be specified as number of rows (the default) or percentage of total rows (1-100). If `PERCENT` is used, each segment starts calculating the bad row percentage only after the number of rows specified by the parameter `gp_reject_percent_threshold` has been processed. The default for `gp_reject_percent_threshold` is 300 rows. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in "all-or-nothing" input mode. If the limit is not reached, all good rows will be loaded and any error rows discarded.
+Runs a `COPY FROM` operation in single row error isolation mode. If the input rows have format errors they will be discarded provided that the reject limit count is not reached on any Cloudberry segment instance during the load operation. The reject limit count can be specified as number of rows (the default) or percentage of total rows (1-100). If `PERCENT` is used, each segment starts calculating the bad row percentage only after the number of rows specified by the parameter `gp_reject_percent_threshold` has been processed. The default for `gp_reject_percent_threshold` is 300 rows. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in "all-or-nothing" input mode. If the limit is not reached, all good rows will be loaded and any error rows discarded.
 
 > **Note** When reading an external table, Cloudberry Database limits the initial number of rows that can contain formatting errors if the `SEGMENT REJECT LIMIT` is not triggered first or is not specified. If the first 1000 rows are rejected, the `COPY` operation is stopped and rolled back.
 
@@ -431,6 +431,6 @@ When multiple Cloudberry Database external tables are defined with the `gpfdist`
 
 `CREATE EXTERNAL TABLE` is a Cloudberry Database extension. The SQL standard makes no provisions for external tables.
 
-## See Also
+## See also
 
 [CREATE TABLE AS](/docs/sql-stmts/sql-stmt-create-table-as.md), [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md), [COPY](/docs/sql-stmts/sql-stmt-copy.md), [SELECT INTO](/docs/sql-stmts/sql-stmt-select-into.md), [INSERT](/docs/sql-stmts/sql-stmt-insert.md)

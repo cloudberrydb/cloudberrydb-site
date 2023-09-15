@@ -62,6 +62,6 @@ REFRESH MATERIALIZED VIEW annual_statistics_basis WITH NO DATA;
 
 `REFRESH MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [ALTER MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-alter-materialized-view.md), [CREATE MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-create-materialized-view.md), [DROP MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-drop-materialized-view.md)

@@ -178,7 +178,7 @@ If `FINALFUNC_EXTRA` is specified, then in addition to the final state value and
 
 **`FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }`**
 
-This option specifies whether the final function is a pure function that does not modify its arguments. `READ_ONLY` indicates it does not; the other two values indicate that it may change the transition state value. See [Notes](#section6) below for more detail. The default is `READ_ONLY`, except for ordered-set aggregates, for which the default is `READ_WRITE`.
+This option specifies whether the final function is a pure function that does not modify its arguments. `READ_ONLY` indicates it does not; the other two values indicate that it may change the transition state value. See [Notes](#notes) below for more detail. The default is `READ_ONLY`, except for ordered-set aggregates, for which the default is `READ_WRITE`.
 
 **`combinefunc`**
 
@@ -326,6 +326,6 @@ Refer to [User-Defined Aggregates](https://www.postgresql.org/docs/12/xaggr.html
 
 `CREATE AGGREGATE` is a Cloudberry Database language extension. The SQL standard does not provide for user-defined aggregate functions.
 
-## See Also
+## See also
 
 [ALTER AGGREGATE](/docs/sql-stmts/sql-stmt-alter-aggregate.md), [DROP AGGREGATE](/docs/sql-stmts/sql-stmt-drop-aggregate.md), [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md)

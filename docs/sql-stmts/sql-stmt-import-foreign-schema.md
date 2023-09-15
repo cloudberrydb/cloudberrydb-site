@@ -73,6 +73,6 @@ IMPORT FOREIGN SCHEMA foreign_films LIMIT TO (actors, directors)
 
 The `IMPORT FOREIGN SCHEMA` command conforms to the SQL standard, except that the `OPTIONS` clause is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md), [CREATE SERVER](/docs/sql-stmts/sql-stmt-create-server.md)

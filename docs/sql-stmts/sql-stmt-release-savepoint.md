@@ -53,6 +53,6 @@ The above transaction inserts both 3 and 4.
 
 This command conforms to the SQL standard. The standard specifies that the key word `SAVEPOINT` is mandatory, but Cloudberry Database allows it to be omitted.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md), [ROLLBACK TO SAVEPOINT](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md), [SAVEPOINT](/docs/sql-stmts/sql-stmt-savepoint.md)

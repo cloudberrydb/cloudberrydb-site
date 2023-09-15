@@ -56,6 +56,6 @@ DROP TABLESPACE mystuff;
 
 `DROP TABLESPACE` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE TABLESPACE](/docs/sql-stmts/sql-stmt-create-tablespace.md), [ALTER TABLESPACE](/docs/sql-stmts/sql-stmt-alter-tablespace.md)

@@ -50,6 +50,6 @@ This command will not succeed if there are any existing text search configuratio
 
 There is no `DROP TEXT SEARCH PARSER` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH PARSER](/docs/sql-stmts/sql-stmt-alter-text-search-parser.md), [CREATE TEXT SEARCH PARSER](/docs/sql-stmts/sql-stmt-create-text-search-parser.md)

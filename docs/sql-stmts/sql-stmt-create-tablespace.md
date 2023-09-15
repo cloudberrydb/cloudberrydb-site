@@ -89,6 +89,6 @@ The example specifies the same location for the two segment instances. You can a
 
 `CREATE TABLESPACE` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE DATABASE](/docs/sql-stmts/sql-stmt-create-database.md), [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md), [CREATE INDEX](/docs/sql-stmts/sql-stmt-create-index.md), [DROP TABLESPACE](/docs/sql-stmts/sql-stmt-drop-tablespace.md), [ALTER TABLESPACE](/docs/sql-stmts/sql-stmt-alter-tablespace.md)

@@ -91,6 +91,6 @@ CREATE FOREIGN DATA WRAPPER mywrapper OPTIONS (debug 'true');
 
 Note, however, that the SQL/MED functionality as a whole is not yet conforming.
 
-## See Also
+## See also
 
 [ALTER FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-alter-foreign-data-wrapper.md), [DROP FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-drop-foreign-data-wrapper.md), [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md), [CREATE SERVER](/docs/sql-stmts/sql-stmt-create-server.md), [CREATE USER MAPPING](/docs/sql-stmts/sql-stmt-create-user-mapping.md)

@@ -58,6 +58,6 @@ where <role_specification> can be:
 
 The `ALTER USER` statement is a Cloudberry Database extension. The SQL standard leaves the definition of users to the implementation.
 
-## See Also
+## See also
 
 [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md)

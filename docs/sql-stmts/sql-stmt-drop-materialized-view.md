@@ -46,6 +46,6 @@ DROP MATERIALIZED VIEW order_summary;
 
 `DROP MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 
-## See Also
+## See also
 
 [ALTER MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-alter-materialized-view.md), [CREATE MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-create-materialized-view.md), [REFRESH MATERIALIZED VIEW](/docs/sql-stmts/sql-stmt-refresh-materialized-view.md)

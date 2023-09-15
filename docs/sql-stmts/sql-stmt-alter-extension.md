@@ -166,6 +166,6 @@ ALTER EXTENSION hstore ADD FUNCTION populate_record(anyelement, hstore);
 
 `ALTER EXTENSION` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE EXTENSION](/docs/sql-stmts/sql-stmt-create-extension.md), [DROP EXTENSION](/docs/sql-stmts/sql-stmt-drop-extension.md)

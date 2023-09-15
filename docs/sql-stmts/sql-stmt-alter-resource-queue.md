@@ -125,6 +125,6 @@ ALTER RESOURCE QUEUE myqueue WITHOUT (MAX_COST, MEMORY_LIMIT);
 
 The `ALTER RESOURCE QUEUE` statement is a Cloudberry Database extension. This command does not exist in standard PostgreSQL.
 
-## See Also
+## See also
 
 [CREATE RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-create-resource-queue.md), [DROP RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-drop-resource-queue.md), [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md)

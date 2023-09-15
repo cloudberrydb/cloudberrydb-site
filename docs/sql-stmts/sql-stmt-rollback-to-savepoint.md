@@ -69,6 +69,6 @@ COMMIT;
 
 The SQL standard specifies that the key word `SAVEPOINT` is mandatory, but Cloudberry Database (and Oracle) allow it to be omitted. SQL allows only `WORK`, not `TRANSACTION`, as a noise word after `ROLLBACK`. Also, SQL has an optional clause `AND [NO] CHAIN` which is not currently supported by Cloudberry Database. Otherwise, this command conforms to the SQL standard.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [RELEASE SAVEPOINT](/docs/sql-stmts/sql-stmt-release-savepoint.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md), [SAVEPOINT](/docs/sql-stmts/sql-stmt-savepoint.md)

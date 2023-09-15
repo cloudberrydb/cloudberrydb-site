@@ -343,6 +343,6 @@ The first form of the `CREATE TYPE` command, which creates a composite type, con
 
 The ability to create a composite type with zero attributes is a Cloudberry Database-specific deviation from the standard (analogous to the same case in `CREATE TABLE`).
 
-## See Also
+## See also
 
 [ALTER TYPE](/docs/sql-stmts/sql-stmt-alter-type.md), [CREATE DOMAIN](/docs/sql-stmts/sql-stmt-create-domain.md), [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [DROP TYPE](/docs/sql-stmts/sql-stmt-drop-type.md)

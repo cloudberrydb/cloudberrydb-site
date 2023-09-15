@@ -60,6 +60,6 @@ ALTER TABLESPACE index_space OWNER TO mary;
 
 There is no `ALTER TABLESPACE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE TABLESPACE](/docs/sql-stmts/sql-stmt-create-tablespace.md), [DROP TABLESPACE](/docs/sql-stmts/sql-stmt-drop-tablespace.md)

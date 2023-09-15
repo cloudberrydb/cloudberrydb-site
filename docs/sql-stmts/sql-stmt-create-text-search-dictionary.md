@@ -59,6 +59,6 @@ CREATE TEXT SEARCH DICTIONARY my_russian (
 
 There is no `CREATE TEXT SEARCH DICTIONARY` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH DICTIONARY](/docs/sql-stmts/sql-stmt-alter-text-search-dictionary.md), [DROP TEXT SEARCH DICTIONARY](/docs/sql-stmts/sql-stmt-drop-text-search-dictionary.md)

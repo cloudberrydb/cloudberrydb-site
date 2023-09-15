@@ -61,6 +61,6 @@ The `DEFERRABLE` transaction_mode is a Cloudberry Database language extension.
 
 Incidentally, the `BEGIN` key word is used for a different purpose in embedded SQL. You are advised to be careful about the transaction semantics when porting database applications.
 
-## See Also
+## See also
 
 [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md), [SAVEPOINT](/docs/sql-stmts/sql-stmt-savepoint.md), [START TRANSACTION](/docs/sql-stmts/sql-stmt-start-transaction.md)

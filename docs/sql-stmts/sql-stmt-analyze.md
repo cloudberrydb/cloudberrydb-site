@@ -18,7 +18,7 @@ ANALYZE [VERBOSE] [SKIP_LOCKED] ROOTPARTITION {ALL | <root_partition_table_name>
 
 ## Description
 
-`ANALYZE` collects statistics about the contents of tables in the database, and stores the results in the system table *pg_statistic*. Subsequently, Cloudberry Database uses these statistics to help determine the most efficient execution plans for queries. For information about the table statistics that are collected, see [Notes](#section5).
+`ANALYZE` collects statistics about the contents of tables in the database, and stores the results in the system table *pg_statistic*. Subsequently, Cloudberry Database uses these statistics to help determine the most efficient execution plans for queries. For information about the table statistics that are collected, see [Notes](#notes).
 
 With no parameter, `ANALYZE` collects statistics for every table in the current database. You can specify a table name to collect statistics for a single table. You can specify a set of column names in a specific table, in which case the statistics only for those columns from that table are collected.
 
@@ -27,9 +27,9 @@ With no parameter, `ANALYZE` collects statistics for every table in the current 
 For partitioned tables, `ANALYZE` collects additional statistics, HyperLogLog (HLL) statistics, on the leaf partitions. HLL statistics are used are used to derive number of distinct values (NDV) for queries against partitioned tables.
 
 -  When aggregating NDV estimates across multiple leaf partitions, HLL statistics generate a more accurate NDV estimates than the standard table statistics.
--  When updating HLL statistics, `ANALYZE` operations are required only on leaf partitions that have changed. For example, `ANALYZE` is required if the leaf partition data has changed, or if the leaf partition has been exchanged with another table. For more information about updating partitioned table statistics, see [Notes](#section5).
+-  When updating HLL statistics, `ANALYZE` operations are required only on leaf partitions that have changed. For example, `ANALYZE` is required if the leaf partition data has changed, or if the leaf partition has been exchanged with another table. For more information about updating partitioned table statistics, see [Notes](#notes).
 
-> **Important** If you intend to run queries on partitioned tables with GPORCA enabled (the default), then you must collect statistics on the root partition of the partitioned table with the `ANALYZE` or `ANALYZE ROOTPARTITION` command. For information about collecting statistics on partitioned tables and when the `ROOTPARTITION` keyword is required, see [Notes](#section5). For information about GPORCA, see Overview of GPORCA in the *Cloudberry Database Administrator Guide*.
+> **Important** If you intend to run queries on partitioned tables with GPORCA enabled (the default), then you must collect statistics on the root partition of the partitioned table with the `ANALYZE` or `ANALYZE ROOTPARTITION` command. For information about collecting statistics on partitioned tables and when the `ROOTPARTITION` keyword is required, see [Notes](#notes). For information about GPORCA, see Overview of GPORCA in the *Cloudberry Database Administrator Guide*.
 
 > **Note** You can also use the Cloudberry Database utility `analyzedb` to update table statistics. The `analyzedb` utility can update statistics for multiple tables concurrently. The utility can also check table statistics and update statistics only if the statistics are not current or do not exist. For information about the utility, see the *Cloudberry Database Utility Guide*.
 
@@ -43,13 +43,13 @@ Collect statistics for partitioned tables including HLL statistics. HLL statisti
 
 `ANALYZE leaf_partition_table_name`, collects statistics on the leaf partition.
 
-By default, if you specify a leaf partition, and all other leaf partitions have statistics, `ANALYZE` updates the root partition statistics. If not all leaf partitions have statistics, `ANALYZE` logs information about the leaf partitions that do not have statistics. For information about when root partition statistics are collected, see [Notes](#section5).
+By default, if you specify a leaf partition, and all other leaf partitions have statistics, `ANALYZE` updates the root partition statistics. If not all leaf partitions have statistics, `ANALYZE` logs information about the leaf partitions that do not have statistics. For information about when root partition statistics are collected, see [Notes](#notes).
 
 **`ROOTPARTITION [ALL]`**
 
 Collect statistics only on the root partition of partitioned tables based on the data in the partitioned table. If possible, `ANALYZE` uses leaf partition statistics to generate root partition statistics. Otherwise, `ANALYZE` collects the statistics by sampling leaf partition data. Statistics are not collected on the leaf partitions, the data is only sampled. HLL statistics are not collected.
 
-For information about when the `ROOTPARTITION` keyword is required, see [Notes](#section5).
+For information about when the `ROOTPARTITION` keyword is required, see [Notes](#notes).
 
 When you specify `ROOTPARTITION`, you must specify either `ALL` or the name of a partitioned table.
 
@@ -151,6 +151,6 @@ ANALYZE mytable;
 
 There is no `ANALYZE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md), [EXPLAIN](/docs/sql-stmts/sql-stmt-explain.md), [VACUUM](/docs/sql-stmts/sql-stmt-vacuum.md), analyzedb.

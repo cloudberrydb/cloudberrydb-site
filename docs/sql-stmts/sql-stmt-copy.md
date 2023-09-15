@@ -102,7 +102,7 @@ Specify a command to run. In `COPY FROM`, the input is read from standard output
 
 The command is invoked by a shell. When passing arguments to the shell, strip or escape any special characters that have a special meaning for the shell. For security reasons, it is best to use a fixed command string, or at least avoid passing any user input in the string.
 
-When `ON SEGMENT` is specified, the command must be executable on all Cloudberry Database primary segment hosts by the Cloudberry Database administrator user (`gpadmin`). The command is run by each Greenplum segment instance. The `<SEGID>` is required in the command.
+When `ON SEGMENT` is specified, the command must be executable on all Cloudberry Database primary segment hosts by the Cloudberry Database administrator user (`gpadmin`). The command is run by each Cloudberry segment instance. The `<SEGID>` is required in the command.
 
 See the `ON SEGMENT` clause for information about command syntax requirements and the data that is copied when the clause is specified.
 
@@ -196,9 +196,9 @@ With `COPY TO`, the string literal is replaced by the content ID of the segment 
 
 With `COPY FROM`, specify the segment instance content ID in the name of the file and place that file on the segment instance host. There must be a file for each primary segment instance on each host. When the `COPY FROM` command is run, the data is copied from the file to the segment instance.
 
-When the `PROGRAM command` clause is specified, the `<SEGID>` string literal is required in the command, the `<SEG_DATA_DIR>` string literal is optional. See [Examples](#section11).
+When the `PROGRAM command` clause is specified, the `<SEGID>` string literal is required in the command, the `<SEG_DATA_DIR>` string literal is optional. See [Examples](#examples).
 
-For a `COPY FROM...ON SEGMENT` command, the table distribution policy is checked when data is copied into the table. By default, an error is returned if a data row violates the table distribution policy. You can deactivate the distribution policy check with the server configuration parameter `gp_enable_segment_copy_checking`. See [Notes](#section6).
+For a `COPY FROM...ON SEGMENT` command, the table distribution policy is checked when data is copied into the table. By default, an error is returned if a data row violates the table distribution policy. You can deactivate the distribution policy check with the server configuration parameter `gp_enable_segment_copy_checking`. See [Notes](#notes).
 
 **`NEWLINE`**
 
@@ -218,7 +218,7 @@ This is an optional clause that can precede a `SEGMENT REJECT LIMIT` clause to c
 
 Error log information is stored internally and is accessed with the Cloudberry Database built-in SQL function `gp_read_error_log()`.
 
-See [Notes](#section6) for information about the error log information and built-in functions for viewing and managing error log information.
+See [Notes](#notes) for information about the error log information and built-in functions for viewing and managing error log information.
 
 **`SEGMENT REJECT LIMIT count [ROWS | PERCENT]`**
 
@@ -303,7 +303,7 @@ A non-superuser can run only these types of `COPY` commands:
 
 For information about resource queues, see "Resource Management with Resource Queues" in the *Cloudberry Database Administrator Guide*.
 
-## File Formats
+## File formats
 
 File formats supported by `COPY`.
 
@@ -508,6 +508,6 @@ COPY { <table_name> [(<column_name> [, ...])] | (<query>)} TO {'<filename>' | PR
 
 Note that in this syntax, `BINARY` and `CSV` are treated as independent keywords, not as arguments of a FORMAT option.
 
-## See Also
+## See also
 
 [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md)

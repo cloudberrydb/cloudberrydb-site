@@ -90,6 +90,6 @@ broken_db=> \q
 
 There is no `REINDEX` command in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE INDEX](/docs/sql-stmts/sql-stmt-create-index.md), [DROP INDEX](/docs/sql-stmts/sql-stmt-drop-index.md), [VACUUM](/docs/sql-stmts/sql-stmt-vacuum.md), reindexdb

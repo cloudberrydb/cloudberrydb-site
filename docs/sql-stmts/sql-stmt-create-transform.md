@@ -88,8 +88,8 @@ In practice, these commands would be wrapped up in an extension.
 
 ## Compatibility
 
-This form of `CREATE TRANSFORM` is a Cloudberry Database extension. There is a `CREATE TRANSFORM` command in the SQL standard, but it is for adapting data types to client languages. That usage is not supported by Greenplum.
+This form of `CREATE TRANSFORM` is a Cloudberry Database extension. There is a `CREATE TRANSFORM` command in the SQL standard, but it is for adapting data types to client languages. That usage is not supported by Cloudberry Database.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [CREATE LANGUAGE](/docs/sql-stmts/sql-stmt-create-language.md), [CREATE TYPE](/docs/sql-stmts/sql-stmt-create-type.md), [DROP TRANSFORM](/docs/sql-stmts/sql-stmt-drop-transform.md)

@@ -62,6 +62,6 @@ ALTER GROUP workers DROP USER beth;
 
 There is no `ALTER GROUP` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md), [GRANT](/docs/sql-stmts/sql-stmt-grant.md), [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md)

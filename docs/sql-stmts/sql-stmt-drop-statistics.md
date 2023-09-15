@@ -46,6 +46,6 @@ DROP STATISTICS IF EXISTS
 
 There is no `DROP STATISTICS` command in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER STATISTICS](/docs/sql-stmts/sql-stmt-alter-statistics.md), [CREATE STATISTICS](/docs/sql-stmts/sql-stmt-create-statistics.md)

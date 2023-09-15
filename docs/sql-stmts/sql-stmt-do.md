@@ -65,6 +65,6 @@ END$$;
 
 There is no `DO` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE LANGUAGE](/docs/sql-stmts/sql-stmt-create-language.md)

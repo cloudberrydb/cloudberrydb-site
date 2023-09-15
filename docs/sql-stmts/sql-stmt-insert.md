@@ -42,7 +42,7 @@ Each column not present in the explicit or implicit column list will be filled w
 
 If the expression for any column is not of the correct data type, Cloudberry Database attempts automatic type conversion.
 
-`INSERT` into tables that lack unique indexes will not be blocked by concurrent activity. Tables with unique indexes might block if concurrent sessions perform actions that lock or modify rows matching the unique index values being inserted; the details are covered in [Index Uniqueness Checks](https://www.postgresql.org/docs/12/index-unique-checks.html) in the PostgreSQL documentation. `ON CONFLICT` can be used to specify an alternative action to raising a unique constraint or exclusion constraint violation error. (See [ON CONFLICT Clause](#section5a) below.)
+`INSERT` into tables that lack unique indexes will not be blocked by concurrent activity. Tables with unique indexes might block if concurrent sessions perform actions that lock or modify rows matching the unique index values being inserted; the details are covered in [Index Uniqueness Checks](https://www.postgresql.org/docs/12/index-unique-checks.html) in the PostgreSQL documentation. `ON CONFLICT` can be used to specify an alternative action to raising a unique constraint or exclusion constraint violation error. (See [ON CONFLICT Clause](#on-conflict-clause) below.)
 
 The optional `RETURNING` clause causes `INSERT` to compute and return value(s) based on each row actually inserted (or updated, if an `ON CONFLICT DO UPDATE` clause was used). This is primarily useful for obtaining values that were supplied by defaults, such as a serial sequence number. However, any expression using the table's columns is allowed. The syntax of the `RETURNING` list is identical to that of the output list of `SELECT`. Only rows that were successfully inserted or updated will be returned. For example, if a row was locked but not updated because an `ON CONFLICT DO UPDATE ... WHERE` clause condition was not satisfied, the row will not be returned.
 
@@ -114,7 +114,7 @@ To insert data into a partitioned table, you specify the root partitioned table,
 
 For a partitioned table, all the child tables are locked during the `INSERT` operation when the Global Deadlock Detector is not enabled (the default). Only some of the leaf partitions are locked when the Global Deadlock Detector is enabled.
 
-## ON CONFLICT Clause
+## On conflict clause
 
 The optional `ON CONFLICT` clause specifies an alternative action to raising a unique violation or exclusion constraint violation error. For each individual row proposed for insertion, either the insertion proceeds, or, if an arbiter constraint or index specified by conflict_target is violated, the alternative conflict_action is taken. `ON CONFLICT DO NOTHING` simply avoids inserting a row as its alternative action. `ON CONFLICT DO UPDATE` updates the existing row that conflicts with the row proposed for insertion as its alternative action.
 
@@ -312,6 +312,6 @@ The SQL standard specifies that `OVERRIDING SYSTEM VALUE` can only be specified 
 
 Possible limitations of the query clause are documented under [SELECT](/docs/sql-stmts/sql-stmt-select.md).
 
-## See Also
+## See also
 
 [SELECT](/docs/sql-stmts/sql-stmt-select.md)

@@ -154,6 +154,6 @@ ALTER OPERATOR FAMILY integer_ops USING btree DROP
 
 There is no `ALTER OPERATOR FAMILY` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-create-operator-family.md), [DROP OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-drop-operator-family.md), [ALTER OPERATOR CLASS](/docs/sql-stmts/sql-stmt-alter-operator-class.md), [CREATE OPERATOR CLASS](/docs/sql-stmts/sql-stmt-create-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-stmts/sql-stmt-drop-operator-class.md)

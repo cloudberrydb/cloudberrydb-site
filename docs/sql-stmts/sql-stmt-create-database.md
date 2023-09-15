@@ -47,15 +47,15 @@ The name of the template from which to create the new database, or `DEFAULT` to 
 
 **`encoding`**
 
-Character set encoding to use in the new database. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default encoding  (namely, the encoding of the template database). For more information, see Character Set Support. Refer to the [Notes](#section5) for additional restrictions.
+Character set encoding to use in the new database. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default encoding  (namely, the encoding of the template database). For more information, see Character Set Support. Refer to the [Notes](#notes) for additional restrictions.
 
 **`lc_collate`**
 
-The collation order (`LC_COLLATE`) to use in the new database. This affects the sort order applied to strings, e.g. in queries with `ORDER BY`, as well as the order used in indexes on text columns. The default is to use the collation order of the template database. See the [Notes](#section5) for additional restrictions.
+The collation order (`LC_COLLATE`) to use in the new database. This affects the sort order applied to strings, e.g. in queries with `ORDER BY`, as well as the order used in indexes on text columns. The default is to use the collation order of the template database. See the [Notes](#notes) for additional restrictions.
 
 **`lc_ctype`**
 
-The character classification (`LC_CTYPE`) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#section5) for additional restrictions.
+The character classification (`LC_CTYPE`) to use in the new database. This affects the categorization of characters, e.g. lower, upper, and digit. The default is to use the character classification of the template database. See the [Notes](#notes) for additional restrictions.
 
 **`tablespace_name`**
 
@@ -137,6 +137,6 @@ Note that locale names are specific to the operating system, so that the above c
 
 There is no `CREATE DATABASE` statement in the SQL standard. Databases are equivalent to catalogs, whose creation is implementation-defined.
 
-## See Also
+## See also
 
 [ALTER DATABASE](/docs/sql-stmts/sql-stmt-alter-database.md), [DROP DATABASE](/docs/sql-stmts/sql-stmt-drop-database.md)

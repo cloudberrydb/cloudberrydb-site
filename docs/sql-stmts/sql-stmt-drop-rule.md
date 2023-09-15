@@ -50,6 +50,6 @@ DROP RULE sales_2006 ON sales;
 
 `DROP RULE` is a Cloudberry Database extension, as is the entire query rewrite system.
 
-## See Also
+## See also
 
 [ALTER RULE](/docs/sql-stmts/sql-stmt-alter-rule.md), [CREATE RULE](/docs/sql-stmts/sql-stmt-create-rule.md)

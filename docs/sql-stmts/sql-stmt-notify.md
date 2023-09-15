@@ -48,7 +48,7 @@ The function `pg_notification_queue_usage()` returns the fraction of the queue t
 
 A transaction that has executed `NOTIFY` cannot be prepared for two-phase commit.
 
-### pg_notify
+### Pg_notify
 
 To send a notification you can also use the function `pg_notify(text, text)`. The function takes the channel name as the first argument and the payload as the second. The function is much easier to use than the `NOTIFY` command if you need to work with non-constant channel names and payloads.
 
@@ -72,6 +72,6 @@ Asynchronous notification "foo" with payload "payload" received from server proc
 
 There is no `NOTIFY` statement in the SQL standard.
 
-## See Also
+## See also
 
 [LISTEN](/docs/sql-stmts/sql-stmt-listen.md), [UNLISTEN](/docs/sql-stmts/sql-stmt-unlisten.md)

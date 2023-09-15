@@ -54,6 +54,6 @@ ALTER PROTOCOL GPDB_authentication OWNER TO joe;
 
 There is no `ALTER PROTOCOL` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md), [CREATE PROTOCOL](/docs/sql-stmts/sql-stmt-create-protocol.md), [DROP PROTOCOL](/docs/sql-stmts/sql-stmt-drop-protocol.md)

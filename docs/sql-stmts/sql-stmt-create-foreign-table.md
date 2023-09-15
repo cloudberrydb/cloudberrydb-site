@@ -189,6 +189,6 @@ CREATE FOREIGN TABLE measurement_y2016m07
 
 `CREATE FOREIGN TABLE` largely conforms to the SQL standard; however, much as with [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md), Cloudberry Database permits `NULL` constraints and zero-column foreign tables. The ability to specify column default values is a Cloudberry Database extension, as is the `mpp_execute` option. Table inheritance, in the form defined by Cloudberry Database, is nonstandard.
 
-## See Also
+## See also
 
 [ALTER FOREIGN TABLE](/docs/sql-stmts/sql-stmt-alter-foreign-table.md), [DROP FOREIGN TABLE](/docs/sql-stmts/sql-stmt-drop-foreign-table.md), [CREATE SERVER](/docs/sql-stmts/sql-stmt-create-server.md)

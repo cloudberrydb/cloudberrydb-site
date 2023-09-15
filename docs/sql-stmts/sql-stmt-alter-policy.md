@@ -55,6 +55,6 @@ The `WITH CHECK` expression for the policy. See [CREATE POLICY](/docs/sql-stmts/
 
 `ALTER POLICY` is a Cloudberry Database extension to the SQL standard.
 
-## See Also
+## See also
 
 [CREATE POLICY](/docs/sql-stmts/sql-stmt-create-policy.md), [DROP POLICY](/docs/sql-stmts/sql-stmt-drop-policy.md)

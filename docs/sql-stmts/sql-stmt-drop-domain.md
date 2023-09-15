@@ -46,6 +46,6 @@ DROP DOMAIN us_postal_code;
 
 This command conforms to the SQL standard, except for the `IF EXISTS` option, which is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER DOMAIN](/docs/sql-stmts/sql-stmt-alter-domain.md), [CREATE DOMAIN](/docs/sql-stmts/sql-stmt-create-domain.md)

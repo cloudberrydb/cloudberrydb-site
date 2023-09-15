@@ -218,9 +218,9 @@ Drops a column from a table. Note that if you drop table columns that are being 
 
 This form changes the data type of a column of a table. Note that you cannot alter column data types that are being used as distribution or partitioning keys. Indexes and simple table constraints involving the column will be automatically converted to use the new column type by reparsing the originally supplied expression. The optional `COLLATE` clause specifies a collation for the new column; if omitted, the collation is the default for the new column type. The optional `USING` clause specifies how to compute the new column value from the old. If omitted, the default conversion is the same as an assignment cast from old data type to new. A `USING` clause must be provided if there is no implicit or assignment cast from old to new type.
 
-> **Note** The Greenplum Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Greenplum uses the Postgres Planner.
+> **Note** The Greenplum Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Cloudberry Database uses the Postgres Planner.
 
-Changing a column data type may or may not require a table rewrite. For information about table rewrites performed by `ALTER TABLE`, see [Notes](#section5).
+Changing a column data type may or may not require a table rewrite. For information about table rewrites performed by `ALTER TABLE`, see [Notes](#notes).
 
 **`SET DEFAULT`**
 
@@ -282,7 +282,7 @@ This form sets column encoding options for append-optimized, column-oriented tab
 
 Adds a new constraint to a table using the same syntax as [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md). The `NOT VALID` option is currently allowed only for foreign key and `CHECK` constraints.
 
-Normally, this form causes a scan of the table to verify that all existing rows in the table satisfy the new constraint.  If the constraint is marked `NOT VALID`, Cloudberry Database skips the potentially-lengthy initial check to verify that all rows in the table satisfy the constraint. The constraint will still be enforced against subsequent inserts or updates (that is, they'll fail unless there is a matching row in the referenced table, in the case of foreign keys; and they'll fail unless the new row matches the specified check constraints). But the database will not assume that the constraint holds for all rows in the table, until it is validated by using the `VALIDATE CONSTRAINT` option. See the [Notes](#section5) for more information about using the `NOT VALID` option.
+Normally, this form causes a scan of the table to verify that all existing rows in the table satisfy the new constraint.  If the constraint is marked `NOT VALID`, Cloudberry Database skips the potentially-lengthy initial check to verify that all rows in the table satisfy the constraint. The constraint will still be enforced against subsequent inserts or updates (that is, they'll fail unless there is a matching row in the referenced table, in the case of foreign keys; and they'll fail unless the new row matches the specified check constraints). But the database will not assume that the constraint holds for all rows in the table, until it is validated by using the `VALIDATE CONSTRAINT` option. See the [Notes](#notes) for more information about using the `NOT VALID` option.
 
 Most forms of `ADD <table_constraint>` require an `ACCESS EXCLUSIVE` lock.
 
@@ -296,7 +296,7 @@ The index cannot have expression columns nor be a partial index. Also, it must b
 
 If `PRIMARY KEY` is specified, and the index's columns are not already marked `NOT NULL`, then this command attempts to `ALTER COLUMN SET NOT NULL` against each such column. That requires a full table scan to verify the column(s) contain no nulls. In all other cases, this is a fast operation.
 
-If a constraint name is provided then Greenplum renames the index to match the constraint name. Otherwise the constraint will be named the same as the index.
+If a constraint name is provided then Cloudberry Database renames the index to match the constraint name. Otherwise the constraint will be named the same as the index.
 
 After this command is executed, the index is "owned" by the constraint, in the same way as if the index had been built by a regular `ADD PRIMARY KEY` or `ADD UNIQUE` command. In particular, dropping the constraint will make the index disappear too.
 
@@ -304,7 +304,7 @@ This form is not currently supported on partitioned tables.
 
 **`ALTER CONSTRAINT`**
 
-This form alters the attributes of a constraint that was previously created. Currently only foreign key constraints may be altered, which Greenplum will accept, but not enforce.
+This form alters the attributes of a constraint that was previously created. Currently only foreign key constraints may be altered, which Cloudberry Database will accept, but not enforce.
 
 **`VALIDATE CONSTRAINT`**
 
@@ -338,7 +338,7 @@ Changing cluster options acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 Physically reorders a table based on one or more columns to improve physical correlation. You specify one or more columns, and an optional column order. If not specified, the default is `ASC`. The command is equivalent to the [CLUSTER](/docs/sql-stmts/sql-stmt-cluster.md) command, but it uses the provided column list instead of an index to determine the sorting order. 
 
-The command is especially useful for tables that are loaded in small batches. You may combine `REPACK BY COLUMNS` with most other `ALTER TABLE` commands that do not require a rewrite of the table. You may use `REPACK BY COLUMNS` to add compression or change the existing compression settings of a table while physically reordering the table, which results in better compression and storage. See [Examples](#section6) for more details.
+The command is especially useful for tables that are loaded in small batches. You may combine `REPACK BY COLUMNS` with most other `ALTER TABLE` commands that do not require a rewrite of the table. You may use `REPACK BY COLUMNS` to add compression or change the existing compression settings of a table while physically reordering the table, which results in better compression and storage. See [Examples](#examples) for more details.
 
 **`SET WITHOUT CLUSTER`**
 
@@ -360,7 +360,7 @@ This form changes the table from unlogged to logged or vice-versa. It cannot be 
 
 **`SET ( storage_\parameter [= value] [, ... ] )`**
 
-This form changes one or more table-level options. See [Storage Parameters](/docs/sql-stmts/sql-stmt-create-table.md#storage-parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](/docs/sql-stmts/sql-stmt-vacuum.md), [CLUSTER](/docs/sql-stmts/sql-stmt-cluster.md) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#section5). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
+This form changes one or more table-level options. See [Storage Parameters](/docs/sql-stmts/sql-stmt-create-table.md#storage-parameters) in the `CREATE TABLE` reference for details on the available parameters. Note that for heap tables, the table contents will not be modified immediately by this command; depending on the parameter, you may need to rewrite the table to get the desired effects. That can be done with [VACUUM FULL](/docs/sql-stmts/sql-stmt-vacuum.md), [CLUSTER](/docs/sql-stmts/sql-stmt-cluster.md) or one of the forms of `ALTER TABLE` that forces a table rewrite, see [Notes](#notes). For append-optimized column-oriented tables, changing a storage parameter always results in a table rewrite. For planner-related parameters, changes take effect from the next time the table is locked, so currently executing queries are not affected.
 
 Cloudberry Database takes a `SHARE UPDATE EXCLUSIVE` lock when setting `fillfactor`, toast and autovacuum storage parameters, and the planner parameter `parallel_workers`.
 
@@ -415,7 +415,7 @@ While Cloudberry Database permits changing the distribution policy of a writable
 
 **`ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }`**
 
-This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Greenplum does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md).)
+This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Cloudberry does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md).)
 
 A partition using `FOR VALUES` uses the same syntax for partition_bound_spec> as [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md). The partition bound specification must correspond to the partitioning strategy and partition key of the target table. The table to be attached must have all the same columns as the target table and no more; moreover, the column types must also match. Also, it must have all of the `NOT NULL` and `CHECK` constraints of the target table. Currently `FOREIGN KEY` constraints are not considered. `UNIQUE` and `PRIMARY KEY` constraints from the parent table will be created in the partition, if they don't already exist. If any of the `CHECK` constraints of the table being attached are marked `NO INHERIT`, the command will fail; such constraints must be recreated without the `NO INHERIT` clause.
 
@@ -471,7 +471,7 @@ New name for the table.
 
 **`type`**
 
-Data type of the new column, or new data type for an existing column. If changing the data type of a Greenplum distribution key column, you are only allowed to change it to a compatible type (for example, `text` to `varchar` is OK, but `text` to `int` is not).
+Data type of the new column, or new data type for an existing column. If changing the data type of a Cloudberry distribution key column, you are only allowed to change it to a compatible type (for example, `text` to `varchar` is OK, but `text` to `int` is not).
 
 **`table_constraint`**
 
@@ -555,7 +555,7 @@ If you are setting the distribution policy, you must specify the `WITH (reorgani
 Any attempt to reorganize an external table fails with an error.
 
 
-### Classic Partitioning Syntax Parameters
+### Classic partitioning syntax parameters
 
 Descriptions of additional parameters that are specific to the *classic partitioning syntax* follow.
 
@@ -907,7 +907,7 @@ ALTER TABLE distributors
     SET (compresstype=zstd, compresslevel=3);
 ```
 
-### Modern Syntax Partioning Examples
+### Modern syntax partioning examples
 
 Attach a partition to a range-partitioned table:
 
@@ -944,7 +944,7 @@ ALTER TABLE measurement
     DETACH PARTITION measurement_y2015m12;
 ```
 
-### Classic Syntax Partioning Examples
+### Classic syntax partioning examples
 
 Add a new partition to a partitioned table:
 
@@ -1005,6 +1005,6 @@ The forms `ADD` (without `USING INDEX`), `DROP [COLUMN]`, `DROP IDENTITY`, `REST
 
 `ALTER TABLE DROP COLUMN` can be used to drop the only column of a table, leaving a zero-column table. This is an extension of SQL, which disallows zero-column tables.
 
-## See Also
+## See also
 
 [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md), [DROP TABLE](/docs/sql-stmts/sql-stmt-drop-table.md)

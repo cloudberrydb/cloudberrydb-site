@@ -47,6 +47,6 @@ The arguments can appear in any order, not only the order shown above.
 
 There is no `CREATE TEXT SEARCH TEMPLATE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [DROP TEXT SEARCH TEMPLATE](/docs/sql-stmts/sql-stmt-drop-text-search-template.md), [ALTER TEXT SEARCH TEMPLATE](/docs/sql-stmts/sql-stmt-alter-text-search-template.md)

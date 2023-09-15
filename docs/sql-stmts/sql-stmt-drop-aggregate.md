@@ -80,6 +80,6 @@ DROP AGGREGATE myavg(integer), myavg(bigint);
 
 There is no `DROP AGGREGATE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER AGGREGATE](/docs/sql-stmts/sql-stmt-alter-aggregate.md), [CREATE AGGREGATE](/docs/sql-stmts/sql-stmt-create-aggregate.md)

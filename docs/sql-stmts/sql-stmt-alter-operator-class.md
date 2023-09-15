@@ -48,6 +48,6 @@ The new schema for the operator class.
 
 There is no `ALTER OPERATOR CLASS` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE OPERATOR CLASS](/docs/sql-stmts/sql-stmt-create-operator-class.md), [DROP OPERATOR CLASS](/docs/sql-stmts/sql-stmt-drop-operator-class.md), [ALTER OPERATOR FAMILY](/docs/sql-stmts/sql-stmt-alter-operator-family.md)

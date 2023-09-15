@@ -60,6 +60,6 @@ DROP RESOURCE QUEUE adhoc;
 
 The `DROP RESOURCE QUEUE` statement is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-alter-resource-queue.md), [CREATE RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-create-resource-queue.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md)

@@ -46,6 +46,6 @@ DROP VIEW topten;
 
 `DROP VIEW` fully conforms to the SQL standard, except that the standard only allows one view to be dropped per command. Also, the `IF EXISTS` option is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE VIEW](/docs/sql-stmts/sql-stmt-create-view.md), [ALTER VIEW](/docs/sql-stmts/sql-stmt-alter-view.md)

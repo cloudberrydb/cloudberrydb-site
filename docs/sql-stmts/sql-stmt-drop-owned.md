@@ -52,6 +52,6 @@ DROP OWNED BY sally;
 
 The `DROP OWNED` command is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [REASSIGN OWNED](/docs/sql-stmts/sql-stmt-reassign-owned.md), [DROP ROLE](/docs/sql-stmts/sql-stmt-drop-role.md)

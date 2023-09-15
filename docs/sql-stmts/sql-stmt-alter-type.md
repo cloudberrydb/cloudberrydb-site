@@ -194,6 +194,6 @@ ALTER TYPE colors RENAME VALUE 'purple' TO 'mauve';
 
 The variants to add and drop attributes are part of the SQL standard; the other variants are Cloudberry Database extensions.
 
-## See Also
+## See also
 
 [CREATE TYPE](/docs/sql-stmts/sql-stmt-create-type.md), [DROP TYPE](/docs/sql-stmts/sql-stmt-drop-type.md)

@@ -32,7 +32,7 @@ A cursor can be specified in the `WHERE CURRENT OF` clause of the [UPDATE](/docs
 
 **Parallel Retrieve Cursors**
 
-Cloudberry Database supports a special type of cursor, a *parallel retrieve cursor*. You can use a parallel retrieve cursor to retrieve query results, in parallel, directly from the Cloudberry Database segments, bypassing the Greenplum coordinator.
+Cloudberry Database supports a special type of cursor, a *parallel retrieve cursor*. You can use a parallel retrieve cursor to retrieve query results, in parallel, directly from the Cloudberry Database segments, bypassing the Cloudberry Database coordinator.
 
 Parallel retrieve cursors do not support the `WITH HOLD` clause. Cloudberry Database ignores the `BINARY` clause when you declare a parallel retrieve cursor.
 
@@ -134,6 +134,6 @@ Binary cursors are a Cloudberry Database extension.
 
 The SQL standard makes no provisions for parallel retrieve cursors.
 
-## See Also
+## See also
 
 [CLOSE](/docs/sql-stmts/sql-stmt-close.md), [DELETE](/docs/sql-stmts/sql-stmt-delete.md), [FETCH](/docs/sql-stmts/sql-stmt-fetch.md), [MOVE](/docs/sql-stmts/sql-stmt-move.md), [RETRIEVE](/docs/sql-stmts/sql-stmt-retrieve.md), [SELECT](/docs/sql-stmts/sql-stmt-select.md), [UPDATE](/docs/sql-stmts/sql-stmt-update.md)

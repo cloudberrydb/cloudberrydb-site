@@ -53,6 +53,6 @@ This command fails if any of the extension objects are in use in the database. F
 
 `DROP EXTENSION` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE EXTENSION](/docs/sql-stmts/sql-stmt-create-extension.md), [ALTER EXTENSION](/docs/sql-stmts/sql-stmt-alter-extension.md)

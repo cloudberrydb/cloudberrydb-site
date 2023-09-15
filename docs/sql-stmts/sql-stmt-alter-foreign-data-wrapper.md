@@ -80,6 +80,6 @@ ALTER FOREIGN DATA WRAPPER dbi VALIDATOR bob.myvalidator;
 
 `ALTER FOREIGN DATA WRAPPER` conforms to ISO/IEC 9075-9 (SQL/MED), with the exception that the `HANDLER`, `VALIDATOR`, `OWNER TO`, and `RENAME TO` clauses are Cloudberry Database extensions.
 
-## See Also
+## See also
 
 [CREATE FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-create-foreign-data-wrapper.md), [DROP FOREIGN DATA WRAPPER](/docs/sql-stmts/sql-stmt-drop-foreign-data-wrapper.md)

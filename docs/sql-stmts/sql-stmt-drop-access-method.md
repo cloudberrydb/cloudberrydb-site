@@ -46,6 +46,6 @@ DROP ACCESS METHOD heptree;
 
 `DROP ACCESS METHOD` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE ACCESS METHOD](/docs/sql-stmts/sql-stmt-create-access-method.md)

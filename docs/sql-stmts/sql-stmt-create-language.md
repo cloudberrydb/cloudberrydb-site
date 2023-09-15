@@ -101,6 +101,6 @@ CREATE LANGUAGE plsample
 
 `CREATE LANGUAGE` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER LANGUAGE](/docs/sql-stmts/sql-stmt-alter-language.md), [CREATE EXTENSION](/docs/sql-stmts/sql-stmt-create-extension.md), [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [DROP LANGUAGE](/docs/sql-stmts/sql-stmt-drop-language.md), [GRANT](/docs/sql-stmts/sql-stmt-grant.md), [DO](/docs/sql-stmts/sql-stmt-do.md)

@@ -71,7 +71,7 @@ You must be the owner of a table to create or change rules for it.
 
 In a rule for `INSERT`, `UPDATE`, or `DELETE` on a view, you can add a `RETURNING` clause that emits the view's columns. This clause will be used to compute the outputs if the rule is triggered by an `INSERT RETURNING`, `UPDATE RETURNING`, or `DELETE RETURNING` command respectively. When the rule is triggered by a command without `RETURNING`, the rule's `RETURNING` clause will be ignored. The current implementation allows only unconditional `INSTEAD` rules to contain `RETURNING`; furthermore there can be at most one `RETURNING` clause among all the rules for the same event. (This ensures that there is only one candidate `RETURNING` clause to be used to compute the results.) `RETURNING` queries on the view will be rejected if there is no `RETURNING` clause in any available rule.
 
-It is very important to take care to avoid circular rules. For example, though each of the following two rule definitions are accepted by Cloudberry Database, the `SELECT` command would cause Greenplum to report an error because of recursive expansion of a rule:
+It is very important to take care to avoid circular rules. For example, though each of the following two rule definitions are accepted by Cloudberry Database, the `SELECT` command would cause Cloudberry to report an error because of recursive expansion of a rule:
 
 ```sql
 CREATE RULE "_RETURN" AS
@@ -102,6 +102,6 @@ one `NOTIFY` event will be sent during the `UPDATE`, whether or not there are an
 
 `CREATE RULE` is a Cloudberry Database extension, as is the entire query rewrite system.
 
-## See Also
+## See also
 
 [ALTER RULE](/docs/sql-stmts/sql-stmt-alter-rule.md), [DROP RULE](/docs/sql-stmts/sql-stmt-drop-rule.md)

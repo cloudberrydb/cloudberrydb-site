@@ -50,6 +50,6 @@ where option can be:
 
 There is no `CREATE GROUP` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md)

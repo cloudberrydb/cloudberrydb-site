@@ -89,6 +89,6 @@ COMMIT;
 
 There is no `MOVE` statement in the SQL standard.
 
-## See Also
+## See also
 
 [DECLARE](/docs/sql-stmts/sql-stmt-declare.md), [FETCH](/docs/sql-stmts/sql-stmt-fetch.md), [CLOSE](/docs/sql-stmts/sql-stmt-close.md)

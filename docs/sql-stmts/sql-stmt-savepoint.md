@@ -88,6 +88,6 @@ The above transaction shows row 3 being rolled back first, then row 2.
 
 SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Cloudberry Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. (Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md) and [RELEASE SAVEPOINT](/docs/sql-stmts/sql-stmt-release-savepoint.md).) Otherwise, `SAVEPOINT` is fully SQL conforming.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [RELEASE SAVEPOINT](/docs/sql-stmts/sql-stmt-release-savepoint.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md), [ROLLBACK TO SAVEPOINT](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md)

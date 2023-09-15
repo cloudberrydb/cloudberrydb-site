@@ -33,13 +33,13 @@ The path and file name of a shared library file. This file must exist in the sam
 Load a shared library file:
 
 ```sql
-LOAD '/usr/local/greenplum-db/lib/myfuncs.so';
+LOAD '/usr/local/cloudberry-db/lib/myfuncs.so';
 ```
 
 ## Compatibility
 
 `LOAD` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md)

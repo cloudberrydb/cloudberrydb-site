@@ -46,6 +46,6 @@ ABORT;
 
 This command is a Cloudberry Database extension present for historical reasons. `ROLLBACK` is the equivalent standard SQL command.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md)

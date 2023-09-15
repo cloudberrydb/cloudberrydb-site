@@ -58,6 +58,6 @@ ALTER CONVERSION iso_8859_1_to_utf8 OWNER TO joe;
 
 There is no `ALTER CONVERSION` statement in the SQL standard.
 
-## See Also
+## See also
 
 [CREATE CONVERSION](/docs/sql-stmts/sql-stmt-create-conversion.md), [DROP CONVERSION](/docs/sql-stmts/sql-stmt-drop-conversion.md)

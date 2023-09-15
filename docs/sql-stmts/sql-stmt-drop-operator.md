@@ -73,6 +73,6 @@ DROP OPERATOR ~ (none, bit), ! (bigint, none);
 
 There is no `DROP OPERATOR` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER OPERATOR](/docs/sql-stmts/sql-stmt-alter-operator.md), [CREATE OPERATOR](/docs/sql-stmts/sql-stmt-create-operator.md)

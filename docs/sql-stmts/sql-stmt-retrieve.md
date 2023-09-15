@@ -103,6 +103,6 @@ COMMIT;
 
 `RETRIEVE` is a Cloudberry Database extension. The SQL standard makes no provisions for parallel retrieve cursors.
 
-## See Also
+## See also
 
 [DECLARE](/docs/sql-stmts/sql-stmt-declare.md), [CLOSE](/docs/sql-stmts/sql-stmt-close.md)

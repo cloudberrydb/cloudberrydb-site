@@ -62,6 +62,6 @@ The arguments can appear in any order, not only the one shown above.
 
 There is no `CREATE TEXT SEARCH PARSER` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ALTER TEXT SEARCH PARSER](/docs/sql-stmts/sql-stmt-alter-text-search-parser.md), [DROP TEXT SEARCH PARSER](/docs/sql-stmts/sql-stmt-drop-text-search-parser.md)

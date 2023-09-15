@@ -35,7 +35,7 @@ With append-optimized tables, `VACUUM` compacts a table by first vacuuming the i
 
 When the option list is surrounded by parentheses, the options can be written in any order. Without parentheses, options must be specified in exactly the order shown above. The parenthesized syntax was added in Cloudberry Database 6.0; the unparenthesized syntax is deprecated.
 
-> **Important**: For information on the use of `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE`, see [Notes](#section6).
+> **Important**: For information on the use of `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE`, see [Notes](#notes).
 
 **Outputs**
 
@@ -141,6 +141,6 @@ VACUUM ANALYZE;
 
 There is no `VACUUM` statement in the SQL standard.
 
-## See Also
+## See also
 
 [ANALYZE](/docs/sql-stmts/sql-stmt-analyze.md)

@@ -56,6 +56,6 @@ Any shared library that implements a data access protocol must be located in the
 
 `CREATE PROTOCOL` is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER PROTOCOL](/docs/sql-stmts/sql-stmt-alter-protocol.md), [CREATE EXTERNAL TABLE](/docs/sql-stmts/sql-stmt-create-external-table.md), [DROP PROTOCOL](/docs/sql-stmts/sql-stmt-drop-protocol.md), [GRANT](/docs/sql-stmts/sql-stmt-grant.md)

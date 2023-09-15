@@ -46,6 +46,6 @@ END;
 
 `END` is a Cloudberry Database extension that provides functionality equivalent to [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), which is specified in the SQL standard.
 
-## See Also
+## See also
 
 [BEGIN](/docs/sql-stmts/sql-stmt-begin.md), [COMMIT](/docs/sql-stmts/sql-stmt-commit.md), [ROLLBACK](/docs/sql-stmts/sql-stmt-rollback.md)

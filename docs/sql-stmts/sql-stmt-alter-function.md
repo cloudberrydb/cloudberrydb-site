@@ -200,6 +200,6 @@ The function will now execute with whatever search path is used by its caller.
 
 This statement is partially compatible with the `ALTER FUNCTION` statement in the SQL standard. The standard allows more properties of a function to be modified, but does not provide the ability to rename a function, make a function a security definer, attach configuration parameter values to a function, or change the owner, schema, or volatility of a function. The standard also requires the `RESTRICT` key word, which is optional in Cloudberry Database.
 
-## See Also
+## See also
 
 [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [DROP FUNCTION](/docs/sql-stmts/sql-stmt-drop-function.md), [ALTER PROCEDURE](/docs/sql-stmts/sql-stmt-alter-procedure.md), [ALTER ROUTINE](/docs/sql-stmts/sql-stmt-alter-routine.md)

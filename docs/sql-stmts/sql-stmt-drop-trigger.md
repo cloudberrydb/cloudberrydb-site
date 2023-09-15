@@ -50,6 +50,6 @@ DROP TRIGGER sendmail ON expenses;
 
 The `DROP TRIGGER` statement in Cloudberry Database is not compatible with the SQL standard. In the SQL standard, trigger names are not local to tables, so the command is simply `DROP TRIGGER name`.
 
-## See Also
+## See also
 
 [ALTER TRIGGER](/docs/sql-stmts/sql-stmt-alter-trigger.md), [CREATE TRIGGER](/docs/sql-stmts/sql-stmt-create-trigger.md)

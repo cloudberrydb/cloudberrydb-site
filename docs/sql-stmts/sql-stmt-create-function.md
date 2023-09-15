@@ -209,7 +209,7 @@ WITH tbl_a AS (SELECT * FROM get_data() )
     SELECT * FROM tbl_b;
 ```
 
-For information about using `EXECUTE ON` attributes, see [Notes](#section6).
+For information about using `EXECUTE ON` attributes, see [Notes](#notes).
 
 **`PARALLEL`**
 
@@ -280,7 +280,7 @@ A call `foo(10)` will fail due to the ambiguity about which function should be c
 
 ## Notes
 
-Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Cloudberry Database cluster (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files. It is recommended that you locate shared libraries either relative to `$libdir` (which is located at `$GPHOME/lib`) or through the dynamic library path (set by the `dynamic_library_path` server configuration parameter) on all coordinator segment instances in the Greenplum cluster.
+Any compiled code (shared library files) for custom functions must be placed in the same location on every host in your Cloudberry Database cluster (coordinator and all segments). This location must also be in the `LD_LIBRARY_PATH` so that the server can locate the files. It is recommended that you locate shared libraries either relative to `$libdir` (which is located at `$GPHOME/lib`) or through the dynamic library path (set by the `dynamic_library_path` server configuration parameter) on all coordinator segment instances in the Cloudberry Database cluster.
 
 The full SQL type syntax is allowed for input arguments and return value. However, parenthesized type modifiers (e.g., the precision field for type `numeric`) are discarded by `CREATE FUNCTION`. Thus for example `CREATE FUNCTION foo (varchar(10)) ...` is exactly the same as `CREATE FUNCTION foo (varchar) ...`.
 
@@ -480,7 +480,7 @@ If you run `SELECT get_part_name(100);` at the coordinator the function runs on 
 `SELECT order_id, get_part_name(orders.part_no) FROM orders;`
 ```
 
-## Writing SECURITY DEFINER Functions Safely
+## Writing security definer functions safely
 
 Because a `SECURITY DEFINER` function is executed with the privileges of the user that created it, care is needed to ensure that the function cannot be misused. For security, `search_path` should be set to exclude any schemas writable by untrusted users. This prevents malicious users from creating objects that mask objects used by the function. Particularly important in this regard is the temporary-table schema, which is searched first by default, and is normally writable by anyone. A secure arrangement can be had by forcing the temporary schema to be searched last. To do this, write `pg_temp` as the last entry in `search_path`. This function illustrates safe usage:
 
@@ -521,6 +521,6 @@ For compatibility with some other database systems, argmode can be written eithe
 
 For parameter defaults, the SQL standard specifies only the syntax with the `DEFAULT` key word. The syntax with `=` is used in T-SQL and Firebird.
 
-## See Also
+## See also
 
 [ALTER FUNCTION](/docs/sql-stmts/sql-stmt-alter-function.md), [DROP FUNCTION](/docs/sql-stmts/sql-stmt-drop-function.md), [GRANT](/docs/sql-stmts/sql-stmt-grant.md), [LOAD](/docs/sql-stmts/sql-stmt-load.md), [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md), createlang

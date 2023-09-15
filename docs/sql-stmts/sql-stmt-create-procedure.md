@@ -130,6 +130,6 @@ CALL insert_data(1, 2);
 
 A `CREATE PROCEDURE` command is defined in the SQL standard. The Cloudberry Database version is similar but not fully compatible. For details see also [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md).
 
-## See Also
+## See also
 
 [ALTER PROCEDURE](/docs/sql-stmts/sql-stmt-alter-procedure.md), [DROP PROCEDURE](/docs/sql-stmts/sql-stmt-drop-procedure.md), [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md), [CALL](/docs/sql-stmts/sql-stmt-call.md)

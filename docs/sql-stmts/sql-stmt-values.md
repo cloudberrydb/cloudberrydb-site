@@ -110,6 +110,6 @@ SELECT * FROM machines WHERE ip_address IN
 
 `VALUES` conforms to the SQL standard. `LIMIT` and `OFFSET` are Cloudberry Database extensions; see also under [SELECT](/docs/sql-stmts/sql-stmt-select.md).
 
-## See Also
+## See also
 
 [INSERT](/docs/sql-stmts/sql-stmt-insert.md), [SELECT](/docs/sql-stmts/sql-stmt-select.md)

@@ -45,6 +45,6 @@ DROP USER MAPPING IF EXISTS FOR bob SERVER foo;
 
 `DROP SERVER` conforms to ISO/IEC 9075-9 (SQL/MED). The `IF EXISTS` clause is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [CREATE USER MAPPING](/docs/sql-stmts/sql-stmt-create-user-mapping.md), [ALTER USER MAPPING](/docs/sql-stmts/sql-stmt-alter-user-mapping.md)

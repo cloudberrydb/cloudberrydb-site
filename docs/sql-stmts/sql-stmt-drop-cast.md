@@ -47,6 +47,6 @@ DROP CAST (text AS int);
 
 There `DROP CAST` command conforms to the SQL standard.
 
-## See Also
+## See also
 
 [CREATE CAST](/docs/sql-stmts/sql-stmt-create-cast.md)

@@ -284,6 +284,6 @@ The SQL standard defines the concepts of users and roles, but it regards them as
 
 The behavior specified by the SQL standard is most closely approximated by giving users the `NOINHERIT` attribute, while roles are given the `INHERIT` attribute.
 
-## See Also
+## See also
 
 [SET ROLE](/docs/sql-stmts/sql-stmt-set-role.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md), [DROP ROLE](/docs/sql-stmts/sql-stmt-drop-role.md), [GRANT](/docs/sql-stmts/sql-stmt-grant.md), [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md), [CREATE RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-create-resource-queue.md) [CREATE RESOURCE GROUP](/docs/sql-stmts/sql-stmt-create-resource-group.md), createuser

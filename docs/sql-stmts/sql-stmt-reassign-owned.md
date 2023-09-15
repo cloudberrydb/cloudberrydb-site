@@ -49,6 +49,6 @@ REASSIGN OWNED BY sally, bob TO admin;
 
 The `REASSIGN OWNED` command is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [DROP OWNED](/docs/sql-stmts/sql-stmt-drop-owned.md), [DROP ROLE](/docs/sql-stmts/sql-stmt-drop-role.md), [ALTER DATABASE](/docs/sql-stmts/sql-stmt-alter-database.md)

@@ -107,6 +107,6 @@ According to the SQL standard, the owner of a schema always owns all objects wit
 
 The `IF NOT EXISTS` option is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER SCHEMA](/docs/sql-stmts/sql-stmt-alter-schema.md), [DROP SCHEMA](/docs/sql-stmts/sql-stmt-drop-schema.md)

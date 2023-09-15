@@ -46,6 +46,6 @@ DROP COLLATION german;
 
 The `DROP COLLATION` command conforms to the SQL standard, apart from the `IF EXISTS` option, which is a Cloudberry Database extension.
 
-## See Also
+## See also
 
 [ALTER COLLATION](/docs/sql-stmts/sql-stmt-alter-collation.md), [CREATE COLLATION](/docs/sql-stmts/sql-stmt-create-collation.md)

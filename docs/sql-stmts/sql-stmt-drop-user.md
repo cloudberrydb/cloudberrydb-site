@@ -20,6 +20,6 @@ DROP USER [IF EXISTS] <name> [, ...]
 
 The `DROP USER` statement is a Cloudberry Database extension. The SQL standard leaves the definition of users to the implementation.
 
-## See Also
+## See also
 
 [DROP ROLE](/docs/sql-stmts/sql-stmt-drop-role.md)

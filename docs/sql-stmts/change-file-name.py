@@ -1,6 +1,11 @@
 import os
 
-folder_path = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-statements"
+def sentence_case(text):
+    if not text:
+        return text
+    return text[0].upper() + text[1:].lower()
+
+folder_path = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-stmts"
 
 for file_name in os.listdir(folder_path):
     if not file_name.endswith('.md'):
@@ -11,12 +16,11 @@ for file_name in os.listdir(folder_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
-    title = lines[0].strip().replace('# ', '')
-    
-    # Insert metadata lines at the beginning
-    lines.insert(0, '---\n')
-    lines.insert(1, f'title: {title}\n')
-    lines.insert(2, '---\n\n')  # We add an additional newline for spacing
+    for idx, line in enumerate(lines):
+        if line.startswith(('## ', '### ', '#### ', '##### ')):
+            # Split at the first space to separate '##' from the title
+            parts = line.split(' ', 1)
+            lines[idx] = parts[0] + ' ' + sentence_case(parts[1])
 
     with open(file_path, 'w') as file:
         file.writelines(lines)
