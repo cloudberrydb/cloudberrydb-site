@@ -49,7 +49,7 @@ Update the collation's version. See the [Notes](#notes) below.
 
 When using collations provided by the ICU library, the ICU-specific version of the collator is recorded in the system catalog when the collation object is created. When the collation is used, the current version is checked against the recorded version, and a warning is issued when there is a mismatch, for example:
 
-```sql
+```
 WARNING: collation "xx-x-icu" has version mismatch
 DETAIL: The collation in the database was created using version 1.2.3.4, but the operating system provides version 2.3.4.5.
 HINT: Rebuild all objects affected by this collation and run ALTER COLLATION pg_catalog."xx-x-icu" REFRESH VERSION, or build PostgreSQL with the right library version.

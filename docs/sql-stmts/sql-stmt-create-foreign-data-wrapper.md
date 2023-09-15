@@ -51,9 +51,9 @@ The options for the new foreign-data wrapper. Option names must be unique. The o
 
 A Cloudberry Database-specific option that identifies the host from which the foreign-data wrapper reads or writes data:
 
--  `coordinator` (the default)—Read or write data from the coordinator host.
--  `any`—Read data from either the coordinator host or any one segment, depending on which path costs less.
--  `all segments`—Read or write data from all segments. To support this option value, the foreign-data wrapper must have a policy that matches the segments to data.
+- `coordinator` (the default)—Read or write data from the coordinator host.
+- `any`—Read data from either the coordinator host or any one segment, depending on which path costs less.
+- `all segments`—Read or write data from all segments. To support this option value, the foreign-data wrapper must have a policy that matches the segments to data.
 
 > **Note** Cloudberry Database supports parallel writes to foreign tables only when you set `mpp_execute 'all segments'`.
 

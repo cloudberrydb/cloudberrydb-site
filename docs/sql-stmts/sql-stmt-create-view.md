@@ -37,15 +37,15 @@ Creates a recursive view. The syntax
 
 ```sql
     CREATE RECURSIVE VIEW [ <schema> . ] <view_name> (<column_names>) AS SELECT <...>;
-    ```
+```
 
-    is equivalent to
+is equivalent to
 
 ```sql
-    CREATE VIEW [ <schema> . ] <view_name> AS WITH RECURSIVE <view_name> (<column_names>) AS (SELECT <...>) SELECT <column_names> FROM <view_name>;
-    ```
+CREATE VIEW [ <schema> . ] <view_name> AS WITH RECURSIVE <view_name> (<column_names>) AS (SELECT <...>) SELECT <column_names> FROM <view_name>;
+```
 
-    A view column name list must be specified for a recursive view.
+A view column name list must be specified for a recursive view.
 
 **`name`**
 

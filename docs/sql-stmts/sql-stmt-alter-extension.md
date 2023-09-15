@@ -90,16 +90,11 @@ The new version of the extension. The new_version can be either an identifier or
 
 The new schema for the extension.
 
-**`object_name`**
-
-**`aggregate_name`**
-
-**`function_name`**
-
-**`operator_name`**
-
-**`procedure_name`**
-
+**`object_name`**<br />
+**`aggregate_name`**<br />
+**`function_name`**<br />
+**`operator_name`**<br />
+**`procedure_name`**<br />
 **`routine_name`**
 
 The name of an object to be added to or removed from the extension. Names of tables, aggregates, domains, foreign tables, functions, operators, operator classes, operator families, procedures, routines, sequences, text search objects, types, and views can be schema-qualified.
@@ -124,8 +119,7 @@ The name of a function or aggregate argument. Note that `ALTER EXTENSION` does n
 
 The data type of a function, procedure, or aggregate argument.
 
-**`left_type`**
-
+**`left_type`**<br />
 **`right_type`**
 
 The data types of the operator's arguments (optionally schema-qualified) . Specify `NONE` for the missing argument of a prefix or postfix operator.

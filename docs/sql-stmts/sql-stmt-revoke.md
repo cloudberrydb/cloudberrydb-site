@@ -87,7 +87,7 @@ REVOKE [ADMIN OPTION FOR] <role_name> [, ...]
        [GRANTED BY <role_specification> ]
        [CASCADE | RESTRICT]
 
-where <role_specification> can be:
+-- where <role_specification> can be:
 
     [ GROUP ] <role_name>
   | PUBLIC

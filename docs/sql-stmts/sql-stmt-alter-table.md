@@ -37,9 +37,9 @@ ALTER TABLE [IF EXISTS] [ONLY] <name> SET
    [ WITH (reorganize={ true | false }) ]
      DISTRIBUTED BY ({<column_name> [<opclass>]} [, ... ] )
    | DISTRIBUTED RANDOMLY
-   | DISTRIBUTED REPLICATED 
+   | DISTRIBUTED REPLICATED
 
-where <action> is one of:
+-- where <action> is one of:
                         
   ADD [COLUMN] [IF NOT EXISTS] <column_name> <data_type> [ COLLATE <collation> ] [<column_constraint> [ ... ]]
       [ ENCODING ( <storage_directive> [,...] ) ]
@@ -90,7 +90,7 @@ and <partition_bound_spec> is:
     TO ( { <partition_bound_expr> | MINVALUE | MAXVALUE } [, ...] ) |
   WITH ( MODULUS <numeric_literal>, REMAINDER <numeric_literal> )
 
-and <column_constraint> is:
+-- and <column_constraint> is:
 
   [ CONSTRAINT <constraint_name>]
   { NOT NULL
@@ -105,7 +105,7 @@ and <column_constraint> is:
         [ ON DELETE <referential_action> ] [ ON UPDATE <referential_action> ] }
   [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 
-and <table_constraint> is:
+-- and <table_constraint> is:
 
   [ CONSTRAINT <constraint_name> ]
   { CHECK ( <expression> ) [ NO INHERIT ]
@@ -117,24 +117,24 @@ and <table_constraint> is:
         [ MATCH FULL | MATCH PARTIAL | MATCH SIMPLE ] [ ON DELETE <referential_action> ] [ ON UPDATE <referential_action> ] }
   [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 
-and <table_constraint_using_index> is:
+-- and <table_constraint_using_index> is:
 
   [ CONSTRAINT <constraint_name> ]
   { UNIQUE | PRIMARY KEY } USING INDEX <index_name>
   [ DEFERRABLE | NOT DEFERRABLE ] [ INITIALLY DEFERRED | INITIALLY IMMEDIATE ]
 
-and <index_parameters> in UNIQUE, PRIMARY KEY, and EXCLUDE constraints are:
+-- and <index_parameters> in UNIQUE, PRIMARY KEY, and EXCLUDE constraints are:
 
   [ INCLUDE ( <column_name> [, ... ] ) ]
   [ WITH ( <storage_parameter> [=<value>] [, ... ] ) ]
   [ USING INDEX TABLESPACE <tablespace_name> ]
 
-and <exclude_element> in an EXCLUDE constraint is:
+-- and <exclude_element> in an EXCLUDE constraint is:
 
   { <column_name> | ( <expression> ) } [ <opclass> ] [ ASC | DESC ]
      [ NULLS { FIRST | LAST }
 
-and <set_with_parameter> is:
+-- and <set_with_parameter> is:
 
    reorganize={ true | false } |
    orientation={COLUMN|ROW}
@@ -147,7 +147,7 @@ Classic partitioning syntax elements include:
 ALTER TABLE <name>
    [ ALTER PARTITION { <partition_name> | FOR (<value>) } [...] ] <partition_action>
 
-where <partition_action> is one of:
+-- where <partition_action> is one of:
 
   ALTER DEFAULT PARTITION
   DROP DEFAULT PARTITION [IF EXISTS]
@@ -174,7 +174,7 @@ where <partition_action> is one of:
   SPLIT PARTITION { <partition_name> | FOR (<value>) } AT (<value>) 
     [ INTO (PARTITION <partition_name>, PARTITION <partition_name>)]  
 
-and <partition_element> is:
+-- and <partition_element> is:
 
     VALUES (<list_value> [,...] )
   | START ([<datatype>] '<start_value>') [INCLUSIVE | EXCLUSIVE]
@@ -187,7 +187,7 @@ and <subpartition_spec> is:
 
 <subpartition_element> [, ...]
 
-and <subpartition_element> is:
+-- and <subpartition_element> is:
 
    DEFAULT SUBPARTITION <subpartition_name>
   | [SUBPARTITION <subpartition_name>] VALUES (<list_value> [,...] )
@@ -222,14 +222,12 @@ This form changes the data type of a column of a table. Note that you cannot alt
 
 Changing a column data type may or may not require a table rewrite. For information about table rewrites performed by `ALTER TABLE`, see [Notes](#notes).
 
-**`SET DEFAULT`**
-
+**`SET DEFAULT`**<br />
 **`DROP DEFAULT`**
 
 Sets or removes the default value for a column. Default values apply only in subsequent `INSERT` or `UPDATE` commands; they do not cause rows already in the table to change.
 
-**`SET NOT NULL`**
-
+**`SET NOT NULL`**<br />
 **`DROP NOT NULL`**
 
 Changes whether a column is marked to allow null values or to reject null values.
@@ -238,18 +236,15 @@ Changes whether a column is marked to allow null values or to reject null values
 
 If this table is a partition, you cannot `DROP NOT NULL` on a column if it is marked `NOT NULL` in the parent table. To drop the `NOT NULL` constraint from all the partitions, perform `DROP NOT NULL` on the parent table. Even if there is no `NOT NULL` constraint on the parent, such a constraint can still be added to individual partitions, if desired; that is, the children can disallow nulls even if the parent allows them, but not the other way around.
 
-**`ADD GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY`**
-
-**`SET GENERATED { ALWAYS | BY DEFAULT }`**
-
+**`ADD GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY`**<br />
+**`SET GENERATED { ALWAYS | BY DEFAULT }`**<br />
 **`DROP IDENTITY [ IF EXISTS ]`**
 
 These forms change whether a column is an identity column or change the generation attribute of an existing identity column. See [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md) for details.
 
 If `DROP IDENTITY IF EXISTS` is specified and the column is not an identity column, no error is thrown. In this case Cloudberry Database issues a notice instead.
 
-**`SET sequence_option`**
-
+**`SET sequence_option`**<br />
 **`RESTART`**
 
 These forms alter the sequence that underlies an existing identity column. sequence_option is an option supported by [ALTER SEQUENCE](/docs/sql-stmts/sql-stmt-alter-sequence.md) such as `INCREMENT BY`.
@@ -260,8 +255,7 @@ Sets the per-column statistics-gathering target for subsequent [ANALYZE](/docs/s
 
 `SET STATISTICS` acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
-**`SET ( attribute_option = value [, ... ] )`**
-
+**`SET ( attribute_option = value [, ... ] )`**<br />
 **`RESET ( attribute_option [, ...] )`**
 
 Sets or resets per-attribute options. Currently, the only defined per-attribute options are `n_distinct` and `n_distinct_inherited`, which override the number-of-distinct-values estimates made by subsequent [ANALYZE](/docs/sql-stmts/sql-stmt-analyze.md) operations. `n_distinct` affects the statistics for the table itself, while `n_distinct_inherited` affects the statistics gathered for the table plus its inheritance children. When set to a positive value, `ANALYZE` assumes that the column contains exactly the specified number of distinct non-null values. When set to a negative value, which must be greater than or equal to -1, `ANALYZE` assumes that the number of distinct non-null values in the column is linear in the size of the table; the exact count is to be computed by multiplying the estimated table size by the absolute value of the given number. For example, a value of -1 implies that all values in the column are distinct, while a value of -0.5 implies that each value appears twice on the average. This can be useful when the size of the table changes over time, since the multiplication by the number of rows in the table is not performed until query planning time. Specify the value 0 to revert to estimating the number of distinct values normally.
@@ -316,14 +310,12 @@ This command acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
 Drops the specified constraint on a table, along with any index underlying the constraint. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. Cloudberry Database issues a notice in this case instead.
 
-**`DISABLE ROW LEVEL SECURITY`**
-
+**`DISABLE ROW LEVEL SECURITY`**<br />
 **`ENABLE ROW LEVEL SECURITY`**
 
 These forms control the application of row security policies belonging to the table. If enabled and no policies exist for the table, then Cloudberry Database applies a default-deny policy. Note that policies can exist for a table even if row level security is disabled - in this case, the policies will NOT be applied and the policies will be ignored. See also [CREATE POLICY](/docs/sql-stmts/sql-stmt-create-policy.md).
 
-**`NO FORCE ROW LEVEL SECURITY`**
-
+**`NO FORCE ROW LEVEL SECURITY`**<br />
 **`FORCE ROW LEVEL SECURITY`**
 
 These forms control the application of row security policies belonging to the table when the user is the table owner. If enabled, row level security policies will be applied when the user is the table owner. If disabled (the default) then row level security will not be applied when the user is the table owner. See also [CREATE POLICY](/docs/sql-stmts/sql-stmt-create-policy.md).
@@ -412,7 +404,6 @@ Changes the distribution policy of a table. Changing a hash distribution policy,
 
 While Cloudberry Database permits changing the distribution policy of a writable external table, the operation never results in physical redistribution of the external data.
 
-
 **`ATTACH PARTITION partition_name { FOR VALUES partition_bound_spec | DEFAULT }`**
 
 This form of the *modern partitioning syntax* attaches an existing table (which might itself be partitioned) as a partition of the target table. The table can be attached as a partition for specific values using `FOR VALUES` or as a default partition by using `DEFAULT`. For each index in the target table, a corresponding one will be created in the attached table; or, if an equivalent index already exists, it will be attached to the target table's index, as if you had run `ALTER INDEX ATTACH PARTITION`. Note that if the existing table is a foreign table, Cloudberry does not permit attaching the table as a partition of the target table if there are `UNIQUE` indexes on the target table. (See also [CREATE FOREIGN TABLE](/docs/sql-stmts/sql-stmt-create-foreign-table.md).)
@@ -487,10 +478,10 @@ The `ENCODING` clause is valid only for append-optimized, column-oriented tables
 
 When you add a column to an append-optimized, column-oriented table, Cloudberry Database sets each data compression parameter for the column (`compresstype`, `compresslevel`, and `blocksize`) based on the following setting, in order of preference.
 
-1.  The compression parameter setting specified in the `ALTER TABLE` command `ENCODING` clause.
-2.  The table's data compression setting specified in the `WITH` clause when the table was created.
-3.  The compression parameter setting specified in the server configuration parameter gp_default_storage_option.
-4.  The default compression parameter value.
+1. The compression parameter setting specified in the `ALTER TABLE` command `ENCODING` clause.
+2. The table's data compression setting specified in the `WITH` clause when the table was created.
+3. The compression parameter setting specified in the server configuration parameter gp_default_storage_option.
+4. The default compression parameter value.
 
 For more information about the supported `ENCODING` storage directives, refer to [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md).
 

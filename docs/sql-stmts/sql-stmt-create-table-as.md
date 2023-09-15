@@ -84,10 +84,8 @@ The tablespace_name parameter is the name of the tablespace in which the new tab
 
 A [SELECT](/docs/sql-stmts/sql-stmt-select.md), [TABLE](/docs/sql-stmts/sql-stmt-select.md#the-table-command), or [VALUES](/docs/sql-stmts/sql-stmt-values.md) command, or an [EXECUTE](/docs/sql-stmts/sql-stmt-execute.md) command that runs a prepared `SELECT`, `TABLE`, or `VALUES` query.
 
-**`DISTRIBUTED BY ( column [opclass] [, ... ] )`**
-
-**`DISTRIBUTED RANDOMLY`**
-
+**`DISTRIBUTED BY ( column [opclass] [, ... ] )`**<br />
+**`DISTRIBUTED RANDOMLY`**<br />
 **`DISTRIBUTED REPLICATED`**
 
 Used to declare the Cloudberry Database distribution policy for the table. Refer to [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md) for details.
@@ -127,11 +125,11 @@ CREATE TEMP TABLE films_recent ON COMMIT DROP AS
 
 `CREATE TABLE AS` conforms to the SQL standard, with the following exceptions:
 
--  The standard requires parentheses around the subquery clause; in Cloudberry Database, these parentheses are optional.
--  In the standard, the `WITH [NO] DATA` clause is required, in Cloudberry Database it is optional.
--  Cloudberry Database handles temporary tables differently from the standard; see [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md) for details.
--  The `WITH` clause is a Cloudberry Database extension; storage parameters are not part of the standard.
--  The Cloudberry Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
+- The standard requires parentheses around the subquery clause; in Cloudberry Database, these parentheses are optional.
+- In the standard, the `WITH [NO] DATA` clause is required, in Cloudberry Database it is optional.
+- Cloudberry Database handles temporary tables differently from the standard; see [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md) for details.
+- The `WITH` clause is a Cloudberry Database extension; storage parameters are not part of the standard.
+- The Cloudberry Database concept of tablespaces is not part of the standard. The `TABLESPACE` clause is an extension.
 
 ## See also
 

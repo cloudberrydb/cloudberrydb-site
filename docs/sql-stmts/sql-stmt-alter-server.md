@@ -23,9 +23,9 @@ ALTER SERVER <name> RENAME TO <new_name>
 
 To alter the server, you must be the owner of the server. To alter the owner you must:
 
--  Own the server.
--  Be a direct or indirect member of the new owning role.
--  Have `USAGE` privilege on the server's foreign-data wrapper.
+- Own the server.
+- Be a direct or indirect member of the new owning role.
+- Have `USAGE` privilege on the server's foreign-data wrapper.
 
 Superusers automatically satisfy all of these criteria.
 

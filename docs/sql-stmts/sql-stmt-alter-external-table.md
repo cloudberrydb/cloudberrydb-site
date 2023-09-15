@@ -25,17 +25,17 @@ where action is one of:
 
 `ALTER EXTERNAL TABLE` changes the definition of an existing external table. These are the supported `ALTER EXTERNAL TABLE` actions:
 
--  **ADD COLUMN** — Adds a new column to the external table definition.
--  **DROP COLUMN** — Drops a column from the external table definition. If you drop readable external table columns, it only changes the table definition in Cloudberry Database. The `CASCADE` keyword is required if anything outside the table depends on the column, such as a view that references the column.
--  **ALTER COLUMN TYPE** — Changes the data type of a table column.
--  **OWNER** — Changes the owner of the external table to the specified user.
+- **ADD COLUMN** — Adds a new column to the external table definition.
+- **DROP COLUMN** — Drops a column from the external table definition. If you drop readable external table columns, it only changes the table definition in Cloudberry Database. The `CASCADE` keyword is required if anything outside the table depends on the column, such as a view that references the column.
+- **ALTER COLUMN TYPE** — Changes the data type of a table column.
+- **OWNER** — Changes the owner of the external table to the specified user.
 
 Use the [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md) command to perform these actions on an external table:
 
--  Set (change) the table schema.
--  Rename the table.
--  Rename a table column.
--  Set (change) the distribution policy (writable external table only).
+- Set (change) the table schema.
+- Rename the table.
+- Rename a table column.
+- Set (change) the distribution policy (writable external table only).
 
 You must own the external table to use `ALTER EXTERNAL TABLE` or `ALTER TABLE`. To change the schema of an external table, you must also have `CREATE` privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have `CREATE` privilege on the external table's schema. A superuser has these privileges automatically.
 

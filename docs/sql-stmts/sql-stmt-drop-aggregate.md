@@ -11,7 +11,7 @@ Removes an aggregate function.
 ```sql
 DROP AGGREGATE [IF EXISTS] <name> ( <aggregate_signature> ) [, ...] [CASCADE | RESTRICT]
 
-where <aggregate_signature> is:
+-- where <aggregate_signature> is:
 
 * |
 [ <argmode> ] [ <argname> ] <argtype> [ , ... ] |

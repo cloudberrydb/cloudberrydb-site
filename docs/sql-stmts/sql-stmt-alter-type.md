@@ -9,7 +9,6 @@ Changes the definition of a data type.
 ## Synopsis
 
 ```sql
-
 ALTER TYPE <name> <action> [, ... ]
 ALTER TYPE <name> OWNER TO { <new_owner> | CURRENT_USER | SESSION_USER }
 ALTER TYPE <name> RENAME ATTRIBUTE <attribute_name> TO <new_attribute_name> [ CASCADE | RESTRICT ]
@@ -19,13 +18,13 @@ ALTER TYPE <name> ADD VALUE [ IF NOT EXISTS ] <new_enum_value> [ { BEFORE | AFTE
 ALTER TYPE <name> RENAME VALUE <existing_enum_value> to <new_enum_value>
 ALTER TYPE <name> SET DEFAULT ENCODING ( <storage_directive> )
 
-where <action> is one of:
+-- where <action> is one of:
   
   ADD ATTRIBUTE <attribute_name> <data_type> [ COLLATE <collation> ] [ CASCADE | RESTRICT ]
   DROP ATTRIBUTE [ IF EXISTS ] <attribute_name> [ CASCADE | RESTRICT ]
   ALTER ATTRIBUTE <attribute_name> [ SET DATA ] TYPE <data_type> [ COLLATE <collation> ] [ CASCADE | RESTRICT ]
 
-where <storage_directive> is:
+-- where <storage_directive> is:
 
    COMPRESSTYPE={ZLIB | ZSTD | RLE_TYPE | NONE}
    COMPRESSLEVEL={0-19}

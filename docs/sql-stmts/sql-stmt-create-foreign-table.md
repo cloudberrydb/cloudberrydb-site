@@ -28,7 +28,7 @@ CREATE FOREIGN TABLE [ IF NOT EXISTS ] <table_name>
   SERVER <server_name>
   [ OPTIONS ( [ mpp_execute { 'coordinator' | 'any' | 'all segments' } [, ] ] <option> '<value>' [, ... ] ) ]
 
-where <column_constraint> is:
+-- where <column_constraint> is:
 
 [ CONSTRAINT <constraint_name> ]
 { NOT NULL |
@@ -36,12 +36,12 @@ where <column_constraint> is:
   DEFAULT <default_expr> |
   GENERATED ALWAYS AS ( <generation_expr> ) STORED}
 
-and <table_constraint> is:
+-- and <table_constraint> is:
 
 [ CONSTRAINT <constraint_name> ]
 CHECK ( <expression> ) [ NO INHERIT ]
 
-and <partition_bound_spec> is:
+-- and <partition_bound_spec> is:
 
 IN ( <partition_bound_expr> [, ...] ) |
 FROM ( { <partition_bound_expr> | MINVALUE | MAXVALUE } [, ...] )
@@ -137,9 +137,9 @@ The options for the new foreign table or one of its columns. While option names 
 
 A Cloudberry Database-specific option that identifies the host from which the foreign-data wrapper reads or writes data:
 
--  `coordinator` (the default)—Read or write data from the coordinator host.
--  `any`—Read data from either the coordinator host or any one segment, depending on which path costs less.
--  `all segments`—Read or write data from all segments. To support this option value, the foreign-data wrapper must have a policy that matches the segments to data.
+- `coordinator` (the default)—Read or write data from the coordinator host.
+- `any`—Read data from either the coordinator host or any one segment, depending on which path costs less.
+- `all segments`—Read or write data from all segments. To support this option value, the foreign-data wrapper must have a policy that matches the segments to data.
 
 > **Note** Cloudberry Database supports parallel writes to foreign tables only when you set `mpp_execute 'all segments'`.
 

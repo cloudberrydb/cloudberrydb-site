@@ -79,7 +79,6 @@ For example, a function defined with the `IMMUTABLE` attribute can be run at que
 
 A user-defined function that runs only `SELECT` commands on replicated tables can run on segments. Replicated tables, created with the `DISTRIBUTED REPLICATED` clause, store all of their rows on every segment. It is safe for a function to read them on the segments, but updates to replicated tables must run on the coordinator instance.
 
-
 ## Parameters
 
 **`name`**
@@ -136,10 +135,8 @@ Lists which transforms a call to the function should apply. Transforms convert b
 
 `WINDOW` indicates that the function is a window function rather than a plain function. This is currently only useful for functions written in C. The `WINDOW` attribute cannot be changed when replacing an existing function definition.
 
-**`IMMUTABLE`**
-
-**`STABLE`**
-
+**`IMMUTABLE`**<br />
+**`STABLE`**<br />
 **`VOLATILE`**
 
 These attributes inform the query optimizer about the behavior of the function. At most one choice may be specified. If none of these appear, `VOLATILE` is the default assumption. Since Cloudberry Database currently has limited use of `VOLATILE` functions, if a function is truly `IMMUTABLE`, you must declare it as so to be able to use it without restrictions.
@@ -154,18 +151,15 @@ These attributes inform the query optimizer about the behavior of the function. 
 
 `LEAKPROOF` indicates that the function has no side effects. It reveals no information about its arguments other than by its return value. For example, a function that throws an error message for some argument values but not others, or that includes the argument values in any error message, is not leakproof. This affects how the system executes queries against views created with the `security_barrier` option or tables with row level security enabled. The system will enforce conditions from security policies and security barrier views before any user-supplied conditions from the query itself that contain non-leakproof functions, in order to prevent the inadvertent exposure of data. Functions and operators marked as leakproof are assumed to be trustworthy, and may be executed before conditions from security policies and security barrier views. In addition, functions which do not take arguments or which are not passed any arguments from the security barrier view or table do not have to be marked as leakproof to be executed before security conditions. See [CREATE VIEW](/docs/sql-stmts/sql-stmt-create-view.md). This option can only be set by the superuser.
 
-**`CALLED ON NULL INPUT`**
-
-**`RETURNS NULL ON NULL INPUT`**
-
+**`CALLED ON NULL INPUT`**<br />
+**`RETURNS NULL ON NULL INPUT`**<br />
 **`STRICT`**
 
 `CALLED ON NULL INPUT` (the default) indicates that the function will be called normally when some of its arguments are null. It is then the function author's responsibility to check for null values if necessary and respond appropriately.
 
 `RETURNS NULL ON NULL INPUT` or `STRICT` indicates that the function always returns null whenever any of its arguments are null. If this parameter is specified, the function is not run when there are null arguments; instead a null result is assumed automatically.
 
-**`[EXTERNAL] SECURITY INVOKER`**
-
+**`[EXTERNAL] SECURITY INVOKER`**<br />
 **`[EXTERNAL] SECURITY DEFINER`**
 
 `SECURITY INVOKER` (the default) indicates that the function is to be run with the privileges of the user that calls it.
@@ -174,12 +168,9 @@ These attributes inform the query optimizer about the behavior of the function. 
 
 The key word `EXTERNAL` is allowed for SQL conformance, but it is optional since, unlike in SQL, this feature applies to all functions not just external ones.
 
-**`EXECUTE ON ANY`**
-
-**`EXECUTE ON COORDINATOR`**
-
-**`EXECUTE ON ALL SEGMENTS`**
-
+**`EXECUTE ON ANY`**<br />
+**`EXECUTE ON COORDINATOR`**<br />
+**`EXECUTE ON ALL SEGMENTS`**<br />
 **`EXECUTE ON INITPLAN`**
 
 The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
@@ -229,8 +220,7 @@ A positive number giving the estimated number of rows that the planner should ex
 
 The name (optionally schema-qualified) of a planner support function to use for this function. You must be superuser to use this option.
 
-**`configuration_parameter`**
-
+**`configuration_parameter`**<br />
 **`value`**
 
 The `SET` clause applies a value to a session configuration parameter when the function is entered. The configuration parameter is restored to its prior value when the function exits. `SET FROM CURRENT` saves the value of the parameter that is current when `CREATE FUNCTION` is run as the value to be applied when the function is entered.
@@ -298,15 +288,15 @@ SELECT func(a) FROM table1;
 
 The function is not supported for use in the query if all of the following conditions are met:
 
--  The data of table `table1` is distributed over Cloudberry Database segments.
--  The function `func()` reads or modifies data from distributed tables.
--  The function `func()` returns more than one row or takes an argument (`a`) that comes from `table1`.
+- The data of table `table1` is distributed over Cloudberry Database segments.
+- The function `func()` reads or modifies data from distributed tables.
+- The function `func()` returns more than one row or takes an argument (`a`) that comes from `table1`.
 
 If any of the conditions are not met, the function is supported. Specifically, the function is supported if any of the following conditions apply:
 
--  The function `func()` does not access data from distributed tables, or accesses data that is only on the Cloudberry Database coordinator.
--  The table `table1` is a coordinator only table.
--  The function `func()` returns only one row and only takes input arguments that are constant values. The function is supported if it can be changed to require no input arguments.
+- The function `func()` does not access data from distributed tables, or accesses data that is only on the Cloudberry Database coordinator.
+- The table `table1` is a coordinator only table.
+- The function `func()` returns only one row and only takes input arguments that are constant values. The function is supported if it can be changed to require no input arguments.
 
 **Using EXECUTE ON attributes**
 
@@ -314,15 +304,15 @@ Most functions that run queries to access tables can only run on the coordinator
 
 These are limitations for functions defined with the `EXECUTE ON COORDINATOR` or `EXECUTE ON ALL SEGMENTS` attribute:
 
--  The function must be a set-returning function.
--  The function cannot be in the `FROM` clause of a query.
--  The function cannot be in the `SELECT` list of a query with a `FROM` clause.
--  A query that includes the function falls back from GPORCA to the Postgres Planner.
+- The function must be a set-returning function.
+- The function cannot be in the `FROM` clause of a query.
+- The function cannot be in the `SELECT` list of a query with a `FROM` clause.
+- A query that includes the function falls back from GPORCA to the Postgres Planner.
 
 The attribute `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Cloudberry Database. When possible, Cloudberry Database handles the function on the coordinator instance in the following manner.
 
-1.  First, Cloudberry Database runs the function as part of an InitPlan node on the coordinator instance and holds the function output temporarily.
-2.  Then, in the MainPlan of the query plan, the function is called in an EntryDB (a special query executor (QE) that runs on the coordinator instance) and Cloudberry Database returns the data that was captured when the function was run as part of the InitPlan node. The function is not run in the MainPlan.
+1. First, Cloudberry Database runs the function as part of an InitPlan node on the coordinator instance and holds the function output temporarily.
+2. Then, in the MainPlan of the query plan, the function is called in an EntryDB (a special query executor (QE) that runs on the coordinator instance) and Cloudberry Database returns the data that was captured when the function was run as part of the InitPlan node. The function is not run in the MainPlan.
 
 This simple example uses the function `get_data()` in a CTAS command to create a table using data from the table `country`. The function contains a `SELECT` command that retrieves data from the table `country` and uses the `EXECUTE ON INITPLAN` attribute.
 

@@ -48,9 +48,9 @@ In a regular (non-distributed) database, functions that operate on the sequence 
 
 Because of this distributed sequence design, there are some limitations on the functions that operate on a sequence in Cloudberry Database:
 
--  `lastval()` and `currval()` functions are not supported.
--  `setval()` can only be used to set the value of the sequence generator on the coordinator, it cannot be used in subqueries to update records on distributed table data.
--  `nextval()` sometimes grabs a block of values from the coordinator for a segment to use, depending on the query. So values may sometimes be skipped in the sequence if all of the block turns out not to be needed at the segment level. Note that a regular PostgreSQL database does this too, so this is not something unique to Cloudberry Database.
+- `lastval()` and `currval()` functions are not supported.
+- `setval()` can only be used to set the value of the sequence generator on the coordinator, it cannot be used in subqueries to update records on distributed table data.
+- `nextval()` sometimes grabs a block of values from the coordinator for a segment to use, depending on the query. So values may sometimes be skipped in the sequence if all of the block turns out not to be needed at the segment level. Note that a regular PostgreSQL database does this too, so this is not something unique to Cloudberry Database.
 
 > **Note**
 > The default sequence cache size in Cloudberry Database is `20`.
@@ -85,14 +85,12 @@ The optional clause `AS data_type` specifies the data type of the sequence. Vali
 
 Specifies which value is added to the current sequence value to create a new value. A positive value will make an ascending sequence, a negative one a descending sequence. The default value is `1`.
 
-**`minvalue`**
-
+**`minvalue`**<br />
 **`NO MINVALUE`**
 
 Determines the minimum value a sequence can generate. If this clause is not supplied or `NO MINVALUE` is specified, then the default values will be used. The default for an ascending sequence is the maximum value of the data type. The default for a descending sequence is `-1`.
 
-**`maxvalue`**
-
+**`maxvalue`**<br />
 **`NO MAXVALUE`**
 
 Determines the maximum value for the sequence. If this clause is not supplied or `NO MAXVALUE` is specified, then default values will be used. The defaults are 263-1 and -1 for ascending and descending sequences, respectively.
@@ -107,14 +105,12 @@ Specifies how many sequence numbers are to be preallocated and stored in memory 
 
 > **Note** When operating with a cache of sequence numbers (`cache > 1`), Cloudberry Database may discard some cached sequence values. If you require consecutive values, you must explicitly set `CACHE 1` when you create or alter the sequence.
 
-**`CYCLE`**
-
+**`CYCLE`**<br />
 **`NO CYCLE`**
 
 Allows the sequence to wrap around when the `maxvalue` (for ascending) or `minvalue` (for descending) has been reached. If the limit is reached, the next number generated will be the `minvalue` (for ascending) or `maxvalue` (for descending). If `NO CYCLE` is specified, any calls to `nextval()` after the sequence has reached its maximum value will return an error. If neither `CYCLE` or `NO CYCLE` are specified, `NO CYCLE` is the default.
 
-**`OWNED BY table_name.colume_name`**
-
+**`OWNED BY table_name.colume_name`**<br />
 **`OWNED BY NONE`**
 
 Causes the sequence to be associated with a specific table column, such that if that column (or its whole table) is dropped, the sequence will be automatically dropped as well. The specified table must have the same owner and be in the same schema as the sequence. `OWNED BY NONE`, the default, specifies that there is no such association.
@@ -161,8 +157,8 @@ INSERT INTO product VALUES (setval('myseq', 201), 'gizmo');
 
 `CREATE SEQUENCE` conforms to the SQL standard, with the following exceptions:
 
--  You obtain the next value using the `nextval()` function instead of the `NEXT VALUE FOR` expression specified in the SQL standard.
--  The `OWNED BY` clause is a Cloudberry Database extension.
+- You obtain the next value using the `nextval()` function instead of the `NEXT VALUE FOR` expression specified in the SQL standard.
+- The `OWNED BY` clause is a Cloudberry Database extension.
 
 ## See also
 

@@ -81,8 +81,8 @@ The new schema for the function.
 
 The name of the extension that the function is to depend on.
 
-CALLED ON NULL INPUT
-RETURNS NULL ON NULL INPUT
+**`CALLED ON NULL INPUT`**<br />
+**`RETURNS NULL ON NULL INPUT`**<br />
 **`STRICT`**
 
 `CALLED ON NULL INPUT` changes the function so that it will be invoked when some or all of its arguments are null. `RETURNS NULL ON NULL INPUT` or `STRICT` changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md) for more information.
@@ -93,8 +93,7 @@ STABLE
 
 Change the volatility of the function to the specified setting. See [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md) for details.
 
-**`[ EXTERNAL ] SECURITY INVOKER`**
-
+**`[ EXTERNAL ] SECURITY INVOKER`**<br />
 **`[ EXTERNAL ] SECURITY DEFINER`**
 
 Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md) for more information about this capability.
@@ -107,12 +106,9 @@ Change whether the function is deemed safe for parallelism. See [CREATE FUNCTION
 
 Change whether the function is considered leakproof or not. See [CREATE FUNCTION](/docs/sql-stmts/sql-stmt-create-function.md) for more information about this capability.
 
-**`EXECUTE ON ANY`**
-
-**`EXECUTE ON COORDINATOR`**
-
-**`EXECUTE ON ALL SEGMENTS`**
-
+**`EXECUTE ON ANY`**<br />
+**`EXECUTE ON COORDINATOR`**<br />
+**`EXECUTE ON ALL SEGMENTS`**<br />
 **`EXECUTE ON INITPLAN`**
 
 The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
@@ -141,8 +137,7 @@ Set or change the planner support function to use for this function. You must be
 
 This option cannot be used to remove the support function altogether, since it must name a new support function. Use `CREATE OR REPLACE FUNCTION` if you require that.
 
-**`configuration_parameter`**
-
+**`configuration_parameter`**<br />
 **`value`**
 
 Set or change the value of a configuration parameter when the function is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the function-local setting is removed, and the function runs with the value present in its environment. Use `RESET ALL` to clear all function-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER FUNCTION` is run as the value to be applied when the function is entered.

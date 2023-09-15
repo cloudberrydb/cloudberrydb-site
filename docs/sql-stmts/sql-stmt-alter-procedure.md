@@ -74,14 +74,12 @@ The new schema for the procedure.
 
 The name of the extension that the procedure is to depend on.
 
-**`[ EXTERNAL ] SECURITY INVOKER`**
-
+**`[ EXTERNAL ] SECURITY INVOKER`**<br />
 **`[ EXTERNAL ] SECURITY DEFINER`**
 
 Change whether the procedure is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE PROCEDURE](/docs/sql-stmts/sql-stmt-create-procedure.md) for more information about this capability.
 
-**`configuration_parameter`**
-
+**`configuration_parameter`**<br />
 **`value`**
 
 Set or change the value of a configuration parameter when the procedure is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the procedure-local setting is removed, and the procedure runs with the value present in its environment. Use `RESET ALL` to clear all procedure-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER PROCEDURE` is run as the value to be applied when the procedure is entered.

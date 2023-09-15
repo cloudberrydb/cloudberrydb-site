@@ -75,8 +75,7 @@ SELECT setseed(value);
 - `-7` (time zone 7 hours west from UTC)
 - `INTERVAL '-08:00' HOUR TO MINUTE` (time zone 8 hours west from UTC).
 
-**`LOCAL`**
-
+**`LOCAL`**<br />
 **`DEFAULT`**
 
 Set the time zone to your local time zone (that is, server's default value of timezone).

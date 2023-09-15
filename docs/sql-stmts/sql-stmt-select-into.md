@@ -32,7 +32,7 @@ SELECT [ALL | DISTINCT [ON ( <expression> [, ...] )]]
 
 ## Parameters
 
-TEMPORARY
+**`TEMPORARY`**<br />
 **`TEMP`**
 
 If specified, the table is created as a temporary table. Refer to [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md) for details.

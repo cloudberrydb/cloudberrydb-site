@@ -18,7 +18,7 @@ COMMIT [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 ## Parameters
 
-WORK
+**`WORK`**<br />
 **`TRANSACTION`**
 
 Optional key words. They have no effect.

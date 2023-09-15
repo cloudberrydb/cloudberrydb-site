@@ -16,9 +16,9 @@ REINDEX [ (VERBOSE) ] { INDEX | TABLE | SCHEMA | DATABASE | SYSTEM } <name>
 
 `REINDEX` rebuilds an index using the data stored in the index's table, replacing the old copy of the index. There are several scenarios in which to use `REINDEX`:
 
--  An index has become corrupted, and no longer contains valid data. Although in theory this should never happen, in practice indexes can become corrupted due to software bugs or hardware failures. `REINDEX` provides a recovery method.
--  An index has become bloated, that is, it contains many empty or nearly-empty pages. This can occur with B-tree indexes in Cloudberry Database under certain uncommon access patterns. `REINDEX` provides a way to reduce the space consumption of the index by writing a new version of the index without the dead pages.
--  You have altered a storage parameter (such as `fillfactor`) for an index, and wish to ensure that the change has taken full effect.
+- An index has become corrupted, and no longer contains valid data. Although in theory this should never happen, in practice indexes can become corrupted due to software bugs or hardware failures. `REINDEX` provides a recovery method.
+- An index has become bloated, that is, it contains many empty or nearly-empty pages. This can occur with B-tree indexes in Cloudberry Database under certain uncommon access patterns. `REINDEX` provides a way to reduce the space consumption of the index by writing a new version of the index without the dead pages.
+- You have altered a storage parameter (such as `fillfactor`) for an index, and wish to ensure that the change has taken full effect.
 
 ## Parameters
 

@@ -15,13 +15,13 @@ SET SESSION CHARACTERISTICS AS TRANSACTION <transaction_mode> [, ...]
      [READ ONLY | READ WRITE]
      [NOT] DEFERRABLE
 
-where <transaction_mode> is one of:
+-- where <transaction_mode> is one of:
 
     ISOLATION LEVEL {SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ UNCOMMITTED}
     READ WRITE | READ ONLY
     [NOT] DEFERRABLE
 
-and <snapshot_id> is the id of the existing transaction whose snapshot you want this transaction to run with.
+-- and <snapshot_id> is the id of the existing transaction whose snapshot you want this transaction to run with.
 ```
 
 ## Description
@@ -34,8 +34,8 @@ The available transaction characteristics are the transaction isolation level, t
 
 The isolation level of a transaction determines what data the transaction can see when other transactions are running concurrently.
 
--  **READ COMMITTED** — A statement can only see rows committed before it began. This is the default.
--  **REPEATABLE READ** — All statements in the current transaction can only see rows committed before the first query or data-modification statement run in the transaction.
+- **READ COMMITTED** — A statement can only see rows committed before it began. This is the default.
+- **REPEATABLE READ** — All statements in the current transaction can only see rows committed before the first query or data-modification statement run in the transaction.
 
 The SQL standard defines two additional levels, `READ UNCOMMITTED` and `SERIALIZABLE`. In Cloudberry Database, `READ UNCOMMITTED` is treated as `READ COMMITTED`. If you specify `SERIALIZABLE`, Cloudberry Database falls back to `REPEATABLE READ`.
 

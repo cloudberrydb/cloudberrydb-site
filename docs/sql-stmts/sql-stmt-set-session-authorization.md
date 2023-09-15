@@ -40,7 +40,7 @@ Specifies that the command takes effect for only the current transaction. After 
 
 The name of the role to assume.
 
-NONE
+**`NONE`**<br />
 **`RESET`**
 
 Reset the session and current role identifiers to be that of the role used to log in.

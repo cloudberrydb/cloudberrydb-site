@@ -11,7 +11,7 @@ Changes the definition of a database role.
 ```sql
 ALTER USER <role_specification> [WITH] <option> [ ... ]
 
-where option can be:
+-- where option can be:
 
       SUPERUSER | NOSUPERUSER
     | CREATEDB | NOCREATEDB
@@ -43,7 +43,7 @@ ALTER USER { <role_specification> | ALL } [ IN DATABASE <database_name> ] SET <c
 ALTER USER { <role_specification> | ALL } [ IN DATABASE <database_name> ] RESET <configuration_parameter>
 ALTER USER { <role_specification> | ALL } [ IN DATABASE <database_name> ] RESET ALL
 
-where <role_specification> can be:
+-- where <role_specification> can be:
 
     role_name
   | CURRENT_USER

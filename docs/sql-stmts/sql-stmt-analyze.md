@@ -26,8 +26,8 @@ With no parameter, `ANALYZE` collects statistics for every table in the current 
 
 For partitioned tables, `ANALYZE` collects additional statistics, HyperLogLog (HLL) statistics, on the leaf partitions. HLL statistics are used are used to derive number of distinct values (NDV) for queries against partitioned tables.
 
--  When aggregating NDV estimates across multiple leaf partitions, HLL statistics generate a more accurate NDV estimates than the standard table statistics.
--  When updating HLL statistics, `ANALYZE` operations are required only on leaf partitions that have changed. For example, `ANALYZE` is required if the leaf partition data has changed, or if the leaf partition has been exchanged with another table. For more information about updating partitioned table statistics, see [Notes](#notes).
+- When aggregating NDV estimates across multiple leaf partitions, HLL statistics generate a more accurate NDV estimates than the standard table statistics.
+- When updating HLL statistics, `ANALYZE` operations are required only on leaf partitions that have changed. For example, `ANALYZE` is required if the leaf partition data has changed, or if the leaf partition has been exchanged with another table. For more information about updating partitioned table statistics, see [Notes](#notes).
 
 > **Important** If you intend to run queries on partitioned tables with GPORCA enabled (the default), then you must collect statistics on the root partition of the partitioned table with the `ANALYZE` or `ANALYZE ROOTPARTITION` command. For information about collecting statistics on partitioned tables and when the `ROOTPARTITION` keyword is required, see [Notes](#notes). For information about GPORCA, see Overview of GPORCA in the *Cloudberry Database Administrator Guide*.
 
@@ -47,7 +47,7 @@ By default, if you specify a leaf partition, and all other leaf partitions have 
 
 **`ROOTPARTITION [ALL]`**
 
-Collect statistics only on the root partition of partitioned tables based on the data in the partitioned table. If possible, `ANALYZE` uses leaf partition statistics to generate root partition statistics. Otherwise, `ANALYZE` collects the statistics by sampling leaf partition data. Statistics are not collected on the leaf partitions, the data is only sampled. HLL statistics are not collected.
+Collect statistics only on the root partition of partitioned tables based on the data in the partitioned table. If possible, `ANALYZE` uses leaf partition statistics to generate root partition statistics. Otherwise, `ANALYZE` collects the statistics by sampling leaf partition data. Statistics are not collected on the leaf partitions, the data is only sampled. `ALL` statistics are not collected.
 
 For information about when the `ROOTPARTITION` keyword is required, see [Notes](#notes).
 
@@ -61,7 +61,9 @@ The `ROOTPARTITION` clause is not valid with `VACUUM ANALYZE`. The command `VACU
 
 If all the leaf partitions have statistics, performing `ANALYZE ROOTPARTITION` to generate root partition statistics should be quick (a few seconds depending on the number of partitions and table columns). If some of the leaf partitions do not have statistics, then all the table data is sampled to generate root partition statistics. Sampling table data takes longer and results in lower quality root partition statistics.
 
-For the partitioned table *sales_curr_yr*, this example command collects statistics only on the root partition of the partitioned table. `ANALYZE ROOTPARTITION sales_curr_yr;`
+For the partitioned table *sales_curr_yr*, this example command collects statistics only on the root partition of the partitioned table.
+
+**`ANALYZE ROOTPARTITION sales_curr_yr;`**
 
 This example `ANALYZE` command collects statistics on the root partition of all the partitioned tables in the database.
 
@@ -73,11 +75,11 @@ ANALYZE ROOTPARTITION ALL;
 
 Enables display of progress messages. When specified, `ANALYZE` emits this information
 
--   The table that is being processed.
--   The query that is run to generate the sample table.
--   The column for which statistics is being computed.
--   The queries that are issued to collect the different statistics for a single column.
--   The statistics that are collected.
+- The table that is being processed.
+- The query that is run to generate the sample table.
+- The column for which statistics is being computed.
+- The queries that are issued to collect the different statistics for a single column.
+- The statistics that are collected.
 
 **`SKIP_LOCKED`**
 
@@ -109,21 +111,20 @@ For a partitioned table, specifying which portion of the table to analyze, the r
 
 > **Note** When you create a partitioned table with the `CREATE TABLE` command, Cloudberry Database creates the table that you specify (the root partition or parent table), and also creates a hierarchy of tables based on the partition hierarchy that you specified (the child tables).
 
--  When you run `ANALYZE` on the root partitioned table, statistics are collected for all the leaf partitions. Leaf partitions are the lowest-level tables in the hierarchy of child tables created by Cloudberry Database for use by the partitioned table.
--  When you run `ANALYZE` on a leaf partition, statistics are collected only for that leaf partition and the root partition. If data in the leaf partition has changed (for example, you made significant updates to the leaf partition data or you exchanged the leaf partition), then you can run ANALYZE on the leaf partition to collect table statistics. By default, if all other leaf partitions have statistics, the command updates the root partition statistics.
+- When you run `ANALYZE` on the root partitioned table, statistics are collected for all the leaf partitions. Leaf partitions are the lowest-level tables in the hierarchy of child tables created by Cloudberry Database for use by the partitioned table.
+- When you run `ANALYZE` on a leaf partition, statistics are collected only for that leaf partition and the root partition. If data in the leaf partition has changed (for example, you made significant updates to the leaf partition data or you exchanged the leaf partition), then you can run ANALYZE on the leaf partition to collect table statistics. By default, if all other leaf partitions have statistics, the command updates the root partition statistics.
 
     For example, if you collected statistics on a partitioned table with a large number partitions and then updated data in only a few leaf partitions, you can run `ANALYZE` only on those partitions to update statistics on the partitions and the statistics on the root partition.
 
--  When you run `ANALYZE` on a child table that is not a leaf partition, statistics are not collected.
+- When you run `ANALYZE` on a child table that is not a leaf partition, statistics are not collected.
 
     For example, you can create a partitioned table with partitions for the years 2006 to 2016 and sub-partitions for each month in each year. If you run `ANALYZE` on the child table for the year 2013 no statistics are collected. If you run `ANALYZE` on the leaf partition for March of 2013, statistics are collected only for that leaf partition.
 
-
 For a partitioned table that contains a leaf partition that has been exchanged to use an external table, `ANALYZE` does not collect statistics for the external table partition:
 
--  If `ANALYZE` is run on an external table partition, the partition is not analyzed.
--  If `ANALYZE` or `ANALYZE ROOTPARTITION` is run on the root partition, external table partitions are not sampled and root table statistics do not include external table partition.
--  If the `VERBOSE` clause is specified, an informational message is displayed: `skipping external table`.
+- If `ANALYZE` is run on an external table partition, the partition is not analyzed.
+- If `ANALYZE` or `ANALYZE ROOTPARTITION` is run on the root partition, external table partitions are not sampled and root table statistics do not include external table partition.
+- If the `VERBOSE` clause is specified, an informational message is displayed: `skipping external table`.
 
 The Cloudberry Database server configuration parameter optimizer_analyze_root_partition determines when statistics are collected on a root partitioned table. If the parameter is `on` (the default), the `ROOTPARTITION` keyword is not required to collect statistics on the root partition when you run `ANALYZE`. Root partition statistics are collected when you run `ANALYZE` on the root partition, or when you run `ANALYZE` on a leaf partition of the partitioned table and the other leaf partitions have statistics. If the parameter is `off`, you must run `ANALZYE ROOTPARTITION` to collect root partition statistics.
 

@@ -43,7 +43,6 @@ where <action> is one of (depending on the type of routine):
 
 `ALTER ROUTINE` changes the definition of a routine, which can be an aggregate function, a normal function, or a procedure. Refer to [ALTER AGGREGATE](/docs/sql-stmts/sql-stmt-alter-aggregate.md), [ALTER FUNCTION](/docs/sql-stmts/sql-stmt-alter-function.md), and [ALTER PROCEDURE](/docs/sql-stmts/sql-stmt-alter-procedure.md) for the description of the parameters, more examples, and further details.
 
-
 ## Examples
 
 To rename the routine `foo` for type `integer` to `foobar`:

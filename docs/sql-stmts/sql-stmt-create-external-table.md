@@ -135,8 +135,6 @@ CREATE WRITABLE EXTERNAL WEB [TEMPORARY | TEMP] TABLE <table_name>
 
 The main difference between regular external tables and external web tables is their data sources. Regular readable external tables access static flat files, whereas external web tables access dynamic data sources – either on a web server or by running OS commands or scripts.
 
-See Working with External Data for detailed information about working with external tables.
-
 ## Parameters
 
 **`READABLE | WRITABLE`**
@@ -176,7 +174,7 @@ If you use the `pxf` protocol to access an external data source, refer to pxf://
 
 For readable external tables, specifies the URI of the external data source(s) to be used to populate the external table or web table. Regular readable external tables allow the `gpfdist` or `file` protocols. External web tables allow the `http` protocol. If `port` is omitted, port `8080` is assumed for `http` and `gpfdist` protocols. If using the `gpfdist` protocol, the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). Also, `gpfdist` can use wildcards or other C-style pattern matching (for example, a whitespace character is `[[:space:]]`) to denote multiple files in a directory. For example:
 
-```sql
+```
 'gpfdist://filehost:8081/*'
 'gpfdist://coordinatorhost/my_load_file'
 'file://seghost1/dbfast1/external/myfile.txt'
@@ -185,7 +183,7 @@ For readable external tables, specifies the URI of the external data source(s) t
 
 For writable external tables, specifies the URI location of the `gpfdist` process or S3 protocol that will collect data output from the Cloudberry segments and write it to one or more named files. For `gpfdist` the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). If multiple `gpfdist` locations are listed, the segments sending data will be evenly divided across the available output locations. For example:
 
-```sql
+```
 'gpfdist://outputhost:8081/data1.out',
 'gpfdist://outputhost:8081/data2.out'
 ```
@@ -204,20 +202,21 @@ Restricts all table-related operations to the Cloudberry Database coordinator se
 
 Allowed for readable external web tables or writable external tables only. For readable external web tables, specifies the OS command to be run by the segment instances. The command can be a single OS command or a script. The `ON` clause is used to specify which segment instances will run the given command.
 
--  ON ALL is the default. The command will be run by every active (primary) segment instance on all segment hosts in the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Cloudberry superuser (`gpadmin`).
--  ON COORDINATOR runs the command on the coordinator host only.
+- `ON ALL` is the default. The command will be run by every active (primary) segment instance on all segment hosts in the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Cloudberry superuser (`gpadmin`).
+- `ON COORDINATOR` runs the command on the coordinator host only.
+
     > **Note** Logging is not supported for external web tables when the `ON COORDINATOR` clause is specified.
 
--  ON number means the command will be run by the specified number of segments. The particular segments are chosen randomly at runtime by the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Cloudberry superuser (`gpadmin`).
--  HOST means the command will be run by one segment on each segment host (once per segment host), regardless of the number of active segment instances per host.
--  HOST segment_hostname means the command will be run by all active (primary) segment instances on the specified segment host.
--  SEGMENT segment_id means the command will be run only once by the specified segment. You can determine a segment instance's ID by looking at the content number in the system catalog table gp_segment_configuration. The content ID of the Cloudberry Database coordinator is always `-1`.
+- `ON number` means the command will be run by the specified number of segments. The particular segments are chosen randomly at runtime by the Cloudberry Database system. If the command runs a script, that script must reside in the same location on all of the segment hosts and be executable by the Cloudberry superuser (`gpadmin`).
+- `HOST` means the command will be run by one segment on each segment host (once per segment host), regardless of the number of active segment instances per host.
+- `HOST segment_hostname` means the command will be run by all active (primary) segment instances on the specified segment host.
+- `SEGMENT segment_id` means the command will be run only once by the specified segment. You can determine a segment instance's ID by looking at the content number in the system catalog table gp_segment_configuration. The content ID of the Cloudberry Database coordinator is always `-1`.
 
 For writable external tables, the command specified in the `EXECUTE` clause must be prepared to have data piped into it. Since all segments that have data to send will write their output to the specified command or program, the only available option for the `ON` clause is `ON ALL`.
 
 **`FORMAT 'TEXT | CSV' (options)`**
 
-When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](/docs/sql-stmts/sql-stmt-copy.md) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Cloudberry Database. For information about using a custom format, see Loading and Unloading Data in the *Cloudberry Database Administrator Guide*.
+When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](/docs/sql-stmts/sql-stmt-copy.md) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Cloudberry Database.
 
 If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
 
@@ -226,8 +225,6 @@ If you use the `pxf` protocol to access an external data source, refer to Access
 Specifies a custom data format. The formatter_specification specifies the function to use to format the data, followed by comma-separated parameters to the formatter function. The length of the formatter specification, the string including `Formatter=`, can be up to approximately 50K bytes.
 
 If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
-
-For general information about using a custom format, see "Loading and Unloading Data" in the *Cloudberry Database Administrator Guide*.
 
 **`DELIMITER`**
 
@@ -392,38 +389,38 @@ When you specify the `LOG ERRORS` clause, Cloudberry Database captures errors th
 
 You can view and manage the captured error log data. The functions to manage log data depend on whether the data is persistent (the `PERSISTENTLY` keyword is used with the `LOG ERRORS` clause).
 
--  Functions that manage non-persistent error log data from external tables that were defined without the `PERSISTENTLY` keyword.
-    -  The built-in SQL function `gp_read_error_log('table_name')` displays error log information for an external table. This example displays the error log data from the external table `ext_expenses`.
+- Functions that manage non-persistent error log data from external tables that were defined without the `PERSISTENTLY` keyword.
+- The built-in SQL function `gp_read_error_log('table_name')` displays error log information for an external table. This example displays the error log data from the external table `ext_expenses`.
 
-```sql
-        SELECT * from gp_read_error_log('ext_expenses');
-        ```
+    ```sql
+    SELECT * from gp_read_error_log('ext_expenses');
+    ```
 
-        The function returns no data if you created the external table with the `LOG ERRORS PERSISTENTLY` clause, or if the external table does not exist.
+    The function returns no data if you created the external table with the `LOG ERRORS PERSISTENTLY` clause, or if the external table does not exist.
 
-    -  The built-in SQL function `gp_truncate_error_log('table_name')` deletes the error log data for table_name. This example deletes the error log data captured from the external table `ext_expenses`:
+- The built-in SQL function `gp_truncate_error_log('table_name')` deletes the error log data for table_name. This example deletes the error log data captured from the external table `ext_expenses`:
 
-```sql
-        SELECT gp_truncate_error_log('ext_expenses'); 
-        ```
+    ```sql
+    SELECT gp_truncate_error_log('ext_expenses'); 
+    ```
 
-        Dropping the table also deletes the table's log data. The function does not truncate log data if the external table is defined with the `LOG ERRORS PERSISTENTLY` clause.
+    Dropping the table also deletes the table's log data. The function does not truncate log data if the external table is defined with the `LOG ERRORS PERSISTENTLY` clause.
 
-        The function returns `FALSE` if the table does not exist.
+    The function returns `FALSE` if the table does not exist.
 
--  Functions that manage persistent error log data from external tables that were defined with the `PERSISTENTLY` keyword.
-    -  The SQL function `gp_read_persistent_error_log('table_name')` displays persistent log data for an external table.
+- Functions that manage persistent error log data from external tables that were defined with the `PERSISTENTLY` keyword.
+- The SQL function `gp_read_persistent_error_log('table_name')` displays persistent log data for an external table.
 
-        The function returns no data if you created the external table without the `PERSISTENTLY` keyword. The function returns persistent log data for an external table even after the table has been dropped.
+    The function returns no data if you created the external table without the `PERSISTENTLY` keyword. The function returns persistent log data for an external table even after the table has been dropped.
 
-    -  The SQL function `gp_truncate_persistent_error_log('table_name')` truncates persistent log data for a table.
+- The SQL function `gp_truncate_persistent_error_log('table_name')` truncates persistent log data for a table.
 
-        For persistent log data, you must manually delete the data. Dropping the external table does not delete persistent log data.
+    For persistent log data, you must manually delete the data. Dropping the external table does not delete persistent log data.
 
--  These items apply to both non-persistent and persistent error log data and the related functions.
-    -  The `gp_read_*` functions require `SELECT` privilege on the table.
-    -  The `gp_truncate_*` functions require owner privilege on the table.
-    -  You can use the `*` wildcard character to delete error log information for existing tables in the current database. Specify the string `*.*` to delete all database error log information, including error log information that was not deleted due to previous database issues. If `*` is specified, database owner privilege is required. If `*.*` is specified, operating system super-user privilege is required. Non-persistent and persistent error log data must be deleted with their respective `gp_truncate_*` functions.
+- These items apply to both non-persistent and persistent error log data and the related functions.
+- The `gp_read_*` functions require `SELECT` privilege on the table.
+- The `gp_truncate_*` functions require owner privilege on the table.
+- You can use the `*` wildcard character to delete error log information for existing tables in the current database. Specify the string `*.*` to delete all database error log information, including error log information that was not deleted due to previous database issues. If `*` is specified, database owner privilege is required. If `*.*` is specified, operating system super-user privilege is required. Non-persistent and persistent error log data must be deleted with their respective `gp_truncate_*` functions.
 
 When multiple Cloudberry Database external tables are defined with the `gpfdist`, `gpfdists`, or `file` protocol and access the same named pipe a Linux system, Cloudberry Database restricts access to the named pipe to a single reader. An error is returned if a second reader attempts to access the named pipe.
 

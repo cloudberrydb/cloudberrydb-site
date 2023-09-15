@@ -473,8 +473,7 @@ Adding a unique constraint automatically creates a unique btree index on the col
 
 The optional `INCLUDE` clause adds to that index one or more columns that are simply "payload": uniqueness is not enforced on them, and the index cannot be searched on the basis of those columns. However they can be retrieved by an index-only scan. Note that although the constraint is not enforced on included columns, it still depends on them. Consequently, some operations on such columns (for example, `DROP COLUMN`) can cause cascaded constraint and index deletion.
 
-**`PRIMARY KEY ( column constraint )`**
-
+**`PRIMARY KEY ( column constraint )`**<br />
 **`PRIMARY KEY ( column_name [, ... ] ) [ INCLUDE ( column_name [, ...]) ] ( table constraint )`**
 
 The `PRIMARY KEY` constraint specifies that a column or columns of a table may contain only unique (non-duplicate), non-null values. You can specify only one primary key for a table, whether as a column constraint or a table constraint.
@@ -501,26 +500,21 @@ The access method must support `amgettuple`; at present this means GIN cannot be
 
 The predicate allows you to specify an exclusion constraint on a subset of the table; internally this creates a partial index. Note that parentheses are required around the predicate.
 
-**`REFERENCES reftable [ ( refcolumn ) ]`**
-
-**`[ MATCH matchtype ] [ON DELETE key_action] [ON UPDATE key_action] (column constraint)`**
-
-**`FOREIGN KEY (column_name [, ...]) REFERENCES reftable [ ( refcolumn [, ... ] ) ]`**
-
+**`REFERENCES reftable [ ( refcolumn ) ]`**<br />
+**`[ MATCH matchtype ] [ON DELETE key_action] [ON UPDATE key_action] (column constraint)`**<br />
+**`FOREIGN KEY (column_name [, ...]) REFERENCES reftable [ ( refcolumn [, ... ] ) ]`**<br />
 **`[ MATCH matchtype ] [ ON DELETE referential_action ] [ ON UPDATE referential_action ] (table constraint)`**
 
 The `REFERENCES` and `FOREIGN KEY` clauses specify referential integrity constraints (foreign key constraints). Cloudberry Database accepts referential integrity constraints but does not enforce them.
 
-**`DEFERRABLE`**
-
+**`DEFERRABLE`**<br />
 **`NOT DEFERRABLE`**
 
 The `[NOT] DEFERRABLE` clause controls whether the constraint can be deferred. A constraint that is not deferrable will be checked immediately after every command. Checking of constraints that are deferrable can be postponed until the end of the transaction (using the [`SET CONSTRAINTS`](/docs/sql-stmts/sql-stmt-set-constraints.md) command). `NOT DEFERRABLE` is the default. Currently, only `UNIQUE`, `PRIMARY KEY`, and `EXCLUDE` constraints accept this clause. `NOT NULL` and `CHECK` constraints are not deferrable. `REFERENCES` (foreign key) constraints accept this clause but are not enforced. Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
 
 Note that deferrable constraints cannot be used as conflict arbitrators in an `INSERT` statement that includes an `ON CONFLICT DO UPDATE` clause.
 
-**`INITIALLY IMMEDIATE`**
-
+**`INITIALLY IMMEDIATE`**<br />
 **`INITIALLY DEFERRED`**
 
 If a constraint is deferrable, this clause specifies the default time to check the constraint. If the constraint is `INITIALLY IMMEDIATE`, it is checked after each statement. This is the default. If the constraint is `INITIALLY DEFERRED`, it is checked only at the end of the transaction. You can alter the constraint check time with the [SET CONSTRAINTS](/docs/sql-stmts/sql-stmt-set-constraints.md) command.
@@ -555,10 +549,8 @@ The name of the tablespace in which the new table is to be created. If not speci
 
 This clause allows selection of the tablespace in which the index associated with a `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE` constraint will be created. If not specified, the database's `default_tablespace` is used, or temp_tablespaces if the table is temporary.
 
-**`DISTRIBUTED BY ( column [opclass] [, ... ] )`**
-
-**`DISTRIBUTED RANDOMLY`**
-
+**`DISTRIBUTED BY ( column [opclass] [, ... ] )`**<br />
+**`DISTRIBUTED RANDOMLY`**<br />
 **`DISTRIBUTED REPLICATED`**
 
 Used to declare the Cloudberry Database distribution policy for the table. `DISTRIBUTED BY` uses hash distribution with one or more columns declared as the distribution key. For the most even data distribution, the distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose `DISTRIBUTED RANDOMLY`, which will send the data randomly to the segment instances. Additionally, an operator class, `opclass`, can be specified, to use a non-default hash function.
@@ -567,14 +559,14 @@ The Cloudberry Database server configuration parameter `gp_create_table_random_d
 
 If the value of the parameter is `off` (the default), Cloudberry Database chooses the table distribution key based on the command:
 
--  If a `LIKE` or `INHERITS` clause is specified, then Cloudberry Database copies the distribution key from the source or parent table.
--  If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` constraints are specified, then Cloudberry Database chooses the largest subset of all the key columns as the distribution key.
--  If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Cloudberry Database chooses the first suitable column as the distribution key. (Columns with geometric or user-defined data types are not eligible as Cloudberry Database distribution key columns.)
+- If a `LIKE` or `INHERITS` clause is specified, then Cloudberry Database copies the distribution key from the source or parent table.
+- If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` constraints are specified, then Cloudberry Database chooses the largest subset of all the key columns as the distribution key.
+- If no constraints nor a `LIKE` or `INHERITS` clause is specified, then Cloudberry Database chooses the first suitable column as the distribution key. (Columns with geometric or user-defined data types are not eligible as Cloudberry Database distribution key columns.)
 
 If the value of the parameter is set to `on`, Cloudberry Database follows these rules:
 
--  If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are not specified, the distribution of the table is random (`DISTRIBUTED RANDOMLY`). Table distribution is random even if the table creation command contains the `LIKE` or `INHERITS` clause.
--  If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are specified, you must also specify a `DISTRIBUTED BY` clause If a `DISTRIBUTED BY` clause is not specified as part of the table creation command, the command fails.
+- If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are not specified, the distribution of the table is random (`DISTRIBUTED RANDOMLY`). Table distribution is random even if the table creation command contains the `LIKE` or `INHERITS` clause.
+- If `PRIMARY KEY`, `UNIQUE`, or `EXCLUDE` columns are specified, you must also specify a `DISTRIBUTED BY` clause If a `DISTRIBUTED BY` clause is not specified as part of the table creation command, the command fails.
 
 The `DISTRIBUTED REPLICATED` clause replicates the entire table to all Cloudberry Database segment instances. It can be used when it is necessary to run user-defined functions on segments when the functions require access to all rows in the table, or to improve query performance by preventing broadcast motions.
 

@@ -18,7 +18,7 @@ CREATE SCHEMA IF NOT EXISTS <schema_name> [ AUTHORIZATION <role_specification> ]
 
 CREATE SCHEMA IF NOT EXISTS AUTHORIZATION <role_specification>
 
-where <role_specification> can be:
+-- where <role_specification> can be:
 
     <user_name>
   | CURRENT_USER

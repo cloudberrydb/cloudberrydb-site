@@ -71,7 +71,7 @@ GRANT { SELECT | INSERT | ALL [PRIVILEGES] }
     ON PROTOCOL <protocolname>
     TO <username>
 
-where <role_specification> can be:
+-- where <role_specification> can be:
 
     [ GROUP ] <role_name>
   | PUBLIC
@@ -133,21 +133,21 @@ By default, when you grant privileges to a partitioned table, Cloudberry Databas
 
 You can also use the `GRANT` command to specify which users can access a trusted protocol. (If the protocol is not trusted, you cannot give any other user permission to use it to read or write data.)
 
--  To allow a user to create a readable external table with a trusted protocol:
+- To allow a user to create a readable external table with a trusted protocol:
 
-```sql
+    ```sql
     GRANT SELECT ON PROTOCOL <protocolname> TO <username>
     ```
 
--  To allow a user to create a writable external table with a trusted protocol:
+- To allow a user to create a writable external table with a trusted protocol:
 
-```sql
+    ```sql
     GRANT INSERT ON PROTOCOL <protocolname> TO <username>
     ```
 
--  To allow a user to create both readable and writable external table with a trusted protocol:
+- To allow a user to create both readable and writable external table with a trusted protocol:
 
-```sql
+    ```sql
     GRANT ALL ON PROTOCOL <protocolname> TO <username>
     ```
 
@@ -180,7 +180,7 @@ This keyword is accepted, although foreign key constraints are currently not sup
 
 Allows the creation of a trigger on the specified table.
 
-    > **Note** Cloudberry Database does not support triggers.
+> **Note** Cloudberry Database does not support triggers.
 
 **`TRUNCATE`**
 
@@ -198,8 +198,7 @@ For tablespaces, allows tables and indexes to be created within the tablespace, 
 
 Allows the user to connect to the specified database. This privilege is checked at connection startup (in addition to checking any restrictions imposed by `pg_hba.conf`).
 
-**`TEMPORARY`**
-
+**`TEMPORARY`**<br />
 **`TEMP`**
 
 Allows temporary tables to be created while using the database.

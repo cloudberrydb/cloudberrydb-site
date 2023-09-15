@@ -54,52 +54,44 @@ Note that roles are defined at the system-level and are valid for all databases 
 
 The name of the new role.
 
-**`SUPERUSER`**
-
+**`SUPERUSER`**<br />
 **`NOSUPERUSER`**
 
 These clauses determine whether the new role is a "superuser". If `SUPERUSER` is specified, the role being defined will be a superuser, who can override all access restrictions within the database. Superuser status is dangerous and should be used only when really needed. You must yourself be a superuser to create a new superuser. `NOSUPERUSER` is the default.
 
-**`CREATEDB`**
-
+**`CREATEDB`**<br />
 **`NOCREATEDB`**
 
 These clauses define a role's ability to create databases. If `CREATEDB` is specified, the role being defined will be allowed to create new databases. Specifying `NOCREATEDB` (the default) will deny a role the ability to create databases.
 
-**`CREATEROLE`**
-
+**`CREATEROLE`**<br />
 **`NOCREATEROLE`**
 
 These clauses determine whether a role will be permitted to create new roles (that is, execute `CREATE ROLE`). If `CREATEROLE` is specified, the role being defined will be allowed to create new roles, alter other roles, and drop other roles. `NOCREATEROLE` (the default) will deny a role the ability to create roles or modify roles other than their own.
 
-**`CREATEEXTTABLE`**
-
+**`CREATEEXTTABLE`**<br />
 **`NOCREATEEXTTABLE`**
 
 If `CREATEEXTTABLE` is specified, the role being defined is allowed to create external tables. The default `type` is `readable` and the default `protocol` is `gpfdist`, if not specified. Valid types are `gpfdist`, `gpfdists`, `http`, and `https`. `NOCREATEEXTTABLE` (the default type) denies the role the ability to create external tables. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.
 
 Use the `GRANT...ON PROTOCOL` command to allow users to create and use external tables with a custom protocol type, including the `s3` and `pxf` protocols included with Cloudberry Database.
 
-**`INHERIT`**
-
+**`INHERIT`**<br />
 **`NOINHERIT`**
 
 These clauses determine whether a role "inherits" the privileges of roles it is a member of. If specified, `INHERIT` (the default) allows the role to use whatever database privileges have been granted to all roles it is directly or indirectly a member of. With `NOINHERIT`, membership in another role only grants the ability to `SET ROLE` to that other role; the privileges of the other role are only available after having done so.
 
-**`LOGIN`**
-
+**`LOGIN`**<br />
 **`NOLOGIN`**
 
 These clauses determine whether a role is allowed to log in; that is, whether the role can be given as the initial session authorization name during client connection. If specified, `LOGIN` allows a role to log in to a database. A role having the `LOGIN` attribute can be thought of as a user. Roles with `NOLOGIN` are useful for managing database privileges, but are not users in the usual sense of the word. If not specified, `NOLOGIN` is the default, except when `CREATE ROLE` is invoked through its alternative spelling [CREATE USER](/docs/sql-stmts/sql-stmt-create-user.md).
 
-**`REPLICATION`**
-
+**`REPLICATION`**<br />
 **`NOREPLICATION`**
 
 These clauses determine whether a role is a replication role. A role must have this attribute (or be a superuser) in order to be able to connect to the server in replication mode (physical or logical replication) and in order to be able to create or drop replication slots. A role having the `REPLICATION` attribute is a very highly privileged role, and should only be used on roles actually used for replication. If not specified, `NOREPLICATION` is the default. You must be a superuser to create a new role having the `REPLICATION` attribute.
 
-**`BYPASSRLS`**
-
+**`BYPASSRLS`**<br />
 **`NOBYPASSRLS`**
 
 These clauses determine whether a role bypasses every row-level security (RLS) policy. `NOBYPASSRLS` is the default. You must be a superuser to create a new role having the `BYPASSRLS` attribute.
@@ -110,8 +102,7 @@ Note that `pg_dump` will set row_security to `OFF` by default, to ensure all con
 
 If role can log in, this specifies how many concurrent connections the role can make. The default of `-1` means there is no limit. Note that only normal connections are counted towards this limit. Neither prepared transactions nor background worker connections are counted towards this limit.
 
-**`[ ENCRYPTED ] PASSWORD 'password'`**
-
+**`[ ENCRYPTED ] PASSWORD 'password'`**<br />
 **`PASSWORD NULL`**
 
 Sets the role's password. (A password is only of use for roles having the `LOGIN` attribute, but you can nonetheless define one for roles without it.) If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.
@@ -166,8 +157,7 @@ The name of the resource queue to which the new user-level role is to be assigne
 
 Roles with the `SUPERUSER` attribute are exempt from resource queue limits. For a superuser role, queries always run immediately regardless of limits imposed by an assigned resource queue.
 
-**`DENY deny_point`**
-
+**`DENY deny_point`**<br />
 **`DENY BETWEEN deny_point AND deny_point`**
 
 The `DENY` and `DENY BETWEEN` keywords set time-based constraints that are enforced at login. `DENY` sets a day or a day and time to deny access. `DENY BETWEEN` sets an interval during which access is denied. Both use the parameter deny_point that has the following format:

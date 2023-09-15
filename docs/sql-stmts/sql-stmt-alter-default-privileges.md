@@ -70,8 +70,7 @@ REVOKE [ GRANT OPTION FOR ]
     ON SCHEMAS
     FROM { [ GROUP ] <role_name> | PUBLIC } [, ...]
     [ CASCADE | RESTRICT ]
-
-```sql
+```
 
 ## Description
 

@@ -70,8 +70,7 @@ The name of the language that the procedure is implemented in. May be `SQL`, `C`
 
 Lists which transforms a call to the procedure should apply. Transforms convert between SQL types and language-specific data types. Procedural language implementations usually have hardcoded knowledge of the built-in types, so those don't need to be listed here. If a procedural language implementation does not know how to handle a type and no transform is supplied, it will fall back to a default behavior for converting data types, but this depends on the implementation.
 
-**`[EXTERNAL] SECURITY INVOKER`**
-
+**`[EXTERNAL] SECURITY INVOKER`**<br />
 **`[EXTERNAL] SECURITY DEFINER`**
 
 `SECURITY INVOKER` (the default) indicates that the procedure is to be run with the privileges of the user that calls it.

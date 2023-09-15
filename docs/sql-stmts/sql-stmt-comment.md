@@ -54,7 +54,7 @@ COMMENT ON
   VIEW <object_name>
 } IS { <string_literal> | NULL }
 
-where <aggregate_signature> is:
+-- where <aggregate_signature> is:
 
 * |
 [ <argmode> ] [ <argname> ] <argtype> [ , ... ] |
@@ -73,23 +73,23 @@ You can view comments using the `psql` meta-commands `\dd`, `\d+`, and `\l+`. Ot
 
 ## Parameters
 
-object_name
-relation_name.column_name
-aggregate_name
-constraint_name
-function_name
-operator_name
-policy_name
-procedure_name
-routine_name
-rule_name
+**`object_name`**<br />
+**`relation_name.column_name`**<br />
+**`aggregate_name`**<br />
+**`constraint_name`**<br />
+**`function_name`**<br />
+**`operator_name`**<br />
+**`policy_name`**<br />
+**`procedure_name`**<br />
+**`routine_name`**<br />
+**`rule_name`**<br />
 **`trigger_name`**
 
 The name of the object to be commented. Names of tables, aggregates, collations, conversions, domains, foreign tables, functions, indexes, operators, operator classes, operator families, procedures, routines, sequences, statistics, text search objects, types, views, and materialized views can be schema-qualified. When commenting on a column, relation_name must refer to a table, view, materialized view, composite type, or foreign table.
 
-    > **Note** Cloudberry Database does not support triggers.
+> **Note** Cloudberry Database does not support triggers.
 
-table_name
+**`table_name`**<br />
 **`domain_name`**
 
 When creating a comment on a constraint, a trigger, a rule, or a policy, these parameters specify the name of the table or domain on which that object is defined.
@@ -114,7 +114,7 @@ The name of a function, procedure, or aggregate argument. Note that `COMMENT` do
 
 The data type of a function, procedure, or aggregate argument.
 
-left_type
+**`left_type`**<br />
 **`right_type`**
 
 The data type(s) of the operator's arguments (optionally schema-qualified). Specify `NONE` for the missing argument of a prefix or postfix operator.

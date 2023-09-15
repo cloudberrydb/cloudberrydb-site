@@ -145,7 +145,7 @@ GIN indexes accept different parameters:
 
 This setting controls usage of the fast update technique described in [GIN Fast Update Technique](https://www.postgresql.org/docs/12/gin-implementation.html#GIN-FAST-UPDATE) in the PostgreSQL documentation. It is a Boolean parameter that deactivates or activates the GIN index fast update technique. A value of `ON` activates fast update (the default), and `OFF` deactivates it.
 
-**Note:** Turning `fastupdate` off via `ALTER INDEX` prevents future insertions from going into the list of pending index entries, but does not in itself flush previous entries. You might want to `VACUUM` the table or call `gin_clean_pending_list()` function afterward to ensure the pending list is emptied.
+> **Note:** Turning `fastupdate` off via `ALTER INDEX` prevents future insertions from going into the list of pending index entries, but does not in itself flush previous entries. You might want to `VACUUM` the table or call `gin_clean_pending_list()` function afterward to ensure the pending list is emptied.
 
 **`gin_pending_list_limit`**
 

@@ -25,8 +25,8 @@ The operator name is a sequence of up to `NAMEDATALEN`-1 (63 by default) charact
 
 There are a few restrictions on your choice of name:
 
--  `--` and `/*` cannot appear anywhere in an operator name, since they will be taken as the start of a comment.
--  A multicharacter operator name cannot end in `+` or `-`, unless the name also contains at least one of these characters: <code>~ ! @ # % ^ & | ` ?</code>
+- `--` and `/*` cannot appear anywhere in an operator name, since they will be taken as the start of a comment.
+- A multicharacter operator name cannot end in `+` or `-`, unless the name also contains at least one of these characters: <code>~ ! @ # % ^ & | ` ?</code>
 
     For example, `@-` is an allowed operator name, but `*-` is not. This restriction allows Cloudberry Database to parse SQL-compliant commands without requiring spaces between tokens.
 

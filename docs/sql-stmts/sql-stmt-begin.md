@@ -11,7 +11,7 @@ Starts a transaction block.
 ```sql
 BEGIN [WORK | TRANSACTION] [<transaction_mode>]
 
-where <transaction_mode> is:
+-- where <transaction_mode> is:
 
    ISOLATION LEVEL {READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE}
    READ WRITE | READ ONLY

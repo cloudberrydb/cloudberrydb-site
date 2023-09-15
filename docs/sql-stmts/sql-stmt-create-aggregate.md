@@ -47,8 +47,7 @@ CREATE [ OR REPLACE ] AGGREGATE <name> ( [ <argmode> ] [ <argname> ] <arg_data_t
     [ , REPSAFE = <boolean> ]
     [ , HYPOTHETICAL ]
   )
-  
-  or the old syntax
+  -- or the old syntax
   
   CREATE [ OR REPLACE ] AGGREGATE <name> (
     BASETYPE = <base_type>,

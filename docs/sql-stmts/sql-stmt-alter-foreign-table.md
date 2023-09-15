@@ -77,8 +77,7 @@ Mark a column as allowing, or not allowing, null values.
 
 This form sets the per-column statistics-gathering target for subsequent `ANALYZE` operations. See the similar form of [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md) for more details.
 
-**`SET ( attribute_option = value [, ...] ] )`**
-
+**`SET ( attribute_option = value [, ...] ] )`**<br />
 **`RESET ( attribute_option [, ... ] )`**
 
 This form sets or resets per-attribute options. See the similar form of [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md) for more details.

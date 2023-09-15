@@ -38,8 +38,7 @@ Perform the following query to view all of the currently active queries for all 
 SELECT usename, query, waiting, pid,
     rsgid, rsgname, rsgqueueduration 
   FROM pg_stat_activity;
-
-```sql
+```
 
 To view the resource group assignments, perform the following query on the `pg_roles` and `pg_resgroup` system catalog tables:
 

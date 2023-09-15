@@ -20,7 +20,7 @@ This command rolls back all commands that were run after the savepoint was estab
 
 ## Parameters
 
-WORK
+**`WORK`**<br />
 **`TRANSACTION`**
 
 Optional key words. They have no effect.

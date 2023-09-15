@@ -59,10 +59,8 @@ A [SELECT](/docs/sql-stmts/sql-stmt-select.md), [TABLE](/docs/sql-stmts/sql-stmt
 
 This clause specifies whether or not the materialized view should be populated with data at creation time. `WITH DATA` is the default, populate the materialized view. For `WITH NO DATA`, the materialized view is not populated with data, is flagged as unscannable, and cannot be queried until `REFRESH MATERIALIZED VIEW` is used to populate the materialized view.
 
-**`DISTRIBUTED BY (column [opclass], [ ... ] )`**
-
-**`DISTRIBUTED RANDOMLY`**
-
+**`DISTRIBUTED BY (column [opclass], [ ... ] )`**<br />
+**`DISTRIBUTED RANDOMLY`**<br />
 **`DISTRIBUTED REPLICATED`**
 
 Used to declare the Cloudberry Database distribution policy for the materialized view data. For information about a table distribution policy, see [CREATE TABLE](/docs/sql-stmts/sql-stmt-create-table.md).

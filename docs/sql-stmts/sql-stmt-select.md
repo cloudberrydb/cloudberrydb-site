@@ -40,7 +40,7 @@ where <from_item> can be one of:
   <from_item> NATURAL <join_type> <from_item>
   <from_item> CROSS JOIN <from_item>
 
-where <grouping_element> can be one of:
+-- where <grouping_element> can be one of:
 
   ()
   <expression>
@@ -48,7 +48,7 @@ where <grouping_element> can be one of:
   CUBE (<expression> [,...])
   GROUPING SETS (<grouping_element> [, ...])
 
-where <with_query> is:
+-- where <with_query> is:
 
   <with_query_name> [( <column_name> [, ...] )] AS ( [ NOT ] MATERIALIZED ] ( <select> | <values> | <insert> | <update> | delete )
 
@@ -60,13 +60,13 @@ TABLE [ ONLY ] <table_name> [ * ]
 
 `SELECT` retrieves rows from zero or more tables. The general processing of `SELECT` is as follows:
 
-1.  All queries in the `WITH` clause are computed. These effectively serve as temporary tables that can be referenced in the `FROM` list. A `WITH` query that is referenced more than once in `FROM` is computed only once, unless specified otherwise with `NOT MATERIALIZED`. (See [WITH Clause](#the-with-clause) below.)
-2.  All elements in the `FROM` list are computed. (Each element in the `FROM` list is a real or virtual table.) If more than one element is specified in the `FROM` list, they are cross-joined together. (See [FROM Clause](#the-from-clause) below.)
-3.  If the `WHERE` clause is specified, all rows that do not satisfy the condition are eliminated from the output. (See [WHERE Clause](#the-where-clause) below.)
-4.  If the `GROUP BY` clause is specified, or if there are aggregate function calls, the output is combined into groups of rows that match on one or more values, and the results of aggregate functions are computed. If the `HAVING` clause is present, it eliminates groups that do not satisfy the given condition. (See [GROUP BY Clause](#the-group-by-clause) and [HAVING Clause](#the-having-clause) below.)
-5.  The actual output rows are computed using the `SELECT` output expressions for each selected row or row group. (See [SELECT List](#the-select-list) below.)
+1. All queries in the `WITH` clause are computed. These effectively serve as temporary tables that can be referenced in the `FROM` list. A `WITH` query that is referenced more than once in `FROM` is computed only once, unless specified otherwise with `NOT MATERIALIZED`. (See [WITH Clause](#the-with-clause) below.)
+2. All elements in the `FROM` list are computed. (Each element in the `FROM` list is a real or virtual table.) If more than one element is specified in the `FROM` list, they are cross-joined together. (See [FROM Clause](#the-from-clause) below.)
+3. If the `WHERE` clause is specified, all rows that do not satisfy the condition are eliminated from the output. (See [WHERE Clause](#the-where-clause) below.)
+4. If the `GROUP BY` clause is specified, or if there are aggregate function calls, the output is combined into groups of rows that match on one or more values, and the results of aggregate functions are computed. If the `HAVING` clause is present, it eliminates groups that do not satisfy the given condition. (See [GROUP BY Clause](#the-group-by-clause) and [HAVING Clause](#the-having-clause) below.)
+5. The actual output rows are computed using the `SELECT` output expressions for each selected row or row group. (See [SELECT List](#the-select-list) below.)
 6. `SELECT DISTINCT` eliminates duplicate rows from the result. `SELECT DISTINCT ON` eliminates rows that match on all the specified expressions. `SELECT ALL` (the default) will return all candidate rows, including duplicates. (See [DISTINCT Clause](#the-distinct-clause) below.)
-7.  If a window expression is specified (and optional `WINDOW` clause), the output is organized according to the positional (row) or value-based (range) window frame. (See [WINDOW Clause](#the-window-clause) below.)
+7. If a window expression is specified (and optional `WINDOW` clause), the output is organized according to the positional (row) or value-based (range) window frame. (See [WINDOW Clause](#the-window-clause) below.)
 9. Using the operators `UNION`, `INTERSECT`, and `EXCEPT`, the output of more than one `SELECT` statement can be combined to form a single result set. The `UNION` operator returns all rows that are in one or both of the result sets. The `INTERSECT` operator returns all rows that are strictly in both result sets. The `EXCEPT` operator returns the rows that are in the first result set but not in the second. In all three cases, duplicate rows are eliminated unless `ALL` is specified. The noise word `DISTINCT` can be added to explicitly specify eliminating duplicate rows. Notice that `DISTINCT` is the default behavior here, even though `ALL` is the default for `SELECT` itself.  (See [UNION Clause](#the-union-clause), [INTERSECT Clause](#the-intersect-clause), and [EXCEPT Clause](#the-except-clause) below.)
 10. If the `ORDER BY` clause is specified, the returned rows are sorted in the specified order. If `ORDER BY` is not given, the rows are returned in whatever order the system finds fastest to produce. (See [ORDER BY Clause](#the-order-by-clause) below.)
 11. If the `LIMIT` (or `FETCH FIRST`) or `OFFSET` clause is specified, the `SELECT` command only returns a subset of the result rows. (See [LIMIT Clause](#the-limit-clause) below.)
@@ -98,12 +98,12 @@ When there are multiple queries in the `WITH` clause, `RECURSIVE` should be writ
 
 `WITH RECURSIVE` limitations. These items are not supported:
 
--  A recursive `WITH` clause that contains the following in the `<recursive_term>`.
+- A recursive `WITH` clause that contains the following in the `<recursive_term>`.
     -  Subqueries with a self-reference
     -  `DISTINCT` clause
     -  `GROUP BY` clause
     -  A window function
--  A recursive `WITH` clause where the `<with_query_name>` is a part of a set operation.
+- A recursive `WITH` clause where the `<with_query_name>` is a part of a set operation.
 
 Following is an example of the set operation limitation. This query returns an error because the set operation `UNION` contains a reference to the table `foo`.
 
@@ -279,31 +279,31 @@ Cloudberry Database has the following additional OLAP grouping extensions (often
 A `ROLLUP` grouping is an extension to the `GROUP BY` clause that creates aggregate subtotals that roll up from the most detailed level to a grand total, following a list of grouping columns (or expressions). `ROLLUP` takes an ordered list of grouping columns, calculates the standard aggregate values specified in the `GROUP BY` clause, then creates progressively higher-level subtotals, moving from right to left through the list. Finally, it creates a grand total. A `ROLLUP` grouping can be thought of as a series of grouping sets. For example:
 
 ```sql
-    GROUP BY ROLLUP (a,b,c) 
-    ```
+GROUP BY ROLLUP (a,b,c) 
+```
 
-    is equivalent to:
+is equivalent to:
 
 ```sql
-    GROUP BY GROUPING SETS( (a,b,c), (a,b), (a), () ) 
-    ```
+GROUP BY GROUPING SETS( (a,b,c), (a,b), (a), () ) 
+```
 
-    Notice that the n elements of a `ROLLUP` translate to n+1 grouping sets. Also, the order in which the grouping expressions are specified is significant in a `ROLLUP`.
+Notice that the n elements of a `ROLLUP` translate to n+1 grouping sets. Also, the order in which the grouping expressions are specified is significant in a `ROLLUP`.
 
 **`CUBE`**
 
 A `CUBE` grouping is an extension to the `GROUP BY` clause that creates subtotals for all of the possible combinations of the given list of grouping columns (or expressions). In terms of multidimensional analysis, `CUBE` generates all the subtotals that could be calculated for a data cube with the specified dimensions. For example:
 
 ```sql
-    GROUP BY CUBE (a,b,c) 
-    ```
+GROUP BY CUBE (a,b,c) 
+```
 
-    is equivalent to:
+is equivalent to:
 
 ```sql
-    GROUP BY GROUPING SETS( (a,b,c), (a,b), (a,c), (b,c), (a), 
-    (b), (c), () ) 
-    ```
+GROUP BY GROUPING SETS( (a,b,c), (a,b), (a,c), (b,c), (a), 
+(b), (c), () ) 
+```
 
 Notice that n elements of a `CUBE` translate to 2n grouping sets. Consider using `CUBE` in any situation requiring cross-tabular reports. `CUBE` is typically most suitable in queries that use columns from multiple dimensions rather than columns representing different levels of a single dimension. For instance, a commonly requested cross-tabulation might need subtotals for all the combinations of month, state, and product.
 
@@ -317,9 +317,9 @@ GROUP BY GROUPING SETS( (a,c), (a,b) )
 
 If using the grouping extension clauses `ROLLUP`, `CUBE`, or `GROUPING SETS`, two challenges arise. First, how do you determine which result rows are subtotals, and then the exact level of aggregation for a given subtotal. Or, how do you differentiate between result rows that contain both stored `NULL` values and "NULL" values created by the `ROLLUP` or `CUBE`. Secondly, when duplicate grouping sets are specified in the `GROUP BY` clause, how do you determine which result rows are duplicates? There are two additional grouping functions you can use in the `SELECT` list to help with this:
 
--  **grouping(column [, ...])** — The `grouping` function can be applied to one or more grouping attributes to distinguish super-aggregated rows from regular grouped rows. This can be helpful in distinguishing a "NULL" representing the set of all values in a super-aggregated row from a `NULL` value in a regular row. Each argument in this function produces a bit — either `1` or `0`, where `1` means the result row is super-aggregated, and `0` means the result row is from a regular grouping. The `grouping` function returns an integer by treating these bits as a binary number and then converting it to a base-10 integer.
+- **grouping(column [, ...])** — The `grouping` function can be applied to one or more grouping attributes to distinguish super-aggregated rows from regular grouped rows. This can be helpful in distinguishing a "NULL" representing the set of all values in a super-aggregated row from a `NULL` value in a regular row. Each argument in this function produces a bit — either `1` or `0`, where `1` means the result row is super-aggregated, and `0` means the result row is from a regular grouping. The `grouping` function returns an integer by treating these bits as a binary number and then converting it to a base-10 integer.
 
--  **group_id()** — For grouping extension queries that contain duplicate grouping sets, the `group_id` function is used to identify duplicate rows in the output. All *unique* grouping set output rows will have a `<group_id>` value of 0. For each duplicate grouping set detected, the `group_id` function assigns a `<group_id>` number greater than 0. All output rows in a particular duplicate grouping set are identified by the same `<group_id>` number.
+- **group_id()** — For grouping extension queries that contain duplicate grouping sets, the `group_id` function is used to identify duplicate rows in the output. All *unique* grouping set output rows will have a `<group_id>` value of 0. For each duplicate grouping set detected, the `group_id` function assigns a `<group_id>` number greater than 0. All output rows in a particular duplicate grouping set are identified by the same `<group_id>` number.
 
 ### The `HAVING` clause
 
@@ -595,10 +595,10 @@ FOR <lock_strength> [OF <table_name> [ , ... ] ] [ NOWAIT | SKIP LOCKED ]
 
 `<lock_strength>` can be one of these values:
 
--  `UPDATE` - Locks the table with an `EXCLUSIVE` lock.
--  `NO KEY UPDATE` - Locks the table with an `EXCLUSIVE` lock.
--  `SHARE` - Locks the table with a `ROW SHARE` lock.
--  `KEY SHARE` - Locks the table with a `ROW SHARE` lock.
+- `UPDATE` - Locks the table with an `EXCLUSIVE` lock.
+- `NO KEY UPDATE` - Locks the table with an `EXCLUSIVE` lock.
+- `SHARE` - Locks the table with a `ROW SHARE` lock.
+- `KEY SHARE` - Locks the table with a `ROW SHARE` lock.
 
 When the Global Deadlock Detector is deactivated (the default), Cloudberry Database uses the specified lock.
 
@@ -642,7 +642,6 @@ SELECT * FROM (SELECT * FROM mytable FOR UPDATE) ss ORDER BY column1;
 Note that this will result in locking all rows of `mytable`, whereas `FOR UPDATE` at the top level would lock only the actually returned rows. This can make for a significant performance difference, particularly if the `ORDER BY` is combined with `LIMIT` or other restrictions. So this technique is recommended only if concurrent updates of the ordering columns are expected and a strictly sorted result is required.
 
 At the `REPEATABLE READ` or `SERIALIZABLE` transaction isolation level this would cause a serialization failure (with a `SQLSTATE` of `40001`), so there is no possibility of receiving rows out of order under these isolation levels.
-
 
 ## The table command
 

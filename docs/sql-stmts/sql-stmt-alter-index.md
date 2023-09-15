@@ -25,33 +25,33 @@ ALTER INDEX ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
 
 `ALTER INDEX` changes the definition of an existing index. There are several subforms described below. Note that the lock level required may differ for each subform. An `ACCESS EXCLUSIVE` lock is held unless explicitly noted. When multiple subcommands are listed, the lock held will be the strictest one required from any subcommand.
 
-**RENAME**
+**`RENAME`**
 
 Changes the name of the index.  If the index is associated with a table constraint (either `UNIQUE`, `PRIMARY KEY`, or `EXCLUDE`), the constraint is renamed as well. There is no effect on the stored data.
 
 Renaming an index acquires a `SHARE UPDATE EXCLUSIVE` lock.
 
-**SET TABLESPACE**
+**`SET TABLESPACE`**
 
 Changes the index's tablespace to the specified tablespace and moves the data file(s) associated with the index to the new tablespace. To change the tablespace of an index, you must own the index and have `CREATE` privilege on the new tablespace. All indexes in the current database in a tablespace can be moved by using the `ALL IN TABLESPACE` form, which will lock all indexes to be moved and then move each one. This form also supports `OWNED BY`, which will only move indexes owned by the roles specified. If the `NOWAIT` option is specified then the command will fail if it is unable to acquire all of the locks required immediately. Note that system catalogs will not be moved by this command, use `ALTER DATABASE` or explicit `ALTER INDEX` invocations instead if desired. See also [CREATE TABLESPACE](/docs/sql-stmts/sql-stmt-create-tablespace.md).
 
-**ATTACH PARTITION**
+**`ATTACH PARTITION`**
 
 Causes the named index to become attached to the altered index. The named index must be on a partition of the table containing the index being altered, and have an equivalent definition. An attached index cannot be dropped by itself, and will automatically be dropped if its parent index is dropped.
 
-**DEPENDS ON EXTENSION**
+**`DEPENDS ON EXTENSION`**
 
 This form marks the index as dependent on the extension, such that if the extension is dropped, the index will automatically be dropped as well.
 
-**SET ( storage_parameter [= value] [, ... ] )**
+**`SET ( storage_parameter [= value] [, ... ] )`**
 
 Changes one or more index-method-specific storage parameters for the index. See [CREATE INDEX](/docs/sql-stmts/sql-stmt-create-index.md) for details on the available parameters. Note that the index contents will not be modified immediately by this command; depending on the parameter you might need to rebuild the index with [REINDEX](/docs/sql-stmts/sql-stmt-reindex.md) to get the desired effects.
 
-**RESET ( storage_parameter [, ... ] )**
+**`RESET ( storage_parameter [, ... ] )`**
 
 Resets one or more index-method-specific storage parameters for the index to their defaults. As with `SET`, a `REINDEX` may be needed to update the index entirely.
 
-**ALTER [ COLUMN ] column_number SET STATISTICS integer**
+**`ALTER [ COLUMN ] column_number SET STATISTICS integer`**
 
 This form sets the per-column statistics-gathering target for subsequent `ANALYZE` operations, though can be used only on index columns that are defined as an expression. Since expressions lack a unique name, we refer to them using the ordinal number of the index column. The target can be set in the range 0 to 10000; alternatively, set it to `-1` to revert to using the system default statistics target (`default_statistics_target`).
 

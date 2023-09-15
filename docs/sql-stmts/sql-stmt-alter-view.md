@@ -56,8 +56,7 @@ The new name of the view.
 
 The new schema for the view.
 
-**`SET ( view_option_name [= view_option_value] [, ... ] )`**
-
+**`SET ( view_option_name [= view_option_value] [, ... ] )`**<br />
 **`RESET ( view_option_name [, ... ] )`**
 
 Sets or resets a view option. Currently supported options are:

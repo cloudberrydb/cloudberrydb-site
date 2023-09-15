@@ -10,9 +10,11 @@ Changes a database role (user or group).
 
 ```sql
 ALTER ROLE <role_specification> [ WITH ] <option> [ ... ]
+```
 
-where <option> can be:
+where `<option>` can be:
 
+```sql
     SUPERUSER | NOSUPERUSER
   | CREATEDB | NOCREATEDB
   | CREATEROLE | NOCREATEROLE
@@ -40,9 +42,11 @@ ALTER ROLE { <role_specification> | ALL } [ IN DATABASE <database_name> ] RESET 
 
 ALTER ROLE <role_specification> RESOURCE QUEUE {<queue_name> | NONE}
 ALTER ROLE <role_specification> RESOURCE GROUP {<group_name> | NONE}
+```
 
-where <role_specification> can be:
+where `<role_specification>` can be:
 
+```sql
     <role_name>
   | CURRENT_USER
   | SESSION_USER
@@ -52,15 +56,15 @@ where <role_specification> can be:
 
 `ALTER ROLE` changes the attributes of a Cloudberry Database role. There are several variants of this command.
 
-**WITH option**
+**`WITH option`**
 
 Changes many of the role attributes that can be specified in [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md). (All of the possible attributes are covered, execept that there are no options for adding or removing memberships; use [GRANT](/docs/sql-stmts/sql-stmt-grant.md) and [REVOKE](/docs/sql-stmts/sql-stmt-revoke.md) for that.) Attributes not mentioned in the command retain their previous settings. Database superusers can change any of these settings for any role. Roles having `CREATEROLE` privilege can change any of these settings except `SUPERUSER`, `REPLICATION`, and `BYPASSRLS`, but only for non-superuser and non-replication roles. Ordinary roles can only change their own password.
 
-**RENAME**
+**`RENAME`**
 
 Changes the name of the role. Database superusers can rename any role. Roles having `CREATEROLE` privilege can rename non-superuser roles. The current session user cannot be renamed (connect as a different user to rename a role). Because MD5-encrypted passwords use the role name as cryptographic salt, renaming a role clears its password if the password is MD5-encrypted.
 
-**SET | RESET**
+**`SET | RESET`**
 
 Changes a role's session default for a specified configuration parameter, either for all databases or, when the `IN DATABASE` clause is specified, only for sessions in the named database. If `ALL` is specified instead of a role name, this changes the setting for all roles. Using `ALL` with `IN DATABASE` is effectively the same as using the command `ALTER DATABASE ... SET ...`.
 
@@ -68,11 +72,11 @@ Whenever the role subsequently starts a new session, the specified value becomes
 
 Superusers can change anyone's session defaults. Roles having `CREATEROLE` privilege can change defaults for non-superuser roles. Ordinary roles can only set defaults for themselves. Certain configuration variables cannot be set this way, or can only be set if a superuser issues the command. Only superusers can change a setting for all roles in all databases.
 
-**RESOURCE QUEUE**
+**`RESOURCE QUEUE`**
 
 Assigns the role to a resource queue. The role would then be subject to the limits assigned to the resource queue when issuing queries. Specify `NONE` to assign the role to the default resource queue. A role can belong to only one resource queue. For a role without `LOGIN` privilege, resource queues have no effect. See [CREATE RESOURCE QUEUE](/docs/sql-stmts/sql-stmt-create-resource-queue.md) for more information.
 
-**RESOURCE GROUP**
+**`RESOURCE GROUP`**
 
 Assigns a resource group to the role. The role would then be subject to the concurrent transaction, memory, and CPU limits configured for the resource group. You can assign a single resource group to one or more roles. You cannot assign a resource group that you create for an external component to a role. See [CREATE RESOURCE GROUP](/docs/sql-stmts/sql-stmt-create-resource-group.md) for additional information.
 
@@ -90,40 +94,23 @@ Alter the current user instead of an explicitly identified role.
 
 Alter the current session user instead of an explicitly identified role.
 
-**`SUPERUSER`**
-
-**`NOSUPERUSER`**
-
-**`CREATEDB`**
-
-**`NOCREATEDB`**
-
-**`CREATEROLE`**
-
-**`NOCREATEROLE`**
-
-**`INHERIT`**
-
-**`NOINHERIT`**
-
-**`LOGIN`**
-
-**`NOLOGIN`**
-
-**`REPLICATION`**
-
-**`NOREPLICATION`**
-
-**`BYPASSRLS`**
-
-**`NOBYPASSRLS`**
-
-**`CONNECTION LIMIT connlimit`**
-
-**`[ ENCRYPTED ] PASSWORD 'password'`**
-
-**`PASSWORD NULL`**
-
+**`SUPERUSER`**<br />
+**`NOSUPERUSER`**<br />
+**`CREATEDB`**<br />
+**`NOCREATEDB`**<br />
+**`CREATEROLE`**<br />
+**`NOCREATEROLE`**<br />
+**`INHERIT`**<br />
+**`NOINHERIT`**<br />
+**`LOGIN`**<br />
+**`NOLOGIN`**<br />
+**`REPLICATION`**<br />
+**`NOREPLICATION`**<br />
+**`BYPASSRLS`**<br />
+**`NOBYPASSRLS`**<br />
+**`CONNECTION LIMIT connlimit`**<br />
+**`[ ENCRYPTED ] PASSWORD 'password'`**<br />
+**`PASSWORD NULL`**<br />
 **`VALID UNTIL 'timestamp'`**
 
 These clauses alter attributes originally set by `CREATE ROLE`. For more information, see the [CREATE ROLE](/docs/sql-stmts/sql-stmt-create-role.md) reference page.
@@ -136,8 +123,7 @@ The new name of the role.
 
 The name of the database in which to set the configuration parameter.
 
-**`configuration_parameter`**
-
+**`configuration_parameter`**<br />
 **`value`**
 
 Set this role's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the role-specific parameter setting is removed, so the role will inherit the system-wide default setting in new sessions. Use `RESET ALL` to clear all role-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the role-specific value. If `IN DATABASE` is specified, the configuration parameter is set or removed for the given role and database only.

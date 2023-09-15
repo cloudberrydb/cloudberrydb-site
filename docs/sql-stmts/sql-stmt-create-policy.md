@@ -106,8 +106,8 @@ In most cases a `DELETE` command also needs to read data from columns in the rel
 A `DELETE` policy cannot have a `WITH CHECK` expression, as it only applies in cases where records are being deleted from the relation, so that there is no new row to check.
 
 
-| Command |SELECT/ALL policy<br />USING expresson | INSERT/ALL policy<br />WITH CHECK expression | UPDATE/ALL policy <br /> USING expression | UPDATE/ALL policy<br />WITH CHECK expression | DELETE/ALL policy <br /> USING expression|
-|--------------|-----------|
+| Command | `SELECT/ALL policy, USING expression` | `INSERT/ALL policy, WITH CHECK expression` | `UPDATE/ALL policy, USING expression` | `UPDATE/ALL policy, WITH CHECK expression` | `DELETE/ALL policy, USING expression`|
+|--------------|-----------|-----|-----------|-----|-----------|
 | SELECT | Existing row | -- | -- | -- | -- |
 | SELECT FOR UPDATE/SHARE | Existing row | -- | Existing row | -- | -- |
 | INSERT | -- | New row | -- | -- | -- |

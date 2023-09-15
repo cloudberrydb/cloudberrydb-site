@@ -48,7 +48,7 @@ The name of the cursor to be created.
 
 Causes the cursor to return data in binary rather than in text format.
 
-    > **Note** Cloudberry Database ignores the `BINARY` clause when you declare a `PARALLEL RETRIEVE` cursor.
+> **Note** Cloudberry Database ignores the `BINARY` clause when you declare a `PARALLEL RETRIEVE` cursor.
 
 **`INSENSITIVE`**
 
@@ -62,8 +62,7 @@ The cursor cannot be used to retrieve rows in a nonsequential fashion. This is t
 
 Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Cloudberry Database segments, in parallel.
 
-**`WITH HOLD`**
-
+**`WITH HOLD`**<br />
 **`WITHOUT HOLD`**
 
 `WITH HOLD` specifies that the cursor may continue to be used after the transaction that created it successfully commits. `WITHOUT HOLD` specifies that the cursor cannot be used outside of the transaction that created it. `WITHOUT HOLD` is the default.
@@ -76,12 +75,12 @@ A [SELECT](/docs/sql-stmts/sql-stmt-select.md) or [VALUES](/docs/sql-stmts/sql-s
 
 If the cursor is used in the `WHERE CURRENT OF` clause of the [UPDATE](/docs/sql-stmts/sql-stmt-update.md) or [DELETE](/docs/sql-stmts/sql-stmt-delete.md) command, the `SELECT` command must satisfy the following conditions:
 
--  Cannot reference a view or external table.
--  References only one table.
-    
+- Cannot reference a view or external table.
+- References only one table.
+
     The table must be a heap table, and it must not be replicated-distributed (must not be a view, external table, or append-optimized column-oriented table).
 
--  Cannot contain any of the following:
+- Cannot contain any of the following:
     -  A grouping clause
     -  A set operation such as `UNION ALL` or `UNION DISTINCT`
     -  A sorting clause

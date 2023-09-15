@@ -15,12 +15,12 @@ ALTER RESOURCE QUEUE <name> WITH ( <queue_attribute>=<value> [, ... ] )
 where queue_attribute is:
 
 ```sql
-   ACTIVE_STATEMENTS=<integer>
-   MEMORY_LIMIT='<memory_units>'
-   MAX_COST=<float>
-   COST_OVERCOMMIT={TRUE|FALSE}
-   MIN_COST=<float>
-   PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}
+ACTIVE_STATEMENTS=<integer>
+MEMORY_LIMIT='<memory_units>'
+MAX_COST=<float>
+COST_OVERCOMMIT={TRUE|FALSE}
+MIN_COST=<float>
+PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}
 ```
 
 ```sql
@@ -30,11 +30,11 @@ ALTER RESOURCE QUEUE <name> WITHOUT ( <queue_attribute> [, ... ] )
 where queue_attribute is:
 
 ```sql
-   ACTIVE_STATEMENTS
-   MEMORY_LIMIT
-   MAX_COST
-   COST_OVERCOMMIT
-   MIN_COST
+ACTIVE_STATEMENTS
+MEMORY_LIMIT
+MAX_COST
+COST_OVERCOMMIT
+MIN_COST
 ```
 
 > **Note** A resource queue must have either an `ACTIVE_STATEMENTS` or a `MAX_COST` value. Do not remove both these `queue_attributes` from a resource queue.
