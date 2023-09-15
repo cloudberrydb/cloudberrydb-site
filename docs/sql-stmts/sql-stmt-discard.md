@@ -46,7 +46,7 @@ Releases all temporary resources associated with the current session and resets 
     DISCARD PLANS;
     DISCARD SEQUENCES;
     DISCARD TEMP;
-    ```
+```
 
 ## Notes
 
