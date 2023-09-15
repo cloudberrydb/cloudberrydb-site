@@ -18,7 +18,7 @@ ABORT [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 ## Parameters
 
-**`WORK`**
+**`WORK`**  
 
 **`TRANSACTION`**
 
