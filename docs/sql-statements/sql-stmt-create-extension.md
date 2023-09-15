@@ -22,7 +22,7 @@ Loading an extension requires the same privileges that would be required to crea
 
 ## Parameters
 
-IF NOT EXISTS`**
+**`IF NOT EXISTS`**
 
 Do not throw an error if an extension with the same name already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing extension is anything like the one that would have been created from the currently-available script file.
 

@@ -50,16 +50,16 @@ Causes the cursor to return data in binary rather than in text format.
 
 Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Cloudberry Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
 
-NO SCROLL`**
+**`NO SCROLL`**
 
 The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Cloudberry Database; scrollable cursors (`SCROLL`) are not supported.
 
-PARALLEL RETRIEVE`**
+**`PARALLEL RETRIEVE`**
 
 Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Cloudberry Database segments, in parallel.
 
-WITH HOLD`**
-WITHOUT HOLD`**
+**`WITH HOLD`**
+**`WITHOUT HOLD`**
 
 `WITH HOLD` specifies that the cursor may continue to be used after the transaction that created it successfully commits. `WITHOUT HOLD` specifies that the cursor cannot be used outside of the transaction that created it. `WITHOUT HOLD` is the default.
 

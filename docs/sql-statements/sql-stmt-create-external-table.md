@@ -135,7 +135,7 @@ See Working with External Data for detailed information about working with exter
 
 ## Parameters
 
-READABLE | WRITABLE`**
+**`READABLE | WRITABLE`**
 
 Specifies the type of external table, readable being the default. Readable external tables are used for loading data into Cloudberry Database. Writable external tables are used for unloading data.
 
@@ -145,7 +145,7 @@ Creates a readable or writable external web table definition in Cloudberry Datab
 
 The `s3` protocol does not support external web tables. You can, however, create an external web table that runs a third-party tool to read data from or write data to S3 directly.
 
-TEMPORARY | TEMP`**
+**`TEMPORARY | TEMP`**
 
 If specified, creates a temporary readable or writable external table definition in Cloudberry Database. Temporary external tables exist in a special schema; you cannot specify a schema name when you create the table. Temporary external tables are automatically dropped at the end of a session.
 
@@ -166,7 +166,7 @@ The `LIKE` clause specifies a table from which the new external table automatica
 
 The data type of the column.
 
-LOCATION ('protocol://[host[:port]]/path/file' [, ...])`**
+**`LOCATION ('protocol://[host[:port]]/path/file' [, ...])`**
 
 If you use the `pxf` protocol to access an external data source, refer to pxf:// Protocol for information about the `pxf` protocol.
 
@@ -190,13 +190,13 @@ With two `gpfdist` locations listed as in the above example, half of the segment
 
 With the option `#transform=trans_name`, you can specify a transform to apply when loading or extracting data. The trans_name is the name of the transform in the YAML configuration file you specify with the you run the `gpfdist` utility. For information about specifying a transform, see gpfdist in the *Greenplum Utility Guide*.
 
-ON COORDINATOR`**
+**`ON COORDINATOR`**
 
 Restricts all table-related operations to the Greenplum coordinator segment. Permitted only on readable and writable external tables created with the `s3` or custom protocols. The `gpfdist`, `gpfdists`, `pxf`, and `file` protocols do not support `ON COORDINATOR`.
 
 > **Note** Be aware of potential resource impacts when reading from or writing to external tables you create with the `ON COORDINATOR` clause. You may encounter performance issues when you restrict table operations solely to the Greenplum coordinator segment.
 
-EXECUTE 'command' [ON ...]`**
+**`EXECUTE 'command' [ON ...]`**
 
 Allowed for readable external web tables or writable external tables only. For readable external web tables, specifies the OS command to be run by the segment instances. The command can be a single OS command or a script. The `ON` clause is used to specify which segment instances will run the given command.
 
@@ -211,13 +211,13 @@ Allowed for readable external web tables or writable external tables only. For r
 
 For writable external tables, the command specified in the `EXECUTE` clause must be prepared to have data piped into it. Since all segments that have data to send will write their output to the specified command or program, the only available option for the `ON` clause is `ON ALL`.
 
-FORMAT 'TEXT | CSV' (options)`**
+**`FORMAT 'TEXT | CSV' (options)`**
 
 When the `FORMAT` clause identfies delimited text (`TEXT`) or comma separated values (`CSV`) format, formatting options are similar to those available with the PostgreSQL [COPY](/docs/sql-statements/sql-stmt-copy.md) command. If the data in the file does not use the default column delimiter, escape character, null string and so on, you must specify the additional formatting options so that the data in the external file is read correctly by Cloudberry Database. For information about using a custom format, see Loading and Unloading Data in the *Cloudberry Database Administrator Guide*.
 
 If you use the `pxf` protocol to access an external data source, refer to Accessing External Data with PXF for information about using PXF.
 
-FORMAT 'CUSTOM' (formatter=formatter_specification)`**
+**`FORMAT 'CUSTOM' (formatter=formatter_specification)`**
 
 Specifies a custom data format. The formatter_specification specifies the function to use to format the data, followed by comma-separated parameters to the formatter function. The length of the formatter specification, the string including `Formatter=`, can be up to approximately 50K bytes.
 
@@ -261,27 +261,27 @@ The `pxf` protocol does not support the `HEADER` formatting option.
 
 Specifies the quotation character for `CSV` mode. The default is double-quote (`"`).
 
-FORCE NOT NULL`**
+**`FORCE NOT NULL`**
 
 In `CSV` mode, processes each specified column as though it were quoted and hence not a `NULL` value. For the default null string in `CSV` mode (nothing between two delimiters), this causes missing values to be evaluated as zero-length strings.
 
-FORCE QUOTE`**
+**`FORCE QUOTE`**
 
 In `CSV` mode for writable external tables, forces quoting to be used for all non-`NULL` values in each specified column. If `*` is specified then non-`NULL` values will be quoted in all columns. `NULL` output is never quoted.
 
-FILL MISSING FIELDS`**
+**`FILL MISSING FIELDS`**
 
 In both `TEXT` and `CSV` mode for readable external tables, specifying `FILL MISSING FIELDS` will set missing trailing field values to `NULL` (instead of reporting an error) when a row of data has missing data fields at the end of a line or row. Blank rows, fields with a `NOT NULL` constraint, and trailing delimiters on a line will still report an error.
 
-OPTIONS key 'value'[, key' value' ...]`**
+**`OPTIONS key 'value'[, key' value' ...]`**
 
 Optional. Specifies parameters and values as key-value pairs that are set to a custom data access protocol when the protocol is used as a external table protocol for an external table. It is the responsibility of the custom data access protocol to process and validate the key-value pairs.
 
-ENCODING 'encoding'`**
+**`ENCODING 'encoding'`**
 
 Character set encoding to use for the external table. Specify a string constant (such as `'SQL_ASCII'`), an integer encoding number, or `DEFAULT` to use the default server encoding. See Character Set Support.
 
-LOG ERRORS [PERSISTENTLY]`**
+**`LOG ERRORS [PERSISTENTLY]`**
 
 This is an optional clause that can precede a `SEGMENT REJECT LIMIT` clause to log information about rows with formatting errors. The error log data is stored internally. If error log data exists for a specified external table, new data is appended to existing error log data. The error log data is not replicated to mirror segments.
 
@@ -293,7 +293,7 @@ If you use the `PERSISTENTLY` keyword, you must install the functions that manag
 
 See [Notes](#section8) for information about the error log information and built-in functions for viewing and managing error log information.
 
-SEGMENT REJECT LIMIT count [ROWS | PERCENT]`**
+**`SEGMENT REJECT LIMIT count [ROWS | PERCENT]`**
 
 Runs a `COPY FROM` operation in single row error isolation mode. If the input rows have format errors they will be discarded provided that the reject limit count is not reached on any Greenplum segment instance during the load operation. The reject limit count can be specified as number of rows (the default) or percentage of total rows (1-100). If `PERCENT` is used, each segment starts calculating the bad row percentage only after the number of rows specified by the parameter `gp_reject_percent_threshold` has been processed. The default for `gp_reject_percent_threshold` is 300 rows. Constraint errors such as violation of a `NOT NULL`, `CHECK`, or `UNIQUE` constraint will still be handled in "all-or-nothing" input mode. If the limit is not reached, all good rows will be loaded and any error rows discarded.
 
@@ -301,8 +301,8 @@ Runs a `COPY FROM` operation in single row error isolation mode. If the input ro
 
 You can change the limit for the number of initial rejected rows with the Cloudberry Database server configuration parameter `gp_initial_bad_row_limit`.
 
-DISTRIBUTED BY ({column [opclass]}, [ ... ] )`**
-DISTRIBUTED RANDOMLY`**
+**`DISTRIBUTED BY ({column [opclass]}, [ ... ] )`**
+**`DISTRIBUTED RANDOMLY`**
 
 Used to declare the Cloudberry Database distribution policy for a writable external table. By default, writable external tables are distributed randomly. If the source table you are exporting data from has a hash distribution policy, defining the same distribution key column(s) and operator class(es), `oplcass`, for the writable external table will improve unload performance by eliminating the need to move rows over the interconnect. When you issue an unload command such as `INSERT INTO wex_table SELECT * FROM source_table`, the rows that are unloaded can be sent directly from the segments to the output location if the two tables have the same hash distribution policy.
 

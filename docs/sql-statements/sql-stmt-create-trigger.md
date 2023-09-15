@@ -25,7 +25,7 @@ CREATE TRIGGER <name> {BEFORE | AFTER} {<event> [OR ...]}
 
 The name to give the new trigger. This must be distinct from the name of any other trigger for the same table.
 
-BEFORE AFTER`**
+**`BEFORE AFTER`**
 
 Determines whether the function is called before or after the event. If the trigger fires before the event, the trigger may skip the operation for the current row, or change the row being inserted (for `INSERT` and `UPDATE` operations only). If the trigger fires after the event, all changes, including the last insertion, update, or deletion, are visible to the trigger.
 
@@ -37,8 +37,8 @@ Specifies the event that will fire the trigger (`INSERT`, `UPDATE`, or `DELETE`)
 
 The name (optionally schema-qualified) of the table the trigger is for.
 
-FOR EACH ROW`**
-FOR EACH STATEMENT`**
+**`FOR EACH ROW`**
+**`FOR EACH STATEMENT`**
 
 This specifies whether the trigger procedure should be fired once for every row affected by the trigger event, or just once per SQL statement. If neither is specified, `FOR EACH STATEMENT` is the default. A trigger that is marked `FOR EACH ROW` is called once for every row that the operation modifies. In contrast, a trigger that is marked `FOR EACH STATEMENT` only runs once for any given operation, regardless of how many rows it modifies.
 

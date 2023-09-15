@@ -18,7 +18,7 @@ DROP EXTERNAL [WEB] TABLE [IF EXISTS] <name> [CASCADE | RESTRICT]
 
 Optional keyword for dropping external web tables.
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the external table does not exist. Cloudberry Database issues a notice in this case.
 

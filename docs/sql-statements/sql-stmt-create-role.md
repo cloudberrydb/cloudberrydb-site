@@ -50,56 +50,56 @@ Note that roles are defined at the system-level and are valid for all databases 
 
 The name of the new role.
 
-SUPERUSER`**
+**`SUPERUSER`**
 **`NOSUPERUSER`**
 
 These clauses determine whether the new role is a "superuser". If `SUPERUSER` is specified, the role being defined will be a superuser, who can override all access restrictions within the database. Superuser status is dangerous and should be used only when really needed. You must yourself be a superuser to create a new superuser. `NOSUPERUSER` is the default.
 
-CREATEDB`**
+**`CREATEDB`**
 **`NOCREATEDB`**
 
 These clauses define a role's ability to create databases. If `CREATEDB` is specified, the role being defined will be allowed to create new databases. Specifying `NOCREATEDB` (the default) will deny a role the ability to create databases.
 
-CREATEROLE`**
+**`CREATEROLE`**
 **`NOCREATEROLE`**
 
 These clauses determine whether a role will be permitted to create new roles (that is, execute `CREATE ROLE`). If `CREATEROLE` is specified, the role being defined will be allowed to create new roles, alter other roles, and drop other roles. `NOCREATEROLE` (the default) will deny a role the ability to create roles or modify roles other than their own.
 
-CREATEEXTTABLE`**
+**`CREATEEXTTABLE`**
 **`NOCREATEEXTTABLE`**
 
 If `CREATEEXTTABLE` is specified, the role being defined is allowed to create external tables. The default `type` is `readable` and the default `protocol` is `gpfdist`, if not specified. Valid types are `gpfdist`, `gpfdists`, `http`, and `https`. `NOCREATEEXTTABLE` (the default type) denies the role the ability to create external tables. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.
 
 Use the `GRANT...ON PROTOCOL` command to allow users to create and use external tables with a custom protocol type, including the `s3` and `pxf` protocols included with Cloudberry Database.
 
-INHERIT`**
+**`INHERIT`**
 **`NOINHERIT`**
 
 These clauses determine whether a role "inherits" the privileges of roles it is a member of. If specified, `INHERIT` (the default) allows the role to use whatever database privileges have been granted to all roles it is directly or indirectly a member of. With `NOINHERIT`, membership in another role only grants the ability to `SET ROLE` to that other role; the privileges of the other role are only available after having done so.
 
-LOGIN`**
+**`LOGIN`**
 **`NOLOGIN`**
 
 These clauses determine whether a role is allowed to log in; that is, whether the role can be given as the initial session authorization name during client connection. If specified, `LOGIN` allows a role to log in to a database. A role having the `LOGIN` attribute can be thought of as a user. Roles with `NOLOGIN` are useful for managing database privileges, but are not users in the usual sense of the word. If not specified, `NOLOGIN` is the default, except when `CREATE ROLE` is invoked through its alternative spelling [CREATE USER](/docs/sql-statements/sql-stmt-create-user.md).
 
-REPLICATION`**
+**`REPLICATION`**
 **`NOREPLICATION`**
 
 These clauses determine whether a role is a replication role. A role must have this attribute (or be a superuser) in order to be able to connect to the server in replication mode (physical or logical replication) and in order to be able to create or drop replication slots. A role having the `REPLICATION` attribute is a very highly privileged role, and should only be used on roles actually used for replication. If not specified, `NOREPLICATION` is the default. You must be a superuser to create a new role having the `REPLICATION` attribute.
 
-BYPASSRLS`**
+**`BYPASSRLS`**
 **`NOBYPASSRLS`**
 
 These clauses determine whether a role bypasses every row-level security (RLS) policy. `NOBYPASSRLS` is the default. You must be a superuser to create a new role having the `BYPASSRLS` attribute.
 
 Note that `pg_dump` will set row_security to `OFF` by default, to ensure all contents of a table are dumped out. If the user running `pg_dump` does not have appropriate permissions, an error will be returned. However, superusers and the owner of the table being dumped always bypass RLS.
 
-CONNECTION LIMIT connlimit`**
+**`CONNECTION LIMIT connlimit`**
 
 If role can log in, this specifies how many concurrent connections the role can make. The default of `-1` means there is no limit. Note that only normal connections are counted towards this limit. Neither prepared transactions nor background worker connections are counted towards this limit.
 
-[ ENCRYPTED ] PASSWORD 'password'`**
-PASSWORD NULL`**
+**`[ ENCRYPTED ] PASSWORD 'password'`**
+**`PASSWORD NULL`**
 
 Sets the role's password. (A password is only of use for roles having the `LOGIN` attribute, but you can nonetheless define one for roles without it.) If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.
 
@@ -107,35 +107,35 @@ Sets the role's password. (A password is only of use for roles having the `LOGIN
 
 The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption` (since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format). This allows reloading of encrypted passwords during dump/restore.
 
-VALID UNTIL 'timestamp'`**
+**`VALID UNTIL 'timestamp'`**
 
 The VALID UNTIL clause sets a date and time after which the role's password is no longer valid. If this clause is omitted the password will never expire.
 
-IN ROLE role_name`**
+**`IN ROLE role_name`**
 
 Adds the new role as a member of the named roles. (Note that there is no option to add the new role as an administrator; use a separate `GRANT` command to do that.)
 
-IN GROUP role_name`**
+**`IN GROUP role_name`**
 
 `IN GROUP` is an obsolete spelling of `IN ROLE`.
 
-ROLE role_name`**
+**`ROLE role_name`**
 
 Adds the named roles as members of this role. (This in effect makes the new role a "group".)
 
-ADMIN rolename`**
+**`ADMIN rolename`**
 
 The `ADMIN` clause is like `ROLE`, but the named roles are added to the new role `WITH ADMIN OPTION`, giving them the right to grant membership in this role to others.
 
-USER role_name`**
+**`USER role_name`**
 
 The `USER` clause is an obsolete spelling of the `ROLE` clause.
 
-SYSID uid`**
+**`SYSID uid`**
 
 The `SYSID` clause is ignored, but is accepted for backwards compatibility.
 
-RESOURCE GROUP group_name`**
+**`RESOURCE GROUP group_name`**
 
 The name of the resource group to assign to the new role. The role will be subject to the concurrent transaction, memory, and CPU limits configured for the resource group. You can assign a single resource group to one or more roles.
 
@@ -147,14 +147,14 @@ You can assign the `default_group` resource group to any role.
 
 You cannot assign a resource group that you create for an external component to a role.
 
-RESOURCE QUEUE queue_name`**
+**`RESOURCE QUEUE queue_name`**
 
 The name of the resource queue to which the new user-level role is to be assigned. Only roles with `LOGIN` privilege can be assigned to a resource queue. The special keyword `NONE` means that the role is assigned to the default resource queue. A role can only belong to one resource queue.
 
 Roles with the `SUPERUSER` attribute are exempt from resource queue limits. For a superuser role, queries always run immediately regardless of limits imposed by an assigned resource queue.
 
-DENY deny_point`**
-DENY BETWEEN deny_point AND deny_point`**
+**`DENY deny_point`**
+**`DENY BETWEEN deny_point AND deny_point`**
 
 The `DENY` and `DENY BETWEEN` keywords set time-based constraints that are enforced at login. `DENY` sets a day or a day and time to deny access. `DENY BETWEEN` sets an interval during which access is denied. Both use the parameter deny_point that has the following format:
 

@@ -31,13 +31,13 @@ The name of a tablespace to be created. The name cannot begin with `pg_` or `gp_
 
 The name of the user who will own the tablespace. If omitted, defaults to the user running the command. Only superusers can create tablespaces, but they can assign ownership of tablespaces to non-superusers.
 
-LOCATION 'directory'`**
+**`LOCATION 'directory'`**
 
 The directory that will be used for the tablespace. The directory should be empty and must be owned by the Cloudberry Database system user. You must specify the absolute path of the directory, and the path name must not be greater than 100 characters in length. (The location is used to create a symlink target in the pg_tblspc directory, and symlink targets are truncated to 100 characters when sending to `tar` from utilities such as `pg_basebackup`.)
 
 You can specify a different tablespace directory for any Cloudberry Database segment instance in the `WITH` clause.
 
-contentID_i='directory_i'`**
+**`contentID_i='directory_i'`**
 
 The value ID_i is the content ID for the segment instance. directory_i is the absolute path to the host system file location that the segment instance uses as the root directory for the tablespace. You cannot specify the content ID of the coordinator instance (`-1`). You can specify the same directory for multiple segments.
 

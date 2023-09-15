@@ -45,70 +45,70 @@ where <action> is one of:
 
 `ALTER FOREIGN TABLE` changes the definition of an existing foreign table. There are several subforms of the command:
 
-ADD COLUMN`**
+**`ADD COLUMN`**
 
 This form adds a new column to the foreign table, using the same syntax as [CREATE FOREIGN TABLE](/docs/sql-statements/sql-stmt-create-foreign-table.md). Unlike the case when you add a column to a regular table, nothing happens to the underlying storage: this action simply declares that some new column is now accessible through the foreign table.
 
-DROP COLUMN [ IF EXISTS ]`**
+**`DROP COLUMN [ IF EXISTS ]`**
 
 This form drops a column from a foreign table. You must specify `CASCADE` if any objects outside of the table depend on the column; for example, views. If you specify `IF EXISTS` and the column does not exist, no error is thrown. In this case, Cloudberry Database issues a notice instead.
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 If you specify `IF EXISTS` and the foreign table does not exist, no error is thrown. Cloudberry Database issues a notice instead.
 
-SET DATA TYPE`**
+**`SET DATA TYPE`**
 
 This form changes the type of a column of a foreign table. Again, this has no effect on any underlying storage: this action simply changes the type that Cloudberry Database believes the column to have.
 
-SET/DROP DEFAULT`**
+**`SET/DROP DEFAULT`**
 
 These forms set or remove the default value for a column. Default values apply only in subsequent `INSERT` or `UPDATE` commands; they do not cause rows already in the table to change.
 
-SET/DROP NOT NULL`**
+**`SET/DROP NOT NULL`**
 
 Mark a column as allowing, or not allowing, null values.
 
-SET STATISTICS`**
+**`SET STATISTICS`**
 
 This form sets the per-column statistics-gathering target for subsequent `ANALYZE` operations. See the similar form of [ALTER TABLE](/docs/sql-statements/sql-stmt-alter-table.md) for more details.
 
-SET ( attribute_option = value [, ...] ] )`**
-RESET ( attribute_option [, ... ] )`**
+**`SET ( attribute_option = value [, ...] ] )`**
+**`RESET ( attribute_option [, ... ] )`**
 
 This form sets or resets per-attribute options. See the similar form of [ALTER TABLE](/docs/sql-statements/sql-stmt-alter-table.md) for more details.
 
-SET STORAGE`**
+**`SET STORAGE`**
 
 This form sets the storage mode for a column. See the similar form of [ALTER TABLE](/docs/sql-statements/sql-stmt-alter-table.md) for more details. Note that the storage mode has no effect unless the table's foreign-data wrapper chooses to pay attention to it.
 
-ADD table_constraint [ NOT VALID ]`**
+**`ADD table_constraint [ NOT VALID ]`**
 
 This form adds a new constraint to a foreign table, using the same syntax as [CREATE FOREIGN TABLE](/docs/sql-statements/sql-stmt-create-foreign-table.md). Currently only `CHECK` constraints are supported.
 
 Unlike the case when adding a constraint to a regular table, nothing is done to verify the constraint is correct; rather, this action simply declares that some new condition should be assumed to hold for all rows in the foreign table. (See the discussion in [CREATE FOREIGN TABLE](/docs/sql-statements/sql-stmt-create-foreign-table.md).) If the constraint is marked `NOT VALID`, then it isn't assumed to hold, but is only recorded for possible future use.
 
-VALIDATE CONSTRAINT`**
+**`VALIDATE CONSTRAINT`**
 
 This form marks as valid a constraint that was previously marked as `NOT VALID`. No action is taken to verify the constraint, but future queries will assume that it holds.
 
-DROP CONSTRAINT [ IF EXISTS ]`**
+**`DROP CONSTRAINT [ IF EXISTS ]`**
 
 This form drops the specified constraint on a foreign table. If `IF EXISTS` is specified and the constraint does not exist, no error is thrown. In this case a notice is issued instead.
 
-DISABLE/ENABLE [ REPLICA | ALWAYS ] TRIGGER`**
+**`DISABLE/ENABLE [ REPLICA | ALWAYS ] TRIGGER`**
 
 These forms configure the firing of trigger(s) belonging to the foreign table. See the similar form of [ALTER TABLE](/docs/sql-statements/sql-stmt-alter-table.md) for more details.
 
-SET WITHOUT OIDS`**
+**`SET WITHOUT OIDS`**
 
 Backward compatibility syntax for removing the oid system column. As oid system columns cannot be added anymore, this never has an effect.
 
-INHERIT parent_table`**
+**`INHERIT parent_table`**
 
 This form adds the target foreign table as a new child of the specified parent table. See the similar form of [ALTER TABLE](/docs/sql-statements/sql-stmt-alter-table.md) for more details.
 
-NO INHERIT parent_table`**
+**`NO INHERIT parent_table`**
 
 This form removes the target foreign table from the list of children of the specified parent table.
 
@@ -120,11 +120,11 @@ This form changes the owner of the foreign table to the specified user.
 
 The `RENAME` forms change the name of a foreign table or the name of an individual column in a foreign table.
 
-SET SCHEMA`**
+**`SET SCHEMA`**
 
 This form moves the foreign table into another schema.
 
-OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )`**
+**`OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )`**
 
 Change options for the foreign table. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique (although it's OK for a table option and a column option to have the same name). Cloudberry Database also validates names and values using the server's foreign-data wrapper.
 

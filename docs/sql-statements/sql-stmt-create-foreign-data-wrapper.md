@@ -25,13 +25,13 @@ Only superusers can create foreign-data wrappers.
 
 The name of the foreign-data wrapper to create. The name must be unique within the database.
 
-HANDLER handler_function`**
+**`HANDLER handler_function`**
 
 The name of a previously registered function that Cloudberry Database calls to retrieve the execution functions for foreign tables. hander_function must take no arguments, and its return type must be `fdw_handler`.
 
 It is possible to create a foreign-data wrapper with no handler function, but you can only declare, not access, foreign tables using such a wrapper.
 
-VALIDATOR validator_function`**
+**`VALIDATOR validator_function`**
 
 The name of a previously registered function that Cloudberry Database calls to check the generic options provided to the foreign-data wrapper. This function also checks the options for foreign servers, user mappings, and foreign tables that use the foreign-data wrapper. If no validator function or `NO VALIDATOR` is specified, Cloudberry Database does not check options at creation time. (Depending upon the implementation, foreign-data wrappers may ignore or reject invalid options at runtime.)
 
@@ -39,11 +39,11 @@ validator_function must take two arguments: one of type `text[]`, which contains
 
 The return type is ignored; validator_function should report invalid options using the `ereport(ERROR)` function.
 
-OPTIONS ( option 'value' [, ... ] )`**
+**`OPTIONS ( option 'value' [, ... ] )`**
 
 The options for the new foreign-data wrapper. Option names must be unique. The option names and values are foreign-data wrapper-specific and are validated using the foreign-data wrappers' validator_function.
 
-mpp_execute { 'coordinator' | 'any' | 'all segments' }`**
+**`mpp_execute { 'coordinator' | 'any' | 'all segments' }`**
 
 A Cloudberry Database-specific option that identifies the host from which the foreign-data wrapper reads or writes data:
 

@@ -124,7 +124,7 @@ The data type of an output column in the `RETURNS TABLE` syntax.
 
 The name of the language that the function is implemented in. May be `SQL`, `C`, `internal`, or the name of a user-defined procedural language, e.g. `plpgsql`. Enclosing the name in single quotes is deprecated and requires matching case.
 
-TRANSFORM { FOR TYPE type_name } [, ... ] }`**
+**`TRANSFORM { FOR TYPE type_name } [, ... ] }`**
 
 Lists which transforms a call to the function should apply. Transforms convert between SQL types and language-specific data types. Procedural language implementations usually have hardcoded knowledge of the built-in types, so those don't need to be listed here. If a procedural language implementation does not know how to handle a type and no transform is supplied, it will fall back to a default behavior for converting data types, but this depends on the implementation.
 
@@ -132,8 +132,8 @@ Lists which transforms a call to the function should apply. Transforms convert b
 
 `WINDOW` indicates that the function is a window function rather than a plain function. This is currently only useful for functions written in C. The `WINDOW` attribute cannot be changed when replacing an existing function definition.
 
-IMMUTABLE`**
-STABLE`**
+**`IMMUTABLE`**
+**`STABLE`**
 **`VOLATILE`**
 
 These attributes inform the query optimizer about the behavior of the function. At most one choice may be specified. If none of these appear, `VOLATILE` is the default assumption. Since Cloudberry Database currently has limited use of `VOLATILE` functions, if a function is truly `IMMUTABLE`, you must declare it as so to be able to use it without restrictions.
@@ -148,16 +148,16 @@ These attributes inform the query optimizer about the behavior of the function. 
 
 `LEAKPROOF` indicates that the function has no side effects. It reveals no information about its arguments other than by its return value. For example, a function that throws an error message for some argument values but not others, or that includes the argument values in any error message, is not leakproof. This affects how the system executes queries against views created with the `security_barrier` option or tables with row level security enabled. The system will enforce conditions from security policies and security barrier views before any user-supplied conditions from the query itself that contain non-leakproof functions, in order to prevent the inadvertent exposure of data. Functions and operators marked as leakproof are assumed to be trustworthy, and may be executed before conditions from security policies and security barrier views. In addition, functions which do not take arguments or which are not passed any arguments from the security barrier view or table do not have to be marked as leakproof to be executed before security conditions. See [CREATE VIEW](/docs/sql-statements/sql-stmt-create-view.md). This option can only be set by the superuser.
 
-CALLED ON NULL INPUT`**
-RETURNS NULL ON NULL INPUT`**
+**`CALLED ON NULL INPUT`**
+**`RETURNS NULL ON NULL INPUT`**
 **`STRICT`**
 
 `CALLED ON NULL INPUT` (the default) indicates that the function will be called normally when some of its arguments are null. It is then the function author's responsibility to check for null values if necessary and respond appropriately.
 
 `RETURNS NULL ON NULL INPUT` or `STRICT` indicates that the function always returns null whenever any of its arguments are null. If this parameter is specified, the function is not run when there are null arguments; instead a null result is assumed automatically.
 
-[EXTERNAL] SECURITY INVOKER`**
-[EXTERNAL] SECURITY DEFINER`**
+**`[EXTERNAL] SECURITY INVOKER`**
+**`[EXTERNAL] SECURITY DEFINER`**
 
 `SECURITY INVOKER` (the default) indicates that the function is to be run with the privileges of the user that calls it.
 
@@ -165,10 +165,10 @@ RETURNS NULL ON NULL INPUT`**
 
 The key word `EXTERNAL` is allowed for SQL conformance, but it is optional since, unlike in SQL, this feature applies to all functions not just external ones.
 
-EXECUTE ON ANY`**
-EXECUTE ON COORDINATOR`**
-EXECUTE ON ALL SEGMENTS`**
-EXECUTE ON INITPLAN`**
+**`EXECUTE ON ANY`**
+**`EXECUTE ON COORDINATOR`**
+**`EXECUTE ON ALL SEGMENTS`**
+**`EXECUTE ON INITPLAN`**
 
 The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
 
@@ -205,19 +205,19 @@ For information about using `EXECUTE ON` attributes, see [Notes](#section6).
 
 Functions should be labeled parallel unsafe if they modify any database state, or if they make changes to the transaction such as using sub-transactions, or if they access sequences or attempt to make persistent changes to settings (e.g., `setval()`). They should be labeled as parallel restricted if they access temporary tables, client connection state, cursors, prepared statements, or miscellaneous backend-local state which the system cannot synchronize in parallel mode (e.g., `setseed()` cannot be executed other than by the group leader because a change made by another process would not be reflected in the leader). In general, if a function is labeled as being safe when it is restricted or unsafe, or if it is labeled as being restricted when it is in fact unsafe, it may throw errors or produce wrong answers when used in a parallel query. C-language functions could in theory exhibit totally undefined behavior if mislabeled, since there is no way for the system to protect itself against arbitrary C code, but in most likely cases the result will be no worse than for any other function. If in doubt, functions should be labeled as `UNSAFE`, which is the default.
 
-COST execution_cost`**
+**`COST execution_cost`**
 
 A positive number identifying the estimated execution cost for the function, in units of [cpu_operator_cost](https://www.postgresql.org/docs/12/runtime-config-query.html). If the function returns a set, execution_cost identifies the cost per returned row. If the cost is not specified, C-language and internal functions default to 1 unit, while functions in other languages default to 100 units. Larger values cause the planner to try to avoid evaluating the function more often than necessary.
 
-ROWS result_rows`**
+**`ROWS result_rows`**
 
 A positive number giving the estimated number of rows that the planner should expect the function to return. This is only allowed when the function is declared to return a set. The default assumption is 1000 rows.
 
-SUPPORT support_function`**
+**`SUPPORT support_function`**
 
 The name (optionally schema-qualified) of a planner support function to use for this function. You must be superuser to use this option.
 
-configuration_parameter`**
+**`configuration_parameter`**
 **`value`**
 
 The `SET` clause applies a value to a session configuration parameter when the function is entered. The configuration parameter is restored to its prior value when the function exits. `SET FROM CURRENT` saves the value of the parameter that is current when `CREATE FUNCTION` is run as the value to be applied when the function is entered.
@@ -233,7 +233,7 @@ A string constant defining the function; the meaning depends on the language. It
 It is often helpful to use dollar quoting (refer to [Dollar-Quoted String Constants
 ](https://www.postgresql.org/docs/12/sql-syntax-lexical.html#SQL-SYNTAX-DOLLAR-QUOTING) in the PostgreSQL documentation) to write the function definition string, rather than the normal single quote syntax. Without dollar quoting, any single quotes or backslashes in the function definition must be escaped by doubling them.
 
-obj_file, link_symbol`**
+**`obj_file, link_symbol`**
 
 This form of the `AS` clause is used for dynamically loadable C language functions when the function name in the C language source code is not the same as the name of the SQL function. The string obj_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](/docs/sql-statements/sql-stmt-load.md) command. The string link_symbol is the name of the function in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL function being defined. The C names of all functions must be different, so you must give overloaded SQL functions different C names (for example, use the argument types as part of the C names).
 

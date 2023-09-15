@@ -24,7 +24,7 @@ Releases all cached query plans, forcing re-planning to occur the next time the 
 
 Discards all cached sequence-related state, including any preallocated sequence values that have not yet been returned by `nextval()`. (See [CREATE SEQUENCE](/docs/sql-statements/sql-stmt-create-sequence.md) for a description of preallocated sequence values.)
 
-TEMPORARY/TEMP`**
+**`TEMPORARY/TEMP`**
 
 Drops all temporary tables created in the current session.
 

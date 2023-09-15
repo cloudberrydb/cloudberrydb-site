@@ -172,7 +172,7 @@ For ordered-set (including hypothetical-set) aggregates, the final function rece
 
 If `FINALFUNC_EXTRA` is specified, then in addition to the final state value and any direct arguments, the final function receives extra NULL values corresponding to the aggregate's regular (aggregated) arguments. This is mainly useful to allow correct resolution of the aggregate result type when a polymorphic aggregate is being defined.
 
-FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }`**
+**`FINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }`**
 
 This option specifies whether the final function is a pure function that does not modify its arguments. `READ_ONLY` indicates it does not; the other two values indicate that it may change the transition state value. See [Notes](#section6) below for more detail. The default is `READ_ONLY`, except for ordered-set aggregates, for which the default is `READ_WRITE`.
 
@@ -220,7 +220,7 @@ The approximate average size (in bytes) of the aggregate's state value, when usi
 
 The name of the final function called to compute the aggregate's result after all input rows have been traversed, when using moving-aggregate mode. This works the same as ffunc, except that its first argument's type is mstate_data_type and extra dummy arguments are specified by writing `MFINALFUNC_EXTRA`. The aggregate result type determined by mffunc or mstate_data_type must match that determined by the aggregate's regular implementation.
 
-MFINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }`**
+**`MFINALFUNC_MODIFY = { READ_ONLY | SHAREABLE | READ_WRITE }`**
 
 This option is like `FINALFUNC_MODIFY`, but it describes the behavior of the moving-aggregate final function.
 
@@ -232,11 +232,11 @@ The initial setting for the state value, when using moving-aggregate mode. This 
 
 The associated sort operator for a `min()`- or `max()`-like aggregate. This is just an operator name (possibly schema-qualified). The operator is assumed to have the same input data types as the aggregate (which must be a single-argument normal aggregate).
 
-PARALLEL = { SAFE | RESTRICTED | UNSAFE }`**
+**`PARALLEL = { SAFE | RESTRICTED | UNSAFE }`**
 
 The meanings of `PARALLEL SAFE`, `PARALLEL RESTRICTED`, and `PARALLEL UNSAFE` are the same as in [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md). An aggregate will not be considered for parallelization if it is marked `PARALLEL UNSAFE` (which is the default!) or `PARALLEL RESTRICTED`. Note that the parallel-safety markings of the aggregate's support functions are not consulted by the planner, only the marking of the aggregate itself.
 
-REPSAFE = boolean`**
+**`REPSAFE = boolean`**
 
 Specifies whether or not the aggregate can be safely executed on replicated slices. An order-agnostic aggregate would be considered safe in this context. The default value is `false`.
 

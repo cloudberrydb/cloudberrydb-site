@@ -62,12 +62,12 @@ An expression to be used as the default value if the parameter is not specified.
 
 The name of the language that the procedure is implemented in. May be `SQL`, `C`, `internal`, or the name of a user-defined procedural language, e.g. `plpgsql`. Enclosing the name in single quotes is deprecated and requires matching case.
 
-TRANSFORM { FOR TYPE type_name } [, ... ] }`**
+**`TRANSFORM { FOR TYPE type_name } [, ... ] }`**
 
 Lists which transforms a call to the procedure should apply. Transforms convert between SQL types and language-specific data types. Procedural language implementations usually have hardcoded knowledge of the built-in types, so those don't need to be listed here. If a procedural language implementation does not know how to handle a type and no transform is supplied, it will fall back to a default behavior for converting data types, but this depends on the implementation.
 
-[EXTERNAL] SECURITY INVOKER`**
-[EXTERNAL] SECURITY DEFINER`**
+**`[EXTERNAL] SECURITY INVOKER`**
+**`[EXTERNAL] SECURITY DEFINER`**
 
 `SECURITY INVOKER` (the default) indicates that the procedure is to be run with the privileges of the user that calls it.
 
@@ -77,7 +77,7 @@ The key word `EXTERNAL` is allowed for SQL conformance, but it is optional since
 
 A `SECURITY DEFINER` procedure cannot execute transaction control statements (for example, `COMMIT` and `ROLLBACK`, depending on the language).
 
-configuration_parameter`**
+**`configuration_parameter`**
 **`value`**
 
 The `SET` clause applies a value to a session configuration parameter when the procedure is entered. The configuration parameter is restored to its prior value when the procedure exits. `SET FROM CURRENT` saves the value of the parameter that is current when `CREATE PROCEDURE` is run as the value to be applied when the procedure is entered.
@@ -95,7 +95,7 @@ A string constant defining the procedure; the meaning depends on the language. I
 It is often helpful to use dollar quoting (refer to [Dollar-Quoted String Constants
 ](https://www.postgresql.org/docs/12/sql-syntax-lexical.html#SQL-SYNTAX-DOLLAR-QUOTING) in the PostgreSQL documentation) to write the procedure definition string, rather than the normal single quote syntax. Without dollar quoting, any single quotes or backslashes in the procedure definition must be escaped by doubling them.
 
-obj_file, link_symbol`**
+**`obj_file, link_symbol`**
 
 This form of the `AS` clause is used for dynamically loadable C language procedures when the procedure name in the C language source code is not the same as the name of the SQL procedure. The string obj_file is the name of the file containing the dynamically loadable object, and is interpreted as for the [LOAD](/docs/sql-statements/sql-stmt-load.md) command. The string link_symbol is the name of the procedure in the C language source code. If the link symbol is omitted, it is assumed to be the same as the name of the SQL procedure being defined.
 

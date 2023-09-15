@@ -56,11 +56,11 @@ Fetch the next row. This is the default if direction is omitted.
 
 Fetch the first row of the query (same as `ABSOLUTE 1`). Only allowed if it is the first `FETCH` operation using this cursor.
 
-ABSOLUTE count`**
+**`ABSOLUTE count`**
 
 Fetch the specified row of the query. Position after last row if count is out of range. Only allowed if the row specified by count moves the cursor position forward.
 
-RELATIVE count`**
+**`RELATIVE count`**
 
 Fetch the specified row of the query count rows ahead of the current cursor position. `RELATIVE 0` re-fetches the current row, if any. Only allowed if count moves the cursor position forward.
 
@@ -76,11 +76,11 @@ Fetch all remaining rows (same as `FORWARD ALL`).
 
 Fetch the next row (same as `NEXT`).
 
-FORWARD count`**
+**`FORWARD count`**
 
 Fetch the next count number of rows. `FORWARD 0` re-fetches the current row.
 
-FORWARD ALL`**
+**`FORWARD ALL`**
 
 Fetch all remaining rows.
 

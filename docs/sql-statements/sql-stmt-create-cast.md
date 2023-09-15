@@ -72,7 +72,7 @@ The name of the source data type of the cast.
 
 The name of the target data type of the cast.
 
-funcname(argtype [, ...])`**
+**`funcname(argtype [, ...])`**
 
 The function used to perform the cast. The function name may be schema-qualified. If it is not, Cloudberry Database looks for the function in the schema search path. The function's result data type must match the target type of the cast.
 
@@ -86,19 +86,19 @@ When a cast has different source and target types and a function that takes more
 
 A cast to or from a domain type currently has no effect. Casting to or from a domain uses the casts associated with its underlying type.
 
-WITHOUT FUNCTION`**
+**`WITHOUT FUNCTION`**
 
 Indicates that the source type is binary-coercible to the target type, so no function is required to perform the cast.
 
-WITH INOUT`**
+**`WITH INOUT`**
 
 Indicates that the cast is an I/O conversion cast, performed by invoking the output function of the source data type, and passing the resulting string to the input function of the target data type.
 
-AS ASSIGNMENT`**
+**`AS ASSIGNMENT`**
 
 Indicates that the cast may be invoked implicitly in assignment contexts.
 
-AS IMPLICIT`**
+**`AS IMPLICIT`**
 
 Indicates that the cast may be invoked implicitly in any context.
 

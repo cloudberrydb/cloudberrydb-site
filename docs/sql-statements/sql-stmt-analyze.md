@@ -31,7 +31,7 @@ For partitioned tables, `ANALYZE` collects additional statistics, HyperLogLog (H
 
 ## Parameters
 
-{ root_partition_table_name | leaf_partition_table_name } [ (column [, ...] ) ]`**
+**`{ root_partition_table_name | leaf_partition_table_name } [ (column [, ...] ) ]`**
 
 Collect statistics for partitioned tables including HLL statistics. HLL statistics are collected only on leaf partitions.
 
@@ -41,7 +41,7 @@ Collect statistics for partitioned tables including HLL statistics. HLL statisti
 
 By default, if you specify a leaf partition, and all other leaf partitions have statistics, `ANALYZE` updates the root partition statistics. If not all leaf partitions have statistics, `ANALYZE` logs information about the leaf partitions that do not have statistics. For information about when root partition statistics are collected, see [Notes](#section5).
 
-ROOTPARTITION [ALL]`**
+**`ROOTPARTITION [ALL]`**
 
 Collect statistics only on the root partition of partitioned tables based on the data in the partitioned table. If possible, `ANALYZE` uses leaf partition statistics to generate root partition statistics. Otherwise, `ANALYZE` collects the statistics by sampling leaf partition data. Statistics are not collected on the leaf partitions, the data is only sampled. HLL statistics are not collected.
 

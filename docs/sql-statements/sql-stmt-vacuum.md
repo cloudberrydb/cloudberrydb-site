@@ -71,15 +71,15 @@ Specifies that `VACUUM` should attempt to remove index entries pointing to dead 
 
 Runs `VACUUM` against all auxiliary tables of an append-optimized table. It does not run `VACUUM` against the append-optimized table. If run against a non append-optimized table without any child partitions, no action takes place. If run against a heap table with an append-optimized partition, it vacuums the auxiliary tables of this partition.
 
-<ao_table>`**
+**`<ao_table>`**
 
 The name of a table to vacuum its auxiliary tables, ideally an append-optimized table.
 
-<table>`**
+**`<table>`**
 
 The name (optionally schema-qualified) of a specific table to vacuum. Defaults to all tables in the current database.
 
-<column>`**
+**`<column>`**
 
 The name of a specific column to analyze. Defaults to all columns. If a column list is specified, `ANALYZE` is implied.
 

@@ -86,24 +86,24 @@ Alter the current user instead of an explicitly identified role.
 
 Alter the current session user instead of an explicitly identified role.
 
-SUPERUSER`**
-NOSUPERUSER`**
-CREATEDB`**
-NOCREATEDB`**
-CREATEROLE`**
-NOCREATEROLE`**
-INHERIT`**
-NOINHERIT`**
-LOGIN`**
-NOLOGIN`**
-REPLICATION`**
-NOREPLICATION`**
-BYPASSRLS`**
-NOBYPASSRLS`**
-CONNECTION LIMIT connlimit`**
-[ ENCRYPTED ] PASSWORD 'password'`**
-PASSWORD NULL`**
-VALID UNTIL 'timestamp'`**
+**`SUPERUSER`**
+**`NOSUPERUSER`**
+**`CREATEDB`**
+**`NOCREATEDB`**
+**`CREATEROLE`**
+**`NOCREATEROLE`**
+**`INHERIT`**
+**`NOINHERIT`**
+**`LOGIN`**
+**`NOLOGIN`**
+**`REPLICATION`**
+**`NOREPLICATION`**
+**`BYPASSRLS`**
+**`NOBYPASSRLS`**
+**`CONNECTION LIMIT connlimit`**
+**`[ ENCRYPTED ] PASSWORD 'password'`**
+**`PASSWORD NULL`**
+**`VALID UNTIL 'timestamp'`**
 
 These clauses alter attributes originally set by `CREATE ROLE`. For more information, see the [CREATE ROLE](/docs/sql-statements/sql-stmt-create-role.md) reference page.
 
@@ -115,7 +115,7 @@ The new name of the role.
 
 The name of the database in which to set the configuration parameter.
 
-configuration_parameter`**
+**`configuration_parameter`**
 **`value`**
 
 Set this role's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the role-specific parameter setting is removed, so the role will inherit the system-wide default setting in new sessions. Use `RESET ALL` to clear all role-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the role-specific value. If `IN DATABASE` is specified, the configuration parameter is set or removed for the given role and database only.

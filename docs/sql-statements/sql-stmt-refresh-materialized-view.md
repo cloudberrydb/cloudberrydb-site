@@ -31,7 +31,7 @@ Even with this option, only one `REFRESH` at a time may run against any one mate
 
 The name (optionally schema-qualified) of the materialized view to refresh.
 
-WITH [ NO ] DATA`**
+**`WITH [ NO ] DATA`**
 
 `WITH DATA` is the default and specifies that the materialized view query is run to provide new data, and the materialized view is left in a scannable state. If `WITH NO DATA` is specified, no new data is generated and the materialized view is left in an unscannable state.
 

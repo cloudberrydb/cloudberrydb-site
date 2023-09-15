@@ -16,7 +16,7 @@ DROP OPERATOR FAMILY [IF EXISTS] <name> USING <index_method> [CASCADE | RESTRICT
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the operator family does not exist. A notice is issued in this case.
 

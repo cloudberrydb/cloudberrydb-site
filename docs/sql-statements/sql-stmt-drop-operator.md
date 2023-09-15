@@ -15,7 +15,7 @@ DROP OPERATOR [IF EXISTS] <name> ( {<left_type> | NONE} ,
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the operator does not exist. A notice is issued in this case.
 

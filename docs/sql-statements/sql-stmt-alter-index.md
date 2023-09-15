@@ -53,7 +53,7 @@ This form sets the per-column statistics-gathering target for subsequent `ANALYZ
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the index does not exist. Cloudberry Database issues a notice in this case.
 

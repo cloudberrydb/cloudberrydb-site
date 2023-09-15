@@ -19,7 +19,7 @@ WORK
 
 Optional key words. They have no effect.
 
-AND CHAIN`**
+**`AND CHAIN`**
 
 If `AND CHAIN` is specified, a new transaction is immediately started with the same transaction characteristics (see [SET TRANSACTION](/docs/sql-statements/sql-stmt-set-transaction.md)) as the just finished one. Otherwise, no new transaction is started.
 

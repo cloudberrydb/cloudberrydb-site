@@ -14,7 +14,7 @@ DROP CAST [IF EXISTS] (<sourcetype> AS <targettype>) [CASCADE | RESTRICT]
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the cast does not exist. A notice is issued in this case.
 

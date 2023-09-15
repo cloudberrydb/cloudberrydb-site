@@ -217,7 +217,7 @@ For foreign-data wrappers, this privilege enables the grantee to create new serv
 
 For servers, this privilege enables the grantee to create foreign tables using the server, and also to create, alter, or drop their own user's user mappings associated with that server.
 
-ALL PRIVILEGES`**
+**`ALL PRIVILEGES`**
 
 Grant all of the available privileges at once. The `PRIVILEGES` key word is optional in Cloudberry Database, though it is required by strict SQL.
 
@@ -225,11 +225,11 @@ Grant all of the available privileges at once. The `PRIVILEGES` key word is opti
 
 A special group-level role that denotes that the privileges are to be granted to all roles, including those that may be created later.
 
-WITH GRANT OPTION`**
+**`WITH GRANT OPTION`**
 
 The recipient of the privilege may in turn grant it to others.
 
-WITH ADMIN OPTION`**
+**`WITH ADMIN OPTION`**
 
 The member of a role may in turn grant membership in the role to others.
 

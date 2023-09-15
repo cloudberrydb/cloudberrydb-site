@@ -115,7 +115,7 @@ The name of a function or aggregate argument. Note that `ALTER EXTENSION` does n
 
 The data type of a function, procedure, or aggregate argument.
 
-left_type`**
+**`left_type`**
 **`right_type`**
 
 The data types of the operator's arguments (optionally schema-qualified) . Specify `NONE` for the missing argument of a prefix or postfix operator.

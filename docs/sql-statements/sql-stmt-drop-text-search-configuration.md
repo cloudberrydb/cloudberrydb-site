@@ -14,7 +14,7 @@ DROP TEXT SEARCH CONFIGURATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the text search configuration does not exist. Cloudberry Database issues a notice in this case.
 

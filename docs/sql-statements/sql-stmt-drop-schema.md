@@ -16,7 +16,7 @@ A schema can be dropped only by its owner or a superuser. Note that the owner ca
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the schema does not exist. A notice is issued in this case.
 

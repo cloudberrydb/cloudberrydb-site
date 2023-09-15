@@ -14,7 +14,7 @@ DROP COLLATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the collation does not exist. A notice is issued in this case.
 
@@ -22,11 +22,11 @@ Do not throw an error if the collation does not exist. A notice is issued in thi
 
 The name of the collation. The collation name can be schema-qualified.
 
-CASCADE`**
+**`CASCADE`**
 
 Automatically drop objects that depend on the collation, and in turn all objects that depend on those objects.
 
-RESTRICT`**
+**`RESTRICT`**
 
 Refuse to drop the collation if any objects depend on it. This is the default.
 

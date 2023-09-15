@@ -36,7 +36,7 @@ To alter the owner, you must be a direct or indirect member of the new owning ro
 
 The name (optionally schema-qualified) of a sequence to be altered.
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the sequence does not exist. Cloudberry Database issues a notice in this case.
 
@@ -50,13 +50,13 @@ Changing the data type automatically changes the minimum and maximum values of t
 
 The clause `INCREMENT BY increment` is optional. A positive value will make an ascending sequence, a negative one a descending sequence. If unspecified, the old increment value will be maintained.
 
-minvalue`**
-NO MINVALUE`**
+**`minvalue`**
+**`NO MINVALUE`**
 
 The optional clause `MINVALUE minvalue` determines the minimum value a sequence can generate. If `NO MINVALUE` is specified, the defaults of `1` and the minimum value of the data type for ascending and descending sequences, respectively, will be used. If neither option is specified, the current minimum value will be maintained.
 
-maxvalue`**
-NO MAXVALUE`**
+**`maxvalue`**
+**`NO MAXVALUE`**
 
 The optional clause `MAXVALUE maxvalue` determines the maximum value for the sequence. If `NO MAXVALUE` is specified, the defaults of the maximum value of the data type and `-1` for ascending and descending sequences, respectively, will be used. If neither option is specified, the current maximum value will be maintained.
 
@@ -80,12 +80,12 @@ The clause `CACHE cache` enables sequence numbers to be preallocated and stored 
 
 The optional `CYCLE` key word may be used to enable the sequence to wrap around when the `maxvalue` or `minvalue` has been reached by an ascending or descending sequence. If the limit is reached, the next number generated will be the respective `minvalue` or `maxvalue`.
 
-NO CYCLE`**
+**`NO CYCLE`**
 
 If the optional `NO CYCLE` key word is specified, any calls to `nextval()` after the sequence has reached its maximum value will return an error. If neither `CYCLE` or `NO CYCLE` are specified, the old cycle behavior will be maintained.
 
-OWNED BY table_name.column_name`**
-OWNED BY NONE`**
+**`OWNED BY table_name.column_name`**
+**`OWNED BY NONE`**
 
 The `OWNED BY` option causes the sequence to be associated with a specific table column, such that if that column (or its whole table) is dropped, the sequence will be automatically dropped as well. If specified, this association replaces any previously specified association for the sequence. The specified table must have the same owner and be in the same schema as the sequence. Specifying `OWNED BY NONE` removes any existing table column association.
 

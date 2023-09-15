@@ -16,7 +16,7 @@ DROP TEXT SEARCH PARSER [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the text search parser does not exist. Cloudberry Database issues a notice in this case.
 

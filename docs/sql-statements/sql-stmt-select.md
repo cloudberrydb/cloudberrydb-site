@@ -149,7 +149,7 @@ The name (optionally schema-qualified) of an existing table or view. If `ONLY` i
 
 A substitute name for the `FROM` item containing the alias. An alias is used for brevity or to eliminate ambiguity for self-joins (where the same table is scanned multiple times). When you provide an alias, it completely hides the actual name of the table or function; for example given `FROM foo AS f`, the remainder of the `SELECT` must refer to this `FROM` item as `f` not `foo`. If you specify an alias, you can also specify a column alias list to provide substitute names for one or more columns of the table.
 
-TABLESAMPLE sampling_method ( argument [, ...] ) [ REPEATABLE ( seed ) ]`**
+**`TABLESAMPLE sampling_method ( argument [, ...] ) [ REPEATABLE ( seed ) ]`**
 
 A `TABLESAMPLE` clause after a table_name indicates that the specified sampling_method should be used to retrieve a subset of the rows in that table. This sampling precedes the application of any other filters such as `WHERE` clauses. The standard Cloudberry Database distribution includes two sampling methods, `BERNOULLI` and `SYSTEM`. You can install other sampling methods in the database via extensions.
 
@@ -200,11 +200,11 @@ Conversely, `RIGHT OUTER JOIN` returns all the joined rows, plus one row for eac
 
 `FULL OUTER JOIN` returns all the joined rows, plus one row for each unmatched left-hand row (extended with nulls on the right), plus one row for each unmatched right-hand row (extended with nulls on the left).
 
-ON join_condition`**
+**`ON join_condition`**
 
 join_condition is an expression resulting in a value of type `boolean` (similar to a `WHERE` clause) that specifies which rows in a join are considered to match.
 
-USING (join_column [, ...])`**
+**`USING (join_column [, ...])`**
 
 A clause of the form `USING ( a, b, ... )` is shorthand for `ON left_table.a = right_table.a AND left_table.b = right_table.b ...`. Also, `USING` implies that only one of each pair of equivalent columns will be included in the join output, not both.
 
@@ -212,7 +212,7 @@ A clause of the form `USING ( a, b, ... )` is shorthand for `ON left_table.a = r
 
 `NATURAL` is shorthand for a `USING` list that mentions all columns in the two tables that have the same names. If there are no common column names, `NATURAL` is equivalent to `ON TRUE`.
 
-CROSS JOIN`**
+**`CROSS JOIN`**
 
 `CROSS JOIN` is equivalent to `INNER JOIN ON (TRUE)`, that is, no rows are removed by qualification. They produce a simple Cartesian product, the same result as you get from listing the two tables at the top level of `FROM`, but restricted by the join condition (if any).
 
@@ -304,7 +304,7 @@ A `CUBE` grouping is an extension to the `GROUP BY` clause that creates subtotal
 
 Notice that n elements of a `CUBE` translate to 2n grouping sets. Consider using `CUBE` in any situation requiring cross-tabular reports. `CUBE` is typically most suitable in queries that use columns from multiple dimensions rather than columns representing different levels of a single dimension. For instance, a commonly requested cross-tabulation might need subtotals for all the combinations of month, state, and product.
 
-GROUPING SETS`**
+**`GROUPING SETS`**
 
 You can selectively specify the set of groups that you want to create using a `GROUPING SETS` expression within a `GROUP BY` clause. This allows precise specification across multiple dimensions without computing a whole `ROLLUP` or `CUBE`. For example:
 
@@ -366,11 +366,11 @@ WINDOW mywindow AS (ORDER BY sum(prc*qty));
 
 If an existing_window_name is specified, it must refer to an earlier entry in the `WINDOW` list; the new window copies its partitioning clause from that entry, as well as its ordering clause if any. The new window cannot specify its own `PARTITION BY` clause, and it can specify `ORDER BY` only if the copied window does not have one. The new window always uses its own frame clause; the copied window must not specify a frame clause.
 
-PARTITION BY`**
+**`PARTITION BY`**
 
 The `PARTITION BY` clause organizes the result set into logical groups based on the unique values of the specified expression. The elements of the `PARTITION BY` clause are interpreted in much the same fashion as elements of a [GROUP BY Clause](#groupbyclause), except that they are always simple expressions and never the name or number of an output column. Another difference is that these expressions can contain aggregate function calls, which are not allowed in a regular `GROUP BY` clause. They are allowed here because windowing occurs after grouping and aggregation. When used with window functions, the functions are applied to each partition independently. For example, if you follow `PARTITION BY` with a column name, the result set is partitioned by the distinct values of that column. If omitted, the entire result set is considered one partition.
 
-ORDER BY`**
+**`ORDER BY`**
 
 Similarly, the elements of the `ORDER BY` list are interpreted in much the same fashion as elements of an [ORDER BY Clause](#orderbyclause), except that the expressions are always taken as simple expressions and never the name or number of an output column.
 

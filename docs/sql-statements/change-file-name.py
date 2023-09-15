@@ -1,24 +1,22 @@
 import os
 
-def add_sql_to_code_block(directory_path):
-    for root, dirs, files in os.walk(directory_path):
-        for file in files:
-            if file.endswith('.md'):
-                filepath = os.path.join(root, file)
-                with open(filepath, 'r') as f:
-                    lines = f.readlines()
+# 定义处理函数
+def process_file(file_path):
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
 
-                changed = False
-                for i in range(1, len(lines)):
-                    # 查找空行后跟 ``` 的模式
-                    if lines[i-1].strip() == "" and lines[i].strip() == "```":
-                        lines[i] = "```sql\n"
-                        changed = True
+    with open(file_path, 'w') as f:
+        for line in lines:
+            # 检查行是否以 `** 结束且不以 **` 开头
+            if line.endswith("`**\n") and not line.startswith("**`"):
+                line = "**`" + line
+            f.write(line)
 
-                if changed:
-                    with open(filepath, 'w') as f:
-                        f.writelines(lines)
+# 设置目标文件夹
+directory = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-statements"  # 将此替换为你的文件夹路径
 
-if __name__ == "__main__":
-    main_directory = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/sql-statements"
-    add_sql_to_code_block(main_directory)
+# 遍历文件夹中的所有 markdown 文件
+for filename in os.listdir(directory):
+    if filename.endswith(".md"):
+        process_file(os.path.join(directory, filename))
+

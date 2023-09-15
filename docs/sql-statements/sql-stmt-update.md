@@ -58,7 +58,7 @@ An expression to assign to the column. The expression may use the old values of 
 
 Set the column to its default value (which will be NULL if no specific default expression has been assigned to it).
 
-sub-SELECT`**
+**`sub-SELECT`**
 
 A `SELECT` sub-query that produces as many output columns as are listed in the parenthesized column list preceding it. The sub-query must yield no more than one row when executed. If it yields one row, its column values are assigned to the target columns; if it yields no rows, NULL values are assigned to the target columns. The sub-query can refer to old values of the current row of the table being updated.
 

@@ -20,7 +20,7 @@ Drop the index without locking out concurrent selects, inserts, updates, and del
 
 There are several caveats to be aware of when using this option. Only one index name can be specified, and the `CASCADE` option is not supported. (Thus, an index that supports a `UNIQUE` or `PRIMARY KEY` constraint cannot be dropped this way.) Also, regular `DROP INDEX` commands can be performed within a transaction block, but `DROP INDEX CONCURRENTLY` cannot.
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the index does not exist. A notice is issued in this case.
 

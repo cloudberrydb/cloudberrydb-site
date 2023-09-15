@@ -17,7 +17,7 @@ The owner of a foreign server can drop user mappings for that server for any use
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the user mapping does not exist. Cloudberry Database issues a notice in this case.
 

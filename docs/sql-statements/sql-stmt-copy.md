@@ -92,7 +92,7 @@ A `SELECT` or `VALUES` command whose results are to be copied. Note that parenth
 
 The path name of the input or output file. An input file name can be an absolute or relative path, but an output file name must be an absolute path. Windows users might need to use an `E''` string and double any backslashes used in the path name.
 
-PROGRAM 'command'`**
+**`PROGRAM 'command'`**
 
 Specify a command to run. In `COPY FROM`, the input is read from standard output of the command, and in `COPY TO`, the output is written to the standard input of the command. The command must be specified from the viewpoint of the Cloudberry Database coordinator host system, and must be executable by the Cloudberry Database administrator user (`gpadmin`).
 

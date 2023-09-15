@@ -37,7 +37,7 @@ Checks for duplicate values in the table when the index is created (if data alre
 
 Additional restrictions apply when unique indexes are applied to partitioned tables; see [CREATE TABLE](/docs/sql-statements/sql-stmt-create-table.md).
 
-IF NOT EXISTS`**
+**`IF NOT EXISTS`**
 
 Do not throw an error if a relation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing index is anything like the one that would have been created. Index name is required when `IF NOT EXISTS` is specified.
 
@@ -95,11 +95,11 @@ Specifies ascending sort order (which is the default).
 
 Specifies descending sort order.
 
-NULLS FIRST`**
+**`NULLS FIRST`**
 
 Specifies that nulls sort before non-nulls. This is the default when `DESC` is specified.
 
-NULLS LAST`**
+**`NULLS LAST`**
 
 Specifies that nulls sort after non-nulls. This is the default when `DESC` is not specified.
 
@@ -119,7 +119,7 @@ The constraint expression for a partial index.
 
 The optional `WITH` clause specifies *storage parameters* for the index. Each index method has its own set of allowed storage parameters. The B-tree, bitmap, hash, GiST, and SP-GiST index methods all accept this parameter:
 
-fillfactor`**
+**`fillfactor`**
 
 The `fillfactor` for an index is a percentage that determines how full the index method will try to pack index pages. For B-trees, leaf pages are filled to this percentage during initial index build, and also when extending the index at the right (adding new largest key values). If pages subsequently become completely full, they will be split, leading to gradual degradation in the index's efficiency. B-trees use a default fillfactor of 90, but any integer value from 10 to 100 can be selected. If the table is static then fillfactor 100 is best to minimize the index's physical size, but for heavily updated tables a smaller fillfactor is better to minimize the need for page splits. The other index methods use fillfactor in different but roughly analogous ways; the default fillfactor varies between methods.
 
@@ -131,13 +131,13 @@ Per-index value for `vacuum_cleanup_index_scale_factor`.
 
 GiST indexes additionally accept this parameter:
 
-buffering`**
+**`buffering`**
 
 Determines whether Cloudberry Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/12/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches effective_cache_size. The default is `AUTO`.
 
 GIN indexes accept different parameters:
 
-fastupdate`**
+**`fastupdate`**
 
 This setting controls usage of the fast update technique described in [GIN Fast Update Technique](https://www.postgresql.org/docs/12/gin-implementation.html#GIN-FAST-UPDATE) in the PostgreSQL documentation. It is a Boolean parameter that deactivates or activates the GIN index fast update technique. A value of `ON` activates fast update (the default), and `OFF` deactivates it.
 

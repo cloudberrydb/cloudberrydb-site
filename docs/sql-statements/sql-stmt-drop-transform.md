@@ -16,7 +16,7 @@ To drop a transform, you must own the type and the language. These are the same 
 
 ## Parameters
 
-IF EXISTS`**
+**`IF EXISTS`**
 
 Do not throw an error if the transform does not exist. Cloudberry Database issues a notice in this case.
 

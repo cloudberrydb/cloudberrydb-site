@@ -28,11 +28,11 @@ Support for importing foreign schemas is foreign-data wrapper-specific.
 
 The remote schema to import from. The specific meaning of a remote schema depends on the foreign data wrapper in use.
 
-LIMIT TO ( table_name [, ...] )`**
+**`LIMIT TO ( table_name [, ...] )`**
 
 Import only foreign tables matching one of the given table names. Other tables existing in the foreign schema will be ignored.
 
-EXCEPT ( table_name [, ...] )`**
+**`EXCEPT ( table_name [, ...] )`**
 
 Exclude specified foreign tables from the import. All tables existing in the foreign schema will be imported except the ones listed here.
 
@@ -44,7 +44,7 @@ The name of the foreign server from which to import the table definitions.
 
 The schema in which Cloudberry Database will create the imported foreign tables.
 
-OPTIONS ( option 'value' [, ... ] )`**
+**`OPTIONS ( option 'value' [, ... ] )`**
 
 The options to be used during the import. The allowed option names and values are specific to each foreign-data wrapper.
 

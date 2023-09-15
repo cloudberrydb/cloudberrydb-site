@@ -24,7 +24,7 @@ To be able to create a collation, you must have `CREATE` privilege on the destin
 
 ## Parameters
 
-IF NOT EXISTS`**
+**`IF NOT EXISTS`**
 
 Do not throw an error if a collation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing collation is anything like the one that would have been created.
 

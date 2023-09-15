@@ -30,15 +30,15 @@ If not specified, only superusers and the protocol owner can create external tab
 
 The name of the data access protocol. The protocol name is case sensitive. The name must be unique among the protocols in the database.
 
-readfunc= 'read_call_handler'`**
+**`readfunc= 'read_call_handler'`**
 
 The name of a previously registered function that Cloudberry Database calls to read data from an external data source. The command must specify either a read call handler or a write call handler.
 
-writefunc= 'write_call_handler'`**
+**`writefunc= 'write_call_handler'`**
 
 The name of a previously registered function that Cloudberry Database calls to write data to an external data source. The command must specify either a read call handler or a write call handler.
 
-validatorfunc='validate_handler'`**
+**`validatorfunc='validate_handler'`**
 
 An optional validator function that validates the URL specified in the `CREATE EXTERNAL TABLE` command.
 

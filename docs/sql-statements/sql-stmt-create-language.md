@@ -46,15 +46,15 @@ This is a noise word.
 The name of the new procedural language. The name must be unique among the languages in the database.
 For backward compatibility, the name can be enclosed by single quotes.
 
-HANDLER call_handler`**
+**`HANDLER call_handler`**
 
 The name of a previously registered function that will be called to run the procedural language's functions. The call handler for a procedural language must be written in a compiled language such as C with version 1 call convention and registered with Cloudberry Database as a function taking no arguments and returning the `language_handler` type, a placeholder type that is simply used to identify the function as a call handler.
 
-INLINE inline_handler`**
+**`INLINE inline_handler`**
 
 The name of a previously registered function that is called to run an anonymous code block in this language that is created with the [DO](/docs/sql-statements/sql-stmt-do.md) command. If no inline_handler function is specified, the language does not support anonymous code blocks. The handler function must take one argument of type `internal`, which is the [DO](/docs/sql-statements/sql-stmt-do.md) command internal representation. The function typically returns `void`. The return value of the handler is ignored.
 
-VALIDATOR valfunction`**
+**`VALIDATOR valfunction`**
 
 The name of a previously registered function that will be called when a new function in the language is created, to validate the new function. If no validator function is specified, then Cloudberry Database will not check a new function when it is created. The validator function must take one argument of type `oid`, which will be the OID of the to-be-created function, and will typically return `void`.
 
