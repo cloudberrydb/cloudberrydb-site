@@ -33,7 +33,7 @@ Refuse to drop the materialized view if any objects depend on it. This is the de
 
 This command removes the materialized view called `order_summary`.
 
-```
+```sql
 DROP MATERIALIZED VIEW order_summary;
 ```
 

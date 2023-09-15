@@ -44,7 +44,7 @@ REFRESH VERSION
 
 When using collations provided by the ICU library, the ICU-specific version of the collator is recorded in the system catalog when the collation object is created. When the collation is used, the current version is checked against the recorded version, and a warning is issued when there is a mismatch, for example:
 
-```
+```sql
 WARNING:  collation "xx-x-icu" has version mismatch
 DETAIL:  The collation in the database was created using version 1.2.3.4, but the operating system provides version 2.3.4.5.
 HINT:  Rebuild all objects affected by this collation and run ALTER COLLATION pg_catalog."xx-x-icu" REFRESH VERSION, or build PostgreSQL with the right library version.
@@ -54,7 +54,7 @@ A change in collation definitions can lead to corrupt indexes and other problems
 
 The following query can be used to identify all collations in the current database that need to be refreshed and the objects that depend on them:
 
-```
+```sql
 SELECT pg_describe_object(refclassid, refobjid, refobjsubid) AS "Collation",
        pg_describe_object(classid, objid, objsubid) AS "Object"
   FROM pg_depend d JOIN pg_collation c
@@ -67,13 +67,13 @@ SELECT pg_describe_object(refclassid, refobjid, refobjsubid) AS "Collation",
 
 To rename the collation de_DE to `german`:
 
-```
+```sql
 ALTER COLLATION "de_DE" RENAME TO german;
 ```
 
 To change the owner of the collation `en_US` to `joe`:
 
-```
+```sql
 ALTER COLLATION "en_US" OWNER TO joe;
 ```
 

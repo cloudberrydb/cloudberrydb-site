@@ -33,7 +33,7 @@ Refuse to drop the type if any objects depend on it. This is the default.
 
 Remove the data type `box`;
 
-```
+```sql
 DROP TYPE box;
 ```
 

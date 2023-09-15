@@ -64,7 +64,7 @@ CHECK (expression)
 
 Domain constraints, particularly `NOT NULL`, are checked when converting a value to the domain type. It is possible for a column that is nominally of the domain type to read as null despite there being such a constraint. For example, this can happen in an outer-join query, if the domain column is on the nullable side of the outer join. A more subtle example is:
 
-```
+```sql
 INSERT INTO tab (domcol) VALUES ((SELECT domcol FROM tab WHERE false));
 ```
 
@@ -80,7 +80,7 @@ An example of a common way to break this assumption is to reference a user-defin
 
 This example creates the `us_postal_code` data type and then uses the type in a table definition. A regular expression test is used to verify that the value looks like a valid US postal code.
 
-```
+```sql
 CREATE DOMAIN us_postal_code AS TEXT
 CHECK(
    VALUE ~ '^\d{5}$'

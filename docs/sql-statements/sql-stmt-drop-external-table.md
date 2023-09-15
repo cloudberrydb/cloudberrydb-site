@@ -37,7 +37,7 @@ Refuse to drop the external table if any objects depend on it. This is the defau
 
 Remove the external table named `staging` if it exists:
 
-```
+```sql
 DROP EXTERNAL TABLE IF EXISTS staging;
 ```
 

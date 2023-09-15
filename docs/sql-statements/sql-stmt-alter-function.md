@@ -145,37 +145,37 @@ Cloudberry Database has limitations on the use of functions defined as `STABLE` 
 
 To rename the function `sqrt` for type `integer` to `square_root`:
 
-```
+```sql
 ALTER FUNCTION sqrt(integer) RENAME TO square_root;
 ```
 
 To change the owner of the function `sqrt` for type `integer` to `joe`:
 
-```
+```sql
 ALTER FUNCTION sqrt(integer) OWNER TO joe;
 ```
 
 To change the schema of the function `sqrt` for type `integer` to `maths`:
 
-```
+```sql
 ALTER FUNCTION sqrt(integer) SET SCHEMA maths;
 ```
 
 To mark the function `sqrt` for type `integer` as being dependent on the extension `mathlib`:
 
-```
+```sql
 ALTER FUNCTION sqrt(integer) DEPENDS ON EXTENSION mathlib;
 ```
 
 To adjust the search path that is automatically set for a function:
 
-```
+```sql
 ALTER FUNCTION check_password(text) search_path = admin, pg_temp;
 ```
 
 To disable automatic setting of `search_path` for a function:
 
-```
+```sql
 ALTER FUNCTION check_password(text) RESET search_path;
 ```
 

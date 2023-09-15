@@ -24,7 +24,7 @@ Use [ALTER ROLE](/docs/sql-statements/sql-stmt-alter-role.md) to remove a user f
 
 To see all the currently active queries for all resource queues, perform the following query of the `pg_locks` table joined with the `pg_roles` and `pg_resqueue` tables:
 
-```
+```sql
 SELECT rolname, rsqname, locktype, objid, pid, 
 mode, granted FROM pg_roles, pg_resqueue, pg_locks WHERE 
 pg_roles.rolresqueue=pg_locks.objid AND 
@@ -33,7 +33,7 @@ pg_locks.objid=pg_resqueue.oid;
 
 To see the roles assigned to a resource queue, perform the following query of the `pg_roles` and `pg_resqueue` system catalog tables:
 
-```
+```sql
 SELECT rolname, rsqname FROM pg_roles, pg_resqueue WHERE 
 pg_roles.rolresqueue=pg_resqueue.oid;
 ```
@@ -42,13 +42,13 @@ pg_roles.rolresqueue=pg_resqueue.oid;
 
 Remove a role from a resource queue (and move the role to the default resource queue, `pg_default`):
 
-```
+```sql
 ALTER ROLE bob RESOURCE QUEUE NONE;
 ```
 
 Remove the resource queue named `adhoc`:
 
-```
+```sql
 DROP RESOURCE QUEUE adhoc;
 ```
 

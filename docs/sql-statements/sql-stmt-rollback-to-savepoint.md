@@ -37,13 +37,13 @@ Cursors have somewhat non-transactional behavior with respect to savepoints. Any
 
 To undo the effects of the commands run after `my_savepoint` was established:
 
-```
+```sql
 ROLLBACK TO SAVEPOINT my_savepoint;
 ```
 
 Cursor positions are not affected by a savepoint rollback:
 
-```
+```sql
 BEGIN;
 DECLARE foo CURSOR FOR SELECT 1 UNION SELECT 2;
 SAVEPOINT foo;

@@ -34,7 +34,7 @@ These key words have no effect, since there are no dependencies on policies.
 
 To drop the policy called `p1` on the table named `my_table`:
 
-```
+```sql
 DROP POLICY p1 ON my_table;
 ```
 

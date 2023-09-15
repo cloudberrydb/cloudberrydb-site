@@ -36,7 +36,7 @@ OPTIONS ( option 'value' [, ... ] )
 
 Create a user mapping for user `bob`, server `foo`:
 
-```
+```sql
 CREATE USER MAPPING FOR bob SERVER foo OPTIONS (user 'bob', password 'secret');
 ```
 

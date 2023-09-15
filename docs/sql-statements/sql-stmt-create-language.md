@@ -12,7 +12,7 @@ CREATE [ OR REPLACE ] [ TRUSTED ] [ PROCEDURAL ] LANGUAGE <name>
    [ INLINE <inline_handler> ] 
    [ VALIDATOR <valfunction> ]
             
-```
+```sql
 
 ## Description
 
@@ -74,13 +74,13 @@ The call handler function, the inline handler function (if any), and the validat
 
 The preferred way of creating any of the standard procedural languages is to use `CREATE EXTENSION` instead of `CREATE LANGUAGE`. For example:
 
-```
+```sql
 CREATE EXTENSION plperl;
 ```
 
 For a language not known in the `pg_pltemplate` catalog, a sequence such as this is needed:
 
-```
+```sql
 CREATE FUNCTION plsample_call_handler() RETURNS 
 language_handler
     AS '$libdir/plsample'

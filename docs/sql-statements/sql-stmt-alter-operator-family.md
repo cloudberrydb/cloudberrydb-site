@@ -102,7 +102,7 @@ Before Cloudberry Database 6.0, the `OPERATOR` clause could include a `RECHECK` 
 
 The following example command adds cross-data-type operators and support functions to an operator family that already contains B-tree operator classes for data types `int4` and `int2`.:
 
-```
+```sql
 ALTER OPERATOR FAMILY integer_ops USING btree ADD
 
   -- int4 vs int2
@@ -124,7 +124,7 @@ ALTER OPERATOR FAMILY integer_ops USING btree ADD
 
 To remove these entries:
 
-```
+```sql
 ALTER OPERATOR FAMILY integer_ops USING btree DROP
 
   -- int4 vs int2

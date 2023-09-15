@@ -37,7 +37,7 @@ Refuse to drop the rule if any objects depend on it. This is the default.
 
 Remove the rewrite rule `sales_2006` on the table `sales`:
 
-```
+```sql
 DROP RULE sales_2006 ON sales;
 ```
 

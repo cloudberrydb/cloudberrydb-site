@@ -44,7 +44,7 @@ where <action> is one of (depending on the type of routine):
 
 To rename the routine `foo` for type `integer` to `foobar`:
 
-```
+```sql
 ALTER ROUTINE foo(integer) RENAME TO foobar;
 ```
 

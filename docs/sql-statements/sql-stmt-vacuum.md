@@ -108,25 +108,25 @@ If a concurrent serializable transaction is detected when an append-optimized ta
 
 To clean a single table `onek`, analyze it for the optimizer and print a detailed vacuum activity report:
 
-```
+```sql
 VACUUM (VERBOSE, ANALYZE) onek;
 ```
 
 Vacuum all tables in the current database:
 
-```
+```sql
 VACUUM;
 ```
 
 Vacuum a specific table only:
 
-```
+```sql
 VACUUM (VERBOSE, ANALYZE) mytable;
 ```
 
 Vacuum all tables in the current database and collect statistics for the query optimizer:
 
-```
+```sql
 VACUUM ANALYZE;
 ```
 

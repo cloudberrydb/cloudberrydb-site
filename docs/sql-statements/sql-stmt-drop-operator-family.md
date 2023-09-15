@@ -39,7 +39,7 @@ Refuse to drop the operator family if any objects depend on it. This is the defa
 
 Remove the B-tree operator family `float_ops`:
 
-```
+```sql
 DROP OPERATOR FAMILY float_ops USING btree;
 ```
 

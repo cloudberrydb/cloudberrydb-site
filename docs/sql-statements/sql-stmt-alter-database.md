@@ -82,13 +82,13 @@ It is also possible to tie a session default to a specific role rather than to a
 
 To disable index scans by default in the `test` database:
 
-```
+```sql
 ALTER DATABASE test SET enable_indexscan TO off;
 ```
 
 To set the default schema search path for the `mydatabase` database:
 
-```
+```sql
 ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
 ```
 

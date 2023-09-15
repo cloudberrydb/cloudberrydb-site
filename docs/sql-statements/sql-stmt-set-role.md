@@ -51,7 +51,7 @@ In particular, when a superuser chooses to `SET ROLE` to a non-superuser role, t
 
 ## Examples
 
-```
+```sql
 SELECT SESSION_USER, CURRENT_USER;
  session_user | current_user 
 --------------+--------------

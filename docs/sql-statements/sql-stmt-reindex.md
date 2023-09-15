@@ -62,19 +62,19 @@ REINDEX` does not update the `reltuples` and `relpages` statistics for the index
 
 Rebuild a single index:
 
-```
+```sql
 REINDEX INDEX my_index;
 ```
 
 Rebuild all the indexes on the table `my_table`:
 
-```
+```sql
 REINDEX TABLE my_table;
 ```
 
 Rebuild all indexes in a particular database, without trusting the system indexes to be valid already:
 
-```
+```sql
 $ export PGOPTIONS="-P"
 $ psql broken_db
 ...

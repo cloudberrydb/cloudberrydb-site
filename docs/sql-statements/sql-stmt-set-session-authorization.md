@@ -43,7 +43,7 @@ Reset the session and current role identifiers to be that of the role used to lo
 
 ## Examples
 
-```
+```sql
 SELECT SESSION_USER, CURRENT_USER;
  session_user | current_user 
 --------------+--------------

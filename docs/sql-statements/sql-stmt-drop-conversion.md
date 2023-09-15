@@ -30,7 +30,7 @@ These keywords have no effect since there are no dependencies on conversions.
 
 Drop the conversion named `myname`:
 
-```
+```sql
 DROP CONVERSION myname;
 ```
 

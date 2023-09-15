@@ -33,7 +33,7 @@ Refuse to drop the foreign-data wrapper if any object depends on it. This is the
 
 Drop the foreign-data wrapper named `dbi`:
 
-```
+```sql
 DROP FOREIGN DATA WRAPPER dbi;
 ```
 

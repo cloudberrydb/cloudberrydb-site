@@ -46,7 +46,7 @@ Refuse to drop the function if any objects depend on it. This is the default.
 
 This command removes the square root function:
 
-```
+```sql
 DROP FUNCTION sqrt(integer);
 ```
 

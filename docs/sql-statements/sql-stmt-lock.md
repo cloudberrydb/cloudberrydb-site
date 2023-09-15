@@ -10,7 +10,7 @@ LOCK [TABLE] [ONLY] name [ * ] [, ...] [IN <lockmode> MODE] [NOWAIT] [COORDINATO
 
 where lockmode is one of:
 
-```
+```sql
     ACCESS SHARE | ROW SHARE | ROW EXCLUSIVE | SHARE UPDATE EXCLUSIVE 
   | SHARE | SHARE ROW EXCLUSIVE | EXCLUSIVE | ACCESS EXCLUSIVE
 ```
@@ -68,7 +68,7 @@ COORDINATOR ONLY
 
 Obtain a `SHARE` lock on the `films` table when going to perform inserts into the `films_user_comments` table:
 
-```
+```sql
 BEGIN WORK;
 LOCK TABLE films IN SHARE MODE;
 SELECT id FROM films
@@ -81,7 +81,7 @@ COMMIT WORK;
 
 Take a `SHARE ROW EXCLUSIVE` lock on a table when performing a delete operation:
 
-```
+```sql
 BEGIN WORK;
 LOCK TABLE films IN SHARE ROW EXCLUSIVE MODE;
 DELETE FROM films_user_comments WHERE id IN

@@ -54,7 +54,7 @@ To send a notification you can also use the function `pg_notify(text, text)`. Th
 
 Configure and execute a listen/notify sequence from `psql`:
 
-```
+```sql
 LISTEN virtual;
 NOTIFY virtual;
 Asynchronous notification "virtual" received from server process with PID 8448.

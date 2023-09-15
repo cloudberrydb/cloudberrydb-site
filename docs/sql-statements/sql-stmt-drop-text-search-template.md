@@ -37,7 +37,7 @@ Refuse to drop the text search template if any objects depend on it. This is the
 
 Remove the text search template `thesaurus`:
 
-```
+```sql
 DROP TEXT SEARCH TEMPLATE thesaurus;
 ```
 

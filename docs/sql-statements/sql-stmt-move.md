@@ -10,7 +10,7 @@ MOVE [ <forward_direction> [ FROM | IN ] ] <cursor_name>
 
 where <forward_direction> can be empty or one of:
 
-```
+```sql
     NEXT
     FIRST
     LAST
@@ -37,7 +37,7 @@ The parameters for the `MOVE` command are identical to those of the `FETCH` comm
 
 On successful completion, a `MOVE` command returns a command tag of the form
 
-```
+```sql
 MOVE <count>
 ```
 
@@ -47,26 +47,26 @@ The count is the number of rows that a `FETCH` command with the same parameters 
 
 Start the transaction:
 
-```
+```sql
 BEGIN;
 ```
 
 Create a cursor:
 
-```
+```sql
 DECLARE mycursor CURSOR FOR SELECT * FROM films;
 ```
 
 Skip the first 5 rows in the cursor `mycursor`:
 
-```
+```sql
 MOVE FORWARD 5 IN mycursor;
 MOVE 5
 ```
 
 Fetch the next row after that (row 6):
 
-```
+```sql
 FETCH 1 FROM mycursor;
  code  | title  | did | date_prod  |  kind  |  len
 -------+--------+-----+------------+--------+-------
@@ -76,7 +76,7 @@ FETCH 1 FROM mycursor;
 
 Close the cursor and end the transaction:
 
-```
+```sql
 CLOSE mycursor;
 COMMIT;
 ```

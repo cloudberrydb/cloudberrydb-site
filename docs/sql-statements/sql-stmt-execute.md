@@ -34,7 +34,7 @@ The command tag returned by `EXECUTE` is that of the prepared statement, and not
 
 Create a prepared statement for an `INSERT` statement, and then run it:
 
-```
+```sql
 PREPARE fooplan (int, text, bool, numeric) AS
     INSERT INTO foo VALUES($1, $2, $3, $4);
 EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);

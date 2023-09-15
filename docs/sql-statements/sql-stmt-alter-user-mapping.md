@@ -33,7 +33,7 @@ OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
 
 Change the password for user mapping `bob`, server `foo`:
 
-```
+```sql
 ALTER USER MAPPING FOR bob SERVER foo OPTIONS (SET password 'public');
 ```
 

@@ -36,13 +36,13 @@ The new owner of the protocol.
 
 To rename the protocol `GPDBauth` to `GPDB_authentication`:
 
-```
+```sql
 ALTER PROTOCOL GPDBauth RENAME TO GPDB_authentication;
 ```
 
 To change the owner of the `GPDB_authentication` protocol to `joe`:
 
-```
+```sql
 ALTER PROTOCOL GPDB_authentication OWNER TO joe;
 ```
 

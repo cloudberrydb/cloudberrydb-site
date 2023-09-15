@@ -22,7 +22,7 @@ CREATE CAST (<sourcetype> AS <targettype>)
 
 `CREATE CAST` defines a new cast. A cast specifies how to perform a conversion between two data types. For example,
 
-```
+```sql
 SELECT CAST(42 AS float8);
 ```
 
@@ -36,7 +36,7 @@ By default, a cast can be invoked only by an explicit cast request, that is an e
 
 If the cast is marked `AS ASSIGNMENT` then it can be invoked implicitly when assigning a value to a column of the target data type. For example, supposing that `foo.f1` is a column of type `text`, then:
 
-```
+```sql
 INSERT INTO foo (f1) VALUES (42);
 ```
 
@@ -44,13 +44,13 @@ will be allowed if the cast from type `integer` to type `text` is marked `AS ASS
 
 If the cast is marked `AS IMPLICIT` then it can be invoked implicitly in any context, whether assignment or internally in an expression. The term *implicit cast* is typically used to describe this kind of cast. For example, consider this query:
 
-```
+```sql
 SELECT 2 + 4.0;
 ```
 
 The parser initially marks the constants as being of type `integer` and `numeric`, respectively. There is no `integer + numeric` operator in the system catalogs, but there is a `numeric + numeric` operator. This query succeeds if a cast from `integer` to `numeric` exists (it does) and is marked `AS IMPLICIT`, which in fact it is. The parser applies only the implicit cast and resolves the query as if it had been written as the following:
 
-```
+```sql
 SELECT CAST ( 2 AS numeric ) + 4.0;
 ```
 
@@ -115,7 +115,7 @@ There is an exception to the exception above: I/O conversion casts from composit
 
 To create an assignment cast from type `bigint` to type `int4` using the function `int4(bigint)` (This cast is already predefined in the system.):
 
-```
+```sql
 CREATE CAST (bigint AS int4) WITH FUNCTION int4(bigint) AS ASSIGNMENT;
 ```
 

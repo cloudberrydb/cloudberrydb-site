@@ -67,7 +67,7 @@ REVOKE [ GRANT OPTION FOR ]
     FROM { [ GROUP ] <role_name> | PUBLIC } [, ...]
     [ CASCADE | RESTRICT ]
 
-```
+```sql
 
 ## Description
 
@@ -103,27 +103,27 @@ If you wish to drop a role for which the default privileges have been altered, i
 
 Grant SELECT privilege to everyone for all tables (and views) you subsequently create in schema `myschema`, and allow role `webuser` to INSERT into them too:
 
-```
+```sql
 ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT ON TABLES TO PUBLIC;
 ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT INSERT ON TABLES TO webuser;
 ```
 
 Undo the above, so that subsequently-created tables won't have any more permissions than normal:
 
-```
+```sql
 ALTER DEFAULT PRIVILEGES IN SCHEMA myschema REVOKE SELECT ON TABLES FROM PUBLIC;
 ALTER DEFAULT PRIVILEGES IN SCHEMA myschema REVOKE INSERT ON TABLES FROM webuser;
 ```
 
 Remove the public EXECUTE permission that is normally granted on functions, for all functions subsequently created by role `admin`:
 
-```
+```sql
 ALTER DEFAULT PRIVILEGES FOR ROLE admin REVOKE EXECUTE ON FUNCTIONS FROM PUBLIC;
 ```
 
 Note however that you *cannot* accomplish that effect with a command limited to a single schema. The following command has no effect, unless it is undoing a matching `GRANT`:
 
-```
+```sql
 ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE EXECUTE ON FUNCTIONS FROM PUBLIC;
 ```
 

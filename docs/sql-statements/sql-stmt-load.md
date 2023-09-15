@@ -28,7 +28,7 @@ The path and file name of a shared library file. This file must exist in the sam
 
 Load a shared library file:
 
-```
+```sql
 LOAD '/usr/local/greenplum-db/lib/myfuncs.so';
 ```
 

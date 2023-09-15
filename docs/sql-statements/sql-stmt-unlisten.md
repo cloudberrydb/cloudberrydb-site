@@ -35,7 +35,7 @@ A transaction that has executed `UNLISTEN` cannot be prepared for two-phase comm
 
 To make a registration:
 
-```
+```sql
 LISTEN virtual;
 NOTIFY virtual;
 Asynchronous notification "virtual" received from server process with PID 8448.
@@ -43,7 +43,7 @@ Asynchronous notification "virtual" received from server process with PID 8448.
 
 Once `UNLISTEN` has been executed, further `NOTIFY` messages will be ignored:
 
-```
+```sql
 UNLISTEN virtual;
 NOTIFY virtual;
 -- no NOTIFY event is received

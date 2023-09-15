@@ -46,13 +46,13 @@ OFFSET start
 
 A bare `VALUES` command:
 
-```
+```sql
 VALUES (1, 'one'), (2, 'two'), (3, 'three');
 ```
 
 This will return a table of two columns and three rows. It is effectively equivalent to:
 
-```
+```sql
 SELECT 1 AS column1, 'one' AS column2
 UNION ALL
 SELECT 2, 'two'
@@ -62,14 +62,14 @@ SELECT 3, 'three';
 
 More usually, `VALUES` is used within a larger SQL command. The most common use is in `INSERT`:
 
-```
+```sql
 INSERT INTO films (code, title, did, date_prod, kind)
     VALUES ('T_601', 'Yojimbo', 106, '1961-06-16', 'Drama');
 ```
 
 In the context of `INSERT`, entries of a `VALUES` list can be `DEFAULT` to indicate that the column default should be used here instead of specifying a value:
 
-```
+```sql
 INSERT INTO films VALUES
     ('UA502', 'Bananas', 105, DEFAULT, 'Comedy', '82 
 minutes'),
@@ -78,7 +78,7 @@ minutes'),
 
 `VALUES` can also be used where a sub-`SELECT` might be written, for example in a `FROM` clause:
 
-```
+```sql
 SELECT f.* FROM films f, (VALUES('MGM', 'Horror'), ('UA', 
 'Sci-Fi')) AS t (studio, kind) WHERE f.studio = t.studio AND 
 f.kind = t.kind;
@@ -92,7 +92,7 @@ Note that an `AS` clause is required when `VALUES` is used in a `FROM` clause, j
 
 When `VALUES` is used in `INSERT`, the values are all automatically coerced to the data type of the corresponding destination column. When it is used in other contexts, it may be necessary to specify the correct data type. If the entries are all quoted literal constants, coercing the first is sufficient to determine the assumed type for all:
 
-```
+```sql
 SELECT * FROM machines WHERE ip_address IN 
 (VALUES('192.168.0.1'::inet), ('192.168.0.10'), 
 ('192.0.2.43'));

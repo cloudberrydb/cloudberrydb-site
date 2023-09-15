@@ -40,7 +40,7 @@ Databases and tablespaces owned by the role(s) will not be removed.
 
 Remove any database objects owned by the role named `sally`:
 
-```
+```sql
 DROP OWNED BY sally;
 ```
 

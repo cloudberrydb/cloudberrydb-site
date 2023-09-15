@@ -253,7 +253,7 @@ Use `pg_type.typarray` to locate the array type associated with a given type.
 
 This example creates a composite type and uses it in a function definition:
 
-```
+```sql
 CREATE TYPE compfoo AS (f1 int, f2 text);
 
 CREATE FUNCTION getfoo() RETURNS SETOF compfoo AS $$
@@ -263,7 +263,7 @@ $$ LANGUAGE SQL;
 
 This example creates the enumerated type `mood` and uses it in a table definition.
 
-```
+```sql
 CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
 CREATE TABLE person (
     name text,
@@ -279,13 +279,13 @@ SELECT * FROM person WHERE current_mood = 'happy';
 
 This example creates a range type:
 
-```
+```sql
 CREATE TYPE float8_range AS RANGE (subtype = float8, subtype_diff = float8mi);
 ```
 
 This example creates the base data type `box` and then uses the type in a table definition:
 
-```
+```sql
 CREATE TYPE box;
 
 CREATE FUNCTION my_box_in_function(cstring) RETURNS box AS 
@@ -308,7 +308,7 @@ CREATE TABLE myboxes (
 
 If the internal structure of `box` were an array of four `float4` elements, we might instead use:
 
-```
+```sql
 CREATE TYPE box (
     INTERNALLENGTH = 16,
     INPUT = my_box_in_function,
@@ -321,7 +321,7 @@ which would allow a box value's component numbers to be accessed by subscripting
 
 This example creates a large object type and uses it in a table definition:
 
-```
+```sql
 CREATE TYPE bigobj (
     INPUT = lo_filein, OUTPUT = lo_fileout,
     INTERNALLENGTH = VARIABLE

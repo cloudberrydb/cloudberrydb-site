@@ -37,7 +37,7 @@ Refuse to drop the language if any objects depend on it. This is the default.
 
 Remove the procedural language `plsample`:
 
-```
+```sql
 DROP LANGUAGE plsample;
 ```
 

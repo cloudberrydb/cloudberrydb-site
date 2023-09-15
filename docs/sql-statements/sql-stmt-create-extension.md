@@ -62,13 +62,13 @@ The extensions supplied with Cloudberry Database are believed to be secure again
 
 Install the `hstore` extension into the current database, placing its objects in schema `addons`:
 
-```
+```sql
 CREATE EXTENSION hstore SCHEMA addons;
 ```
 
 Another way to accomplish the same thing:
 
-```
+```sql
 SET search_path = addons;
 CREATE EXTENSION hstore;
 ```

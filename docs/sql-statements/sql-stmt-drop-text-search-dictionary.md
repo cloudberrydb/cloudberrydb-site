@@ -33,7 +33,7 @@ Refuse to drop the text search dictionary if any objects depend on it. This is t
 
 Remove the text search dictionary `english`:
 
-```
+```sql
 DROP TEXT SEARCH DICTIONARY english;
 ```
 

@@ -33,7 +33,7 @@ This command cannot be run while connected to the target database. Thus, it migh
 
 Drop the database named `testdb`:
 
-```
+```sql
 DROP DATABASE testdb;
 ```
 

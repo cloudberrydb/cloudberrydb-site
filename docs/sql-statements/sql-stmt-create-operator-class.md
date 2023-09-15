@@ -101,7 +101,7 @@ Before Cloudberry Database 6.0, the `OPERATOR` clause could include a `RECHECK` 
 
 The following example command defines a GiST index operator class for the data type `_int4` (array of int4). See the `intarray` contrib module for the complete example.
 
-```
+```sql
 CREATE OPERATOR CLASS gist__int_ops
     DEFAULT FOR TYPE _int4 USING gist AS
         OPERATOR 3 &&,

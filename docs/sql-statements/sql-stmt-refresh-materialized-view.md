@@ -40,13 +40,13 @@ If there is an `ORDER BY` clause in the materialized view's defining query, the 
 
 This command replaces the contents of the materialized view `order_summary` using the query from the materialized view's definition, and leaves it in a scannable state.
 
-```
+```sql
 REFRESH MATERIALIZED VIEW order_summary;
 ```
 
 This command frees storage associated with the materialized view `annual_statistics_basis` and leaves it in an unscannable state.
 
-```
+```sql
 REFRESH MATERIALIZED VIEW annual_statistics_basis WITH NO DATA;
 ```
 

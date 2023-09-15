@@ -51,19 +51,19 @@ Template-specific options can appear in any order.
 
 The following example command changes the stop word list for a Snowball-based dictionary. Other parameters remain unchanged.
 
-```
+```sql
 ALTER TEXT SEARCH DICTIONARY my_dict ( StopWords = newrussian );
 ```
 
 The following example command changes the language option to `dutch`, and removes the stop word option entirely:
 
-```
+```sql
 ALTER TEXT SEARCH DICTIONARY my_dict ( language = dutch, StopWords );
 ```
 
 The following example command "updates" the dictionary's definition without actually changing anything:
 
-```
+```sql
 ALTER TEXT SEARCH DICTIONARY my_dict ( dummy );
 ```
 

@@ -30,7 +30,7 @@ These key words have no effect, since there are no dependencies on statistics.
 
 Destroy two statistics objects in different schemas, without failing if they do not exist:
 
-```
+```sql
 DROP STATISTICS IF EXISTS
     accounting.users_uid_creation,
     public.grants_user_role;

@@ -72,7 +72,7 @@ A name to use for a returned column.
 
 On successful completion, a `DELETE` command returns a command tag of the form
 
-```
+```sql
 DELETE <count>
 ```
 
@@ -88,13 +88,13 @@ The `WHERE CURRENT OF` clause is not supported with replicated tables.
 
 Cloudberry Database lets you reference columns of other tables in the `WHERE` condition by specifying the other tables in the `USING` clause. For example, to delete all films produced by a given producer, one can run:
 
-```
+```sql
 DELETE FROM films USING producers
   WHERE producer_id = producers.id AND producers.name = 'foo';
 ```
 What is essentially happening here is a join between `films` and `producers`, with all successfully joined `films` rows being marked for deletion. This syntax is not standard. A more standard way to accomplish this is:
 
-```
+```sql
 DELETE FROM films
   WHERE producer_id IN (SELECT id FROM producers WHERE name = 'foo');
 ```
@@ -105,31 +105,31 @@ For a partitioned table, all of the child tables are locked during the `DELETE` 
 
 Delete all films but musicals:
 
-```
+```sql
 DELETE FROM films WHERE kind <> 'Musical';
 ```
 
 Clear the table films:
 
-```
+```sql
 DELETE FROM films;
 ```
 
 Delete completed tasks, returning full details of the deleted rows:
 
-```
+```sql
 DELETE FROM tasks WHERE status = 'DONE' RETURNING *;
 ```
 
 Delete the row of tasks on which the cursor `c_tasks` is currently positioned:
 
-```
+```sql
 DELETE FROM tasks WHERE CURRENT OF c_tasks;
 ```
 
 Delete using a join:
 
-```
+```sql
 DELETE FROM rank USING names WHERE names.id = rank.id AND 
 name = 'Hannah';
 ```

@@ -4,7 +4,7 @@ Removes a text search configuration.
 
 ## Synopsis
 
-```
+```sql
 DROP TEXT SEARCH CONFIGURATION [ IF EXISTS ] <name> [ CASCADE | RESTRICT ]
 ```
 
@@ -33,7 +33,7 @@ Refuse to drop the text search configuration if any objects depend on it. This i
 
 Remove the text search configuration `my_english`:
 
-```
+```sql
 DROP TEXT SEARCH CONFIGURATION my_english;
 ```
 

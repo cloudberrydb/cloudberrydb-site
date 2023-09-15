@@ -29,7 +29,7 @@ The name of the role to remove.
 
 Remove the roles named `sally` and `bob`:
 
-```
+```sql
 DROP ROLE sally, bob;
 ```
 

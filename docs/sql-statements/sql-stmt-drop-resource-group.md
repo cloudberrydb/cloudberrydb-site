@@ -30,16 +30,16 @@ Use [ALTER ROLE](/docs/sql-statements/sql-stmt-alter-role.md) to remove a resour
 
 Perform the following query to view all of the currently active queries for all resource groups:
 
-```
+```sql
 SELECT usename, query, waiting, pid,
     rsgid, rsgname, rsgqueueduration 
   FROM pg_stat_activity;
 
-```
+```sql
 
 To view the resource group assignments, perform the following query on the `pg_roles` and `pg_resgroup` system catalog tables:
 
-```
+```sql
 SELECT rolname, rsgname 
   FROM pg_roles, pg_resgroup
   WHERE pg_roles.rolresgroup=pg_resgroup.oid;
@@ -49,13 +49,13 @@ SELECT rolname, rsgname
 
 Remove the resource group assigned to a role. This operation then assigns the default resource group `default_group` to the role:
 
-```
+```sql
 ALTER ROLE bob RESOURCE GROUP NONE;
 ```
 
 Remove the resource group named `adhoc`:
 
-```
+```sql
 DROP RESOURCE GROUP adhoc;
 ```
 

@@ -147,7 +147,7 @@ Similar considerations apply to generated columns. Stored generated columns are 
 
 Create a foreign table named `films` with the server named `film_server`:
 
-```
+```sql
 CREATE FOREIGN TABLE films (
     code        char(5) NOT NULL,
     title       varchar(40) NOT NULL,
@@ -161,7 +161,7 @@ SERVER film_server;
 
 Create foreign table `measurement_y2016m07`, which will be accessed through the server `server_07`, as a partition of the range partitioned table measurement:
 
-```
+```sql
 CREATE FOREIGN TABLE measurement_y2016m07
     PARTITION OF measurement FOR VALUES FROM ('2016-07-01') TO ('2016-08-01')
     SERVER server_07;

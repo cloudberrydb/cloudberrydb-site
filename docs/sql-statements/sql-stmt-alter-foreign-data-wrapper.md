@@ -55,13 +55,13 @@ RENAME TO new_name
 
 Change the definition of a foreign-data wrapper named `dbi` by adding a new option named `foo`, and removing the option named `bar`:
 
-```
+```sql
 ALTER FOREIGN DATA WRAPPER dbi OPTIONS (ADD foo '1', DROP 'bar');
 ```
 
 Change the validator function for a foreign-data wrapper named `dbi` to `bob.myvalidator`:
 
-```
+```sql
 ALTER FOREIGN DATA WRAPPER dbi VALIDATOR bob.myvalidator;
 ```
 

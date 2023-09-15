@@ -54,7 +54,7 @@ In contrast to `CREATE TABLE AS`, `SELECT INTO` does not allow specifying proper
 
 Create a new table `films_recent` consisting only of recent entries from the table `films`:
 
-```
+```sql
 SELECT * INTO films_recent FROM films WHERE date_prod >= '2016-01-01';
 ```
 

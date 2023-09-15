@@ -38,7 +38,7 @@ Resets all settable run-time configuration parameters to their default values.
 
 Set the `statement_mem` configuration parameter to its default value:
 
-```
+```sql
 RESET statement_mem; 
 ```
 

@@ -42,7 +42,7 @@ You can override this heuristic, forcing the server to use either generic or cus
 
 To examine the query plan Cloudberry Database is using for a prepared statement, use [EXPLAIN](/docs/sql-statements/sql-stmt-explain.md), for example:
 
-```
+```sql
 EXPLAIN EXECUTE <name>(<parameter_values>);
 ```
 
@@ -58,7 +58,7 @@ You can see all prepared statements available in the session by querying the pg_
 
 Create a prepared statement for an `INSERT` statement, and then run it:
 
-```
+```sql
 PREPARE fooplan (int, text, bool, numeric) AS
     INSERT INTO foo VALUES($1, $2, $3, $4);
 EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);
@@ -66,7 +66,7 @@ EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);
 
 Create a prepared statement for a `SELECT` statement, and then run it. Note that the data type of the second parameter is not specified, so it is inferred from the context in which `$2` is used:
 
-```
+```sql
 PREPARE usrrptplan (int) AS
     SELECT * FROM users u, logs l WHERE u.usrid=$1 AND u.usrid=l.usrid
     AND l.date = $2;

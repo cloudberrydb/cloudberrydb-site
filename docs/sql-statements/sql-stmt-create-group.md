@@ -10,7 +10,7 @@ CREATE GROUP <name> [[WITH] <option> [ ... ]]
 
 where option can be:
 
-```
+```sql
       SUPERUSER | NOSUPERUSER
     | CREATEDB | NOCREATEDB
     | CREATEROLE | NOCREATEROLE

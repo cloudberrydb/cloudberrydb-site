@@ -82,7 +82,7 @@ A name (without schema qualification) must be specified for each `WITH` query. O
 
 If `RECURSIVE` is specified, it allows a `SELECT` subquery to reference itself by name. Such a subquery must have the form:
 
-```
+```sql
 <non_recursive_term> UNION [ALL | DISTINCT] <recursive_term>
 ```
 
@@ -103,7 +103,7 @@ When there are multiple queries in the `WITH` clause, `RECURSIVE` should be writ
 
 Following is an example of the set operation limitation. This query returns an error because the set operation `UNION` contains a reference to the table `foo`.
 
-```
+```sql
 WITH RECURSIVE foo(i) AS (
     SELECT 1
   UNION ALL
@@ -114,7 +114,7 @@ SELECT * FROM foo LIMIT 5;
 
 This recursive CTE is allowed because the set operation `UNION` does not have a reference to the CTE `foo`.
 
-```
+```sql
 WITH RECURSIVE foo(i) AS (
     SELECT 1
   UNION ALL
@@ -223,7 +223,7 @@ The `LATERAL` key word can precede a sub-`SELECT FROM` item. This allows the sub
 
 The optional `WHERE` clause has the general form:
 
-```
+```sql
 WHERE <condition>
 ```
 
@@ -234,13 +234,13 @@ where condition is any expression that evaluates to a result of type `boolean`. 
 
 The optional `GROUP BY` clause has the general form:
 
-```
+```sql
 GROUP BY <grouping_element> [, ...]
 ```
 
 where `<grouping_element>` can be one of:
 
-```
+```sql
 ()
 <expression>
 ROLLUP (<expression> [,...])
@@ -266,13 +266,13 @@ Cloudberry Database has the following additional OLAP grouping extensions (often
 
 A `ROLLUP` grouping is an extension to the `GROUP BY` clause that creates aggregate subtotals that roll up from the most detailed level to a grand total, following a list of grouping columns (or expressions). `ROLLUP` takes an ordered list of grouping columns, calculates the standard aggregate values specified in the `GROUP BY` clause, then creates progressively higher-level subtotals, moving from right to left through the list. Finally, it creates a grand total. A `ROLLUP` grouping can be thought of as a series of grouping sets. For example:
 
-    ```
+```sql
     GROUP BY ROLLUP (a,b,c) 
     ```
 
     is equivalent to:
 
-    ```
+```sql
     GROUP BY GROUPING SETS( (a,b,c), (a,b), (a), () ) 
     ```
 
@@ -282,13 +282,13 @@ A `ROLLUP` grouping is an extension to the `GROUP BY` clause that creates aggreg
 
 A `CUBE` grouping is an extension to the `GROUP BY` clause that creates subtotals for all of the possible combinations of the given list of grouping columns (or expressions). In terms of multidimensional analysis, `CUBE` generates all the subtotals that could be calculated for a data cube with the specified dimensions. For example:
 
-    ```
+```sql
     GROUP BY CUBE (a,b,c) 
     ```
 
     is equivalent to:
 
-    ```
+```sql
     GROUP BY GROUPING SETS( (a,b,c), (a,b), (a,c), (b,c), (a), 
     (b), (c), () ) 
     ```
@@ -298,7 +298,7 @@ Notice that n elements of a `CUBE` translate to 2n grouping sets. Consider using
 GROUPING SETS
 :   You can selectively specify the set of groups that you want to create using a `GROUPING SETS` expression within a `GROUP BY` clause. This allows precise specification across multiple dimensions without computing a whole `ROLLUP` or `CUBE`. For example:
 
-```
+```sql
 GROUP BY GROUPING SETS( (a,c), (a,b) )
 ```
 
@@ -311,7 +311,7 @@ If using the grouping extension clauses `ROLLUP`, `CUBE`, or `GROUPING SETS`, tw
 
 The optional `HAVING` clause has the general form:
 
-```
+```sql
 HAVING <condition>
 ```
 
@@ -328,13 +328,13 @@ Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` c
 
 The optional `WINDOW` clause specifies the behavior of window functions appearing in the query's `SELECT` list or `ORDER BY` clause. The `WINDOW` clause has the general form:
 
-```
+```sql
 WINDOW <window_name> AS ( <window_definition> ) [, ...]
 ```
 
 where `<window_name>` is a name that can be referenced from `OVER` clauses or subsequent window definitions, and `<window_definition>` is:
 
-```
+```sql
 [<existing_window_name>]
 [PARTITION BY <expression> [, ...]]
 [ORDER BY <expression> [ASC | DESC | USING <operator>] [NULLS {FIRST | LAST}] [, ...] ]
@@ -345,7 +345,7 @@ A `WINDOW` clause entry does not have to be referenced anywhere, however; if it 
 
 For example:
 
-```
+```sql
 SELECT vendor, rank() OVER (mywindow) FROM sale
 GROUP BY vendor
 WINDOW mywindow AS (ORDER BY sum(prc*qty));
@@ -368,14 +368,14 @@ ORDER BY
 The optional frame_clause defines the *window frame* for window functions that depend on the frame (not all do). The window frame is a set of related rows for each row of the query (called the *current row*). The frame_clause can be one of
 
 
-    ```
+```sql
     { RANGE | ROWS | GROUPS } <frame_start> [ <frame_exclusion> ]
     { RANGE | ROWS | GROUPS } BETWEEN <frame_start> AND <frame_end> [ <frame_exclusion> ]
     ```
 
     where `<frame_start>` and `<frame_end>` can be one of
 
-    ```
+```sql
     UNBOUNDED PRECEDING
     <offset> PRECEDING
     CURRENT ROW
@@ -385,7 +385,7 @@ The optional frame_clause defines the *window frame* for window functions that d
 
     and `<frame_exclusion>` can be one of
 
-    ```
+```sql
     EXCLUDE CURRENT ROW
     EXCLUDE GROUP
     EXCLUDE TIES
@@ -437,7 +437,7 @@ If `SELECT DISTINCT` is specified, all duplicate rows are removed from the resul
 
 `SELECT DISTINCT ON ( <expression> [, ...] )` keeps only the first row of each set of rows where the given expressions evaluate to equal. The `DISTINCT ON` expressions are interpreted using the same rules as for `ORDER BY` (see above). Note that the "first row" of each set is unpredictable unless `ORDER BY` is used to ensure that the desired row appears first. For example:
 
-```
+```sql
 SELECT DISTINCT ON (location) location, time, report
     FROM weather_reports
     ORDER BY location, time DESC;
@@ -454,7 +454,7 @@ Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` c
 
 The `UNION` clause has this general form:
 
-```
+```sql
 <select_statement> UNION [ALL | DISTINCT] <select_statement>
 ```
 
@@ -472,7 +472,7 @@ Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` c
 
 The `INTERSECT` clause has this general form:
 
-```
+```sql
 <select_statement> INTERSECT [ALL | DISTINCT] <select_statement>
 ```
 
@@ -490,7 +490,7 @@ Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` c
 
 The `EXCEPT` clause has this general form:
 
-```
+```sql
 <select_statement> EXCEPT [ALL | DISTINCT] <select_statement>
 ```
 
@@ -508,7 +508,7 @@ Currently, `FOR NO KEY UPDATE`, `FOR UPDATE`, `FOR SHARE`, and `FOR KEY SHARE` c
 
 The optional `ORDER BY` clause has this general form:
 
-```
+```sql
 ORDER BY <expression> [ASC | DESC | USING <operator>] [NULLS {FIRST | LAST}] [,...]
 ```
 
@@ -520,7 +520,7 @@ The ordinal number refers to the ordinal (left-to-right) position of the output 
 
 It is also possible to use arbitrary expressions in the `ORDER BY` clause, including columns that do not appear in the `SELECT` output list. Thus the following statement is valid:
 
-```
+```sql
 SELECT name FROM distributors ORDER BY code;
 ```
 
@@ -542,7 +542,7 @@ Character-string data is sorted according to the collation that applies to the c
 
 The `LIMIT` clause consists of two independent sub-clauses:
 
-```
+```sql
 LIMIT {<count> | ALL}
 OFFSET <start>
 ```
@@ -553,7 +553,7 @@ If the `<count>` expression evaluates to NULL, it is treated as `LIMIT ALL`, tha
 
 SQL:2008 introduced a different syntax to achieve the same result, which Cloudberry Database also supports. It is:
 
-```
+```sql
 OFFSET <start> [ ROW | ROWS ]
     FETCH { FIRST | NEXT } [ <count> ] { ROW | ROWS } ONLY
 ```
@@ -572,7 +572,7 @@ It is even possible for repeated executions of the same `LIMIT` query to return 
 
 The locking clause has the general form:
 
-```
+```sql
 FOR <lock_strength> [OF <table_name> [ , ... ] ] [ NOWAIT | SKIP LOCKED ] 
 ```
 
@@ -610,7 +610,7 @@ When a locking clause appears at the top level of a `SELECT` query, the rows tha
 
 When a locking clause appears in a sub-`SELECT`, the rows locked are those returned to the outer query by the sub-query. This might involve fewer rows than inspection of the sub-query alone would suggest, since conditions from the outer query might be used to optimize execution of the sub-query. For example,
 
-```
+```sql
 SELECT * FROM (SELECT * FROM mytable FOR UPDATE) ss WHERE col1 = 5;
 ```
 
@@ -618,7 +618,7 @@ will lock only rows having `col1 = 5`, even though that condition is not textual
 
 It is possible for a `SELECT` command running at the `READ COMMITTED` transaction isolation level and using `ORDER BY` and a locking clause to return rows out of order. This is because `ORDER BY` is applied first. The command sorts the result, but might then block trying to obtain a lock on one or more of the rows. Once the `SELECT` unblocks, some of the ordering column values might have been modified, leading to those rows appearing to be out of order (though they are in order in terms of the original column values). This can be worked around at need by placing the `FOR UPDATE/SHARE` clause in a sub-query, for example
 
-```
+```sql
 SELECT * FROM (SELECT * FROM mytable FOR UPDATE) ss ORDER BY column1;
 ```
 
@@ -631,13 +631,13 @@ At the `REPEATABLE READ` or `SERIALIZABLE` transaction isolation level this woul
 
 The command
 
-```
+```sql
 TABLE <name>
 ```
 
 is equivalent to
 
-```
+```sql
 SELECT * FROM <name>
 ```
 
@@ -647,27 +647,27 @@ It can be used as a top-level command or as a space-saving syntax variant in par
 
 To join the table `films` with the table `distributors`:
 
-```
+```sql
 SELECT f.title, f.did, d.name, f.date_prod, f.kind
   FROM distributors d, JOIN films f USING (did);
 ```
 
 To sum the column `length` of all films and group the results by `kind`:
 
-```
+```sql
 SELECT kind, sum(length) AS total FROM films GROUP BY kind;
 ```
 
 To sum the column `length` of all films, group the results by `kind`, and show those group totals that are less than 5 hours:
 
-```
+```sql
 SELECT kind, sum(length) AS total FROM films GROUP BY kind 
   HAVING sum(length) < interval '5 hours';
 ```
 
 Calculate the subtotals and grand totals of all sales for movie `kind` and `distributor`.
 
-```
+```sql
 SELECT kind, distributor, sum(prc*qty) FROM sales
 GROUP BY ROLLUP(kind, distributor)
 ORDER BY 1,2,3;
@@ -675,7 +675,7 @@ ORDER BY 1,2,3;
 
 Calculate the rank of movie distributors based on total sales:
 
-```
+```sql
 SELECT distributor, sum(prc*qty), 
        rank() OVER (ORDER BY sum(prc*qty) DESC) 
 FROM sales
@@ -684,14 +684,14 @@ GROUP BY distributor ORDER BY 2 DESC;
 
 The following two examples are identical ways of sorting the individual results according to the contents of the second column (`name`):
 
-```
+```sql
 SELECT * FROM distributors ORDER BY name;
 SELECT * FROM distributors ORDER BY 2;
 ```
 
 The next example shows how to obtain the union of the tables `distributors` and `actors`, restricting the results to those that begin with the letter `W` in each table. Only distinct rows are wanted, so the key word `ALL` is omitted:
 
-```
+```sql
 SELECT distributors.name
   FROM distributors
   WHERE distributors.name LIKE 'W%'
@@ -703,7 +703,7 @@ SELECT actors.name
 
 This example shows how to use a function in the `FROM` clause, both with and without a column definition list:
 
-```
+```sql
 CREATE FUNCTION distributors(int) RETURNS SETOF distributors 
 AS $$ SELECT * FROM distributors WHERE did = $1; $$ LANGUAGE 
 SQL;
@@ -717,13 +717,13 @@ SELECT * FROM distributors_2(111) AS (dist_id int, dist_name text);
 
 This example uses a function with an ordinality column added:
 
-```
+```sql
 SELECT * FROM unnest(ARRAY['a','b','c','d','e','f']) WITH ORDINALITY;
 ```
 
 This example uses a simple `WITH` clause:
 
-```
+```sql
 WITH test AS (
   SELECT random() as x FROM generate_series(1, 3)
   )
@@ -734,7 +734,7 @@ SELECT * FROM test;
 
 This example uses the `WITH` clause to display per-product sales totals in only the top sales regions.
 
-```
+```sql
 WITH regional_sales AS 
     SELECT region, SUM(amount) AS total_sales
     FROM orders
@@ -756,7 +756,7 @@ The example could have been written without the `WITH` clause but would have req
 
 This example uses the `WITH RECURSIVE` clause to find all subordinates (direct or indirect) of the employee Mary, and their level of indirectness, from a table that shows only direct subordinates:
 
-```
+```sql
 WITH RECURSIVE employee_recursive(distance, employee_name, manager_name) AS (
     SELECT 1, employee_name, manager_name
     FROM employee
@@ -773,14 +773,14 @@ The typical form of a recursive query is an initial condition, followed by `UNIO
 
 This example uses `LATERAL` to apply a set-returning function `get_product_names()` for each row of the `manufacturers` table:
 
-```
+```sql
 SELECT m.name AS mname, pname
   FROM manufacturers m, LATERAL get_product_names(m.id) pname;
 ```
 
 Manufacturers not currently having any products would not appear in the result, since it is an inner join. If we wished to include the names of such manufacturers in the result, we could write the query as follows:
 
-```
+```sql
 SELECT m.name AS mname, pname
   FROM manufacturers m LEFT JOIN LATERAL get_product_names(m.id) pname ON true;
 ```
@@ -793,7 +793,7 @@ The `SELECT` statement is compatible with the SQL standard, but there are some e
 
 Cloudberry Database allows one to omit the `FROM` clause. It has a straightforward use to compute the results of simple expressions. For example:
 
-```
+```sql
 SELECT 2+2;
 ```
 
@@ -801,7 +801,7 @@ Some other SQL databases cannot do this except by introducing a dummy one-row ta
 
 Note that if a `FROM` clause is not specified, the query cannot reference any database tables. For example, the following query is invalid:
 
-```
+```sql
 SELECT distributors.* WHERE distributors.name = 'Westward';
 ```
 
@@ -823,7 +823,7 @@ In `FROM` items, both the standard and Cloudberry Database allow `AS` to be omit
 
 The SQL standard requires parentheses around the table name when writing `ONLY`, for example:
 
-```
+```sql
 SELECT * FROM ONLY (tab1), ONLY (tab2) WHERE ...
 ```
 

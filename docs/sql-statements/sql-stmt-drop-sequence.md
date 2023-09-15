@@ -33,7 +33,7 @@ Refuse to drop the sequence if any objects depend on it. This is the default.
 
 Remove the sequence `myserial`:
 
-```
+```sql
 DROP SEQUENCE myserial;
 ```
 

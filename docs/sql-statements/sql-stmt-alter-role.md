@@ -142,73 +142,73 @@ It is also possible to tie a session default to a specific database rather than 
 
 Change the password for a role:
 
-```
+```sql
 ALTER ROLE daria WITH PASSWORD 'passwd123';
 ```
 
 Remove a role's password:
 
-```
+```sql
 ALTER ROLE daria WITH PASSWORD NULL;
 ```
 
 Change a password expiration date, specifying that the password should expire at midday on 4th May 2022 using the time zone which is one hour ahead of UTC:
 
-```
+```sql
 ALTER ROLE scott VALID UNTIL 'May 4 12:00:00 2022 +1';
 ```
 
 Make a password valid forever:
 
-```
+```sql
 ALTER ROLE luke VALID UNTIL 'infinity';
 ```
 
 Give a role the ability to create other roles and new databases:
 
-```
+```sql
 ALTER ROLE joelle CREATEROLE CREATEDB;
 ```
 
 Give a role a non-default setting of the `maintenance_work_mem` parameter:
 
-```
+```sql
 ALTER ROLE admin SET maintenance_work_mem = 100000;
 ```
 
 Give a role a non-default, database-specific setting of the `client_min_messages` parameter:
 
-```
+```sql
 ALTER ROLE fred IN DATABASE devel SET client_min_messages = DEBUG;
 ```
 
 Assign a role to a resource queue:
 
-```
+```sql
 ALTER ROLE sammy RESOURCE QUEUE poweruser;
 ```
 
 Give a role permission to create writable external tables:
 
-```
+```sql
 ALTER ROLE load CREATEEXTTABLE (type='writable');
 ```
 
 Alter a role so it does not allow login access on Sundays:
 
-```
+```sql
 ALTER ROLE user3 DENY DAY 'Sunday';
 ```
 
 Alter a role to remove the constraint that does not allow login access on Sundays:
 
-```
+```sql
 ALTER ROLE user3 DROP DENY FOR DAY 'Sunday';
 ```
 
 Assign a new resource group to a role:
 
-```
+```sql
 ALTER ROLE parttime_user RESOURCE GROUP rg_light;
 ```
 

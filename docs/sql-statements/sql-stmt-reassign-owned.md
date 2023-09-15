@@ -37,7 +37,7 @@ The `REASSIGN OWNED` command does not affect any privileges granted to the old_r
 
 Reassign any database objects owned by the role named `sally` and `bob` to `admin`:
 
-```
+```sql
 REASSIGN OWNED BY sally, bob TO admin;
 ```
 

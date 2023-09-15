@@ -63,25 +63,25 @@ The recommended syntax for referencing an ordered-set aggregate is to write `ORD
 
 To rename the aggregate function `myavg` for type `integer` to `my_average`:
 
-```
+```sql
 ALTER AGGREGATE myavg(integer) RENAME TO my_average;
 ```
 
 To change the owner of the aggregate function `myavg` for type `integer` to `joe`:
 
-```
+```sql
 ALTER AGGREGATE myavg(integer) OWNER TO joe;
 ```
 
 To move the ordered-set aggregate `mypercentile` with direct argument of type `float8` and aggregated argument of type `integer` into schema `myschema`:
 
-```
+```sql
 ALTER AGGREGATE mypercentile(float8 ORDER BY integer) SET SCHEMA myschema;
 ```
 
 This will work too:
 
-```
+```sql
 ALTER AGGREGATE mypercentile(float8, integer) SET SCHEMA myschema;
 ```
 

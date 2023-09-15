@@ -37,7 +37,7 @@ Refuse to drop the trigger if any objects depend on it. This is the default.
 
 Remove the trigger `sendmail` on table `expenses`;
 
-```
+```sql
 DROP TRIGGER sendmail ON expenses;
 ```
 

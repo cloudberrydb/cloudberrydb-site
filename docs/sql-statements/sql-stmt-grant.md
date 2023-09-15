@@ -131,19 +131,19 @@ You can also use the `GRANT` command to specify which users can access a trusted
 
 -   To allow a user to create a readable external table with a trusted protocol:
 
-    ```
+```sql
     GRANT SELECT ON PROTOCOL <protocolname> TO <username>
     ```
 
 -   To allow a user to create a writable external table with a trusted protocol:
 
-    ```
+```sql
     GRANT INSERT ON PROTOCOL <protocolname> TO <username>
     ```
 
 -   To allow a user to create both readable and writable external table with a trusted protocol:
 
-    ```
+```sql
     GRANT ALL ON PROTOCOL <protocolname> TO <username>
     ```
 
@@ -258,13 +258,13 @@ Use `psql`'s `\dp` meta-command to obtain information about existing privileges 
 
 Grant insert privilege to all roles on table `mytable`:
 
-```
+```sql
 GRANT INSERT ON mytable TO PUBLIC;
 ```
 
 Grant all available privileges to user `manuel` on view `kinds`:
 
-```
+```sql
 GRANT ALL PRIVILEGES ON kinds TO manuel;
 ```
 
@@ -272,7 +272,7 @@ Note that while the above will indeed grant all privileges if run by a superuser
 
 Grant membership in role `admins` to user `joe`:
 
-```
+```sql
 GRANT admins TO joe;
 ```
 

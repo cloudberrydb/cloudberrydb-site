@@ -138,43 +138,43 @@ Comparisons involving an added enum value will sometimes be slower than comparis
 
 To rename the data type named `electronic_mail`:
 
-```
+```sql
 ALTER TYPE electronic_mail RENAME TO email;
 ```
 
 To change the owner of the user-defined type `email` to `joe`:
 
-```
+```sql
 ALTER TYPE email OWNER TO joe;
 ```
 
 To change the schema of the user-defined type `email` to `customers`:
 
-```
+```sql
 ALTER TYPE email SET SCHEMA customers;
 ```
 
 To set or alter the compression type and compression level of the user-defined type named `int33`:
 
-```
+```sql
 ALTER TYPE int33 SET DEFAULT ENCODING (compresstype=zlib, compresslevel=7);
 ```
 
 To add a new attribute to a type:
 
-```
+```sql
 ALTER TYPE compfoo ADD ATTRIBUTE f3 int;
 ```
 
 To add a new value to an enum type in a particular sort position:
 
-```
+```sql
 ALTER TYPE colors ADD VALUE 'orange' AFTER 'red';
 ```
 
 To rename an enum value:
 
-```
+```sql
 ALTER TYPE colors RENAME VALUE 'purple' TO 'mauve';
 ```
 

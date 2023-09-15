@@ -36,7 +36,7 @@ A transaction that has executed `LISTEN` cannot be prepared for two-phase commit
 
 Configure and execute a listen/notify sequence from `psql`:
 
-```
+```sql
 LISTEN virtual;
 NOTIFY virtual;
 Asynchronous notification "virtual" received from server process with PID 8448.

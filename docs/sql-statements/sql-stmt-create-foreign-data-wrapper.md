@@ -58,19 +58,19 @@ The foreign-data wrapper functionality is still under development. Optimization 
 
 Create a useless foreign-data wrapper named `dummy`:
 
-```
+```sql
 CREATE FOREIGN DATA WRAPPER dummy;
 ```
 
 Create a foreign-data wrapper named `file` with a handler function named `file_fdw_handler`:
 
-```
+```sql
 CREATE FOREIGN DATA WRAPPER file HANDLER file_fdw_handler;
 ```
 
 Create a foreign-data wrapper named `mywrapper` that includes an option:
 
-```
+```sql
 CREATE FOREIGN DATA WRAPPER mywrapper OPTIONS (debug 'true');
 ```
 

@@ -69,7 +69,7 @@ In a rule for `INSERT`, `UPDATE`, or `DELETE` on a view, you can add a `RETURNIN
 
 It is very important to take care to avoid circular rules. For example, though each of the following two rule definitions are accepted by Cloudberry Database, the `SELECT` command would cause Greenplum to report an error because of recursive expansion of a rule:
 
-```
+```sql
 CREATE RULE "_RETURN" AS
     ON SELECT TO t1
     DO INSTEAD
@@ -85,7 +85,7 @@ SELECT * FROM t1;
 
 If a rule action contains a `NOTIFY` command, the `NOTIFY` command will be executed unconditionally, that is, the `NOTIFY` will be issued even if there are not any rows that the rule should apply to. For example, in:
 
-```
+```sql
 CREATE RULE notify_me AS ON UPDATE TO mytable DO ALSO NOTIFY mytable;
 
 UPDATE mytable SET name = 'foo' WHERE id = 42;

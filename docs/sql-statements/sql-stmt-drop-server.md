@@ -33,7 +33,7 @@ Refuse to drop the server if any object depends on it. This is the default.
 
 Drop the server named `foo` if it exists:
 
-```
+```sql
 DROP SERVER IF EXISTS foo;
 ```
 

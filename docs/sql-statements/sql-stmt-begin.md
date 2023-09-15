@@ -45,7 +45,7 @@ For reasons of backwards compatibility, the commas between successive transactio
 
 To begin a transaction block:
 
-```
+```sql
 BEGIN;
 ```
 

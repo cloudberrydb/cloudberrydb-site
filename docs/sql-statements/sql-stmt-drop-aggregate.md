@@ -55,19 +55,19 @@ Alternative syntaxes for referencing ordered-set aggregates are described under 
 
 To remove the aggregate function `myavg` for type `integer`:
 
-```
+```sql
 DROP AGGREGATE myavg(integer);
 ```
 
 To remove the hypothetical-set aggregate function `myrank`, which takes an arbitrary list of ordering columns and a matching list of direct arguments:
 
-```
+```sql
 DROP AGGREGATE myrank(VARIADIC "any" ORDER BY VARIADIC "any");
 ```
 
 To remove multiple aggregate functions in one command:
 
-```
+```sql
 DROP AGGREGATE myavg(integer), myavg(bigint);
 ```
 

@@ -61,19 +61,19 @@ When creating tablespaces, ensure that file system locations have sufficient I/O
 
 Create a new tablespace and specify the file system location for the coordinator and all segment instances:
 
-```
+```sql
 CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace';
 ```
 
 Create a tablespace `indexspace` at `/data/indexes` owned by user `genevieve`:
 
-```
+```sql
 CREATE TABLESPACE indexspace OWNER genevieve LOCATION '/data/indexes';
 ```
 
 Create a new tablespace and specify a location for segment instances with content ID 0 and 1. For the coordinator and segment instances not listed in the `WITH` clause, the file system location for the tablespace is the directory specified in the `LOCATION` clause.
 
-```
+```sql
 CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');
 ```
 

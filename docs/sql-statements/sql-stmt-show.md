@@ -50,7 +50,7 @@ The function `current_setting()` produces equivalent output; see [System Adminis
 
 Show the current setting of the parameter `DateStyle`:
 
-```
+```sql
 SHOW DateStyle;
  DateStyle
 -----------
@@ -60,7 +60,7 @@ SHOW DateStyle;
 
 Show the current setting of the parameter `row_security`:
 
-```
+```sql
 SHOW row_security;
  row_security
 --------------
@@ -70,7 +70,7 @@ SHOW row_security;
 
 Show the current setting of all parameters:
 
-```
+```sql
 SHOW ALL;
        name       | setting |                  description
 -----------------+---------+----------------------------------------------------

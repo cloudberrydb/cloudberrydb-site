@@ -99,7 +99,7 @@ Use [CALL](/docs/sql-statements/sql-stmt-call.md) to execute a procedure.
 
 ## Examples
 
-```
+```sql
 CREATE PROCEDURE insert_data(a integer, b integer)
 LANGUAGE SQL
 AS $$

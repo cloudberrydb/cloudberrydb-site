@@ -35,13 +35,13 @@ Refuse to drop the table if any objects depend on it. This is the default.
 
 Remove the table `mytable`:
 
-```
+```sql
 DROP TABLE mytable;
 ```
 
 Remove two tables, `films` and `distributors`:
 
-```
+```sql
 DROP TABLE films, distributors;
 ```
 

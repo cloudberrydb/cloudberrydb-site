@@ -10,7 +10,7 @@ CREATE ROLE <name> [[WITH] <option> [ ... ]]
 
 where option can be:
 
-```
+```sql
       SUPERUSER | NOSUPERUSER
     | CREATEDB | NOCREATEDB
     | CREATEROLE | NOCREATEROLE
@@ -144,7 +144,7 @@ DENY deny_point
 DENY BETWEEN deny_point AND deny_point
 :   The `DENY` and `DENY BETWEEN` keywords set time-based constraints that are enforced at login. `DENY` sets a day or a day and time to deny access. `DENY BETWEEN` sets an interval during which access is denied. Both use the parameter deny_point that has the following format:
 
-```
+```sql
 DAY day [ TIME 'time' ]
 ```
 
@@ -152,20 +152,20 @@ The two parts of the `deny_point` parameter use the following formats:
 
 For `day`:
 
-```
+```sql
 {'Sunday' | 'Monday' | 'Tuesday' |'Wednesday' | 'Thursday' | 'Friday' | 
 'Saturday' | 0-6 }
 ```
 
 For `time`:
 
-```
+```sql
 { 00-23 : 00-59 | 01-12 : 00-59 { AM | PM }}
 ```
 
 The `DENY BETWEEN` clause uses two deny_point parameters:
 
-```
+```sql
 DENY BETWEEN <deny_point> AND <deny_point>
 ```
 
@@ -193,13 +193,13 @@ You must exercise caution when specifying an unencrypted password with this comm
 
 Create a role that can log in, but don't give it a password:
 
-```
+```sql
 CREATE ROLE jonathan LOGIN;
 ```
 
 Create a role with a password:
 
-```
+```sql
 CREATE USER davide WITH PASSWORD 'jw8s0F4';
 ```
 
@@ -207,38 +207,38 @@ CREATE USER davide WITH PASSWORD 'jw8s0F4';
 
 Create a role with a password that is valid until the end of 2022:
 
-```
+```sql
 CREATE USER joelle WITH LOGIN PASSWORD 'jw8s0F4' VALID UNTIL '2023-01-01';
 ```
 
 Create a role that can create databases and manage other roles:
 
-```
+```sql
 CREATE ROLE admin WITH CREATEDB CREATEROLE;
 ```
 
 Create a role that does not allow login access on Sundays:
 
-```
+```sql
 CREATE ROLE user3 DENY DAY 'Sunday';
 ```
 
 Create a role that can create readable and writable external tables of type 'gpfdist':
 
-```
+```sql
 CREATE ROLE jan WITH CREATEEXTTABLE(type='readable', protocol='gpfdist')
    CREATEEXTTABLE(type='writable', protocol='gpfdist'); 
 ```
 
 Create a role, assigning a resource group:
 
-```
+```sql
 CREATE ROLE bill RESOURCE GROUP rg_light;
 ```
 
 Create a role that belongs to a resource queue:
 
-```
+```sql
 CREATE ROLE jonathan LOGIN RESOURCE QUEUE poweruser;
 ```
 
@@ -246,7 +246,7 @@ CREATE ROLE jonathan LOGIN RESOURCE QUEUE poweruser;
 
 `CREATE ROLE` is in the SQL standard, but the standard only requires the syntax:
 
-```
+```sql
 CREATE ROLE <name> [WITH ADMIN <rolename>]
 ```
 

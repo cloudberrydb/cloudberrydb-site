@@ -10,7 +10,7 @@ ALTER RESOURCE QUEUE <name> WITH ( <queue_attribute>=<value> [, ... ] )
 
 where queue_attribute is:
 
-```
+```sql
    ACTIVE_STATEMENTS=<integer>
    MEMORY_LIMIT='<memory_units>'
    MAX_COST=<float>
@@ -19,13 +19,13 @@ where queue_attribute is:
    PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}
 ```
 
-```
+```sql
 ALTER RESOURCE QUEUE <name> WITHOUT ( <queue_attribute> [, ... ] )
 ```
 
 where queue_attribute is:
 
-```
+```sql
    ACTIVE_STATEMENTS
    MEMORY_LIMIT
    MAX_COST
@@ -75,39 +75,39 @@ When resource queue-based resource management is active, use the `MEMORY_LIMIT` 
 
 Change the active query limit for a resource queue:
 
-```
+```sql
 ALTER RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20);
 ```
 
 Change the memory limit for a resource queue:
 
-```
+```sql
 ALTER RESOURCE QUEUE myqueue WITH (MEMORY_LIMIT='2GB');
 ```
 
 Reset the maximum and minimum query cost limit for a resource queue to no limit:
 
-```
+```sql
 ALTER RESOURCE QUEUE myqueue WITH (MAX_COST=-1.0, 
   MIN_COST= -1.0);
 ```
 
 Reset the query cost limit for a resource queue to 310 (or 30000000000.0) and do not allow overcommit:
 
-```
+```sql
 ALTER RESOURCE QUEUE myqueue WITH (MAX_COST=3e+10, 
   COST_OVERCOMMIT=FALSE);
 ```
 
 Reset the priority of queries associated with a resource queue to the minimum level:
 
-```
+```sql
 ALTER RESOURCE QUEUE myqueue WITH (PRIORITY=MIN);
 ```
 
 Remove the `MAX_COST` and `MEMORY_LIMIT` limits from a resource queue:
 
-```
+```sql
 ALTER RESOURCE QUEUE myqueue WITHOUT (MAX_COST, MEMORY_LIMIT);
 ```
 

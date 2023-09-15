@@ -11,7 +11,7 @@ EXPLAIN [ANALYZE] [VERBOSE] <statement>
 
 where option can be one of:
 
-```
+```sql
     ANALYZE [ <boolean> ]
     VERBOSE [ <boolean> ]
     COSTS [ <boolean> ]
@@ -42,7 +42,7 @@ It is important to note that the cost of an upper-level node includes the cost o
 -   The segment id number of the segment that produced the most rows for an operation.
 -   For relevant operations, the work_mem used by the operation. If `work_mem` was not sufficient to perform the operation in memory, the plan will show how much data was spilled to disk and how many passes over the data were required for the lowest performing segment. For example:
 
-    ```
+```sql
     Work_mem used: 64K bytes avg, 64K bytes max (seg0).
     Work_mem wanted: 90K bytes avg, 90K bytes max (seg0) to abate workfile 
     I/O affecting 2 workers.
@@ -55,7 +55,7 @@ It is important to note that the cost of an upper-level node includes the cost o
 
 > **Important** Keep in mind that the statement is actually run when `ANALYZE` is used. Although `EXPLAIN ANALYZE` will discard any output that a `SELECT` would return, other side effects of the statement will happen as usual. If you wish to use `EXPLAIN ANALYZE` on a DML statement without letting the command affect your data, use this approach:
 
-```
+```sql
 BEGIN;
 EXPLAIN ANALYZE ...;
 ROLLBACK;
@@ -111,7 +111,7 @@ For more information about query profiling, see "Query Profiling" in the *Cloudb
 
 To illustrate how to read an `EXPLAIN` query plan, consider the following example for a very simple query:
 
-```
+```sql
 EXPLAIN SELECT * FROM names WHERE name = 'Joelle';
                                   QUERY PLAN
 -------------------------------------------------------------------------------
@@ -130,7 +130,7 @@ The estimated startup cost for this plan is `00.00` (no cost) and a total cost o
 
 Here is the same query, with cost estimates suppressed:
 
-```
+```sql
 EXPLAIN (COSTS FALSE) SELECT * FROM names WHERE name = 'Joelle';
                 QUERY PLAN
 ------------------------------------------
@@ -143,7 +143,7 @@ EXPLAIN (COSTS FALSE) SELECT * FROM names WHERE name = 'Joelle';
 
 Here is the same query, with JSON formatting:
 
-```
+```sql
 EXPLAIN (FORMAT JSON) SELECT * FROM names WHERE name = 'Joelle';
                   QUERY PLAN
 -----------------------------------------------
@@ -187,7 +187,7 @@ EXPLAIN (FORMAT JSON) SELECT * FROM names WHERE name = 'Joelle';
 
 If there is an index and we use a query with an indexable `WHERE` condition, `EXPLAIN` might show a different plan. This query generates a plan with an index scan, with YAML formatting:
 
-```
+```sql
 EXPLAIN (FORMAT YAML) SELECT * FROM NAMES WHERE LOCATION='Sydney, Australia';
                           QUERY PLAN
 --------------------------------------------------------------

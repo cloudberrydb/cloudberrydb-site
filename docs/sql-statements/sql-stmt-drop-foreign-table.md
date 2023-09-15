@@ -33,7 +33,7 @@ Refuse to drop the foreign table if any objects depend on it. This is the defaul
 
 To destroy two foreign tables, `films` and `distributors`:
 
-```
+```sql
 DROP FOREIGN TABLE films, distributors;
 ```
 

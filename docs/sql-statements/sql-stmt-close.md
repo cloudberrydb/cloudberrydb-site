@@ -36,7 +36,7 @@ If a cursor is closed after a savepoint which is later rolled back, the `CLOSE` 
 
 Close the cursor `portala`:
 
-```
+```sql
 CLOSE portala;
 ```
 

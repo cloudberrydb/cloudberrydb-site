@@ -50,13 +50,13 @@ Specifies the new name of the foreign server.
 
 Change the definition of a server named `foo` by adding connection options:
 
-```
+```sql
 ALTER SERVER foo OPTIONS (host 'foo', dbname 'foodb');
 ```
 
 Change the option named `host` for a server named `foo`, and set the server version:
 
-```
+```sql
 ALTER SERVER foo VERSION '9.1' OPTIONS (SET host 'baz');
 ```
 

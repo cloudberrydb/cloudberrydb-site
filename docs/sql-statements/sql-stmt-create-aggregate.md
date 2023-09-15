@@ -85,7 +85,7 @@ A simple aggregate function is made from one or two ordinary functions; a state 
 
 These functions are used as follows:
 
-```
+```sql
 sfunc( internal-state, next-data-values ) ---> next-internal-state
 ffunc( internal-state ) ---> aggregate-value
 ```
@@ -110,13 +110,13 @@ An aggregate can optionally support partial aggregation. This requires specifyin
 
 Aggregates that behave like `min()` or `max()` can sometimes be optimized by looking into an index instead of scanning every input row. If this aggregate can be so optimized, indicate it by specifying a *sort operator*. The basic requirement is that the aggregate must yield the first element in the sort ordering induced by the operator; in other words:
 
-```
+```sql
 SELECT agg(col) FROM tab;
 ```
 
 must be equivalent to:
 
-```
+```sql
 SELECT col FROM tab ORDER BY col USING sortop LIMIT 1;
 ```
 
@@ -252,7 +252,7 @@ Any compiled code (shared library files) for custom functions must be placed in 
 
 In previous versions of Cloudberry Database, there was a concept of ordered aggregates. Since version 6, any aggregate can be called as an ordered aggregate, using the syntax:
 
-```
+```sql
 name ( arg [ , ... ] [ORDER BY sortspec [ , ...]] )
 ```
 
@@ -268,7 +268,7 @@ Before creating the aggregate function, create two functions that are used as th
 
 This function is specified as the `sfunc` function in the aggregate function.
 
-```
+```sql
 CREATE FUNCTION mysfunc_accum(numeric, numeric, numeric) 
   RETURNS numeric
    AS 'select $1 + $2 + $3'
@@ -278,7 +278,7 @@ CREATE FUNCTION mysfunc_accum(numeric, numeric, numeric)
 
 This function is specified as the `combinefunc` function in the aggregate function.
 
-```
+```sql
 CREATE FUNCTION mycombine_accum(numeric, numeric )
   RETURNS numeric
    AS 'select $1 + $2'
@@ -288,7 +288,7 @@ CREATE FUNCTION mycombine_accum(numeric, numeric )
 
 This `CREATE AGGREGATE` command creates the aggregate function that adds two columns.
 
-```
+```sql
 CREATE AGGREGATE agg_twocols(numeric, numeric) (
    SFUNC = mysfunc_accum,
    STYPE = numeric,
@@ -298,7 +298,7 @@ CREATE AGGREGATE agg_twocols(numeric, numeric) (
 
 The following commands create a table, adds some rows, and runs the aggregate function.
 
-```
+```sql
 CREATE TABLE t1 (a int, b int) DISTRIBUTED BY (a);
 INSERT INTO t1 VALUES
    (10, 1),

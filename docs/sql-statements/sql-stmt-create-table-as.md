@@ -89,21 +89,21 @@ This command is functionally similar to [SELECT INTO](/docs/sql-statements/sql-s
 
 Create a new table `films_recent` consisting of only recent entries from the table `films`:
 
-```
+```sql
 CREATE TABLE films_recent AS
   SELECT * FROM films WHERE date_prod >= '2020-01-01';
 ```
 
 To copy a table completely, you can also use the short form by specifying the `TABLE` command:
 
-```
+```sql
 CREATE TABLE films2 AS
   TABLE films;
 ```
 
 Create a new temporary table `films_recent`, consisting only of recent entries from the table `films`, using a prepared statement. The new table will be dropped at commit:
 
-```
+```sql
 PREPARE recentfilms(date) AS
   SELECT * FROM films WHERE date_prod > $1;
 CREATE TEMP TABLE films_recent ON COMMIT DROP AS 

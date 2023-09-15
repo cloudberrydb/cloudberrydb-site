@@ -10,7 +10,7 @@ ALTER RESOURCE GROUP <name> SET <group_attribute> <value>
 
 where group_attribute is one of:
 
-```
+```sql
 CPU_MAX_PERCENT=<integer> | CPUSET=<coordinator_cores>;<segment_cores>
 [ MEMORY_LIMIT=<integer> ]
 [ CPU_WEIGHT=<integer> ]
@@ -87,25 +87,25 @@ You cannot submit an `ALTER RESOURCE GROUP` command in an explicit transaction o
 
 Change the active transaction limit for a resource group:
 
-```
+```sql
 ALTER RESOURCE GROUP rgroup1 SET CONCURRENCY 13;
 ```
 
 Update the CPU limit for a resource group:
 
-```
+```sql
 ALTER RESOURCE GROUP rgroup2 SET CPU_MAX_PERCENT 45;
 ```
 
 Update the memory limit for a resource group:
 
-```
+```sql
 ALTER RESOURCE GROUP rgroup3 SET MEMORY_LIMIT 30;
 ```
 
 Reserve CPU core 1 for a resource group on the coordinator host and all segment hosts:
 
-```
+```sql
 ALTER RESOURCE GROUP rgroup5 SET CPUSET '1;1';
 ```
 

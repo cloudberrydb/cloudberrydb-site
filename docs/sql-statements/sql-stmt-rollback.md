@@ -32,7 +32,7 @@ Issuing `ROLLBACK` when not inside a transaction block emits a warning and other
 
 To discard all changes made in the current transaction:
 
-```
+```sql
 ROLLBACK;
 ```
 

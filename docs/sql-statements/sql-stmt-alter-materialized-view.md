@@ -75,7 +75,7 @@ The new schema for the materialized view.
 
 To rename the materialized view `foo` to `bar`:
 
-```
+```sql
 ALTER MATERIALIZED VIEW foo RENAME TO bar;
 ```
 

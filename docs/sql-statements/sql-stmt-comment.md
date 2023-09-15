@@ -145,19 +145,19 @@ There is presently no security mechanism for viewing comments: any user connecte
 
 Attach a comment to the table `mytable`:
 
-```
+```sql
 COMMENT ON TABLE mytable IS 'This is my table.';
 ```
 
 Remove it again:
 
-```
+```sql
 COMMENT ON TABLE mytable IS NULL;
 ```
 
 More examples:
 
-```
+```sql
 COMMENT ON ACCESS METHOD gin IS 'GIN index access method';
 COMMENT ON AGGREGATE my_aggregate (double precision) IS 'Computes sample variance';
 COMMENT ON CAST (text AS int4) IS 'Allow casts from text to int4';

@@ -43,7 +43,7 @@ Refuse to drop the operator class if any objects depend on it. This is the defau
 
 Remove the B-tree operator class `widget_ops`:
 
-```
+```sql
 DROP OPERATOR CLASS widget_ops USING btree;
 ```
 

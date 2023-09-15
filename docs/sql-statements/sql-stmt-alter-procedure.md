@@ -92,37 +92,37 @@ Cloudberry Database has limitations on the use of functions defined as `STABLE` 
 
 To rename the procedure `insert_data` with two arguments of type `integer` to `insert_record`:
 
-```
+```sql
 ALTER PROCEDURE insert_data(integer, integer) RENAME TO insert_record;
 ```
 
 To change the owner of the procedure `insert_data` with two arguments of type `integer` to `joe`:
 
-```
+```sql
 ALTER PROCEDURE insert_data(integer, integer) OWNER TO joe;
 ```
 
 To change the schema of the procedure `insert_data` with two arguments of type `integer` to `accounting`:
 
-```
+```sql
 ALTER PROCEDURE insert_data(integer, integer) SET SCHEMA accounting;
 ```
 
 To mark the procedure `insert_data(integer, integer)` as being dependent on the extension `myext`:
 
-```
+```sql
 ALTER PROCEDURE insert_data(integer, integer) DEPENDS ON EXTENSION myext;
 ```
 
 To adjust the search path that is automatically set for a procedure:
 
-```
+```sql
 ALTER PROCEDURE check_password(text) SET search_path = admin, pg_temp;
 ```
 
 To disable automatic setting of `search_path` for a procedure:
 
-```
+```sql
 ALTER PROCEDURE check_password(text) RESET search_path;
 ```
 

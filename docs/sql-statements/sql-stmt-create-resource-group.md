@@ -10,7 +10,7 @@ CREATE RESOURCE GROUP <name> WITH (<group_attribute>=<value> [, ... ])
 
 where group_attribute is one of:
 
-```
+```sql
 CPU_MAX_PERCENT=<integer> | CPUSET=<coordinator_cores>;<segment_cores>
 [ MEMORY_LIMIT=<integer> ]
 [ CPU_WEIGHT=<integer> ]
@@ -87,7 +87,7 @@ You cannot submit a `CREATE RESOURCE GROUP` command in an explicit transaction o
 
 Use the `gp_toolkit.gp_resgroup_config` system view to display the limit settings of all resource groups:
 
-```
+```sql
 SELECT * FROM gp_toolkit.gp_resgroup_config;
 ```
 
@@ -95,27 +95,27 @@ SELECT * FROM gp_toolkit.gp_resgroup_config;
 
 Create a resource group with CPU and memory limit percentages of 35:
 
-```
+```sql
 CREATE RESOURCE GROUP rgroup1 WITH (CPU_MAX_PERCENT=35, MEMORY_LIMIT=35);
 ```
 
 Create a resource group with a concurrent transaction limit of 20, a memory limit of 15, and a CPU limit of 25:
 
-```
+```sql
 CREATE RESOURCE GROUP rgroup2 WITH (CONCURRENCY=20, 
   MEMORY_LIMIT=15, CPU_MAX_PERCENT=25);
 ```
 
 Create a resource group to manage PL/Container resources specifying a memory limit of 10, and a CPU limit of 10:
 
-```
+```sql
 CREATE RESOURCE GROUP plc_run1 WITH (MEMORY_LIMIT=10, CPU_MAX_PERCENT=10,
   CONCURRENCY=0);
 ```
 
 Create a resource group with a memory limit percentage of 11 to which you assign CPU core 1 on the coordinator host, and cores 1 to 3 on segment hosts:
 
-```
+```sql
 CREATE RESOURCE GROUP rgroup3 WITH (CPUSET='1;1-3', MEMORY_LIMIT=11);
 ```
 

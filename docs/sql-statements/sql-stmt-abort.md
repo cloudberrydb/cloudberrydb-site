@@ -32,7 +32,7 @@ Issuing `ABORT` outside of a transaction block emits a warning and otherwise has
 
 To terminate all changes:
 
-```
+```sql
 ABORT;
 ```
 

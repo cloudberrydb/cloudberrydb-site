@@ -106,7 +106,7 @@ For historical reasons, `ALTER TABLE` can be used with sequences too; but the on
 
 Restart a sequence called `serial` at `105`:
 
-```
+```sql
 ALTER SEQUENCE serial RESTART WITH 105;
 ```
 

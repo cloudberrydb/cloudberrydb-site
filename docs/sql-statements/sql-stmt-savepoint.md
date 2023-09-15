@@ -30,7 +30,7 @@ Savepoints can be established only inside a transaction block. You can define mu
 
 To establish a savepoint and later undo the effects of all commands run after it was established:
 
-```
+```sql
 BEGIN;
     INSERT INTO table1 VALUES (1);
     SAVEPOINT my_savepoint;
@@ -44,7 +44,7 @@ The above transaction inserts the values 1 and 3, but not 2.
 
 To establish and later destroy a savepoint:
 
-```
+```sql
 BEGIN;
     INSERT INTO table1 VALUES (3);
     SAVEPOINT my_savepoint;

@@ -40,13 +40,13 @@ The new schema for the conversion.
 
 To rename the conversion `iso_8859_1_to_utf8` to `latin1_to_unicode`:
 
-```
+```sql
 ALTER CONVERSION iso_8859_1_to_utf8 RENAME TO latin1_to_unicode;
 ```
 
 To change the owner of the conversion `iso_8859_1_to_utf8` to `joe`:
 
-```
+```sql
 ALTER CONVERSION iso_8859_1_to_utf8 OWNER TO joe;
 ```
 

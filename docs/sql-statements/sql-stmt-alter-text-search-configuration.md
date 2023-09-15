@@ -66,7 +66,7 @@ The `ADD MAPPING FOR` form installs a list of dictionaries to be consulted for t
 
 The following example replaces the `english` dictionary with the `swedish` dictionary anywhere that `english` is used within `my_config`.
 
-```
+```sql
 ALTER TEXT SEARCH CONFIGURATION my_config
   ALTER MAPPING REPLACE english WITH swedish;
 ```

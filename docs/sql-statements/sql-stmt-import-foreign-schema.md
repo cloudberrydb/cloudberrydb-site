@@ -50,14 +50,14 @@ OPTIONS ( option 'value' [, ... ] )
 
 Import table definitions from a remote schema `foreign_films` on server `film_server`, creating the foreign tables in local schema `films`:
 
-```
+```sql
 IMPORT FOREIGN SCHEMA foreign_films
     FROM SERVER film_server INTO films;
 ```
 
 As above, but import only the two tables `actors` and `directors` (if they exist):
 
-```
+```sql
 IMPORT FOREIGN SCHEMA foreign_films LIMIT TO (actors, directors)
     FROM SERVER film_server INTO films;
 ```

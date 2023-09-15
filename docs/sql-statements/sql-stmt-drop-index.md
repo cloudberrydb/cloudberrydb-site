@@ -39,7 +39,7 @@ Refuse to drop the index if any objects depend on it. This is the default.
 
 Remove the index `title_idx`:
 
-```
+```sql
 DROP INDEX title_idx;
 ```
 

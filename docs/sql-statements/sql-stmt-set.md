@@ -83,31 +83,31 @@ See the [Time Zones](https://www.postgresql.org/docs/12/datatype-datetime.html#D
 
 Set the schema search path:
 
-```
+```sql
 SET search_path TO my_schema, public;
 ```
 
 Increase the segment host memory per query to 200 MB:
 
-```
+```sql
 SET statement_mem TO '200MB';
 ```
 
 Set the style of date to traditional POSTGRES with "day before month" input convention:
 
-```
+```sql
 SET datestyle TO postgres, dmy;
 ```
 
 Set the time zone for San Mateo, California (Pacific Time):
 
-```
+```sql
 SET TIME ZONE 'PST8PDT';
 ```
 
 Set the time zone for Italy:
 
-```
+```sql
 SET TIME ZONE 'Europe/Rome'; 
 ```
 

@@ -189,13 +189,13 @@ Refer to [CREATE FOREIGN TABLE](/docs/sql-statements/sql-stmt-create-foreign-tab
 
 To mark a column as not-null:
 
-```
+```sql
 ALTER FOREIGN TABLE distributors ALTER COLUMN street SET NOT NULL;
 ```
 
 To change the options of a foreign table:
 
-```
+```sql
 ALTER FOREIGN TABLE myschema.distributors 
     OPTIONS (ADD opt1 'value', SET opt2 'value2', DROP opt3 'value3');
 ```

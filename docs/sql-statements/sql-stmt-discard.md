@@ -31,7 +31,7 @@ TEMPORARY/TEMP
 
 Releases all temporary resources associated with the current session and resets the session to its initial state. Currently, this has the same effect as executing the following sequence of statements:
 
-    ```
+```sql
     CLOSE ALL;
     SET SESSION AUTHORIZATION DEFAULT;
     RESET ALL;

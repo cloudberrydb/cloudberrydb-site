@@ -647,19 +647,19 @@ Be aware of the following when altering partitioned tables using the *classic sy
 
 Add a column of type `varchar` to a table:
 
-```
+```sql
 ALTER TABLE distributors ADD COLUMN address varchar(30);
 ```
 
 To drop a column from a table:
 
-```
+```sql
 ALTER TABLE distributors DROP COLUMN address RESTRICT;
 ```
 
 To change the types of two existing columns in one operation:
 
-```
+```sql
 ALTER TABLE distributors
     ALTER COLUMN address TYPE varchar(80),
     ALTER COLUMN name TYPE varchar(100);
@@ -667,7 +667,7 @@ ALTER TABLE distributors
 
 To change an integer column containing Unix timestamps to `timestamp with time zone` via a `USING` clause:
 
-```
+```sql
 ALTER TABLE foo
     ALTER COLUMN foo_timestamp SET DATA TYPE timestamp with time zone
     USING
@@ -676,7 +676,7 @@ ALTER TABLE foo
 
 The same, when the column has a default expression that won't automatically cast to the new data type:
 
-```
+```sql
 ALTER TABLE foo
     ALTER COLUMN foo_timestamp DROP DEFAULT,
     ALTER COLUMN foo_timestamp TYPE timestamp with time zone
@@ -687,50 +687,50 @@ ALTER TABLE foo
 
 Rename an existing column:
 
-```
+```sql
 ALTER TABLE distributors RENAME COLUMN address TO city;
 ```
 
 Rename an existing table:
 
-```
+```sql
 ALTER TABLE distributors RENAME TO suppliers;
 ```
 
 To rename an existing constraint:
 
-```
+```sql
 ALTER TABLE distributors RENAME CONSTRAINT zipchk TO zip_check;
 ```
 
 Add a not-null constraint to a column:
 
-```
+```sql
 ALTER TABLE distributors ALTER COLUMN street SET NOT NULL;
 ```
 
 Rename an existing constraint:
 
-```
+```sql
 ALTER TABLE distributors RENAME CONSTRAINT zipchk TO zip_check;
 ```
 
 To remove a not-null constraint from a column:
 
-```
+```sql
 ALTER TABLE distributors ALTER COLUMN street DROP NOT NULL;
 ```
 
 Add a check constraint to a table and all of its children:
 
-```
+```sql
 ALTER TABLE distributors ADD CONSTRAINT zipchk CHECK 
   (char_length(zipcode) = 5);
 ```
 
 To add a check constraint only to a table and not to its children:
 
-```
+```sql
 ALTER TABLE distributors ADD CONSTRAINT zipchk CHECK (char_length(zipcode) = 5)
   NO INHERIT;
 ```
@@ -739,13 +739,13 @@ ALTER TABLE distributors ADD CONSTRAINT zipchk CHECK (char_length(zipcode) = 5)
 
 Remove a check constraint from a table and all of its children:
 
-```
+```sql
 ALTER TABLE distributors DROP CONSTRAINT zipchk;
 ```
 
 Remove a check constraint from one table only:
 
-```
+```sql
 ALTER TABLE ONLY distributors DROP CONSTRAINT zipchk;
 ```
 
@@ -753,91 +753,91 @@ ALTER TABLE ONLY distributors DROP CONSTRAINT zipchk;
 
 To add a (multicolumn) unique constraint to a table:
 
-```
+```sql
 ALTER TABLE distributors ADD CONSTRAINT dist_id_zipcode_key UNIQUE (dist_id, zipcode);
 ```
 
 To add an automatically named primary key constraint to a table, noting that a table can only ever have one primary key:
 
-```
+```sql
 ALTER TABLE distributors ADD PRIMARY KEY (dist_id);
 ```
 
 To move a table to a different tablespace:
 
-```
+```sql
 ALTER TABLE distributors SET TABLESPACE fasttablespace;
 ```
 
 Move a table to a different schema:
 
-```
+```sql
 ALTER TABLE myschema.distributors SET SCHEMA yourschema;
 ```
 
 Change a table's access method to `ao_row`:
 
-```
+```sql
 ALTER TABLE distributors SET ACCESS METHOD ao_row;
 ```
 
 Change a table's `blocksize` to `32768`:
 
-```
+```sql
 ALTER TABLE distributors SET (blocksize = 32768);
 ```
 
 Change a table's access method to `ao_row`, compression type to `zstd` and compression level to `4`:
 
-```
+```sql
 ALTER TABLE sales SET ACCESS METHOD ao_row with (compresstype=zstd,compresslevel=4);
 ```
 
 Alternatively, you can perform the same operation using `SET WITH`:
 
-```
+```sql
 ALTER TABLE sales SET WITH (appendoptimized=true, compresstype=zstd, compresslevel=4);
 ```
 
 Change access method for all existing partitions of a table:
 
-```
+```sql
 ALTER TABLE sales SET ACCESS METHOD ao_row;
 ```
 
 Change all future partitions of a table to have an access method of `heap`, leaving the access method of current partitions as is:
 
-```
+```sql
 ALTER TABLE ONLY sales SET ACCESS METHOD heap;
 ```
 
 Add a column and change the table's access method:
 
-```
+```sql
 ALTER TABLE distributors SET ACCESS METHOD ao_row, ADD column j int;
 ```
 
 Add a column and change table storage parameters:
 
-```
+```sql
 ALTER TABLE distributors SET (compresslevel=7), ADD COLUMN k int;
 ```
 
 Change the distribution policy of a table to replicated:
 
-```
+```sql
 ALTER TABLE myschema.distributors SET DISTRIBUTED REPLICATED;
 ```
 
 Change the distribution policy of a table to random and force a table rewrite:
 
-```
+```sql
 ALTER TABLE distributors SET WITH (REORGANIZE=true) SET DISTRIBUTED RANDOMLY;
 ```
 
 Set compression for a table and physically reorder the table by column `i`:
 
-```
+```sql
 ALTER TABLE distributors 
     REPACK BY COLUMNS (i),
     SET (compresstype=zstd, compresslevel=3);
@@ -847,35 +847,35 @@ ALTER TABLE distributors
 
 Attach a partition to a range-partitioned table:
 
-```
+```sql
 ALTER TABLE measurement
     ATTACH PARTITION measurement_y2016m07 FOR VALUES FROM ('2016-07-01') TO ('2016-08-01');
 ```
 
 Attach a partition to a list-partitioned table:
 
-```
+```sql
 ALTER TABLE cities
     ATTACH PARTITION cities_ab FOR VALUES IN ('a', 'b');
 ```
 
 Attach a partition to a hash-partitioned table:
 
-```
+```sql
 ALTER TABLE orders
     ATTACH PARTITION orders_p4 FOR VALUES WITH (MODULUS 4, REMAINDER 3);
 ```
 
 Attach a default partition to a partitioned table:
 
-```
+```sql
 ALTER TABLE cities
     ATTACH PARTITION cities_partdef DEFAULT;
 ```
 
 Detach a partition from a partitioned table:
 
-```
+```sql
 ALTER TABLE measurement
     DETACH PARTITION measurement_y2015m12;
 ```
@@ -884,7 +884,7 @@ ALTER TABLE measurement
 
 Add a new partition to a partitioned table:
 
-```
+```sql
 ALTER TABLE sales ADD PARTITION 
             START (date '2017-02-01') INCLUSIVE 
             END (date '2017-03-01') EXCLUSIVE;
@@ -892,27 +892,27 @@ ALTER TABLE sales ADD PARTITION
 
 Add a default partition to an existing partition design:
 
-```
+```sql
 ALTER TABLE sales ADD DEFAULT PARTITION other;
 ```
 
 Rename a partition:
 
-```
+```sql
 ALTER TABLE sales RENAME PARTITION FOR ('2016-01-01') TO 
 jan08;
 ```
 
 Exchange a table into your partition design:
 
-```
+```sql
 ALTER TABLE sales EXCHANGE PARTITION FOR ('2016-01-01') WITH 
 TABLE jan08;
 ```
 
 Split the default partition (where the existing default partition's name is `other`) to add a new monthly partition for January 2017:
 
-```
+```sql
 ALTER TABLE sales SPLIT DEFAULT PARTITION 
   START ('2017-01-01') INCLUSIVE 
   END ('2017-02-01') EXCLUSIVE 
@@ -921,7 +921,7 @@ INTO (PARTITION jan09, PARTITION other);
 
 Split a monthly partition into two with the first partition containing dates January 1-15 and the second partition containing dates January 16-31:
 
-```
+```sql
 ALTER TABLE sales SPLIT PARTITION FOR ('2016-01-01')
 AT ('2016-01-16')
 INTO (PARTITION jan081to15, PARTITION jan0816to31);
@@ -929,7 +929,7 @@ INTO (PARTITION jan081to15, PARTITION jan0816to31);
 
 For a multi-level partitioned table that consists of three levels, year, quarter, and region, exchange a leaf partition `region` with the table `region_new`.
 
-```
+```sql
 ALTER TABLE sales ALTER PARTITION year_1 ALTER PARTITION quarter_4 EXCHANGE PARTITION region WITH TABLE region_new ;
 ```
 

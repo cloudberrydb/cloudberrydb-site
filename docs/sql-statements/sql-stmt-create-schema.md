@@ -56,25 +56,25 @@ To create a schema, the invoking user must have the `CREATE` privilege for the c
 
 Create a schema:
 
-```
+```sql
 CREATE SCHEMA myschema;
 ```
 
 Create a schema for role `joe`; the schema will also be named `joe`:
 
-```
+```sql
 CREATE SCHEMA AUTHORIZATION joe;
 ```
 
 Create a schema named `test` that will be owned by user `joe`, unless there already is a schema named `test`. (It does not matter whether `joe` owns the pre-existing schema.)
 
-```
+```sql
 CREATE SCHEMA IF NOT EXISTS test AUTHORIZATION joe;
 ```
 
 Create a schema and create a table and view within it:
 
-```
+```sql
 CREATE SCHEMA hollywood
     CREATE TABLE films (title text, release date, awards text[])
     CREATE VIEW winners AS
@@ -85,7 +85,7 @@ Notice that the individual subcommands do not end with semicolons.
 
 The following is an equivalent way of accomplishing the same result:
 
-```
+```sql
 CREATE SCHEMA hollywood;
 CREATE TABLE hollywood.films (title text, release date, awards text[]);
 CREATE VIEW hollywood.winners AS

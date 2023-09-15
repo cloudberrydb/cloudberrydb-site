@@ -133,19 +133,19 @@ The name of the language of the transform.
 
 To update the hstore extension to version 2.0:
 
-```
+```sql
 ALTER EXTENSION hstore UPDATE TO '2.0';
 ```
 
 To change the schema of the `hstore` extension to `utils`:
 
-```
+```sql
 ALTER EXTENSION hstore SET SCHEMA utils;
 ```
 
 To add an existing function to the `hstore` extension:
 
-```
+```sql
 ALTER EXTENSION hstore ADD FUNCTION populate_record(anyelement, hstore);
 ```
 

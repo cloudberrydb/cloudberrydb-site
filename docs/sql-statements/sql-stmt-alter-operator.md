@@ -57,13 +57,13 @@ The join selectivity estimator function for this operator; write `NONE` to remov
 
 Change the owner of a custom operator `a @@ b` for type `text`:
 
-```
+```sql
 ALTER OPERATOR @@ (text, text) OWNER TO joe;
 ```
 
 Change the restriction and join selectivity estimator functions of a custom operator `a && b` for type `int[]`:
 
-```
+```sql
 ALTER OPERATOR && (_int4, _int4) SET (RESTRICT = _int_contsel, JOIN = _int_contjoinsel);
 ```
 

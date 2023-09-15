@@ -46,7 +46,7 @@ Refuse to drop the procedure if any objects depend on it. This is the default.
 
 This command removes the procedure named `do_db_maintenance`:
 
-```
+```sql
 DROP PROCEDURE do_db_maintenance();
 ```
 

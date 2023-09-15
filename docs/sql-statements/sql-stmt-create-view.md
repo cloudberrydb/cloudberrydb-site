@@ -31,13 +31,13 @@ If any of the tables referenced by the view are temporary, the view is created a
 
 Creates a recursive view. The syntax
 
-    ```
+```sql
     CREATE RECURSIVE VIEW [ <schema> . ] <view_name> (<column_names>) AS SELECT <...>;
     ```
 
     is equivalent to
 
-    ```
+```sql
     CREATE VIEW [ <schema> . ] <view_name> AS WITH RECURSIVE <view_name> (<column_names>) AS (SELECT <...>) SELECT <column_names> FROM <view_name>;
     ```
 
@@ -87,13 +87,13 @@ Use the [DROP VIEW](/docs/sql-statements/sql-stmt-drop-view.md) statement to dro
 
 Ensure that the names and data types of the view's columns are assigned the way you want. For example:
 
-```
+```sql
 CREATE VIEW vista AS SELECT 'Hello World';
 ```
 
 is bad form in two ways: the column name defaults to `?column?`, and the column data type defaults to `text`, which might not be what you wanted. If you want a string literal in a view's result, use something like:
 
-```
+```sql
 CREATE VIEW vista AS SELECT text 'Hello World' AS hello;
 ```
 
@@ -133,7 +133,7 @@ Note that the user performing the insert, update or delete on the view must have
 
 Create a view consisting of all comedy films:
 
-```
+```sql
 CREATE VIEW comedies AS
     SELECT * FROM films 
     WHERE kind = 'comedy';
@@ -143,7 +143,7 @@ This creates a view containing the columns that are in the `film` table at the t
 
 Create a view with `LOCAL CHECK OPTION`:
 
-```
+```sql
 CREATE VIEW universal_comedies AS
     SELECT *
     FROM comedies
@@ -155,7 +155,7 @@ This creates a view based on the comedies `view`, showing only films with `kind 
 
 Create a view with `CASCADED CHECK OPTION`:
 
-```
+```sql
 CREATE VIEW pg_comedies AS
     SELECT *
     FROM comedies
@@ -167,7 +167,7 @@ This creates a view that checks both the `kind` and `classification` of new rows
 
 Create a view with a mix of updatable and non-updatable columns:
 
-```
+```sql
 CREATE VIEW comedies AS
     SELECT f.*,
            country_code_to_name(f.country_code) AS country,
@@ -182,7 +182,7 @@ This view supports `INSERT`, `UPDATE`, and `DELETE`. All the columns from the `f
 
 Create a view that gets the top ten ranked baby names:
 
-```
+```sql
 CREATE VIEW topten AS 
     SELECT name, rank, gender, year
     FROM names, rank
@@ -191,7 +191,7 @@ CREATE VIEW topten AS
 
 Create a recursive view consisting of the numbers from 1 to 100:
 
-```
+```sql
 CREATE RECURSIVE VIEW public.nums_1_100 (n) AS
     VALUES (1)
 UNION ALL

@@ -86,7 +86,7 @@ Indicates this operator can support a merge join. The `MERGES` clause, if presen
 
 To give a schema-qualified operator name in com_op or the other optional arguments, use the `OPERATOR()` syntax, for example:
 
-```
+```sql
 COMMUTATOR = OPERATOR(myschema.===) ,
 ```
 
@@ -104,7 +104,7 @@ Use [DROP OPERATOR](/docs/sql-statements/sql-stmt-drop-operator.md) to delete us
 
 The following command defines a new operator, area-equality, for the data type `box`:
 
-```
+```sql
 CREATE OPERATOR === (
     LEFTARG = box,
     RIGHTARG = box,
@@ -119,7 +119,7 @@ CREATE OPERATOR === (
 
 The following example creates an operator for adding two complex numbers. The example assumes that we have already created the definition of type `complex`. First define the function that does the work, then define the operator:
 
-```
+```sql
 CREATE FUNCTION complex_add(complex, complex)
     RETURNS complex
     AS 'filename', 'complex_add'
@@ -134,7 +134,7 @@ CREATE OPERATOR + (
 
 To use this operator in a query:
 
-```
+```sql
 SELECT (a + b) AS c FROM test_complex;
 ```
 

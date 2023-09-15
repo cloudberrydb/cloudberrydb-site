@@ -17,7 +17,7 @@ DROP ROUTINE [IF EXISTS] name ( [ [argmode] [argname] argtype [, ...] ] )
 
 To drop the routine `foo` for type `integer`:
 
-```
+```sql
 DROP ROUTINE foo(integer);
 ```
 

@@ -42,13 +42,13 @@ A tablespace parameter to set or reset. Currently, the only available parameters
 
 Rename tablespace `index_space` to `fast_raid`:
 
-```
+```sql
 ALTER TABLESPACE index_space RENAME TO fast_raid;
 ```
 
 Change the owner of tablespace `index_space`:
 
-```
+```sql
 ALTER TABLESPACE index_space OWNER TO mary;
 ```
 

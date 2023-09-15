@@ -131,19 +131,19 @@ Use `psql`'s `\dp` meta-command to obtain information about existing privileges 
 
 Revoke insert privilege for the public on table `films`:
 
-```
+```sql
 REVOKE INSERT ON films FROM PUBLIC;
 ```
 
 Revoke all privileges from user `manuel` on view `kinds`. Note that this actually means revoke all privileges that the current role granted (if not a superuser).
 
-```
+```sql
 REVOKE ALL PRIVILEGES ON kinds FROM manuel;
 ```
 
 Revoke membership in role `admins` from user `joe`:
 
-```
+```sql
 REVOKE admins FROM joe;
 ```
 

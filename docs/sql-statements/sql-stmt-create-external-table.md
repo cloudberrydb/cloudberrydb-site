@@ -169,7 +169,7 @@ The data type of the column.
 
 :   For readable external tables, specifies the URI of the external data source(s) to be used to populate the external table or web table. Regular readable external tables allow the `gpfdist` or `file` protocols. External web tables allow the `http` protocol. If `port` is omitted, port `8080` is assumed for `http` and `gpfdist` protocols. If using the `gpfdist` protocol, the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). Also, `gpfdist` can use wildcards or other C-style pattern matching (for example, a whitespace character is `[[:space:]]`) to denote multiple files in a directory. For example:
 
-    ```
+```sql
     'gpfdist://filehost:8081/*'
     'gpfdist://coordinatorhost/my_load_file'
     'file://seghost1/dbfast1/external/myfile.txt'
@@ -178,7 +178,7 @@ The data type of the column.
 
     For writable external tables, specifies the URI location of the `gpfdist` process or S3 protocol that will collect data output from the Greenplum segments and write it to one or more named files. For `gpfdist` the `path` is relative to the directory from which `gpfdist` is serving files (the directory specified when you started the `gpfdist` program). If multiple `gpfdist` locations are listed, the segments sending data will be evenly divided across the available output locations. For example:
 
-    ```
+```sql
     'gpfdist://outputhost:8081/data1.out',
     'gpfdist://outputhost:8081/data2.out'
     ```
@@ -295,13 +295,13 @@ DISTRIBUTED RANDOMLY
 
 Start the `gpfdist` file server program in the background on port `8081` serving files from directory `/var/data/staging`:
 
-```
+```sql
 gpfdist -p 8081 -d /var/data/staging -l /home/<gpadmin>/log &
 ```
 
 Create a readable external table named `ext_customer` using the `gpfdist` protocol and any text formatted files (`*.txt`) found in the `gpfdist` directory. The files are formatted with a pipe (`|`) as the column delimiter and an empty space as `NULL`. Also access the external table in single row error isolation mode:
 
-```
+```sql
 CREATE EXTERNAL TABLE ext_customer
    (id int, name text, sponsor text) 
    LOCATION ( 'gpfdist://filehost:8081/*.txt' ) 
@@ -311,7 +311,7 @@ CREATE EXTERNAL TABLE ext_customer
 
 Create the same readable external table definition as above, but with CSV formatted files:
 
-```
+```sql
 CREATE EXTERNAL TABLE ext_customer 
    (id int, name text, sponsor text) 
    LOCATION ( 'gpfdist://filehost:8081/*.csv' ) 
@@ -320,7 +320,7 @@ CREATE EXTERNAL TABLE ext_customer
 
 Create a readable external table named `ext_expenses` using the `file` protocol and several CSV formatted files that have a header row:
 
-```
+```sql
 CREATE EXTERNAL TABLE ext_expenses (name text, date date, 
 amount float4, category text, description text) 
 LOCATION ( 
@@ -336,7 +336,7 @@ FORMAT 'CSV' ( HEADER );
 
 Create a readable external web table that runs a script once per segment host:
 
-```
+```sql
 CREATE EXTERNAL WEB TABLE log_output (linenum int, message 
 text)  EXECUTE '/var/load_scripts/get_log_data.sh' ON HOST 
  FORMAT 'TEXT' (DELIMITER '|');
@@ -344,7 +344,7 @@ text)  EXECUTE '/var/load_scripts/get_log_data.sh' ON HOST
 
 Create a writable external table named `sales_out` that uses `gpfdist` to write output data to a file named `sales.out`. The files are formatted with a pipe (`|`) as the column delimiter and an empty space as `NULL`.
 
-```
+```sql
 CREATE WRITABLE EXTERNAL TABLE sales_out (LIKE sales) 
    LOCATION ('gpfdist://etl1:8081/sales.out')
    FORMAT 'TEXT' ( DELIMITER '|' NULL ' ')
@@ -353,7 +353,7 @@ CREATE WRITABLE EXTERNAL TABLE sales_out (LIKE sales)
 
 Create a writable external web table that pipes output data received by the segments to an executable script named `to_adreport_etl.sh`:
 
-```
+```sql
 CREATE WRITABLE EXTERNAL WEB TABLE campaign_out 
 (LIKE campaign) 
  EXECUTE '/var/unload_scripts/to_adreport_etl.sh'
@@ -362,7 +362,7 @@ CREATE WRITABLE EXTERNAL WEB TABLE campaign_out
 
 Use the writable external table defined above to unload selected data:
 
-```
+```sql
 INSERT INTO campaign_out SELECT * FROM campaign WHERE customer_id=123;
 ```
 
@@ -375,7 +375,7 @@ You can view and manage the captured error log data. The functions to manage log
 -   Functions that manage non-persistent error log data from external tables that were defined without the `PERSISTENTLY` keyword.
     -   The built-in SQL function `gp_read_error_log('table_name')` displays error log information for an external table. This example displays the error log data from the external table `ext_expenses`.
 
-        ```
+```sql
         SELECT * from gp_read_error_log('ext_expenses');
         ```
 
@@ -383,7 +383,7 @@ You can view and manage the captured error log data. The functions to manage log
 
     -   The built-in SQL function `gp_truncate_error_log('table_name')` deletes the error log data for table_name. This example deletes the error log data captured from the external table `ext_expenses`:
 
-        ```
+```sql
         SELECT gp_truncate_error_log('ext_expenses'); 
         ```
 

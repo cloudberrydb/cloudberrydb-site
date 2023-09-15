@@ -36,7 +36,7 @@ PL/pgSQL handles output parameters in `CALL` commands differently; refer to [Cal
 
 ## Examples
 
-```
+```sql
 CALL do_db_maintenance();
 ```
 

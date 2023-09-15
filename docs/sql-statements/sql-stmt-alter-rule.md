@@ -32,7 +32,7 @@ The new name for the rule.
 
 To rename an existing rule:
 
-```
+```sql
 ALTER RULE notify_all ON emp RENAME TO notify_me; 
 ```
 

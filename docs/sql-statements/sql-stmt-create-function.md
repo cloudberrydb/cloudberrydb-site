@@ -52,14 +52,14 @@ To prevent data from becoming out-of-sync across the segments in Cloudberry Data
 
 To ensure data consistency, `VOLATILE` and `STABLE` functions can safely be used in statements that are evaluated on and run from the coordinator. For example, the following statements are always run on the coordinator (statements without a `FROM` clause):
 
-```
+```sql
 SELECT setval('myseq', 201);
 SELECT foo();
 ```
 
 In cases where a statement has a `FROM` clause containing a distributed table and the function used in the `FROM` clause simply returns a set of rows, execution may be allowed on the segments:
 
-```
+```sql
 SELECT * FROM foo();
 ```
 
@@ -176,7 +176,7 @@ EXECUTE ON INITPLAN
 
     > **Note** `EXECUTE ON INITPLAN` is only supported in functions that are used in the `FROM` clause of a `CREATE TABLE AS` or `INSERT` command such as the `get_data()` function in these commands.
 
-    ```
+```sql
     CREATE TABLE t AS SELECT * FROM get_data();
     
     INSERT INTO t1 SELECT * FROM get_data();
@@ -184,7 +184,7 @@ EXECUTE ON INITPLAN
 
     Cloudberry Database does not support the `EXECUTE ON INITPLAN` attribute in a function that is used in the `WITH` clause of a query, a CTE (common table expression). For example, specifying `EXECUTE ON INITPLAN` in function `get_data()` in this CTE is not supported.
 
-    ```
+```sql
     WITH tbl_a AS (SELECT * FROM get_data() )
        SELECT * from tbl_a
        UNION
@@ -236,14 +236,14 @@ Cloudberry Database allows function overloading; that is, the same name can be u
 
 Two functions are considered the same if they have the same names and input argument types, ignoring any `OUT` parameters. Thus for example these declarations conflict:
 
-```
+```sql
 CREATE FUNCTION foo(int) ...
 CREATE FUNCTION foo(int, out text) ...
 ```
 
 Functions that have different argument type lists will not be considered to conflict at creation time, but if defaults are provided they might conflict in use. For example, consider:
 
-```
+```sql
 CREATE FUNCTION foo(int) ...
 CREATE FUNCTION foo(int, int default 42) ...
 ```
@@ -264,7 +264,7 @@ If a function is declared `STRICT` with a `VARIADIC` argument, the strictness ch
 
 In some cases, Cloudberry Database does not support using functions in a query where the data in a table specified in the `FROM` clause is distributed over Cloudberry Database segments. As an example, this SQL query contains the function `func()`:
 
-```
+```sql
 SELECT func(a) FROM table1;
 ```
 
@@ -298,7 +298,7 @@ The attribute `EXECUTE ON INITPLAN` indicates that the function contains an SQL 
 
 This simple example uses the function `get_data()` in a CTAS command to create a table using data from the table `country`. The function contains a `SELECT` command that retrieves data from the table `country` and uses the `EXECUTE ON INITPLAN` attribute.
 
-```
+```sql
 CREATE TABLE country( 
   c_id integer, c_name text, region int) 
   DISTRIBUTED RANDOMLY;
@@ -326,7 +326,7 @@ If the function did not contain the `EXECUTE ON INITPLAN` attribute, the CTAS co
 
 When a function uses the `EXECUTE ON INITPLAN` attribute, a command that uses the function such as `CREATE TABLE t AS SELECT * FROM get_data()` gathers the results of the function onto the coordinator segment and then redistributes the results to segment instances when inserting the data. If the function returns a large amount of data, the coordinator might become a bottleneck when gathering and redistributing data. Performance might improve if you rewrite the function to run the CTAS command in the user defined function and use the table name as an input parameter. In this example, the function runs a CTAS command and does not require the `EXECUTE ON INITPLAN` attribute. Running the `SELECT` command creates the table `t1` using the function that runs the CTAS command.
 
-```
+```sql
 CREATE OR REPLACE FUNCTION my_ctas(_tbl text) RETURNS VOID AS
 $$
 BEGIN
@@ -342,7 +342,7 @@ SELECT my_ctas('t1');
 
 Add two integers using a SQL function:
 
-```
+```sql
 CREATE FUNCTION add(integer, integer) RETURNS integer
     AS 'select $1 + $2;'
     LANGUAGE SQL
@@ -352,7 +352,7 @@ CREATE FUNCTION add(integer, integer) RETURNS integer
 
 Increment an integer, making use of an argument name, in PL/pgSQL:
 
-```
+```sql
 CREATE OR REPLACE FUNCTION increment(i integer) RETURNS 
 integer AS $$
         BEGIN
@@ -363,7 +363,7 @@ $$ LANGUAGE plpgsql;
 
 Return a record containing multiple output parameters:
 
-```
+```sql
 CREATE FUNCTION dup(in int, out f1 int, out f2 text)
     AS $$ SELECT $1, CAST($1 AS text) || ' is text' $$
     LANGUAGE SQL;
@@ -373,7 +373,7 @@ SELECT * FROM dup(42);
 
 You can do the same thing more verbosely with an explicitly named composite type:
 
-```
+```sql
 CREATE TYPE dup_result AS (f1 int, f2 text);
 
 CREATE FUNCTION dup(int) RETURNS dup_result
@@ -385,7 +385,7 @@ SELECT * FROM dup(42);
 
 Another way to return multiple columns is to use a `TABLE` function:
 
-```
+```sql
 CREATE FUNCTION dup(int) RETURNS TABLE(f1 int, f2 text)
     AS $$ SELECT $1, CAST($1 AS text) || ' is text' $$
     LANGUAGE SQL;
@@ -397,7 +397,7 @@ However, a `TABLE` function is different from the preceding examples, because it
 
 Increase the default segment host memory per query for a PL/pgSQL function:
 
-```
+```sql
 CREATE OR REPLACE FUNCTION function_with_query() RETURNS 
 SETOF text AS $$
         BEGIN
@@ -410,7 +410,7 @@ SET statement_mem='256MB';
 
 Use polymorphic types to return an `ENUM` array:
 
-```
+```sql
 CREATE TYPE rainbow AS ENUM('red','orange','yellow','green','blue','indigo','violet');
 CREATE FUNCTION return_enum_as_array( anyenum, anyelement, anyelement ) 
     RETURNS TABLE (ae anyenum, aa anyarray) AS $$
@@ -422,7 +422,7 @@ SELECT * FROM return_enum_as_array('red'::rainbow, 'green'::rainbow, 'blue'::rai
 
 This function is defined with the `EXECUTE ON ALL SEGMENTS` to run on all primary segment instances. The `SELECT` command runs the function that returns the time it was run on each segment instance.
 
-```
+```sql
 CREATE FUNCTION run_on_segs (text) returns setof text as $$
   begin 
     return next ($1 || ' - ' || now()::text ); 
@@ -434,7 +434,7 @@ SELECT run_on_segs('my test');
 
 This function looks up a part name in the parts table. The parts table is replicated, so the function can run on the coordinator or on the primary segments.
 
-```
+```sql
 CREATE OR REPLACE FUNCTION get_part_name(partno int) RETURNS text AS
 $$
 DECLARE
@@ -448,7 +448,7 @@ $$ LANGUAGE plpgsql;
 
 If you run `SELECT get_part_name(100);` at the coordinator the function runs on the coordinator. (The coordinator instance directs the query to a single primary segment.) If orders is a distributed table and you run the following query, the `get_part_name()` function runs on the primary segments.
 
-```
+```sql
 `SELECT order_id, get_part_name(orders.part_no) FROM orders;`
 ```
 
@@ -456,7 +456,7 @@ If you run `SELECT get_part_name(100);` at the coordinator the function runs on 
 
 Because a `SECURITY DEFINER` function is executed with the privileges of the user that created it, care is needed to ensure that the function cannot be misused. For security, `search_path` should be set to exclude any schemas writable by untrusted users. This prevents malicious users from creating objects that mask objects used by the function. Particularly important in this regard is the temporary-table schema, which is searched first by default, and is normally writable by anyone. A secure arrangement can be had by forcing the temporary schema to be searched last. To do this, write `pg_temp` as the last entry in `search_path`. This function illustrates safe usage:
 
-```
+```sql
 CREATE FUNCTION check_password(uname TEXT, pass TEXT)
 RETURNS BOOLEAN AS $$
 DECLARE passed BOOLEAN;
@@ -477,7 +477,7 @@ The `SET` option was not available in earlier versions of Cloudberry Database, a
 
 Another point to keep in mind is that by default, execute privilege is granted to `PUBLIC` for newly created functions (see [GRANT](/docs/sql-statements/sql-stmt-grant.md) for more information). Frequently you will wish to restrict use of a security definer function to only some users. To do that, you must revoke the default `PUBLIC` privileges and then grant `EXECUTE` privilege selectively. To avoid having a window where the new function is accessible to all, create it and set the privileges within a single transaction. For example:
 
-```
+```sql
 BEGIN;
 CREATE FUNCTION check_password(uname TEXT, pass TEXT) ... SECURITY DEFINER;
 REVOKE ALL ON FUNCTION check_password(uname TEXT, pass TEXT) FROM PUBLIC;

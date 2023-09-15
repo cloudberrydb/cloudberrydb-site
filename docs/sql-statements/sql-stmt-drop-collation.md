@@ -32,7 +32,7 @@ The name of the collation. The collation name can be schema-qualified.
 
 To drop the collation named `german`:
 
-```
+```sql
 DROP COLLATION german;
 ```
 

@@ -38,7 +38,7 @@ Refuse to drop an extension if any objects depend on it (other than its own memb
 
 To remove the extension `hstore` from the current database:
 
-```
+```sql
 DROP EXTENSION hstore;
 ```
 

@@ -125,7 +125,7 @@ Note that, for the purposes of combining multiple policies, `ALL` policies are t
 
 For example, in an `UPDATE` command requiring both `SELECT` and `UPDATE` permissions, if there are multiple applicable policies of each type, they will be combined as follows:
 
-```
+```sql
 expression from RESTRICTIVE SELECT/ALL policy 1
 AND
 expression from RESTRICTIVE SELECT/ALL policy 2

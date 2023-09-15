@@ -75,19 +75,19 @@ When using the `libc` collation provider, the, locale must be applicable to the 
 
 To create a collation from the operating system locale `fr_FR.utf8` (assuming the current database encoding is `UTF8`):
 
-```
+```sql
 CREATE COLLATION french (LOCALE = 'fr_FR.utf8');
 ```
 
 To create a collation using the `icu` provider using German phone book sort order:
 
-```
+```sql
 CREATE COLLATION german_phonebook (provider = icu, locale = 'de-u-co-phonebk');
 ```
 
 To create a collation from an existing collation:
 
-```
+```sql
 CREATE COLLATION german FROM "de_DE";
 ```
 

@@ -43,7 +43,7 @@ The options can appear in any order.
 
 The following example command creates a Snowball-based dictionary with a nonstandard list of stop words.
 
-```
+```sql
 CREATE TEXT SEARCH DICTIONARY my_russian (
     template = snowball,
     language = russian,

@@ -59,19 +59,19 @@ Because `CLUSTER` remembers which indexes are clustered, you can cluster the tab
 
 Cluster the table `employees` on the basis of its index `emp_ind`:
 
-```
+```sql
 CLUSTER emp_ind ON emp;
 ```
 
 Cluster the `employees` table using the same index that was used before:
 
-```
+```sql
 CLUSTER employees;
 ```
 
 Cluster all tables in the database that have previously been clustered:
 
-```
+```sql
 CLUSTER;
 ```
 

@@ -74,13 +74,13 @@ For historical reasons, `ALTER TABLE` can be used with views, too; however, the 
 
 To rename the view `foo` to `bar`:
 
-```
+```sql
 ALTER VIEW foo RENAME TO bar;
 ```
 
 To attach a default column value to an updatable view:
 
-```
+```sql
 CREATE TABLE base_table (id int, ts timestamptz);
 CREATE VIEW a_view AS SELECT * FROM base_table;
 ALTER VIEW a_view ALTER COLUMN ts SET DEFAULT now();

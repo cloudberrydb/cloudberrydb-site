@@ -34,7 +34,7 @@ These keywords have no effect since there are no dependencies on casts.
 
 To drop the cast from type `text` to type `int`:
 
-```
+```sql
 DROP CAST (text AS int);
 ```
 

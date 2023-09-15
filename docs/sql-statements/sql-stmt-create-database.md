@@ -96,19 +96,19 @@ The `CONNECTION LIMIT` option is enforced approximately; if two new sessions sta
 
 To create a new database:
 
-```
+```sql
 CREATE DATABASE gpdb;
 ```
 
 To create a database `sales` owned by user `salesapp` with a default tablespace of `salesspace`:
 
-```
+```sql
 CREATE DATABASE sales OWNER salesapp TABLESPACE salesspace;
 ```
 
 To create a database `music` with a different locale:
 
-```
+```sql
 CREATE DATABASE music
     LC_COLLATE 'sv_SE.utf8' LC_CTYPE 'sv_SE.utf8'
     TEMPLATE template0;
@@ -118,7 +118,7 @@ In this example, the `TEMPLATE template0` clause is required if the specialized 
 
 To create a database `music2` with a different locale and a different character set encoding:
 
-```
+```sql
 CREATE DATABASE music2
     LC_COLLATE 'sv_SE.iso885915' LC_CTYPE 'sv_SE.iso885915'
     ENCODING LATIN9

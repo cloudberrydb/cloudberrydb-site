@@ -57,7 +57,7 @@ The current transaction's modes can similarly be set or examined via the configu
 
 To begin a new transaction with the same snapshot as an already existing transaction, first export the snapshot from the existing transaction. That will return the snapshot identifier, for example:
 
-```
+```sql
 BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 SELECT pg_export_snapshot();
  pg_export_snapshot
@@ -68,7 +68,7 @@ SELECT pg_export_snapshot();
 
 Then give the snapshot identifier in a `SET TRANSACTION SNAPSHOT` command at the beginning of the newly opened transaction:
 
-```
+```sql
 BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 SET TRANSACTION SNAPSHOT '00000003-0000001B-1';
 ```

@@ -32,7 +32,7 @@ Deallocate all prepared statements
 
 Deallocate the previously prepared statement named `insert_names`:
 
-```
+```sql
 DEALLOCATE insert_names;
 ```
 

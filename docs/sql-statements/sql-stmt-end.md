@@ -32,7 +32,7 @@ Issuing `END` when not inside a transaction does no harm, but it will provoke a 
 
 To commit the current transaction and make all changes permanent:
 
-```
+```sql
 END;
 ```
 

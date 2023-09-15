@@ -34,7 +34,7 @@ If multiple savepoints have the same name, Cloudberry Database releases only the
 
 To establish and later destroy a savepoint:
 
-```
+```sql
 BEGIN;
     INSERT INTO table1 VALUES (3);
     SAVEPOINT my_savepoint;

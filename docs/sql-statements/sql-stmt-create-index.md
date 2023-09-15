@@ -178,19 +178,19 @@ Prior releases of Cloudberry Database also had an R-tree index method. This meth
 
 To create a unique B-tree index on the column `title` in the table `films`:
 
-```
+```sql
 CREATE UNIQUE INDEX title_idx ON films (title);
 ```
 
 To create a B-tree index on the column `title` with included columns `director` and `rating` in the table `films`:
 
-```
+```sql
 CREATE INDEX title_idx ON films (title) INCLUDE (director, rating);
 ```
 
 To create an index on the expression `lower(title)`, allowing efficient case-insensitive searches:
 
-```
+```sql
 CREATE INDEX ON films ((lower(title)));
 ```
 
@@ -198,38 +198,38 @@ CREATE INDEX ON films ((lower(title)));
 
 To create an index with non-default collation:
 
-```
+```sql
 CREATE INDEX title_idx_german ON films (title COLLATE "de_DE");
 ```
 
 To create an index with non-default sort ordering of nulls:
 
-```
+```sql
 CREATE INDEX title_idx_nulls_low ON films (title NULLS FIRST);
 ```
 
 To create an index with non-default fill factor:
 
-```
+```sql
 CREATE UNIQUE INDEX title_idx ON films (title) WITH 
 (fillfactor = 70);
 ```
 
 To create a GIN index with fast updates deactivated:
 
-```
+```sql
 CREATE INDEX gin_idx ON documents_table USING gin (locations) WITH (fastupdate = off);
 ```
 
 To create an index on the column `code` in the table `films` and have the index reside in the tablespace `indexspace`:
 
-```
+```sql
 CREATE INDEX code_idx ON films (code) TABLESPACE indexspace;
 ```
 
 To create a GiST index on a point attribute so that we can efficiently use box operators on the result of the conversion function:
 
-```
+```sql
 CREATE INDEX pointloc ON points USING gist (box(location,location));
 SELECT * FROM points WHERE box(location,location) && '(0,0),(1,1)'::box;
 ```

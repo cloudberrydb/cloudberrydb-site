@@ -65,7 +65,7 @@ If you want the data to be ordered upon generation, you must use an `ORDER BY` c
 
 Create a view consisting of all comedy films:
 
-```
+```sql
 CREATE MATERIALIZED VIEW comedies AS SELECT * FROM films 
 WHERE kind = 'comedy';
 ```
@@ -74,7 +74,7 @@ This will create a view containing the columns that are in the `film` table at t
 
 Create a view that gets the top ten ranked baby names:
 
-```
+```sql
 CREATE MATERIALIZED VIEW topten AS SELECT name, rank, gender, year FROM 
 names, rank WHERE rank < '11' AND names.id=rank.id;
 ```

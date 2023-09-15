@@ -52,19 +52,19 @@ Parallel retrieve cursors do not support `FETCH` or `MOVE` operations.
 
 Start the transaction:
 
-```
+```sql
 BEGIN;
 ```
 
 Create a parallel retrieve cursor:
 
-```
+```sql
 DECLARE mycursor PARALLEL RETRIEVE CURSOR FOR SELECT * FROM films;
 ```
 
 List the cursor endpoints:
 
-```
+```sql
 SELECT * FROM gp_endpoints WHERE cursorname='mycursor';
 ```
 
@@ -72,25 +72,25 @@ Note the hostname, port, auth_token, and name associated with each endpoint.
 
 In another terminal window, initiate a retrieve session using a hostname, port, and auth_token returned from the previous query. For example:
 
-```
+```sql
 PGPASSWORD=d3825fc07e56bee5fcd2b1d0b600c85e PGOPTIONS='-c gp_retrieve_conn=true' psql -d testdb -h sdw3 -p 6001;
 ```
 
 Fetch all rows from an endpoint (for example, the endpoint named `prc10000001100000005`):
 
-```
+```sql
 RETRIEVE ALL FROM ENDPOINT prc10000001100000005;
 ```
 
 Exit the retrieve session.
 
-```
+```sql
 \q
 ```
 
 Back in the original session, close the cursor and end the transaction:
 
-```
+```sql
 CLOSE mycursor;
 COMMIT;
 ```

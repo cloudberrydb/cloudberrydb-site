@@ -84,26 +84,26 @@ Changing any part of a system catalog index is not permitted.
 
 To rename an existing index:
 
-```
+```sql
 ALTER INDEX distributors RENAME TO suppliers;
 ```
 
 To move an index to a different tablespace:
 
-```
+```sql
 ALTER INDEX distributors SET TABLESPACE fasttablespace;
 ```
 
 To change an index's fill factor (assuming that the index method supports it):
 
-```
+```sql
 ALTER INDEX distributors SET (fillfactor = 75);
 REINDEX INDEX distributors;
 ```
 
 Set the statistics-gathering target for an expression index:
 
-```
+```sql
 CREATE INDEX coord_idx ON measured (x, y, (z + t));
 ALTER INDEX coord_idx ALTER COLUMN 3 SET STATISTICS 1000;
 ```

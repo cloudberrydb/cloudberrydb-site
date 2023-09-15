@@ -36,7 +36,7 @@ Note that Cloudberry Database has limited support of triggers in this release. S
 
 To rename an existing trigger:
 
-```
+```sql
 ALTER TRIGGER emp_stamp ON emp RENAME TO emp_track_chgs;
 ```
 

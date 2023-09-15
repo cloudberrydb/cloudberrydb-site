@@ -32,7 +32,7 @@ Server name of the user mapping.
 
 Drop the user mapping named `bob`, server `foo` if it exists:
 
-```
+```sql
 DROP USER MAPPING IF EXISTS FOR bob SERVER foo;
 ```
 

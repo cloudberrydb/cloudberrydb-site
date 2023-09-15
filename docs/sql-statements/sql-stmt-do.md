@@ -46,7 +46,7 @@ Anonymous blocks do not support function volatility or `EXECUTE ON` attributes.
 
 This PL/pgSQL example grants all privileges on all views in schema `public` to role `webuser`:
 
-```
+```sql
 DO $$DECLARE r record;
 BEGIN
     FOR r IN SELECT table_schema, table_name FROM information_schema.tables

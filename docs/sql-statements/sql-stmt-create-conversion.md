@@ -60,7 +60,7 @@ Note that in this release of Cloudberry Database, user-defined functions used in
 
 To create a conversion from encoding `UTF8` to `LATIN1` using `myfunc`:
 
-```
+```sql
 CREATE CONVERSION myconv FOR 'UTF8' TO 'LATIN1' FROM myfunc;
 ```
 

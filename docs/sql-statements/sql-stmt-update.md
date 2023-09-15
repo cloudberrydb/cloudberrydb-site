@@ -87,7 +87,7 @@ A name to use for a returned column.
 
 On successful completion, an `UPDATE` command returns a command tag of the form:
 
-```
+```sql
 UPDATE <count>
 ```
 
@@ -115,13 +115,13 @@ Note that while rows can be moved from local partitions to a foreign-table parti
 
 Change the word `Drama` to `Dramatic` in the column `kind` of the table `films`:
 
-```
+```sql
 UPDATE films SET kind = 'Dramatic' WHERE kind = 'Drama';
 ```
 
 Adjust temperature entries and reset precipitation to its default value in one row of the table `weather`:
 
-```
+```sql
 UPDATE weather SET temp_lo = temp_lo+1, temp_hi = 
 temp_lo+15, prcp = DEFAULT
 WHERE city = 'San Francisco' AND date = '2016-07-03';
@@ -129,7 +129,7 @@ WHERE city = 'San Francisco' AND date = '2016-07-03';
 
 Perform the same operation and return the updated entries:
 
-```
+```sql
 UPDATE weather SET temp_lo = temp_lo+1, temp_hi = temp_lo+15, prcp = DEFAULT
   WHERE city = 'San Francisco' AND date = '2003-07-03'
   RETURNING temp_lo, temp_hi, prcp;
@@ -137,7 +137,7 @@ UPDATE weather SET temp_lo = temp_lo+1, temp_hi = temp_lo+15, prcp = DEFAULT
 
 Use the alternative column-list syntax to do the same update:
 
-```
+```sql
 UPDATE weather SET (temp_lo, temp_hi, prcp) = (temp_lo+1, 
 temp_lo+15, DEFAULT)
 WHERE city = 'San Francisco' AND date = '2016-07-03';
@@ -145,7 +145,7 @@ WHERE city = 'San Francisco' AND date = '2016-07-03';
 
 Increment the sales count of the salesperson who manages the account for Acme Corporation, using the `FROM` clause syntax (assuming both tables being joined are distributed in Cloudberry Database on the `id` column):
 
-```
+```sql
 UPDATE employees SET sales_count = sales_count + 1 FROM 
 accounts
 WHERE accounts.name = 'Acme Corporation'
@@ -154,14 +154,14 @@ AND employees.id = accounts.id;
 
 Perform the same operation, using a sub-select in the `WHERE` clause:
 
-```
+```sql
 UPDATE employees SET sales_count = sales_count + 1 WHERE id =
   (SELECT id FROM accounts WHERE name = 'Acme Corporation');
 ```
 
 Update contact names in an `accounts` table to match the currently assigned salesmen:
 
-```
+```sql
 UPDATE accounts SET (contact_first_name, contact_last_name) =
     (SELECT first_name, last_name FROM salesmen
      WHERE salesmen.id = accounts.sales_id);
@@ -169,7 +169,7 @@ UPDATE accounts SET (contact_first_name, contact_last_name) =
 
 A similar result could be accomplished with a join:
 
-```
+```sql
 UPDATE accounts SET contact_first_name = first_name,
                     contact_last_name = last_name
   FROM salesmen WHERE salesmen.id = accounts.sales_id;
@@ -179,7 +179,7 @@ However, the second query may give unexpected results if `salesmen.id` is not a 
 
 Update statistics in a `summary` table to match the current data:
 
-```
+```sql
 UPDATE summary s SET (sum_x, sum_y, avg_x, avg_y) =
     (SELECT sum(x), sum(y), avg(x), avg(y) FROM data d
      WHERE d.group_id = s.group_id);
@@ -187,7 +187,7 @@ UPDATE summary s SET (sum_x, sum_y, avg_x, avg_y) =
 
 Attempt to insert a new stock item along with the quantity of stock. If the item already exists, instead update the stock count of the existing item. To do this without failing the entire transaction, use savepoints.
 
-```
+```sql
 BEGIN;
 -- other operations
 SAVEPOINT sp1;

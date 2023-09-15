@@ -24,19 +24,19 @@ If a schema name is given, then the sequence is created in the specified schema.
 
 After a sequence is created, you use the `nextval()` function to operate on the sequence. For example, to insert a row into a table that gets the next value of a sequence:
 
-```
+```sql
 INSERT INTO distributors VALUES (nextval('myserial'), 'acme');
 ```
 
 You can also use the function `setval()` to operate on a sequence, but only for queries that do not operate on distributed data. For example, the following query is allowed because it resets the sequence counter value for the sequence generator process on the coordinator:
 
-```
+```sql
 SELECT setval('myserial', 201);
 ```
 
 But the following query will be rejected in Cloudberry Database because it operates on distributed data:
 
-```
+```sql
 INSERT INTO product VALUES (setval('myserial', 201), 'gizmo');
 ```
 
@@ -53,7 +53,7 @@ Because of this distributed sequence design, there are some limitations on the f
 
 Although you cannot update a sequence directly, you can use a query like:
 
-```
+```sql
 SELECT * FROM <sequence_name>;
 ```
 
@@ -120,25 +120,25 @@ Another consideration is that a `setval()` executed on such a sequence will not 
 
 Create an ascending sequence named `myseq`, starting at 101:
 
-```
+```sql
 CREATE SEQUENCE myseq START 101;
 ```
 
 Insert a row into a table that gets the next value of the sequence named `myseq`:
 
-```
+```sql
 INSERT INTO distributors VALUES (nextval('myseq'), 'acme'); 
 ```
 
 Reset the sequence counter value on the Cloudberry Database coordinator:
 
-```
+```sql
 SELECT setval('myseq', 201);
 ```
 
 Illegal use of `setval()` in Cloudberry Database (setting sequence values on distributed data):
 
-```
+```sql
 INSERT INTO product VALUES (setval('myseq', 201), 'gizmo'); 
 ```
 

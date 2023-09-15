@@ -32,7 +32,7 @@ Issuing `COMMIT` when not inside a transaction does no harm, but it will provoke
 
 To commit the current transaction and make all changes permanent:
 
-```
+```sql
 COMMIT;
 ```
 

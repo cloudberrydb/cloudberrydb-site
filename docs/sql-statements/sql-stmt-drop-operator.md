@@ -42,25 +42,25 @@ Refuse to drop the operator if any objects depend on it. This is the default.
 
 Remove the power operator `a^b` for type `integer`:
 
-```
+```sql
 DROP OPERATOR ^ (integer, integer);
 ```
 
 Remove the left unary bitwise complement operator `~b` for type `bit`:
 
-```
+```sql
 DROP OPERATOR ~ (none, bit);
 ```
 
 Remove the right unary factorial operator `x!` for type `bigint`:
 
-```
+```sql
 DROP OPERATOR ! (bigint, none);
 ```
 
 Remove multiple operators in one command:
 
-```
+```sql
 DROP OPERATOR ~ (none, bit), ! (bigint, none);
 ```
 

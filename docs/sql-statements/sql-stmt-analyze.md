@@ -59,7 +59,7 @@ ROOTPARTITION [ALL]
 
 :   This example `ANALYZE` command collects statistics on the root partition of all the partitioned tables in the database.
 
-    ```
+```sql
     ANALYZE ROOTPARTITION ALL;
     ```
 
@@ -91,7 +91,7 @@ Foreign tables are analyzed only when explicitly selected. Not all foreign data 
 
 It is a good idea to run `ANALYZE` periodically, or just after making major changes in the contents of a table. Accurate statistics helps Cloudberry Database choose the most appropriate query plan, and thereby improve the speed of query processing. A common strategy for read-mostly databases is to run [VACUUM](/docs/sql-statements/sql-stmt-vacuum.md) and `ANALYZE` once a day during a low-usage time of day. (This will not be sufficient if there is heavy update activity.) You can check for tables with missing statistics using the `gp_stats_missing` view, which is in the `gp_toolkit` schema:
 
-```
+```sql
 SELECT * from gp_toolkit.gp_stats_missing;
 ```
 
@@ -137,7 +137,7 @@ If there are no statistics for the table, the server configuration parameter gp_
 
 Collect statistics for the table `mytable`:
 
-```
+```sql
 ANALYZE mytable;
 ```
 

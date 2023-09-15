@@ -71,7 +71,7 @@ When using the dblink module (see dblink), you can use the foreign server name a
 
 Create a foreign server named `myserver` that uses a foreign-data wrapper named `gpfdw1` and includes connection options:
 
-```
+```sql
 CREATE SERVER myserver FOREIGN DATA WRAPPER gpfdw1 
     OPTIONS (host 'foo', dbname 'foodb', port '5432');
 ```

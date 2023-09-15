@@ -10,7 +10,7 @@ ALTER EXTERNAL TABLE <name> <action> [, ... ]
 
 where action is one of:
 
-```
+```sql
   ADD [COLUMN] <new_column> <type>
   DROP [COLUMN] <column> [RESTRICT|CASCADE]
   ALTER [COLUMN] <column> TYPE <type>
@@ -73,19 +73,19 @@ Refuse to drop the column or constraint if there are any dependent objects. This
 
 Add a new column to an external table definition:
 
-```
+```sql
 ALTER EXTERNAL TABLE ext_expenses ADD COLUMN manager text;
 ```
 
 Change the owner of an external table:
 
-```
+```sql
 ALTER EXTERNAL TABLE ext_data OWNER TO jojo;
 ```
 
 Change the data type of an external table:
 
-```
+```sql
 ALTER EXTERNAL TABLE ext_leads ALTER COLUMN acct_code TYPE integer;
 ```
 

@@ -10,7 +10,7 @@ CREATE RESOURCE QUEUE <name> WITH (<queue_attribute>=<value> [, ... ])
 
 where queue_attribute is:
 
-```
+```sql
     ACTIVE_STATEMENTS=<integer>
         [ MAX_COST=<float >[COST_OVERCOMMIT={TRUE|FALSE}] ]
         [ MIN_COST=<float >]
@@ -44,7 +44,7 @@ Resource queues with an optional `MEMORY_LIMIT` threshold set a maximum limit on
 
 The default memory allotment can be overridden on a per-query basis using the `statement_mem` server configuration parameter, provided that `MEMORY_LIMIT` or `max_statement_mem` is not exceeded. For example, to allocate more memory to a particular query:
 
-```
+```sql
 => SET statement_mem='2GB';
 => SELECT * FROM my_big_table WHERE column='value' ORDER BY id;
 => RESET statement_mem;
@@ -82,7 +82,7 @@ PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}
 
 Use the `gp_toolkit.gp_resqueue_status` system view to see the limit settings and current status of a resource queue:
 
-```
+```sql
 SELECT * from gp_toolkit.gp_resqueue_status WHERE 
   rsqname='queue_name';
 ```
@@ -97,40 +97,40 @@ Also, an SQL statement that is run during the execution time of an `EXPLAIN ANAL
 
 Create a resource queue with an active query limit of 20:
 
-```
+```sql
 CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20);
 ```
 
 Create a resource queue with an active query limit of 20 and a total memory limit of 2000MB (each query will be allocated 100MB of segment host memory at execution time):
 
-```
+```sql
 CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20, 
   MEMORY_LIMIT='2000MB');
 ```
 
 Create a resource queue with a query cost limit of 3000.0:
 
-```
+```sql
 CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3000.0);
 ```
 
 Create a resource queue with a query cost limit of 310 (or 30000000000.0) and do not allow overcommit. Allow small queries with a cost under 500 to run immediately:
 
-```
+```sql
 CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3e+10, 
   COST_OVERCOMMIT=FALSE, MIN_COST=500.0);
 ```
 
 Create a resource queue with both an active query limit and a query cost limit:
 
-```
+```sql
 CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=30, 
   MAX_COST=5000.00);
 ```
 
 Create a resource queue with an active query limit of 5 and a maximum priority setting:
 
-```
+```sql
 CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5, 
   PRIORITY=MAX);
 ```

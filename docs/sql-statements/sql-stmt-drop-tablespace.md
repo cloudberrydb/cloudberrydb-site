@@ -29,7 +29,7 @@ You cannot run `DROP TABLESPACE` inside a transaction block.
 
 Run `DROP TABLESPACE` during a period of low activity to avoid issues due to concurrent creation of tables and temporary objects. When a tablespace is dropped, there is a small window in which a table could be created in the tablespace that is currently being dropped. If this occurs, Cloudberry Database returns a warning. This is an example of the `DROP TABLESPACE` warning.
 
-```
+```sql
 testdb=# DROP TABLESPACE mytest; 
 WARNING:  tablespace with oid "16415" is not empty  (seg1 192.168.8.145:25433 pid=29023)
 WARNING:  tablespace with oid "16415" is not empty  (seg0 192.168.8.145:25432 pid=29022)
@@ -43,7 +43,7 @@ The table data in the tablespace directory is not dropped. You can use the [ALTE
 
 Remove the tablespace `mystuff`:
 
-```
+```sql
 DROP TABLESPACE mystuff;
 ```
 

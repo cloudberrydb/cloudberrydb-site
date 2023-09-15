@@ -18,7 +18,7 @@ COPY { <table_name> [(<column_name> [, ...])] | (<query>)}
 
 where option can be one of:
 
-```
+```sql
 FORMAT <format_name>
 OIDS [ <boolean> ]
 FREEZE [ <boolean> ]
@@ -62,13 +62,13 @@ If `SEGMENT REJECT LIMIT` is used, then a `COPY FROM` operation will operate in 
 
 On successful completion, a `COPY` command returns a command tag of the form, where count is the number of rows copied:
 
-```
+```sql
 COPY <count>
 ```
 
 If running a `COPY FROM` command in single row error isolation mode, the following notice message will be returned if any rows were not loaded due to format errors, where count is the number of rows rejected:
 
-```
+```sql
 NOTICE: Rejected <count> badly formatted rows.
 ```
 
@@ -323,7 +323,7 @@ For example, suppose you have a table with three columns and you want to load th
 
 Your designated delimiter_character is `|` (pipe character), and your designated escape character is `*` (asterisk). The formatted row in your data file would look like this:
 
-```
+```sql
 percentage sign = % | vertical bar = *| | backslash = \
 ```
 
@@ -371,33 +371,33 @@ The binary file format consists of a file header, zero or more tuples containing
 
 Copy a table to the client using the vertical bar (|) as the field delimiter:
 
-```
+```sql
 COPY country TO STDOUT (DELIMITER '|');
 ```
 
 Copy data from a file into the `country` table:
 
-```
+```sql
 COPY country FROM '/home/usr1/sql/country_data';
 ```
 
 Copy into a file just the countries whose names start with 'A':
 
-```
+```sql
 COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO 
 '/home/usr1/sql/a_list_countries.copy';
 ```
 
 Copy data from a file into the `sales` table using single row error isolation mode and log errors:
 
-```
+```sql
 COPY sales FROM '/home/usr1/sql/sales_data' LOG ERRORS 
    SEGMENT REJECT LIMIT 10 ROWS;
 ```
 
 To copy segment data for later use, use the `ON SEGMENT` clause. Use of the `COPY TO ON SEGMENT` command takes the form:
 
-```
+```sql
 COPY <table> TO '<SEG_DATA_DIR>/<gpdumpname><SEGID>_<suffix>' ON SEGMENT; 
 ```
 
@@ -407,7 +407,7 @@ When you pass in the string literal `<SEG_DATA_DIR>` and `<SEGID>` to `COPY`, `C
 
 For example, if you have `mytable` with the segments and mirror segments like this:
 
-```
+```sql
 contentid | dbid | file segment location 
     0     |  1   | /home/usr1/data1/gpsegdir0
     0     |  3   | /home/usr1/data_mirror1/gpsegdir0 
@@ -417,13 +417,13 @@ contentid | dbid | file segment location
 
 running the command:
 
-```
+```sql
 COPY mytable TO '<SEG_DATA_DIR>/gpbackup<SEGID>.txt' ON SEGMENT;
 ```
 
 would result in the following files:
 
-```
+```sql
 /home/usr1/data1/gpsegdir0/gpbackup0.txt
 /home/usr1/data2/gpsegdir1/gpbackup1.txt
 ```
@@ -432,7 +432,7 @@ The content ID in the first column is the identifier inserted into the file path
 
 If an absolute path is specified, instead of `<SEG_DATA_DIR>`, such as in the statement
 
-```
+```sql
 COPY mytable TO '/tmp/gpdir/gpbackup_<SEGID>.txt' ON SEGMENT;
 ```
 
@@ -442,25 +442,25 @@ files would be placed in `/tmp/gpdir` on every segment. The `gpfdist` tool can a
 
 This example uses a `SELECT` statement to copy data to files on each segment:
 
-```
+```sql
 COPY (SELECT * FROM testtbl) TO '/tmp/mytst<SEGID>' ON SEGMENT;
 ```
 
 This example copies the data from the `lineitem` table and uses the `PROGRAM` clause to add the data to the `/tmp/lineitem_program.csv` file with `cat` utility. The file is placed on the Cloudberry Database coordinator.
 
-```
+```sql
 COPY LINEITEM TO PROGRAM 'cat > /tmp/lineitem.csv' CSV; 
 ```
 
 This example uses the `PROGRAM` and `ON SEGMENT` clauses to copy data to files on the segment hosts. On the segment hosts, the `COPY` command replaces `<SEGID>` with the segment content ID to create a file for each segment instance on the segment host.
 
-```
+```sql
 COPY LINEITEM TO PROGRAM 'cat > /tmp/lineitem_program<SEGID>.csv' ON SEGMENT CSV; 
 ```
 
 This example uses the `PROGRAM` and `ON SEGMENT` clauses to copy data from files on the segment hosts. The `COPY` command replaces `<SEGID>` with the segment content ID when copying data from the files. On the segment hosts, there must be a file for each segment instance where the file name contains the segment content ID on the segment host.
 
-```
+```sql
 COPY LINEITEM_4 FROM PROGRAM 'cat /tmp/lineitem_program<SEGID>.csv' ON SEGMENT CSV;
 ```
 

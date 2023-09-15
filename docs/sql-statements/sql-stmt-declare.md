@@ -101,13 +101,13 @@ You can see all available cursors by querying the `pg_cursors` system view.
 
 Declare a cursor:
 
-```
+```sql
 DECLARE mycursor CURSOR FOR SELECT * FROM mytable;
 ```
 
 Declare a parallel retrieve cursor for the same query:
 
-```
+```sql
 DECLARE myprcursor PARALLEL RETRIEVE CURSOR FOR SELECT * FROM mytable;
 ```
 

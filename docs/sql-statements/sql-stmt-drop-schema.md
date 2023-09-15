@@ -39,7 +39,7 @@ Using the `CASCADE` option may result in the command removing objects in other s
 
 Remove the schema `mystuff` from the database, along with everything it contains:
 
-```
+```sql
 DROP SCHEMA mystuff CASCADE;
 ```
 

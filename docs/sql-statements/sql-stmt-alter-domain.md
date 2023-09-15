@@ -91,37 +91,37 @@ Currently, `ALTER DOMAIN ADD CONSTRAINT`, `ALTER DOMAIN VALIDATE CONSTRAINT`, an
 
 To add a `NOT NULL` constraint to a domain:
 
-```
+```sql
 ALTER DOMAIN zipcode SET NOT NULL;
 ```
 
 To remove a `NOT NULL` constraint from a domain:
 
-```
+```sql
 ALTER DOMAIN zipcode DROP NOT NULL;
 ```
 
 To add a check constraint to a domain:
 
-```
+```sql
 ALTER DOMAIN zipcode ADD CONSTRAINT zipchk CHECK (char_length(VALUE) = 5);
 ```
 
 To remove a check constraint from a domain:
 
-```
+```sql
 ALTER DOMAIN zipcode DROP CONSTRAINT zipchk;
 ```
 
 To rename a check constraint on a domain:
 
-```
+```sql
 ALTER DOMAIN zipcode RENAME CONSTRAINT zipchk TO zip_check;
 ```
 
 To move the domain into a different schema:
 
-```
+```sql
 ALTER DOMAIN zipcode SET SCHEMA customers;
 ```
 

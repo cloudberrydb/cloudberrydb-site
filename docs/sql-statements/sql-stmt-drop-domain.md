@@ -33,7 +33,7 @@ Refuse to drop the domain if any objects depend on it. This is the default.
 
 Remove the domain named `us_postal_code`:
 
-```
+```sql
 DROP DOMAIN us_postal_code;
 ```
 

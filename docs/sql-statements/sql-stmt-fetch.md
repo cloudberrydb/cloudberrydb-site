@@ -10,7 +10,7 @@ FETCH [ <forward_direction> { FROM | IN } ] <cursor_name>
 
 where <forward_direction> can be empty or one of:
 
-```
+```sql
     NEXT
     FIRST
     ABSOLUTE <count>
@@ -88,7 +88,7 @@ The name of an open cursor.
 
 On successful completion, a `FETCH` command returns a command tag of the form
 
-```
+```sql
 FETCH <count>
 ```
 
@@ -106,19 +106,19 @@ Cloudberry Database does not support scrollable cursors, so you can only use `FE
 
 Start the transaction:
 
-```
+```sql
 BEGIN;
 ```
 
 Set up a cursor:
 
-```
+```sql
 DECLARE mycursor CURSOR FOR SELECT * FROM films;
 ```
 
 Fetch the first 5 rows in the cursor `mycursor`:
 
-```
+```sql
 FETCH FORWARD 5 FROM mycursor;
  code  |          title          | did | date_prod  |   kind   |  len
 -------+-------------------------+-----+------------+----------+-------
@@ -131,14 +131,14 @@ FETCH FORWARD 5 FROM mycursor;
 
 Close the cursor and end the transaction:
 
-```
+```sql
 CLOSE mycursor;
 COMMIT;
 ```
 
 Change the `kind` column of the table `films` in the row at the `c_films` cursor's current position:
 
-```
+```sql
 UPDATE films SET kind = 'Dramatic' WHERE CURRENT OF c_films;
 ```
 

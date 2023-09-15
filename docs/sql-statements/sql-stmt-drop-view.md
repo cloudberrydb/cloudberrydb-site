@@ -33,7 +33,7 @@ Refuse to drop the view if any objects depend on it. This is the default.
 
 Remove the view `topten`:
 
-```
+```sql
 DROP VIEW topten;
 ```
 

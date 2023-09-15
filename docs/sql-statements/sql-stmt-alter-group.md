@@ -44,13 +44,13 @@ The new name of the group.
 
 To add users to a group:
 
-```
+```sql
 ALTER GROUP staff ADD USER karl, john;
 ```
 
 To remove a user from a group:
 
-```
+```sql
 ALTER GROUP workers DROP USER beth;
 ```
 

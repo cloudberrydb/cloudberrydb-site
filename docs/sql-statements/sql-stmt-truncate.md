@@ -57,13 +57,13 @@ When `RESTART IDENTITY` is specified, the implied `ALTER SEQUENCE RESTART` opera
 
 Empty the tables `films` and `distributors`:
 
-```
+```sql
 TRUNCATE films, distributors;
 ```
 
 The same, and also reset any associated sequence generators:
 
-```
+```sql
 TRUNCATE films, distributors RESTART IDENTITY;
 ```
 

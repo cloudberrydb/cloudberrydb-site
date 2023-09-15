@@ -56,7 +56,7 @@ To create a trigger on a table, the user must have the `TRIGGER` privilege on th
 
 Declare the trigger function and then a trigger:
 
-```
+```sql
 CREATE FUNCTION sendmail() RETURNS trigger AS 
 '$GPHOME/lib/emailtrig.so' LANGUAGE C IMMUTABLE;
 

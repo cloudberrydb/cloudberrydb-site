@@ -35,7 +35,7 @@ Refuse to drop the text search parser if any objects depend on it. This is the d
 
 Remove the text search parser `my_parser`:
 
-```
+```sql
 DROP TEXT SEARCH PARSER my_parser;
 ```
 

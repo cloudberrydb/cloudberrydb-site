@@ -47,7 +47,7 @@ You must be the owner of a table to create a statistics object that reads it. On
 
 Create table `t1` with two functionally-dependent columns, i.e., knowledge of a value in the first column is sufficient for determining the value in the other column. Then build functional dependency statistics on those columns:
 
-```
+```sql
 CREATE TABLE t1 (
     a   int,
     b   int
@@ -73,7 +73,7 @@ Without functional-dependency statistics, the planner assumes that the two `WHER
 
 Create table `t2` with two perfectly correlated columns (containing identical data), and a MCV list on those columns:
 
-```
+```sql
 CREATE TABLE t2 (
     a   int,
     b   int
