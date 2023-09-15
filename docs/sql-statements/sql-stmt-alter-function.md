@@ -89,9 +89,10 @@ STABLE
 
 Change the volatility of the function to the specified setting. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for details.
 
-[ EXTERNAL ] SECURITY INVOKER
-[ EXTERNAL ] SECURITY DEFINER
-:   Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information about this capability.
+[ EXTERNAL ] SECURITY INVOKER`**
+[ EXTERNAL ] SECURITY DEFINER`**
+
+Change whether the function is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information about this capability.
 
 **`PARALLEL`**
 
@@ -101,37 +102,42 @@ Change whether the function is deemed safe for parallelism. See [CREATE FUNCTION
 
 Change whether the function is considered leakproof or not. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information about this capability.
 
-EXECUTE ON ANY
-EXECUTE ON COORDINATOR
-EXECUTE ON ALL SEGMENTS
-EXECUTE ON INITPLAN
-:   The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
+EXECUTE ON ANY`**
+EXECUTE ON COORDINATOR`**
+EXECUTE ON ALL SEGMENTS`**
+EXECUTE ON INITPLAN`**
 
-:   `EXECUTE ON ANY` (the default) indicates that the function can be run on the coordinator, or any segment instance, and it returns the same result regardless of where it is run. Cloudberry Database determines where the function runs.
+The `EXECUTE ON` attributes specify where (coordinator or segment instance) a function runs when it is invoked during the query execution process.
 
-:   `EXECUTE ON COORDINATOR` indicates that the function must run only on the coordinator instance.
+`EXECUTE ON ANY` (the default) indicates that the function can be run on the coordinator, or any segment instance, and it returns the same result regardless of where it is run. Cloudberry Database determines where the function runs.
 
-:   `EXECUTE ON ALL SEGMENTS` indicates that the function must run on all primary segment instances, but not the coordinator, for each invocation. The overall result of the function is the `UNION ALL` of the results from all segment instances.
+`EXECUTE ON COORDINATOR` indicates that the function must run only on the coordinator instance.
 
-:   `EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Cloudberry Database when possible.
+`EXECUTE ON ALL SEGMENTS` indicates that the function must run on all primary segment instances, but not the coordinator, for each invocation. The overall result of the function is the `UNION ALL` of the results from all segment instances.
 
-:   For more information about the `EXECUTE ON` attributes, see [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md).
+`EXECUTE ON INITPLAN` indicates that the function contains an SQL command that dispatches queries to the segment instances and requires special processing on the coordinator instance by Cloudberry Database when possible.
 
-COST execution_cost
-:   Change the estimated execution cost of the function. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information.
+For more information about the `EXECUTE ON` attributes, see [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md).
 
-ROWS result_rows
-:   Change the estimated number of rows returned by a set-returning function. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information.
+COST execution_cost`**
 
-SUPPORT support_function
-:   Set or change the planner support function to use for this function. You must be superuser to use this option.
-:   This option cannot be used to remove the support function altogether, since it must name a new support function. Use `CREATE OR REPLACE FUNCTION` if you require that.
+Change the estimated execution cost of the function. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information.
 
-configuration_parameter
+ROWS result_rows`**
+
+Change the estimated number of rows returned by a set-returning function. See [CREATE FUNCTION](/docs/sql-statements/sql-stmt-create-function.md) for more information.
+
+SUPPORT support_function`**
+
+Set or change the planner support function to use for this function. You must be superuser to use this option.
+
+This option cannot be used to remove the support function altogether, since it must name a new support function. Use `CREATE OR REPLACE FUNCTION` if you require that.
+
+configuration_parameter`**
 **`value`**
 
 Set or change the value of a configuration parameter when the function is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the function-local setting is removed, and the function runs with the value present in its environment. Use `RESET ALL` to clear all function-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER FUNCTION` is run as the value to be applied when the function is entered.
-:   See [SET](/docs/sql-statements/sql-stmt-set.md) for more information about allowed parameter names and values.
+See [SET](/docs/sql-statements/sql-stmt-set.md) for more information about allowed parameter names and values.
 
 **`RESTRICT`**
 

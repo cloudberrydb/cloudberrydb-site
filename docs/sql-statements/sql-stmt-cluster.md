@@ -32,8 +32,9 @@ When a table is being clustered, an `ACCESS EXCLUSIVE` lock is acquired on it. T
 
 The name of an index.
 
-`VERBOSE`
-:   Prints a progress report as each table is clustered.
+VERBOSE`**
+
+Prints a progress report as each table is clustered.
 
 **`table_name`**
 

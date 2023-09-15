@@ -35,8 +35,9 @@ The name of an existing server.
 
 The new server version.
 
-OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
-:   Change the server's options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Cloudberry Database validates names and values using the server's foreign-data wrapper library.
+OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )`**
+
+Change the server's options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Cloudberry Database validates names and values using the server's foreign-data wrapper library.
 
 **`new_owner`**
 

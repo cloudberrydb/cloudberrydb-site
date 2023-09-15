@@ -14,8 +14,9 @@ DROP MATERIALIZED VIEW [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 ## Parameters
 
-IF EXISTS
-:   Do not throw an error if the materialized view does not exist. A notice is issued in this case.
+IF EXISTS`**
+
+Do not throw an error if the materialized view does not exist. A notice is issued in this case.
 
 **`name`**
 

@@ -34,9 +34,10 @@ An expression or integer constant indicating how to sort the result rows. This e
 
 A sorting operator. For more details, see "The ORDER BY Clause" in the parameters for [SELECT](/docs/sql-statements/sql-stmt-select.md).
 
-LIMIT count
-OFFSET start
-:   The maximum number of rows to return. For more details, see "The LIMIT Clause" in the parameters for [SELECT](/docs/sql-statements/sql-stmt-select.md).
+LIMIT count`**
+OFFSET start`**
+
+The maximum number of rows to return. For more details, see "The LIMIT Clause" in the parameters for [SELECT](/docs/sql-statements/sql-stmt-select.md).
 
 ## Notes
 

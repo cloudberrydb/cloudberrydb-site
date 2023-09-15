@@ -54,8 +54,9 @@ New domain constraint for the domain.
 
 Name of an existing constraint to drop or rename.
 
-NOT VALID
-:   Do not verify existing column data for constraint validity.
+**`NOT VALID`**
+
+Do not verify existing column data for constraint validity.
 
 **`CASCADE`**
 
@@ -132,6 +133,3 @@ ALTER DOMAIN zipcode SET SCHEMA customers;
 ## See Also
 
 [CREATE DOMAIN](/docs/sql-statements/sql-stmt-create-domain.md), [DROP DOMAIN](/docs/sql-statements/sql-stmt-drop-domain.md)
-
-
-

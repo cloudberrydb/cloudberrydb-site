@@ -14,8 +14,9 @@ DROP FOREIGN TABLE [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 ## Parameters
 
-IF EXISTS
-:   Do not throw an error if the foreign table does not exist. Cloudberry Database issues a notice in this case.
+IF EXISTS`**
+
+Do not throw an error if the foreign table does not exist. Cloudberry Database issues a notice in this case.
 
 **`name`**
 

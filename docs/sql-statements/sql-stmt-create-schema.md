@@ -45,8 +45,9 @@ An SQL statement defining an object to be created within the schema. Currently, 
 
     > **Note** Cloudberry Database does not support triggers.
 
-`IF NOT EXISTS`
-:   Do nothing (except issuing a notice) if a schema with the same name already exists. schema_element subcommands cannot be included when this option is used.
+IF NOT EXISTS`**
+
+Do nothing (except issuing a notice) if a schema with the same name already exists. schema_element subcommands cannot be included when this option is used.
 
 ## Notes
 

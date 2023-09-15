@@ -191,7 +191,7 @@ If there is an index and we use a query with an indexable `WHERE` condition, `EX
 EXPLAIN (FORMAT YAML) SELECT * FROM NAMES WHERE LOCATION='Sydney, Australia';
                           QUERY PLAN
 --------------------------------------------------------------
- - Plan:                                                     +
+ - Plan                                                +
      Node Type: "Gather Motion"                              +
      Senders: 3                                              +
      Receivers: 1                                            +
@@ -202,7 +202,7 @@ EXPLAIN (FORMAT YAML) SELECT * FROM NAMES WHERE LOCATION='Sydney, Australia';
      Total Cost: 10.81                                       +
      Plan Rows: 10000                                        +
      Plan Width: 70                                          +
-     Plans:                                                  +
+     Plans                                             +
        - Node Type: "Index Scan"                             +
          Parent Relationship: "Outer"                        +
          Slice: 1                                            +
@@ -217,7 +217,7 @@ EXPLAIN (FORMAT YAML) SELECT * FROM NAMES WHERE LOCATION='Sydney, Australia';
          Plan Rows: 10000                                    +
          Plan Width: 70                                      +
          Index Cond: "(location = 'Sydney, Australia'::text)"+
-   Settings:                                                 +
+   Settings                                            +
      Optimizer: "Pivotal Optimizer (GPORCA) version 3.23.0"
 (1 row)
 ```

@@ -31,47 +31,49 @@ For partitioned tables, `ANALYZE` collects additional statistics, HyperLogLog (H
 
 ## Parameters
 
-{ root_partition_table_name | leaf_partition_table_name } [ (column [, ...] ) ]
-:   Collect statistics for partitioned tables including HLL statistics. HLL statistics are collected only on leaf partitions.
+{ root_partition_table_name | leaf_partition_table_name } [ (column [, ...] ) ]`**
 
-:   `ANALYZE root_partition_table_name`, collects statistics on all leaf partitions and the root partition.
+Collect statistics for partitioned tables including HLL statistics. HLL statistics are collected only on leaf partitions.
 
-:   `ANALYZE leaf_partition_table_name`, collects statistics on the leaf partition.
+`ANALYZE root_partition_table_name`, collects statistics on all leaf partitions and the root partition.
 
-:   By default, if you specify a leaf partition, and all other leaf partitions have statistics, `ANALYZE` updates the root partition statistics. If not all leaf partitions have statistics, `ANALYZE` logs information about the leaf partitions that do not have statistics. For information about when root partition statistics are collected, see [Notes](#section5).
+`ANALYZE leaf_partition_table_name`, collects statistics on the leaf partition.
 
-ROOTPARTITION [ALL]
-:   Collect statistics only on the root partition of partitioned tables based on the data in the partitioned table. If possible, `ANALYZE` uses leaf partition statistics to generate root partition statistics. Otherwise, `ANALYZE` collects the statistics by sampling leaf partition data. Statistics are not collected on the leaf partitions, the data is only sampled. HLL statistics are not collected.
+By default, if you specify a leaf partition, and all other leaf partitions have statistics, `ANALYZE` updates the root partition statistics. If not all leaf partitions have statistics, `ANALYZE` logs information about the leaf partitions that do not have statistics. For information about when root partition statistics are collected, see [Notes](#section5).
 
-:   For information about when the `ROOTPARTITION` keyword is required, see [Notes](#section5).
+ROOTPARTITION [ALL]`**
 
-:   When you specify `ROOTPARTITION`, you must specify either `ALL` or the name of a partitioned table.
+Collect statistics only on the root partition of partitioned tables based on the data in the partitioned table. If possible, `ANALYZE` uses leaf partition statistics to generate root partition statistics. Otherwise, `ANALYZE` collects the statistics by sampling leaf partition data. Statistics are not collected on the leaf partitions, the data is only sampled. HLL statistics are not collected.
 
-:   If you specify `ALL` with `ROOTPARTITION`, Cloudberry Database collects statistics for the root partition of all partitioned tables in the database. If there are no partitioned tables in the database, a message stating that there are no partitioned tables is returned. For tables that are not partitioned tables, statistics are not collected.
+For information about when the `ROOTPARTITION` keyword is required, see [Notes](#section5).
 
-:   If you specify a table name with `ROOTPARTITION` and the table is not a partitioned table, no statistics are collected for the table and a warning message is returned.
+When you specify `ROOTPARTITION`, you must specify either `ALL` or the name of a partitioned table.
 
-:   The `ROOTPARTITION` clause is not valid with `VACUUM ANALYZE`. The command `VACUUM ANALYZE ROOTPARTITION` returns an error.
+If you specify `ALL` with `ROOTPARTITION`, Cloudberry Database collects statistics for the root partition of all partitioned tables in the database. If there are no partitioned tables in the database, a message stating that there are no partitioned tables is returned. For tables that are not partitioned tables, statistics are not collected.
 
-:   If all the leaf partitions have statistics, performing `ANALYZE ROOTPARTITION` to generate root partition statistics should be quick (a few seconds depending on the number of partitions and table columns). If some of the leaf partitions do not have statistics, then all the table data is sampled to generate root partition statistics. Sampling table data takes longer and results in lower quality root partition statistics.
+If you specify a table name with `ROOTPARTITION` and the table is not a partitioned table, no statistics are collected for the table and a warning message is returned.
 
-:   For the partitioned table *sales_curr_yr*, this example command collects statistics only on the root partition of the partitioned table. `ANALYZE ROOTPARTITION sales_curr_yr;`
+The `ROOTPARTITION` clause is not valid with `VACUUM ANALYZE`. The command `VACUUM ANALYZE ROOTPARTITION` returns an error.
 
-:   This example `ANALYZE` command collects statistics on the root partition of all the partitioned tables in the database.
+If all the leaf partitions have statistics, performing `ANALYZE ROOTPARTITION` to generate root partition statistics should be quick (a few seconds depending on the number of partitions and table columns). If some of the leaf partitions do not have statistics, then all the table data is sampled to generate root partition statistics. Sampling table data takes longer and results in lower quality root partition statistics.
+
+For the partitioned table *sales_curr_yr*, this example command collects statistics only on the root partition of the partitioned table. `ANALYZE ROOTPARTITION sales_curr_yr;`
+
+This example `ANALYZE` command collects statistics on the root partition of all the partitioned tables in the database.
 
 ```sql
-    ANALYZE ROOTPARTITION ALL;
-    ```
+ANALYZE ROOTPARTITION ALL;
+```
 
 **`VERBOSE`**
 
 Enables display of progress messages. When specified, `ANALYZE` emits this information
 
-    -   The table that is being processed.
-    -   The query that is run to generate the sample table.
-    -   The column for which statistics is being computed.
-    -   The queries that are issued to collect the different statistics for a single column.
-    -   The statistics that are collected.
+-    The table that is being processed.
+-    The query that is run to generate the sample table.
+-    The column for which statistics is being computed.
+-    The queries that are issued to collect the different statistics for a single column.
+-    The statistics that are collected.
 
 **`SKIP_LOCKED`**
 

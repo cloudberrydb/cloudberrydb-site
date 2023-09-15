@@ -24,8 +24,9 @@ To be able to create a collation, you must have `CREATE` privilege on the destin
 
 ## Parameters
 
-IF NOT EXISTS
-:   Do not throw an error if a collation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing collation is anything like the one that would have been created.
+IF NOT EXISTS`**
+
+Do not throw an error if a collation with the same name already exists. A notice is issued in this case. Note that there is no guarantee that the existing collation is anything like the one that would have been created.
 
 **`name`**
 
@@ -50,12 +51,14 @@ Specifies the provider to use for locale services associated with this collation
 **`DETERMINISTIC`**
 
 Specifies whether the collation should use deterministic comparisons. The default is `true`. A deterministic comparison considers strings that are not byte-wise equal to be unequal even if they are considered logically equal by the comparison. Cloudberry Database breaks ties using a byte-wise comparison. Comparison that is not deterministic can make the collation be, say, case- or accent-insensitive. For that, you need to choose an appropriate `LC_COLLATE` setting and set the collation to not deterministic here.
-:   Nondeterministic collations are only supported with the `icu` provider.
+
+Nondeterministic collations are only supported with the `icu` provider.
 
 **`version`**
 
 Specifies the version string to store with the collation. Normally, this should be omitted, which will cause the version to be computed from the actual version of the collation as provided by the operating system. This option is intended to be used by `pg_upgrade` for copying the version from an existing installation.
-:   See also [ALTER COLLATION](/docs/sql-statements/sql-stmt-alter-collation.md) for how to handle collation version mismatches.
+
+See also [ALTER COLLATION](/docs/sql-statements/sql-stmt-alter-collation.md) for how to handle collation version mismatches.
 
 **`existing_collation`**
 

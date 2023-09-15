@@ -18,8 +18,9 @@ DROP [PROCEDURAL] LANGUAGE [IF EXISTS] <name> [CASCADE | RESTRICT]
 
 Optional keyword - has no effect.
 
-IF EXISTS
-:   Do not throw an error if the language does not exist. A notice is issued in this case.
+IF EXISTS`**
+
+Do not throw an error if the language does not exist. A notice is issued in this case.
 
 **`name`**
 

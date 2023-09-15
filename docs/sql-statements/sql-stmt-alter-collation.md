@@ -37,17 +37,18 @@ The new owner of the collation.
 
 The new schema for the collation.
 
-REFRESH VERSION
-:   Update the collation's version. See the [Notes](#section4a) below.
+**`REFRESH VERSION`**
+
+Update the collation's version. See the [Notes](#section4a) below.
 
 ## Notes
 
 When using collations provided by the ICU library, the ICU-specific version of the collator is recorded in the system catalog when the collation object is created. When the collation is used, the current version is checked against the recorded version, and a warning is issued when there is a mismatch, for example:
 
 ```sql
-WARNING:  collation "xx-x-icu" has version mismatch
-DETAIL:  The collation in the database was created using version 1.2.3.4, but the operating system provides version 2.3.4.5.
-HINT:  Rebuild all objects affected by this collation and run ALTER COLLATION pg_catalog."xx-x-icu" REFRESH VERSION, or build PostgreSQL with the right library version.
+WARNING: collation "xx-x-icu" has version mismatch
+DETAIL: The collation in the database was created using version 1.2.3.4, but the operating system provides version 2.3.4.5.
+HINT: Rebuild all objects affected by this collation and run ALTER COLLATION pg_catalog."xx-x-icu" REFRESH VERSION, or build PostgreSQL with the right library version.
 ```
 
 A change in collation definitions can lead to corrupt indexes and other problems because the database system relies on stored objects having a certain sort order. Generally, this should be avoided, but it can happen in legitimate circumstances, such as when using `pg_upgrade` to upgrade to server binaries linked with a newer version of ICU. When this happens, all objects depending on the collation should be rebuilt, for example, using `REINDEX`. When that is done, the collation version can be refreshed using the command `ALTER COLLATION ... REFRESH VERSION`. This will update the system catalog to record the current collator version and will make the warning go away. Note that this does not actually check whether all affected objects have been rebuilt correctly.

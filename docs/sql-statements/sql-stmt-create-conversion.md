@@ -37,7 +37,7 @@ The destination encoding name.
 
 The function used to perform the conversion. The function name may be schema-qualified. If it is not, the function will be looked up in the path. The function must have the following signature:
 
-:   ```
+```sql
 conv_proc(
     integer,  -- source encoding ID
     integer,  -- destination encoding ID

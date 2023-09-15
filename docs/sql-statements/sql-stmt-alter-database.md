@@ -68,11 +68,14 @@ The new owner of the database.
 **`new_tablespace`**
 
 The new default tablespace of the database.
-:   This form of the command cannot be executed inside a transaction block.
 
-configuration_parameter value
-:   Set this database's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the database-specific setting is removed, so the system-wide default setting will be inherited in new sessions. Use `RESET ALL` to clear all database-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the database-specific value.
-:   See [SET](/docs/sql-statements/sql-stmt-set.md) and Server Configuration Parameters for more information about allowed parameter names and values.
+This form of the command cannot be executed inside a transaction block.
+
+**`configuration_parameter` value**
+
+Set this database's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the database-specific setting is removed, so the system-wide default setting will be inherited in new sessions. Use `RESET ALL` to clear all database-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the database-specific value.
+
+See [SET](/docs/sql-statements/sql-stmt-set.md) and Server Configuration Parameters for more information about allowed parameter names and values.
 
 ## Notes
 

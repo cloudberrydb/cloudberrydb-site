@@ -31,7 +31,7 @@ If a transaction of this sort is going to change the data in the table, then it 
 
 The name (optionally schema-qualified) of an existing table to lock. If `ONLY` is specified, only that table is locked. If `ONLY` is not specified, the table and all its descendant tables (if any) are locked. Optionally, `*` can be specified after the table name to explicitly indicate that descendant tables are included.
 
-:   If multiple tables are given, tables are locked one-by-one in the order specified in the `LOCK TABLE` command.
+If multiple tables are given, tables are locked one-by-one in the order specified in the `LOCK TABLE` command.
 
 **`lockmode`**
 
@@ -52,9 +52,11 @@ The lock mode specifies which locks this lock conflicts with. If no lock mode is
 
 Specifies that `LOCK TABLE` should not wait for any conflicting locks to be released: if the specified lock(s) cannot be acquired immediately without waiting, the transaction is cancelled.
 
-COORDINATOR ONLY
-:   Specifies that when a `LOCK TABLE` command is issued, Cloudberry Database will lock tables on the coordinator only, rather than on the coordinator and all of the segments. This is particularly useful for metadata-only operations. 
-    <br/><br/>> **Note** This option is only supported in `ACCESS SHARE MODE`.
+COORDINATOR ONLY`**
+
+Specifies that when a `LOCK TABLE` command is issued, Cloudberry Database will lock tables on the coordinator only, rather than on the coordinator and all of the segments. This is particularly useful for metadata-only operations. 
+
+**Note** This option is only supported in `ACCESS SHARE MODE`.
 
 ## Notes
 

@@ -18,8 +18,9 @@ You must be a superuser or the protocol owner to drop a protocol.
 
 ## Parameters
 
-IF EXISTS
-:   Do not throw an error if the protocol does not exist. Cloudberry Database issues a notice in this case.
+IF EXISTS`**
+
+Do not throw an error if the protocol does not exist. Cloudberry Database issues a notice in this case.
 
 **`name`**
 

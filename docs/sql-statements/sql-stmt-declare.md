@@ -50,36 +50,41 @@ Causes the cursor to return data in binary rather than in text format.
 
 Indicates that data retrieved from the cursor should be unaffected by updates to the table(s) underlying the cursor that occur after the cursor is created. In Cloudberry Database, all cursors are insensitive. This key word currently has no effect and is present only for compatibility with the SQL standard.
 
-NO SCROLL
-:   The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Cloudberry Database; scrollable cursors (`SCROLL`) are not supported.
+NO SCROLL`**
 
-PARALLEL RETRIEVE
-:   Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Cloudberry Database segments, in parallel.
+The cursor cannot be used to retrieve rows in a nonsequential fashion. This is the default behavior in Cloudberry Database; scrollable cursors (`SCROLL`) are not supported.
 
-WITH HOLD
-WITHOUT HOLD
-:   `WITH HOLD` specifies that the cursor may continue to be used after the transaction that created it successfully commits. `WITHOUT HOLD` specifies that the cursor cannot be used outside of the transaction that created it. `WITHOUT HOLD` is the default.
+PARALLEL RETRIEVE`**
 
-    > **Note** Cloudberry Database does not support declaring a `PARALLEL RETRIEVE` cursor with the `WITH HOLD` clause. `WITH HOLD` also cannot not be specified when the `query` includes a `FOR UPDATE` or `FOR SHARE` clause.
+Declare a parallel retrieve cursor. A parallel retrieve cursor is a special type of cursor that you can use to retrieve results directly from Cloudberry Database segments, in parallel.
+
+WITH HOLD`**
+WITHOUT HOLD`**
+
+`WITH HOLD` specifies that the cursor may continue to be used after the transaction that created it successfully commits. `WITHOUT HOLD` specifies that the cursor cannot be used outside of the transaction that created it. `WITHOUT HOLD` is the default.
+
+> **Note** Cloudberry Database does not support declaring a `PARALLEL RETRIEVE` cursor with the `WITH HOLD` clause. `WITH HOLD` also cannot not be specified when the `query` includes a `FOR UPDATE` or `FOR SHARE` clause.
 
 **`query`**
 
 A [SELECT](/docs/sql-statements/sql-stmt-select.md) or [VALUES](/docs/sql-statements/sql-stmt-values.md) command which will provide the rows to be returned by the cursor.
 
-:   If the cursor is used in the `WHERE CURRENT OF` clause of the [UPDATE](/docs/sql-statements/sql-stmt-update.md) or [DELETE](/docs/sql-statements/sql-stmt-delete.md) command, the `SELECT` command must satisfy the following conditions:
+If the cursor is used in the `WHERE CURRENT OF` clause of the [UPDATE](/docs/sql-statements/sql-stmt-update.md) or [DELETE](/docs/sql-statements/sql-stmt-delete.md) command, the `SELECT` command must satisfy the following conditions:
 
-    -   Cannot reference a view or external table.
-    -   References only one table.
-        <br/><br/>The table must be a heap table, and it must not be replicated-distributed (must not be a view, external table, or append-optimized column-oriented table).
+-   Cannot reference a view or external table.
+-   References only one table.
+    <br/><br/>The table must be a heap table, and it must not be replicated-distributed (must not be a view, external table, or append-optimized column-oriented table).
 
-    -   Cannot contain any of the following:
-        -   A grouping clause
-        -   A set operation such as `UNION ALL` or `UNION DISTINCT`
-        -   A sorting clause
-        -   A windowing clause
-        -   A join or a self-join
-        <br/><br/>Specifying the `FOR UPDATE` clause in the `SELECT` command prevents other sessions from changing the rows between the time they are fetched and the time they are updated. Without the `FOR UPDATE` clause, a subsequent use of the `UPDATE` or `DELETE` command with the `WHERE CURRENT OF` clause has no effect if the row was changed since the cursor was created.
-        <br/><br/>> **Note** Specifying the `FOR UPDATE` clause in the `SELECT` command locks the entire table, not just the selected rows.
+-   Cannot contain any of the following:
+    -   A grouping clause
+    -   A set operation such as `UNION ALL` or `UNION DISTINCT`
+    -   A sorting clause
+    -   A windowing clause
+    -   A join or a self-join
+
+    Specifying the `FOR UPDATE` clause in the `SELECT` command prevents other sessions from changing the rows between the time they are fetched and the time they are updated. Without the `FOR UPDATE` clause, a subsequent use of the `UPDATE` or `DELETE` command with the `WHERE CURRENT OF` clause has no effect if the row was changed since the cursor was created.
+
+    > **Note** Specifying the `FOR UPDATE` clause in the `SELECT` command locks the entire table, not just the selected rows.
 
 The key words `BINARY`, `INSENSITIVE`, and `NO SCROLL` can appear in any order.
 

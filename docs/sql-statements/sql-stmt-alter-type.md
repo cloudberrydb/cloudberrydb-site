@@ -33,30 +33,38 @@ where <storage_directive> is:
 `ALTER TYPE` changes the definition of an existing type. There are several subforms:
 
 **`ADD ATTRIBUTE`**
-:   Adds a new attribute to a composite type, using the same syntax as [CREATE TYPE](/docs/sql-statements/sql-stmt-create-type.md).
+
+Adds a new attribute to a composite type, using the same syntax as [CREATE TYPE](/docs/sql-statements/sql-stmt-create-type.md).
 
 **`DROP ATTRIBUTE [ IF EXISTS ]`**
-:   Drops an attribute from a composite type. If `IF EXISTS` is specified and the attribute does not exist, no error is thrown. In this case Cloudberry Database issues a notice instead.
+
+Drops an attribute from a composite type. If `IF EXISTS` is specified and the attribute does not exist, no error is thrown. In this case Cloudberry Database issues a notice instead.
 
 **`SET DATA TYPE`**
-:   Changes the type of an attribute of a composite type.
+
+Changes the type of an attribute of a composite type.
 
 **`OWNER`**
-:   Changes the owner of the type.
+
+Changes the owner of the type.
 
 **`RENAME`**
-:   Changes the name of the type or the name of an individual attribute of a composite type.
+
+Changes the name of the type or the name of an individual attribute of a composite type.
 
 **`SET SCHEMA`**
-:   Moves the type into another schema.
+
+Moves the type into another schema.
 
 **`ADD VALUE [ IF NOT EXISTS ] [ BEFORE | AFTER ]`**
-:   Adds a new value to an enum type. The new value's place in the enum's ordering can be specified as being `BEFORE` or `AFTER` one of the existing values. Otherwise, the new item is added at the end of the list of values.
 
-:   If `IF NOT EXISTS` is specified, it is not an error if the type already contains the new value; Cloudberry Database issues a notice but takes no other action. Otherwise, an error will occur if the new value is already present.
+Adds a new value to an enum type. The new value's place in the enum's ordering can be specified as being `BEFORE` or `AFTER` one of the existing values. Otherwise, the new item is added at the end of the list of values.
+
+If `IF NOT EXISTS` is specified, it is not an error if the type already contains the new value; Cloudberry Database issues a notice but takes no other action. Otherwise, an error will occur if the new value is already present.
 
 **`RENAME VALUE`**
-:   Renames a value of an enum type. The value's place in the enum's ordering is not affected. An error will occur if the specified value is not present or the new name is already present.
+
+Renames a value of an enum type. The value's place in the enum's ordering is not affected. An error will occur if the specified value is not present or the new name is already present.
 
 The `ADD ATTRIBUTE`, `DROP ATTRIBUTE`, and `ALTER ATTRIBUTE` actions can be combined into a list of multiple alterations to apply in parallel. For example, it is possible to add several attributes and/or alter the type of several attributes in a single command.
 
@@ -120,11 +128,11 @@ Refuse the operation if the type being altered is the type of a typed table. Thi
 
 Identifies default storage options for the type when specified in a table column definition. Options include `COMPRESSTYPE`, `COMPRESSLEVEL`, and `BLOCKSIZE`.
 
-:   **COMPRESSTYPE** — Set to `ZLIB` (the default), `ZSTD` or `RLE_TYPE` to specify the type of compression used.
+**COMPRESSTYPE** — Set to `ZLIB` (the default), `ZSTD` or `RLE_TYPE` to specify the type of compression used.
 
-:   **COMPRESSLEVEL** — For Zstd compression, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. For `RLE_TYPE`, the compression level can be set to an integer value from 1 (fastest compression) to 4 (highest compression ratio). The default compression level is 1.
+**COMPRESSLEVEL** — For Zstd compression, set to an integer value from 1 (fastest compression) to 19 (highest compression ratio). For zlib compression, the valid range is from 1 to 9. For `RLE_TYPE`, the compression level can be set to an integer value from 1 (fastest compression) to 4 (highest compression ratio). The default compression level is 1.
 
-:   **BLOCKSIZE** — Set to the size, in bytes, for each block in the column. The `BLOCKSIZE` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default block size is 32768.
+**BLOCKSIZE** — Set to the size, in bytes, for each block in the column. The `BLOCKSIZE` must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default block size is 32768.
 
     > **Note** storage_directives defined at the table- or column-level override the default storage options defined for a type.
 

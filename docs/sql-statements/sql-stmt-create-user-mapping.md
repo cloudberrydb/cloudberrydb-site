@@ -18,8 +18,9 @@ The owner of a foreign server can create user mappings for that server for any u
 
 ## Parameters
 
-IF NOT EXISTS
-:   Do not throw an error if a mapping of the given user to the given foreign server already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing user mapping is anything like the one that would have been created.
+IF NOT EXISTS`**
+
+Do not throw an error if a mapping of the given user to the given foreign server already exists. Cloudberry Database issues a notice in this case. Note that there is no guarantee that the existing user mapping is anything like the one that would have been created.
 
 **`user_name`**
 
@@ -29,8 +30,9 @@ The name of an existing user that is mapped to the foreign server. `CURRENT_USER
 
 The name of an existing server for which Cloudberry Database is to create the user mapping.
 
-OPTIONS ( option 'value' [, ... ] )
-:   The options for the new user mapping. The options typically define the actual user name and password of the mapping. Option names must be unique. The option names and values are specific to the server's foreign-data wrapper.
+OPTIONS ( option 'value' [, ... ] )`**
+
+The options for the new user mapping. The options typically define the actual user name and password of the mapping. Option names must be unique. The option names and values are specific to the server's foreign-data wrapper.
 
 ## Examples
 

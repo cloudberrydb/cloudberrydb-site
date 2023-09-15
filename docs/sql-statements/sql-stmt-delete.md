@@ -34,9 +34,9 @@ You must have the `DELETE` privilege on the table to delete from it, as well as 
 
 The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `DELETE` query.
 
-:   For a `DELETE` command that includes a `WITH` clause, the clause can only contain `SELECT` statements, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
+For a `DELETE` command that includes a `WITH` clause, the clause can only contain `SELECT` statements, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
 
-:   See [SELECT](/docs/sql-statements/sql-stmt-select.md) for details.
+See [SELECT](/docs/sql-statements/sql-stmt-select.md) for details.
 
 **`table_name`**
 
@@ -58,7 +58,7 @@ An expression that returns a value of type `boolean`. Cloudberry Database delete
 
 The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be deleted is the one most recently fetched from this cursor. The cursor must be a non-grouping query on the `DELETE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](/docs/sql-statements/sql-stmt-declare.md) for more information about using cursors with `WHERE CURRENT OF`.
 
-:   The `DELETE...WHERE CURRENT OF` cursor statement can only be run on the server, for example in an interactive psql session or a script. Language extensions such as PL/pgSQL do not have support for updatable cursors.
+The `DELETE...WHERE CURRENT OF` cursor statement can only be run on the server, for example in an interactive psql session or a script. Language extensions such as PL/pgSQL do not have support for updatable cursors.
 
 **`output_expression`**
 

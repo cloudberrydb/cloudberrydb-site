@@ -186,15 +186,15 @@ Allows `TRUNCATE` of all rows from the specified table.
 
 For databases, allows new schemas to be created within the database.
 
-:   For schemas, allows new objects to be created within the schema. To rename an existing object, you must own the object and have this privilege for the containing schema.
+For schemas, allows new objects to be created within the schema. To rename an existing object, you must own the object and have this privilege for the containing schema.
 
-:   For tablespaces, allows tables and indexes to be created within the tablespace, and allows databases to be created that have the tablespace as their default tablespace. (Note that revoking this privilege will not alter the placement of existing objects.)
+For tablespaces, allows tables and indexes to be created within the tablespace, and allows databases to be created that have the tablespace as their default tablespace. (Note that revoking this privilege will not alter the placement of existing objects.)
 
 **`CONNECT`**
 
 Allows the user to connect to the specified database. This privilege is checked at connection startup (in addition to checking any restrictions imposed by `pg_hba.conf`).
 
-TEMPORARY
+**`TEMPORARY`**
 **`TEMP`**
 
 Allows temporary tables to be created while using the database.
@@ -207,28 +207,31 @@ Allows the use of the specified function and the use of any operators that are i
 
 For procedural languages, allows the use of the specified language for the creation of functions in that language. This is the only type of privilege that is applicable to procedural languages.
 
-:   For schemas, allows access to objects contained in the specified schema (assuming that the objects' own privilege requirements are also met). Essentially this allows the grantee to look up objects within the schema.
+For schemas, allows access to objects contained in the specified schema (assuming that the objects' own privilege requirements are also met). Essentially this allows the grantee to look up objects within the schema.
 
-:   For sequences, this privilege allows the use of the `currval()` and `nextval()` function.
+For sequences, this privilege allows the use of the `currval()` and `nextval()` function.
 
-:   For types and domains, this privilege allows the use of the type or domain in the creation of tables, functions, and other schema objects. (Note that it does not control general "usage" of the type, such as values of the type appearing in queries. It only prevents objects from being created that depend on the type. The main purpose of the privilege is controlling which users create dependencies on a type, which could prevent the owner from changing the type later.)
+For types and domains, this privilege allows the use of the type or domain in the creation of tables, functions, and other schema objects. (Note that it does not control general "usage" of the type, such as values of the type appearing in queries. It only prevents objects from being created that depend on the type. The main purpose of the privilege is controlling which users create dependencies on a type, which could prevent the owner from changing the type later.)
 
-:   For foreign-data wrappers, this privilege enables the grantee to create new servers using that foreign-data wrapper.
+For foreign-data wrappers, this privilege enables the grantee to create new servers using that foreign-data wrapper.
 
-:   For servers, this privilege enables the grantee to create foreign tables using the server, and also to create, alter, or drop their own user's user mappings associated with that server.
+For servers, this privilege enables the grantee to create foreign tables using the server, and also to create, alter, or drop their own user's user mappings associated with that server.
 
-ALL PRIVILEGES
-:   Grant all of the available privileges at once. The `PRIVILEGES` key word is optional in Cloudberry Database, though it is required by strict SQL.
+ALL PRIVILEGES`**
+
+Grant all of the available privileges at once. The `PRIVILEGES` key word is optional in Cloudberry Database, though it is required by strict SQL.
 
 **`PUBLIC`**
 
 A special group-level role that denotes that the privileges are to be granted to all roles, including those that may be created later.
 
-WITH GRANT OPTION
-:   The recipient of the privilege may in turn grant it to others.
+WITH GRANT OPTION`**
 
-WITH ADMIN OPTION
-:   The member of a role may in turn grant membership in the role to others.
+The recipient of the privilege may in turn grant it to others.
+
+WITH ADMIN OPTION`**
+
+The member of a role may in turn grant membership in the role to others.
 
 ## Notes
 

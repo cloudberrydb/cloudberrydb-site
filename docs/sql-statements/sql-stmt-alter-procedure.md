@@ -70,15 +70,17 @@ The new schema for the procedure.
 
 The name of the extension that the procedure is to depend on.
 
-[ EXTERNAL ] SECURITY INVOKER
-[ EXTERNAL ] SECURITY DEFINER
-:   Change whether the procedure is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE PROCEDURE](/docs/sql-statements/sql-stmt-create-procedure.md) for more information about this capability.
+[ EXTERNAL ] SECURITY INVOKER`**
+[ EXTERNAL ] SECURITY DEFINER`**
 
-configuration_parameter
+Change whether the procedure is a security definer or not. The key word `EXTERNAL` is ignored for SQL conformance. See [CREATE PROCEDURE](/docs/sql-statements/sql-stmt-create-procedure.md) for more information about this capability.
+
+configuration_parameter`**
 **`value`**
 
 Set or change the value of a configuration parameter when the procedure is called. If value is `DEFAULT` or, equivalently, `RESET` is used, the procedure-local setting is removed, and the procedure runs with the value present in its environment. Use `RESET ALL` to clear all procedure-local settings. `SET FROM CURRENT` saves the value of the parameter that is current when `ALTER PROCEDURE` is run as the value to be applied when the procedure is entered.
-:   See [SET](/docs/sql-statements/sql-stmt-set.md) for more information about allowed parameter names and values.
+
+See [SET](/docs/sql-statements/sql-stmt-set.md) for more information about allowed parameter names and values.
 
 **`RESTRICT`**
 

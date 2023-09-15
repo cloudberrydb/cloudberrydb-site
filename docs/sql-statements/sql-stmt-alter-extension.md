@@ -56,14 +56,17 @@ and <aggregate_signature> is:
 
 This form updates the extension to a newer version. The extension must supply a suitable update script (or series of scripts) that can modify the currently-installed version into the requested version.
 
-SET SCHEMA
-:   This form moves the extension member objects into another schema. The extension must be *relocatable* for this command to succeed.
+**`SET SCHEMA`**
 
-ADD member_object
-:   This form adds an existing object to the extension. This is mainly useful in extension update scripts. The object will subsequently be treated as a member of the extension; notably, it can only be dropped by dropping the extension.
+This form moves the extension member objects into another schema. The extension must be *relocatable* for this command to succeed.
 
-DROP member_object
-:   This form removes a member object from the extension. This is mainly useful in extension update scripts. The object is not dropped, only disassociated from the extension.
+**`ADD member_object`**
+
+This form adds an existing object to the extension. This is mainly useful in extension update scripts. The object will subsequently be treated as a member of the extension; notably, it can only be dropped by dropping the extension.
+
+**`DROP member_object`**
+
+This form removes a member object from the extension. This is mainly useful in extension update scripts. The object is not dropped, only disassociated from the extension.
 
 See [Packaging Related Objects into an Extension](https://www.postgresql.org/docs/12/extend-extensions.html) for more information about these operations.
 
@@ -83,11 +86,11 @@ The new version of the extension. The new_version can be either an identifier or
 
 The new schema for the extension.
 
-object_name
-aggregate_name
-function_name
-operator_name
-procedure_name
+**`object_name`**
+**`aggregate_name`**
+**`function_name`**
+**`operator_name`**
+**`procedure_name`**
 **`routine_name`**
 
 The name of an object to be added to or removed from the extension. Names of tables, aggregates, domains, foreign tables, functions, operators, operator classes, operator families, procedures, routines, sequences, text search objects, types, and views can be schema-qualified.
@@ -112,7 +115,7 @@ The name of a function or aggregate argument. Note that `ALTER EXTENSION` does n
 
 The data type of a function, procedure, or aggregate argument.
 
-left_type
+left_type`**
 **`right_type`**
 
 The data types of the operator's arguments (optionally schema-qualified) . Specify `NONE` for the missing argument of a prefix or postfix operator.

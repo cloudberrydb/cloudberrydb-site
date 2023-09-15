@@ -26,8 +26,9 @@ User name of the mapping. `CURRENT_USER` and `USER` match the name of the curren
 
 Server name of the user mapping.
 
-OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )
-:   Change options for the user mapping. The new options override any previously specified options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Cloudberry Database validates names and values using the server's foreign-data wrapper.
+OPTIONS ( [ ADD | SET | DROP ] option ['value'] [, ... ] )`**
+
+Change options for the user mapping. The new options override any previously specified options. `ADD`, `SET`, and `DROP` specify the action to perform. If no operation is explicitly specified, the default operation is `ADD`. Option names must be unique. Cloudberry Database validates names and values using the server's foreign-data wrapper.
 
 ## Examples
 

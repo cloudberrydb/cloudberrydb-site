@@ -34,9 +34,9 @@ You must have the `UPDATE` privilege on the table, or at least on the column(s) 
 
 The `WITH` clause allows you to specify one or more subqueries that can be referenced by name in the `UPDATE` query. See [SELECT](/docs/sql-statements/sql-stmt-select.md) for details.
 
-:   For an `UPDATE` command that includes a `WITH` clause, the clause can only contain `SELECT` commands, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
+For an `UPDATE` command that includes a `WITH` clause, the clause can only contain `SELECT` commands, the `WITH` clause cannot contain a data-modifying command (`INSERT`, `UPDATE`, or `DELETE`).
 
-:   It is possible for the query (`SELECT` statement) to also contain a `WITH` clause. In such a case both sets of with_query can be referenced within the `UPDATE` query, but the second one takes precedence since it is more closely nested.
+It is possible for the query (`SELECT` statement) to also contain a `WITH` clause. In such a case both sets of with_query can be referenced within the `UPDATE` query, but the second one takes precedence since it is more closely nested.
 
 **`table_name`**
 
@@ -58,8 +58,9 @@ An expression to assign to the column. The expression may use the old values of 
 
 Set the column to its default value (which will be NULL if no specific default expression has been assigned to it).
 
-sub-SELECT
-:   A `SELECT` sub-query that produces as many output columns as are listed in the parenthesized column list preceding it. The sub-query must yield no more than one row when executed. If it yields one row, its column values are assigned to the target columns; if it yields no rows, NULL values are assigned to the target columns. The sub-query can refer to old values of the current row of the table being updated.
+sub-SELECT`**
+
+A `SELECT` sub-query that produces as many output columns as are listed in the parenthesized column list preceding it. The sub-query must yield no more than one row when executed. If it yields one row, its column values are assigned to the target columns; if it yields no rows, NULL values are assigned to the target columns. The sub-query can refer to old values of the current row of the table being updated.
 
 **`from_item`**
 
@@ -73,7 +74,7 @@ An expression that returns a value of type `boolean`. Only rows for which this e
 
 The name of the cursor to use in a `WHERE CURRENT OF` condition. The row to be updated is the one most recently fetched from the cursor. The cursor must be a non-grouping query on the `UPDATE`'s target table. Note that `WHERE CURRENT OF` cannot be specified together with a Boolean condition. See [DECLARE](/docs/sql-statements/sql-stmt-declare.md) for more information about using cursors with `WHERE CURRENT OF`.
 
-:   The `UPDATE...WHERE CURRENT OF` statement can only be run on the server, for example in an interactive psql session or a script. Language extensions such as PL/pgSQL do not have support for updatable cursors.
+The `UPDATE...WHERE CURRENT OF` statement can only be run on the server, for example in an interactive psql session or a script. Language extensions such as PL/pgSQL do not have support for updatable cursors.
 
 **`output_expression`**
 

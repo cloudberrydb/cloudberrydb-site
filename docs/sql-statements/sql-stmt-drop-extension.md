@@ -18,8 +18,9 @@ You must own the extension to use `DROP EXTENSION`.
 
 ## Parameters
 
-IF EXISTS
-:   Do not throw an error if the extension does not exist. Cloudberry Database issues a notice in this case.
+IF EXISTS`**
+
+Do not throw an error if the extension does not exist. Cloudberry Database issues a notice in this case.
 
 **`name`**
 

@@ -61,13 +61,13 @@ The name (optionally schema-qualified) of an operator associated with the operat
 
 In an `OPERATOR` clause, the operand data type(s) of the operator, or `NONE` to signify a left-unary or right-unary operator. The operand data types can be omitted in the normal case where they are the same as the operator class's data type.
 
-:   In a `FUNCTION` clause, the operand data type(s) the function is intended to support, if different from the input data type(s) of the function (for B-tree comparison functions and hash functions) or the class's data type (for B-tree sort support functions and all functions in GiST, SP-GiST, GIN, and BRIN operator classes). These defaults are correct, and so op_type need not be specified in `FUNCTION` clauses, except for the case of a B-tree sort support function that is meant to support cross-data-type comparisons.
+In a `FUNCTION` clause, the operand data type(s) the function is intended to support, if different from the input data type(s) of the function (for B-tree comparison functions and hash functions) or the class's data type (for B-tree sort support functions and all functions in GiST, SP-GiST, GIN, and BRIN operator classes). These defaults are correct, and so op_type need not be specified in `FUNCTION` clauses, except for the case of a B-tree sort support function that is meant to support cross-data-type comparisons.
 
 **`sort_family_name`**
 
 The name (optionally schema-qualified) of an existing `btree` operator family that describes the sort ordering associated with an ordering operator.
 
-:   If neither `FOR SEARCH` nor `FOR ORDER BY` is specified, `FOR SEARCH` is the default.
+If neither `FOR SEARCH` nor `FOR ORDER BY` is specified, `FOR SEARCH` is the default.
 
 **`support_number`**
 

@@ -16,8 +16,9 @@ A tablespace can only be dropped by its owner or a superuser. The tablespace mus
 
 ## Parameters
 
-IF EXISTS
-:   Do not throw an error if the tablespace does not exist. Cloudberry Database issues a notice in this case.
+IF EXISTS`**
+
+Do not throw an error if the tablespace does not exist. Cloudberry Database issues a notice in this case.
 
 **`name`**
 
@@ -31,9 +32,9 @@ Run `DROP TABLESPACE` during a period of low activity to avoid issues due to con
 
 ```sql
 testdb=# DROP TABLESPACE mytest; 
-WARNING:  tablespace with oid "16415" is not empty  (seg1 192.168.8.145:25433 pid=29023)
-WARNING:  tablespace with oid "16415" is not empty  (seg0 192.168.8.145:25432 pid=29022)
-WARNING:  tablespace with oid "16415" is not empty
+WARNINGtablespace with oid "16415" is not empty  (seg1 192.168.8.145:25433 pid=29023)
+WARNINGtablespace with oid "16415" is not empty  (seg0 192.168.8.145:25432 pid=29022)
+WARNINGtablespace with oid "16415" is not empty
 DROP TABLESPACE
 ```
 

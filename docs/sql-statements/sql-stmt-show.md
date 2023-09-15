@@ -21,22 +21,27 @@ SHOW ALL
 
 The name of a run-time system configuration parameter.
 
-:   Some parameters viewable by `SHOW` are read-only — you can view their values but not set them:
+Some parameters viewable by `SHOW` are read-only — you can view their values but not set them:
 
-    SERVER_VERSION
-    :   Shows the version number of the Cloudberry Database server.
+SERVER_VERSION`**
 
-    SERVER_ENCODING
-    :   Shows the server-side character set encoding. You can show, but not set, this parameter because the encoding is determined at database creation time.
+Shows the version number of the Cloudberry Database server.
 
-    LC_COLLATE
-    :   Shows the database's locale setting for collation (text ordering). You can show, but not set, this parameter because the setting is determined at database creation time.
+SERVER_ENCODING`**
 
-    LC_CTYPE
-    :   Shows the database's locale setting for character classification; You can show, but not set, this parameter because the setting is determined at database creation time.
+Shows the server-side character set encoding. You can show, but not set, this parameter because the encoding is determined at database creation time.
 
-    IS_SUPERUSER
-    :   True if the current role has superuser privileges.
+LC_COLLATE`**
+
+Shows the database's locale setting for collation (text ordering). You can show, but not set, this parameter because the setting is determined at database creation time.
+
+LC_CTYPE`**
+
+Shows the database's locale setting for character classification; You can show, but not set, this parameter because the setting is determined at database creation time.
+
+IS_SUPERUSER`**
+
+True if the current role has superuser privileges.
 
 **`ALL`**
 

@@ -82,7 +82,7 @@ The name (optionally schema-qualified) of an existing table.
 
 An optional list of columns to be copied. If no column list is specified, all columns of the table will be copied.
 
-:   When copying in text format, the default, a row of data in a column of type `bytea` can be up to 256MB.
+When copying in text format, the default, a row of data in a column of type `bytea` can be up to 256MB.
 
 **`query`**
 
@@ -92,14 +92,15 @@ A `SELECT` or `VALUES` command whose results are to be copied. Note that parenth
 
 The path name of the input or output file. An input file name can be an absolute or relative path, but an output file name must be an absolute path. Windows users might need to use an `E''` string and double any backslashes used in the path name.
 
-PROGRAM 'command'
-:   Specify a command to run. In `COPY FROM`, the input is read from standard output of the command, and in `COPY TO`, the output is written to the standard input of the command. The command must be specified from the viewpoint of the Cloudberry Database coordinator host system, and must be executable by the Cloudberry Database administrator user (`gpadmin`).
+PROGRAM 'command'`**
 
-:   The command is invoked by a shell. When passing arguments to the shell, strip or escape any special characters that have a special meaning for the shell. For security reasons, it is best to use a fixed command string, or at least avoid passing any user input in the string.
+Specify a command to run. In `COPY FROM`, the input is read from standard output of the command, and in `COPY TO`, the output is written to the standard input of the command. The command must be specified from the viewpoint of the Cloudberry Database coordinator host system, and must be executable by the Cloudberry Database administrator user (`gpadmin`).
 
-:   When `ON SEGMENT` is specified, the command must be executable on all Cloudberry Database primary segment hosts by the Cloudberry Database administrator user (`gpadmin`). The command is run by each Greenplum segment instance. The `<SEGID>` is required in the command.
+The command is invoked by a shell. When passing arguments to the shell, strip or escape any special characters that have a special meaning for the shell. For security reasons, it is best to use a fixed command string, or at least avoid passing any user input in the string.
 
-:   See the `ON SEGMENT` clause for information about command syntax requirements and the data that is copied when the clause is specified.
+When `ON SEGMENT` is specified, the command must be executable on all Cloudberry Database primary segment hosts by the Cloudberry Database administrator user (`gpadmin`). The command is run by each Greenplum segment instance. The `<SEGID>` is required in the command.
+
+See the `ON SEGMENT` clause for information about command syntax requirements and the data that is copied when the clause is specified.
 
 **`STDIN`**
 
@@ -125,7 +126,7 @@ Specifies copying the OID for each row. (An error is raised if OIDS is specified
 
 Requests copying the data with rows already frozen, just as they would be after running the `VACUUM FREEZE` command. This is intended as a performance option for initial data loading. Rows will be frozen only if the table being loaded has been created or truncated in the current subtransaction, there are no cursors open, and there are no older snapshots held by this transaction.
 
-:   Note that all other sessions will immediately be able to see the data once it has been successfully loaded. This violates the normal rules of MVCC visibility and users specifying this option should be aware of the potential problems this might cause.
+Note that all other sessions will immediately be able to see the data once it has been successfully loaded. This violates the normal rules of MVCC visibility and users specifying this option should be aware of the potential problems this might cause.
 
 **`DELIMITER`**
 
@@ -135,7 +136,7 @@ Specifies the character that separates columns within each row (line) of the fil
 
 Specifies the string that represents a null value. The default is `\N` (backslash-N) in `text` format, and an unquoted empty string in `CSV` format. You might prefer an empty string even in `text` format for cases where you don't want to distinguish nulls from empty strings. This option is not allowed when using `binary` format.
 
-    > **Note** When using `COPY FROM`, any data item that matches this string will be stored as a null value, so you should make sure that you use the same string as you used with `COPY TO`.
+> **Note** When using `COPY FROM`, any data item that matches this string will be stored as a null value, so you should make sure that you use the same string as you used with `COPY TO`.
 
 **`HEADER`**
 
