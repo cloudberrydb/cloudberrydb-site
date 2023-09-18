@@ -1,0 +1,3 @@
+[submodule "bootcamp"]
+	path = bootcamp
+	url = https://github.com/cloudberrydb/bootcamp.git
