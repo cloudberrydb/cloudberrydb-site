@@ -106,6 +106,6 @@ Similar to unique constraints, an exclusion constraint is permitted only for rep
 
 Exclusion constraints are not supported for partitioned tables.
 
-See also [CREATE TABLE ... CONSTRAINT ... EXCLUDE](/docs/sql-stmts/sql-stmts-create-table.md) for details.
+See also [CREATE TABLE ... CONSTRAINT ... EXCLUDE](/docs/sql-stmts/sql-stmt-create-table.md) for details.
 
 Adding an exclusion constraint automatically creates an index of the type specified in the constraint declaration.
