@@ -1,12 +1,26 @@
 import os
 
-def batch_rename():
-    current_directory = os.getcwd()  # 获取当前目录
+def remove_trailing_spaces_from_titles(directory):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith('.md'):
+                filepath = os.path.join(root, file)
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                
+                # 修改标题行
+                modified = False
+                for i, line in enumerate(lines):
+                    if line.startswith("#") and line.endswith(" \n"):
+                        lines[i] = line.rstrip() + "\n"
+                        modified = True
 
-    for filename in os.listdir(current_directory):  # 遍历当前目录下的所有文件和文件夹
-        if filename.endswith(".html.md"):  # 检查文件是否以 .html.md 结尾
-            new_filename = filename.replace(".html.md", ".md")  # 创建一个新的文件名，将 .html.md 替换为 .md
-            os.rename(os.path.join(current_directory, filename), os.path.join(current_directory, new_filename))  # 重命名文件
+                # 如果有修改，重新写入文件
+                if modified:
+                    with open(filepath, 'w', encoding='utf-8') as f:
+                        f.writelines(lines)
+                    print(f"Processed {filepath}")
 
 if __name__ == "__main__":
-    batch_rename()
+    DIRECTORY = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/system-utilities"
+    remove_trailing_spaces_from_titles(DIRECTORY)
