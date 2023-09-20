@@ -4,7 +4,7 @@ Exchanges SSH public keys between hosts.
 
 ## Synopsis
 
-```
+```shell
 gpssh-exkeys -f <hostfile_exkeys> | -h <hostname> [-h <hostname> ...]
 
 gpssh-exkeys -e <hostfile_exkeys> -x <hostfile_gpexpand>
@@ -66,20 +66,21 @@ The `gpssh-exkeys` utility performs key exchange using the following steps:
 
 Exchange SSH keys between all host names and addresses listed in the file `hostfile_exkeys`:
 
-```
+```shell
 $ gpssh-exkeys -f hostfile_exkeys
 ```
 
 Exchange SSH keys between the hosts `sdw1`, `sdw2`, and `sdw3`:
 
-```
+```shell
 $ gpssh-exkeys -h sdw1 -h sdw2 -h sdw3
 ```
 
 Exchange SSH keys between existing hosts `sdw1`, `sdw2`, and `sdw3`, and new hosts `sdw4` and `sdw5` as part of a system expansion operation:
 
-```
+```shell
 $ cat hostfile_exkeys
+
 cdw
 cdw-1
 cdw-2
@@ -102,9 +103,10 @@ sdw4-2
 sdw5
 sdw5-1
 sdw5-2
+
 $ gpssh-exkeys -e hostfile_exkeys -x hostfile_gpexpand
 ```
 
-## See Also
+## See also
 
 [gpssh](/docs/system-utilities/gpssh.md), [gpsync](/docs/system-utilities/gpsync.md)

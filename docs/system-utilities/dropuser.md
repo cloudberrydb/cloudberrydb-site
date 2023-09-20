@@ -20,39 +20,50 @@ dropuser -V | --version
 
 ## Options
 
-role_name
+role_name`**
+
 :   The name of the role to be removed. You will be prompted for a name if not specified on the command line and the `-i`/`--interactive` option is used.
 
--e | --echo
+-e | --echo`**
+
 :   Echo the commands that `dropuser` generates and sends to the server.
 
--i | --interactive
+-i | --interactive`**
+
 :   Prompt for confirmation before actually removing the role, and prompt for the role name if none is specified on the command line.
 
---if-exists
+--if-exists`**
+
 :   Do not throw an error if the user does not exist. A notice is issued in this case.
 
--V | --version
+-V | --version`**
+
 :   Print the `dropuser` version and exit.
 
--? | --help
+-? | --help`**
+
 :   Show help about `dropuser` command line arguments, and exit.
 
-**Connection Options**
+### Connection options
 
--h host | --host=host
+-h host | --host=host`**
+
 :   The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
--p port | --port=port
+-p port | --port=port`**
+
 :   The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
--U username | --username=username
+-U username | --username=username`**
+
 :   The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system role name.
 
--w | --no-password
+-w | --no-password`**
+
 :   Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a `.pgpass` file, the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
 
--W | --password
+-W | --password`**
+
 :   Force a password prompt.
 
 ## Examples
@@ -74,6 +85,6 @@ DROP ROLE "joe"
 DROP ROLE
 ```
 
-## See Also
+## See also
 
 [createuser](/docs/system-utilities/createuser.md), [`DROP ROLE`](/docs/sql-stmts/sql-stmt-drop-role.md)
