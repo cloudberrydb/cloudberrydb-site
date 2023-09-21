@@ -54,73 +54,96 @@ This utility performs the following tasks:
 
 ## Options
 
--a
+-a`**
+
 :   Do not prompt the user for confirmation.
 
--B parallel_processes
+-B parallel_processes`**
+
 :   The number of segments to create in parallel. If not specified, the utility will start up to 4 parallel processes at a time.
 
--c cluster_configuration_file
+-c cluster_configuration_file`**
+
 :   Required. The full path and filename of the configuration file, which contains all of the defined parameters to configure and initialize a new Greenplum Database system. See [Initialization Configuration File Format](#initialization-configuration-file-format) for a description of this file. You must provide either the `-c <cluster_configuration_file>` option or the `-I <input_configuration_file>` option to `gpinitsystem`.
 
--D
+-D`**
+
 :   Sets log output level to debug.
 
--h hostfile_gpinitsystem
+-h hostfile_gpinitsystem`**
+
 :   Optional. The full path and filename of a file that contains the host addresses of your segment hosts. If not specified on the command line, you can specify the host file using the `MACHINE_LIST_FILE` parameter in the gpinitsystem_config file.
 
--I input_configuration_file
+-I input_configuration_file`**
+
 :   The full path and filename of an input configuration file, which defines the Greenplum Database host systems, the coordinator instance and segment instances on the hosts, using the `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, and `MIRROR_ARRAY` parameters. The input configuration file is typically created by using `gpinitsystem` with the `-O output_configuration_file` option. Edit those parameters in order to initialize a new cluster or re-create a cluster from a backed up configuration. You must provide either the `-c <cluster_configuration_file>` option or the `-I <input_configuration_file>` option to `gpinitsystem`.
 
--n locale | --locale=locale
+-n locale | --locale=locale`**
+
 :   Sets the default locale used by Greenplum Database. If not specified, the default locale is `en_US.utf8`. A locale identifier consists of a language identifier and a region identifier, and optionally a character set encoding. For example, `sv_SE` is Swedish as spoken in Sweden, `en_US` is U.S. English, and `fr_CA` is French Canadian. If more than one character set can be useful for a locale, then the specifications look like this: `en_US.UTF-8` (locale specification and character set encoding). On most systems, the command `locale` will show the locale environment settings and `locale -a` will show a list of all available locales.
 
---lc-collate=locale
+--lc-collate=locale`**
+
 :   Similar to `--locale`, but sets the locale used for collation (sorting data). The sort order cannot be changed after Greenplum Database is initialized, so it is important to choose a collation locale that is compatible with the character set encodings that you plan to use for your data. There is a special collation name of `C` or `POSIX` (byte-order sorting as opposed to dictionary-order sorting). The `C` collation can be used with any character encoding.
 
---lc-ctype=locale
+--lc-ctype=locale`**
+
 :   Similar to `--locale`, but sets the locale used for character classification (what character sequences are valid and how they are interpreted). This cannot be changed after Greenplum Database is initialized, so it is important to choose a character classification locale that is compatible with the data you plan to store in Greenplum Database.
 
---lc-messages=locale
+--lc-messages=locale`**
+
 :   Similar to `--locale`, but sets the locale used for messages output by Greenplum Database. The current version of Greenplum Database does not support multiple locales for output messages (all messages are in English), so changing this setting will not have any effect.
 
---lc-monetary=locale
+--lc-monetary=locale`**
+
 :   Similar to `--locale`, but sets the locale used for formatting currency amounts.
 
---lc-numeric=locale
+--lc-numeric=locale`**
+
 :   Similar to `--locale`, but sets the locale used for formatting numbers.
 
---lc-time=locale
+--lc-time=locale`**
+
 :   Similar to `--locale`, but sets the locale used for formatting dates and times.
 
--l logfile_directory
+-l logfile_directory`**
+
 :   The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
--m number | --max_connections=number
+-m number | --max_connections=number`**
+
 :   Sets the maximum number of client connections allowed to the coordinator. The default is 250.
 
--O output_configuration_file
+-O output_configuration_file`**
+
 :   Optional, used during new cluster initialization. This option writes the `cluster_configuration_file` information (used with -c) to the specified `output_configuration_file`. This file defines the Greenplum Database members using the `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, and `MIRROR_ARRAY` parameters. Use this file as a template for the `-I` `input_configuration_file` option. See [Examples](#examples) for more information.
 
--p postgresql_conf_param_file
+-p postgresql_conf_param_file`**
+
 :   Optional. The name of a file that contains `postgresql.conf` parameter settings that you want to set for Greenplum Database. These settings will be used when the individual coordinator and segment instances are initialized. You can also set parameters after initialization using the `gpconfig` utility.
 
--q
+-q`**
+
 :   Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.
 
--b size | --shared_buffers=size
+-b size | --shared_buffers=size`**
+
 :   Sets the amount of memory a Greenplum server instance uses for shared memory buffers. You can specify sizing in kilobytes (kB), megabytes (MB) or gigabytes (GB). The default is 125MB.
 
--s standby_coordinator_host
+-s standby_coordinator_host`**
+
 :   Optional. If you wish to configure a backup coordinator instance, specify the host name using this option. The Greenplum Database software must already be installed and configured on this host.
 
--P standby_coordinator_port
+-P standby_coordinator_port`**
+
 :   If you configure a standby coordinator instance with `-s`, specify its port number using this option. The default port is the same as the coordinator port. To run the standby and coordinator on the same host, you must use this option to specify a different port for the standby. The Greenplum Database software must already be installed and configured on the standby host.
 
--S standby_coordinator_datadir | --standby_dir=standby_coordinator_datadir
+-S standby_coordinator_datadir | --standby_dir=standby_coordinator_datadir`**
+
 :   If you configure a standby coordinator host with `-s`, use this option to specify its data directory. If you configure a standby on the same host as the coordinator instance, the coordinator and standby must have separate data directories.
 
--e superuser_password | --su_password=superuser_password
+-e superuser_password | --su_password=superuser_password`**
+
 :   Use this option to specify the password to set for the Greenplum Database superuser account (such as `gpadmin`). If this option is not specified, the default password `gparray` is assigned to the superuser account. You can use the `ALTER ROLE` command to change the password at a later time.
 
     Recommended security best practices:
@@ -128,65 +151,80 @@ This utility performs the following tasks:
     - Do not use the default password option for production environments.
     - Change the password immediately after installation.
 
---mirror-mode={group|spread}
+--mirror-mode={group|spread}`**
+
 :   Use this option to specify the placement of mirror segment instances on the segment hosts. The default, `group`, groups the mirror segments for all of a host's primary segments on a single alternate host. `spread` spreads mirror segments for the primary segments on a host across different hosts in the Greenplum Database array. Spreading is only allowed if the number of hosts is greater than the number of segment instances per host.
 
--v | --version
+-v | --version`**
+
 :   Print the `gpinitsystem` version and exit.
 
--? | --help
+-? | --help`**
+
 :   Show help about `gpinitsystem` command line arguments, and exit.
 
-## Initialization Configuration File Format
+## Initialization configuration File Format
 
 `gpinitsystem` requires a cluster configuration file with the following parameters defined. An example initialization configuration file can be found in `$GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config`.
 
 To avoid port conflicts between Greenplum Database and other applications, the Greenplum Database port numbers should not be in the range specified by the operating system parameter `net.ipv4.ip_local_port_range`. For example, if `net.ipv4.ip_local_port_range = 10000 65535`, you could set Greenplum Database base port numbers to these values.
 
-```
+```shell
 PORT_BASE = 6000
 MIRROR_PORT_BASE = 7000
 ```
 
-MACHINE_LIST_FILE
+MACHINE_LIST_FILE`**
+
 :   **Optional.** Can be used in place of the `-h` option. This specifies the file that contains the list of the segment host address names that comprise the Greenplum Database system. The coordinator host is assumed to be the host from which you are running the utility and should not be included in this file. If your segment hosts have multiple network interfaces, then this file would include all addresses for the host. Give the absolute path to the file.
 
-SEG_PREFIX
+SEG_PREFIX`**
+
 :   **Required.** This specifies a prefix that will be used to name the data directories on the coordinator and segment instances. The naming convention for data directories in a Greenplum Database system is SEG_PREFIXnumber where number starts with 0 for segment instances (the coordinator is always -1). So for example, if you choose the prefix `gpseg`, your coordinator instance data directory would be named `gpseg-1`, and the segment instances would be named `gpseg0`, `gpseg1`, `gpseg2`, `gpseg3`, and so on.
 
-PORT_BASE
+PORT_BASE`**
+
 :   **Required.** This specifies the base number by which primary segment port numbers are calculated. The first primary segment port on a host is set as `PORT_BASE`, and then incremented by one for each additional primary segment on that host. Valid values range from 1 through 65535.
 
-DATA_DIRECTORY
+DATA_DIRECTORY`**
+
 :   **Required.** This specifies the data storage location(s) where the utility will create the primary segment data directories. The number of locations in the list dictate the number of primary segments that will get created per physical host (if multiple addresses for a host are listed in the host file, the number of segments will be spread evenly across the specified interface addresses). It is OK to list the same data storage area multiple times if you want your data directories created in the same location. The user who runs `gpinitsystem` (for example, the `gpadmin` user) must have permission to write to these directories. For example, this will create six primary segments per host:
 
-:   ```
+```shell
 declare -a DATA_DIRECTORY=(/data1/primary /data1/primary 
 /data1/primary /data2/primary /data2/primary /data2/primary)
 ```
 
-COORDINATOR_HOSTNAME
+COORDINATOR_HOSTNAME`**
+
 :   **Required.** The host name of the coordinator instance. This host name must exactly match the configured host name of the machine (run the `hostname` command to determine the correct hostname).
 
-COORDINATOR_DIRECTORY
+COORDINATOR_DIRECTORY`**
+
 :   **Required.** This specifies the location where the data directory will be created on the coordinator host. You must make sure that the user who runs `gpinitsystem` (for example, the `gpadmin` user) has permissions to write to this directory.
 
-COORDINATOR_PORT
+COORDINATOR_PORT`**
+
 :   **Required.** The port number for the coordinator instance. This is the port number that users and client connections will use when accessing the Greenplum Database system.
 
-TRUSTED_SHELL
+TRUSTED_SHELL`**
+
 :   **Required.** The shell the `gpinitsystem` utility uses to run commands on remote hosts. Allowed values are `ssh`. You must set up your trusted host environment before running the `gpinitsystem` utility (you can use `gpssh-exkeys` to do this).
 
-ENCODING
+ENCODING`**
+
 :   **Required.** The character set encoding to use. This character set must be compatible with the `--locale` settings used, especially `--lc-collate` and `--lc-ctype`. Greenplum Database supports the same character sets as PostgreSQL.
 
-DATABASE_NAME
+DATABASE_NAME`**
+
 :   **Optional.** The name of a Greenplum Database database to create after the system is initialized. You can always create a database later using the `CREATE DATABASE` command or the `createdb` utility.
 
-MIRROR_PORT_BASE
+MIRROR_PORT_BASE`**
+
 :   **Optional.** This specifies the base number by which mirror segment port numbers are calculated. The first mirror segment port on a host is set as `MIRROR_PORT_BASE`, and then incremented by one for each additional mirror segment on that host. Valid values range from 1 through 65535 and cannot conflict with the ports calculated by `PORT_BASE`.
 
-MIRROR_DATA_DIRECTORY
+MIRROR_DATA_DIRECTORY`**
+
 :   **Optional.** This specifies the data storage location(s) where the utility will create the mirror segment data directories. There must be the same number of data directories declared for mirror segment instances as for primary segment instances (see the `DATA_DIRECTORY` parameter). The user who runs `gpinitsystem` (for example, the `gpadmin` user) must have permission to write to these directories. For example:
 
 ```shell
@@ -195,60 +233,63 @@ declare -a MIRROR_DATA_DIRECTORY=(/data1/mirror
 /data2/mirror)
 ```
 
-QD_PRIMARY_ARRAY, PRIMARY_ARRAY, MIRROR_ARRAY
+QD_PRIMARY_ARRAY, PRIMARY_ARRAY, MIRROR_ARRAY`**
+
 :   **Required** when using `input_configuration file` with `-I` option. These parameters specify the Greenplum Database coordinator host, the primary segment, and the mirror segment hosts respectively. During new cluster initialization, use the `gpinitsystem` `-O output_configuration_file` to populate `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, `MIRROR_ARRAY`.
 
 :   To initialize a new cluster or re-create a cluster from a backed up configuration, edit these values in the input configuration file used with the `gpinitsystem` `-I input_configuration_file` option. Use one of the following formats to specify the host information:
 
-    ```shell
-    <hostname>~<address>~<port>~<data_directory>/<seg_prefix<segment_id>~<dbid>~<content_id>
-    ```
+```shell
+<hostname>~<address>~<port>~<data_directory>/<seg_prefix<segment_id>~<dbid>~<content_id>
+```
 
-    or
+or
 
-    ```shell
-    <host>~<port>~<data_directory>/<seg_prefix<segment_id>~<dbid>~<content_id>
-    ```
+```shell
+<host>~<port>~<data_directory>/<seg_prefix<segment_id>~<dbid>~<content_id>
+```
 
 :   The first format populates the `hostname` and `address` fields in the `gp_segment_configuration` catalog table with the hostname and address values provided in the input configuration file. The second format populates `hostname` and `address` fields with the same value, derived from host.
 
 :   The Greenplum Database coordinator always uses the value -1 for the segment ID and content ID. For example, seg_prefix<segment_id> and dbid values for `QD_PRIMARY_ARRAY` use `-1` to indicate the coordinator instance:
 
-    ```shell
-    QD_PRIMARY_ARRAY=cdw~cdw~5432~/gpdata/coordinator/gpseg-1~1~-1
-    declare -a PRIMARY_ARRAY=(
-    sdw1~sdw1~40000~/gpdata/data1/gpseg0~2~0
-    sdw1~sdw1~40001~/gpdata/data2/gpseg1~3~1
-    sdw2~sdw2~40000~/gpdata/data1/gpseg2~4~2
-    sdw2~sdw2~40001~/gpdata/data2/gpseg3~5~3
-    )
-    declare -a MIRROR_ARRAY=(
-    sdw2~sdw2~50000~/gpdata/mirror1/gpseg0~6~0
-    sdw2~sdw2~50001~/gpdata/mirror2/gpseg1~7~1
-    sdw1~sdw1~50000~/gpdata/mirror1/gpseg2~8~2
-    sdw1~sdw1~50001~/gpdata/mirror2/gpseg3~9~3
-    )
-    ```
+```shell
+QD_PRIMARY_ARRAY=cdw~cdw~5432~/gpdata/coordinator/gpseg-1~1~-1
+declare -a PRIMARY_ARRAY=(
+sdw1~sdw1~40000~/gpdata/data1/gpseg0~2~0
+sdw1~sdw1~40001~/gpdata/data2/gpseg1~3~1
+sdw2~sdw2~40000~/gpdata/data1/gpseg2~4~2
+sdw2~sdw2~40001~/gpdata/data2/gpseg3~5~3
+)
+declare -a MIRROR_ARRAY=(
+sdw2~sdw2~50000~/gpdata/mirror1/gpseg0~6~0
+sdw2~sdw2~50001~/gpdata/mirror2/gpseg1~7~1
+sdw1~sdw1~50000~/gpdata/mirror1/gpseg2~8~2
+sdw1~sdw1~50001~/gpdata/mirror2/gpseg3~9~3
+)
+```
 
 :   To re-create a cluster using a known Greenplum Database system configuration, you can edit the segment and content IDs to match the values of the system.
 
-HEAP_CHECKSUM
+HEAP_CHECKSUM`**
+
 :   **Optional.** This parameter specifies if checksums are enabled for heap data. When enabled, checksums are calculated for heap storage in all databases, enabling Greenplum Database to detect corruption in the I/O system. This option is set when the system is initialized and cannot be changed later.
 
 :   The `HEAP_CHECKSUM` option is on by default and turning it off is strongly discouraged. If you set this option to off, data corruption in storage can go undetected and make recovery much more difficult.
 
 :   To determine if heap checksums are enabled in a Greenplum Database system, you can query the `data_checksums` server configuration parameter with the `gpconfig` management utility:
 
-    ```shell
-    $ gpconfig -s data_checksums
-    ```
+```shell
+$ gpconfig -s data_checksums
+```
 
-HBA_HOSTNAMES
+HBA_HOSTNAMES`**
+
 :   **Optional.** This parameter controls whether `gpinitsystem` uses IP addresses or host names in the `pg_hba.conf` file when updating the file with addresses that can connect to Greenplum Database. The default value is `0`, the utility uses IP addresses when updating the file. When initializing a Greenplum Database system, specify `HBA_HOSTNAMES=1` to have the utility use host names in the `pg_hba.conf` file.
 
 <!-- :   For information about how Greenplum Database resolves host names in the `pg_hba.conf` file, see [Configuring Client Authentication](../../admin_guide/client_auth.html#topic1). -->
 
-## Specifying hosts using hostnames or IP addresses
+## Specify hosts using hostnames or IP addresses
 
 When initializing a Greenplum Database system with `gpinitsystem`, you can specify segment hosts using either hostnames or IP addresses. For example, you can use hostnames or IP addresses in the file specified with the `-h` option.
 

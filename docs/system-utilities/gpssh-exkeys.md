@@ -44,10 +44,12 @@ The `gpssh-exkeys` utility performs key exchange using the following steps:
 
 ## Options
 
--e hostfile_exkeys
+-e hostfile_exkeys`**
+
 :   When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each host in your current Greenplum system (coordinator, standby coordinator, and segments), one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with `-x`.
 
--f hostfile_exkeys
+-f hostfile_exkeys`**
+
 :   Specifies the name and location of a file containing all configured host names and host addresses (interface names) for each host in your Greenplum system (coordinator, standby coordinator and segments), one name per line without blank lines or extra spaces.
 
 -h hostname

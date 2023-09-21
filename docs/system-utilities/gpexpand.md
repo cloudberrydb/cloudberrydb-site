@@ -33,12 +33,12 @@ gpexpand --version
 - When redistributing data, Greenplum Database must be running in production mode. Greenplum Database cannot be running in restricted mode or in coordinator mode. The `gpstart` options `-R` or `-m` cannot be specified to start Greenplum Database.
 
 > **Note** These utilities cannot be run while `gpexpand` is performing segment initialization.
-
-- `gpbackup`
-- `gpcheckcat`
-- `gpconfig`
-- `gppkg`
-- `gprestore`
+>
+> - `gpbackup`
+> - `gpcheckcat`
+> - `gpconfig`
+> - `gppkg`
+> - `gprestore`
 
 > **Important** When expanding a Greenplum Database system, you must deactivate Greenplum interconnect proxies before adding new hosts and segment instances to the system, and you must update the `gp_interconnect_proxy_addresses` parameter with the newly-added segment instances before you re-enable interconnect proxies.
 
@@ -64,65 +64,80 @@ To begin the redistribution phase, run `gpexpand` with no options or with the `-
 
 ## Options
 
--a | --analyze
+-a | --analyze`**
+
 :   Run `ANALYZE` to update the table statistics after expansion. The default is to not run `ANALYZE`.
 
--B batch_size
+-B batch_size`**
+
 :   Batch size of remote commands to send to a given host before making a one-second pause. Default is `16`. Valid values are 1-128.
 
 :   The `gpexpand` utility issues a number of setup commands that may exceed the host's maximum threshold for unauthenticated connections as defined by `MaxStartups` in the SSH daemon configuration. The one-second pause allows authentications to be completed before `gpexpand` issues any more commands.
 
 :   The default value does not normally need to be changed. However, it may be necessary to reduce the maximum number of commands if `gpexpand` fails with connection errors such as `'ssh_exchange_identification: Connection closed by remote host.'`
 
--c | --clean
+-c | --clean`**
+
 :   Remove the expansion schema.
 
--d | --duration hh:mm:ss
+-d | --duration hh:mm:ss`**
+
 :   Duration of the expansion session from beginning to end.
 
--e | --end 'YYYY-MM-DD hh:mm:ss'
+-e | --end 'YYYY-MM-DD hh:mm:ss'`**
+
 :   Ending date and time for the expansion session.
 
--f | --hosts-file filename
+-f | --hosts-file filename`**
+
 :   Specifies the name of a file that contains a list of new hosts for system expansion. Each line of the file must contain a single host name.
 
 :   This file can contain hostnames with or without network interfaces specified. The `gpexpand` utility handles either case, adding interface numbers to end of the hostname if the original nodes are configured with multiple network interfaces.
 
-    > **Note** The Greenplum Database segment host naming convention is `sdwN` where `sdw` is a prefix and `N` is an integer. For example, `sdw1`, `sdw2` and so on. For hosts with multiple interfaces, the convention is to append a dash (`-`) and number to the host name. For example, `sdw1-1` and `sdw1-2` are the two interface names for host `sdw1`.
+> **Note** The Greenplum Database segment host naming convention is `sdwN` where `sdw` is a prefix and `N` is an integer. For example, `sdw1`, `sdw2` and so on. For hosts with multiple interfaces, the convention is to append a dash (`-`) and number to the host name. For example, `sdw1-1` and `sdw1-2` are the two interface names for host `sdw1`.
 
 :   For information about using a hostname or IP address, see [Specifying Hosts using Hostnames or IP Addresses](#specify-hosts-using-hostnames-or-ip-addresses). Also, see [Using Host Systems with Multiple NICs](#using-host-systems-with-multiple-nics).
 
--i | --input input_file
+-i | --input input_file`**
+
 :   Specifies the name of the expansion configuration file, which contains one line for each segment to be added in the format of:
 
 :   hostname|address|port|datadir|dbid|content|preferred_role
 
--n parallel_processes
+-n parallel_processes`**
+
 :   The number of tables to redistribute simultaneously. Valid values are 1 - 96.
 
 :   Each table redistribution process requires two database connections: one to alter the table, and another to update the table's status in the expansion schema. Before increasing `-n`, check the current value of the server configuration parameter `max_connections` and make sure the maximum connection limit is not exceeded.
 
--r | --rollback
+-r | --rollback`**
+
 :   Roll back a failed expansion setup operation.
 
--s | --silent
+-s | --silent`**
+
 :   Runs in silent mode. Does not prompt for confirmation to proceed on warnings.
 
--S | --simple-progress
+-S | --simple-progress`**
+
 :   If specified, the `gpexpand` utility records only the minimum progress information in the Greenplum Database table *gpexpand.expansion_progress*. The utility does not record the relation size information and status information in the table *gpexpand.status_detail*.
 
 :   Specifying this option can improve performance by reducing the amount of progress information written to the *gpexpand* tables.
 
-[-t | --tardir] directory
+[-t | --tardir] directory`**
+
 :   The fully qualified path to a directory on segment hosts where the `gpexpand` utility copies a temporary tar file. The file contains Greenplum Database files that are used to create segment instances. The default directory is the user home directory.
 
--v | --verbose
+-v | --verbose`**
+
 :   Verbose debugging output. With this option, the utility will output all DDL and DML used to expand the database.
 
---version
+--version`**
+
 :   Display the utility's version number and exit.
 
--? | -h | --help
+-? | -h | --help`**
+
 :   Displays the online help.
 
 ## Specify hosts using hostnames or IP addresses
@@ -134,13 +149,13 @@ When expanding a Greenplum Database system, you can specify either a hostname or
 
 When expanding a Greenplum system, `gpexpand` populates `gp_segment_configuration` catalog table with the new segment instance information. Greenplum Database uses the `address` value of the `gp_segment_configuration` catalog table when looking up host systems for Greenplum interconnect (internal) communication between the coordinator and segment instances and between segment instances, and for other internal communication.
 
-## Using Host Systems with Multiple NICs
+## Use Host Systems with Multiple NICs
 
 If host systems are configured with multiple NICs, you can expand a Greenplum Database system to use each NIC as a Greenplum host system. You must ensure that the host systems are configured with sufficient resources to support all the segment instances being added to the host. Also, if you enable segment mirroring, you must ensure that the expanded Greenplum system configuration supports failover if a host system fails.
 
 For example, this is a `gpexpand` configuration file for a simple Greenplum system. The segment host `gp7s1` and `gp7s2` are configured with two NICs, `-s1` and `-s2`, where the Greenplum Database system uses each NIC as a host system.
 
-```
+```shell
 gp7s1-s2|gp7s1-s2|40001|/data/data1/gpseg2|6|2|p
 gp7s2-s1|gp7s2-s1|50000|/data/mirror1/gpseg2|9|2|m
 gp7s2-s1|gp7s2-s1|40000|/data/data1/gpseg3|7|3|p
@@ -151,18 +166,17 @@ gp7s1-s2|gp7s1-s2|50001|/data/mirror1/gpseg3|8|3|m
 
 Run `gpexpand` with an input file to initialize new segments and create the expansion schema in the postgres database:
 
-```
+```shell
 $ gpexpand -i input_file
 ```
 
 Run `gpexpand` for sixty hours maximum duration to redistribute tables to new segments:
 
-```
+```shell
 $ gpexpand -d 60:00:00
 ```
 
-## See Also
+## See also
 
 [gpssh-exkeys](/docs/system-utilities/gpssh-exkeys.md)
 <!-- [Expanding a Cloudberry System](../../admin_guide/expand/expand-main.html) -->
-

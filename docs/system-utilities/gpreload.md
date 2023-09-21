@@ -4,7 +4,7 @@ Reloads Greenplum Database table data sorting the data based on specified column
 
 ## Synopsis
 
-```
+```shell
 gpreload -d <database> [-p <port>] {-t | --table-file} <path_to_file> [-a]
 
 gpreload -h 
@@ -20,7 +20,7 @@ Compression is improved by sorting data when the data in the column has a relati
 
 For a table being reloaded, the order of the columns to be sorted might affect compression. The columns with the fewest distinct values should be listed first. For example, listing state then city would generally result in better compression than listing city then state.
 
-```
+```shell
 public.cust_table: state, city
 public.cust_table: city, state
 ```
@@ -39,16 +39,20 @@ For a partitioned table, you can reload the data of a leaf partition. However, d
 
 ## Options
 
--a (do not prompt)
+-a (do not prompt)`**
+
 :   Optional. If specified, the `gpreload` utility does not prompt the user for confirmation.
 
--d database
+-d database`**
+
 :   The database that contains the tables to be reloaded. The `gpreload` utility connects to the database as the user running the utility.
 
--p port
+-p port`**
+
 :   The Greenplum Database coordinator port. If not specified, the value of the `PGPORT` environment variable is used. If the value is not available, an error is returned.
 
-{-t | --table-file } path_to_file
+{-t | --table-file } path_to_file`**
+
 :   The location and name of file containing list of schema qualified table names to reload and the column names to reorder from the Greenplum Database. Only user defined tables are supported. Views or system catalog tables are not supported.
 
 :   If indexes are defined on table listed in the file, `gpreload` prompts to continue.
@@ -65,29 +69,30 @@ For a partitioned table, you can reload the data of a leaf partition. However, d
 
 :   The following example reloads three tables:
 
-    ```
-    public.clients: region, state, rep_id desc
-    public.merchants: region, state
-    test.lineitem: group, assy, whse 
-    ```
+```shell
+public.clients: region, state, rep_id desc
+public.merchants: region, state
+test.lineitem: group, assy, whse 
+```
 
 :   In the first table `public.clients`, the data in the `rep_id` column is sorted in descending order. The data in the other columns are sorted in ascending order.
 
---version (show utility version)
+--version (show utility version)`**
+
 :   Displays the version of this utility.
 
--? (help)
+-? (help)`**
+
 :   Displays the online help.
 
 ## Example
 
 This example command reloads the tables in the database `mytest` that are listed in the file `data-tables.txt`.
 
-```
+```shell
 gpreload -d mytest --table-file data-tables.txt
 ```
 
-## See Also
+## See also
 
-`CREATE TABLE` in the *Greenplum Database Reference Guide*
-
+[`CREATE TABLE`](/docs/sql-stmts/sql-stmt-create-table.md)

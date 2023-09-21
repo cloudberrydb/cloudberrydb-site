@@ -16,7 +16,7 @@ dropdb -V | --version
 
 `dropdb` destroys an existing database. The user who runs this command must be a superuser or the owner of the database being dropped.
 
-`dropdb` is a wrapper around the SQL command `DROP DATABASE`. See the *Greenplum Database Reference Guide* for information about `DROP DATABASE.`
+`dropdb` is a wrapper around the SQL command `DROP DATABASE`.
 
 ## Options
 

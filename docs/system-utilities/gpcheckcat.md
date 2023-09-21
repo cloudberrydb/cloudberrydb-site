@@ -6,7 +6,7 @@ The utility is in `$GPHOME/bin/lib`.
 
 ## Synopsis
 
-```
+```shell
 gpcheckcat [ <options<] [ <dbname>] 
 
   Options:
@@ -27,7 +27,6 @@ gpcheckcat [ <options<] [ <dbname>]
 gpcheckcat  -l 
 
 gpcheckcat -? | --help 
-
 ```
 
 ## Description
@@ -45,34 +44,44 @@ Catalog inconsistencies are inconsistencies that occur between Greenplum Databas
 
 ## Options
 
--A
+-A`**
+
 :   Run `gpcheckcat` on all databases in the Greenplum Database installation.
 
--B <parallel_processes>
+-B <parallel_processes>`**
+
 :   The number of processes to run in parallel.
 
 :   The `gpcheckcat` utility attempts to determine the number of simultaneous processes (the batch size) to use. The utility assumes it can use a buffer with a minimum of 20MB for each process. The maximum number of parallel processes is the number of Greenplum Database segment instances. The utility displays the number of parallel processes that it uses when it starts checking the catalog.
-    > **Note** The utility might run out of memory if the number of errors returned exceeds the buffer size. If an out of memory error occurs, you can lower the batch size with the `-B` option. For example, if the utility displays a batch size of 936 and runs out of memory, you can specify `-B 468` to run 468 processes in parallel.
 
--C catalog_table
+> **Note** The utility might run out of memory if the number of errors returned exceeds the buffer size. If an out of memory error occurs, you can lower the batch size with the `-B` option. For example, if the utility displays a batch size of 936 and runs out of memory, you can specify `-B 468` to run 468 processes in parallel.
+
+-C catalog_table`**
+
 :   Run cross consistency, foreign key, and ACL tests for the specified catalog table.
 
--g data_directory
+-g data_directory`**
+
 :   Generate SQL scripts to fix catalog inconsistencies. The scripts are placed in data_directory.
 
--l
+-l`**
+
 :   List the `gpcheckcat` tests.
 
--O
+-O`**
+
 :   Run only the `gpcheckcat` tests that can be run in online (not restricted) mode.
 
--p port
+-p port`**
+
 :   This option specifies the port that is used by the Greenplum Database.
 
--P password
+-P password`**
+
 :   The password of the user connecting to Greenplum Database.
 
--R test_name | 'test_name1,test_name2 [, ...]'
+-R test_name | 'test_name1,test_name2 [, ...]'`**
+
 :   Specify one or more tests to run. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
 
 :   Some tests can be run only when Greenplum Database is in restricted mode.
@@ -109,24 +118,30 @@ Catalog inconsistencies are inconsistencies that occur between Greenplum Databas
 
     `pgclass` - Check *pg_class* entry that does not have any corresponding *pg_attribute* entry (restricted mode only)
 
--s `test_name | 'test_name1, test_name2 [, ...]'`
+**``-s `test_name | 'test_name1, test_name2 [, ...]'``**
+
 :   Specify one ore more tests to skip. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
 
--S {none | only}
+-S {none | only}`**
+
 :   Specify this option to control the testing of catalog tables that are shared across all databases in the Greenplum Database installation, such as *pg_database*.
 
 :   The value `none` deactivates testing of shared catalog tables. The value `only` tests only the shared catalog tables.
 
--U user_name
+-U user_name`**
+
 :   The user connecting to Greenplum Database.
 
--? | --help
+-? | --help`**
+
 :   Displays the online help.
 
--v (verbose)
+-v (verbose)`**
+
 :   Displays detailed information about the tests that are performed.
 
--x "<parameter_name>=<value>"
+-x "<parameter_name>=<value>"`**
+
 :   Set a server configuration parameter, such as `log_min_messages`, at a session level. To set multiple configuration parameters, use the `-x` option multiple times. 
 
 ## Notes
@@ -137,19 +152,19 @@ If `gpcheckcat` detects inconsistent OID (Object ID) information, it generates o
 
 This is the format of the file:
 
-```
+```shell
 gpcheckcat.verify.dbname.catalog_table_name.test_name.TIMESTAMP.sql
 ```
 
 This is an example verification filename created by `gpcheckcat` when it detects inconsistent OID (Object ID) information in the catalog table *pg_type* in the database `mydb`:
 
-```
+```shell
 gpcheckcat.verify.mydb.pg_type.missing_extraneous.20150420102715.sql
 ```
 
 This is an example query from a verification file:
 
-```
+```sql
 SELECT *
   FROM (
        SELECT relname, oid FROM pg_class WHERE reltype 
@@ -160,4 +175,3 @@ SELECT *
        ) alltyprelids
   GROUP BY relname, oid ORDER BY count(*) desc ;
 ```
-

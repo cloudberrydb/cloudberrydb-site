@@ -31,8 +31,9 @@ The `clusterdb` utility will find any tables in a database that have previously 
 
 :   Cluster all databases.
 
-[-d] dbname
-[--dbname=]dbname
+[-d] dbname`**
+[--dbname=]dbname`**
+
 :   Specifies the name of the database to be clustered, when `-a/--all` is not used. If this is not specified, the database name is read from the environment variable `PGDATABASE`. If that is not set, the user name specified for the connection is used. The dbname can be a [connection string](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING). If so, connection string parameters will override any conflicting command line options.
 
 -e`**
@@ -65,7 +66,7 @@ The `clusterdb` utility will find any tables in a database that have previously 
 
 :   Show help about `clusterdb` command line arguments, and exit.
 
-**Connection Options**
+### Connection options
 
 `clusterdb` also accepts the following command-line arguments for connection parameters:
 
@@ -133,6 +134,6 @@ To cluster a single table `foo` in a database named `xyzzy`:
 clusterdb --table=foo xyzzy
 ```
 
-## See Also
+## See also
 
 [`CLUSTER`](/docs/sql-stmts/sql-stmt-cluster.md)

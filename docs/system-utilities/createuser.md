@@ -168,6 +168,6 @@ CREATE ROLE
 
 In the above example, the new password is not actually echoed when typed, but we show what was typed for clarity. However the password will appear in the echoed command, as illustrated if the `-e` option is used.
 
-## See Also
+## See also
 
 [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md), [dropuser](/docs/system-utilities/dropuser.md)
