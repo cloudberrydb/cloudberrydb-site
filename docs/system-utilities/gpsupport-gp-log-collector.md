@@ -4,7 +4,7 @@ This tool collects Greenplum and system log files, along with the relevant confi
 
 ## Usage
 
-```
+```shell
 gpsupport gp_log_collector [-failed-segs | -c <ID1,ID2,...>| -hostfile <file> | -h <host1, host2,...>]
 [ -start <YYYY-MM-DD> ] [ -end <YYYY-MM-DD> ]
 [ -dir <path> ] [ -segdir <path> ] [ -a ] [-skip-coordinator] [-with-gpbackup] [-with-gptext] [-with-gptext-only] [-with-gpcc] [-with-gpss] [-gpss_logdir <gpss_log_directory>] [-with-pxf] [-with-pxf-only] [-with-gpupgrade]
@@ -12,40 +12,52 @@ gpsupport gp_log_collector [-failed-segs | -c <ID1,ID2,...>| -hostfile <file> | 
 
 ## Options
 
--failed-segs
+-failed-segs`**
+
 :   The tool scans `gp_configuration_history` to identify when a segment fails over to their mirrors or simply fails without explanation. The relevant content ID logs will be collected.
 
--free-space
+-free-space`**
+
 :   Free space threshold which will exit log collection if reached. Default value is 10%.
 
--c
+-c`**
+
 :   Comma separated list of content IDs to collect logs from.
 
--hostfile
+-hostfile`**
+
 :   Hostfile with a list of hostnames to collect logs from.
 
--h
+-h`**
+
 :   Comma separated list of hostnames to collect logs from.
 
--start
+-start`**
+
 :   Start date for logs to collect (defaults to current date).
 
--end
+-end`**
+
 :   End date for logs to collect (defaults to current date).
 
--dir
+-dir`**
+
 :   Working directory (defaults to current directory).
 
--segdir
+-segdir`**
+
 :   Segment temporary directory (defaults to /tmp).
 
--a
+-a`**
+
 :   Answer Yes to all prompts.
 
--skip-coordinator
+-skip-coordinator`**
+
 :   When running `gp_log_collector`, the generated tarball can be very large. Use this option to skip Greenplum Coordinator log collection when only Greenplum Segment logs are required.
 
--with-gpbackup 
+-with-gpbackup`**
+
 :   Beginning with Greenplum 6.22, this option enables you to collect logs related to backup and restore. 
 
 With this option, `gpsupport` collects these log files from `$GPADMIN_HOME/gpAdminLogs`:
@@ -66,13 +78,16 @@ These are collected from the provided `--backup-dir` or default backup directory
 
 Also, the `pg_log` file is collected from the coordinator and segment hosts.
 
--with-gptext
+-with-gptext`**
+
 :   Collect all GPText logs along with Greenplum logs.
 
--with-gptext-only
+-with-gptext-only`**
+
 :   Collect only GPText logs.
 
--with-gpcc
+-with-gpcc`**
+
 :   Collect log files related to Greenplum Command Center. Log files are collected from the following locations:
 
 - `$GPCC_HOME/logs/*`
@@ -81,16 +96,20 @@ Also, the `pg_log` file is collected from the coordinator and segment hosts.
 - `$COORDINATOR_DATA_DIRECTORY/gpmetrics` (Greenplum Command Center 6.7.0 and earlier on Greenplum Database 6.x or Greenplum Command Center 4.15.0 and earlier on Greenplum Database 5.x)
 - The output of the `gppkg -q --all` command
 
--with-gpss 
+-with-gpss`**
+
 :  Collect log files related to Greenplum Streaming Server. If you do not specify a directory with the `-gpsslogdir` option, gpsupport collects logs from the `gpAdminLogs` directory. Log files are of the format `gpss_<date>.log`.
 
--with-pxf
+-with-pxf`**
+
 :   Collect all PXF logs along with Greenplum logs.
 
--with-pxf-only
+-with-pxf-only`**
+
 :   Collect only PXF logs.
 
--with-gpupgrade
+-with-gpupgrade`**
+
 :   Collect all `gpupgrade` logs along with Greenplum logs.
 
 
@@ -114,31 +133,30 @@ The tool also collects the following information:
 
 Collect Greenplum coordinator and segment logs listed in a hostfile from today:
 
-```
+```shell
 gpsupport gp_log_collector -hostfile ~/gpconfig/hostfile
 ```
 
 Collect logs for any segments marked down from 21-03-2016 until today:
 
-```
+```shell
 gpsupport gp_log_collector -failed-segs -start 2016-03-21
 ```
 
 Collect logs from host `sdw2.gpdb.local` between 2016-03-21 and 2016-03-23:
 
-```
+```shell
 gpsupport gp_log_collector -failed-segs -start 2016-03-21 -end 2016-03-21
 ```
 
 Collect logs from host `sdw2.gpdb.local` between 2023-06-07 07:21 and 2023-06-07 07:24:
 
-```
- gpsupport gp_log_collector -start 2023-06-07 07:21 -end 2023-06-07 07:24
+```shell
+gpsupport gp_log_collector -start 2023-06-07 07:21 -end 2023-06-07 07:24
 ```
 
 Collect only GPText logs for all segments, without any Greenplum logs:
 
-```
+```shell
 gpsupport gp_log_collector -with-gptext-only
 ```
-

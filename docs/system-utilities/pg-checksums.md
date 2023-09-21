@@ -23,61 +23,72 @@ When verifying checksums, Greenplum Database scans every file in the cluster. Wh
 
 The following command-line options are available:
 
--D datadir
---pgdata=datadir
+-D datadir`**
+--pgdata=datadir`**
+
 :   Specifies the directory where the database cluster is stored.
 
--c
---check
+-c`**
+--check`**
+
 :   Checks checksums. This is the default mode when no other options are specified.
 
--d
---disable
+-d`**
+--disable`**
+
 :   Deactivates checksums.
 
--e
---enable
+-e`**
+--enable`**
+
 :   Activates checksums.
 
--f fnode
---filenode=fnode
+-f fnode`**
+--filenode=fnode`**
+
 :   Only validate checksums in the relation with filenode fnode.
 
--N
---no-sync
-:   By default, `pg_checksums` waits for all files to be written safely to disk. This option causes `pg_checksums` to return without waiting, which is faster, but a subsequent operating system crash could leave the updated data directory corrupt. This option has no effect when specified with `--check`.
-    > **Note**
-    > While useful for testing, do not use the `-N/--nosync` option in a production installation.
+-N`**
+--no-sync`**
 
--P
---progress
+:   By default, `pg_checksums` waits for all files to be written safely to disk. This option causes `pg_checksums` to return without waiting, which is faster, but a subsequent operating system crash could leave the updated data directory corrupt. This option has no effect when specified with `--check`.
+
+> **Note**
+> While useful for testing, do not use the `-N/--nosync` option in a production installation.
+
+-P`**
+--progress`**
+
 :   Enables progress reporting. Turning this on will deliver a progress report while checking or enabling checksums.
 
--v
---verbose
+-v`**
+--verbose`**
+
 :   Specifies verbose mode, which lists all checked files.
 
--V
---version
+-V`**
+--version`**
+
 :   Print the `pg_checksums` version, and exit.
 
--?
---help
+-?`**
+--help`**
+
 :   Show help about `pg_checksums` command line arguments, and exit.
 
 
 ## Environment
 
-PGDATA
-:   Specifies the directory where the database cluster is stored; you can specify the `-D` option to the `pg_checksums` command to override this setting.
+**`PGDATA`**
 
-PG_COLOR
-:   Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
+Specifies the directory where the database cluster is stored; you can specify the `-D` option to the `pg_checksums` command to override this setting.
 
- 
+**`PG_COLOR`**
+
+Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
+
 ## Notes
 
 Enabling checksums in a large cluster can potentially take a long time. To guard against data loss during this operation, you must not start the cluster, nor start other programs that write to the data directory.
 
 If `pg_checksums` is aborted or killed while enabling or disabling checksums, the cluster's data checksum configuration remains unchanged; you can re-run `pg_checksums` to perform the same operation.
-

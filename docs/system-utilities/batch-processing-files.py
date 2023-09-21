@@ -1,26 +1,35 @@
 import os
+import re
 
-def remove_trailing_spaces_from_titles(directory):
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith('.md'):
-                filepath = os.path.join(root, file)
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    lines = f.readlines()
-                
-                # 修改标题行
-                modified = False
-                for i, line in enumerate(lines):
-                    if line.startswith("#") and line.endswith(" \n"):
-                        lines[i] = line.rstrip() + "\n"
-                        modified = True
+def process_content(content):
+    # 正则表达式匹配 Option ： Option description 格式
+    pattern = re.compile(r'^(?P<param_name>\w+)(\s+)\:\s+(?P<param_desc>.+)$', re.MULTILINE)
 
-                # 如果有修改，重新写入文件
-                if modified:
-                    with open(filepath, 'w', encoding='utf-8') as f:
-                        f.writelines(lines)
-                    print(f"Processed {filepath}")
+    # 替换函数
+    def replace_format(match):
+        param_name = match.group("param_name")
+        param_desc = match.group("param_desc")
+        return f"**`{param_name}`**\n\n{param_desc}"
 
-if __name__ == "__main__":
-    DIRECTORY = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/system-utilities"
-    remove_trailing_spaces_from_titles(DIRECTORY)
+    # 使用 re.sub 替换所有匹配的内容
+    return pattern.sub(replace_format, content)
+
+def process_directory(directory_path):
+    filenames = os.listdir(directory_path)
+
+    for filename in filenames:
+        if filename.endswith('.md'):
+            with open(os.path.join(directory_path, filename), 'r', encoding='utf-8') as file:
+                content = file.read()
+
+            # 如果内容中包含 "## Parameters" 标题，则进行处理
+            if "## Options" in content:
+                new_content = process_content(content)
+
+                with open(os.path.join(directory_path, filename), 'w', encoding='utf-8') as file:
+                    file.write(new_content)
+                print(f'Processed {filename}')
+
+if __name__ == '__main__':
+    main_directory = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/system-utilities"
+    process_directory(main_directory)

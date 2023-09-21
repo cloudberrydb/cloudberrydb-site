@@ -23,59 +23,74 @@ The `gpstate` utility displays information about a running Greenplum Database in
 
 ## Options
 
--b (brief status)
+-b (brief status)`**
+
 :   Optional. Display a brief summary of the state of the Greenplum Database system. This is the default option.
 
--B parallel_processes
+-B parallel_processes`**
+
 :   The number of segments to check in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to check.
 
--c (show primary to mirror mappings)
+-c (show primary to mirror mappings)`**
+
 :   Optional. Display mapping of primary segments to their corresponding mirror segments.
 
--d coordinator_data_directory
+-d coordinator_data_directory`**
+
 :   Optional. The coordinator data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
 
--e (show segments with mirror status issues)
+-e (show segments with mirror status issues)`**
+
 :   Show details on primary/mirror segment pairs that have potential issues. These issues include:
 
-    - Whether any segments are down.
-    - Whether any primary-mirror segment pairs are out of sync – including information on how many bytes are remaining to sync (as displayed in the `WAL sync remaining bytes` output field).
+- Whether any segments are down.
+- Whether any primary-mirror segment pairs are out of sync – including information on how many bytes are remaining to sync (as displayed in the `WAL sync remaining bytes` output field).
 
-        > **Note** `gpstate -e`does not display segment pairs that are in sync.
+> **Note** `gpstate -e`does not display segment pairs that are in sync.
 
-    - Whether any primary-mirror segment pairs are not in their preferred roles.
+- Whether any primary-mirror segment pairs are not in their preferred roles.
 
--f (show standby coordinator details)
+-f (show standby coordinator details)`**
 :   Display details of the standby coordinator host if configured.
 
--i (show Greenplum Database version)
+-i (show Greenplum Database version)`**
+
 :   Display the Greenplum Database software version information for each instance.
 
--l logfile_directory
+-l logfile_directory`**
+
 :   The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
--m (list mirrors)
+-m (list mirrors)`**
+
 :   Optional. List the mirror segment instances in the system and their current role.
 
--p (show ports)
+-p (show ports)`**
+
 :   List the port numbers used throughout the Greenplum Database system.
 
--q (no screen output)
+-q (no screen output)`**
+
 :   Optional. Run in quiet mode. Except for warning messages, command output is not displayed on the screen. However, this information is still written to the log file.
 
--Q (quick status)
+-Q (quick status)`**
+
 :   Optional. Checks segment status in the system catalog on the coordinator host. Does not poll the segments for status.
 
--s (detailed status)
+-s (detailed status)`**
+
 :   Optional. Displays detailed status information about the Greenplum Database system.
 
--v (verbose output)
+-v (verbose output)`**
+
 :   Optional. Displays error messages and outputs detailed status and progress information.
 
--x (expand)
+-x (expand)`**
+
 :   Optional. Displays detailed information about the progress and state of a Greenplum system expansion.
 
--? | -h | --help (help)
+-? | -h | --help (help)`**
+
 :   Displays the online help.
 
 ## Output Field Definitions

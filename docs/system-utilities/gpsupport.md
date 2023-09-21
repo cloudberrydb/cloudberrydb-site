@@ -18,59 +18,76 @@ gpsupport -verbose
 
 **Greenplum**
 
-[analyze_session](/docs/system-utilities/gpsupport-analyze-session.md)
+[analyze_session](/docs/system-utilities/gpsupport-analyze-session.md)`**
+
 :   Collect information from a hung Greenplum Database session for remote analysis.
 
-catalogbackup
-:   For VMware Support use only. Back up catalog prior to performing catalog repairs.
+catalogbackup`**
 
-[gp_log_collector](/docs/system-utilities/gpsupport-gp-log-collector.md)
+:   Back up catalog prior to performing catalog repairs.
+
+[gp_log_collector](/docs/system-utilities/gpsupport-gp-log-collector.md)`**
+
 :   Basic Greenplum Database log collection utility.
 
-[storage_rca_collector](/docs/system-utilities/gpsupport-gp-storage-rca-collector.md)
+[storage_rca_collector](/docs/system-utilities/gpsupport-gp-storage-rca-collector.md)`**
+
 :   Collect storage-related artifacts.
 
-gpcheckcat
+gpcheckcat`**
+
 :   For VMware Support use only. Greenplum Database gpcheckcat log analysis.
 
-gpcheckup
+gpcheckup`**
+
 :   For VMware Support use only. Greenplum Database Health Check.
 
-[gpstatscheck](/docs/system-utilities/gpsupport-gpstatscheck.md)
+[gpstatscheck](/docs/system-utilities/gpsupport-gpstatscheck.md)`**
+
 :   Check for missing stats on objects used in a query.
 
-[packcore](/docs/system-utilities/gpsupport-packcore.md)
+[packcore](/docs/system-utilities/gpsupport-packcore.md)`**
+
 :   Package core files into single tarball for remote analysis.
 
-primarymirror_lengths
+primarymirror_lengths`**
+
 :   For VMware Support use only. Check whether primary and mirror AO and AOCO relfiles are the correct lengths.
 
-tablecollect
+tablecollect`**
+
 :   For VMware Support use only. Collect data and index files for data corruption RCA.
 
-**Miscellaneous**
+### Miscellaneous
 
-hostfile
+hostfile`**
+
 :   Generate hostfiles for use with other tools.
 
-replcheck
+replcheck`**
+
 :   Check whether tool is replicated to all hosts.
 
-replicate
+replicate`**
+
 :   Replicate tool to all hosts.
 
-version
+version`**
+
 :   Display the gpsupport version.
 
-## Global Options
+## Global options
 
--hostfile
+-hostfile`**
+
 :   Limit the hosts where the tool will be run.
 
--help
+-help`**
+
 :   Display the online help.
 
--verbose
+-verbose`**
+
 :   Print verbose log messages.
 
 ## Examples
@@ -92,4 +109,3 @@ gpsupport packcore -cmd collect -core core.1234
 ```shell
 gpsupport gp_log_collector -help
 ```
-

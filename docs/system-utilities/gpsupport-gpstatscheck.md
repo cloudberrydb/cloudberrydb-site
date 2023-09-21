@@ -4,40 +4,42 @@ This tool can be used to verify if all tables involved in a query have optimal s
 
 ## Usage
 
-```
+```shell
 gpsupport gpstatscheck -f <query-file>
 [-p <port>] [-d <database>] 
 ```
 
 ## Options
 
--f
+-f`**
+
 :   File containing the query to analyze.
 
--p
+-p`**
+
 :   Database port.
 
--d
+-d`**
+
 :   Database where the query is being run.
 
 ## Examples
 
 Run the query in `query1.sql` in database `Postgres` and check for missing stats.
 
-```
+```shell
 gpsupport gpstatscheck -f query1.sql -d postgres
 ```
 
 If invalid statistics are detected the tool will generate a script listing the suggested commands to run. For example:
 
-```
+```shell
 $ cat gpstatscheck_20160926_134946.sql
 ANALYZE public.nums;
 ```
 
 You can then run the provided script against the affected database:
 
-```
+```shell
 $ psql -p 5432 -d postgres -f gpstatscheck_20160926_134946.sql
 ```
-

@@ -111,11 +111,13 @@ reindexdb -V | --version
 PGDATABASE
 PGHOST
 PGPORT
-PGUSER
-:   Default connection parameters.
+**`PGUSER`**
 
-PG_COLOR
-:   Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
+Default connection parameters.
+
+**`PG_COLOR`**
+
+Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
 
 This utility, like most other Greenplum Database utilities, also uses the environment variables supported by `libpq`.
 

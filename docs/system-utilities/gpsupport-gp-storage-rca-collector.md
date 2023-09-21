@@ -10,22 +10,28 @@ storage_rca_collector [-db <database> ] [-t <table> ] | -c <ID1,ID2,...> ] [-dir
 
 ## Options
 
--db
+-db`**
+
 :   The database name.
 
--t
+-t`**
+
 :   The table name.
 
--c
+-c`**
+
 :   Comma separated list of content IDs to collect logs from.
 
--dir
+-dir`**
+
 :   The output directory. Defaults to the current directory.
 
--a
+-a`**
+
 :   Answer Yes to all prompts.
 
--translog
+-translog`**
+
 :   Specifies that the tool should collect transaction log data. 
 
 The tool also collects the following information:
@@ -49,31 +55,31 @@ The tool also collects the following information:
 
 Collect storage root cause analysis artifacts only for coordinator, database `postgres`, and table `test_table`:
 
-```
+```shell
 gpsupport storage_rca_collector -db postgres -t test_table
 ```
 
 Collect storage root cause analysis artifacts for primary segment with contentid [0,1], database `postgres`, and table `test_table`:
 
-```
+```shell
 gpsupport storage_rca_collector -db postgres -c 0,1 -t test_table
 ```
 
 Collect storage root cause analysis artifacts for primary segment with contentid [0,1], database `postgres`, and table `test_table`, with prompt deactivated:
 
-```
+```shell
 gpsupport storage_rca_collector -db postgres -c 0,1 -t test_table -a
 ```
 
 Collect storage rca artifacts for primary segment with contentid [0,1], database `postgres`, and table `test_table` and also collect transaction logs:
 
-```
+```shell
 gpsupport storage_rca_collector -db postgres -c 0,1 -t test_table -transLog
 ```
 
 Collect storage rca artifacts for primary segment with contentid [0,1], database `postgres` and table `test_table` and output to a specified directory location.
 
-```
+```shell
 gpsupport storage_rca_collector -db postgres -c 0,1 -t test_table -dir <dir>
 ```
 

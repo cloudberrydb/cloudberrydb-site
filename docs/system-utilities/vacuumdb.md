@@ -27,68 +27,88 @@ vacuumdb -V | --version
 
 ## Options
 
--a | --all
+-a | --all`**
+
 :   Vacuums all databases.
 
-[-d] dbname | [--dbname=]dbname
+[-d] dbname | [--dbname=]dbname`**
+
 :   The name of the database to vacuum. If this is not specified and `-a` (or `--all`) is not used, the database name is read from the environment variable `PGDATABASE`. If that is not set, the user name specified for the connection is used.
 
--e | --echo
+-e | --echo`**
+
 :   Echo the commands that `reindexdb` generates and sends to the server.
 
--f | --full
+-f | --full`**
+
 :   Selects a full vacuum, which may reclaim more space, but takes much longer and exclusively locks the table.
 
-    > **Caution** A `VACUUM FULL` is not recommended in Greenplum Database.
+> **Caution** A `VACUUM FULL` is not recommended in Greenplum Database.
 
--F | --freeze
+-F | --freeze`**
+
 :   Freeze row transaction information.
 
--q | --quiet
+-q | --quiet`**
+
 :   Do not display a response.
 
--t table [(column)] | --table= table [(column)]
+-t table [(column)] | --table= table [(column)]`**
+
 :   Clean or analyze this table only. Column names may be specified only in conjunction with the `--analyze` or `--analyze-all` options. Multiple tables can be vacuumed by writing multiple `-t` switches. If you specify columns, you probably have to escape the parentheses from the shell.
 
--v | --verbose
+-v | --verbose`**
+
 :   Print detailed information during processing.
 
--z | --analyze
+-z | --analyze`**
+
 :   Collect statistics for use by the query planner.
 
--Z | --analyze-only
+-Z | --analyze-only`**
+
 :   Only calculate statistics for use by the query planner (no vacuum).
 
---disable-page-skipping
+--disable-page-skipping`**
+
 :   Disable all page-skipping behavior.
 
---skip-locked
+--skip-locked`**
+
 :   Skip relations that cannot be immediately locked.
 
--V | --version
+-V | --version`**
+
 :   Print the `vacuumdb` version and exit.
 
--? | --help
+-? | --help`**
+
 :   Show help about `vacuumdb` command line arguments, and exit.
 
-**Connection Options**
+### Connection options
 
--h host | --host=host
+-h host | --host=host`**
+
 :   Specifies the host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
--p port | --port=port
+-p port | --port=port`**
+
 :   Specifies the TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
--U username | --username=username
+-U username | --username=username`**
+
 :   The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system user name.
 
--w | --no-password
+-w | --no-password`**
+
 :   Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a `.pgpass` file, the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
 
--W | --password
+-W | --password`**
+
 :   Force a password prompt.
 
---maintenance-db=dbname
+--maintenance-db=dbname`**
+
 :   Specifies the name of the database to connect to discover what other databases should be vacuumed. If not specified, the `postgres` database will be used, and if that does not exist, `template1` will be used.
 
 ## Notes

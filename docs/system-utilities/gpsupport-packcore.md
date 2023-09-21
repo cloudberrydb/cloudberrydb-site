@@ -4,30 +4,33 @@ This tool collects all the necessary files and generates a script that runs the 
 
 ## Usage
 
-```
+```shell
 gpsupport packcore collect -core <corefile> [-binary <binary> ] 
 [-keep_tmp_dir] [-ignore_missing] 
 ```
 
 ## Options
 
--core
+-core`**
+
 :   Corefile name.
 
--binary
+-binary`**
+
 :   Binary name that generated the core file.
 
--keep_tmp_dir
+-keep_tmp_dir`**
+
 :   Do not delete the temporary directory.
 
--ignore_missing
+-ignore_missing`**
+
 :   Ignore missing libraries.
 
 ## Examples
 
 Collect core info for `core.1234` for binary `/usr/local/greenplum-db/bin/postgres`.
 
-```
+```shell
 gpsupport packcore -cmd collect -core core.1234 -binary /usr/local/greenplum-db/bin/postgres
 ```
-

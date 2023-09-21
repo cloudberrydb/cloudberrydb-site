@@ -30,40 +30,50 @@ If you encounter network timeout problems when using `gpssh`, you can use `-d` a
 
 ## Options
 
-bash_command
-:   A bash shell command to run on all hosts involved in this session (optionally enclosed in quotes). If not specified, `gpssh` starts an interactive session.
+**`bash_command`**
 
--d (delay) seconds
+A bash shell command to run on all hosts involved in this session (optionally enclosed in quotes). If not specified, `gpssh` starts an interactive session.
+
+-d (delay) seconds`**
+
 :   Optional. Specifies the time, in seconds, to wait at the start of a `gpssh` interaction with `ssh`. Default is `0.05`. This option overrides the `delaybeforesend` value that is specified in the `gpssh.conf` configuration file.
 
 :   Increasing this value can cause a long wait time during `gpssh` startup.
 
--e (echo)
+-e (echo)`**
+
 :   Optional. Echoes the commands passed to each host and their resulting output while running in non-interactive mode.
 
--f hostfile_gpssh
+-f hostfile_gpssh`**
+
 :   Specifies the name of a file that contains a list of hosts that will participate in this SSH session. The syntax of the host file is one host per line.
 
--h hostname
+-h hostname`**
+
 :   Specifies a single host name that will participate in this SSH session. You can use the `-h` option multiple times to specify multiple host names.
 
--s
+-s`**
+
 :   Optional. If specified, before running any commands on the target host, `gpssh` sources the file `greenplum_path.sh` in the directory specified by the `$GPHOME` environment variable.
 
 :   This option is valid for both interactive mode and single command mode.
 
--t multiplier
+-t multiplier`**
+
 :   Optional. A decimal number greater than 0 (zero) that is the multiplier for the timeout that `gpssh` uses when validating the `ssh` prompt. Default is `1`. This option overrides the `prompt_validation_timeout` value that is specified in the `gpssh.conf` configuration file.
 
 :   Increasing this value has a small impact during `gpssh` startup.
 
--v (verbose mode)
+-v (verbose mode)`**
+
 :   Optional. Reports additional messages in addition to the command output when running in non-interactive mode.
 
---version
+--version`**
+
 :   Displays the version of this utility.
 
--? (help)
+-? (help)`**
+
 :   Displays the online help.
 
 ## gpssh configuration file
@@ -81,13 +91,16 @@ sync_retries = 5
 
 These are the `gpssh.conf` parameters.
 
-delaybeforesend = seconds
+delaybeforesend = seconds`**
+
 :   Specifies the time, in seconds, to wait at the start of a `gpssh` interaction with `ssh`. Default is 0.05. Increasing this value can cause a long wait time during `gpssh` startup. The `-d` option overrides this parameter.
 
-prompt_validation_timeout = multiplier
+prompt_validation_timeout = multiplier`**
+
 :   A decimal number greater than 0 (zero) that is the multiplier for the timeout that `gpssh` uses when validating the `ssh` prompt. Increasing this value has a small impact during `gpssh` startup. Default is `1`. The `-t` option overrides this parameter.
 
-sync_retries = attempts
+sync_retries = attempts`**
+
 :   A non-negative integer that specifies the maximum number of times that `gpssh` attempts to connect to a remote Greenplum Database host. The default is 3. If the value is 0, `gpssh` returns an error if the initial connection attempt fails. Increasing the number of attempts also increases the time between retry attempts. This parameter cannot be configured with a command-line option.
 
 :   The `-t` option also affects the time between retry attempts.
