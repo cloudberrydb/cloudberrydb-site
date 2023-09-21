@@ -18,7 +18,7 @@ pg_dump -V | --version
 
 ## Description
 
-`pg_dump` is a standard PostgreSQL utility for backing up a database, and is also supported in Cloudberry Database. It creates a single (non-parallel) dump file. For routine backups of Cloudberry Database, it is better to use the Cloudberry Database backup utility, [gpbackup](https://docs.vmware.com/en/VMware-Greenplum-Backup-and-Restore/index.html), for the best performance.
+`pg_dump` is a standard PostgreSQL utility for backing up a database, and is also supported in Cloudberry Database. It creates a single (non-parallel) dump file. For routine backups of Cloudberry Database, it is better to use the Cloudberry Database backup utility, gpbackup, for the best performance.
 
 Use `pg_dump` if you are migrating your data to another database vendor's system, or to another Cloudberry Database system with a different segment configuration (for example, if the system you are migrating to has greater or fewer segment instances). To restore, you must use the corresponding [pg_restore](/docs/db-utilities/db-util-pg-restore.md) utility (if the dump file is in archive format), or you can use a client program such as [psql](/docs/db-utilities/db-util-psql.md) (if the dump file is in plain text format).
 

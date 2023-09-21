@@ -18,7 +18,7 @@ pg_dumpall -V | --version
 
 ## Description
 
-`pg_dumpall` is a standard PostgreSQL utility for backing up all databases in a Cloudberry Database (or PostgreSQL) instance, and is also supported in Cloudberry Database. It creates a single (non-parallel) dump file. For routine backups of Cloudberry Database it is better to use the Cloudberry Database backup utility, [gpbackup](https://docs.vmware.com/en/VMware-Greenplum-Backup-and-Restore/index.html), for the best performance.
+`pg_dumpall` is a standard PostgreSQL utility for backing up all databases in a Cloudberry Database (or PostgreSQL) instance, and is also supported in Cloudberry Database. It creates a single (non-parallel) dump file. For routine backups of Cloudberry Database it is better to use the Cloudberry Database backup utility, gpbackup, for the best performance.
 
 `pg_dumpall` creates a single script file that contains SQL commands that can be used as input to [psql](/docs/db-utilities/db-util-psql.md) to restore the databases. It does this by calling [pg_dump](/docs/db-utilities/db-util-pg-dump.md) for each database. `pg_dumpall` also dumps global objects that are common to all databases. (`pg_dump` does not save these objects.) This currently includes information about database users and groups, and access permissions that apply to databases as a whole.
 

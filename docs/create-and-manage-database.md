@@ -1,14 +1,14 @@
 ---
-title: Create and Manage Databases
+title: Create and Manage Database
 ---
 
-# Create and Manage Cloudberry Databases
+# Create and Manage Cloudberry Database
 
 A Cloudberry Database system is a single instance of Cloudberry Database. There can be several separate Cloudberry Database systems installed, but usually just one is selected by environment variable settings. See your Cloudberry administrator for details.
 
 There can be multiple databases in a Cloudberry Database system. This is different from some database management systems (such as Oracle) where the database instance *is* the database. Although you can create many databases in a Cloudberry system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.
 
-## About template and default databases 
+## About template and default databases
 
 Cloudberry Database provides some template databases and a default database, *template1*, *template0*, and *postgres*.
 
@@ -48,7 +48,7 @@ By default, a new database is created by cloning the standard system database te
 => CREATE DATABASE <new_dbname> TEMPLATE <old_dbname>;
 ```
 
-### Create a database with a Different Owner 
+### Create a database with a different owner 
 
 Another database owner can be assigned when a database is created:
 

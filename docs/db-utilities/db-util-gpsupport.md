@@ -38,10 +38,6 @@ Basic Cloudberry Database log collection utility.
 
 Collect storage-related artifacts.
 
-**`gpcheckcat`**
-
-For VMware Support use only. Cloudberry Database gpcheckcat log analysis.
-
 **`gpcheckup`**
 
 Cloudberry Database Health Check.
@@ -56,11 +52,11 @@ Package core files into single tarball for remote analysis.
 
 **`primarymirror_lengths`**
 
-For VMware Support use only. Check whether primary and mirror AO and AOCO relfiles are the correct lengths.
+Check whether primary and mirror AO and AOCO relfiles are the correct lengths.
 
 **`tablecollect`**
 
-For VMware Support use only. Collect data and index files for data corruption RCA.
+Collect data and index files for data corruption RCA.
 
 ### Miscellaneous
 
