@@ -4,7 +4,7 @@ title: gpconfig
 
 # gpconfig
 
-Sets server configuration parameters on all segments within a Greenplum Database system.
+Sets server configuration parameters on all segments within a Cloudberry Database system.
 
 ## Synopsis
 
@@ -21,7 +21,7 @@ gpconfig --help
 
 ## Description
 
-The `gpconfig` utility allows you to set, unset, or view configuration parameters from the `postgresql.conf` files of all instances (coordinator, segments, and mirrors) in your Greenplum Database system. When setting a parameter, you can also specify a different value for the coordinator if necessary. For example, parameters such as `max_connections` require a different setting on the coordinator than what is used for the segments. If you want to set or unset a global or coordinator only parameter, use the `--coordinatoronly` option.
+The `gpconfig` utility allows you to set, unset, or view configuration parameters from the `postgresql.conf` files of all instances (coordinator, segments, and mirrors) in your Cloudberry Database system. When setting a parameter, you can also specify a different value for the coordinator if necessary. For example, parameters such as `max_connections` require a different setting on the coordinator than what is used for the segments. If you want to set or unset a global or coordinator only parameter, use the `--coordinatoronly` option.
 
 > **Note** For configuration parameters of vartype `string`, you may not pass values enclosed in single quotes to `gpconfig -c`.
 
@@ -29,13 +29,11 @@ The `gpconfig` utility allows you to set, unset, or view configuration parameter
 
 When `gpconfig` sets a configuration parameter in a segment `postgresql.conf` file, the new parameter setting always displays at the bottom of the file. When you use `gpconfig` to remove a configuration parameter setting, `gpconfig` comments out the parameter in all segment `postgresql.conf` files, thereby restoring the system default setting. For example, if you use `gpconfig`to remove (comment out) a parameter and later add it back (set a new value), there will be two instances of the parameter; one that is commented out, and one that is enabled and inserted at the bottom of the `postgresql.conf` file.
 
-After setting a parameter, you must restart your Greenplum Database system or reload the `postgresql.conf` files in order for the change to take effect. Whether you require a restart or a reload depends on the parameter.
-
-For more information about the server configuration parameters, see the *Greenplum Database Reference Guide*.
+After setting a parameter, you must restart your Cloudberry Database system or reload the `postgresql.conf` files in order for the change to take effect. Whether you require a restart or a reload depends on the parameter.
 
 To show the currently set values for a parameter across the system, use the `-s` option.
 
-`gpconfig` uses the following environment variables to connect to the Greenplum Database coordinator instance and obtain system configuration information:
+`gpconfig` uses the following environment variables to connect to the Cloudberry Database coordinator instance and obtain system configuration information:
 
 - `PGHOST`
 - `PGPORT`
@@ -75,11 +73,11 @@ Lists all configuration parameters supported by the `gpconfig` utility.
 
 **`-s | --show param_name`**
 
-Shows the value for a configuration parameter used on all instances (coordinator and segments) in the Greenplum Database system. If there is a difference in a parameter value among the instances, the utility displays an error message. Running `gpconfig` with the `-s` option reads parameter values directly from the database, and not the `postgresql.conf` file. If you are using `gpconfig` to set configuration parameters across all segments, then running `gpconfig -s` to verify the changes, you might still see the previous (old) values. You must reload the configuration files (`gpstop -u`) or restart the system (`gpstop -r`) for changes to take effect.
+Shows the value for a configuration parameter used on all instances (coordinator and segments) in the Cloudberry Database system. If there is a difference in a parameter value among the instances, the utility displays an error message. Running `gpconfig` with the `-s` option reads parameter values directly from the database, and not the `postgresql.conf` file. If you are using `gpconfig` to set configuration parameters across all segments, then running `gpconfig -s` to verify the changes, you might still see the previous (old) values. You must reload the configuration files (`gpstop -u`) or restart the system (`gpstop -r`) for changes to take effect.
 
 **`--file`**
 
-For a configuration parameter, shows the value from the `postgresql.conf` file on all instances (coordinator and segments) in the Greenplum Database system. If there is a difference in a parameter value among the instances, the utility displays a message. Must be specified with the `-s` option.
+For a configuration parameter, shows the value from the `postgresql.conf` file on all instances (coordinator and segments) in the Cloudberry Database system. If there is a difference in a parameter value among the instances, the utility displays a message. Must be specified with the `-s` option.
 
 For example, the configuration parameter `statement_mem` is set to 64MB for a user with the `ALTER ROLE` command, and the value in the `postgresql.conf` file is 128MB. Running the command `gpconfig -s statement_mem --file` displays 128MB. The command `gpconfig -s statement_mem` run by the user displays 64MB.
 
@@ -87,7 +85,7 @@ Not valid with the `--file-compare` option.
 
 **`--file-compare`**
 
-For a configuration parameter, compares the current Greenplum Database value with the value in the `postgresql.conf` files on hosts (coordinator and segments). The values in the `postgresql.conf files` represent the value when Greenplum Database is restarted.
+For a configuration parameter, compares the current Cloudberry Database value with the value in the `postgresql.conf` files on hosts (coordinator and segments). The values in the `postgresql.conf files` represent the value when Cloudberry Database is restarted.
 
 If the values are not the same, the utility displays the values from all hosts. If all hosts have the same value, the utility displays a summary report.
 

@@ -4,7 +4,7 @@ title: gpinitsystem
 
 # gpinitsystem
 
-Initializes a Greenplum Database system using configuration parameters specified in the `gpinitsystem_config` file.
+Initializes a Cloudberry Database system using configuration parameters specified in the `gpinitsystem_config` file.
 
 ## Synopsis
 
@@ -33,13 +33,13 @@ gpinitsystem -? | --help
 
 ## Description
 
-The `gpinitsystem` utility creates a Greenplum Database instance or writes an input configuration file using the values defined in a cluster configuration file and any command-line options that you provide. See [Initialization Configuration File Format](#initialization-configuration-file-format) for more information about the configuration file. Before running this utility, make sure that you have installed the Greenplum Database software on all the hosts in the array.
+The `gpinitsystem` utility creates a Cloudberry Database instance or writes an input configuration file using the values defined in a cluster configuration file and any command-line options that you provide. See [Initialization Configuration File Format](#initialization-configuration-file-format) for more information about the configuration file. Before running this utility, make sure that you have installed the Cloudberry Database software on all the hosts in the array.
 
 With the `<-O output_configuration_file>` option, `gpinitsystem` writes all provided configuration information to the specified output file. This file can be used with the `-I` option to create a new cluster or re-create a cluster from a backed up configuration. See [Initialization Configuration File Format](#initialization-configuration-file-format) for more information.
 
-In a Greenplum Database DBMS, each database instance (the coordinator instance and all segment instances) must be initialized across all of the hosts in the system in such a way that they can all work together as a unified DBMS. The `gpinitsystem` utility takes care of initializing the Greenplum coordinator and each segment instance, and configuring the system as a whole.
+In a Cloudberry Database DBMS, each database instance (the coordinator instance and all segment instances) must be initialized across all of the hosts in the system in such a way that they can all work together as a unified DBMS. The `gpinitsystem` utility takes care of initializing the Cloudberry coordinator and each segment instance, and configuring the system as a whole.
 
-Before running `gpinitsystem`, you must set the `$GPHOME` environment variable to point to the location of your Greenplum Database installation on the coordinator host and exchange SSH keys between all host addresses in the array using `gpssh-exkeys`.
+Before running `gpinitsystem`, you must set the `$GPHOME` environment variable to point to the location of your Cloudberry Database installation on the coordinator host and exchange SSH keys between all host addresses in the array using `gpssh-exkeys`.
 
 This utility performs the following tasks:
 
@@ -51,10 +51,10 @@ This utility performs the following tasks:
 - Initializes the standby coordinator instance (if specified).
 - Initializes the primary segment instances.
 - Initializes the mirror segment instances (if mirroring is configured).
-- Configures the Greenplum Database system and checks for errors.
-- Starts the Greenplum Database system.
+- Configures the Cloudberry Database system and checks for errors.
+- Starts the Cloudberry Database system.
 
-> **Note** This utility uses secure shell (SSH) connections between systems to perform its tasks. In large Greenplum Database deployments, cloud deployments, or deployments with a large number of segments per host, this utility may exceed the host's maximum threshold for unauthenticated connections. Consider updating the SSH `MaxStartups` and `MaxSessions` configuration parameters to increase this threshold. For more information about SSH configuration options, refer to the SSH documentation for your Linux distribution.
+> **Note** This utility uses secure shell (SSH) connections between systems to perform its tasks. In large Cloudberry Database deployments, cloud deployments, or deployments with a large number of segments per host, this utility may exceed the host's maximum threshold for unauthenticated connections. Consider updating the SSH `MaxStartups` and `MaxSessions` configuration parameters to increase this threshold. For more information about SSH configuration options, refer to the SSH documentation for your Linux distribution.
 
 ## Options
 
@@ -68,7 +68,7 @@ The number of segments to create in parallel. If not specified, the utility will
 
 **`-c cluster_configuration_file`**
 
-Required. The full path and filename of the configuration file, which contains all of the defined parameters to configure and initialize a new Greenplum Database system. See [Initialization Configuration File Format](#initialization-configuration-file-format) for a description of this file. You must provide either the `-c <cluster_configuration_file>` option or the `-I <input_configuration_file>` option to `gpinitsystem`.
+Required. The full path and filename of the configuration file, which contains all of the defined parameters to configure and initialize a new Cloudberry Database system. See [Initialization Configuration File Format](#initialization-configuration-file-format) for a description of this file. You must provide either the `-c <cluster_configuration_file>` option or the `-I <input_configuration_file>` option to `gpinitsystem`.
 
 **`-D`**
 
@@ -80,23 +80,23 @@ Optional. The full path and filename of a file that contains the host addresses 
 
 **`-I input_configuration_file`**
 
-The full path and filename of an input configuration file, which defines the Greenplum Database host systems, the coordinator instance and segment instances on the hosts, using the `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, and `MIRROR_ARRAY` parameters. The input configuration file is typically created by using `gpinitsystem` with the `-O output_configuration_file` option. Edit those parameters in order to initialize a new cluster or re-create a cluster from a backed up configuration. You must provide either the `-c <cluster_configuration_file>` option or the `-I <input_configuration_file>` option to `gpinitsystem`.
+The full path and filename of an input configuration file, which defines the Cloudberry Database host systems, the coordinator instance and segment instances on the hosts, using the `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, and `MIRROR_ARRAY` parameters. The input configuration file is typically created by using `gpinitsystem` with the `-O output_configuration_file` option. Edit those parameters in order to initialize a new cluster or re-create a cluster from a backed up configuration. You must provide either the `-c <cluster_configuration_file>` option or the `-I <input_configuration_file>` option to `gpinitsystem`.
 
 **`-n locale | --locale=locale`**
 
-Sets the default locale used by Greenplum Database. If not specified, the default locale is `en_US.utf8`. A locale identifier consists of a language identifier and a region identifier, and optionally a character set encoding. For example, `sv_SE` is Swedish as spoken in Sweden, `en_US` is U.S. English, and `fr_CA` is French Canadian. If more than one character set can be useful for a locale, then the specifications look like this: `en_US.UTF-8` (locale specification and character set encoding). On most systems, the command `locale` will show the locale environment settings and `locale -a` will show a list of all available locales.
+Sets the default locale used by Cloudberry Database. If not specified, the default locale is `en_US.utf8`. A locale identifier consists of a language identifier and a region identifier, and optionally a character set encoding. For example, `sv_SE` is Swedish as spoken in Sweden, `en_US` is U.S. English, and `fr_CA` is French Canadian. If more than one character set can be useful for a locale, then the specifications look like this: `en_US.UTF-8` (locale specification and character set encoding). On most systems, the command `locale` will show the locale environment settings and `locale -a` will show a list of all available locales.
 
 **`--lc-collate=locale`**
 
-Similar to `--locale`, but sets the locale used for collation (sorting data). The sort order cannot be changed after Greenplum Database is initialized, so it is important to choose a collation locale that is compatible with the character set encodings that you plan to use for your data. There is a special collation name of `C` or `POSIX` (byte-order sorting as opposed to dictionary-order sorting). The `C` collation can be used with any character encoding.
+Similar to `--locale`, but sets the locale used for collation (sorting data). The sort order cannot be changed after Cloudberry Database is initialized, so it is important to choose a collation locale that is compatible with the character set encodings that you plan to use for your data. There is a special collation name of `C` or `POSIX` (byte-order sorting as opposed to dictionary-order sorting). The `C` collation can be used with any character encoding.
 
 **`--lc-ctype=locale`**
 
-Similar to `--locale`, but sets the locale used for character classification (what character sequences are valid and how they are interpreted). This cannot be changed after Greenplum Database is initialized, so it is important to choose a character classification locale that is compatible with the data you plan to store in Greenplum Database.
+Similar to `--locale`, but sets the locale used for character classification (what character sequences are valid and how they are interpreted). This cannot be changed after Cloudberry Database is initialized, so it is important to choose a character classification locale that is compatible with the data you plan to store in Cloudberry Database.
 
 **`--lc-messages=locale`**
 
-Similar to `--locale`, but sets the locale used for messages output by Greenplum Database. The current version of Greenplum Database does not support multiple locales for output messages (all messages are in English), so changing this setting will not have any effect.
+Similar to `--locale`, but sets the locale used for messages output by Cloudberry Database. The current version of Cloudberry Database does not support multiple locales for output messages (all messages are in English), so changing this setting will not have any effect.
 
 **`--lc-monetary=locale`**
 
@@ -120,11 +120,11 @@ Sets the maximum number of client connections allowed to the coordinator. The de
 
 **`-O output_configuration_file`**
 
-Optional, used during new cluster initialization. This option writes the `cluster_configuration_file` information (used with -c) to the specified `output_configuration_file`. This file defines the Greenplum Database members using the `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, and `MIRROR_ARRAY` parameters. Use this file as a template for the `-I` `input_configuration_file` option. See [Examples](#examples) for more information.
+Optional, used during new cluster initialization. This option writes the `cluster_configuration_file` information (used with -c) to the specified `output_configuration_file`. This file defines the Cloudberry Database members using the `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, and `MIRROR_ARRAY` parameters. Use this file as a template for the `-I` `input_configuration_file` option. See [Examples](#examples) for more information.
 
 **`-p postgresql_conf_param_file`**
 
-Optional. The name of a file that contains `postgresql.conf` parameter settings that you want to set for Greenplum Database. These settings will be used when the individual coordinator and segment instances are initialized. You can also set parameters after initialization using the `gpconfig` utility.
+Optional. The name of a file that contains `postgresql.conf` parameter settings that you want to set for Cloudberry Database. These settings will be used when the individual coordinator and segment instances are initialized. You can also set parameters after initialization using the `gpconfig` utility.
 
 **`-q`**
 
@@ -132,15 +132,15 @@ Run in quiet mode. Command output is not displayed on the screen, but is still w
 
 **`-b size | --shared_buffers=size`**
 
-Sets the amount of memory a Greenplum server instance uses for shared memory buffers. You can specify sizing in kilobytes (kB), megabytes (MB) or gigabytes (GB). The default is 125MB.
+Sets the amount of memory a Cloudberry server instance uses for shared memory buffers. You can specify sizing in kilobytes (kB), megabytes (MB) or gigabytes (GB). The default is 125MB.
 
 **`-s standby_coordinator_host`**
 
-Optional. If you wish to configure a backup coordinator instance, specify the host name using this option. The Greenplum Database software must already be installed and configured on this host.
+Optional. If you wish to configure a backup coordinator instance, specify the host name using this option. The Cloudberry Database software must already be installed and configured on this host.
 
 **`-P standby_coordinator_port`**
 
-If you configure a standby coordinator instance with `-s`, specify its port number using this option. The default port is the same as the coordinator port. To run the standby and coordinator on the same host, you must use this option to specify a different port for the standby. The Greenplum Database software must already be installed and configured on the standby host.
+If you configure a standby coordinator instance with `-s`, specify its port number using this option. The default port is the same as the coordinator port. To run the standby and coordinator on the same host, you must use this option to specify a different port for the standby. The Cloudberry Database software must already be installed and configured on the standby host.
 
 **`-S standby_coordinator_datadir | --standby_dir=standby_coordinator_datadir`**
 
@@ -148,7 +148,7 @@ If you configure a standby coordinator host with `-s`, use this option to specif
 
 **`-e superuser_password | --su_password=superuser_password`**
 
-Use this option to specify the password to set for the Greenplum Database superuser account (such as `gpadmin`). If this option is not specified, the default password `gparray` is assigned to the superuser account. You can use the `ALTER ROLE` command to change the password at a later time.
+Use this option to specify the password to set for the Cloudberry Database superuser account (such as `gpadmin`). If this option is not specified, the default password `gparray` is assigned to the superuser account. You can use the `ALTER ROLE` command to change the password at a later time.
 
 Recommended security best practices:
 
@@ -157,7 +157,7 @@ Recommended security best practices:
 
 **`--mirror-mode={group|spread}`**
 
-Use this option to specify the placement of mirror segment instances on the segment hosts. The default, `group`, groups the mirror segments for all of a host's primary segments on a single alternate host. `spread` spreads mirror segments for the primary segments on a host across different hosts in the Greenplum Database array. Spreading is only allowed if the number of hosts is greater than the number of segment instances per host.
+Use this option to specify the placement of mirror segment instances on the segment hosts. The default, `group`, groups the mirror segments for all of a host's primary segments on a single alternate host. `spread` spreads mirror segments for the primary segments on a host across different hosts in the Cloudberry Database array. Spreading is only allowed if the number of hosts is greater than the number of segment instances per host.
 
 **`-v | --version`**
 
@@ -171,7 +171,7 @@ Show help about `gpinitsystem` command line arguments, and exit.
 
 `gpinitsystem` requires a cluster configuration file with the following parameters defined. An example initialization configuration file can be found in `$GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config`.
 
-To avoid port conflicts between Greenplum Database and other applications, the Greenplum Database port numbers should not be in the range specified by the operating system parameter `net.ipv4.ip_local_port_range`. For example, if `net.ipv4.ip_local_port_range = 10000 65535`, you could set Greenplum Database base port numbers to these values.
+To avoid port conflicts between Cloudberry Database and other applications, the Cloudberry Database port numbers should not be in the range specified by the operating system parameter `net.ipv4.ip_local_port_range`. For example, if `net.ipv4.ip_local_port_range = 10000 65535`, you could set Cloudberry Database base port numbers to these values.
 
 ```shell
 PORT_BASE = 6000
@@ -180,11 +180,11 @@ MIRROR_PORT_BASE = 7000
 
 **`MACHINE_LIST_FILE`**
 
-**Optional.** Can be used in place of the `-h` option. This specifies the file that contains the list of the segment host address names that comprise the Greenplum Database system. The coordinator host is assumed to be the host from which you are running the utility and should not be included in this file. If your segment hosts have multiple network interfaces, then this file would include all addresses for the host. Give the absolute path to the file.
+**Optional.** Can be used in place of the `-h` option. This specifies the file that contains the list of the segment host address names that comprise the Cloudberry Database system. The coordinator host is assumed to be the host from which you are running the utility and should not be included in this file. If your segment hosts have multiple network interfaces, then this file would include all addresses for the host. Give the absolute path to the file.
 
 **`SEG_PREFIX`**
 
-**Required.** This specifies a prefix that will be used to name the data directories on the coordinator and segment instances. The naming convention for data directories in a Greenplum Database system is SEG_PREFIXnumber where number starts with 0 for segment instances (the coordinator is always -1). So for example, if you choose the prefix `gpseg`, your coordinator instance data directory would be named `gpseg-1`, and the segment instances would be named `gpseg0`, `gpseg1`, `gpseg2`, `gpseg3`, and so on.
+**Required.** This specifies a prefix that will be used to name the data directories on the coordinator and segment instances. The naming convention for data directories in a Cloudberry Database system is SEG_PREFIXnumber where number starts with 0 for segment instances (the coordinator is always -1). So for example, if you choose the prefix `gpseg`, your coordinator instance data directory would be named `gpseg-1`, and the segment instances would be named `gpseg0`, `gpseg1`, `gpseg2`, `gpseg3`, and so on.
 
 **`PORT_BASE`**
 
@@ -209,7 +209,7 @@ declare -a DATA_DIRECTORY=(/data1/primary /data1/primary
 
 **`COORDINATOR_PORT`**
 
-**Required.** The port number for the coordinator instance. This is the port number that users and client connections will use when accessing the Greenplum Database system.
+**Required.** The port number for the coordinator instance. This is the port number that users and client connections will use when accessing the Cloudberry Database system.
 
 **`TRUSTED_SHELL`**
 
@@ -217,11 +217,11 @@ declare -a DATA_DIRECTORY=(/data1/primary /data1/primary
 
 **`ENCODING`**
 
-**Required.** The character set encoding to use. This character set must be compatible with the `--locale` settings used, especially `--lc-collate` and `--lc-ctype`. Greenplum Database supports the same character sets as PostgreSQL.
+**Required.** The character set encoding to use. This character set must be compatible with the `--locale` settings used, especially `--lc-collate` and `--lc-ctype`. Cloudberry Database supports the same character sets as PostgreSQL.
 
 **`DATABASE_NAME`**
 
-**Optional.** The name of a Greenplum Database database to create after the system is initialized. You can always create a database later using the `CREATE DATABASE` command or the `createdb` utility.
+**Optional.** The name of a Cloudberry Database database to create after the system is initialized. You can always create a database later using the `CREATE DATABASE` command or the `createdb` utility.
 
 **`MIRROR_PORT_BASE`**
 
@@ -239,7 +239,7 @@ declare -a MIRROR_DATA_DIRECTORY=(/data1/mirror
 
 **`QD_PRIMARY_ARRAY, PRIMARY_ARRAY, MIRROR_ARRAY`**
 
-**Required** when using `input_configuration file` with `-I` option. These parameters specify the Greenplum Database coordinator host, the primary segment, and the mirror segment hosts respectively. During new cluster initialization, use the `gpinitsystem` `-O output_configuration_file` to populate `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, `MIRROR_ARRAY`.
+**Required** when using `input_configuration file` with `-I` option. These parameters specify the Cloudberry Database coordinator host, the primary segment, and the mirror segment hosts respectively. During new cluster initialization, use the `gpinitsystem` `-O output_configuration_file` to populate `QD_PRIMARY_ARRAY`, `PRIMARY_ARRAY`, `MIRROR_ARRAY`.
 
 To initialize a new cluster or re-create a cluster from a backed up configuration, edit these values in the input configuration file used with the `gpinitsystem` `-I input_configuration_file` option. Use one of the following formats to specify the host information:
 
@@ -255,7 +255,7 @@ or
 
 The first format populates the `hostname` and `address` fields in the `gp_segment_configuration` catalog table with the hostname and address values provided in the input configuration file. The second format populates `hostname` and `address` fields with the same value, derived from host.
 
-The Greenplum Database coordinator always uses the value -1 for the segment ID and content ID. For example, seg_prefix<segment_id> and dbid values for `QD_PRIMARY_ARRAY` use `-1` to indicate the coordinator instance:
+The Cloudberry Database coordinator always uses the value -1 for the segment ID and content ID. For example, seg_prefix<segment_id> and dbid values for `QD_PRIMARY_ARRAY` use `-1` to indicate the coordinator instance:
 
 ```shell
 QD_PRIMARY_ARRAY=cdw~cdw~5432~/gpdata/coordinator/gpseg-1~1~-1
@@ -273,15 +273,15 @@ sdw1~sdw1~50001~/gpdata/mirror2/gpseg3~9~3
 )
 ```
 
-To re-create a cluster using a known Greenplum Database system configuration, you can edit the segment and content IDs to match the values of the system.
+To re-create a cluster using a known Cloudberry Database system configuration, you can edit the segment and content IDs to match the values of the system.
 
 **`HEAP_CHECKSUM`**
 
-**Optional.** This parameter specifies if checksums are enabled for heap data. When enabled, checksums are calculated for heap storage in all databases, enabling Greenplum Database to detect corruption in the I/O system. This option is set when the system is initialized and cannot be changed later.
+**Optional.** This parameter specifies if checksums are enabled for heap data. When enabled, checksums are calculated for heap storage in all databases, enabling Cloudberry Database to detect corruption in the I/O system. This option is set when the system is initialized and cannot be changed later.
 
 The `HEAP_CHECKSUM` option is on by default and turning it off is strongly discouraged. If you set this option to off, data corruption in storage can go undetected and make recovery much more difficult.
 
-To determine if heap checksums are enabled in a Greenplum Database system, you can query the `data_checksums` server configuration parameter with the `gpconfig` management utility:
+To determine if heap checksums are enabled in a Cloudberry Database system, you can query the `data_checksums` server configuration parameter with the `gpconfig` management utility:
 
 ```shell
 $ gpconfig -s data_checksums
@@ -289,42 +289,42 @@ $ gpconfig -s data_checksums
 
 **`HBA_HOSTNAMES`**
 
-**Optional.** This parameter controls whether `gpinitsystem` uses IP addresses or host names in the `pg_hba.conf` file when updating the file with addresses that can connect to Greenplum Database. The default value is `0`, the utility uses IP addresses when updating the file. When initializing a Greenplum Database system, specify `HBA_HOSTNAMES=1` to have the utility use host names in the `pg_hba.conf` file.
+**Optional.** This parameter controls whether `gpinitsystem` uses IP addresses or host names in the `pg_hba.conf` file when updating the file with addresses that can connect to Cloudberry Database. The default value is `0`, the utility uses IP addresses when updating the file. When initializing a Cloudberry Database system, specify `HBA_HOSTNAMES=1` to have the utility use host names in the `pg_hba.conf` file.
 
-<!--For information about how Greenplum Database resolves host names in the `pg_hba.conf` file, see [Configuring Client Authentication](../../admin_guide/client_auth.html#topic1). -->
+<!--For information about how Cloudberry Database resolves host names in the `pg_hba.conf` file, see [Configuring Client Authentication](../../admin_guide/client_auth.html#topic1). -->
 
 ## Specify hosts using hostnames or IP addresses
 
-When initializing a Greenplum Database system with `gpinitsystem`, you can specify segment hosts using either hostnames or IP addresses. For example, you can use hostnames or IP addresses in the file specified with the `-h` option.
+When initializing a Cloudberry Database system with `gpinitsystem`, you can specify segment hosts using either hostnames or IP addresses. For example, you can use hostnames or IP addresses in the file specified with the `-h` option.
 
-- If you specify a hostname, the resolution of the hostname to an IP address should be done locally for security. For example, you should use entries in a local `/etc/hosts` file to map a hostname to an IP address. The resolution of a hostname to an IP address should not be performed by an external service such as a public DNS server. You must stop the Greenplum system before you change the mapping of a hostname to a different IP address.
-- If you specify an IP address, the address should not be changed after the initial configuration. When segment mirroring is enabled, replication from the primary to the mirror segment will fail if the IP address changes from the configured value. For this reason, you should use a hostname when initializing a Greenplum Database system unless you have a specific requirement to use IP addresses.
+- If you specify a hostname, the resolution of the hostname to an IP address should be done locally for security. For example, you should use entries in a local `/etc/hosts` file to map a hostname to an IP address. The resolution of a hostname to an IP address should not be performed by an external service such as a public DNS server. You must stop the Cloudberry system before you change the mapping of a hostname to a different IP address.
+- If you specify an IP address, the address should not be changed after the initial configuration. When segment mirroring is enabled, replication from the primary to the mirror segment will fail if the IP address changes from the configured value. For this reason, you should use a hostname when initializing a Cloudberry Database system unless you have a specific requirement to use IP addresses.
 
-When initializing the Greenplum Database system, `gpinitsystem` uses the initialization information to populate the `gp_segment_configuration` catalog table and adds hosts to the `pg_hba.conf` file. By default, the host IP address is added to the file. Specify the `gpinitsystem` configuration file parameter `HBA_HOSTNAMES=1` to add hostnames to the file.
+When initializing the Cloudberry Database system, `gpinitsystem` uses the initialization information to populate the `gp_segment_configuration` catalog table and adds hosts to the `pg_hba.conf` file. By default, the host IP address is added to the file. Specify the `gpinitsystem` configuration file parameter `HBA_HOSTNAMES=1` to add hostnames to the file.
 
-Greenplum Database uses the `address` value of the `gp_segment_configuration` catalog table when looking up host systems for Greenplum interconnect (internal) communication between the coordinator and segment instances and between segment instances, and for other internal communication.
+Cloudberry Database uses the `address` value of the `gp_segment_configuration` catalog table when looking up host systems for Cloudberry interconnect (internal) communication between the coordinator and segment instances and between segment instances, and for other internal communication.
 
 ## Examples
 
-Initialize a Greenplum Database system by supplying a cluster configuration file and a segment host address file, and set up a spread mirroring (`--mirror-mode=spread`) configuration:
+Initialize a Cloudberry Database system by supplying a cluster configuration file and a segment host address file, and set up a spread mirroring (`--mirror-mode=spread`) configuration:
 
 ```shell
 $ gpinitsystem -c gpinitsystem_config -h hostfile_gpinitsystem --mirror-mode=spread
 ```
 
-Initialize a Greenplum Database system and set the superuser remote password:
+Initialize a Cloudberry Database system and set the superuser remote password:
 
 ```shell
 $ gpinitsystem -c gpinitsystem_config -h hostfile_gpinitsystem --su-password=mypassword
 ```
 
-Initialize a Greenplum Database system with an optional standby coordinator host:
+Initialize a Cloudberry Database system with an optional standby coordinator host:
 
 ```shell
 $ gpinitsystem -c gpinitsystem_config -h hostfile_gpinitsystem -s host09
 ```
 
-Initialize a Greenplum Database system and write the provided configuration to an output file, for example `cluster_init.config`:
+Initialize a Cloudberry Database system and write the provided configuration to an output file, for example `cluster_init.config`:
 
 ```shell
 $ gpinitsystem -c gpinitsystem_config -h hostfile_gpinitsystem -O cluster_init.config
@@ -348,13 +348,13 @@ cdw~cdw.local~7001~/data/mirror1/gpseg0~3~0
 )
 ```
 
-Initialize a Greenplum Database using an input configuration file (a file that defines the Greenplum Database cluster) using `QD_PRIMARY_ARRAY` and `PRIMARY_ARRAY` parameters:
+Initialize a Cloudberry Database using an input configuration file (a file that defines the Cloudberry Database cluster) using `QD_PRIMARY_ARRAY` and `PRIMARY_ARRAY` parameters:
 
 ```shell
 $ gpinitsystem -I cluster_init.config
 ```
 
-The following example uses a host system configured with multiple NICs. If host systems are configured with multiple NICs, you can initialize a Greenplum Database system to use each NIC as a Greenplum host system. You must ensure that the host systems are configured with sufficient resources to support all the segment instances being added to the host. Also, if high availability is enabled, you must ensure that the Greenplum system configuration supports failover if a host system fails.
+The following example uses a host system configured with multiple NICs. If host systems are configured with multiple NICs, you can initialize a Cloudberry Database system to use each NIC as a Cloudberry host system. You must ensure that the host systems are configured with sufficient resources to support all the segment instances being added to the host. Also, if high availability is enabled, you must ensure that the Cloudberry system configuration supports failover if a host system fails.
 
 For this simple coordinator and segment instance configuration, the host system `gp7c` is configured with two NICs `gp7c-1` and `gp7c-2`. In the configuration, the `QD_PRIMARY_ARRAY` parameter defines the coordinator segment using `gp7c-1`. The `PRIMARY_ARRAY` and `MIRROR_ARRAY` parameters use `gp7c-2` to define a primary and mirror segment instance.
 

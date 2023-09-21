@@ -4,7 +4,7 @@ title: gpexpand
 
 # gpexpand
 
-Expands an existing Greenplum Database across new hosts in the system.
+Expands an existing Cloudberry Database across new hosts in the system.
 
 ## Synopsis
 
@@ -27,14 +27,14 @@ gpexpand --version
 
 ## Prerequisites
 
-- You are logged in as the Greenplum Database superuser (`gpadmin`).
+- You are logged in as the Cloudberry Database superuser (`gpadmin`).
 - The new segment hosts have been installed and configured as per the existing segment hosts. This involves:
     - Configuring the hardware and OS
-    - Installing the Greenplum software
+    - Installing the Cloudberry software
     - Creating the `gpadmin` user account
     - Exchanging SSH keys.
 - Enough disk space on your segment hosts to temporarily hold a copy of your largest table.
-- When redistributing data, Greenplum Database must be running in production mode. Greenplum Database cannot be running in restricted mode or in coordinator mode. The `gpstart` options `-R` or `-m` cannot be specified to start Greenplum Database.
+- When redistributing data, Cloudberry Database must be running in production mode. Cloudberry Database cannot be running in restricted mode or in coordinator mode. The `gpstart` options `-R` or `-m` cannot be specified to start Cloudberry Database.
 
 > **Note** These utilities cannot be run while `gpexpand` is performing segment initialization.
 >
@@ -44,7 +44,7 @@ gpexpand --version
 > - `gppkg`
 > - `gprestore`
 
-> **Important** When expanding a Greenplum Database system, you must deactivate Greenplum interconnect proxies before adding new hosts and segment instances to the system, and you must update the `gp_interconnect_proxy_addresses` parameter with the newly-added segment instances before you re-enable interconnect proxies.
+> **Important** When expanding a Cloudberry Database system, you must deactivate Cloudberry interconnect proxies before adding new hosts and segment instances to the system, and you must update the `gp_interconnect_proxy_addresses` parameter with the newly-added segment instances before you re-enable interconnect proxies.
 
 ## Description
 
@@ -64,7 +64,7 @@ In the table data redistribution phase, `gpexpand` redistributes table data to r
 
 To begin the redistribution phase, run `gpexpand` with no options or with the `-d` (duration), `-e` (end time), or `-i` options. If you specify an end time or duration, then the utility redistributes tables in the expansion schema until the specified end time or duration is reached. If you specify `-i` or no options, then the utility redistribution phase continues until all tables in the expansion schema are reorganized. Each table is reorganized using `ALTER TABLE` commands to rebalance the tables across new segments, and to set tables to their original distribution policy. If `gpexpand` completes the reorganization of all tables, it displays a success message and ends.
 
-> **Note** This utility uses secure shell (SSH) connections between systems to perform its tasks. In large Greenplum Database deployments, cloud deployments, or deployments with a large number of segments per host, this utility may exceed the host's maximum threshold for unauthenticated connections. Consider updating the SSH `MaxStartups` and `MaxSessions` configuration parameters to increase this threshold. For more information about SSH configuration options, refer to the SSH documentation for your Linux distribution.
+> **Note** This utility uses secure shell (SSH) connections between systems to perform its tasks. In large Cloudberry Database deployments, cloud deployments, or deployments with a large number of segments per host, this utility may exceed the host's maximum threshold for unauthenticated connections. Consider updating the SSH `MaxStartups` and `MaxSessions` configuration parameters to increase this threshold. For more information about SSH configuration options, refer to the SSH documentation for your Linux distribution.
 
 ## Options
 
@@ -98,7 +98,7 @@ Specifies the name of a file that contains a list of new hosts for system expans
 
 This file can contain hostnames with or without network interfaces specified. The `gpexpand` utility handles either case, adding interface numbers to end of the hostname if the original nodes are configured with multiple network interfaces.
 
-> **Note** The Greenplum Database segment host naming convention is `sdwN` where `sdw` is a prefix and `N` is an integer. For example, `sdw1`, `sdw2` and so on. For hosts with multiple interfaces, the convention is to append a dash (`-`) and number to the host name. For example, `sdw1-1` and `sdw1-2` are the two interface names for host `sdw1`.
+> **Note** The Cloudberry Database segment host naming convention is `sdwN` where `sdw` is a prefix and `N` is an integer. For example, `sdw1`, `sdw2` and so on. For hosts with multiple interfaces, the convention is to append a dash (`-`) and number to the host name. For example, `sdw1-1` and `sdw1-2` are the two interface names for host `sdw1`.
 
 For information about using a hostname or IP address, see [Specifying Hosts using Hostnames or IP Addresses](#specify-hosts-using-hostnames-or-ip-addresses). Also, see [Using Host Systems with Multiple NICs](#using-host-systems-with-multiple-nics).
 
@@ -124,13 +124,13 @@ Runs in silent mode. Does not prompt for confirmation to proceed on warnings.
 
 **`-S | --simple-progress`**
 
-If specified, the `gpexpand` utility records only the minimum progress information in the Greenplum Database table *gpexpand.expansion_progress*. The utility does not record the relation size information and status information in the table *gpexpand.status_detail*.
+If specified, the `gpexpand` utility records only the minimum progress information in the Cloudberry Database table *gpexpand.expansion_progress*. The utility does not record the relation size information and status information in the table *gpexpand.status_detail*.
 
 Specifying this option can improve performance by reducing the amount of progress information written to the *gpexpand* tables.
 
 **`[-t | --tardir] directory`**
 
-The fully qualified path to a directory on segment hosts where the `gpexpand` utility copies a temporary tar file. The file contains Greenplum Database files that are used to create segment instances. The default directory is the user home directory.
+The fully qualified path to a directory on segment hosts where the `gpexpand` utility copies a temporary tar file. The file contains Cloudberry Database files that are used to create segment instances. The default directory is the user home directory.
 
 **`-v | --verbose`**
 
@@ -146,18 +146,18 @@ Displays the online help.
 
 ## Specify hosts using hostnames or IP addresses
 
-When expanding a Greenplum Database system, you can specify either a hostname or an IP address for the value.
+When expanding a Cloudberry Database system, you can specify either a hostname or an IP address for the value.
 
-- If you specify a hostname, the resolution of the hostname to an IP address should be done locally for security. For example, you should use entries in a local `/etc/hosts` file to map a hostname to an IP address. The resolution of a hostname to an IP address should not be performed by an external service such as a public DNS server. You must stop the Greenplum system before you change the mapping of a hostname to a different IP address.
-- If you specify an IP address, the address should not be changed after the initial configuration. When segment mirroring is enabled, replication from the primary to the mirror segment will fail if the IP address changes from the configured value. For this reason, you should use a hostname when expanding a Greenplum Database system unless you have a specific requirement to use IP addresses.
+- If you specify a hostname, the resolution of the hostname to an IP address should be done locally for security. For example, you should use entries in a local `/etc/hosts` file to map a hostname to an IP address. The resolution of a hostname to an IP address should not be performed by an external service such as a public DNS server. You must stop the Cloudberry system before you change the mapping of a hostname to a different IP address.
+- If you specify an IP address, the address should not be changed after the initial configuration. When segment mirroring is enabled, replication from the primary to the mirror segment will fail if the IP address changes from the configured value. For this reason, you should use a hostname when expanding a Cloudberry Database system unless you have a specific requirement to use IP addresses.
 
-When expanding a Greenplum system, `gpexpand` populates `gp_segment_configuration` catalog table with the new segment instance information. Greenplum Database uses the `address` value of the `gp_segment_configuration` catalog table when looking up host systems for Greenplum interconnect (internal) communication between the coordinator and segment instances and between segment instances, and for other internal communication.
+When expanding a Cloudberry system, `gpexpand` populates `gp_segment_configuration` catalog table with the new segment instance information. Cloudberry Database uses the `address` value of the `gp_segment_configuration` catalog table when looking up host systems for Cloudberry interconnect (internal) communication between the coordinator and segment instances and between segment instances, and for other internal communication.
 
 ## Use host systems with multiple NICs
 
-If host systems are configured with multiple NICs, you can expand a Greenplum Database system to use each NIC as a Greenplum host system. You must ensure that the host systems are configured with sufficient resources to support all the segment instances being added to the host. Also, if you enable segment mirroring, you must ensure that the expanded Greenplum system configuration supports failover if a host system fails.
+If host systems are configured with multiple NICs, you can expand a Cloudberry Database system to use each NIC as a Cloudberry host system. You must ensure that the host systems are configured with sufficient resources to support all the segment instances being added to the host. Also, if you enable segment mirroring, you must ensure that the expanded Cloudberry system configuration supports failover if a host system fails.
 
-For example, this is a `gpexpand` configuration file for a simple Greenplum system. The segment host `gp7s1` and `gp7s2` are configured with two NICs, `-s1` and `-s2`, where the Greenplum Database system uses each NIC as a host system.
+For example, this is a `gpexpand` configuration file for a simple Cloudberry system. The segment host `gp7s1` and `gp7s2` are configured with two NICs, `-s1` and `-s2`, where the Cloudberry Database system uses each NIC as a host system.
 
 ```shell
 gp7s1-s2|gp7s1-s2|40001|/data/data1/gpseg2|6|2|p

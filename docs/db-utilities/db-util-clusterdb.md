@@ -77,12 +77,12 @@ Show help about `clusterdb` command line arguments, and exit.
 **`-h host`**<br />
 **`--host=host`**
 
-Specifies the host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to `localhost`.
+Specifies the host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to `localhost`.
 
 **`-p port`**<br />
 **`--port=port`**
 
-Specifies the TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+Specifies the TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
 **`-U username`**<br />
 **`--username=username`**
@@ -118,7 +118,7 @@ Default connection parameters.
 
 Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
 
-This utility, like most other Greenplum Database utilities, also uses the environment variables supported by `libpq`.
+This utility, like most other Cloudberry Database utilities, also uses the environment variables supported by `libpq`.
 
 ## Diagnostics
 

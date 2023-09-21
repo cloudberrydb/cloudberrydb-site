@@ -4,7 +4,7 @@ title: pg_checksums
 
 # pg_checksums
 
-Enables, disables, or checks data checksums in a Greenplum Database cluster.
+Enables, disables, or checks data checksums in a Cloudberry Database cluster.
 
 ## Synopsis
 
@@ -18,9 +18,9 @@ pg_checksums -V | --version
 
 ## Description
 
-`pg_checksums` is a standard PostgreSQL utility that you can use to check, enable, or disable data checksums in a Greenplum Database cluster. The server must be shut down cleanly before running `pg_checksums`. When verifying checksums, Greenplum Database returns the exit status zero if there are no checksum errors, and returns nonzero if it detects at least one checksum failure. When enabling or disabling checksums, Greenplum returns a nonzero exit status if the operation failed.
+`pg_checksums` is a standard PostgreSQL utility that you can use to check, enable, or disable data checksums in a Cloudberry Database cluster. The server must be shut down cleanly before running `pg_checksums`. When verifying checksums, Cloudberry Database returns the exit status zero if there are no checksum errors, and returns nonzero if it detects at least one checksum failure. When enabling or disabling checksums, Cloudberry returns a nonzero exit status if the operation failed.
 
-When verifying checksums, Greenplum Database scans every file in the cluster. When enabling checksums, every file in the cluster is rewritten in-place. Disabling checksums only updates the `pg_control` file.
+When verifying checksums, Cloudberry Database scans every file in the cluster. When enabling checksums, every file in the cluster is rewritten in-place. Disabling checksums only updates the `pg_control` file.
 
 
 ## Options

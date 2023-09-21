@@ -4,7 +4,7 @@ title: gpreload
 
 # gpreload
 
-Reloads Greenplum Database table data sorting the data based on specified columns.
+Reloads Cloudberry Database table data sorting the data based on specified columns.
 
 ## Synopsis
 
@@ -53,11 +53,11 @@ The database that contains the tables to be reloaded. The `gpreload` utility con
 
 **`-p port`**
 
-The Greenplum Database coordinator port. If not specified, the value of the `PGPORT` environment variable is used. If the value is not available, an error is returned.
+The Cloudberry Database coordinator port. If not specified, the value of the `PGPORT` environment variable is used. If the value is not available, an error is returned.
 
 **`{-t | --table-file } path_to_file`**
 
-The location and name of file containing list of schema qualified table names to reload and the column names to reorder from the Greenplum Database. Only user defined tables are supported. Views or system catalog tables are not supported.
+The location and name of file containing list of schema qualified table names to reload and the column names to reorder from the Cloudberry Database. Only user defined tables are supported. Views or system catalog tables are not supported.
 
 If indexes are defined on table listed in the file, `gpreload` prompts to continue.
 

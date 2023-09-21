@@ -27,20 +27,20 @@ gpcheckperf --version
 The `gpcheckperf` utility starts a session on the specified hosts and runs the following performance tests:
 
 - **Disk I/O Test (dd test)** — To test the sequential throughput performance of a logical disk or file system, the utility uses the **dd** command, which is a standard UNIX utility. It times how long it takes to write and read a large file to and from disk and calculates your disk I/O performance in megabytes (MB) per second. By default, the file size that is used for the test is calculated at two times the total random access memory (RAM) on the host. This ensures that the test is truly testing disk I/O and not using the memory cache.
-- **Memory Bandwidth Test (stream)** — To test memory bandwidth, the utility uses the STREAM benchmark program to measure sustainable memory bandwidth (in MB/s). This tests that your system is not limited in performance by the memory bandwidth of the system in relation to the computational performance of the CPU. In applications where the data set is large (as in Greenplum Database), low memory bandwidth is a major performance issue. If memory bandwidth is significantly lower than the theoretical bandwidth of the CPU, then it can cause the CPU to spend significant amounts of time waiting for data to arrive from system memory.
-- **Network Performance Test (gpnetbench*)** — To test network performance (and thereby the performance of the Greenplum Database interconnect), the utility runs a network benchmark program that transfers a 5 second stream of data from the current host to each remote host included in the test. The data is transferred in parallel to each remote host and the minimum, maximum, average and median network transfer rates are reported in megabytes (MB) per second. If the summary transfer rate is slower than expected (less than 100 MB/s), you can run the network test serially using the `-r n` option to obtain per-host results. To run a full-matrix bandwidth test, you can specify `-r M` which will cause every host to send and receive data from every other host specified. This test is best used to validate if the switch fabric can tolerate a full-matrix workload.
+- **Memory Bandwidth Test (stream)** — To test memory bandwidth, the utility uses the STREAM benchmark program to measure sustainable memory bandwidth (in MB/s). This tests that your system is not limited in performance by the memory bandwidth of the system in relation to the computational performance of the CPU. In applications where the data set is large (as in Cloudberry Database), low memory bandwidth is a major performance issue. If memory bandwidth is significantly lower than the theoretical bandwidth of the CPU, then it can cause the CPU to spend significant amounts of time waiting for data to arrive from system memory.
+- **Network Performance Test (gpnetbench*)** — To test network performance (and thereby the performance of the Cloudberry Database interconnect), the utility runs a network benchmark program that transfers a 5 second stream of data from the current host to each remote host included in the test. The data is transferred in parallel to each remote host and the minimum, maximum, average and median network transfer rates are reported in megabytes (MB) per second. If the summary transfer rate is slower than expected (less than 100 MB/s), you can run the network test serially using the `-r n` option to obtain per-host results. To run a full-matrix bandwidth test, you can specify `-r M` which will cause every host to send and receive data from every other host specified. This test is best used to validate if the switch fabric can tolerate a full-matrix workload.
 
 To specify the hosts to test, use the `-f` option to specify a file containing a list of host names, or use the `-h` option to name single host names on the command-line. If running the network performance test, all entries in the host file must be for network interfaces within the same subnet. If your segment hosts have multiple network interfaces configured on different subnets, run the network test once for each subnet.
 
 You must also specify at least one test directory (with `-d`). The user who runs `gpcheckperf` must have write access to the specified test directories on all remote hosts. For the disk I/O test, the test directories should correspond to your segment data directories (primary and/or mirrors). For the memory bandwidth and network tests, a temporary directory is required for the test program files.
 
-Before using `gpcheckperf`, you must have a trusted host setup between the hosts involved in the performance test. You can use the utility `gpssh-exkeys` to update the known host files and exchange public keys between hosts if you have not done so already. Note that `gpcheckperf` calls to `gpssh` and `gpsync`, so these Greenplum utilities must also be in your `$PATH`.
+Before using `gpcheckperf`, you must have a trusted host setup between the hosts involved in the performance test. You can use the utility `gpssh-exkeys` to update the known host files and exchange public keys between hosts if you have not done so already. Note that `gpcheckperf` calls to `gpssh` and `gpsync`, so these Cloudberry utilities must also be in your `$PATH`.
 
 ## Options
 
 **`-B block_size`**
 
-Specifies the block size (in KB or MB) to use for disk I/O test. The default is 32KB, which is the same as the Greenplum Database page size. The maximum block size is 1 MB.
+Specifies the block size (in KB or MB) to use for disk I/O test. The default is 32KB, which is the same as the Cloudberry Database page size. The maximum block size is 1 MB.
 
 **`-d test_directory`**
 
@@ -82,7 +82,7 @@ Specifies a single host name (or host address) that will participate in the perf
 
 **`--netperf`**
 
-Specifies that the `netperf` binary should be used to perform the network test instead of the Greenplum network test. To use this option, you must download `netperf` from [https://github.com/HewlettPackard/netperf](https://github.com/HewlettPackard/netperf) and install it into `$GPHOME/bin/lib` on all Greenplum hosts (coordinator and segments).
+Specifies that the `netperf` binary should be used to perform the network test instead of the Cloudberry network test. To use this option, you must download `netperf` from [https://github.com/HewlettPackard/netperf](https://github.com/HewlettPackard/netperf) and install it into `$GPHOME/bin/lib` on all Cloudberry hosts (coordinator and segments).
 
 **`-r ds{n|N|M}`**
 
@@ -92,7 +92,7 @@ Specifies which performance tests to run. The default is `dsn`:
 - Stream test (`s`)
 - Network performance test in sequential (`n`), parallel (`N`), or full-matrix (`M`) mode. The optional `--duration` option specifies how long (in seconds) to run the network test. To use the parallel (`N`) mode, you must run the test on an even number of hosts.
 
-If you would rather use `netperf` ([https://github.com/HewlettPackard/netperf](https://github.com/HewlettPackard/netperf)) instead of the Greenplum network test, you can download it and install it into `$GPHOME/bin/lib` on all Greenplum hosts (coordinator and segments). You would then specify the optional `--netperf` option to use the `netperf` binary instead of the default `gpnetbench*` utilities.
+If you would rather use `netperf` ([https://github.com/HewlettPackard/netperf](https://github.com/HewlettPackard/netperf)) instead of the Cloudberry network test, you can download it and install it into `$GPHOME/bin/lib` on all Cloudberry hosts (coordinator and segments). You would then specify the optional `--netperf` option to use the `netperf` binary instead of the default `gpnetbench*` utilities.
 
 **`-S file_size`**
 
@@ -131,7 +131,7 @@ $ gpcheckperf -f hostfile_gpchecknet_ic1 -r N -d /tmp
 $ gpcheckperf -f hostfile_gpchecknet_ic2 -r N -d /tmp
 ```
 
-Run the same test as above, but use `netperf` instead of the Greenplum network test (note that `netperf` must be installed in `$GPHOME/bin/lib` on all Greenplum hosts):
+Run the same test as above, but use `netperf` instead of the Cloudberry network test (note that `netperf` must be installed in `$GPHOME/bin/lib` on all Cloudberry hosts):
 
 ```shell
 $ gpcheckperf -f hostfile_gpchecknet_ic1 -r N --netperf -d /tmp

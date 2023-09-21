@@ -20,7 +20,7 @@ gpsync --version
 
 ## Description
 
-The `gpsync` utility allows you to copy one or more files from the specified hosts to other specified hosts in one command using remote sync. For example, you can copy a file from the Greenplum Database coordinator host to all of the segment hosts at the same time.
+The `gpsync` utility allows you to copy one or more files from the specified hosts to other specified hosts in one command using remote sync. For example, you can copy a file from the Cloudberry Database coordinator host to all of the segment hosts at the same time.
 
 To specify the hosts involved in the remote sync session, use the `-f` option to specify a file containing a list of host names, or use the `-h` option to name single host names on the command-line. At least one host name (`-h`) or a host file (`-f`) is required. The `-J` option allows you to specify a single character to substitute for the hostname in the `copy from` and `copy to` destination strings. If `-J` is not specified, the default substitution character is an equal sign (`=`). For example, the following command will copy `.bashrc` from the local host to `/home/gpadmin` on all hosts named in `hostfile_gpssh`:
 
@@ -85,7 +85,7 @@ gpsync -f hostfile_gpssh installer.tar =:/
 Copy the file named myfuncs.so to the specified location on the hosts named `sdw1` and `sdw2`:
 
 ```shell
-gpsync -h sdw1 -h sdw2 myfuncs.so =:/usr/local/greenplum-db/lib
+gpsync -h sdw1 -h sdw2 myfuncs.so =:/usr/local/cloudberry-db/lib
 ```
 
 ## See also

@@ -4,7 +4,7 @@ title: gpsupport gp_log_collector
 
 # gpsupport gp_log_collector
 
-This tool collects Greenplum and system log files, along with the relevant configuration parameters, and generates a file which can be provided to VMware Customer Support for diagnosis of errors or system failures.
+This tool collects Cloudberry and system log files, along with the relevant configuration parameters, and generates a file which can be provided to VMware Customer Support for diagnosis of errors or system failures.
 
 ## Usage
 
@@ -58,11 +58,11 @@ Answer Yes to all prompts.
 
 **`-skip-coordinator`**
 
-When running `gp_log_collector`, the generated tarball can be very large. Use this option to skip Greenplum Coordinator log collection when only Greenplum Segment logs are required.
+When running `gp_log_collector`, the generated tarball can be very large. Use this option to skip Cloudberry Coordinator log collection when only Cloudberry Segment logs are required.
 
 **`-with-gpbackup`**
 
-Beginning with Greenplum 6.22, this option enables you to collect logs related to backup and restore. 
+This option enables you to collect logs related to backup and restore. 
 
 With this option, `gpsupport` collects these log files from `$GPADMIN_HOME/gpAdminLogs`:
 
@@ -84,7 +84,7 @@ Also, the `pg_log` file is collected from the coordinator and segment hosts.
 
 **`-with-gptext`**
 
-Collect all GPText logs along with Greenplum logs.
+Collect all GPText logs along with Cloudberry logs.
 
 **`-with-gptext-only`**
 
@@ -92,21 +92,21 @@ Collect only GPText logs.
 
 **`-with-gpcc`**
 
-Collect log files related to Greenplum Command Center. Log files are collected from the following locations:
+Collect log files related to Cloudberry Command Center. Log files are collected from the following locations:
 
 - `$GPCC_HOME/logs/*`
 - `$GPCC_HOME/conf/app.conf`
-- `$HOME/gpmetrics/*` (Greenplum Command Center 6.8.0 and later on Greenplum Database 6.x or Greenplum Command Center 4.16.0 and later on Greenplum Database 5.x)
-- `$COORDINATOR_DATA_DIRECTORY/gpmetrics` (Greenplum Command Center 6.7.0 and earlier on Greenplum Database 6.x or Greenplum Command Center 4.15.0 and earlier on Greenplum Database 5.x)
+- `$HOME/gpmetrics/*`
+- `$COORDINATOR_DATA_DIRECTORY/gpmetrics`
 - The output of the `gppkg -q --all` command
 
 **`-with-gpss`**
 
-Collect log files related to Greenplum Streaming Server. If you do not specify a directory with the `-gpsslogdir` option, gpsupport collects logs from the `gpAdminLogs` directory. Log files are of the format `gpss_<date>.log`.
+Collect log files related to Cloudberry Streaming Server. If you do not specify a directory with the `-gpsslogdir` option, gpsupport collects logs from the `gpAdminLogs` directory. Log files are of the format `gpss_<date>.log`.
 
 **`-with-pxf`**
 
-Collect all PXF logs along with Greenplum logs.
+Collect all PXF logs along with Cloudberry logs.
 
 **`-with-pxf-only`**
 
@@ -114,7 +114,7 @@ Collect only PXF logs.
 
 **`-with-gpupgrade`**
 
-Collect all `gpupgrade` logs along with Greenplum logs.
+Collect all `gpupgrade` logs along with Cloudberry logs.
 
 
 > **Note** Hostnames provided through `-hostfile` or `-h` must match the hostname column in `gp_segment_configuration`.
@@ -127,7 +127,7 @@ The tool also collects the following information:
 | Segment server parameters | <ul><li>`uname -a`</li><li>`sysctl -a`</li><li>`psaux`</li><li>`netstat -rn`</li><li>`netstat -i`</li><li>`lsof`</li><li>`ifconfig`</li><li>`free`</li><li>`df -h`</li><li>`top`</li><li>`sar`</li></ul> |
 | System files from all hosts | <ul><li>`/etc/redhat-release`</li><li>`/etc/sysctl.conf`</li><li>`/etc/sysconfig/network`</li><li>`/etc/security/limits.conf`</li><li>`/var/log/dmesg`</li></ul> |
 | Database-related files from all hosts | <ul><li>`$SEG_DIR/pg_hba.conf`</li><li>`$SEG_DIR/pg_log/`</li><li>`$SEG_DIRE/postgresql.conf`</li><li>`~/gpAdminLogs`</li></ul> |
-| GPText files | <ul><li>Installation configuration file: `$GPTXTHOME/lib/python/gptextlib/consts.py` </li><li>`gptext-state -D`</li><li>`<gptext data dir>/solr*/solr.in`</li><li>`<gptext data dir>/solr*/log4j.properties`</li><li>`<gptext data dir>/zoo*/logs/*`</li><li>`commands/bash/-c_echo $PATH`</li><li>`commands/bash/-c_ps -ef | grep solr`</li><li>`commands/bash/-c_ps -ef | grep zookeeper`</li></ul> |
+| GPText files | <ul><li>Installation configuration file: `$GPTXTHOME/lib/python/gptextlib/consts.py` </li><li>`gptext-state -D`</li><li>`<gptext data dir>/solr*/solr.in`</li><li>`<gptext data dir>/solr*/log4j.properties`</li><li>`<gptext data dir>/zoo*/logs/*`</li><li>`commands/bash/-c_echo $PATH`</li> <li>commands/bash/-c_ps -ef \| grep solr </li><li>commands/bash/-c_ps -ef \| grep zookeeper</li></ul> |
 | PXF files | <ul><li>`pxf cluster status`</li><li>`pxf status`</li><li>PXF version</li><li>`Logs/`</li><li>`CONF/`</li><li>`Run/`</li></ul> |
 | gpupgrade files | <ul><li>`~/gpAdminLogs` on all hosts</li><li>`$HOME/gpupgrade` on coordinator host</li><li>`$HOME/.gpupgrade` on all hosts</li><li>Source cluster's `pg_log` files located in `$COORDINATOR_DATA_DIRECTORY/pg_log` on coordinator host</li><li>Target cluster's `pg_log` files located in `$(gpupgrade config show --target-datadir)/pg_log` on coordinator host</li><li>Target cluster's coordinator data directory</li></ul> |
 
@@ -135,7 +135,7 @@ The tool also collects the following information:
 
 ## Examples
 
-Collect Greenplum coordinator and segment logs listed in a hostfile from today:
+Collect Cloudberry coordinator and segment logs listed in a hostfile from today:
 
 ```shell
 gpsupport gp_log_collector -hostfile ~/gpconfig/hostfile
@@ -159,7 +159,7 @@ Collect logs from host `sdw2.gpdb.local` between 2023-06-07 07:21 and 2023-06-07
 gpsupport gp_log_collector -start 2023-06-07 07:21 -end 2023-06-07 07:24
 ```
 
-Collect only GPText logs for all segments, without any Greenplum logs:
+Collect only GPText logs for all segments, without any Cloudberry logs:
 
 ```shell
 gpsupport gp_log_collector -with-gptext-only

@@ -4,7 +4,7 @@ title: gpcheckcat
 
 # gpcheckcat
 
-The `gpcheckcat` utility tests Greenplum Database catalog tables for inconsistencies.
+The `gpcheckcat` utility tests Cloudberry Database catalog tables for inconsistencies.
 
 The utility is in `$GPHOME/bin/lib`.
 
@@ -39,7 +39,7 @@ The `gpcheckcat` utility runs multiple tests that check for database catalog inc
 
 > **Note** Any time you run the utility, it checks for and deletes orphaned, temporary database schemas (temporary schemas without a session ID) in the specified databases. The utility displays the results of the orphaned, temporary schema check on the command line and also logs the results.
 
-Catalog inconsistencies are inconsistencies that occur between Greenplum Database system tables. In general, there are three types of inconsistencies:
+Catalog inconsistencies are inconsistencies that occur between Cloudberry Database system tables. In general, there are three types of inconsistencies:
 
 - Inconsistencies in system tables at the segment level. For example, an inconsistency between a system table that contains table data and a system table that contains column data. As another, a system table that contains duplicates in a column that should to be unique.
 
@@ -50,13 +50,13 @@ Catalog inconsistencies are inconsistencies that occur between Greenplum Databas
 
 **`-A`**
 
-Run `gpcheckcat` on all databases in the Greenplum Database installation.
+Run `gpcheckcat` on all databases in the Cloudberry Database installation.
 
 **`-B <parallel_processes>`**
 
 The number of processes to run in parallel.
 
-The `gpcheckcat` utility attempts to determine the number of simultaneous processes (the batch size) to use. The utility assumes it can use a buffer with a minimum of 20MB for each process. The maximum number of parallel processes is the number of Greenplum Database segment instances. The utility displays the number of parallel processes that it uses when it starts checking the catalog.
+The `gpcheckcat` utility attempts to determine the number of simultaneous processes (the batch size) to use. The utility assumes it can use a buffer with a minimum of 20MB for each process. The maximum number of parallel processes is the number of Cloudberry Database segment instances. The utility displays the number of parallel processes that it uses when it starts checking the catalog.
 
 > **Note** The utility might run out of memory if the number of errors returned exceeds the buffer size. If an out of memory error occurs, you can lower the batch size with the `-B` option. For example, if the utility displays a batch size of 936 and runs out of memory, you can specify `-B 468` to run 468 processes in parallel.
 
@@ -78,17 +78,17 @@ Run only the `gpcheckcat` tests that can be run in online (not restricted) mode.
 
 **`-p port`**
 
-This option specifies the port that is used by the Greenplum Database.
+This option specifies the port that is used by the Cloudberry Database.
 
 **`-P password`**
 
-The password of the user connecting to Greenplum Database.
+The password of the user connecting to Cloudberry Database.
 
 **`-R test_name | 'test_name1,test_name2 [, ...]'`**
 
 Specify one or more tests to run. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
 
-Some tests can be run only when Greenplum Database is in restricted mode.
+Some tests can be run only when Cloudberry Database is in restricted mode.
 
 These are the tests that can be performed:
 
@@ -128,13 +128,13 @@ Specify one ore more tests to skip. Specify multiple tests as a comma-delimited 
 
 **`-S {none | only}`**
 
-Specify this option to control the testing of catalog tables that are shared across all databases in the Greenplum Database installation, such as *pg_database*.
+Specify this option to control the testing of catalog tables that are shared across all databases in the Cloudberry Database installation, such as *pg_database*.
 
 The value `none` deactivates testing of shared catalog tables. The value `only` tests only the shared catalog tables.
 
 **`-U user_name`**
 
-The user connecting to Greenplum Database.
+The user connecting to Cloudberry Database.
 
 **`-? | --help`**
 

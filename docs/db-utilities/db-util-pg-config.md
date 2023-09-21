@@ -4,7 +4,7 @@ title: pg_config
 
 # pg_config
 
-Retrieves information about the installed version of Greenplum Database.
+Retrieves information about the installed version of Cloudberry Database.
 
 ## Synopsis
 
@@ -18,7 +18,7 @@ pg_config --version
 
 ## Description
 
-The `pg_config` utility prints configuration parameters of the currently installed version of Greenplum Database. It is intended, for example, to be used by software packages that want to interface to Greenplum Database to facilitate finding the required header files and libraries. Note that information printed out by `pg_config` is for the Greenplum Database coordinator only.
+The `pg_config` utility prints configuration parameters of the currently installed version of Cloudberry Database. It is intended, for example, to be used by software packages that want to interface to Cloudberry Database to facilitate finding the required header files and libraries. Note that information printed out by `pg_config` is for the Cloudberry Database coordinator only.
 
 If more than one option is given, the information is printed in that order, one item per line. If no options are given, all available information is printed, with labels.
 
@@ -74,47 +74,47 @@ Print the location of extension makefiles.
 
 **`--configure`**
 
-Print the options that were given to the configure script when Greenplum Database was configured for building.
+Print the options that were given to the configure script when Cloudberry Database was configured for building.
 
 **`--cc`**
 
-Print the value of the CC variable that was used for building Greenplum Database. This shows the C compiler used.
+Print the value of the CC variable that was used for building Cloudberry Database. This shows the C compiler used.
 
 **`--cppflags`**
 
-Print the value of the `CPPFLAGS` variable that was used for building Greenplum Database. This shows C compiler switches needed at preprocessing time.
+Print the value of the `CPPFLAGS` variable that was used for building Cloudberry Database. This shows C compiler switches needed at preprocessing time.
 
 **`--cflags`**
 
-Print the value of the `CFLAGS` variable that was used for building Greenplum Database. This shows C compiler switches.
+Print the value of the `CFLAGS` variable that was used for building Cloudberry Database. This shows C compiler switches.
 
 **`--cflags_sl`**
 
-Print the value of the `CFLAGS_SL` variable that was used for building Greenplum Database. This shows extra C compiler switches used for building shared libraries.
+Print the value of the `CFLAGS_SL` variable that was used for building Cloudberry Database. This shows extra C compiler switches used for building shared libraries.
 
 **`--ldflags`**
 
-Print the value of the `LDFLAGS` variable that was used for building Greenplum Database. This shows linker switches.
+Print the value of the `LDFLAGS` variable that was used for building Cloudberry Database. This shows linker switches.
 
 **`--ldflags_ex`**
 
-Print the value of the `LDFLAGS_EX` variable that was used for building Greenplum Database. This shows linker switches that were used for building executables only.
+Print the value of the `LDFLAGS_EX` variable that was used for building Cloudberry Database. This shows linker switches that were used for building executables only.
 
 **`--ldflags_sl`**
 
-Print the value of the `LDFLAGS_SL` variable that was used for building Greenplum Database. This shows linker switches used for building shared libraries only.
+Print the value of the `LDFLAGS_SL` variable that was used for building Cloudberry Database. This shows linker switches used for building shared libraries only.
 
 **`--libs`**
 
-Print the value of the `LIBS` variable that was used for building Greenplum Database. This normally contains `-l` switches for external libraries linked into Greenplum Database.
+Print the value of the `LIBS` variable that was used for building Cloudberry Database. This normally contains `-l` switches for external libraries linked into Cloudberry Database.
 
 **`--version`**
 
-Print the version of Greenplum Database.
+Print the version of Cloudberry Database.
 
 ## Examples
 
-To reproduce the build configuration of the current Greenplum Database installation, run the following command:
+To reproduce the build configuration of the current Cloudberry Database installation, run the following command:
 
 ```shell
 eval ./configure 'pg_config --configure'

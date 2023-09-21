@@ -4,7 +4,7 @@ title: gpdeletesystem
 
 # gpdeletesystem
 
-Deletes a Greenplum Database system that was initialized using `gpinitsystem`.
+Deletes a Cloudberry Database system that was initialized using `gpinitsystem`.
 
 ## Synopsis
 
@@ -27,10 +27,10 @@ The `gpdeletesystem` utility performs the following actions:
 Before running `gpdeletesystem`:
 
 - Move any backup files out of the coordinator and segment data directories.
-- Make sure that Greenplum Database is running.
+- Make sure that Cloudberry Database is running.
 - If you are currently in a segment data directory, change directory to another location. The utility fails with an error when run from within a segment data directory.
 
-This utility will not uninstall the Greenplum Database software.
+This utility will not uninstall the Cloudberry Database software.
 
 ## Options
 
@@ -44,7 +44,7 @@ The number of segments to delete in parallel. If not specified, the utility will
 
 **`-f (force)`**
 
-Force a delete even if backup files are found in the data directories. The default is to not delete Greenplum Database instances if backup files are present.
+Force a delete even if backup files are found in the data directories. The default is to not delete Cloudberry Database instances if backup files are present.
 
 **`-l logfile_directory`**
 
@@ -64,13 +64,13 @@ Displays the version, status, last updated date, and check sum of this utility.
 
 ## Examples
 
-Delete a Greenplum Database system:
+Delete a Cloudberry Database system:
 
 ```shell
 gpdeletesystem -d /gpdata/gp-1
 ```
 
-Delete a Greenplum Database system even if backup files are present:
+Delete a Cloudberry Database system even if backup files are present:
 
 ```shell
 gpdeletesystem -d /gpdata/gp-1 -f

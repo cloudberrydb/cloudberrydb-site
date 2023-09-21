@@ -4,7 +4,7 @@ title: psql
 
 # psql
 
-Interactive command-line interface for Greenplum Database
+Interactive command-line interface for Cloudberry Database
 
 ## Synopsis
 
@@ -14,7 +14,7 @@ psql [<option> ...] [<dbname> [<username>]]
 
 ## Description
 
-`psql` is a terminal-based front-end to Greenplum Database. It enables you to type in queries interactively, issue them to Greenplum Database, and see the query results. Alternatively, input can be from a file. In addition, it provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.
+`psql` is a terminal-based front-end to Cloudberry Database. It enables you to type in queries interactively, issue them to Cloudberry Database, and see the query results. Alternatively, input can be from a file. In addition, it provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.
 
 ## Options
 
@@ -150,13 +150,13 @@ Show help about `psql` command line arguments, and exit.
 
 **`-h host | --host=host`**
 
-The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
+The host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
 When starting `psql` on the coordinator host, if the host value begins with a slash, it is used as the directory for the UNIX-domain socket.
 
 **`-p port | --port=port`**
 
-The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to `5432`.
+The TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to `5432`.
 
 **`-U username | --username=username`**
 
@@ -180,7 +180,7 @@ Never issue a password prompt. If the server requires password authentication an
 
 ### Connect to a database**
 
-`psql` is a client application for Greenplum Database. In order to connect to a database you need to know the name of your target database, the host name and port number of the Greenplum coordinator server and what database user name you want to connect as. `psql` can be told about those parameters via command line options, namely `-d`, `-h`, `-p`, and `-U` respectively. If an argument is found that does not belong to any option it will be interpreted as the database name (or the user name, if the database name is already given). Not all of these options are required; there are useful defaults. If you omit the host name, `psql` will connect via a UNIX-domain socket to a coordinator server on the local host, or via TCP/IP to `localhost` on machines that do not have UNIX-domain sockets. The default coordinator port number is 5432. If you use a different port for the coordinator, you must specify the port. The default database user name is your operating-system user name, as is the default database name. Note that you cannot just connect to any database under any user name. Your database administrator should have informed you about your access rights.
+`psql` is a client application for Cloudberry Database. In order to connect to a database you need to know the name of your target database, the host name and port number of the Cloudberry coordinator server and what database user name you want to connect as. `psql` can be told about those parameters via command line options, namely `-d`, `-h`, `-p`, and `-U` respectively. If an argument is found that does not belong to any option it will be interpreted as the database name (or the user name, if the database name is already given). Not all of these options are required; there are useful defaults. If you omit the host name, `psql` will connect via a UNIX-domain socket to a coordinator server on the local host, or via TCP/IP to `localhost` on machines that do not have UNIX-domain sockets. The default coordinator port number is 5432. If you use a different port for the coordinator, you must specify the port. The default database user name is your operating-system user name, as is the default database name. Note that you cannot just connect to any database under any user name. Your database administrator should have informed you about your access rights.
 
 When the defaults are not right, you can save yourself some typing by setting any or all of the environment variables `PGAPPNAME`, `PGDATABASE`, `PGHOST`, `PGPORT`, and `PGUSER` to appropriate values.
 
@@ -242,7 +242,7 @@ If the current table output format is unaligned, it is switched to aligned. If i
 
 **`\c | \connect [dbname [username] [host] [port]] | conninfo`**
 
-Establishes a new Greenplum Database connection. The connection parameters to use can be specified either using a positional syntax, or using `conninfo` connection strings as detailed in [libpq Connection Strings](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING).
+Establishes a new Cloudberry Database connection. The connection parameters to use can be specified either using a positional syntax, or using `conninfo` connection strings as detailed in [libpq Connection Strings](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING).
 
 Where the command omits database name, user, host, or port, the new connection can reuse values from the previous connection. By default, values from the previous connection are reused except when processing a `conninfo` string. Passing a first argument of `-reuse-previous=on` or `-reuse-previous=off` overrides that default. When the command neither specifies nor reuses a particular parameter, the `libpq` default is used. Specifying any of dbname, username, host or port as `-` is equivalent to omitting that parameter.
 
@@ -283,7 +283,7 @@ This operation is not as efficient as the SQL `COPY` command because all data mu
 
 **`\copyright`**
 
-Shows the copyright and distribution terms of PostgreSQL on which Greenplum Database is based.
+Shows the copyright and distribution terms of PostgreSQL on which Cloudberry Database is based.
 
 **`\d [relation_pattern]  | \d+ [relation_pattern] | \dS [relation_pattern]`**
 
@@ -384,7 +384,7 @@ Lists database roles. (Since the concepts of "users" and "groups" have been unif
 
 This is an alias for `\lo_list`, which shows a list of large objects.
 
-> **Note** Greenplum Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
+> **Note** Cloudberry Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
 
 **`\dL[S+] [pattern]`**
 
@@ -432,7 +432,7 @@ Lists event triggers. If a pattern is specified, only those triggers whose names
 
 Lists event triggers. If a pattern is specified, only those triggers whose names match the pattern are listed. If `+` is appended to the command name, each object is listed with its associated description.
 
-> **Note** Greenplum Database does not support user-defined triggers.
+> **Note** Cloudberry Database does not support user-defined triggers.
 
 **`\e | \edit [filename] [line_number]`**
 
@@ -529,7 +529,7 @@ List the databases in the server and show their names, owners, character set enc
 
 Reads the large object with OID loid from the database and writes it to filename. Note that this is subtly different from the server function `lo_export`, which acts with the permissions of the user that the database server runs as and on the server's file system. Use `\lo_list` to find out the large object's OID.
 
-> **Note** Greenplum Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
+> **Note** Cloudberry Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
 
 **`\lo_import large_object_filename [comment]`**
 
@@ -543,19 +543,19 @@ lo_import 152801
 
 The response indicates that the large object received object ID 152801 which one ought to remember if one wants to access the object ever again. For that reason it is recommended to always associate a human-readable comment with every object. Those can then be seen with the `\lo_list` command. Note that this command is subtly different from the server-side `lo_import` because it acts as the local user on the local file system, rather than the server's user and file system.
 
-> **Note** Greenplum Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
+> **Note** Cloudberry Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
 
 **`\lo_list`**
 
 Shows a list of all large objects currently stored in the database, along with any comments provided for them.
 
-> **Note** Greenplum Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
+> **Note** Cloudberry Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
 
 **`\lo_unlink largeobject_oid`**
 
 Deletes the large object of the specified OID from the database. Use `\lo_list` to find out the large object's OID.
 
-> **Note** Greenplum Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
+> **Note** Cloudberry Database does not support the PostgreSQL [large object facility](https://www.postgresql.org/docs/12/largeobjects.html) for streaming user data that is stored in large-object structures.
 
 **`\o | \out [ filename ]`**<br />
 **`\o | \out [ `|` command ]`**
@@ -776,7 +776,7 @@ If set to `all`, all nonempty input lines are printed to standard output as they
 
 **`ECHO_HIDDEN`**
 
-When this variable is set to `on` and a backslash command queries the database, the query is first shown. This feature helps you to study Greenplum Database internals and provide similar functionality in your own programs. (To select this behavior on program start-up, use the switch `-E`.) If you set the variable to the value `noexec`, the queries are just shown but are not actually sent to the server and run.
+When this variable is set to `on` and a backslash command queries the database, the query is first shown. This feature helps you to study Cloudberry Database internals and provide similar functionality in your own programs. (To select this behavior on program start-up, use the switch `-E`.) If you set the variable to the value `noexec`, the queries are just shown but are not actually sent to the server and run.
 
 **`ENCODING`**
 
@@ -887,7 +887,7 @@ testdb=> INSERT INTO my_table VALUES (:'content');
 
 Since colons can legally appear in SQL commands, an apparent attempt at interpolation (that is, `:name`, `:'name'`, or `:"name"`) is not replaced unless the named variable is currently set. In any case, you can escape a colon with a backslash to protect it from substitution.
 
-The colon syntax for variables is standard SQL for embedded query languages, such as ECPG. The colon syntaxes for array slices and type casts are Greenplum Database extensions, which can sometimes conflict with the standard usage. The colon-quote syntax for escaping a variable's value as an SQL literal or identifier is a `psql` extension.
+The colon syntax for variables is standard SQL for embedded query languages, such as ECPG. The colon syntaxes for array slices and type casts are Cloudberry Database extensions, which can sometimes conflict with the standard usage. The colon-quote syntax for escaping a variable's value as an SQL literal or identifier is a `psql` extension.
 
 ### Prompting
 
@@ -1021,7 +1021,7 @@ Directory for storing temporary files. The default is `/tmp`.
 
 Unless it is passed an `-X` or `-c` option, `psql` attempts to read and run commands from the system-wide startup file (`psqlrc`) and then the user's personal startup file (`~/.psqlrc`), after connecting to the database but before accepting normal commands. These files can be used to set up the client and/or the server to taste, typically with `\set` and `SET` commands.
 
-The system-wide startup file is named `psqlrc` and is sought in the installation's "system configuration" directory, which is most reliably identified by running `pg_config --sysconfdir`. By default this directory will be`../etc/` relative to the directory containing the Greenplum Database executables. The name of this directory can be set explicitly via the `PGSYSCONFDIR` environment variable.
+The system-wide startup file is named `psqlrc` and is sought in the installation's "system configuration" directory, which is most reliably identified by running `pg_config --sysconfdir`. By default this directory will be`../etc/` relative to the directory containing the Cloudberry Database executables. The name of this directory can be set explicitly via the `PGSYSCONFDIR` environment variable.
 
 The user's personal startup file is named `.psqlrc` and is sought in the invoking user's home directory. On Windows, which lacks such a concept, the personal startup file is named `%APPDATA%\postgresql\psqlrc.conf`. The location of the user's startup file can be set explicitly via the `PSQLRC` environment variable.
 

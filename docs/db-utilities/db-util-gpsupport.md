@@ -20,11 +20,11 @@ gpsupport -verbose
 
 ## Tools
 
-**Greenplum**
+**Cloudberry**
 
 **`[analyze_session](/docs/db-utilities/db-util-gpsupport-analyze-session.md)`**
 
-Collect information from a hung Greenplum Database session for remote analysis.
+Collect information from a hung Cloudberry Database session for remote analysis.
 
 **`catalogbackup`**
 
@@ -32,7 +32,7 @@ Back up catalog prior to performing catalog repairs.
 
 **`[gp_log_collector](/docs/db-utilities/db-util-gpsupport-gp-log-collector.md)`**
 
-Basic Greenplum Database log collection utility.
+Basic Cloudberry Database log collection utility.
 
 **`[storage_rca_collector](/docs/db-utilities/db-util-gpsupport-gp-storage-rca-collector.md)`**
 
@@ -40,11 +40,11 @@ Collect storage-related artifacts.
 
 **`gpcheckcat`**
 
-For VMware Support use only. Greenplum Database gpcheckcat log analysis.
+For VMware Support use only. Cloudberry Database gpcheckcat log analysis.
 
 **`gpcheckup`**
 
-For VMware Support use only. Greenplum Database Health Check.
+Cloudberry Database Health Check.
 
 **`[gpstatscheck](/docs/db-utilities/db-util-gpsupport-gpstatscheck.md)`**
 

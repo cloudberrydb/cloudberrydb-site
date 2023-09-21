@@ -18,7 +18,7 @@ createuser -V | --version
 
 ## Description
 
-`createuser` creates a new Greenplum Database role. You must be a superuser or have the `CREATEROLE` privilege to create new roles. You must connect to the database as a superuser to create new superusers.
+`createuser` creates a new Cloudberry Database role. You must be a superuser or have the `CREATEROLE` privilege to create new roles. You must connect to the database as a superuser to create new superusers.
 
 Superusers can bypass all access permission checks within the database, so superuser privileges should not be granted lightly.
 
@@ -28,7 +28,7 @@ Superusers can bypass all access permission checks within the database, so super
 
 **`role_name`**
 
-The name of the role to be created. This name must be different from all existing roles in this Greenplum Database installation.
+The name of the role to be created. This name must be different from all existing roles in this Cloudberry Database installation.
 
 **`-c number | --connection-limit=number`**
 
@@ -64,7 +64,7 @@ Prompt for the user name if none is specified on the command line, and also prom
 
 **`-l | --login`**
 
-The new role will be allowed to log in to Greenplum Database. This is the default.
+The new role will be allowed to log in to Cloudberry Database. This is the default.
 
 **`-L | --no-login`**
 
@@ -114,11 +114,11 @@ Show help about `createuser` command line arguments, and exit.
 
 **`-h host | --host=host`**
 
-The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
+The host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
 **`-p port | --port=port`**
 
-The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+The TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
 **`-U username | --username=username`**
 

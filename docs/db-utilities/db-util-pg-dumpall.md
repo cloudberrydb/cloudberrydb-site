@@ -4,7 +4,7 @@ title: pg_dumpall
 
 # pg_dumpall
 
-Extracts all databases in a Greenplum Database system to a single script file or other archive file.
+Extracts all databases in a Cloudberry Database system to a single script file or other archive file.
 
 ## Synopsis
 
@@ -18,7 +18,7 @@ pg_dumpall -V | --version
 
 ## Description
 
-`pg_dumpall` is a standard PostgreSQL utility for backing up all databases in a Greenplum Database (or PostgreSQL) instance, and is also supported in Greenplum Database. It creates a single (non-parallel) dump file. For routine backups of Greenplum Database it is better to use the Greenplum Database backup utility, [gpbackup](https://docs.vmware.com/en/VMware-Greenplum-Backup-and-Restore/index.html), for the best performance.
+`pg_dumpall` is a standard PostgreSQL utility for backing up all databases in a Cloudberry Database (or PostgreSQL) instance, and is also supported in Cloudberry Database. It creates a single (non-parallel) dump file. For routine backups of Cloudberry Database it is better to use the Cloudberry Database backup utility, [gpbackup](https://docs.vmware.com/en/VMware-Greenplum-Backup-and-Restore/index.html), for the best performance.
 
 `pg_dumpall` creates a single script file that contains SQL commands that can be used as input to [psql](/docs/db-utilities/db-util-psql.md) to restore the databases. It does this by calling [pg_dump](/docs/db-utilities/db-util-pg-dump.md) for each database. `pg_dumpall` also dumps global objects that are common to all databases. (`pg_dump` does not save these objects.) This currently includes information about database users and groups, and access permissions that apply to databases as a whole.
 
@@ -26,7 +26,7 @@ Since `pg_dumpall` reads tables from all databases you will most likely have to 
 
 The SQL script will be written to the standard output. Use the `[-f | --file]` option or shell operators to redirect it into a file.
 
-`pg_dumpall` needs to connect several times to the Greenplum Database coordinator server (once per database). If you use password authentication it is likely to ask for a password each time. It is convenient to have a `~/.pgpass` file in such cases.
+`pg_dumpall` needs to connect several times to the Cloudberry Database coordinator server (once per database). If you use password authentication it is likely to ask for a password each time. It is convenient to have a `~/.pgpass` file in such cases.
 
 ## Options
 
@@ -34,7 +34,7 @@ The SQL script will be written to the standard output. Use the `[-f | --file]` o
 
 **`-a | --data-only`**
 
-Dump only the data, not the schema (data definitions). This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/pg_restore.md).
+Dump only the data, not the schema (data definitions). This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
 
 **`-c | --clean`**
 Output commands to clean (drop) database objects prior to (the commands for) creating them. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
@@ -49,7 +49,7 @@ Dump only global objects (roles and tablespaces), no databases.
 
 **`-o | --oids`**
 
-Dump object identifiers (OIDs) as part of the data for every table. Use of this option is not recommended for files that are intended to be restored into Greenplum Database.
+Dump object identifiers (OIDs) as part of the data for every table. Use of this option is not recommended for files that are intended to be restored into Cloudberry Database.
 
 **`-O | --no-owner`**
 
@@ -67,7 +67,7 @@ Dump only the object definitions (schema), not data.
 
 Specify the superuser user name to use when deactivating triggers. This is relevant only if `--disable-triggers` is used. It is better to leave this out, and instead start the resulting script as a superuser.
 
-> **Note** Greenplum Database does not support user-defined triggers.
+> **Note** Cloudberry Database does not support user-defined triggers.
 
 **`-t | --tablespaces-only`**
 
@@ -75,7 +75,7 @@ Dump only tablespaces, not databases or roles.
 
 **`-v | --verbose`**
 
-Specifies verbose mode. This will cause [pg_dump](/docs/db-utilities/pg_dump.md) to output detailed object comments and start/stop times to the dump file, and progress messages to standard error.
+Specifies verbose mode. This will cause [pg_dump](/docs/db-utilities/db-util-pg-dump.md) to output detailed object comments and start/stop times to the dump file, and progress messages to standard error.
 
 **`-V | --version`**
 
@@ -101,7 +101,7 @@ This option deactivates the use of dollar quoting for function bodies, and force
 
 This option is relevant only when creating a data-only dump. It instructs `pg_dumpall` to include commands to temporarily deactivate triggers on the target tables while the data is reloaded. Use this if you have triggers on the tables that you do not want to invoke during data reload. The commands emitted for `--disable-triggers` must be done as superuser. So, you should also specify a superuser name with `-S`, or preferably be careful to start the resulting script as a superuser.
 
-> **Note** Greenplum Database does not support user-defined triggers.
+> **Note** Cloudberry Database does not support user-defined triggers.
 
 **`--inserts`**
 
@@ -109,7 +109,7 @@ Dump data as `INSERT` commands (rather than `COPY`). This will make restoration 
 
 **`--lock-wait-timeout=timeout`**
 
-Do not wait forever to acquire shared table locks at the beginning of the dump. Instead, fail if unable to lock a table within the specified timeout. The timeout may be specified in any of the formats accepted by `SET statement_timeout`. Allowed values vary depending on the server version you are dumping from, but an integer number of milliseconds is accepted by all Greenplum Database versions.
+Do not wait forever to acquire shared table locks at the beginning of the dump. Instead, fail if unable to lock a table within the specified timeout. The timeout may be specified in any of the formats accepted by `SET statement_timeout`. Allowed values vary depending on the server version you are dumping from, but an integer number of milliseconds is accepted by all Cloudberry Database versions.
 
 **`--no-security-labels`**
 
@@ -125,7 +125,7 @@ Do not dump the contents of unlogged tables. This option has no effect on whethe
 
 **`--quote-all-identifiers`**
 
-Force quoting of all identifiers. This option is recommended when dumping a database from a server whose Greenplum Database major version is different from `pg_dumpall`'s, or when the output is intended to be loaded into a server of a different major version. By default, `pg_dumpall` quotes only identifiers that are reserved words in its own major version. This sometimes results in compatibility issues when dealing with servers of other versions that may have slightly different sets of reserved words. Using `--quote-all-identifiers` prevents such issues, at the price of a harder-to-read dump script.
+Force quoting of all identifiers. By default, `pg_dumpall` quotes only identifiers that are reserved words in its own major version. This sometimes results in compatibility issues when dealing with servers of other versions that may have slightly different sets of reserved words. Using `--quote-all-identifiers` prevents such issues, at the price of a harder-to-read dump script.
 
 **`--resource-queues`**
 
@@ -141,7 +141,7 @@ Output SQL-standard `SET SESSION AUTHORIZATION` commands instead of `ALTER OWNER
 
 **`--gp-syntax`**
 
-Output Greenplum Database syntax in the `CREATE TABLE` statements. This allows the distribution policy (`DISTRIBUTED BY` or `DISTRIBUTED RANDOMLY` clauses) of a Greenplum Database table to be dumped, which is useful for restoring into other Greenplum Database systems.
+Output Cloudberry Database syntax in the `CREATE TABLE` statements. This allows the distribution policy (`DISTRIBUTED BY` or `DISTRIBUTED RANDOMLY` clauses) of a Cloudberry Database table to be dumped, which is useful for restoring into other Cloudberry Database systems.
 
 **`--no-gp-syntax`**
 
@@ -161,7 +161,7 @@ The option is called `--dbname` for consistency with other client applications, 
 
 **`-h host | --host=host`**
 
-The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to `localhost`.
+The host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to `localhost`.
 
 **`-l dbname | --database=dbname`**
 
@@ -169,7 +169,7 @@ Specifies the name of the database in which to connect to dump global objects. I
 
 **`-p port | --port=port`**
 
-The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to `5432`.
+The TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to `5432`.
 
 **`-U username | --username= username`**
 

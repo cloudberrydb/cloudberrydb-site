@@ -4,7 +4,7 @@ title: gpstop
 
 # gpstop
 
-Stops or restarts a Greenplum Database system.
+Stops or restarts a Cloudberry Database system.
 
 ## Synopsis
 
@@ -27,7 +27,7 @@ gpstop -? | -h | --help
 
 ## Description
 
-The `gpstop` utility is used to stop the database servers that comprise a Greenplum Database system. When you stop a Greenplum Database system, you are actually stopping several `postgres` database server processes at once (the coordinator and all of the segment instances). The `gpstop` utility handles the shutdown of the individual instances. Each instance is shutdown in parallel.
+The `gpstop` utility is used to stop the database servers that comprise a Cloudberry Database system. When you stop a Cloudberry Database system, you are actually stopping several `postgres` database server processes at once (the coordinator and all of the segment instances). The `gpstop` utility handles the shutdown of the individual instances. Each instance is shutdown in parallel.
 
 The default shutdown mode (`-M smart`) waits for current client connections to finish before completing the shutdown. If any connections remain open after the timeout period, or if you interrupt with CTRL-C, `gpstop` lists the open connections and prompts whether to continue waiting for connections to finish, or to perform a fast or immediate shutdown. The default timeout period is 120 seconds and can be changed with the `-t timeout_seconds` option.
 
@@ -51,7 +51,7 @@ Optional. The coordinator host data directory. If not specified, the value set f
 
 **`--host host_name`**
 
-The utility shuts down the Greenplum Database segment instances on the specified host to allow maintenance on the host. Each primary segment instance on the host is shut down and the associated mirror segment instance is promoted to a primary segment if the mirror segment is on another host. Mirror segment instances on the host are shut down.
+The utility shuts down the Cloudberry Database segment instances on the specified host to allow maintenance on the host. Each primary segment instance on the host is shut down and the associated mirror segment instance is promoted to a primary segment if the mirror segment is on another host. Mirror segment instances on the host are shut down.
 
 The segment instances are not shut down and the utility returns an error in these cases:
 
@@ -69,7 +69,7 @@ The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
 **`-m`**
 
-Optional. Shuts down a Greenplum coordinator instance that was started in maintenance mode.
+Optional. Shuts down a Cloudberry coordinator instance that was started in maintenance mode.
 
 **`-M fast`**
 
@@ -95,11 +95,11 @@ Restart after shutdown is complete.
 
 **`-t timeout_seconds`**
 
-Specifies a timeout threshold (in seconds) to wait for a segment instance to shutdown. If a segment instance does not shutdown in the specified number of seconds, `gpstop` displays a message indicating that one or more segments are still in the process of shutting down and that you cannot restart Greenplum Database until the segment instance(s) are stopped. This option is useful in situations where `gpstop` is run and there are very large transactions that need to rollback. These large transactions can take over a minute to rollback and surpass the default timeout period of 120 seconds.
+Specifies a timeout threshold (in seconds) to wait for a segment instance to shutdown. If a segment instance does not shutdown in the specified number of seconds, `gpstop` displays a message indicating that one or more segments are still in the process of shutting down and that you cannot restart Cloudberry Database until the segment instance(s) are stopped. This option is useful in situations where `gpstop` is run and there are very large transactions that need to rollback. These large transactions can take over a minute to rollback and surpass the default timeout period of 120 seconds.
 
 **`-u`**
 
-This option reloads the `pg_hba.conf` files of the coordinator and segments and the runtime parameters of the `postgresql.conf` files but does not shutdown the Greenplum Database array. Use this option to make new configuration settings active after editing `postgresql.conf` or `pg_hba.conf`. Note that this only applies to configuration parameters that are designated as *runtime* parameters.
+This option reloads the `pg_hba.conf` files of the coordinator and segments and the runtime parameters of the `postgresql.conf` files but does not shutdown the Cloudberry Database array. Use this option to make new configuration settings active after editing `postgresql.conf` or `pg_hba.conf`. Note that this only applies to configuration parameters that are designated as *runtime* parameters.
 
 **`-v`**
 
@@ -119,13 +119,13 @@ Displays the version of this utility.
 
 ## Examples
 
-Stop a Greenplum Database system in smart mode:
+Stop a Cloudberry Database system in smart mode:
 
 ```shell
 gpstop
 ```
 
-Stop a Greenplum Database system in fast mode:
+Stop a Cloudberry Database system in fast mode:
 
 ```shell
 gpstop -M fast
@@ -143,7 +143,7 @@ Stop a coordinator instance that was started in maintenance mode:
 gpstop -m
 ```
 
-Reload the `postgresql.conf` and `pg_hba.conf` files after making configuration changes but do not shutdown the Greenplum Database array:
+Reload the `postgresql.conf` and `pg_hba.conf` files after making configuration changes but do not shutdown the Cloudberry Database array:
 
 ```shell
 gpstop -u

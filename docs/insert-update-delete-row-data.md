@@ -303,7 +303,7 @@ Deleted or updated data rows occupy physical space on disk even though new trans
 VACUUM mytable;
 ```
 
-The `VACUUM` command collects table-level statistics such as the number of rows and pages. Vacuum all tables after loading data, including append-optimized tables. For information about recommended routine vacuum operations, see [Routine Vacuum and Analyze](managing/maintain.html).
+The `VACUUM` command collects table-level statistics such as the number of rows and pages. Vacuum all tables after loading data, including append-optimized tables.
 
 > **Important** The `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE` commands should be used to maintain the data in a Cloudberry Database especially if updates and deletes are frequently performed on your database data.
 

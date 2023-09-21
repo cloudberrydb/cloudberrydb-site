@@ -25,7 +25,7 @@ vacuumdb -V | --version
 
 ## Description
 
-`vacuumdb` is a utility for cleaning a Greenplum Database database. `vacuumdb` will also generate internal statistics used by the Greenplum Database query optimizer.
+`vacuumdb` is a utility for cleaning a Cloudberry Database database. `vacuumdb` will also generate internal statistics used by the Cloudberry Database query optimizer.
 
 `vacuumdb` is a wrapper around the SQL command `VACUUM`. There is no effective difference between vacuuming databases via this utility and via other methods for accessing the server.
 
@@ -47,7 +47,7 @@ Echo the commands that `reindexdb` generates and sends to the server.
 
 Selects a full vacuum, which may reclaim more space, but takes much longer and exclusively locks the table.
 
-> **Caution** A `VACUUM FULL` is not recommended in Greenplum Database.
+> **Caution** A `VACUUM FULL` is not recommended in Cloudberry Database.
 
 **`-F | --freeze`**
 
@@ -93,11 +93,11 @@ Show help about `vacuumdb` command line arguments, and exit.
 
 **`-h host | --host=host`**
 
-Specifies the host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
+Specifies the host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
 **`-p port | --port=port`**
 
-Specifies the TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+Specifies the TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
 **`-U username | --username=username`**
 

@@ -8,7 +8,7 @@ The most important prerequisite for good query performance is to begin with accu
 
 ## Generate statistics selectively
 
-Running [`ANALYZE](/docs/sql-stmts/sql-stmt-analyze.md) with no arguments updates statistics for all tables in the database. This can be a very long-running process and it is not recommended. You should `ANALYZE` tables selectively when data has changed or use the [analyzedb](../utility_guide/ref/analyzedb.html) utility.
+Running [`ANALYZE`](/docs/sql-stmts/sql-stmt-analyze.md) with no arguments updates statistics for all tables in the database. This can be a very long-running process and it is not recommended. You should `ANALYZE` tables selectively when data has changed or use the [analyzedb](/docs/db-utilities/db-util-analyzedb.md) utility.
 
 Running `ANALYZE` on a large table can take a long time. If it is not feasible to run `ANALYZE` on all columns of a very large table, you can generate statistics for selected columns only using `ANALYZE table(column, ...)`. Be sure to include columns used in joins, `WHERE` clauses, `SORT` clauses, `GROUP BY` clauses, or `HAVING` clauses.
 

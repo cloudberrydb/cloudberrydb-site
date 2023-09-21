@@ -4,7 +4,7 @@ title: gpmemwatcher
 
 # gpmemwatcher
 
-Tracks the memory usage of each process in a Greenplum Database cluster.
+Tracks the memory usage of each process in a Cloudberry Database cluster.
 
 ## Synopsis
 
@@ -20,9 +20,9 @@ gpmemwatcher -h | --help
 
 ## Description
 
-The `gpmemwatcher` utility is a daemon that runs on all servers of a Greenplum Database cluster. It tracks the memory usage of each process by collecting the output of the `ps` command every 60 seconds. It is a low impact process that only consumes 4 MB of memory. It will generate approximately 30 MB of data over a 24-hour period.
+The `gpmemwatcher` utility is a daemon that runs on all servers of a Cloudberry Database cluster. It tracks the memory usage of each process by collecting the output of the `ps` command every 60 seconds. It is a low impact process that only consumes 4 MB of memory. It will generate approximately 30 MB of data over a 24-hour period.
 
-You may use this utility if Greenplum Database is reporting `Out of memory` errors and causing segments to go down or queries to fail. You collect the memory usage information of one or multiple servers within the Greenplum Database cluster with `gpmemwatcher` and then use [gpmemreport](/docs/db-utilities/db-util-gpmemreport.md) to analyze the files collected.
+You may use this utility if Cloudberry Database is reporting `Out of memory` errors and causing segments to go down or queries to fail. You collect the memory usage information of one or multiple servers within the Cloudberry Database cluster with `gpmemwatcher` and then use [gpmemreport](/docs/db-utilities/db-util-gpmemreport.md) to analyze the files collected.
 
 ## Options
 

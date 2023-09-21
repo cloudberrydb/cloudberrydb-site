@@ -18,7 +18,7 @@ dropuser -V | --version
 
 ## Description
 
-`dropuser` removes an existing role from Greenplum Database. Only superusers and users with the `CREATEROLE` privilege can remove roles. To remove a superuser role, you must yourself be a superuser.
+`dropuser` removes an existing role from Cloudberry Database. Only superusers and users with the `CREATEROLE` privilege can remove roles. To remove a superuser role, you must yourself be a superuser.
 
 `dropuser` is a wrapper around the SQL command `DROP ROLE`.
 
@@ -52,11 +52,11 @@ Show help about `dropuser` command line arguments, and exit.
 
 **`-h host | --host=host`**
 
-The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
+The host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
 **`-p port | --port=port`**
 
-The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+The TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
 **`-U username | --username=username`**
 

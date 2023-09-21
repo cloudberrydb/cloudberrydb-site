@@ -4,13 +4,13 @@ title: plcontainer Configuration File
 
 # plcontainer Configuration File
 
-The Greenplum Database utility `plcontainer` manages the PL/Container configuration files in a Greenplum Database system. The utility ensures that the configuration files are consistent across the Greenplum Database coordinator and segment instances.
+The Cloudberry Database utility `plcontainer` manages the PL/Container configuration files in a Cloudberry Database system. The utility ensures that the configuration files are consistent across the Cloudberry Database coordinator and segment instances.
 
-> **Caution** Modifying the configuration files on the segment instances without using the utility might create different, incompatible configurations on different Greenplum Database segments that could cause unexpected behavior.
+> **Caution** Modifying the configuration files on the segment instances without using the utility might create different, incompatible configurations on different Cloudberry Database segments that could cause unexpected behavior.
 
 ## PL/Container Configuration File
 
-PL/Container maintains a configuration file `plcontainer_configuration.xml` in the data directory of all Greenplum Database segments. This query lists the Greenplum Database system data directories:
+PL/Container maintains a configuration file `plcontainer_configuration.xml` in the data directory of all Cloudberry Database segments. This query lists the Cloudberry Database system data directories:
 
 ```sql
 SELECT hostname, datadir FROM gp_segment_configuration;
@@ -36,7 +36,7 @@ This is an example file. Note that all XML elements, names, and attributes are c
         <id>plc_python_example2</id>
         <image>pivotaldata/plcontainer_python_without_clients:0.1</image>
         <command>/clientdir/pyclient.sh</command>
-        <shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/>
+        <shared_directory access="ro" container="/clientdir" host="/usr/local/cloudberry-db/bin/plcontainer_clients"/>
         <setting memory_mb="512"/>
         <setting use_container_logging="yes"/>
         <setting cpu_share="1024"/>
@@ -46,7 +46,7 @@ This is an example file. Note that all XML elements, names, and attributes are c
         <id>plc_r_example</id>
         <image>pivotaldata/plcontainer_r_without_clients:0.2</image>
         <command>/clientdir/rclient.sh</command>
-        <shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/>
+        <shared_directory access="ro" container="/clientdir" host="/usr/local/cloudberry-db/bin/plcontainer_clients"/>
         <setting use_container_logging="yes"/>
         <setting enable_network="no"/>
         <setting roles="gpadmin,user1"/>
@@ -114,7 +114,7 @@ Optional. This element specifies a shared Docker shared volume for a container w
 When creating a `runtime` element, the `plcontainer` utility adds a `shared_directory` element.
 
 ```shell
-<shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/>
+<shared_directory access="ro" container="/clientdir" host="/usr/local/cloudberry-db/bin/plcontainer_clients"/>
 ```
 
 For each `runtime` element, the `container` attribute of the `shared_directory` elements must be unique. For example, a `runtime` element cannot have two `shared_directory` elements with attribute `container="/clientdir"`.
@@ -152,7 +152,7 @@ Optional. The value specifies the `groupid` of the resource group to assign to t
 
 **`roles="list_of_roles"`**
 
-Optional. The value is a Greenplum Database role name or a comma-separated list of roles. PL/Container runs a container that uses the PL/Container runtime configuration only for the listed roles. If the attribute is not specified, any Greenplum Database role can run an instance of this container runtime configuration. For example, you create a UDF that specifies the `plcontainer` language and identifies a `# container:` runtime configuration that has the `roles` attribute set. When a role (user) runs the UDF, PL/Container checks the list of roles and runs the container only if the role is on the list.
+Optional. The value is a Cloudberry Database role name or a comma-separated list of roles. PL/Container runs a container that uses the PL/Container runtime configuration only for the listed roles. If the attribute is not specified, any Cloudberry Database role can run an instance of this container runtime configuration. For example, you create a UDF that specifies the `plcontainer` language and identifies a `# container:` runtime configuration that has the `roles` attribute set. When a role (user) runs the UDF, PL/Container checks the list of roles and runs the container only if the role is on the list.
 
 **`use_container_logging="{yes | no}"`**
 
@@ -162,7 +162,7 @@ Optional.  Activates or deactivates  Docker logging for the container. The attri
 
 Optional. Available starting with PL/Container version 2.2, this attribute activates or deactivates network access for the UDF container. The attribute value `yes` enables UDFs to access the network. The attribute value `no` deactivates network access (the default).
 
-The Greenplum Database server configuration parameter `log_min_messages` controls the PL/Container log level. The default log level is `warning`.
+The Cloudberry Database server configuration parameter `log_min_messages` controls the PL/Container log level. The default log level is `warning`.
 
 By default, the PL/Container log information is sent to a system `journald` service.
 
@@ -192,7 +192,7 @@ The PL/Container configuration file can contain multiple `runtime` elements that
 <configuration>
 ```
 
-Configuration changes that are made with the utility are applied to the XML files on all Greenplum Database segments. However, PL/Container configurations of currently running sessions use the configuration that existed during session start up. To update the PL/Container configuration in a running session, run this command in the session.
+Configuration changes that are made with the utility are applied to the XML files on all Cloudberry Database segments. However, PL/Container configurations of currently running sessions use the configuration that existed during session start up. To update the PL/Container configuration in a running session, run this command in the session.
 
 ```sql
 SELECT * FROM plcontainer_refresh_config;

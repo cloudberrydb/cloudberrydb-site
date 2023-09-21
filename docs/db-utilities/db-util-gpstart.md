@@ -4,7 +4,7 @@ title: gpstart
 
 # gpstart
 
-Starts a Greenplum Database system.
+Starts a Cloudberry Database system.
 
 ## Synopsis
 
@@ -21,15 +21,15 @@ gpstart --version
 
 ## Description
 
-The `gpstart` utility is used to start the Greenplum Database server processes. When you start a Greenplum Database system, you are actually starting several `postgres` database server listener processes at once (the coordinator and all of the segment instances). The `gpstart` utility handles the startup of the individual instances. Each instance is started in parallel.
+The `gpstart` utility is used to start the Cloudberry Database server processes. When you start a Cloudberry Database system, you are actually starting several `postgres` database server listener processes at once (the coordinator and all of the segment instances). The `gpstart` utility handles the startup of the individual instances. Each instance is started in parallel.
 
-As part of the startup process, the utility checks the consistency of heap checksum setting among the Greenplum Database coordinator and segment instances, either enabled or deactivated on all instances. If the heap checksum setting is different among the instances, an error is returned and Greenplum Database does not start. The validation can be deactivated by specifying the option `--skip-heap-checksum-validation`.
+As part of the startup process, the utility checks the consistency of heap checksum setting among the Cloudberry Database coordinator and segment instances, either enabled or deactivated on all instances. If the heap checksum setting is different among the instances, an error is returned and Cloudberry Database does not start. The validation can be deactivated by specifying the option `--skip-heap-checksum-validation`.
 
 <!-- For more information about heap checksums, see [Enabling High Availability and Data Consistency Features](../../admin_guide/highavail/topics/g-enabling-high-availability-features.html). -->
 
-> **Note** Before you can start a Greenplum Database system, you must have initialized the system using `gpinitsystem`. Enabling or deactivating heap checksums is set when you initialize the system and cannot be changed after initialization.
+> **Note** Before you can start a Cloudberry Database system, you must have initialized the system using `gpinitsystem`. Enabling or deactivating heap checksums is set when you initialize the system and cannot be changed after initialization.
 
-If the Greenplum Database system is configured with a standby coordinator, and `gpstart` does not detect it during startup, `gpstart` displays a warning and lets you cancel the startup operation.
+If the Cloudberry Database system is configured with a standby coordinator, and `gpstart` does not detect it during startup, `gpstart` displays a warning and lets you cancel the startup operation.
 
 - If the `-a` option (deactivate interactive mode prompts) is not specified, `gpstart` displays and logs these messages:
 
@@ -85,13 +85,13 @@ Run in quiet mode. Command output is not displayed on the screen, but is still w
 
 **`-R`**
 
-Starts Greenplum Database in restricted mode (only database superusers are allowed to connect).
+Starts Cloudberry Database in restricted mode (only database superusers are allowed to connect).
 
 **`--skip-heap-checksum-validation`**
 
-During startup, the utility does not validate the consistency of the heap checksum setting among the Greenplum Database coordinator and segment instances. The default is to ensure that the heap checksum setting is the same on all instances, either enabled or deactivated.
+During startup, the utility does not validate the consistency of the heap checksum setting among the Cloudberry Database coordinator and segment instances. The default is to ensure that the heap checksum setting is the same on all instances, either enabled or deactivated.
 
-> **Caution** Starting Greenplum Database without this validation could lead to data loss. Use this option to start Greenplum Database only when it is necessary to ignore the heap checksum verification errors to recover data or to troubleshoot the errors.
+> **Caution** Starting Cloudberry Database without this validation could lead to data loss. Use this option to start Cloudberry Database only when it is necessary to ignore the heap checksum verification errors to recover data or to troubleshoot the errors.
 
 **`-t timeout_seconds`**
 
@@ -115,19 +115,19 @@ Displays the version of this utility.
 
 ## Examples
 
-Start a Greenplum Database system:
+Start a Cloudberry Database system:
 
 ```shell
 gpstart
 ```
 
-Start a Greenplum Database system in restricted mode (only allow superuser connections):
+Start a Cloudberry Database system in restricted mode (only allow superuser connections):
 
 ```shell
 gpstart -R
 ```
 
-Start the Greenplum coordinator instance only and connect in utility mode:
+Start the Cloudberry coordinator instance only and connect in utility mode:
 
 ```shell
 gpstart -m 

@@ -259,7 +259,7 @@ For table columns that contain textual data, Specify the data type `VARCHAR` or 
 
 The `COLLATE` clause assigns a collation to the column (which must be of a collatable data type). If not specified, the column data type's default collation is used.
 
-> **Note**: The Greenplum Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Cloudberry Database uses the Postgres Planner.
+> **Note**: The Cloudberry Query Optimizer (GPORCA) supports collation only when all columns in the query use the same collation. If columns in the query use different collations, then Cloudberry Database uses the Postgres Planner.
 
 **`ENCODING ( storage_directive [, ...] )`**
 

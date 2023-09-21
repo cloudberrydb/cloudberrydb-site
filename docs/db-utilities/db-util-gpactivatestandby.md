@@ -4,7 +4,7 @@ title: gpactivatestandby
 
 # gpactivatestandby
 
-Activates a standby coordinator host and makes it the active coordinator for the Greenplum Database system.
+Activates a standby coordinator host and makes it the active coordinator for the Cloudberry Database system.
 
 ## Synopsis
 
@@ -19,7 +19,7 @@ gpactivatestandby -? | -h | --help
 
 ## Description
 
-The `gpactivatestandby` utility activates a backup, standby coordinator host and brings it into operation as the active coordinator instance for a Greenplum Database system. The activated standby coordinator effectively becomes the Greenplum Database coordinator, accepting client connections on the coordinator port.
+The `gpactivatestandby` utility activates a backup, standby coordinator host and brings it into operation as the active coordinator instance for a Cloudberry Database system. The activated standby coordinator effectively becomes the Cloudberry Database coordinator, accepting client connections on the coordinator port.
 
 >**NOTE**
 >Before running `gpactivatestandby`, be sure to run `gpstate -f` to confirm that the standby coordinator is synchronized with the current coordinator node. If synchronized, the final line of the `gpstate -f` output will look similar to this: `20230607:06:50:06:004205 gpstate:test1-m:gpadmin-[INFO]:--Sync state: sync`
@@ -33,11 +33,11 @@ The utility will perform the following steps:
 - Stops the synchronization process (`walreceiver`) on the standby coordinator
 - Updates the system catalog tables of the standby coordinator using the logs
 - Activates the standby coordinator to be the new active coordinator for the system
-- Restarts the Greenplum Database system with the new coordinator host
+- Restarts the Cloudberry Database system with the new coordinator host
 
-A backup, standby Greenplum coordinator host serves as a 'warm standby' in the event of the primary Greenplum coordinator host becoming non-operational. The standby coordinator is kept up to date by transaction log replication processes (the `walsender` and `walreceiver`), which run on the primary coordinator and standby coordinator hosts and keep the data between the primary and standby coordinator hosts synchronized.
+A backup, standby Cloudberry coordinator host serves as a 'warm standby' in the event of the primary Cloudberry coordinator host becoming non-operational. The standby coordinator is kept up to date by transaction log replication processes (the `walsender` and `walreceiver`), which run on the primary coordinator and standby coordinator hosts and keep the data between the primary and standby coordinator hosts synchronized.
 
-If the primary coordinator fails, the log replication process is shutdown, and the standby coordinator can be activated in its place by using the `gpactivatestandby` utility. Upon activation of the standby coordinator, the replicated logs are used to reconstruct the state of the Greenplum coordinator host at the time of the last successfully committed transaction.
+If the primary coordinator fails, the log replication process is shutdown, and the standby coordinator can be activated in its place by using the `gpactivatestandby` utility. Upon activation of the standby coordinator, the replicated logs are used to reconstruct the state of the Cloudberry coordinator host at the time of the last successfully committed transaction.
 
 In order to use `gpactivatestandby` to activate a new primary coordinator host, the coordinator host that was previously serving as the primary coordinator cannot be running. The utility checks for a `postmaster.pid` file in the data directory of the deactivated coordinator host, and if it finds it there, it will assume the old coordinator host is still active. In some cases, you may need to remove the `postmaster.pid` file from the deactivated coordinator host data directory before running `gpactivatestandby` (for example, if the deactivated coordinator host process was terminated unexpectedly).
 
@@ -47,7 +47,7 @@ After activating a standby coordinator, run `ANALYZE` to update the database que
 psql <dbname> -c 'ANALYZE;'
 ```
 
-After you activate the standby coordinator as the primary coordinator, the Greenplum Database system no longer has a standby coordinator configured. You might want to specify another host to be the new standby with the [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md) utility.
+After you activate the standby coordinator as the primary coordinator, the Cloudberry Database system no longer has a standby coordinator configured. You might want to specify another host to be the new standby with the [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md) utility.
 
 ## Options
 
@@ -85,7 +85,7 @@ Displays the online help.
 
 ## Example
 
-Activate the standby coordinator host and make it the active coordinator instance for a Greenplum Database system (run from backup coordinator host you are activating):
+Activate the standby coordinator host and make it the active coordinator instance for a Cloudberry Database system (run from backup coordinator host you are activating):
 
 ```shell
 gpactivatestandby -d /gpdata

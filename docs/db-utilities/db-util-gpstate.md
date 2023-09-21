@@ -4,7 +4,7 @@ title: gpstate
 
 # gpstate
 
-Shows the status of a running Greenplum Database system.
+Shows the status of a running Cloudberry Database system.
 
 ## Synopsis
 
@@ -18,7 +18,7 @@ gpstate -? | -h | --help
 
 ## Description
 
-The `gpstate` utility displays information about a running Greenplum Database instance. There is additional information you may want to know about a Greenplum Database system, since it is comprised of multiple PostgreSQL database instances (segments) spanning multiple machines. The `gpstate` utility provides additional status information for a Greenplum Database system, such as:
+The `gpstate` utility displays information about a running Cloudberry Database instance. There is additional information you may want to know about a Cloudberry Database system, since it is comprised of multiple PostgreSQL database instances (segments) spanning multiple machines. The `gpstate` utility provides additional status information for a Cloudberry Database system, such as:
 
 - Which segments are down.
 - Coordinator and segment configuration information (hosts, data directories, etc.).
@@ -29,7 +29,7 @@ The `gpstate` utility displays information about a running Greenplum Database in
 
 **`-b (brief status)`**
 
-Optional. Display a brief summary of the state of the Greenplum Database system. This is the default option.
+Optional. Display a brief summary of the state of the Cloudberry Database system. This is the default option.
 
 **`-B parallel_processes`**
 
@@ -57,9 +57,9 @@ Show details on primary/mirror segment pairs that have potential issues. These i
 **`-f (show standby coordinator details)`**
 Display details of the standby coordinator host if configured.
 
-**`-i (show Greenplum Database version)`**
+**`-i (show Cloudberry Database version)`**
 
-Display the Greenplum Database software version information for each instance.
+Display the Cloudberry Database software version information for each instance.
 
 **`-l logfile_directory`**
 
@@ -71,7 +71,7 @@ Optional. List the mirror segment instances in the system and their current role
 
 **`-p (show ports)`**
 
-List the port numbers used throughout the Greenplum Database system.
+List the port numbers used throughout the Cloudberry Database system.
 
 **`-q (no screen output)`**
 
@@ -83,7 +83,7 @@ Optional. Checks segment status in the system catalog on the coordinator host. D
 
 **`-s (detailed status)`**
 
-Optional. Displays detailed status information about the Greenplum Database system.
+Optional. Displays detailed status information about the Cloudberry Database system.
 
 **`-v (verbose output)`**
 
@@ -91,7 +91,7 @@ Optional. Displays error messages and outputs detailed status and progress infor
 
 **`-x (expand)`**
 
-Optional. Displays detailed information about the progress and state of a Greenplum system expansion.
+Optional. Displays detailed information about the progress and state of a Cloudberry system expansion.
 
 **`-? | -h | --help (help)`**
 
@@ -108,11 +108,11 @@ The following output fields are reported by `gpstate -s` for the coordinator:
 |Coordinator data directory|file system location of the coordinator data directory|
 |Coordinator port|port of the coordinator `postgres` database listener process|
 |Coordinator current role|dispatch = regular operating mode<br/><br/>utility = maintenance mode|
-|Greenplum array configuration type|Standard = one NIC per host<br/><br/>Multi-Home = multiple NICs per host|
-|Greenplum initsystem version|version of Greenplum Database when system was first initialized|
-|Greenplum current version|current version of Greenplum Database|
-|Postgres version|version of PostgreSQL that Greenplum Database is based on|
-|Greenplum mirroring status|physical mirroring or none|
+|Cloudberry array configuration type|Standard = one NIC per host<br/><br/>Multi-Home = multiple NICs per host|
+|Cloudberry initsystem version|version of Cloudberry Database when system was first initialized|
+|Cloudberry current version|current version of Cloudberry Database|
+|Postgres version|version of PostgreSQL that Cloudberry Database is based on|
+|Cloudberry mirroring status|physical mirroring or none|
 |Coordinator standby|host name of the standby coordinator|
 |Standby coordinator state|status of the standby coordinator: active or passive|
 
@@ -131,7 +131,7 @@ The following output fields are reported by `gpstate -s` for each primary segmen
 |Bytes remaining to send to mirror|Bytes remaining to be sent from primary to mirror|
 |Active PID|active process ID of a segment|
 |Coordinator reports status as|segment status as reported in the system catalog: Up or Down|
-|Database status|status of Greenplum Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
+|Database status|status of Cloudberry Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
 
 The following output fields are reported by `gpstate -s` for each mirror segment:
 
@@ -151,7 +151,7 @@ The following output fields are reported by `gpstate -s` for each mirror segment
 |Bytes received but remain to replay|Difference between replay log location and sent log location|
 |Active PID|active process ID of a segment|
 |Coordinator reports status as|segment status as reported in the system catalog: Up or Down|
-|Database status|status of Greenplum Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
+|Database status|status of Cloudberry Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
 
 > **Note** When there is no connection between a primary segment and its mirror, `gpstate -s` displays `Unknown` in the following fields:
 
@@ -179,7 +179,7 @@ The following output fields are reported by `gpstate -f` for standby coordinator
 
 ## Examples
 
-Show detailed status information of a Greenplum Database system:
+Show detailed status information of a Cloudberry Database system:
 
 ```shell
 gpstate -s
@@ -203,7 +203,7 @@ Show information about the standby coordinator configuration:
 gpstate -f
 ```
 
-Display the Greenplum software version information:
+Display the Cloudberry software version information:
 
 ```shell
 gpstate -i

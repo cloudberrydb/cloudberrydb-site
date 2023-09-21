@@ -4,7 +4,7 @@ title: gppkg
 
 # gppkg
 
-Greenplum Package Manager installs, upgrades, migrates, and removes Greenplum Database extensions in `.gppkg` format, such as PL/Java, PL/R, PostGIS, and MADlib, along with their dependencies, across an entire cluster.
+Cloudberry Package Manager installs, upgrades, migrates, and removes Cloudberry Database extensions in `.gppkg` format, such as PL/Java, PL/R, PostGIS, and MADlib, along with their dependencies, across an entire cluster.
 
 ## Synopsis
 
@@ -20,13 +20,11 @@ gppkg -v | --verbose
 
 ## Description
 
-The Greenplum Package Manager -- `gppkg` -- utility installs Greenplum Database extensions, along with any dependencies, on all hosts across a cluster. It will also automatically install extensions on new hosts in the case of system expansion and segment recovery.
+The Cloudberry Package Manager -- `gppkg` -- utility installs Cloudberry Database extensions, along with any dependencies, on all hosts across a cluster. It will also automatically install extensions on new hosts in the case of system expansion and segment recovery.
 
-The `gppkg` utility does not require that Greenplum Database is running in order to install packages.
+The `gppkg` utility does not require that Cloudberry Database is running in order to install packages.
 
-> **Note** After a major upgrade to Greenplum Database, you must download and install all `gppkg` extensions again.
-
-Examples of database extensions and packages software that are delivered using the Greenplum Package Manager:
+Examples of database extensions and packages software that are delivered using the Cloudberry Package Manager:
 
 - PL/Java
 - PL/R
@@ -45,7 +43,7 @@ Install or upgrade the specified package in the cluster. This includes any pre/p
 
 **`migrate --source <source_path> --destination <destination_path> [--pkglibs <pkglibs_path>] [<command_options>]`**
 
-Migrate all packages from one minor version of Greenplum Database to another. The option `--source <source_path>` specifies the path of the source `$GPHOME`, and the option `--destination <destination_path>` specifies the path of the destination `$GPHOME`. Additionally, the option `--pkglibs <pkglibs_path>` allows you to point to a location where you may place newer version packages for the destination Greenplum version; `gppkg` will upgrade these packages automatically. 
+Migrate all packages from one minor version of Cloudberry Database to another. The option `--source <source_path>` specifies the path of the source `$GPHOME`, and the option `--destination <destination_path>` specifies the path of the destination `$GPHOME`. Additionally, the option `--pkglibs <pkglibs_path>` allows you to point to a location where you may place newer version packages for the destination Cloudberry version; `gppkg` will upgrade these packages automatically. 
 
 **`query [<package_name_string>] [<query_option>] [<command_options>]`**
 
@@ -70,7 +68,7 @@ Reconcile the package state of the cluster to match the state of the master host
 
 **`--cluster_info <cluster_info>`**
 
-Use this option when Greenplum Database is not running. The input file `<cluster_info>` contains information about the database cluster. You may generate the file by running the following command:
+Use this option when Cloudberry Database is not running. The input file `<cluster_info>` contains information about the database cluster. You may generate the file by running the following command:
 
 ```shell
 psql postgres -Xc 'select dbid, content, role, preferred_role, mode, status, hostname, address, port, datadir from gp_segment_configuration order by content, preferred_role desc;' | head -n-2 | tail -n+3 | tr -d " " > cluster_info
@@ -102,26 +100,10 @@ Set the logging level to verbose.
 
 ## Examples
 
-Install the Greenplum Database PL/Java extension:
+Install the Cloudberry Database PL/Java extension:
 
 ```shell
 gppkg install ./pljava-2.0.7-gp7-rhel8_x86_64.gppkg
-```
-
-Migrate all installed packages from Greenplum Database version 7.0.0 to Greenplum Database version 7.1.0 while the cluster is not running.
-
-```shell
-gppkg migrate --cluster-info ./cluster_info --source /usr/local/greenplum-db-7.0.0 --destination /usr/local/greenplum-db-7.1.0
-```
-
-where the file `./cluster_info` contains the following information:
-
-```shell
-1|-1|p|p|n|u|cdw|cdw|5432|/data/coordinator/gpseg-1
-2|0|p|p|s|u|seg-02|sdw1|6000|/data/primary/gpseg0
-6|0|m|m|s|u|seg-03|sdw2|7000|/data/mirror/gpseg0
-3|1|p|p|s|u|seg-02|sdw1|6001|/data/primary/gpseg1
-7|1|m|m|s|u|seg-03|sdw2|7001|/data/mirror/gpseg1
 ```
 
 Query all packages that are installed in a cluster:
