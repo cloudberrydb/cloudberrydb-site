@@ -148,4 +148,4 @@ $ gpssh -h sdw2 -h localhost -v -e 'ls -1 | wc -l'
 
 ## See also
 
-[gpssh-exkeys](/docs/system-utilities/db-util-gpssh-exkeys.md), [gpsync](/docs/system-utilities/db-util-gpsync.md)
+[gpssh-exkeys](/docs/db-utilities/db-util-gpssh-exkeys.md), [gpsync](/docs/db-utilities/db-util-gpsync.md)

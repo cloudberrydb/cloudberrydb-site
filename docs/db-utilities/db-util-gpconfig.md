@@ -153,4 +153,4 @@ gpconfig -s max_connections
 
 ## See also
 
-[gpstop](/docs/system-utilities/db-util-gpstop.md)
+[gpstop](/docs/db-utilities/db-util-gpstop.md)

@@ -256,4 +256,4 @@ $ gprecoverseg -i <recover_config_file>
 
 ## See also
 
-[gpstart](/docs/system-utilities/db-util-gpstart.md), [gpstop](/docs/system-utilities/db-util-gpstop.md)
+[gpstart](/docs/db-utilities/db-util-gpstart.md), [gpstop](/docs/db-utilities/db-util-gpstop.md)

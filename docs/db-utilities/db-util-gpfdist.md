@@ -201,4 +201,4 @@ kill 3456
 
 ## See also
 
-[gpload](/docs/system-utilities/db-util-gpload.md), `CREATE EXTERNAL TABLE`
+[gpload](/docs/db-utilities/db-util-gpload.md), `CREATE EXTERNAL TABLE`

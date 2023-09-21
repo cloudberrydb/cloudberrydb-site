@@ -22,13 +22,13 @@ gpload --version
 
 The client machine where `gpload` is run must have the following:
 
-- The [gpfdist](/docs/system-utilities/db-util-gpfdist.md) parallel file distribution program installed and in your `$PATH`. This program is located in `$GPHOME/bin` of your Greenplum Database server installation.
+- The [gpfdist](/docs/db-utilities/db-util-gpfdist.md) parallel file distribution program installed and in your `$PATH`. This program is located in `$GPHOME/bin` of your Greenplum Database server installation.
 - Network access to and from all hosts in your Greenplum Database array (coordinator and segments).
 - Network access to and from the hosts where the data to be loaded resides (ETL servers).
 
 ## Description
 
-`gpload` is a data loading utility that acts as an interface to the Greenplum Database external table parallel loading feature. Using a load specification defined in a YAML formatted control file, `gpload` runs a load by invoking the Greenplum Database parallel file server ([gpfdist](/docs/system-utilities/db-util-gpfdist.md)), creating an external table definition based on the source data defined, and running an `INSERT`, `UPDATE` or `MERGE` operation to load the source data into the target table in the database.
+`gpload` is a data loading utility that acts as an interface to the Greenplum Database external table parallel loading feature. Using a load specification defined in a YAML formatted control file, `gpload` runs a load by invoking the Greenplum Database parallel file server ([gpfdist](/docs/db-utilities/db-util-gpfdist.md)), creating an external table definition based on the source data defined, and running an `INSERT`, `UPDATE` or `MERGE` operation to load the source data into the target table in the database.
 
 > **Note** `gpfdist` is compatible only with the Greenplum Database major version in which it is shipped. For example, a `gpfdist` utility that is installed with Greenplum Database 4.x cannot be used with Greenplum Database 5.x or 6.x.
 
@@ -202,11 +202,11 @@ Required. Begins the load specification section. A `GPLOAD` specification must h
 
 **`INPUT`**
 
-Required. Defines the location and the format of the input data to be loaded. `gpload` will start one or more instances of the [gpfdist](/docs/system-utilities/db-util-gpfdist.md) file distribution program on the current host and create the required external table definition(s) in Greenplum Database that point to the source data. Note that the host from which you run `gpload` must be accessible over the network by all Greenplum Database hosts (coordinator and segments).
+Required. Defines the location and the format of the input data to be loaded. `gpload` will start one or more instances of the [gpfdist](/docs/db-utilities/db-util-gpfdist.md) file distribution program on the current host and create the required external table definition(s) in Greenplum Database that point to the source data. Note that the host from which you run `gpload` must be accessible over the network by all Greenplum Database hosts (coordinator and segments).
 
 SOURCE**
 
-Required. The `SOURCE` block of an `INPUT` specification defines the location of a source file. An `INPUT` section can have more than one `SOURCE` block defined. Each `SOURCE` block defined corresponds to one instance of the [gpfdist](/docs/system-utilities/db-util-gpfdist.md) file distribution program that will be started on the local machine. Each `SOURCE` block defined must have a `FILE` specification.
+Required. The `SOURCE` block of an `INPUT` specification defines the location of a source file. An `INPUT` section can have more than one `SOURCE` block defined. Each `SOURCE` block defined corresponds to one instance of the [gpfdist](/docs/db-utilities/db-util-gpfdist.md) file distribution program that will be started on the local machine. Each `SOURCE` block defined must have a `FILE` specification.
 
 For more information about using the `gpfdist` parallel file server and single and multiple `gpfdist` instances, see [Loading data](/docs/import-data-into-cbdb.md).
 
@@ -216,13 +216,13 @@ Optional. Specifies the host name or IP address of the local machine on which `g
 
 **`PORT`**
 
-Optional. Specifies the specific port number that the [gpfdist](/docs/system-utilities/db-util-gpfdist.md) file distribution program should use. You can also supply a `PORT_RANGE` to select an available port from the specified range. If both `PORT` and `PORT_RANGE` are defined, then `PORT` takes precedence. If neither `PORT` or `PORT_RANGE` are defined, the default is to select an available port between 8000 and 9000.
+Optional. Specifies the specific port number that the [gpfdist](/docs/db-utilities/db-util-gpfdist.md) file distribution program should use. You can also supply a `PORT_RANGE` to select an available port from the specified range. If both `PORT` and `PORT_RANGE` are defined, then `PORT` takes precedence. If neither `PORT` or `PORT_RANGE` are defined, the default is to select an available port between 8000 and 9000.
 
 If multiple host names are declared in `LOCAL_HOSTNAME`, this port number is used for all hosts. This configuration is desired if you want to use all NICs to load the same file or set of files in a given directory location.
 
 **`PORT_RANGE`**
 
-Optional. Can be used instead of `PORT` to supply a range of port numbers from which `gpload` can choose an available port for this instance of the [gpfdist](/docs/system-utilities/gpfdist.html) file distribution program.
+Optional. Can be used instead of `PORT` to supply a range of port numbers from which `gpload` can choose an available port for this instance of the [gpfdist](/docs/db-utilities/gpfdist.html) file distribution program.
 
 **`FILE`**
 
@@ -538,4 +538,4 @@ GPLOAD:
 
 ## See also
 
-[gpfdist](/docs/system-utilities/db-util-gpfdist.md), [`CREATE EXTERNAL TABLE`](/docs/sql-stmts/sql-stmt-create-external-table.md)
+[gpfdist](/docs/db-utilities/db-util-gpfdist.md), [`CREATE EXTERNAL TABLE`](/docs/sql-stmts/sql-stmt-create-external-table.md)

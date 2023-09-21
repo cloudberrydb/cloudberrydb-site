@@ -128,4 +128,4 @@ gpinitstandby -r
 
 ## See also
 
-[gpinitsystem](/docs/system-utilities/db-util-gpinitsystem.md), [gpaddmirrors](/docs/system-utilities/db-util-gpaddmirrors.md), [gpactivatestandby](/docs/system-utilities/db-util-gpactivatestandby.md)
+[gpinitsystem](/docs/db-utilities/db-util-gpinitsystem.md), [gpaddmirrors](/docs/db-utilities/db-util-gpaddmirrors.md), [gpactivatestandby](/docs/db-utilities/db-util-gpactivatestandby.md)

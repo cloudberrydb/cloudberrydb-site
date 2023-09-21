@@ -174,4 +174,4 @@ In the above example, the new password is not actually echoed when typed, but we
 
 ## See also
 
-[`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md), [dropuser](/docs/system-utilities/db-util-dropuser.md)
+[`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md), [dropuser](/docs/db-utilities/db-util-dropuser.md)

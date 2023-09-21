@@ -90,4 +90,4 @@ gpsync -h sdw1 -h sdw2 myfuncs.so =:/usr/local/greenplum-db/lib
 
 ## See also
 
-[gpssh](/docs/system-utilities/db-util-gpssh.md), [gpssh-exkeys](/docs/system-utilities/db-util-gpssh-exkeys.md)
+[gpssh](/docs/db-utilities/db-util-gpssh.md), [gpssh-exkeys](/docs/db-utilities/db-util-gpssh-exkeys.md)

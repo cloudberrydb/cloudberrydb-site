@@ -24,9 +24,9 @@ The `gpactivatestandby` utility activates a backup, standby coordinator host and
 >**NOTE**
 >Before running `gpactivatestandby`, be sure to run `gpstate -f` to confirm that the standby coordinator is synchronized with the current coordinator node. If synchronized, the final line of the `gpstate -f` output will look similar to this: `20230607:06:50:06:004205 gpstate:test1-m:gpadmin-[INFO]:--Sync state: sync`
 
-When you initialize a standby coordinator, the default is to use the same port as the active coordinator. For information about the coordinator port for the standby coordinator, see [gpinitstandby](/docs/system-utilities/db-util-gpinitstandby.md). 
+When you initialize a standby coordinator, the default is to use the same port as the active coordinator. For information about the coordinator port for the standby coordinator, see [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md). 
 
-You must run this utility from the coordinator host you are activating, not the failed coordinator host you are deactivating. Running this utility assumes you have a standby coordinator host configured for the system (see [gpinitstandby](/docs/system-utilities/db-util-gpinitstandby.md)).
+You must run this utility from the coordinator host you are activating, not the failed coordinator host you are deactivating. Running this utility assumes you have a standby coordinator host configured for the system (see [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md)).
 
 The utility will perform the following steps:
 
@@ -47,7 +47,7 @@ After activating a standby coordinator, run `ANALYZE` to update the database que
 psql <dbname> -c 'ANALYZE;'
 ```
 
-After you activate the standby coordinator as the primary coordinator, the Greenplum Database system no longer has a standby coordinator configured. You might want to specify another host to be the new standby with the [gpinitstandby](/docs/system-utilities/db-util-gpinitstandby.md) utility.
+After you activate the standby coordinator as the primary coordinator, the Greenplum Database system no longer has a standby coordinator configured. You might want to specify another host to be the new standby with the [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md) utility.
 
 ## Options
 
@@ -93,4 +93,4 @@ gpactivatestandby -d /gpdata
 
 ## See also
 
-[gpinitsystem](/docs/system-utilities/db-util-gpinitsystem.md), [gpinitstandby](/docs/system-utilities/db-util-gpinitstandby.md)
+[gpinitsystem](/docs/db-utilities/db-util-gpinitsystem.md), [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md)

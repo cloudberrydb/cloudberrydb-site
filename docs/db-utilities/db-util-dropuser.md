@@ -91,4 +91,4 @@ DROP ROLE
 
 ## See also
 
-[createuser](/docs/system-utilities/db-util-createuser.md), [`DROP ROLE`](/docs/sql-stmts/sql-stmt-drop-role.md)
+[createuser](/docs/db-utilities/db-util-createuser.md), [`DROP ROLE`](/docs/sql-stmts/sql-stmt-drop-role.md)

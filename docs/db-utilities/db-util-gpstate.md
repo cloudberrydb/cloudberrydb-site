@@ -211,4 +211,4 @@ gpstate -i
 
 ## See also
 
-[gpstart](/docs/system-utilities/db-util-gpstart.md), [gpexpand](/docs/system-utilities/db-util-gpexpand.md), [gplogfilter](/docs/system-utilities/db-util-gplogfilter.md)
+[gpstart](/docs/db-utilities/db-util-gpstart.md), [gpexpand](/docs/db-utilities/db-util-gpexpand.md), [gplogfilter](/docs/db-utilities/db-util-gplogfilter.md)

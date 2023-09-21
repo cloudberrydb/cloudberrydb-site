@@ -20,7 +20,7 @@ pg_dump -V | --version
 
 `pg_dump` is a standard PostgreSQL utility for backing up a database, and is also supported in Greenplum Database. It creates a single (non-parallel) dump file. For routine backups of Greenplum Database, it is better to use the Greenplum Database backup utility, [gpbackup](https://docs.vmware.com/en/VMware-Greenplum-Backup-and-Restore/index.html), for the best performance.
 
-Use `pg_dump` if you are migrating your data to another database vendor's system, or to another Greenplum Database system with a different segment configuration (for example, if the system you are migrating to has greater or fewer segment instances). To restore, you must use the corresponding [pg_restore](/docs/system-utilities/db-util-pg-restore.md) utility (if the dump file is in archive format), or you can use a client program such as [psql](/docs/system-utilities/db-util-psql.md) (if the dump file is in plain text format).
+Use `pg_dump` if you are migrating your data to another database vendor's system, or to another Greenplum Database system with a different segment configuration (for example, if the system you are migrating to has greater or fewer segment instances). To restore, you must use the corresponding [pg_restore](/docs/db-utilities/db-util-pg-restore.md) utility (if the dump file is in archive format), or you can use a client program such as [psql](/docs/db-utilities/db-util-psql.md) (if the dump file is in plain text format).
 
 Since `pg_dump` is compatible with regular PostgreSQL, it can be used to migrate data into Greenplum Database. The `pg_dump` utility in Greenplum Database is very similar to the PostgreSQL `pg_dump` utility, with the following exceptions and limitations:
 
@@ -52,11 +52,11 @@ Include large objects in the dump. This is the default behavior except when `--s
 
 **`-c | --clean`**
 
-Adds commands to the text output file to clean (drop) database objects prior to outputting the commands for creating them. (Restore might generate some harmless error messages, if any objects were not present in the destination database.) Note that objects are not dropped before the dump operation begins, but `DROP` commands are added to the DDL dump output files so that when you use those files to do a restore, the `DROP` commands are run prior to the `CREATE` commands. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/system-utilities/db-util-pg-restore.md).
+Adds commands to the text output file to clean (drop) database objects prior to outputting the commands for creating them. (Restore might generate some harmless error messages, if any objects were not present in the destination database.) Note that objects are not dropped before the dump operation begins, but `DROP` commands are added to the DDL dump output files so that when you use those files to do a restore, the `DROP` commands are run prior to the `CREATE` commands. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
 
 **`-C | --create`**
 
-Begin the output with a command to create the database itself and reconnect to the created database. (With a script of this form, it doesn't matter which database in the destination installation you connect to before running the script.) If `--clean` is also specified, the script drops and recreates the target database before reconnecting to it. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/system-utilities/db-util-pg-restore.md).
+Begin the output with a command to create the database itself and reconnect to the created database. (With a script of this form, it doesn't matter which database in the destination installation you connect to before running the script.) If `--clean` is also specified, the script drops and recreates the target database before reconnecting to it. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
 
 **`-E <encoding> | --encoding=<encoding>`**
 
@@ -71,9 +71,9 @@ Send output to the specified file. This parameter can be omitted for file-based 
 Selects the format of the output. format can be one of the following:
 
 - p | plain — Output a plain-text SQL script file (the default).
-- c | custom — Output a custom archive suitable for input into [pg_restore](/docs/system-utilities/db-util-pg-restore.md). Together with the directory output format, this is the most flexible output format in that it allows manual selection and reordering of archived items during restore. This format is compressed by default and also supports parallel dumps.
+- c | custom — Output a custom archive suitable for input into [pg_restore](/docs/db-utilities/db-util-pg-restore.md). Together with the directory output format, this is the most flexible output format in that it allows manual selection and reordering of archived items during restore. This format is compressed by default and also supports parallel dumps.
 - d | directory — Output a directory-format archive suitable for input into `pg_restore`. This will create a directory with one file for each table and blob being dumped, plus a so-called Table of Contents file describing the dumped objects in a machine-readable format that `pg_restore` can read. A directory format archive can be manipulated with standard Unix tools; for example, files in an uncompressed archive can be compressed with the `gzip` tool. This format is compressed by default.
-- t | tar — Output a tar-format archive suitable for input into [pg_restore](/docs/system-utilities/db-util-pg-restore.md). The tar format is compatible with the directory format; extracting a tar-format archive produces a valid directory-format archive. However, the tar format does not support compression. Also, when using tar format the relative order of table data items cannot be changed during restore.
+- t | tar — Output a tar-format archive suitable for input into [pg_restore](/docs/db-utilities/db-util-pg-restore.md). The tar format is compatible with the directory format; extracting a tar-format archive produces a valid directory-format archive. However, the tar format does not support compression. Also, when using tar format the relative order of table data items cannot be changed during restore.
 
 **`-j <njobs> | --jobs=<njobs>`**
 
@@ -107,7 +107,7 @@ Dump object identifiers (OIDs) as part of the data for every table. Use of this 
 
 **`-O | --no-owner`**
 
-Do not output commands to set ownership of objects to match the original database. By default, `pg_dump` issues `ALTER OWNER` or `SET SESSION AUTHORIZATION` statements to set ownership of created database objects. These statements will fail when the script is run unless it is started by a superuser (or the same user that owns all of the objects in the script). To make a script that can be restored by any user, but will give that user ownership of all the objects, specify `-O`. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/system-utilities/db-util-pg-restore.md).
+Do not output commands to set ownership of objects to match the original database. By default, `pg_dump` issues `ALTER OWNER` or `SET SESSION AUTHORIZATION` statements to set ownership of created database objects. These statements will fail when the script is run unless it is started by a superuser (or the same user that owns all of the objects in the script). To make a script that can be restored by any user, but will give that user ownership of all the objects, specify `-O`. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
 
 **`-s | --schema-only`**
 
@@ -171,7 +171,7 @@ This option deactivates the use of dollar quoting for function bodies, and force
 
 **`--disable-triggers`**
 
-This option is relevant only when creating a data-only dump. It instructs `pg_dump` to include commands to temporarily deactivate triggers on the target tables while the data is reloaded. Use this if you have triggers on the tables that you do not want to invoke during data reload. The commands emitted for `--disable-triggers` must be done as superuser. So, you should also specify a superuser name with `-S`, or preferably be careful to start the resulting script as a superuser. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/system-utilities/db-util-pg-restore.md).
+This option is relevant only when creating a data-only dump. It instructs `pg_dump` to include commands to temporarily deactivate triggers on the target tables while the data is reloaded. Use this if you have triggers on the tables that you do not want to invoke during data reload. The commands emitted for `--disable-triggers` must be done as superuser. So, you should also specify a superuser name with `-S`, or preferably be careful to start the resulting script as a superuser. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
 
 > **Note** Greenplum Database does not support user-defined triggers.
 
@@ -367,4 +367,4 @@ pg_dump -t '"MixedCaseName"' mydb > mytab.sql
 
 ## See also
 
-[pg_dumpall](/docs/system-utilities/db-util-pg-dumpall.md), [pg_restore](/docs/system-utilities/db-util-pg-restore.md), [psql](/docs/system-utilities/db-util-psql.md)
+[pg_dumpall](/docs/db-utilities/db-util-pg-dumpall.md), [pg_restore](/docs/db-utilities/db-util-pg-restore.md), [psql](/docs/db-utilities/db-util-psql.md)

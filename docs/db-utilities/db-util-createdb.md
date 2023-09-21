@@ -118,4 +118,4 @@ createdb -p 54321 -h gpcoord -E LATIN1 demo
 
 ## See Also
 
-[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [dropdb](/docs/system-utilities/db-util-dropdb.md)
+[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [dropdb](/docs/db-utilities/db-util-dropdb.md)

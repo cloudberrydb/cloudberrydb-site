@@ -21,7 +21,7 @@ gplogfilter --version
 
 The `gplogfilter` utility can be used to search through a Greenplum Database log file for entries matching the specified criteria. If an input file is not supplied, then `gplogfilter` will use the `$COORDINATOR_DATA_DIRECTORY` environment variable to locate the Greenplum coordinator log file in the standard logging location. To read from standard input, use a dash (`-`) as the input file name. Input files may be compressed using `gzip`. In an input file, a log entry is identified by its timestamp in `YYYY-MM-DD [hh:mm[:ss]]` format.
 
-You can also use `gplogfilter` to search through all segment log files at once by running it through the [gpssh](/docs/system-utilities/db-util-gpssh.md) utility. For example, to display the last three lines of each segment log file:
+You can also use `gplogfilter` to search through all segment log files at once by running it through the [gpssh](/docs/db-utilities/db-util-gpssh.md) utility. For example, to display the last three lines of each segment log file:
 
 ```shell
 gpssh -f seg_host_file
@@ -159,4 +159,4 @@ con6 /gpdata/*/log/gpdb*.csv' > seglog.out
 
 ## See also
 
-[gpssh](/docs/system-utilities/db-util-gpssh.md), [gpsync](/docs/system-utilities/db-util-gpsync.md)
+[gpssh](/docs/db-utilities/db-util-gpssh.md), [gpsync](/docs/db-utilities/db-util-gpsync.md)

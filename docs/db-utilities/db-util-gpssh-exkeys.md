@@ -119,4 +119,4 @@ $ gpssh-exkeys -e hostfile_exkeys -x hostfile_gpexpand
 
 ## See also
 
-[gpssh](/docs/system-utilities/db-util-gpssh.md), [gpsync](/docs/system-utilities/db-util-gpsync.md)
+[gpssh](/docs/db-utilities/db-util-gpssh.md), [gpsync](/docs/db-utilities/db-util-gpsync.md)
