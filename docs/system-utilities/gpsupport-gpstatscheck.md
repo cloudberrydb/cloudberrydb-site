@@ -1,3 +1,7 @@
+---
+title: gpsupport gpstatscheck
+---
+
 # gpsupport gpstatscheck
 
 This tool can be used to verify if all tables involved in a query have optimal statistics. When a query is running slower than expected, it is possible that outdated or invalid statistics on the tables involved in the query are causing the slowness. This can happen if new data has been loaded into the table but `analyze` was never run, so the database is using wrong statistics when generating the query plan.
@@ -11,17 +15,17 @@ gpsupport gpstatscheck -f <query-file>
 
 ## Options
 
--f`**
+**`-f`**
 
-:   File containing the query to analyze.
+File containing the query to analyze.
 
--p`**
+**`-p`**
 
-:   Database port.
+Database port.
 
--d`**
+**`-d`**
 
-:   Database where the query is being run.
+Database where the query is being run.
 
 ## Examples
 

@@ -1,3 +1,7 @@
+---
+title: pg_config
+---
+
 # pg_config
 
 Retrieves information about the installed version of Greenplum Database.
@@ -20,93 +24,93 @@ If more than one option is given, the information is printed in that order, one 
 
 ## Options
 
---bindir`**
+**`--bindir`**
 
-:   Print the location of user executables. Use this, for example, to find the `psql` program. This is normally also the location where the `pg_config` program resides.
+Print the location of user executables. Use this, for example, to find the `psql` program. This is normally also the location where the `pg_config` program resides.
 
---docdir`**
+**`--docdir`**
 
-:   Print the location of documentation files.
+Print the location of documentation files.
 
---includedir`**
+**`--includedir`**
 
-:   Print the location of C header files of the client interfaces.
+Print the location of C header files of the client interfaces.
 
---pkgincludedir`**
+**`--pkgincludedir`**
 
-:   Print the location of other C header files.
+Print the location of other C header files.
 
---includedir-server`**
+**`--includedir-server`**
 
-:   Print the location of C header files for server programming.
+Print the location of C header files for server programming.
 
---libdir`**
+**`--libdir`**
 
-:   Print the location of object code libraries.
+Print the location of object code libraries.
 
---pkglibdir`**
+**`--pkglibdir`**
 
-:   Print the location of dynamically loadable modules, or where the server would search for them. (Other architecture-dependent data files may also be installed in this directory.)
+Print the location of dynamically loadable modules, or where the server would search for them. (Other architecture-dependent data files may also be installed in this directory.)
 
---localedir`**
+**`--localedir`**
 
-:   Print the location of locale support files.
+Print the location of locale support files.
 
---mandir`**
+**`--mandir`**
 
-:   Print the location of manual pages.
+Print the location of manual pages.
 
---sharedir`**
+**`--sharedir`**
 
-:   Print the location of architecture-independent support files.
+Print the location of architecture-independent support files.
 
---sysconfdir`**
+**`--sysconfdir`**
 
-:   Print the location of system-wide configuration files.
+Print the location of system-wide configuration files.
 
---pgxs`**
+**`--pgxs`**
 
-:   Print the location of extension makefiles.
+Print the location of extension makefiles.
 
---configure`**
+**`--configure`**
 
-:   Print the options that were given to the configure script when Greenplum Database was configured for building.
+Print the options that were given to the configure script when Greenplum Database was configured for building.
 
---cc`**
+**`--cc`**
 
-:   Print the value of the CC variable that was used for building Greenplum Database. This shows the C compiler used.
+Print the value of the CC variable that was used for building Greenplum Database. This shows the C compiler used.
 
---cppflags`**
+**`--cppflags`**
 
-:   Print the value of the `CPPFLAGS` variable that was used for building Greenplum Database. This shows C compiler switches needed at preprocessing time.
+Print the value of the `CPPFLAGS` variable that was used for building Greenplum Database. This shows C compiler switches needed at preprocessing time.
 
---cflags`**
+**`--cflags`**
 
-:   Print the value of the `CFLAGS` variable that was used for building Greenplum Database. This shows C compiler switches.
+Print the value of the `CFLAGS` variable that was used for building Greenplum Database. This shows C compiler switches.
 
---cflags_sl`**
+**`--cflags_sl`**
 
-:   Print the value of the `CFLAGS_SL` variable that was used for building Greenplum Database. This shows extra C compiler switches used for building shared libraries.
+Print the value of the `CFLAGS_SL` variable that was used for building Greenplum Database. This shows extra C compiler switches used for building shared libraries.
 
---ldflags`**
+**`--ldflags`**
 
-:   Print the value of the `LDFLAGS` variable that was used for building Greenplum Database. This shows linker switches.
+Print the value of the `LDFLAGS` variable that was used for building Greenplum Database. This shows linker switches.
 
---ldflags_ex`**
+**`--ldflags_ex`**
 
-:   Print the value of the `LDFLAGS_EX` variable that was used for building Greenplum Database. This shows linker switches that were used for building executables only.
+Print the value of the `LDFLAGS_EX` variable that was used for building Greenplum Database. This shows linker switches that were used for building executables only.
 
---ldflags_sl`**
+**`--ldflags_sl`**
 
-:   Print the value of the `LDFLAGS_SL` variable that was used for building Greenplum Database. This shows linker switches used for building shared libraries only.
+Print the value of the `LDFLAGS_SL` variable that was used for building Greenplum Database. This shows linker switches used for building shared libraries only.
 
---libs`**
+**`--libs`**
 
-:   Print the value of the `LIBS` variable that was used for building Greenplum Database. This normally contains `-l` switches for external libraries linked into Greenplum Database.
+Print the value of the `LIBS` variable that was used for building Greenplum Database. This normally contains `-l` switches for external libraries linked into Greenplum Database.
 
---version`**
+**`--version`**
 
-:   Print the version of Greenplum Database.
+Print the version of Greenplum Database.
 
 ## Examples
 

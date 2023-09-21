@@ -1,3 +1,7 @@
+---
+title: gplogfilter
+---
+
 # gplogfilter
 
 Searches through Greenplum Database log files for specified entries.
@@ -31,99 +35,99 @@ By default, the output of `gplogfilter` is sent to standard output. Use the `-o`
 
 **Timestamp Options**
 
--b datetime | --begin=datetime`**
+**`-b datetime | --begin=datetime`**
 
-:   Specifies a starting date and time to begin searching for log entries in the format of `YYYY-MM-DD [hh:mm[:ss]]`.
+Specifies a starting date and time to begin searching for log entries in the format of `YYYY-MM-DD [hh:mm[:ss]]`.
 
-:   If a time is specified, the date and time must be enclosed in either single or double quotes. This example encloses the date and time in single quotes:
+If a time is specified, the date and time must be enclosed in either single or double quotes. This example encloses the date and time in single quotes:
 
 ```shell
 gplogfilter -b '2013-05-23 14:33'
 ```
 
--e datetime | --end=datetime`**
+**`-e datetime | --end=datetime`**
 
-:   Specifies an ending date and time to stop searching for log entries in the format of `YYYY-MM-DD [hh:mm[:ss]]`.
+Specifies an ending date and time to stop searching for log entries in the format of `YYYY-MM-DD [hh:mm[:ss]]`.
 
-:   If a time is specified, the date and time must be enclosed in either single or double quotes. This example encloses the date and time in single quotes:
+If a time is specified, the date and time must be enclosed in either single or double quotes. This example encloses the date and time in single quotes:
 
 ```shell
 gplogfilter -e '2013-05-23 14:33' 
 ```
 
--d<time> | --duration=<time>`**
+**`-d<time> | --duration=<time>`**
 
-:   Specifies a time duration to search for log entries in the format of `[hh][:mm[:ss]]`. If used without either the `-b` or `-e` option, will use the current time as a basis.
+Specifies a time duration to search for log entries in the format of `[hh][:mm[:ss]]`. If used without either the `-b` or `-e` option, will use the current time as a basis.
 
 ### Pattern matching options
 
--c i [gnore] | r [espect] | --case=i [gnore] | r [espect]`**
+**`-c i [gnore] | r [espect] | --case=i [gnore] | r [espect]`**
 
-:   Matching of alphabetic characters is case sensitive by default unless proceeded by the `--case=ignore` option.
+Matching of alphabetic characters is case sensitive by default unless proceeded by the `--case=ignore` option.
 
--C 'string' | --columns='string'`**
+**`-C 'string' | --columns='string'`**
 
-:   Selects specific columns from the log file. Specify the desired columns as a comma-delimited string of column numbers beginning with 1, where the second column from left is 2, the third is 3, and so on.
+Selects specific columns from the log file. Specify the desired columns as a comma-delimited string of column numbers beginning with 1, where the second column from left is 2, the third is 3, and so on.
 
--f 'string' | --find='string'`**
+**`-f 'string' | --find='string'`**
 
-:   Finds the log entries containing the specified string.
+Finds the log entries containing the specified string.
 
--F 'string' | --nofind='string'`**
+**`-F 'string' | --nofind='string'`**
 
-:   Rejects the log entries containing the specified string.
+Rejects the log entries containing the specified string.
 
--m regex | --match=regex`**
+**`-m regex | --match=regex`**
 
-:   Finds log entries that match the specified Python regular expression. See [https://docs.python.org/library/re.html](https://docs.python.org/library/re.html) for Python regular expression syntax.
+Finds log entries that match the specified Python regular expression. See [https://docs.python.org/library/re.html](https://docs.python.org/library/re.html) for Python regular expression syntax.
 
--M regex | --nomatch=regex`**
+**`-M regex | --nomatch=regex`**
 
-:   Rejects log entries that match the specified Python regular expression. See [https://docs.python.org/library/re.html](https://docs.python.org/library/re.html) for Python regular expression syntax.
+Rejects log entries that match the specified Python regular expression. See [https://docs.python.org/library/re.html](https://docs.python.org/library/re.html) for Python regular expression syntax.
 
--t | --trouble`**
+**`-t | --trouble`**
 
-:   Finds only the log entries that have `ERROR:`, `FATAL:`, or `PANIC:` in the first line.
+Finds only the log entries that have `ERROR:`, `FATAL:`, or `PANIC:` in the first line.
 
 ### Output options
 
--n <integer> | --tail=<integer>`**
+**`-n <integer> | --tail=<integer>`**
 
-:   Limits the output to the last <integer> of qualifying log entries found.
+Limits the output to the last <integer> of qualifying log entries found.
 
--s <offset> [limit] | --slice=<offset> [limit]`**
+**`-s <offset> [limit] | --slice=<offset> [limit]`**
 
-:   From the list of qualifying log entries, returns the <limit> number of entries starting at the <offset> entry number, where an <offset> of zero (`0`) denotes the first entry in the result set and an <offset> of any number greater than zero counts back from the end of the result set.
+From the list of qualifying log entries, returns the <limit> number of entries starting at the <offset> entry number, where an <offset> of zero (`0`) denotes the first entry in the result set and an <offset> of any number greater than zero counts back from the end of the result set.
 
--o <output_file> | --out=<output_file>`**
+**`-o <output_file> | --out=<output_file>`**
 
-:   Writes the output to the specified file or directory location instead of `STDOUT`.
+Writes the output to the specified file or directory location instead of `STDOUT`.
 
--z 0-9 | --zip=0-9`**
+**`-z 0-9 | --zip=0-9`**
 
-:   Compresses the output file to the specified compression level using `gzip`, where `0` is no compression and `9` is maximum compression. If you supply an output file name ending in `.gz`, the output file will be compressed by default using maximum compression.
+Compresses the output file to the specified compression level using `gzip`, where `0` is no compression and `9` is maximum compression. If you supply an output file name ending in `.gz`, the output file will be compressed by default using maximum compression.
 
--a | --append`**
+**`-a | --append`**
 
-:   If the output file already exists, appends to the file instead of overwriting it.
+If the output file already exists, appends to the file instead of overwriting it.
 
 **Input Options**
 
-input_file`**
+**`input_file`**
 
-:   The name of the input log file(s) to search through. If an input file is not supplied, `gplogfilter` will use the `$COORDINATOR_DATA_DIRECTORY` environment variable to locate the Greenplum Database coordinator log file. To read from standard input, use a dash (`-`) as the input file name.
+The name of the input log file(s) to search through. If an input file is not supplied, `gplogfilter` will use the `$COORDINATOR_DATA_DIRECTORY` environment variable to locate the Greenplum Database coordinator log file. To read from standard input, use a dash (`-`) as the input file name.
 
--u | --unzip`**
+**`-u | --unzip`**
 
-:   Uncompress the input file using `gunzip`. If the input file name ends in `.gz`, it will be uncompressed by default.
+Uncompress the input file using `gunzip`. If the input file name ends in `.gz`, it will be uncompressed by default.
 
---help`**
+**`--help`**
 
-:   Displays the online help.
+Displays the online help.
 
---version`**
+**`--version`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
 ## Examples
 

@@ -1,3 +1,7 @@
+---
+title: clusterdb
+---
+
 # clusterdb
 
 Reclusters tables that were previously clustered with `CLUSTER`.
@@ -26,93 +30,93 @@ The `clusterdb` utility will find any tables in a database that have previously 
 
 `clusterdb` accepts the following command-line arguments:
 
--a`**
---all`**
+**`-a`**<br />
+**`--all`**
 
-:   Cluster all databases.
+Cluster all databases.
 
-[-d] dbname`**
-[--dbname=]dbname`**
+**`[-d] dbname`**<br />
+**`[--dbname=]dbname`**
 
-:   Specifies the name of the database to be clustered, when `-a/--all` is not used. If this is not specified, the database name is read from the environment variable `PGDATABASE`. If that is not set, the user name specified for the connection is used. The dbname can be a [connection string](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING). If so, connection string parameters will override any conflicting command line options.
+Specifies the name of the database to be clustered, when `-a/--all` is not used. If this is not specified, the database name is read from the environment variable `PGDATABASE`. If that is not set, the user name specified for the connection is used. The dbname can be a [connection string](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING). If so, connection string parameters will override any conflicting command line options.
 
--e`**
---echo`**
+**`-e`**<br />
+**`--echo`**
 
-:   Echo the commands that `clusterdb` generates and sends to the server.
+Echo the commands that `clusterdb` generates and sends to the server.
 
--q`**
---quiet`**
+**`-q`**<br />
+**`--quiet`**
 
-:   Do not display progress messages.
+Do not display progress messages.
 
--t table`**
---table=table`**
+**`-t table`**<br />
+**`--table=table`**
 
-:   Cluster the named table only. You can cluster multiple tables by specifying multiple `-t` switches.
+Cluster the named table only. You can cluster multiple tables by specifying multiple `-t` switches.
 
--v`**
---verbose`**
+**`-v`**<br />
+**`--verbose`**
 
-:   Print detailed information during processing.
+Print detailed information during processing.
 
--V`**
---version`**
+**`-V`**<br />
+**`--version`**
 
-:   Print the `clusterdb` version, and exit.
+Print the `clusterdb` version, and exit.
 
--?`**
---help`**
+**`-?`**<br />
+**`--help`**
 
-:   Show help about `clusterdb` command line arguments, and exit.
+Show help about `clusterdb` command line arguments, and exit.
 
 ### Connection options
 
 `clusterdb` also accepts the following command-line arguments for connection parameters:
 
--h host`**
---host=host`**
+**`-h host`**<br />
+**`--host=host`**
 
-:   Specifies the host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to `localhost`.
+Specifies the host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to `localhost`.
 
--p port`**
---port=port`**
+**`-p port`**<br />
+**`--port=port`**
 
-:   Specifies the TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+Specifies the TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
--U username`**
---username=username`**
+**`-U username`**<br />
+**`--username=username`**
 
-:   The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system role name.
+The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system role name.
 
--w`**
---no-password`**
+**`-w`**<br />
+**`--no-password`**
 
-:   Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a `.pgpass` file, the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
+Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a `.pgpass` file, the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
 
--W`**
---password`**
+**`-W`**<br />
+**`--password`**
 
-:   Force `clusterdb` to prompt for a password before connecting to a database.
+Force `clusterdb` to prompt for a password before connecting to a database.
 
-:   This option is never essential, since `clusterdb` will automatically prompt for a password if the server demands password authentication. However, `clusterdb` will waste a connection attempt finding out that the server wants a password. In some cases it is worth typing `-W` to avoid the extra connection attempt.
+This option is never essential, since `clusterdb` will automatically prompt for a password if the server demands password authentication. However, `clusterdb` will waste a connection attempt finding out that the server wants a password. In some cases it is worth typing `-W` to avoid the extra connection attempt.
 
---maintenance-db=dbname`**
+**`--maintenance-db=dbname`**
 
-:   Specifies the name of the database to connect to discover what other databases should be clustered. If not specified, the `postgres` database will be used, and if that does not exist, `template1` will be used. This can be a [connection](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING) string. If so, connection string parameters will override any conflicting command line options. Also, connection string parameters other than the database name itself will be re-used when connecting to other databases.
+Specifies the name of the database to connect to discover what other databases should be clustered. If not specified, the `postgres` database will be used, and if that does not exist, `template1` will be used. This can be a [connection](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-CONNSTRING) string. If so, connection string parameters will override any conflicting command line options. Also, connection string parameters other than the database name itself will be re-used when connecting to other databases.
 
 ## Environment
 
-PGDATABASE`**
-PGHOST`**
-PGPORT`**
-PGUSER`**
+**`PGDATABASE`**<br />
+**`PGHOST`**<br />
+**`PGPORT`**<br />
+**`PGUSER`**
 
-:   Default connection parameters.
+Default connection parameters.
 
-PG_COLOR`**
+**`PG_COLOR`**
 
-:   Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
+Specifies whether to use color in diagnostic messages. Possible values are `always`, `auto`, and `never`.
 
 This utility, like most other Greenplum Database utilities, also uses the environment variables supported by `libpq`.
 

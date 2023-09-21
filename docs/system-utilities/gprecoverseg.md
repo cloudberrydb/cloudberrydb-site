@@ -1,3 +1,7 @@
+---
+title: gprecoverseg
+---
+
 # gprecoverseg
 
 Recovers a primary or mirror segment instance that has been marked as down (if mirroring is enabled).
@@ -66,25 +70,25 @@ The recovery process marks the segment as up again in the Greenplum Database sys
 
 ## Options
 
--a (do not prompt)`**
+**`-a (do not prompt)`**
 
-:   Do not prompt the user for confirmation.
+Do not prompt the user for confirmation.
 
--b segment_batch_size`**
+**`-b segment_batch_size`**
 
-:   The maximum number of segments per host to operate on in parallel. Valid values are `1` to `128`. If not specified, the utility will start recovering up to 64 segments in parallel on each host.
+The maximum number of segments per host to operate on in parallel. Valid values are `1` to `128`. If not specified, the utility will start recovering up to 64 segments in parallel on each host.
 
--B batch_size`**
+**`-B batch_size`**
 
-:   The number of hosts to work on in parallel. If not specified, the utility will start working on up to 16 hosts in parallel. Valid values are `1` to `64`.
+The number of hosts to work on in parallel. If not specified, the utility will start working on up to 16 hosts in parallel. Valid values are `1` to `64`.
 
--d coordinator_data_directory`**
+**`-d coordinator_data_directory`**
 
-:   Optional. The coordinator host data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
+Optional. The coordinator host data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
 
--F (full recovery)`**
+**`-F (full recovery)`**
 
-:   Optional. Perform a full copy of the active segment instance in order to recover the failed segment, rather than the default behavior of copying only the changes that occurred while the segment was down.
+Optional. Perform a full copy of the active segment instance in order to recover the failed segment, rather than the default behavior of copying only the changes that occurred while the segment was down.
 
 >**Caution** 
 >A full recovery deletes the data directory of the down segment instance before copying the data from the active (current primary) segment instance. Before performing a full recovery, ensure that the segment failure did not cause data corruption and that any host segment disk issues have been fixed.
@@ -95,19 +99,19 @@ Also, for a full recovery, the utility does not restore custom files that are st
 
 Use the `-s` option to output a new line once per second for each segment. Alternatively, use the `--no-progress` option to completely deactivate progress reports. To avoid copying the entire contents of the data directory during a full recovery after a previous full recovery failed, use `gprecoverseg`s, speed up the amount of time full recovery takes, use the `--differential` option to skip recovery of files and directories that have not changed since the last time `gprecoverseg` ran.
 
---differential (Differential recovery)`**
+**`--differential (Differential recovery)`**
 
-:   Optional. Perform a differential copy of the active segment instance in order to recover the failed segment. The default is to only copy over the incremental changes that occurred while the segment was down.
+Optional. Perform a differential copy of the active segment instance in order to recover the failed segment. The default is to only copy over the incremental changes that occurred while the segment was down.
 
---hba-hostnames boolean`**
+**`--hba-hostnames boolean`**
 
-:   Optional. Controls whether this utility uses IP addresses or host names in the `pg_hba.conf` file when updating this file with addresses that can connect to Greenplum Database. When set to 0 -- the default value -- this utility uses IP addresses when updating this file. When set to 1, this utility uses host names when updating this file. For consistency, use the same value that was specified for `HBA_HOSTNAMES` when the Greenplum Database system was initialized.
+Optional. Controls whether this utility uses IP addresses or host names in the `pg_hba.conf` file when updating this file with addresses that can connect to Greenplum Database. When set to 0 -- the default value -- this utility uses IP addresses when updating this file. When set to 1, this utility uses host names when updating this file. For consistency, use the same value that was specified for `HBA_HOSTNAMES` when the Greenplum Database system was initialized.
 
 <!-- For information about how Greenplum Database resolves host names in the `pg_hba.conf` file, see [Configuring Client Authentication](../../admin_guide/client_auth.html). -->
 
--i recover_config_file`**
+**`-i recover_config_file`**
 
-:   Specifies the name of a file with the details about failed segments to recover.
+Specifies the name of a file with the details about failed segments to recover.
 
 Each line in the config file specifies a segment to recover. This line can have one of two formats. In the event of in-place (incremental) recovery, enter one group of pipe-delimited fields in the line. For example:
 
@@ -153,70 +157,70 @@ sdw1-1|50001|/data1/mirror/gpseg16<SPACE>sdw4-1|50001|/data1/recover1/gpseg16
 
 You can use the `-o` option to output a sample recovery configuration file to use as a starting point. The output file lists the currently invalid segments and their default recovery location. This file format can be used with the `-i` option for in-place (incremental) recovery.
 
--l logfile_directory`**
+**`-l logfile_directory`**
 
-:   The directory to write the log file. Defaults to `~/gpAdminLogs`.
+The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
--o output_recover_config_file`**
+**`-o output_recover_config_file`**
 
-:   Specifies a file name and location to output a sample recovery configuration file. This file can be edited to supply alternate recovery locations if needed. The following example outputs the default recovery configuration file:
+Specifies a file name and location to output a sample recovery configuration file. This file can be edited to supply alternate recovery locations if needed. The following example outputs the default recovery configuration file:
 
 ```shell
 $ gprecoverseg -o /home/gpadmin/recover_config_file
 ```
 
--p new_recover_host[,...]`**
+**`-p new_recover_host[,...]`**
 
-:   Specifies a new host outside of the currently configured Greenplum Database array on which to recover invalid segments.
+Specifies a new host outside of the currently configured Greenplum Database array on which to recover invalid segments.
 
-:   The new host must have the Greenplum Database software installed and configured, and have the same hardware and OS configuration as the current segment hosts (same OS version, locales, `gpadmin` user account, data directory locations created, ssh keys exchanged, number of network interfaces, network interface naming convention, and so on). Specifically, the Greenplum Database binaries must be installed, the new host must be able to connect password-less with all segments including the Greenplum coordinator, and any other Greenplum Database specific OS configuration parameters must be applied.
+The new host must have the Greenplum Database software installed and configured, and have the same hardware and OS configuration as the current segment hosts (same OS version, locales, `gpadmin` user account, data directory locations created, ssh keys exchanged, number of network interfaces, network interface naming convention, and so on). Specifically, the Greenplum Database binaries must be installed, the new host must be able to connect password-less with all segments including the Greenplum coordinator, and any other Greenplum Database specific OS configuration parameters must be applied.
 
-:   > **Note** In the case of multiple failed segment hosts, you can specify the hosts to recover with a comma-separated list. However, it is strongly recommended to recover one host at a time. If you must recover more than one host at a time, then it is critical to ensure that a double fault scenario does not occur, in which both the segment primary and corresponding mirror are offline.
+> **Note** In the case of multiple failed segment hosts, you can specify the hosts to recover with a comma-separated list. However, it is strongly recommended to recover one host at a time. If you must recover more than one host at a time, then it is critical to ensure that a double fault scenario does not occur, in which both the segment primary and corresponding mirror are offline.
 
--q (no screen output)`**
+**`-q (no screen output)`**
 
-:   Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.
+Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.
 
--r (rebalance segments)`**
+**`-r (rebalance segments)`**
 
-:   After a segment recovery, segment instances may not be returned to the preferred role that they were given at system initialization time. This can leave the system in a potentially unbalanced state, as some segment hosts may have more active segments than is optimal for top system performance. This option rebalances primary and mirror segments by returning them to their preferred roles. All segments must be valid and resynchronized before running `gprecoverseg -r`. If there are any in progress queries, they will be cancelled and rolled back.
+After a segment recovery, segment instances may not be returned to the preferred role that they were given at system initialization time. This can leave the system in a potentially unbalanced state, as some segment hosts may have more active segments than is optimal for top system performance. This option rebalances primary and mirror segments by returning them to their preferred roles. All segments must be valid and resynchronized before running `gprecoverseg -r`. If there are any in progress queries, they will be cancelled and rolled back.
 
---replay-lag`**
+**`--replay-lag`**
 
-:   Replay lag(in GBs) allowed on mirror when rebalancing the segments. Default is 10 GB. If the replay_lag (flush_lsn-replay_lsn) is more than the value provided with this option then rebalance will be aborted.
+Replay lag(in GBs) allowed on mirror when rebalancing the segments. Default is 10 GB. If the replay_lag (flush_lsn-replay_lsn) is more than the value provided with this option then rebalance will be aborted.
 
---disable-replay-lag`**
+**`--disable-replay-lag`**
 
-:   Disable replay lag check when rebalancing segments
+Disable replay lag check when rebalancing segments
 
--s (sequential progress)`**
+**`-s (sequential progress)`**
 
-:   Show `pg_basebackup` or `pg_rewind` progress sequentially instead of in-place. Useful when writing to a file, or if a tty does not support escape sequences. The default is to show progress in-place.
+Show `pg_basebackup` or `pg_rewind` progress sequentially instead of in-place. Useful when writing to a file, or if a tty does not support escape sequences. The default is to show progress in-place.
 
---no-progress`**
+**`--no-progress`**
 
-:   Suppresses progress reports from the `pg_basebackup`, `pg_rewind`, or `rsync` utility. The default is to display progress.
+Suppresses progress reports from the `pg_basebackup`, `pg_rewind`, or `rsync` utility. The default is to display progress.
 
---differential`**
+**`--differential`**
 
-:   Optional. During a full recovery, copy from the primary segment to the mirror segment only the files and directories that changed since the segment failed. You may use the `--differential` option for in-place full recovery only.
+Optional. During a full recovery, copy from the primary segment to the mirror segment only the files and directories that changed since the segment failed. You may use the `--differential` option for in-place full recovery only.
 
 <!-- See [Recovery Scenarios](../../admin_guide/highavail/topics/g-recovering-from-segment-failures.html) for more information on in-place recovery versus recovery to a different host. -->
 
 >**Note**
 > The `--differential` option cannot be combined with any of the following `gprecoverseg` options: `-i`, `-o`, `-F`, or `-p`.
 
--v | --verbose`**
+**`-v | --verbose`**
 
-:   Sets logging output to verbose.
+Sets logging output to verbose.
 
---version`**
+**`--version`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
--? | -h | --help`**
+**`-? | -h | --help`**
 
-:   Displays the online help.
+Displays the online help.
 
 ## Examples
 

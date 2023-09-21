@@ -1,3 +1,7 @@
+---
+title: createuser
+---
+
 # createuser
 
 Creates a new database role.
@@ -22,111 +26,111 @@ Superusers can bypass all access permission checks within the database, so super
 
 ## Options
 
-role_name`**
+**`role_name`**
 
-:   The name of the role to be created. This name must be different from all existing roles in this Greenplum Database installation.
+The name of the role to be created. This name must be different from all existing roles in this Greenplum Database installation.
 
--c number | --connection-limit=number`**
+**`-c number | --connection-limit=number`**
 
-:   Set a maximum number of connections for the new role. The default is to set no limit.
+Set a maximum number of connections for the new role. The default is to set no limit.
 
--d | --createdb`**
+**`-d | --createdb`**
 
-:   The new role will be allowed to create databases.
+The new role will be allowed to create databases.
 
--D | --no-createdb`**
+**`-D | --no-createdb`**
 
-:   The new role will not be allowed to create databases. This is the default.
+The new role will not be allowed to create databases. This is the default.
 
--e | --echo`**
+**`-e | --echo`**
 
-:   Echo the commands that `createuser` generates and sends to the server.
+Echo the commands that `createuser` generates and sends to the server.
 
--E | --encrypted`**
+**`-E | --encrypted`**
 
-:   Encrypts the role's password stored in the database. If not specified, the default password behavior is used.
+Encrypts the role's password stored in the database. If not specified, the default password behavior is used.
 
--i | --inherit`**
+**`-i | --inherit`**
 
-:   The new role will automatically inherit privileges of roles it is a member of. This is the default.
+The new role will automatically inherit privileges of roles it is a member of. This is the default.
 
--I | --no-inherit`**
+**`-I | --no-inherit`**
 
-:   The new role will not automatically inherit privileges of roles it is a member of.
+The new role will not automatically inherit privileges of roles it is a member of.
 
---interactive`**
+**`--interactive`**
 
-:   Prompt for the user name if none is specified on the command line, and also prompt for whichever of the options `-d`/`-D`, `-r`/`-R`, `-s`/`-S` is not specified on the command line.
+Prompt for the user name if none is specified on the command line, and also prompt for whichever of the options `-d`/`-D`, `-r`/`-R`, `-s`/`-S` is not specified on the command line.
 
--l | --login`**
+**`-l | --login`**
 
-:   The new role will be allowed to log in to Greenplum Database. This is the default.
+The new role will be allowed to log in to Greenplum Database. This is the default.
 
--L | --no-login`**
+**`-L | --no-login`**
 
-:   The new role will not be allowed to log in (a group-level role).
+The new role will not be allowed to log in (a group-level role).
 
--N | --unencrypted`**
+**`-N | --unencrypted`**
 
-:   Does not encrypt the role's password stored in the database. If not specified, the default password behavior is used.
+Does not encrypt the role's password stored in the database. If not specified, the default password behavior is used.
 
--P | --pwprompt`**
+**`-P | --pwprompt`**
 
-:   If given, `createuser` will issue a prompt for the password of the new role. This is not necessary if you do not plan on using password authentication.
+If given, `createuser` will issue a prompt for the password of the new role. This is not necessary if you do not plan on using password authentication.
 
--r | --createrole`**
+**`-r | --createrole`**
 
-:   The new role will be allowed to create new roles (`CREATEROLE` privilege).
+The new role will be allowed to create new roles (`CREATEROLE` privilege).
 
--R | --no-createrole`**
+**`-R | --no-createrole`**
 
-:   The new role will not be allowed to create new roles. This is the default.
+The new role will not be allowed to create new roles. This is the default.
 
--s | --superuser`**
+**`-s | --superuser`**
 
-:   The new role will be a superuser.
+The new role will be a superuser.
 
--S | --no-superuser`**
+**`-S | --no-superuser`**
 
-:   The new role will not be a superuser. This is the default.
+The new role will not be a superuser. This is the default.
 
--V | --version`**
+**`-V | --version`**
 
-:   Print the `createuser` version and exit.
+Print the `createuser` version and exit.
 
---replication`**
+**`--replication`**
 
-:   The new user will have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
+The new user will have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
 
---no-replication`**
+**`--no-replication`**
 
-:   The new user will not have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
+The new user will not have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
 
--? | --help`**
+**`-? | --help`**
 
-:   Show help about `createuser` command line arguments, and exit.
+Show help about `createuser` command line arguments, and exit.
 
 ### Connection options
 
--h host | --host=host`**
+**`-h host | --host=host`**
 
-:   The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
+The host name of the machine on which the Greenplum coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
--p port | --port=port`**
+**`-p port | --port=port`**
 
-:   The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+The TCP port on which the Greenplum coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
--U username | --username=username`**
+**`-U username | --username=username`**
 
-:   The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system role name.
+The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system role name.
 
--w | --no-password`**
+**`-w | --no-password`**
 
-:   Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a `.pgpass` file, the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
+Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a `.pgpass` file, the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
 
--W | --password`**
+**`-W | --password`**
 
-:   Force a password prompt.
+Force a password prompt.
 
 ## Examples
 

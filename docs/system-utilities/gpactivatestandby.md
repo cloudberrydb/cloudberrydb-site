@@ -1,3 +1,7 @@
+---
+title: gpactivatestandby
+---
+
 # gpactivatestandby
 
 Activates a standby coordinator host and makes it the active coordinator for the Greenplum Database system.
@@ -47,37 +51,37 @@ After you activate the standby coordinator as the primary coordinator, the Green
 
 ## Options
 
--a (do not prompt)`**
+**`-a (do not prompt)`**
 
-:   Do not prompt the user for confirmation.
+Do not prompt the user for confirmation.
 
--d standby_coordinator_datadir`**
+**`-d standby_coordinator_datadir`**
 
-:   The absolute path of the data directory for the coordinator host you are activating.
+The absolute path of the data directory for the coordinator host you are activating.
 
-:   If this option is not specified, `gpactivatestandby` uses the value of the `COORDINATOR_DATA_DIRECTORY` environment variable setting on the coordinator host you are activating. If this option is specified, it overrides any setting of `COORDINATOR_DATA_DIRECTORY`.
+If this option is not specified, `gpactivatestandby` uses the value of the `COORDINATOR_DATA_DIRECTORY` environment variable setting on the coordinator host you are activating. If this option is specified, it overrides any setting of `COORDINATOR_DATA_DIRECTORY`.
 
-:   If a directory cannot be determined, the utility returns an error.
+If a directory cannot be determined, the utility returns an error.
 
--f (force activation)`**
+**`-f (force activation)`**
 
-:   Use this option to force activation of the backup coordinator host. Use this option only if you are sure that the standby and primary coordinator hosts are consistent.
+Use this option to force activation of the backup coordinator host. Use this option only if you are sure that the standby and primary coordinator hosts are consistent.
 
--l logfile_directory`**
+**`-l logfile_directory`**
 
-:   The directory to write the log file. Defaults to `~/gpAdminLogs`.
+The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
--q (no screen output)`**
+**`-q (no screen output)`**
 
-:   Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.
+Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.
 
--v (show utility version)`**
+**`-v (show utility version)`**
 
-:   Displays the version, status, last updated date, and check sum of this utility.
+Displays the version, status, last updated date, and check sum of this utility.
 
--? | -h | --help (help)`**
+**`-? | -h | --help (help)`**
 
-:   Displays the online help.
+Displays the online help.
 
 ## Example
 

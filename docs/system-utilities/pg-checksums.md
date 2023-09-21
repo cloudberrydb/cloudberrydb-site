@@ -1,3 +1,7 @@
+---
+title: pg_checksums
+---
+
 # pg_checksums
 
 Enables, disables, or checks data checksums in a Greenplum Database cluster.
@@ -23,58 +27,58 @@ When verifying checksums, Greenplum Database scans every file in the cluster. Wh
 
 The following command-line options are available:
 
--D datadir`**
---pgdata=datadir`**
+**`-D datadir`**<br />
+**`--pgdata=datadir`**
 
-:   Specifies the directory where the database cluster is stored.
+Specifies the directory where the database cluster is stored.
 
--c`**
---check`**
+**`-c`**<br />
+**`--check`**
 
-:   Checks checksums. This is the default mode when no other options are specified.
+Checks checksums. This is the default mode when no other options are specified.
 
--d`**
---disable`**
+**`-d`**<br />
+**`--disable`**
 
-:   Deactivates checksums.
+Deactivates checksums.
 
--e`**
---enable`**
+**`-e`**<br />
+**`--enable`**
 
-:   Activates checksums.
+Activates checksums.
 
--f fnode`**
---filenode=fnode`**
+**`-f fnode`**<br />
+**`--filenode=fnode`**
 
-:   Only validate checksums in the relation with filenode fnode.
+Only validate checksums in the relation with filenode fnode.
 
--N`**
---no-sync`**
+**`-N`**<br />
+**`--no-sync`**
 
-:   By default, `pg_checksums` waits for all files to be written safely to disk. This option causes `pg_checksums` to return without waiting, which is faster, but a subsequent operating system crash could leave the updated data directory corrupt. This option has no effect when specified with `--check`.
+By default, `pg_checksums` waits for all files to be written safely to disk. This option causes `pg_checksums` to return without waiting, which is faster, but a subsequent operating system crash could leave the updated data directory corrupt. This option has no effect when specified with `--check`.
 
 > **Note**
 > While useful for testing, do not use the `-N/--nosync` option in a production installation.
 
--P`**
---progress`**
+**`-P`**<br />
+**`--progress`**
 
-:   Enables progress reporting. Turning this on will deliver a progress report while checking or enabling checksums.
+Enables progress reporting. Turning this on will deliver a progress report while checking or enabling checksums.
 
--v`**
---verbose`**
+**`-v`**<br />
+**`--verbose`**
 
-:   Specifies verbose mode, which lists all checked files.
+Specifies verbose mode, which lists all checked files.
 
--V`**
---version`**
+**`-V`**<br />
+**`--version`**
 
-:   Print the `pg_checksums` version, and exit.
+Print the `pg_checksums` version, and exit.
 
--?`**
---help`**
+**`-?`**<br />
+**`--help`**
 
-:   Show help about `pg_checksums` command line arguments, and exit.
+Show help about `pg_checksums` command line arguments, and exit.
 
 
 ## Environment

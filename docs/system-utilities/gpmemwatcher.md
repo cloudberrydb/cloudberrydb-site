@@ -1,3 +1,7 @@
+---
+title: gpmemwatcher
+---
+
 # gpmemwatcher
 
 Tracks the memory usage of each process in a Greenplum Database cluster.
@@ -22,9 +26,9 @@ You may use this utility if Greenplum Database is reporting `Out of memory` erro
 
 ## Options
 
--f | --host_file hostfile`**
+**`-f | --host_file hostfile`**
 
-:   Indicates the hostfile input file that lists the hosts from which the utility should collect memory usage information. The file must include the hostnames and a working directory that exists on each one of the hosts. For example:
+Indicates the hostfile input file that lists the hosts from which the utility should collect memory usage information. The file must include the hostnames and a working directory that exists on each one of the hosts. For example:
 
 ```shell
 cdw:/home/gpadmin/gpmemwatcher_dir/working
@@ -34,17 +38,17 @@ sdw3:/home/gpadmin/gpmemwatcher_dir/working
 sdw4:/home/gpadmin/gpmemwatcher_dir/working
 ```
 
---stop`**
+**`--stop`**
 
-:   Stops all the `gpmemwatcher` processes, generates `.gz` data files in the current directory, and removes all the work files from all the hosts.
+Stops all the `gpmemwatcher` processes, generates `.gz` data files in the current directory, and removes all the work files from all the hosts.
 
---version`**
+**`--version`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
--h | --help`**
+**`-h | --help`**
 
-:   Displays the online help.
+Displays the online help.
 
 ## Examples
 

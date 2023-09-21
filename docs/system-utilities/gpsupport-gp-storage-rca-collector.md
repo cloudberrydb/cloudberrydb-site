@@ -1,3 +1,7 @@
+---
+title: gpsupport storage_rca_collector
+---
+
 # gpsupport storage_rca_collector
 
 This tool collects storage-related table data and generates an output file which can be provided to VMware Customer Support for diagnosis of storage-related errors or system failures.
@@ -10,29 +14,29 @@ storage_rca_collector [-db <database> ] [-t <table> ] | -c <ID1,ID2,...> ] [-dir
 
 ## Options
 
--db`**
+**`-db`**
 
-:   The database name.
+The database name.
 
--t`**
+**`-t`**
 
-:   The table name.
+The table name.
 
--c`**
+**`-c`**
 
-:   Comma separated list of content IDs to collect logs from.
+Comma separated list of content IDs to collect logs from.
 
--dir`**
+**`-dir`**
 
-:   The output directory. Defaults to the current directory.
+The output directory. Defaults to the current directory.
 
--a`**
+**`-a`**
 
-:   Answer Yes to all prompts.
+Answer Yes to all prompts.
 
--translog`**
+**`-translog`**
 
-:   Specifies that the tool should collect transaction log data. 
+Specifies that the tool should collect transaction log data. 
 
 The tool also collects the following information:
 

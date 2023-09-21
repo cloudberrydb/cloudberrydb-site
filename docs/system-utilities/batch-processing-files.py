@@ -1,35 +1,25 @@
 import os
-import re
 
-def process_content(content):
-    # 正则表达式匹配 Option ： Option description 格式
-    pattern = re.compile(r'^(?P<param_name>\w+)(\s+)\:\s+(?P<param_desc>.+)$', re.MULTILINE)
+folder_path = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/system-utilities"
 
-    # 替换函数
-    def replace_format(match):
-        param_name = match.group("param_name")
-        param_desc = match.group("param_desc")
-        return f"**`{param_name}`**\n\n{param_desc}"
+# Step 1: Get all markdown filenames in a list
+markdown_filenames = [f for f in os.listdir(folder_path) if f.endswith('.md')]
 
-    # 使用 re.sub 替换所有匹配的内容
-    return pattern.sub(replace_format, content)
+# Step 2: Traverse each markdown file and check if there is a mention of any filename in the list
+for file_name in os.listdir(folder_path):
+    if not file_name.endswith('.md'):
+        continue
 
-def process_directory(directory_path):
-    filenames = os.listdir(directory_path)
+    file_path = os.path.join(folder_path, file_name)
+    
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
 
-    for filename in filenames:
-        if filename.endswith('.md'):
-            with open(os.path.join(directory_path, filename), 'r', encoding='utf-8') as file:
-                content = file.read()
-
-            # 如果内容中包含 "## Parameters" 标题，则进行处理
-            if "## Options" in content:
-                new_content = process_content(content)
-
-                with open(os.path.join(directory_path, filename), 'w', encoding='utf-8') as file:
-                    file.write(new_content)
-                print(f'Processed {filename}')
-
-if __name__ == '__main__':
-    main_directory = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/system-utilities"
-    process_directory(main_directory)
+    # Check if any filename from the list is mentioned in the current file
+    # If yes, replace it with "db-util-" + filename
+    for markdown_filename in markdown_filenames:
+        if markdown_filename in content:
+            content = content.replace(markdown_filename, "db-util-" + markdown_filename)
+    
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.write(content)

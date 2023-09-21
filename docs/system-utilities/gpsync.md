@@ -1,3 +1,7 @@
+---
+title: gpsync
+---
+
 # gpsync
 
 Copies files between multiple hosts at once.
@@ -30,29 +34,29 @@ Before using `gpsync`, you must have a trusted host setup between the hosts invo
 
 ## Options
 
--f hostfile_gpssh`**
+**`-f hostfile_gpssh`**
 
-:   Specifies the name of a file that contains a list of hosts that will participate in this remote sync session. The syntax of the host file is one host per line as follows:
+Specifies the name of a file that contains a list of hosts that will participate in this remote sync session. The syntax of the host file is one host per line as follows:
 
 ```shell
 <hostname>
 ```
 
--h hostname`**
+**`-h hostname`**
 
-:   Specifies a single host name that will participate in this remote sync session. You can use the `-h` option multiple times to specify multiple host names.
+Specifies a single host name that will participate in this remote sync session. You can use the `-h` option multiple times to specify multiple host names.
 
--a`**
+**`-a`**
 
-:   Sync source and target directories in archival mode.
+Sync source and target directories in archival mode.
 
--J character`**
+**`-J character`**
 
-:   The `-J` option allows you to specify a single character to substitute for the hostname in the `copy from` and `copy to` destination strings. If `-J` is not specified, the default substitution character is an equal sign (`=`).
+The `-J` option allows you to specify a single character to substitute for the hostname in the `copy from` and `copy to` destination strings. If `-J` is not specified, the default substitution character is an equal sign (`=`).
 
--v (verbose mode)`**
+**`-v (verbose mode)`**
 
-:   Optional. Reports additional messages in addition to the remote sync command output.
+Optional. Reports additional messages in addition to the remote sync command output.
 
 **`file_to_copy`**
 
@@ -62,13 +66,13 @@ Required. The file name (or absolute path) of a file that you want to copy to ot
 
 Required. The path where you want the file(s) to be copied on the named hosts. If an absolute path is not used, the file will be copied relative to `$HOME` of the session user. You can also use the equal sign '`=`' (or another character that you specify with the `-J` option) in place of a hostname. This will then substitute in each host name as specified in the supplied host file (`-f`) or with the `-h` option.
 
--? (help)`**
+**`-? (help)`**
 
-:   Displays the online help.
+Displays the online help.
 
---version`**
+**`--version`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
 ## Examples
 

@@ -1,3 +1,7 @@
+---
+title: gpmovemirrors
+---
+
 # gpmovemirrors
 
 Moves mirror segment instances to new locations.
@@ -24,49 +28,49 @@ You must make sure that the user who runs `gpmovemirrors` (the `gpadmin` user) h
 
 ## Options
 
--b segment_batch_size`**
+**`-b segment_batch_size`**
 
-:   The maximum number of segments per host to operate on in parallel. Valid values are `1` to `128`. If not specified, the utility will start recovering up to 64 segments in parallel on each host.
+The maximum number of segments per host to operate on in parallel. Valid values are `1` to `128`. If not specified, the utility will start recovering up to 64 segments in parallel on each host.
 
--B batch_size`**
+**`-B batch_size`**
 
-:   The number of hosts to work on in parallel. If not specified, the utility will start working on up to 16 hosts in parallel. Valid values are `1` to `64`.
+The number of hosts to work on in parallel. If not specified, the utility will start working on up to 16 hosts in parallel. Valid values are `1` to `64`.
 
--d coordinator_data_directory`**
+**`-d coordinator_data_directory`**
 
-:   The coordinator data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
+The coordinator data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
 
---hba-hostnames boolean`**
+**`--hba-hostnames boolean`**
 
-:   Optional. Controls whether this utility uses IP addresses or host names in the `pg_hba.conf` file when updating this file with addresses that can connect to Greenplum Database. When set to 0 -- the default value -- this utility uses IP addresses when updating this file. When set to 1, this utility uses host names when updating this file. For consistency, use the same value that was specified for `HBA_HOSTNAMES` when the Greenplum Database system was initialized. <!-- For information about how Greenplum Database resolves host names in the `pg_hba.conf` file, see [Configuring Client Authentication](../../admin_guide/client_auth.html). -->
+Optional. Controls whether this utility uses IP addresses or host names in the `pg_hba.conf` file when updating this file with addresses that can connect to Greenplum Database. When set to 0 -- the default value -- this utility uses IP addresses when updating this file. When set to 1, this utility uses host names when updating this file. For consistency, use the same value that was specified for `HBA_HOSTNAMES` when the Greenplum Database system was initialized. <!-- For information about how Greenplum Database resolves host names in the `pg_hba.conf` file, see [Configuring Client Authentication](../../admin_guide/client_auth.html). -->
 
--i move_config_file`**
+**`-i move_config_file`**
 
-:   A configuration file containing information about which mirror segments to move, and where to move them.
+A configuration file containing information about which mirror segments to move, and where to move them.
 
-:   You must have one mirror segment listed for each primary segment in the system. Each line inside the configuration file has the following format (as per attributes in the `gp_segment_configuration` catalog table):
+You must have one mirror segment listed for each primary segment in the system. Each line inside the configuration file has the following format (as per attributes in the `gp_segment_configuration` catalog table):
 
 ```shell
 <old_address>|<port>|<data_dir> <new_address>|<port>|<data_dir>
 ```
 
-:   Where `<old_address>` and `<new_address>` are the host names or IP addresses of the segment hosts, `<port>` is the communication port, and `<data_dir>` is the segment instance data directory.
+Where `<old_address>` and `<new_address>` are the host names or IP addresses of the segment hosts, `<port>` is the communication port, and `<data_dir>` is the segment instance data directory.
 
--l logfile_directory`**
+**`-l logfile_directory`**
 
-:   The directory to write the log file. Defaults to `~/gpAdminLogs`.
+The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
--v (verbose)`**
+**`-v (verbose)`**
 
-:   Sets logging output to verbose.
+Sets logging output to verbose.
 
---version (show utility version)`**
+**`--version (show utility version)`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
--? (help)`**
+**`-? (help)`**
 
-:   Displays the online help.
+Displays the online help.
 
 ## Examples
 

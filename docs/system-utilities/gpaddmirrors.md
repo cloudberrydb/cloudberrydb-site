@@ -1,3 +1,7 @@
+---
+title: gpaddmirrors
+---
+
 # gpaddmirrors
 
 Adds mirror segments to a Greenplum Database system that was initially configured without mirroring.
@@ -74,43 +78,43 @@ You must make sure that the user who runs `gpaddmirrors` (the `gpadmin` user) ha
 
 ## Options
 
--a (do not prompt)`**
+**`-a (do not prompt)`**
 
-:   Run in quiet mode - do not prompt for information. Must supply a configuration file with either `-m` or `-i` if this option is used.
+Run in quiet mode - do not prompt for information. Must supply a configuration file with either `-m` or `-i` if this option is used.
 
--b segment_batch_size`**
+**`-b segment_batch_size`**
 
-:   The maximum number of segments per host to operate on in parallel. Valid values are `1` to `128`. If not specified, the utility will start recovering up to 64 segments in parallel on each host.
+The maximum number of segments per host to operate on in parallel. Valid values are `1` to `128`. If not specified, the utility will start recovering up to 64 segments in parallel on each host.
 
--B batch_size`**
+**`-B batch_size`**
 
-:   The number of hosts to work on in parallel. If not specified, the utility will start working on up to 16 hosts in parallel. Valid values are `1` to `64`.
+The number of hosts to work on in parallel. If not specified, the utility will start working on up to 16 hosts in parallel. Valid values are `1` to `64`.
 
--d coordinator_data_directory`**
+**`-d coordinator_data_directory`**
 
-:   The coordinator data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
+The coordinator data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
 
---hba-hostnames boolean`**
+**`--hba-hostnames boolean`**
 
-:   Optional. Controls whether this utility uses IP addresses or host names in the `pg_hba.conf` file when updating this file with addresses that can connect to Greenplum Database. When set to 0 -- the default value -- this utility uses IP addresses when updating this file. When set to 1, this utility uses host names when updating this file. For consistency, use the same value that was specified for `HBA_HOSTNAMES` when the Greenplum Database system was initialized.
+Optional. Controls whether this utility uses IP addresses or host names in the `pg_hba.conf` file when updating this file with addresses that can connect to Greenplum Database. When set to 0 -- the default value -- this utility uses IP addresses when updating this file. When set to 1, this utility uses host names when updating this file. For consistency, use the same value that was specified for `HBA_HOSTNAMES` when the Greenplum Database system was initialized.
 
--i mirror_config_file`**
+**`-i mirror_config_file`**
 
-:   A configuration file containing one line for each mirror segment you want to create. You must have one mirror segment instance listed for each primary segment in the system. The format of this file is as follows (as per attributes in the `gp_segment_configuration` catalog table):
+A configuration file containing one line for each mirror segment you want to create. You must have one mirror segment instance listed for each primary segment in the system. The format of this file is as follows (as per attributes in the `gp_segment_configuration` catalog table):
 
 ```shell
 <contentID>|<address>|<port>|<data_dir>
 ```
 
-:   Where `<contentID>` is the segment instance content ID, `<address>` is the hostname or IP address of the segment host, `<port>` is the communication port, and `<data_dir>` is the segment instance data directory. For information about using a hostname or IP address, see [Specifying Hosts using Hostnames or IP Addresses](#specifying-hosts-using-hostnames-or-ip-addresses). Also, see [Using Host Systems with Multiple NICs](#using-host-systems-with-multiple-nics).
+Where `<contentID>` is the segment instance content ID, `<address>` is the hostname or IP address of the segment host, `<port>` is the communication port, and `<data_dir>` is the segment instance data directory. For information about using a hostname or IP address, see [Specifying Hosts using Hostnames or IP Addresses](#specifying-hosts-using-hostnames-or-ip-addresses). Also, see [Using Host Systems with Multiple NICs](#using-host-systems-with-multiple-nics).
 
--l logfile_directory`**
+**`-l logfile_directory`**
 
-:   The directory to write the log file. Defaults to `~/gpAdminLogs`.
+The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
--m datadir_config_file`**
+**`-m datadir_config_file`**
 
-:   A configuration file containing a list of file system locations where the mirror data directories will be created. If not supplied, the utility prompts you for locations. Each line in the file specifies a mirror data directory location. For example:
+A configuration file containing a list of file system locations where the mirror data directories will be created. If not supplied, the utility prompts you for locations. Each line in the file specifies a mirror data directory location. For example:
 
 ```shell
 /gpdata/m1
@@ -119,35 +123,35 @@ You must make sure that the user who runs `gpaddmirrors` (the `gpadmin` user) ha
 /gpdata/m4
 ```
 
--o output_sample_mirror_config`**
+**`-o output_sample_mirror_config`**
 
-:   If you are not sure how to lay out the mirror configuration file used by the `-i` option, you can run `gpaddmirrors` with this option to generate a sample mirror configuration file based on your primary segment configuration. The utility will prompt you for your mirror segment data directory locations (unless you provide these in a file using `-m`). You can then edit this file to change the host names to alternate mirror hosts if necessary.
+If you are not sure how to lay out the mirror configuration file used by the `-i` option, you can run `gpaddmirrors` with this option to generate a sample mirror configuration file based on your primary segment configuration. The utility will prompt you for your mirror segment data directory locations (unless you provide these in a file using `-m`). You can then edit this file to change the host names to alternate mirror hosts if necessary.
 
--p port_offset`**
+**`-p port_offset`**
 
-:   Optional. This number is used to calculate the database ports used for mirror segments. The default offset is 1000. Mirror port assignments are calculated as follows:
+Optional. This number is used to calculate the database ports used for mirror segments. The default offset is 1000. Mirror port assignments are calculated as follows:
 
 ```shell
 primary_port + offset = mirror_database_port
 ```
 
-:   For example, if a primary segment has port 50001, then its mirror will use a database port of 51001, by default.
+For example, if a primary segment has port 50001, then its mirror will use a database port of 51001, by default.
 
--s (spread mirrors)`**
+**`-s (spread mirrors)`**
 
-:   Spreads the mirror segments across the available hosts. The default is to group a set of mirror segments together on an alternate host from their primary segment set. Mirror spreading will place each mirror on a different host within the Greenplum Database array. Spreading is only allowed if there is a sufficient number of hosts in the array (number of hosts is greater than the number of segment instances per host).
+Spreads the mirror segments across the available hosts. The default is to group a set of mirror segments together on an alternate host from their primary segment set. Mirror spreading will place each mirror on a different host within the Greenplum Database array. Spreading is only allowed if there is a sufficient number of hosts in the array (number of hosts is greater than the number of segment instances per host).
 
--v (verbose)`**
+**`-v (verbose)`**
 
-:   Sets logging output to verbose.
+Sets logging output to verbose.
 
---version (show utility version)`**
+**`--version (show utility version)`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
--? (help)`**
+**`-? (help)`**
 
-:   Displays the online help.
+Displays the online help.
 
 ## Specify Hosts using Hostnames or IP Addresses
 

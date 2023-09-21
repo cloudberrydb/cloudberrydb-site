@@ -1,3 +1,7 @@
+---
+title: gpssh-exkeys
+---
+
 # gpssh-exkeys
 
 Exchanges SSH public keys between hosts.
@@ -44,29 +48,29 @@ The `gpssh-exkeys` utility performs key exchange using the following steps:
 
 ## Options
 
--e hostfile_exkeys`**
+**`-e hostfile_exkeys`**
 
-:   When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each host in your current Greenplum system (coordinator, standby coordinator, and segments), one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with `-x`.
+When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each host in your current Greenplum system (coordinator, standby coordinator, and segments), one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with `-x`.
 
--f hostfile_exkeys`**
+**`-f hostfile_exkeys`**
 
-:   Specifies the name and location of a file containing all configured host names and host addresses (interface names) for each host in your Greenplum system (coordinator, standby coordinator and segments), one name per line without blank lines or extra spaces.
+Specifies the name and location of a file containing all configured host names and host addresses (interface names) for each host in your Greenplum system (coordinator, standby coordinator and segments), one name per line without blank lines or extra spaces.
 
--h hostname`**
+**`-h hostname`**
 
-:   Specifies a single host name (or host address) that will participate in the SSH key exchange. You can use the `-h` option multiple times to specify multiple host names and host addresses.
+Specifies a single host name (or host address) that will participate in the SSH key exchange. You can use the `-h` option multiple times to specify multiple host names and host addresses.
 
---version`**
+**`--version`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
--x hostfile_gpexpand`**
+**`-x hostfile_gpexpand`**
 
-:   When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each new segment host you are adding to your Greenplum system, one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with `-e`.
+When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each new segment host you are adding to your Greenplum system, one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with `-e`.
 
--? (help)`**
+**`-? (help)`**
 
-:   Displays the online help.
+Displays the online help.
 
 ## Examples
 

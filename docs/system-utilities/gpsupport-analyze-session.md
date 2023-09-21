@@ -1,3 +1,7 @@
+---
+title: gpsupport analyze_session
+---
+
 # gpsupport analyze_session
 
 This tool traces busy processes associated with a Greenplum Database session. The information collected can be used by VMware Support for root cause analysis on hung sessions.
@@ -11,25 +15,25 @@ gpsupport analyze_session [-session <session_id> ] [-coordinator-dir <directory>
 
 ## Options
 
--session`**
+**`-session`**
 
-:   Greenplum session ID which is referenced in `pg_stat_activity`.
+Greenplum session ID which is referenced in `pg_stat_activity`.
 
--coordinator-dir`**
+**`-coordinator-dir`**
 
-:   Working directory for coordinator process.
+Working directory for coordinator process.
 
--segment-dir`**
+**`-segment-dir`**
 
-:   Working directory for segment processes.
+Working directory for segment processes.
 
--free-space`**
+**`-free-space`**
 
-:   Free space threshold which will exit log collection if reached. Default value is 10%.
+Free space threshold which will exit log collection if reached. Default value is 10%.
 
--a`**
+**`-a`**
 
-:   Answer Yes to all prompts.
+Answer Yes to all prompts.
 
 ## Examples
 

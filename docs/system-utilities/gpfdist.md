@@ -1,3 +1,7 @@
+---
+title: gpfdist
+---
+
 # gpfdist
 
 Serves data files to or writes data files out from Greenplum Database segments.
@@ -44,101 +48,101 @@ Most likely, you will want to run `gpfdist` on your ETL machines rather than the
 
 ## Options
 
--d directory`**
+**`-d directory`**
 
-:   The directory from which `gpfdist` will serve files for readable external tables or create output files for writable external tables. If not specified, defaults to the current directory.
+The directory from which `gpfdist` will serve files for readable external tables or create output files for writable external tables. If not specified, defaults to the current directory.
 
--l log_file`**
+**`-l log_file`**
 
-:   The fully qualified path and log file name where standard output messages are to be logged.
+The fully qualified path and log file name where standard output messages are to be logged.
 
--p http_port`**
+**`-p http_port`**
 
-:   The HTTP port on which `gpfdist` will serve files. Defaults to 8080.
+The HTTP port on which `gpfdist` will serve files. Defaults to 8080.
 
--P last_http_port`**
+**`-P last_http_port`**
 
-:   The last port number in a range of HTTP port numbers (http_port to last_http_port, inclusive) on which `gpfdist` will attempt to serve files. `gpfdist` serves the files on the first port number in the range to which it successfully binds.
+The last port number in a range of HTTP port numbers (http_port to last_http_port, inclusive) on which `gpfdist` will attempt to serve files. `gpfdist` serves the files on the first port number in the range to which it successfully binds.
 
--t timeout`**
+**`-t timeout`**
 
-:   Sets the time allowed for Greenplum Database to establish a connection to a `gpfdist` process. Default is 5 seconds. Allowed values are 2 to 7200 seconds (2 hours). May need to be increased on systems with a lot of network traffic.
+Sets the time allowed for Greenplum Database to establish a connection to a `gpfdist` process. Default is 5 seconds. Allowed values are 2 to 7200 seconds (2 hours). May need to be increased on systems with a lot of network traffic.
 
--m max_length`**
+**`-m max_length`**
 
-:   Sets the maximum allowed data row length in bytes. Default is 32768. Should be used when user data includes very wide rows (or when `line too long` error message occurs). Should not be used otherwise as it increases resource allocation. Valid range is 32K to 256MB. (The upper limit is 1MB on Windows systems.)
+Sets the maximum allowed data row length in bytes. Default is 32768. Should be used when user data includes very wide rows (or when `line too long` error message occurs). Should not be used otherwise as it increases resource allocation. Valid range is 32K to 256MB. (The upper limit is 1MB on Windows systems.)
 
-:   > **Note** Memory issues might occur if you specify a large maximum row length and run a large number of `gpfdist` concurrent connections. For example, setting this value to the maximum of 256MB with 96 concurrent `gpfdist` processes requires approximately 24GB of memory (`(96 + 1) x 246MB`).
+> **Note** Memory issues might occur if you specify a large maximum row length and run a large number of `gpfdist` concurrent connections. For example, setting this value to the maximum of 256MB with 96 concurrent `gpfdist` processes requires approximately 24GB of memory (`(96 + 1) x 246MB`).
 
--s`**
+**`-s`**
 
-:   Enables simplified logging. When this option is specified, only messages with `WARN` level and higher are written to the `gpfdist` log file. `INFO` level messages are not written to the log file. If this option is not specified, all `gpfdist` messages are written to the log file.
+Enables simplified logging. When this option is specified, only messages with `WARN` level and higher are written to the `gpfdist` log file. `INFO` level messages are not written to the log file. If this option is not specified, all `gpfdist` messages are written to the log file.
 
-:   You can specify this option to reduce the information written to the log file.
+You can specify this option to reduce the information written to the log file.
 
--S (use O_SYNC)`**
+**`-S (use O_SYNC)`**
 
-:   Opens the file for synchronous I/O with the `O_SYNC` flag. Any writes to the resulting file descriptor block `gpfdist` until the data is physically written to the underlying hardware.
+Opens the file for synchronous I/O with the `O_SYNC` flag. Any writes to the resulting file descriptor block `gpfdist` until the data is physically written to the underlying hardware.
 
--w time`**
+**`-w time`**
 
-:   Sets the number of seconds that Greenplum Database delays before closing a target file such as a named pipe. The default value is 0, no delay. The maximum value is 7200 seconds (2 hours).
+Sets the number of seconds that Greenplum Database delays before closing a target file such as a named pipe. The default value is 0, no delay. The maximum value is 7200 seconds (2 hours).
 
-:   For a Greenplum Database with multiple segments, there might be a delay between segments when writing data from different segments to the file. You can specify a time to wait before Greenplum Database closes the file to ensure all the data is written to the file.
+For a Greenplum Database with multiple segments, there might be a delay between segments when writing data from different segments to the file. You can specify a time to wait before Greenplum Database closes the file to ensure all the data is written to the file.
 
---ssl certificate_path`**
+**`--ssl certificate_path`**
 
-:   Adds SSL encryption to data transferred with `gpfdist`. After running `gpfdist` with the `--ssl certificate_path` option, the only way to load data from this file server is with the `gpfdist://` protocol. For information on the `gpfdist://` protocol, see "Loading and Unloading Data" in the *Greenplum Database Administrator Guide*.
+Adds SSL encryption to data transferred with `gpfdist`. After running `gpfdist` with the `--ssl certificate_path` option, the only way to load data from this file server is with the `gpfdist://` protocol. For information on the `gpfdist://` protocol, see "Loading and Unloading Data" in the *Greenplum Database Administrator Guide*.
 
-:   The location specified in certificate_path must contain the following files:
+The location specified in certificate_path must contain the following files:
 
-    - The server certificate file, `server.crt`
-    - The server private key file, `server.key`
-    - The trusted certificate authorities, `root.crt`
+- The server certificate file, `server.crt`
+- The server private key file, `server.key`
+- The trusted certificate authorities, `root.crt`
 
-    The root directory (`/`) cannot be specified as certificate_path.
+The root directory (`/`) cannot be specified as certificate_path.
 
---sslclean wait_time`**
+**`--sslclean wait_time`**
 
-:   When the utility is run with the `--ssl` option, sets the number of seconds that the utility delays before closing an SSL session and cleaning up the SSL resources after it completes writing data to or from a Greenplum Database segment. The default value is 0, no delay. The maximum value is 500 seconds. If the delay is increased, the transfer speed decreases.
+When the utility is run with the `--ssl` option, sets the number of seconds that the utility delays before closing an SSL session and cleaning up the SSL resources after it completes writing data to or from a Greenplum Database segment. The default value is 0, no delay. The maximum value is 500 seconds. If the delay is increased, the transfer speed decreases.
 
-:   In some cases, this error might occur when copying large amounts of data: `gpfdist server closed connection`. To avoid the error, you can add a delay, for example `--sslclean 5`.
+In some cases, this error might occur when copying large amounts of data: `gpfdist server closed connection`. To avoid the error, you can add a delay, for example `--sslclean 5`.
 
---compress`**
+**`--compress`**
 
-:   Enable compression during data transfer. When specified, `gpfdist` utilizes the Zstandard (`zstd`) compression algorithm.
+Enable compression during data transfer. When specified, `gpfdist` utilizes the Zstandard (`zstd`) compression algorithm.
 
-:   This option is not available on Windows platforms.
+This option is not available on Windows platforms.
 
---multi_threads num_threads`**
+**`--multi_threads num_threads`**
 
-:   Sets the maximum number of threads that `gpfdist` uses during data transfer, parallelizing the operation. When specified, `gpfdist` automatically compresses the data (also parallelized) before transferring.
+Sets the maximum number of threads that `gpfdist` uses during data transfer, parallelizing the operation. When specified, `gpfdist` automatically compresses the data (also parallelized) before transferring.
 
-:   `gpfdist` supports a maximum of 256 threads.
+`gpfdist` supports a maximum of 256 threads.
 
-:   This option is not available on Windows platforms.
+This option is not available on Windows platforms.
 
--c config.yaml`**
+**`-c config.yaml`**
 
-:   Specifies rules that `gpfdist` uses to select a transform to apply when loading or extracting data. The `gpfdist` configuration file is a YAML 1.1 document.
+Specifies rules that `gpfdist` uses to select a transform to apply when loading or extracting data. The `gpfdist` configuration file is a YAML 1.1 document.
 
-:   This option is not available on Windows platforms.
+This option is not available on Windows platforms.
 
--v (verbose)`**
+**`-v (verbose)`**
 
-:   Verbose mode shows progress and status messages.
+Verbose mode shows progress and status messages.
 
--V (very verbose)`**
+**`-V (very verbose)`**
 
-:   Verbose mode shows all output messages generated by this utility.
+Verbose mode shows all output messages generated by this utility.
 
--? (help)`**
+**`-? (help)`**
 
-:   Displays the online help.
+Displays the online help.
 
---version`**
+**`--version`**
 
-:   Displays the version of this utility.
+Displays the version of this utility.
 
 ## Notes
 

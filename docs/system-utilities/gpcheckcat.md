@@ -1,3 +1,7 @@
+---
+title: gpcheckcat
+---
+
 # gpcheckcat
 
 The `gpcheckcat` utility tests Greenplum Database catalog tables for inconsistencies.
@@ -44,105 +48,105 @@ Catalog inconsistencies are inconsistencies that occur between Greenplum Databas
 
 ## Options
 
--A`**
+**`-A`**
 
-:   Run `gpcheckcat` on all databases in the Greenplum Database installation.
+Run `gpcheckcat` on all databases in the Greenplum Database installation.
 
--B <parallel_processes>`**
+**`-B <parallel_processes>`**
 
-:   The number of processes to run in parallel.
+The number of processes to run in parallel.
 
-:   The `gpcheckcat` utility attempts to determine the number of simultaneous processes (the batch size) to use. The utility assumes it can use a buffer with a minimum of 20MB for each process. The maximum number of parallel processes is the number of Greenplum Database segment instances. The utility displays the number of parallel processes that it uses when it starts checking the catalog.
+The `gpcheckcat` utility attempts to determine the number of simultaneous processes (the batch size) to use. The utility assumes it can use a buffer with a minimum of 20MB for each process. The maximum number of parallel processes is the number of Greenplum Database segment instances. The utility displays the number of parallel processes that it uses when it starts checking the catalog.
 
 > **Note** The utility might run out of memory if the number of errors returned exceeds the buffer size. If an out of memory error occurs, you can lower the batch size with the `-B` option. For example, if the utility displays a batch size of 936 and runs out of memory, you can specify `-B 468` to run 468 processes in parallel.
 
--C catalog_table`**
+**`-C catalog_table`**
 
-:   Run cross consistency, foreign key, and ACL tests for the specified catalog table.
+Run cross consistency, foreign key, and ACL tests for the specified catalog table.
 
--g data_directory`**
+**`-g data_directory`**
 
-:   Generate SQL scripts to fix catalog inconsistencies. The scripts are placed in data_directory.
+Generate SQL scripts to fix catalog inconsistencies. The scripts are placed in data_directory.
 
--l`**
+**`-l`**
 
-:   List the `gpcheckcat` tests.
+List the `gpcheckcat` tests.
 
--O`**
+**`-O`**
 
-:   Run only the `gpcheckcat` tests that can be run in online (not restricted) mode.
+Run only the `gpcheckcat` tests that can be run in online (not restricted) mode.
 
--p port`**
+**`-p port`**
 
-:   This option specifies the port that is used by the Greenplum Database.
+This option specifies the port that is used by the Greenplum Database.
 
--P password`**
+**`-P password`**
 
-:   The password of the user connecting to Greenplum Database.
+The password of the user connecting to Greenplum Database.
 
--R test_name | 'test_name1,test_name2 [, ...]'`**
+**`-R test_name | 'test_name1,test_name2 [, ...]'`**
 
-:   Specify one or more tests to run. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
+Specify one or more tests to run. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
 
-:   Some tests can be run only when Greenplum Database is in restricted mode.
+Some tests can be run only when Greenplum Database is in restricted mode.
 
-:   These are the tests that can be performed:
+These are the tests that can be performed:
 
-    `acl` - Cross consistency check for access control privileges
+`acl` - Cross consistency check for access control privileges
 
-    `aoseg_table` - Check that the vertical partition information (vpinfo) on segment instances is consistent with `pg_attribute` (checks only append-optimized, column storage tables in the database)
+`aoseg_table` - Check that the vertical partition information (vpinfo) on segment instances is consistent with `pg_attribute` (checks only append-optimized, column storage tables in the database)
 
-    `duplicate` - Check for duplicate entries
+`duplicate` - Check for duplicate entries
 
-    `foreign_key` - Check foreign keys
+`foreign_key` - Check foreign keys
 
-    `inconsistent` - Cross consistency check for coordinator segment inconsistency
+`inconsistent` - Cross consistency check for coordinator segment inconsistency
 
-    `missing_extraneous` - Cross consistency check for missing or extraneous entries
+`missing_extraneous` - Cross consistency check for missing or extraneous entries
 
-    `owner` - Check table ownership that is inconsistent with the coordinator database
+`owner` - Check table ownership that is inconsistent with the coordinator database
 
-    `orphaned_toast_tables` - Check for orphaned TOAST tables.
+`orphaned_toast_tables` - Check for orphaned TOAST tables.
 
-    > **Note** There are several ways a TOAST table can become orphaned where a repair script cannot be generated and a manual catalog change is required. One way is if the `reltoastrelid` entry in *pg_class* points to an incorrect TOAST table (a TOAST table mismatch). Another way is if both the `reltoastrelid` in *pg_class* is missing and the `pg_depend` entry is missing (a double orphan TOAST table). If a manual catalog change is needed, `gpcheckcat` will display detailed steps you can follow to update the catalog. Contact VMware Support if you need help with the catalog change.
+> **Note** There are several ways a TOAST table can become orphaned where a repair script cannot be generated and a manual catalog change is required. One way is if the `reltoastrelid` entry in *pg_class* points to an incorrect TOAST table (a TOAST table mismatch). Another way is if both the `reltoastrelid` in *pg_class* is missing and the `pg_depend` entry is missing (a double orphan TOAST table). If a manual catalog change is needed, `gpcheckcat` will display detailed steps you can follow to update the catalog. Contact VMware Support if you need help with the catalog change.
 
-    `part_integrity` - Check *pg_partition* branch integrity, partition with OIDs, partition distribution policy
+`part_integrity` - Check *pg_partition* branch integrity, partition with OIDs, partition distribution policy
 
-    `unique_index_violation` - Check tables that have columns with the unique index constraint for duplicate entries
+`unique_index_violation` - Check tables that have columns with the unique index constraint for duplicate entries
 
-    `dependency` - Check for dependency on non-existent objects (restricted mode only)
+`dependency` - Check for dependency on non-existent objects (restricted mode only)
 
-    `distribution_policy` - Check constraints on randomly distributed tables (restricted mode only)
+`distribution_policy` - Check constraints on randomly distributed tables (restricted mode only)
 
-    `namespace` - Check for schemas with a missing schema definition (restricted mode only)
+`namespace` - Check for schemas with a missing schema definition (restricted mode only)
 
-    `pgclass` - Check *pg_class* entry that does not have any corresponding *pg_attribute* entry (restricted mode only)
+`pgclass` - Check *pg_class* entry that does not have any corresponding *pg_attribute* entry (restricted mode only)
 
 **``-s `test_name | 'test_name1, test_name2 [, ...]'``**
 
-:   Specify one ore more tests to skip. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
+Specify one ore more tests to skip. Specify multiple tests as a comma-delimited list of test names enclosed in quotes.
 
--S {none | only}`**
+**`-S {none | only}`**
 
-:   Specify this option to control the testing of catalog tables that are shared across all databases in the Greenplum Database installation, such as *pg_database*.
+Specify this option to control the testing of catalog tables that are shared across all databases in the Greenplum Database installation, such as *pg_database*.
 
-:   The value `none` deactivates testing of shared catalog tables. The value `only` tests only the shared catalog tables.
+The value `none` deactivates testing of shared catalog tables. The value `only` tests only the shared catalog tables.
 
--U user_name`**
+**`-U user_name`**
 
-:   The user connecting to Greenplum Database.
+The user connecting to Greenplum Database.
 
--? | --help`**
+**`-? | --help`**
 
-:   Displays the online help.
+Displays the online help.
 
--v (verbose)`**
+**`-v (verbose)`**
 
-:   Displays detailed information about the tests that are performed.
+Displays detailed information about the tests that are performed.
 
--x "<parameter_name>=<value>"`**
+**`-x "<parameter_name>=<value>"`**
 
-:   Set a server configuration parameter, such as `log_min_messages`, at a session level. To set multiple configuration parameters, use the `-x` option multiple times. 
+Set a server configuration parameter, such as `log_min_messages`, at a session level. To set multiple configuration parameters, use the `-x` option multiple times. 
 
 ## Notes
 

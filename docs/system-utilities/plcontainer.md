@@ -1,3 +1,7 @@
+---
+title: plcontainer
+---
+
 # plcontainer
 
 The `plcontainer` utility installs Docker images and manages the PL/Container configuration. The utility consists of two sets of commands.
@@ -40,70 +44,70 @@ Where <command> is one of the following.
 
 ## plcontainer Commands and Options
 
-image-add location`**
+**`image-add location`**
 
-:   Install a Docker image on the Greenplum Database hosts. Specify either the location of the Docker image file on the host or the URL to the Docker image. These are the supported location options:
+Install a Docker image on the Greenplum Database hosts. Specify either the location of the Docker image file on the host or the URL to the Docker image. These are the supported location options:
 
 - {**-f** | **--file**} image_file Specify the file system location of the Docker image tar archive file on the local host. This example specifies an image file in the `gpadmin` user's home directory: `/home/gpadmin/test_image.tar.gz`
 - {**-u** | **--URL**} image_URL Specify the URL of the Docker repository and image. This example URL points to a local Docker repository `192.168.0.1:5000/images/mytest_plc_r:devel`
 
-:   By default, the `image-add` command copies the image to each Greenplum Database segment and standby coordinator host, and installs the image. When you specify an image_file and provide the [**-ulc** | **--use_local_copy**] option, `plcontainer` installs the image only on the host on which you run the command.
+By default, the `image-add` command copies the image to each Greenplum Database segment and standby coordinator host, and installs the image. When you specify an image_file and provide the [**-ulc** | **--use_local_copy**] option, `plcontainer` installs the image only on the host on which you run the command.
 
-:   After installing the Docker image, use the `runtime-add` command to configure PL/Container to use the Docker image.
+After installing the Docker image, use the `runtime-add` command to configure PL/Container to use the Docker image.
 
-image-delete {**-i** | **--image**} image_name`**
+**`image-delete {**-i** | **--image**} image_name`**
 
-:   Remove an installed Docker image from all Greenplum Database hosts. Specify the full Docker image name including the tag for example `pivotaldata/plcontainer_python_shared:1.0.0`
+Remove an installed Docker image from all Greenplum Database hosts. Specify the full Docker image name including the tag for example `pivotaldata/plcontainer_python_shared:1.0.0`
 
-image-list`**
+**`image-list`**
 
-:   List the Docker images installed on the host. The command list only the images on the local host, not remote hosts. The command lists all installed Docker images, including images installed with Docker commands.
+List the Docker images installed on the host. The command list only the images on the local host, not remote hosts. The command lists all installed Docker images, including images installed with Docker commands.
 
-runtime-add options`**
+**`runtime-add options`**
 
-:   Add configuration information to the PL/Container configuration file on all Greenplum Database hosts. If the specified runtime_id exists, the utility returns an error and the configuration information is not added.
+Add configuration information to the PL/Container configuration file on all Greenplum Database hosts. If the specified runtime_id exists, the utility returns an error and the configuration information is not added.
 
-:   These are the supported options:
+These are the supported options:
 
-:   {**-i** | **--image**} docker-image
+{**-i** | **--image**} docker-image
 
-:   Required. Specify the full Docker image name, including the tag, that is installed on the Greenplum Database hosts. For example `pivotaldata/plcontainer_python:1.0.0`.
+Required. Specify the full Docker image name, including the tag, that is installed on the Greenplum Database hosts. For example `pivotaldata/plcontainer_python:1.0.0`.
 
-:   The utility returns a warning if the specified Docker image is not installed.
+The utility returns a warning if the specified Docker image is not installed.
 
-:   The `plcontainer image-list` command displays installed image information including the name and tag (the Repository and Tag columns).
+The `plcontainer image-list` command displays installed image information including the name and tag (the Repository and Tag columns).
 
-{**-l** | **--language**} python | python3 | r`**
+**`{**-l** | **--language**} python | python3 | r`**
 
-:   Required. Specify the PL/Container language type, supported values are `python` (PL/Python using Python 2), `python3` (PL/Python using Python 3) and `r` (PL/R). When adding configuration information for a new runtime, the utility adds a startup command to the configuration based on the language you specify.
+Required. Specify the PL/Container language type, supported values are `python` (PL/Python using Python 2), `python3` (PL/Python using Python 3) and `r` (PL/R). When adding configuration information for a new runtime, the utility adds a startup command to the configuration based on the language you specify.
 
-:   Startup command for the Python 2 language.
+Startup command for the Python 2 language.
 
 ```shell
 /clientdir/pyclient.sh
 ```
 
-:   Startup command for the Python 3 language.
+Startup command for the Python 3 language.
 
 ```shell
 /clientdir/pyclient3.sh
 ```
 
-:   Startup command for the R language.
+Startup command for the R language.
 
 ```shell
 /clientdir/rclient.sh
 ```
 
-{**-r** | **--runtime**} runtime_id`**
+**`{**-r** | **--runtime**} runtime_id`**
 
-:   Required. Add the runtime ID. When adding a `runtime` element in the PL/Container configuration file, this is the value of the `id` element in the PL/Container configuration file. Maximum length is 63 Bytes.
+Required. Add the runtime ID. When adding a `runtime` element in the PL/Container configuration file, this is the value of the `id` element in the PL/Container configuration file. Maximum length is 63 Bytes.
 
-:   You specify the name in the Greenplum Database UDF on the `# container` line.
+You specify the name in the Greenplum Database UDF on the `# container` line.
 
-{**-s** | **--setting**} param=value`**
+**`{**-s** | **--setting**} param=value`**
 
-:   Optional. Specify a setting to add to the runtime configuration information. You can specify this option multiple times. The setting applies to the runtime configuration specified by the runtime_id. The parameter is the XML attribute of the `settings` element in the PL/Container configuration file. These are valid parameters.
+Optional. Specify a setting to add to the runtime configuration information. You can specify this option multiple times. The setting applies to the runtime configuration specified by the runtime_id. The parameter is the XML attribute of the `settings` element in the PL/Container configuration file. These are valid parameters.
 
 - `cpu_share` - Set the CPU limit for each container in the runtime configuration. The default value is 1024. The value is a relative weighting of CPU usage compared to other containers.
 - `memory_mb` - Set the memory limit for each container in the runtime configuration. The default value is 1024. The value is an integer that specifies the amount of memory in MB.
@@ -114,63 +118,63 @@ runtime-add options`**
 
 The Greenplum Database server configuration parameter `log_min_messages` controls the log level. The default log level is `warning`.
 
-{**-v** | **--volume**} shared-volume`**
-:   Optional. Specify a Docker volume to bind mount. You can specify this option multiple times to define multiple volumes.
+**`{**-v** | **--volume**} shared-volume`**
+Optional. Specify a Docker volume to bind mount. You can specify this option multiple times to define multiple volumes.
 
-:   The format for a shared volume: `host-dir:container-dir:[rw|ro]`. The information is stored as attributes in the `shared_directory` element of the `runtime` element in the PL/Container configuration file.
+The format for a shared volume: `host-dir:container-dir:[rw|ro]`. The information is stored as attributes in the `shared_directory` element of the `runtime` element in the PL/Container configuration file.
 
 - host-dir - absolute path to a directory on the host system. The Greenplum Database administrator user (gpadmin) must have appropriate access to the directory.
 - container-dir - absolute path to a directory in the Docker container.
 - `[rw|ro]` - read-write or read-only access to the host directory from the container.
 
-:   When adding configuration information for a new runtime, the utility adds this read-only shared volume information.
+When adding configuration information for a new runtime, the utility adds this read-only shared volume information.
 
-:   `<greenplum-home>/bin/plcontainer_clients:/clientdir:ro`
+`<greenplum-home>/bin/plcontainer_clients:/clientdir:ro`
 
-:   If needed, you can specify other shared directories. The utility returns an error if the specified container-dir is the same as the one that is added by the utility, or if you specify multiple shared volumes with the same container-dir.
+If needed, you can specify other shared directories. The utility returns an error if the specified container-dir is the same as the one that is added by the utility, or if you specify multiple shared volumes with the same container-dir.
 
 > **Caution** Allowing read-write access to a host directory requires special considerations.
 
 - When specifying read-write access to host directory, ensure that the specified host directory has the correct permissions.
 - When running PL/Container user-defined functions, multiple concurrent Docker containers that are running on a host could change data in the host directory. Ensure that the functions support multiple concurrent access to the data in the host directory.
 
-runtime-backup {**-f** | **--file**} config_file`**
+**`runtime-backup {**-f** | **--file**} config_file`**
 
-:   Copies the PL/Container configuration file to the specified file on the local host.
+Copies the PL/Container configuration file to the specified file on the local host.
 
-runtime-delete {**-r** | **--runtime**} runtime_id`**
+**`runtime-delete {**-r** | **--runtime**} runtime_id`**
 
-:   Removes runtime configuration information in the PL/Container configuration file on all Greenplum Database instances. The utility returns a message if the specified runtime_id does not exist in the file.
+Removes runtime configuration information in the PL/Container configuration file on all Greenplum Database instances. The utility returns a message if the specified runtime_id does not exist in the file.
 
-runtime-edit [{**-e** | **--editor**} editor]`**
+**`runtime-edit [{**-e** | **--editor**} editor]`**
 
-:   Edit the XML file `plcontainer_configuration.xml` with the specified editor. The default editor is `vi`.
+Edit the XML file `plcontainer_configuration.xml` with the specified editor. The default editor is `vi`.
 
 Saving the file updates the configuration file on all Greenplum Database hosts. If errors exist in the updated file, the utility returns an error and does not update the file.
 
-runtime-replace options`**
+**`runtime-replace options`**
 
-:   Replaces runtime configuration information in the PL/Container configuration file on all Greenplum Database instances. If the runtime_id does not exist, the information is added to the configuration file. The utility adds a startup command and shared directory to the configuration.
+Replaces runtime configuration information in the PL/Container configuration file on all Greenplum Database instances. If the runtime_id does not exist, the information is added to the configuration file. The utility adds a startup command and shared directory to the configuration.
 
-runtime-restore {**-f** | **--file**} config_file`**
+**`runtime-restore {**-f** | **--file**} config_file`**
 
-:   Replaces information in the PL/Container configuration file `plcontainer_configuration.xml` on all Greenplum Database instances with the information from the specified file on the local host.
+Replaces information in the PL/Container configuration file `plcontainer_configuration.xml` on all Greenplum Database instances with the information from the specified file on the local host.
 
-runtime-show [{**-r** | **--runtime**} runtime_id]`**
+**`runtime-show [{**-r** | **--runtime**} runtime_id]`**
 
-:   Displays formatted PL/Container runtime configuration information. If a runtime_id is not specified, the configuration for all runtime IDs are displayed.
+Displays formatted PL/Container runtime configuration information. If a runtime_id is not specified, the configuration for all runtime IDs are displayed.
 
-runtime-verify`**
+**`runtime-verify`**
 
-:   Checks the PL/Container configuration information on the Greenplum Database instances with the configuration information on the coordinator. If the utility finds inconsistencies, you are prompted to replace the remote copy with the local copy. The utility also performs XML validation.
+Checks the PL/Container configuration information on the Greenplum Database instances with the configuration information on the coordinator. If the utility finds inconsistencies, you are prompted to replace the remote copy with the local copy. The utility also performs XML validation.
 
 -h | --help`**`
 
-:   Display help text. If specified without a command, displays help for all `plcontainer` commands. If specified with a command, displays help for the command.
+Display help text. If specified without a command, displays help for all `plcontainer` commands. If specified with a command, displays help for the command.
 
---verbose`**
+**`--verbose`**
 
-:   Enable verbose logging for the command.
+Enable verbose logging for the command.
 
 ## Examples
 
