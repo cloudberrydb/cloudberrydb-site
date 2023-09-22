@@ -4,7 +4,7 @@ title: gpsupport analyze_session
 
 # gpsupport analyze_session
 
-This tool traces busy processes associated with a Cloudberry Database session. The information collected can be used by VMware Support for root cause analysis on hung sessions.
+This tool traces busy processes associated with a Cloudberry Database session. The information collected can be used for root cause analysis on hung sessions.
 
 ## Usage
 

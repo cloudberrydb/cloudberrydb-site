@@ -4,7 +4,7 @@ title: gpsupport gp_log_collector
 
 # gpsupport gp_log_collector
 
-This tool collects Cloudberry and system log files, along with the relevant configuration parameters, and generates a file which can be provided to VMware Customer Support for diagnosis of errors or system failures.
+This tool collects Cloudberry and system log files, along with the relevant configuration parameters, and generates a file which can be provided for diagnosis of errors or system failures.
 
 ## Usage
 

@@ -51,9 +51,7 @@ $ gpstop -u
 
 ## Start the Coordinator in maintenance mode
 
-Start only the coordinator to perform maintenance or administrative tasks without affecting data on the segments.
-
-Maintenance mode should only be used with direction from VMware Technical Support. For example, you could connect to a database only on the coordinator instance in maintenance mode and edit system catalog settings.
+Start only the coordinator to perform maintenance or administrative tasks without affecting data on the segments. For example, you can connect to a database only on the coordinator instance in maintenance mode and edit system catalog settings.
 
 1. Run `gpstart` using the -m option:
 

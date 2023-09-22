@@ -4,7 +4,7 @@ title: gpsupport storage_rca_collector
 
 # gpsupport storage_rca_collector
 
-This tool collects storage-related table data and generates an output file which can be provided to VMware Customer Support for diagnosis of storage-related errors or system failures.
+This tool collects storage-related table data and generates an output file which can be provided for diagnosis of storage-related errors or system failures.
 
 ## Usage
 
