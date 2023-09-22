@@ -2,35 +2,37 @@
 title: 迁移加载数据
 ---
 
+`<!-- 大部分表述无法验证 by @TomShawn>`
+
 # 迁移加载数据到 Cloudberry Database
 
 有几种方式可以把数据加入到 Cloudberry Database 中，每一种都有其合适的用途。
 
 ## 带列值的 INSERT 语句
 
-带有值的单个 INSERT 语句会向表中加入一行。这个行会流过 Master 并且被分布到一个 Segment 上。这是最慢的方法并且不适合装载大量数据。
+带有值的单个 `INSERT` 语句会向表中加入一行。这个行会流过 Master 并且被分布到一个 Segment 上。这是最慢的方法并且不适合装载大量数据。
 
 ## COPY 语句
 
-PostgreSQL 的 COPY 语句从外部文件拷贝数据到数据表中。它比 INSERT 语句插入多行的效率更高，但是行仍需流过 Master。所有数据都在一个命令中被拷贝，它并不是一种并行处理。
+PostgreSQL 的 `COPY` 语句从外部文件拷贝数据到数据表中。它比 `INSERT` 语句插入多行的效率更高，但是行仍需流过 Master。所有数据都在一个命令中被拷贝，它并不是一种并行处理。
 
-COPY 命令的数据输入来自于一个文件或者标准输入。例如：
+`COPY` 命令的数据输入来自于一个文件或者标准输入。例如：
 
 ```sql
 COPY table FROM '/data/mydata.csv' WITH CSV HEADER;
 ```
 
-使用 COPY 适合于增加相对较小的数据集合（例如多达上万行的维度表） 或者一次性数据装载。在编写脚本处理装载少于 1 万行的少量数据时使用 COPY。因为 COPY 是一个单一命令，在使用这种方法填充表时没有必要禁用自动提交。使用者可以运行多个并发的 COPY 命令以提高性能。
+使用 `COPY` 适合于增加相对较小的数据集合（例如多达上万行的维度表）或者一次性数据装载。在编写脚本处理装载少于 1 万行的少量数据时使用 `COPY`。因为 `COPY` 是一个单一命令，在使用这种方法填充表时没有必要禁用自动提交。使用者可以运行多个并发的 `COPY` 命令以提高性能。
 
 ## 外部表
 
-外部表提供了对 Cloudberry Database 之外的来源中数据的访问。可以用 SELECT 语句访问它们，外部表通常被用于抽取、装载、转换（ELT）模式， 这是一种 抽取、转换、装载（ETL）模式的变种，这种模式可以利用 Cloudberry Database 的快速并行数据装载能力。
+外部表提供了对 Cloudberry Database 之外的来源中数据的访问。可以用 `SELECT` 语句访问它们，外部表通常被用于抽取、装载、转换（ELT）模式，这是一种抽取、转换、装载（ETL）模式的变种，这种模式可以利用 Cloudberry Database 的快速并行数据装载能力。
 
-通过 ETL，数据被从其来源抽取，在数据库外部使用外部转换工具 （Informatica 或者 Datastage）转换，然后被装载到数据库中。
+通过 ETL，数据从来源被抽取，在数据库外部使用外部转换工具（Informatica 或者 Datastage）转换，然后被装载到数据库中。
 
-通过 ETL，HashData 外部表提供对外部来源中数据的访问，外部来源可以是 只读文件（例如文本、 CSV 或者 XML 文件）、 Web 服务器、 Hadoop 文件系统、可执行的 OS 程序或者 HashData gpfdist 的文件服务器。外部表支持选择、排序和连接这样的 SQL 操作，这样数据可以被同时装载和转换，或者被装载到一个装载表并且在数据库内被转换成目标表。
+通过 ETL，Cloudberry Database 外部表提供对外部来源中数据的访问，外部来源可以是只读文件（例如文本、CSV 或者 XML 文件）、Web 服务器、Hadoop 文件系统、可执行的 OS 程序或者 Cloudberry `gpfdist` 的文件服务器。外部表支持选择、排序和连接这样的 SQL 操作，这样数据可以被同时装载和转换，或者被装载到一个装载表并且在数据库内被转换成目标表。
 
-外部表使用 CREATE EXTERNAL TABLE 语句定义，该语句有一个 LOCATION 子句定义数据的位置以及一个 FORMAT 子句定义源数据的格式，这样系统才能够解析输入数据。文件使用 file://协议，并且文件必须位于一台 Segment 主机上由 HashData 超级用户可访问的位置。数据可以被分散在 Segment 主 机上，并且每台主机上的每个主 Segment 有不超过一个文件。LOCATION 子句 中列出的文件的数量是将并行读取该外部表的 Segment 的数量。
+外部表使用 `CREATE EXTERNAL TABLE` 语句定义，该语句有一个 `LOCATION` 子句定义数据的位置以及一个 `FORMAT` 子句定义源数据的格式，这样系统才能够解析输入数据。文件使用 `file://` 协议，并且文件必须位于一台 Segment 主机上由 Cloudberry Database 超级用户可访问的位置。数据可以被分散在 Segment 主 机上，并且每台主机上的每个主 Segment 有不超过一个文件。`LOCATION` 子句 中列出的文件的数量是将并行读取该外部表的 Segment 的数量。
 
 ## 使用 gpfdist 的外部表
 

@@ -12,12 +12,12 @@ This topic includes the following subtopics:
 - [Insert rows](#insert-rows)
 - [Update existing rows](#update-existing-rows)
 - [Delete rows](#delete-rows)
-- [Working with transactions](#working-with-transactions)
+- [Work with transactions](#work-with-transactions)
 - [Global Deadlock Detector](#global-deadlock-detector)
 - [Vacuum the database](#vacuum-the-database)
 - [Run out of locks](#run-out-of-locks)
 
-## Concurrency control in Cloudberry Database
+## Concurrency control in Cloudberry Database `<无法确认 by @TomShawn>`
 
 Cloudberry Database and PostgreSQL do not use locks for concurrency control. They maintain data consistency using a multiversion model, Multiversion Concurrency Control (MVCC). MVCC achieves transaction isolation for each database session, and each query transaction sees a snapshot of data. This ensures the transaction sees consistent data that is not affected by other concurrent transactions.
 
@@ -79,7 +79,7 @@ To insert data into a partitioned table, you specify the root partitioned table,
 
 To insert large amounts of data, use external tables or the `COPY` command. These load mechanisms are more efficient than `INSERT` for inserting large quantities of rows. See [Loading and Unloading Data](/docs/import-data-into-cbdb.md) for more information about bulk data loading.
 
-The storage model of append-optimized tables is optimized for bulk data loading. Cloudberry does not recommend single row `INSERT` statements for append-optimized tables. For append-optimized tables, Cloudberry Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table.
+`<!-- 无法确认 by @TomShawn The storage model of append-optimized tables is optimized for bulk data loading. Cloudberry Database does not recommend single row `INSERT` statements for append-optimized tables. For append-optimized tables, Cloudberry Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table. -->`
 
 ## Update existing rows
 
@@ -93,15 +93,13 @@ To perform an update, you need:
 
 For example, the following command updates all products that have a price of *5* to have a price of *10*:
 
-```
+```sql
 UPDATE products SET price = 10 WHERE price = 5;
 ```
 
 Using `UPDATE` in Cloudberry Database has the following restrictions:
 
-- While GPORCA supports updates to Cloudberry distribution key columns, the Postgres-based planner does not.
-- If mirrors are enabled, you cannot use `STABLE` or `VOLATILE` functions in an `UPDATE` statement.
-- Cloudberry Database partitioning columns cannot be updated.
+``<!-- 无法确认 by @TomShawn - While GPORCA supports updates to Cloudberry distribution key columns, the Postgres-based planner does not. - If mirrors are enabled, you cannot use `STABLE` or `VOLATILE` functions in an `UPDATE` statement. - Cloudberry Database partitioning columns cannot be updated. -->``
 
 ## Delete rows
 
@@ -114,7 +112,7 @@ DELETE FROM products WHERE price = 10;
 To delete all rows from a table:
 
 ```sql
-DELETE FROM products; 
+DELETE FROM products;
 ```
 
 Using `DELETE` in Cloudberry Database has similar restrictions to using `UPDATE`:
@@ -151,7 +149,7 @@ Cloudberry Database accepts the standard SQL transaction levels as follows:
 - `READ UNCOMMITTED` and `READ COMMITTED` behave like the standard `READ COMMITTED`.
 - `REPEATABLE READ` and `SERIALIZABLE` behave like `REPEATABLE READ`.
 
-The following information describes the behavior of the Cloudberry transaction levels.
+The following information describes the behavior of the Cloudberry Database transaction levels.
 
 #### Read uncommitted and read committed
 
@@ -295,7 +293,7 @@ The following table shows the concurrent `UPDATE` or `DELETE` commands that are 
 |Complex `UPDATE`|NO|YES|NO|NO|NO|
 |Complex `DELETE`|NO|YES|NO|NO|YES|
 
-## Vacuuming the database
+## Vacuum the database
 
 Deleted or updated data rows occupy physical space on disk even though new transactions cannot see them. Periodically running the `VACUUM` command removes these expired rows. For example:
 
@@ -307,7 +305,7 @@ The `VACUUM` command collects table-level statistics such as the number of rows 
 
 > **Important** The `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE` commands should be used to maintain the data in a Cloudberry Database especially if updates and deletes are frequently performed on your database data.
 
-## Running out of locks
+## Run out of locks
 
 Cloudberry Database can potentially run out of locks when a database operation accesses multiple tables in a single transaction. Backup and restore are examples of such operations.
 
