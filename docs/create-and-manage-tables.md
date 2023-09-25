@@ -6,7 +6,7 @@ title: Create and Manage Tables
 
 Cloudberry Database tables are similar to tables in any relational database, except that table rows are distributed across the different segments in the system. When you create a table, you specify the table's distribution policy.
 
-## Create a table 
+## Create a table（已验证 by @TomShawn）
 
 The `CREATE TABLE` command creates a table and defines its structure. When you create a table, you define:
 
@@ -16,7 +16,7 @@ The `CREATE TABLE` command creates a table and defines its structure. When you c
 - The way the table is stored on disk.
 - The table partitioning strategy for large tables.
 
-### Choose column data types
+### Choose column data types（已验证 by @TomShawn）
 
 The data type of a column determines the types of data values the column can contain. Choose the data type that uses the least possible space but can still accommodate your data and that best constrains the data. For example, use character data types for strings, date or timestamp data types for dates, and numeric data types for numbers.
 
@@ -26,19 +26,19 @@ Use the smallest numeric data type that will accommodate your numeric data and a
 
 Use the same data types for columns that you plan to use in cross-table joins. Cross-table joins usually use the primary key in one table and a foreign key in the other table. When the data types are different, the database must convert one of them so that the data values can be compared correctly, which adds unnecessary overhead.
 
-### Set table and column constraints
+### Set table and column constraints（已验证 by @TomShawn）
 
 You can define constraints on columns and tables to restrict the data in your tables. Cloudberry Database support for constraints is the same as PostgreSQL with some limitations, including:
 
 - `CHECK` constraints can refer only to the table on which they are defined.
-- `UNIQUE` and `PRIMARY KEY` constraints must be compatible with their tableʼs distribution key and partitioning key, if any.
+- `UNIQUE` and `PRIMARY KEY` constraints must be compatible with their table's distribution key and partitioning key, if any.
 
     > **Note** `UNIQUE` and `PRIMARY KEY` constraints are not allowed on append-optimized tables because the `UNIQUE` indexes that are created by the constraints are not allowed on append-optimized tables.
 
 - `FOREIGN KEY` constraints are allowed, but not enforced.
 - Constraints that you define on partitioned tables apply to the partitioned table as a whole. You cannot define constraints on the individual parts of the table.
 
-#### Check constraints 
+#### Check constraints（已验证 by @TomShawn）
 
 Check constraints allow you to specify that the value in a certain column must satisfy a Boolean (truth-value) expression. For example, to require positive product prices:
 
@@ -49,7 +49,7 @@ Check constraints allow you to specify that the value in a certain column must s
               price numeric CHECK (price > 0) );
 ```
 
-#### Not-null constraints
+#### Not-null constraints（已验证 by @TomShawn）
 
 Not-null constraints specify that a column must not assume the null value. A not-null constraint is always written as a column constraint. For example:
 
@@ -85,13 +85,13 @@ A primary key constraint is a combination of a `UNIQUE` constraint and a `NOT NU
 
 ```
 
-#### Foreign keys
+#### Foreign keys `<无法确认 by @TomShawn>`
 
 Foreign keys are not supported. You can declare them, but referential integrity is not enforced.
 
 Foreign key constraints specify that the values in a column or a group of columns must match the values appearing in some row of another table to maintain referential integrity between two related tables. Referential integrity checks cannot be enforced between the distributed table segments of a Cloudberry database.
 
-#### Exclusion constraints
+#### Exclusion constraints `<无法确认 by @TomShawn>`
 
 Exclusion constraints ensure that if any two rows are compared on the specified columns or expressions using the specified operators, at least one of these operator comparisons will return false or null. The syntax is:
 

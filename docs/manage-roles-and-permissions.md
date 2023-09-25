@@ -1,8 +1,8 @@
 ---
-title: Manage Roles and Privileges
+title: Manage Roles and Permissions
 ---
 
-# Manage Roles and Privileges in Cloudberry Database
+# Manage Roles and Permissions in Cloudberry Database
 
 The Cloudberry Database authorization mechanism stores roles and permissions to access database objects in the database and is administered using SQL statements or command-line utilities.
 
@@ -18,7 +18,7 @@ In order to bootstrap the Cloudberry Database system, a freshly initialized syst
 
 ## Security best practices for roles and privileges
 
-- **Secure the gpadmin system user.** Cloudberry requires a UNIX user id to install and initialize the Cloudberry Database system. This system user is referred to as `gpadmin` in the Cloudberry documentation. This `gpadmin` user is the default database superuser in Cloudberry Database, as well as the file system owner of the Cloudberry installation and its underlying data files. This default administrator account is fundamental to the design of Cloudberry Database. The system cannot run without it, and there is no way to limit the access of this gpadmin user id. Use roles to manage who has access to the database for specific purposes. You should only use the `gpadmin` account for system maintenance tasks such as expansion and upgrade. Anyone who logs on to a Cloudberry host as this user id can read, alter or delete any data; including system catalog data and database access rights. Therefore, it is very important to secure the gpadmin user id and only provide access to essential system administrators. Administrators should only log in to Cloudberry as `gpadmin` when performing certain system maintenance tasks (such as upgrade or expansion). Database users should never log on as `gpadmin`, and ETL or production workloads should never run as `gpadmin`.
+- **Secure the gpadmin system user.** Cloudberry Database requires a UNIX user ID to install and initialize the Cloudberry Database system. This system user is referred to as `gpadmin` in the Cloudberry documentation. This `gpadmin` user is the default database superuser in Cloudberry Database, as well as the file system owner of the Cloudberry installation and its underlying data files. This default administrator account is fundamental to the design of Cloudberry Database. The system cannot run without it, and there is no way to limit the access of this gpadmin user ID. Use roles to manage who has access to the database for specific purposes. You should only use the `gpadmin` account for system maintenance tasks such as expansion and upgrade. Anyone who logs on to a Cloudberry host as this user ID can read, alter or delete any data, including system catalog data and database access rights. Therefore, it is very important to secure the gpadmin user ID and only provide access to essential system administrators. Administrators should only log in to Cloudberry Database as `gpadmin` when performing certain system maintenance tasks (such as upgrade or expansion). Database users should never log on as `gpadmin`, and ETL or production workloads should never run as `gpadmin`.
 - **Assign a distinct role to each user that logs in.** For logging and auditing purposes, each user that is allowed to log in to Cloudberry Database should be given their own database role. For applications or web services, consider creating a distinct role for each application or service. See [Create New Roles (Users)](#create-new-roles-users).
 - **Use groups to manage access privileges.** See [Role membership](#role-membership).
 - **Limit users who have the SUPERUSER role attribute.** Roles that are superusers bypass all access privilege checks in Cloudberry Database, as well as resource queuing. Only system administrators should be given superuser rights. See [Altering Role Attributes](#alter-role-attributes).
@@ -27,7 +27,7 @@ In order to bootstrap the Cloudberry Database system, a freshly initialized syst
 
 A user-level role is considered to be a database role that can log in to the database and initiate a database session. Therefore, when you create a new user-level role using the `CREATE ROLE` command, you must specify the `LOGIN` privilege. For example:
 
-```
+```sql
 =# CREATE ROLE jsmith WITH LOGIN;
 ```
 
@@ -47,7 +47,7 @@ A database role may have a number of attributes that define what sort of tasks t
 |`CONNECTION LIMIT *connlimit*`|If role can log in, this specifies how many concurrent connections the role can make. -1 (the default) means no limit.|
 |`CREATEEXTTABLE` or `NOCREATEEXTTABLE`|Determines whether a role is allowed to create external tables. `NOCREATEEXTTABLE` is the default. For a role with the `CREATEEXTTABLE` attribute, the default external table `type` is `readable` and the default `protocol` is `gpfdist`. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.|
 |`PASSWORD '*password*'`|Sets the role's password. If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.|
-|`ENCRYPTED`|The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption`, since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format). This allows reloading of encrypted passwords during dump/restore.<br/>See [Protecting Passwords in Cloudberry Database](#topic9) for additional information about protecting login passwords. |
+|`ENCRYPTED`|The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption`, since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format. This allows reloading of encrypted passwords during dump/restore. See [Protecting Passwords in Cloudberry Database](#protect-passwords-in-cloudberry-database) for additional information about protecting login passwords. |
 |`VALID UNTIL 'timestamp'`|Sets a date and time after which the role's password is no longer valid. If omitted the password will be valid for all time.|
 |`RESOURCE QUEUE queue_name`|Assigns the role to the named resource queue for workload management. Any statement that role issues is then subject to the resource queue's limits. Note that the `RESOURCE QUEUE` attribute is not inherited; it must be set on each user-level (`LOGIN`) role.|
 |`DENY deny_interval` or `DENY deny_point` | Restricts access during an interval, specified by day or day and time. For more information see [Time-based authentication](#time-based-authentication).|
@@ -102,6 +102,8 @@ The role attributes `LOGIN`, `SUPERUSER`, `CREATEDB`, `CREATEROLE`, `CREATEEXTTA
 ## Manage object privileges
 
 When an object (table, view, sequence, database, function, language, schema, or tablespace) is created, it is assigned an owner. The owner is normally the role that ran the creation statement. For most kinds of objects, the initial state is that only the owner (or a superuser) can do anything with the object. To allow other roles to use it, privileges must be granted. Cloudberry Database supports the following privileges for each object type:
+
+`<!-- 建议研发核实下面表格的信息 @by TomShawn-->`
 
 | Object Type                  | Privileges                                                                           |
 | :-----------------------------| :--------------------------------------------------------------------------------------|
@@ -161,6 +163,8 @@ psql -d testdb -c "CREATE EXTENSION pgcrypto"
 See [pgcrypto](https://www.postgresql.org/docs/12/pgcrypto.html) in the PostgreSQL documentation for more information about individual functions.
 
 ## Protect passwords in Cloudberry Database
+
+`<!-- 建议研发核实下面的信息 by @TomShawn-->`
 
 In its default configuration, Cloudberry Database saves MD5 or SCRAM-SHA-256 hashes of login users' passwords in the `pg_authid` system catalog rather than saving clear text passwords. Anyone who is able to view the `pg_authid` table can see hash strings, but no passwords. This also ensures that passwords are obscured when the database is dumped to backup files.
 
