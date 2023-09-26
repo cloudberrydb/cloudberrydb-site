@@ -2,7 +2,7 @@
 title: Create and Manage Database
 ---
 
-# Create and Manage Cloudberry Database（已验证 by @TomShawn）
+# Create and Manage Cloudberry Database
 
 A Cloudberry Database system is a single instance of Cloudberry Database. There can be several separate Cloudberry Database systems installed, but usually just one is selected by environment variable settings.
 

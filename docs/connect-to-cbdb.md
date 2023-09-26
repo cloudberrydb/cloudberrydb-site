@@ -4,7 +4,7 @@ title: Connect to Cloudberry Database
 
 # Connect to Cloudberry Database
 
-## Establish a database session（已验证 by @TomShawn）
+## Establish a database session
 
 Users can connect to Cloudberry Database using a PostgreSQL-compatible client program, such as `psql`. Users and administrators *always* connect to Cloudberry Database through the *coordinator*; the segments cannot accept client connections.
 
@@ -20,7 +20,7 @@ In order to establish a connection to the Cloudberry Database coordinator, you w
 
 [Connecting with psql](#connect-with-psql) provides example commands for connecting to Cloudberry Database.
 
-## Supported client applications（已验证 by @TomShawn）
+## Supported client applications
 
 Users can connect to Cloudberry Database using various client applications:
 
@@ -28,7 +28,7 @@ Users can connect to Cloudberry Database using various client applications:
 - Using standard [Database Application Interfaces](#database-application-interfaces), such as ODBC and JDBC, users can create their own client applications that interface to Cloudberry Database.
 - Most client tools that use standard database interfaces, such as ODBC and JDBC, can be configured to connect to Cloudberry Database.
 
-## Cloudberry Database client applications（已验证 by @TomShawn）
+## Cloudberry Database client applications
 
 Cloudberry Database comes installed with a number of client utility applications located in the `$GPHOME/bin` directory of your Cloudberry Database coordinator host installation. The following are the most commonly used client utility applications:
 
@@ -48,7 +48,7 @@ All of these options have default values which will be used if the option is not
 
 If the default values are not correct, you can set the environment variables `PGDATABASE`, `PGHOST`, `PGPORT`, and `PGUSER` to the appropriate values, or use a `psql` `~/.pgpass` file to contain frequently-used passwords.
 
-## Connect with psql（已验证 by @TomShawn）
+## Connect with psql
 
 Depending on the default values used or the environment variables you have set, the following examples show how to access a database via `psql`:
 
