@@ -6,7 +6,7 @@ title: Create and Manage Tables
 
 Cloudberry Database tables are similar to tables in any relational database, except that table rows are distributed across the different segments in the system. When you create a table, you specify the table's distribution policy.
 
-## Create a table 
+## Create a table
 
 The `CREATE TABLE` command creates a table and defines its structure. When you create a table, you define:
 
@@ -26,19 +26,19 @@ Use the smallest numeric data type that will accommodate your numeric data and a
 
 Use the same data types for columns that you plan to use in cross-table joins. Cross-table joins usually use the primary key in one table and a foreign key in the other table. When the data types are different, the database must convert one of them so that the data values can be compared correctly, which adds unnecessary overhead.
 
-### Set table and column constraints
+### Set table and column constraints `<!-- 概念类信息，暂未验证 -->`
 
 You can define constraints on columns and tables to restrict the data in your tables. Cloudberry Database support for constraints is the same as PostgreSQL with some limitations, including:
 
 - `CHECK` constraints can refer only to the table on which they are defined.
-- `UNIQUE` and `PRIMARY KEY` constraints must be compatible with their tableʼs distribution key and partitioning key, if any.
+- `UNIQUE` and `PRIMARY KEY` constraints must be compatible with their table's distribution key and partitioning key, if any.
 
     > **Note** `UNIQUE` and `PRIMARY KEY` constraints are not allowed on append-optimized tables because the `UNIQUE` indexes that are created by the constraints are not allowed on append-optimized tables.
 
 - `FOREIGN KEY` constraints are allowed, but not enforced.
 - Constraints that you define on partitioned tables apply to the partitioned table as a whole. You cannot define constraints on the individual parts of the table.
 
-#### Check constraints 
+#### Check constraints
 
 Check constraints allow you to specify that the value in a certain column must satisfy a Boolean (truth-value) expression. For example, to require positive product prices:
 
@@ -60,7 +60,7 @@ Not-null constraints specify that a column must not assume the null value. A not
          price numeric );
 ```
 
-#### Unique constraints
+#### Unique constraints `<!-- 概念类信息，暂未验证 -->`
 
 Unique constraints ensure that the data contained in a column or a group of columns is unique with respect to all the rows in the table. The table must be hash-distributed or replicated (not `DISTRIBUTED RANDOMLY`). If the table is hash-distributed, the constraint columns must be the same as (or a superset of) the table's distribution key columns. For example:
 
@@ -72,7 +72,7 @@ Unique constraints ensure that the data contained in a column or a group of colu
 `      DISTRIBUTED BY (``product_no``)`;
 ```
 
-#### Primary keys
+#### Primary keys `<!-- 概念类信息，暂未验证 -->`
 
 A primary key constraint is a combination of a `UNIQUE` constraint and a `NOT NULL` constraint. The table must be hash-distributed (not `DISTRIBUTED RANDOMLY`), and the primary key columns must be the same as (or a superset of) the table's distribution key columns. If a table has a primary key, this column (or group of columns) is chosen as the distribution key for the table by default. For example:
 
@@ -85,13 +85,13 @@ A primary key constraint is a combination of a `UNIQUE` constraint and a `NOT NU
 
 ```
 
-#### Foreign keys
+#### Foreign keys `<!-- 概念类信息，暂未验证 -->`
 
 Foreign keys are not supported. You can declare them, but referential integrity is not enforced.
 
 Foreign key constraints specify that the values in a column or a group of columns must match the values appearing in some row of another table to maintain referential integrity between two related tables. Referential integrity checks cannot be enforced between the distributed table segments of a Cloudberry database.
 
-#### Exclusion constraints
+#### Exclusion constraints `<!-- 概念类信息，暂未验证 -->`
 
 Exclusion constraints ensure that if any two rows are compared on the specified columns or expressions using the specified operators, at least one of these operator comparisons will return false or null. The syntax is:
 

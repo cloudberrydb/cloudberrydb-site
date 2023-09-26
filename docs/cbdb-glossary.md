@@ -73,7 +73,7 @@ commands.
 
 - Motion node: A motion node is a portion of a query execution plan that indicates data movement between the various database instances of Cloudberry Database (segments and the master). Some operations, such as joins, require segments to send and receive tuples to one another in order to satisfy the operation. A motion node can also indicate data movement from the segments back up to the master.
 
-- Multi-version concurrency control (MVCC): Unlike traditional database systems which use locks for concurrency control, Cloudberry Database (as does PostgreSQL) maintains data consistency by using a multiversion model (multiversion concurrency control or MVCC). This means that while querying a database, each transaction sees a snapshot of data which protects the transaction from viewing inconsistent data that could be caused by (other) concurrent updates on the same data rows. This provides transaction isolation for each database session. MVCC, by eschewing explicit locking methodologies of traditional database systems, minimizes lock contention in order to allow for reasonable performance in multiuser environments. The main advantage to using the MVCC model of concurrency control rather than locking is that in MVCC locks acquired for querying (reading) data do not conflict with locks acquired for writing data, and so reading never blocks writing and writing never blocks reading.
+- Multi-version concurrency control (MVCC): Unlike traditional database systems which use locks for concurrency control, Cloudberry Database (as does PostgreSQL) maintains data consistency by using a multi-version model (multi-version concurrency control or MVCC). This means that while querying a database, each transaction sees a snapshot of data which protects the transaction from viewing inconsistent data that could be caused by (other) concurrent updates on the same data rows. This provides transaction isolation for each database session. MVCC, by eschewing explicit locking methodologies of traditional database systems, minimizes lock contention in order to allow for reasonable performance in multi-user environments. The main advantage to using the MVCC model of concurrency control rather than locking is that in MVCC locks acquired for querying (reading) data do not conflict with locks acquired for writing data, and so reading never blocks writing and writing never blocks reading.
 
 ## O
 
@@ -96,7 +96,7 @@ transactional systems
 
 - `pg_bitmapindex`: `pg_bitmapindex` stores bitmap index objects such as lists of values. This schema is used internally by the Cloudberry Database system.
 
-- `pg_aoseg`: pg_aoseg stores append-only table objects. This schema is used internally by the Cloudberry Database system.
+- `pg_aoseg`: `pg_aoseg` stores append-only table objects. This schema is used internally by the Cloudberry Database system.
 
 ## Q
 

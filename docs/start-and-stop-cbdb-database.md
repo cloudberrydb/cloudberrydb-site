@@ -2,7 +2,7 @@
 title: Start and Stop Cloudberry Database
 ---
 
-# Start and Stop Cloudberry Database
+# Start and Stop Cloudberry Database（基本验证 by @TomShawn）
 
 In a Cloudberry Database DBMS, the database server instances (the coordinator and all segments) are started or stopped across all of the hosts in the system in such a way that they can work together as a unified DBMS.
 
@@ -117,17 +117,17 @@ The `pg_cancel_backend()` and `pg_terminate_backend()` functions return `true` i
 To cancel or terminate a backend process, you must first identify the process ID of the backend. You can obtain the process ID from the `pid` column of the `pg_stat_activity` view. For example, to view the process information associated with all running and queued queries:
 
 ```sql
-=# SELECT usename, pid, waiting, state, query, datname
+SELECT usename, pid, state, query, datname
      FROM pg_stat_activity;
 ```
 
 Sample partial query output:
 
 ```sql
- usename |  pid     | waiting | state  |         query          | datname
----------+----------+---------+--------+------------------------+---------
-  sammy  |   31861  |    f    | idle   | SELECT * FROM testtbl; | testdb
-  billy  |   31905  |    t    | active | SELECT * FROM topten;  | testdb
+usename |  pid     | state  |         query          | datname
+---------+-------------------+--------+------------------------+---------
+  sammy  |   31861  | idle   | SELECT * FROM testtbl; | testdb
+  billy  |   31905  | active | SELECT * FROM topten;  | testdb
 ```
 
 Use the output to identify the process id (`pid`) of the query or client connection.

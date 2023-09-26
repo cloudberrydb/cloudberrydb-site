@@ -2,15 +2,15 @@
 title: Query Performance in Cloudberry Database
 ---
 
-# Query Performance in Cloudberry Database
+# Query Performance in Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
 
 Cloudberry Database dynamically eliminates irrelevant partitions in a table and optimally allocates memory for different operators in a query.These enhancements scan less data for a query, accelerate query processing, and support more concurrency.
 
-- Dynamic Partition Elimination
+- Dynamic partition elimination
 
     In Cloudberry Database, values available only when a query runs are used to dynamically prune partitions, which improves query processing speed. Enable or deactivate dynamic partition elimination by setting the server configuration parameter `gp_dynamic_partition_pruning` to `ON` or `OFF`; it is `ON` by default.
 
-- Memory Optimizations
+- Memory optimizations
 
     Cloudberry Database allocates memory optimally for different operators in a query and frees and re-allocates memory during the stages of processing a query.
 

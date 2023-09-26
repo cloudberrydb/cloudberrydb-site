@@ -4,7 +4,7 @@ title: Create and Manage Database
 
 # Create and Manage Cloudberry Database
 
-A Cloudberry Database system is a single instance of Cloudberry Database. There can be several separate Cloudberry Database systems installed, but usually just one is selected by environment variable settings. See your Cloudberry administrator for details.
+A Cloudberry Database system is a single instance of Cloudberry Database. There can be several separate Cloudberry Database systems installed, but usually just one is selected by environment variable settings.
 
 There can be multiple databases in a Cloudberry Database system. This is different from some database management systems (such as Oracle) where the database instance *is* the database. Although you can create many databases in a Cloudberry system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.
 
@@ -48,7 +48,7 @@ By default, a new database is created by cloning the standard system database te
 => CREATE DATABASE <new_dbname> TEMPLATE <old_dbname>;
 ```
 
-### Create a database with a different owner 
+### Create a database with a different owner
 
 Another database owner can be assigned when a database is created:
 
@@ -56,7 +56,7 @@ Another database owner can be assigned when a database is created:
 => CREATE DATABASE <new_dbname> WITH <owner=new_user>;
 ```
 
-## View the List of Databases 
+## View the list of databases
 
 If you are working in the `psql` client program, you can use the `\l` meta-command to show the list of databases and templates in your Cloudberry Database system. If using another client program and you are a superuser, you can query the list of databases from the `pg_database` system catalog table. For example:
 
@@ -64,9 +64,9 @@ If you are working in the `psql` client program, you can use the `\l` meta-comma
 => SELECT datname from pg_database;
 ```
 
-## Alter a Database 
+## Alter a database 
 
-The ALTER DATABASE command changes database attributes such as owner, name, or default configuration attributes. For example, the following command alters a database by setting its default schema search path (the `search_path` configuration parameter):
+The `ALTER DATABASE` command changes database attributes such as owner, name, or default configuration attributes. For example, the following command alters a database by setting its default schema search path (the `search_path` configuration parameter):
 
 ```sql
 => ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
@@ -74,7 +74,7 @@ The ALTER DATABASE command changes database attributes such as owner, name, or d
 
 To alter a database, you must be the owner of the database or a superuser.
 
-## Drop a Database 
+## Drop a database 
 
 The `DROP DATABASE` command drops (or deletes) a database. It removes the system catalog entries for the database and deletes the database directory on disk that contains the data. You must be the database owner or a superuser to drop a database, and you cannot drop a database while you or anyone else is connected to it. Connect to `postgres` (or another database) before dropping a database. For example:
 
