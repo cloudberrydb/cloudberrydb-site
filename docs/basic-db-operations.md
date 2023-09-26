@@ -2,7 +2,7 @@
 title: Basic Query Syntax
 ---
 
-# Basic Queries of Cloudberry Database
+# Basic Queries of Cloudberry Database（已验证 by @TomShawn）
 
 This document introduce the basic queries of Cloudberry Database.
 

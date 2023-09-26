@@ -76,7 +76,7 @@ Start only the coordinator to perform maintenance or administrative tasks withou
 
 ## Stop Cloudberry Database
 
-The `gpstop` utility stops or restarts your Cloudberry Database system and always runs on the coordinator host. When activated, `gpstop` stops all `postgres` processes in the system, including the coordinator and all segment instances. ``<!-- 无法确认 by @ TomShawn The `gpstop` utility uses a default of up to 64 parallel worker threads to bring down the Postgres instances that make up the Cloudberry Database cluster. The system waits for any active transactions to finish before shutting down. If after two minutes there are still active connections, `gpstop` will prompt you to either continue waiting in smart mode, stop in fast mode, or stop in immediate mode. -->`` To stop Cloudberry Database immediately, use fast mode.
+The `gpstop` utility stops or restarts your Cloudberry Database system and always runs on the coordinator host. When activated, `gpstop` stops all `postgres` processes in the system, including the coordinator and all segment instances. The `gpstop` utility uses a default of up to 64 parallel worker threads to bring down the Postgres instances that make up the Cloudberry Database cluster. The system waits for any active transactions to finish before shutting down. If after two minutes there are still active connections, `gpstop` will prompt you to either continue waiting in smart mode, stop in fast mode, or stop in immediate mode. To stop Cloudberry Database immediately, use fast mode.
 
 > **Important** Immediate shut down mode is not recommended. This mode stops all database processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.
 
@@ -110,7 +110,7 @@ The `pg_terminate_backend()` function has two similar signatures:
 - `pg_terminate_backend( pid int4 )`
 - `pg_terminate_backend( pid int4, msg text )`
 
-If you provide a `msg`, Cloudberry Database includes the text in the cancel message returned to the client. ``<!-- 无法确认 by @TomShawn `msg` is limited to 128 bytes; Cloudberry Database truncates anything longer. -->``
+If you provide a `msg`, Cloudberry Database includes the text in the cancel message returned to the client. `msg` is limited to 128 bytes; Cloudberry Database truncates anything longer.
 
 The `pg_cancel_backend()` and `pg_terminate_backend()` functions return `true` if successful, and `false` otherwise.
 

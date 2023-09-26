@@ -2,7 +2,7 @@
 title: Manage Roles and Permissions
 ---
 
-# Manage Roles and Permissions in Cloudberry Database
+# Manage Roles and Permissions in Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
 
 The Cloudberry Database authorization mechanism stores roles and permissions to access database objects in the database and is administered using SQL statements or command-line utilities.
 
@@ -33,7 +33,7 @@ A user-level role is considered to be a database role that can log in to the dat
 
 A database role may have a number of attributes that define what sort of tasks that role can perform in the database. You can set these attributes when you create the role, or later using the `ALTER ROLE` command.
 
-### Alter role attributes
+### Alter role attributes `<!-- 概念类信息，暂未验证 -->`
 
 A database role may have a number of attributes that define what sort of tasks that role can perform in the database.
 

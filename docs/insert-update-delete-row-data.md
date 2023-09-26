@@ -17,7 +17,7 @@ This topic includes the following subtopics:
 - [Vacuum the database](#vacuum-the-database)
 - [Run out of locks](#run-out-of-locks)
 
-## Concurrency control in Cloudberry Database `<无法确认 by @TomShawn>`
+## Concurrency control in Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
 
 Cloudberry Database and PostgreSQL do not use locks for concurrency control. They maintain data consistency using a multiversion model, Multiversion Concurrency Control (MVCC). MVCC achieves transaction isolation for each database session, and each query transaction sees a snapshot of data. This ensures the transaction sees consistent data that is not affected by other concurrent transactions.
 
@@ -79,7 +79,7 @@ To insert data into a partitioned table, you specify the root partitioned table,
 
 To insert large amounts of data, use external tables or the `COPY` command. These load mechanisms are more efficient than `INSERT` for inserting large quantities of rows. See [Loading and Unloading Data](/docs/import-data-into-cbdb.md) for more information about bulk data loading.
 
-`<!-- 无法确认 by @TomShawn The storage model of append-optimized tables is optimized for bulk data loading. Cloudberry Database does not recommend single row `INSERT` statements for append-optimized tables. For append-optimized tables, Cloudberry Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table. -->`
+`<!-- 概念类信息，暂未验证 -->`The storage model of append-optimized tables is optimized for bulk data loading. Cloudberry Database does not recommend single row `INSERT` statements for append-optimized tables. For append-optimized tables, Cloudberry Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table.
 
 ## Update existing rows
 
@@ -99,7 +99,7 @@ UPDATE products SET price = 10 WHERE price = 5;
 
 Using `UPDATE` in Cloudberry Database has the following restrictions:
 
-``<!-- 无法确认 by @TomShawn - While GPORCA supports updates to Cloudberry distribution key columns, the Postgres-based planner does not. - If mirrors are enabled, you cannot use `STABLE` or `VOLATILE` functions in an `UPDATE` statement. - Cloudberry Database partitioning columns cannot be updated. -->``
+`<!-- 概念类信息，暂未验证 -->`While GPORCA supports updates to Cloudberry distribution key columns, the Postgres-based planner does not. - If mirrors are enabled, you cannot use `STABLE` or `VOLATILE` functions in an `UPDATE` statement. - Cloudberry Database partitioning columns cannot be updated.
 
 ## Delete rows
 
@@ -129,7 +129,7 @@ TRUNCATE mytable;
 
 This command empties a table of all rows in one operation. Note that `TRUNCATE` does not scan the table, therefore it does not process inherited child tables or `ON DELETE` rewrite rules. The command truncates only rows in the named table.
 
-## Work with transactions
+## Work with transactions `<!-- 概念类信息，暂未验证 -->`
 
 Transactions allow you to bundle multiple SQL statements in one all-or-nothing operation.
 
@@ -142,7 +142,7 @@ The following are the Cloudberry Database SQL transaction commands:
 - `ROLLBACK TO SAVEPOINT` rolls back a transaction to a savepoint.
 - `RELEASE SAVEPOINT` destroys a savepoint within a transaction.
 
-### Transaction isolation levels
+### Transaction isolation levels `<!-- 概念类信息，暂未验证 -->`
 
 Cloudberry Database accepts the standard SQL transaction levels as follows:
 
@@ -151,7 +151,7 @@ Cloudberry Database accepts the standard SQL transaction levels as follows:
 
 The following information describes the behavior of the Cloudberry Database transaction levels.
 
-#### Read uncommitted and read committed
+#### Read uncommitted and read committed `<!-- 概念类信息，暂未验证 -->`
 
 Cloudberry Database does not allow any command to see an uncommitted update in another concurrent transaction, so `READ UNCOMMITTED` behaves the same as `READ COMMITTED`. `READ COMMITTED` provides fast, simple, partial transaction isolation. `SELECT`, `UPDATE`, and `DELETE` commands operate on a snapshot of the database taken when the query started.
 
@@ -166,7 +166,7 @@ Successive `SELECT` queries in the same transaction can see different data if ot
 
 `READ COMMITTED` transaction isolation allows concurrent transactions to modify or lock a row before `UPDATE` or `DELETE` find the row. `READ COMMITTED` transaction isolation may be inadequate for applications that perform complex queries and updates and require a consistent view of the database.
 
-#### Repeatable read and serializable
+#### Repeatable read and serializable `<!-- 概念类信息，暂未验证 -->`
 
 `SERIALIZABLE` transaction isolation, as defined by the SQL standard, ensures that transactions that run concurrently produce the same results as if they were run one after another. If you specify `SERIALIZABLE` Cloudberry Database falls back to `REPEATABLE READ`. `REPEATABLE READ` transactions prevent dirty reads, non-repeatable reads, and phantom reads without expensive locking, but Cloudberry Database does not detect all serializability interactions that can occur during concurrent transaction execution. Concurrent transactions should be examined to identify interactions that are not prevented by disallowing concurrent updates of the same data. You can prevent these interactions by using explicit table locks or by requiring the conflicting transactions to update a dummy row introduced to represent the conflict.
 
@@ -182,7 +182,7 @@ With `REPEATABLE READ` transactions, a `SELECT` query:
 
 The default transaction isolation level in Cloudberry Database is `READ COMMITTED`. To change the isolation level for a transaction, declare the isolation level when you `BEGIN` the transaction or use the `SET TRANSACTION` command after the transaction starts.
 
-## Global deadlock detector 
+## Global deadlock detector `<!-- 概念类信息，暂未验证 -->`
 
 The Cloudberry Database Global Deadlock Detector background worker process collects lock information on all segments and uses a directed algorithm to detect the existence of local and global deadlocks. This algorithm allows Cloudberry Database to relax concurrent update and delete restrictions on heap tables. (Cloudberry Database still employs table-level locking on AO/CO tables, restricting concurrent `UPDATE`, `DELETE`, and `SELECT...FOR lock_strength` operations.)
 
@@ -237,7 +237,7 @@ When it cancels a transaction to break a deadlock, the Global Deadlock Detector 
 ERROR:  canceling statement due to user request: "cancelled by global deadlock detector"
 ```
 
-### Global Deadlock Detector UPDATE and DELETE compatibility
+### Global Deadlock Detector UPDATE and DELETE compatibility  `<!-- 概念类信息，暂未验证 -->`
 
 The Global Deadlock Detector can manage concurrent updates for these types of `UPDATE` and `DELETE` commands on heap tables:
 
@@ -305,7 +305,7 @@ The `VACUUM` command collects table-level statistics such as the number of rows 
 
 > **Important** The `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE` commands should be used to maintain the data in a Cloudberry Database especially if updates and deletes are frequently performed on your database data.
 
-## Run out of locks
+## Run out of locks `<!-- 概念类信息，暂未验证 -->`
 
 Cloudberry Database can potentially run out of locks when a database operation accesses multiple tables in a single transaction. Backup and restore are examples of such operations.
 

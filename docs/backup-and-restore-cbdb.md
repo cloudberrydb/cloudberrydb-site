@@ -2,13 +2,13 @@
 title: Backup And Restore
 ---
 
-# Backup And Restore Cloudberry Database `<@TomShawn 无法验证，建议研发介入>`
+# Backup And Restore Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
 
 Performing backups regularly ensures that you can restore your data or rebuild your Cloudberry Database system if data corruption or a system failure occurs. You can also use backups to migrate data from one Cloudberry Database system to another.
 
 Cloudberry Database supports parallel and non-parallel methods for backing up and restoring databases. Parallel operations scale regardless of the number of segments in your system, because segment hosts each write their data to local disk storage simultaneously. With non-parallel backup and restore operations, the data must be sent over the network from the segments to the coordinator, which writes all of the data to its storage. In addition to restricting I/O to one host, non-parallel backup requires that the coordinator have sufficient local disk storage to store the entire database.
 
-**Parallel backup with gpbackup and gprestore** `<!-- 无法在 cbdb 安装目录中找到 gpbackup 和 gprestore by @TomShawn -->`
+**Parallel backup with gpbackup and gprestore** <!-- 无法在 cbdb 安装目录中找到 gpbackup 和 gprestore by @TomShawn -->
 
 `gpbackup` and `gprestore` are the recommended Cloudberry Database backup and restore utilities. `gpbackup` utilizes `ACCESS SHARE` locks at the individual table level, instead of `EXCLUSIVE` locks on the `pg_class` catalog table. This enables you to run DML statements during the backup, such as `CREATE`, `ALTER`, `DROP`, and `TRUNCATE` operations, as long as those operations do not target the current backup set. Backup files created with `gpbackup` are designed to provide future capabilities for restoring individual database objects along with their dependencies, such as functions and required user-defined datatypes.
 
