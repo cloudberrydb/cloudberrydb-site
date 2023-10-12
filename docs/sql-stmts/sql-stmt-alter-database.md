@@ -11,7 +11,7 @@ Changes the attributes of a database.
 ```sql
 ALTER DATABASE <name> [ [WITH] <option> [ ... ]  ]
 
-where <option> can be:
+-- where <option> can be:
 
     ALLOW_CONNECTIONS <allowconn>
     CONNECTION LIMIT <connlimit>
