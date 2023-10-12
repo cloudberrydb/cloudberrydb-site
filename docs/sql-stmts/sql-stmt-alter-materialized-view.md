@@ -21,7 +21,7 @@ ALTER MATERIALIZED VIEW [ IF EXISTS ] <name>
 ALTER MATERIALIZED VIEW ALL IN TABLESPACE <name> [ OWNED BY <role_name> [, ... ] ]
     SET TABLESPACE <new_tablespace> [ NOWAIT ]
 
-where <action> is one of:
+-- where <action> is one of:
 
     ALTER [ COLUMN ] <column_name> SET STATISTICS <integer>
     ALTER [ COLUMN ] <column_name> SET ( <attribute_option> = <value> [, ... ] )

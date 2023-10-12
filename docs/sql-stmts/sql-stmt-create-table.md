@@ -54,7 +54,7 @@ CREATE [ [GLOBAL | LOCAL] { TEMPORARY | TEMP } | UNLOGGED ] TABLE [ IF NOT EXIST
 [ ON COMMIT { PRESERVE ROWS | DELETE ROWS | DROP } ]
 [ TABLESPACE <tablespace_name> ]
 
-where <column_constraint> is:
+-- where <column_constraint> is:
 
   [ CONSTRAINT <constraint_name>]
   { NOT NULL 
@@ -154,7 +154,7 @@ CREATE [ [GLOBAL | LOCAL] {TEMPORARY | TEMP} | UNLOGGED ] TABLE [IF NOT EXISTS] 
   ) ]
 }
 
-where <classic_partition_spec> is:
+-- where <classic_partition_spec> is:
 
   <partition_element> [, ...]
 

@@ -14,7 +14,7 @@ CREATE DOMAIN <name> [AS] <data_type>
        [ DEFAULT <expression> ]
        [ <constraint> [ ... ] ]
 
-where <constraint> is:
+-- where <constraint> is:
 
 [ CONSTRAINT <constraint_name> ]
 { NOT NULL | NULL | CHECK (<expression>)  }

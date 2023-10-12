@@ -18,7 +18,7 @@ ALTER FOREIGN TABLE [ IF EXISTS ] <name>
 ALTER FOREIGN TABLE [ IF EXISTS ] <name>
     SET SCHEMA <new_schema>
 
-where <action> is one of:
+-- where <action> is one of:
 
     ADD [ COLUMN ] <column_name> <data_type> [ COLLATE <collation> ] [ <column_constraint> [ ... ] ]
     DROP [ COLUMN ] [ IF EXISTS ] <column_name> [ RESTRICT | CASCADE ]

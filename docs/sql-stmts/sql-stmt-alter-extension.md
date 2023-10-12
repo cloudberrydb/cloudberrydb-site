@@ -14,7 +14,7 @@ ALTER EXTENSION <name> SET SCHEMA <new_schema>
 ALTER EXTENSION <name> ADD <member_object>
 ALTER EXTENSION <name> DROP <member_object>
 
-where <member_object> is:
+-- where <member_object> is:
 
   ACCESS METHOD <object_name> |
   AGGREGATE <aggregate_name> ( <aggregate_signature> ) |

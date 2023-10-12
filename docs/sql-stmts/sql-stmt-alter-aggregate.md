@@ -16,7 +16,7 @@ ALTER AGGREGATE <name> ( <aggregate_signature> )
 
 ALTER AGGREGATE <name> ( <aggregate_signature> ) SET SCHEMA <new_schema>
 
-where <aggregate_signature> is:
+-- where <aggregate_signature> is:
 
 * |
 [ <argmode> ] [ <argname> ] <argtype> [ , ... ] |

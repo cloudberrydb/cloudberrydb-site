@@ -24,7 +24,7 @@ SELECT [ALL | DISTINCT [ON (<expression> [, ...])]]
   [FETCH { FIRST | NEXT } [ <count> ] { ROW | ROWS } ONLY]
   [FOR {UPDATE | NO KEY UPDATE | SHARE | KEY SHARE} [OF <table_name> [, ...]] [NOWAIT | SKIP LOCKED ] [...]]
 
-where <from_item> can be one of:
+-- where <from_item> can be one of:
 
   [ONLY] <table_name> [ * ] [ [ AS ] <alias> [ ( <column_alias> [, ...] ) ] ]
       [ TABLESAMPLE <sampling_method> ( <argument> [, ...] ) [ REPEATABLE ( <seed> ) ] ]

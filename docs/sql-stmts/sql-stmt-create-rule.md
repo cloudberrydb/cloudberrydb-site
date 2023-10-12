@@ -14,7 +14,7 @@ CREATE [OR REPLACE] RULE <name> AS ON <event>
   DO [ALSO | INSTEAD] { NOTHING | <command> | (<command>; <command> 
   ...) }
 
-where <event> can be one of:
+-- where <event> can be one of:
 
   SELECT | INSERT | UPDATE | DELETE
 ```

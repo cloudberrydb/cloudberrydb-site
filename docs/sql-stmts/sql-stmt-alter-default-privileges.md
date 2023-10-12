@@ -15,7 +15,7 @@ ALTER DEFAULT PRIVILEGES
     [ IN SCHEMA <schema_name> [, ...] ]
     <abbreviated_grant_or_revoke>
 
-where <abbreviated_grant_or_revoke> is one of:
+-- where <abbreviated_grant_or_revoke> is one of:
 
 GRANT { { SELECT | INSERT | UPDATE | DELETE | TRUNCATE | REFERENCES | TRIGGER }
     [, ...] | ALL [ PRIVILEGES ] }

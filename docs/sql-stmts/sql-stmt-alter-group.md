@@ -13,7 +13,7 @@ ALTER GROUP <role_specification> ADD USER <user_name> [, ... ]
 
 ALTER GROUP <role_specification> DROP USER <user_name> [, ... ]
 
-where <role_specification> can be:
+-- where <role_specification> can be:
 
     <role_name>
   | CURRENT_USER

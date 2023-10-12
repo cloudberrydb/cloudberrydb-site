@@ -24,7 +24,7 @@ ALTER FUNCTION <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ]
 ALTER FUNCTION <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ]
    DEPENDS ON EXTENSION <extension_name>
 
-where <action> is one of:
+-- where <action> is one of:
 
     { CALLED ON NULL INPUT | RETURNS NULL ON NULL INPUT | STRICT }
     { IMMUTABLE | STABLE | VOLATILE }

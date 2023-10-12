@@ -24,7 +24,7 @@ ALTER ROUTINE <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ]
 ALTER ROUTINE <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ]
    DEPENDS ON EXTENSION <extension_name>
 
-where <action> is one of (depending on the type of routine):
+-- where <action> is one of (depending on the type of routine):
 
     { IMMUTABLE | STABLE | VOLATILE }
     [ NOT ] LEAKPROOF

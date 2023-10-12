@@ -16,13 +16,13 @@ INSERT INTO <table_name> [ AS <alias> ] [( <column_name> [, ...] )]
    [ ON CONFLICT [ <conflict_target> ] <conflict_action> ]
    [RETURNING * | <output_expression> [ [AS] <output_name> ] [, ...]]
 
-where <conflict_target> can be one of:
+-- where <conflict_target> can be one of:
 
     ( { <index_column_name> | ( <index_expression> ) } [ COLLATE <collation> ] [ <opclass> ] [, ...] )
     [ WHERE <index_predicate> ]
     ON CONSTRAINT <constraint_name>
 
-and <conflict_action> is one of:
+-- and <conflict_action> is one of:
 
     DO NOTHING
     DO UPDATE SET { <column_name> = { <expression> | DEFAULT } |

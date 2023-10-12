@@ -24,7 +24,7 @@ ALTER PROCEDURE <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ]
 ALTER PROCEDURE <name> [ ( [ [<argmode>] [<argname>] <argtype> [, ...] ] ) ]
    DEPENDS ON EXTENSION <extension_name>
 
-where <action> is one of:
+-- where <action> is one of:
 
     { [EXTERNAL] SECURITY INVOKER | [EXTERNAL] SECURITY DEFINER }
     SET <configuration_parameter> { TO | = } { <value> | DEFAULT }
