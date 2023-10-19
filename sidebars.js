@@ -28,17 +28,16 @@ const sidebars = {
       items: [
       {
         type: 'category',
-        label: 'Install from Source Code',
+        label: 'Build from Source Code',
         items: ['cbdb-macos-compile']
       },
       {
         type: 'category',
-        label: 'Physical Machine Deployment',
-        items: ['cbdb-op-software-hardware','cbdb-op-deploy-arch','cbdb-op-deploy-guide']
+        label: 'Deploy on Physical Machine',
+        items: ['cbdb-op-software-hardware', 'cbdb-op-prepare-to-deploy', 'cbdb-op-deploy-guide']
       }
      ]
     },
-
   ]
 }
 
