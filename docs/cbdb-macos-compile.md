@@ -8,11 +8,13 @@ title: On macOS
 The source of this document is from [the document](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md) in the GitHub repository `cloudberrydb/cloudberrydb`.
 :::
 
-This document shares how to build, compile, and install Cloudberry Database on macOS for development and trial purposes. Follow the steps below.
+This document shares how to build, compile, and install Cloudberry Database on macOS (single node) for development and trial purposes. Follow the steps below.
 
 According to our test, these steps work well on macOS Ventura 13.4+ with both Intel and Apple silicon processors (M1 or M2). If you have an older version of macOS, upgrading is recommended. Make sure that the Mac you use has at least 4 cores and 8 GB memory, and is connected to the Internet.
 
+:::caution
 DO NOT use this guide for production deployment.
+:::
 
 ## Step 1. Install needed dependencies
 

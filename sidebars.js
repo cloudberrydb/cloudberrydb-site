@@ -28,7 +28,7 @@ const sidebars = {
       items: [
       {
         type: 'category',
-        label: 'Quick Start',
+        label: 'Install from Source Code',
         items: ['cbdb-macos-compile']
       },
       {
