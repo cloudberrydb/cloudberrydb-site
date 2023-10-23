@@ -14,5 +14,9 @@
   "sidebar.docsbars.category.Physical Machine Deployment": {
     "message": "物理机部署",
     "description": "The label for category physical machine deployment guides in sidebar docs"
+  },
+  "sidebar.docsbars.category.Install from Source Code": {
+    "message": "从源码编译安装",
+    "description": "The label for category building CloudberryDB from source code in sidebar docs"
   }
 }
