@@ -14,5 +14,9 @@
   "sidebar.docsbars.category.Physical Machine Deployment": {
     "message": "物理机部署",
     "description": "The label for category physical machine deployment guides in sidebar docs"
+  },
+  "sidebar.docsbars.category.Quick Start": {
+    "message": "快速上手",
+    "description": "The label for category quick deployment guides in sidebar docs"
   }
 }

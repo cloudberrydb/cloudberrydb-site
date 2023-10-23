@@ -4,13 +4,13 @@ title: 在 macOS 上
 
 # 在 macOS 上编译和安装 Cloudberry Database
 
-:::note 注意
-此源文档来自 GitHub 仓库 [cloudberrydb/cloudberrydb](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md)。
+:::info 注意
+本文档来自 GitHub 仓库 [cloudberrydb/cloudberrydb](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md)。
 :::
 
-本文档分享了如何在 macOS 上构建、编译和安装 Cloudberry Database 以进行开发。请按照以下步骤操作。
+本文档分享了如何在 macOS 上构建、编译和安装 Cloudberry Database 以供开发测试使用。请按照以下步骤操作。
 
-根据我们的测试，以下步骤在配备 Intel 和 Apple 芯片处理器（M1 或 M2）的 macOS Ventura 13.4+ 上运行良好。如果你有早前版本的 macOS，建议先升级系统。
+根据我们的测试，在配备 Intel 和 Apple 芯片处理器（M1 或 M2）的 macOS Ventura 13.4+ 上，以下步骤能顺利执行。如果你有早前版本的 macOS，建议先升级系统。请确保你的 Mac 电脑至少有 4 核处理器和 8 GB 内存，并连接到互联网。
 
 请勿使用本指南进行生产部署。
 
@@ -34,14 +34,14 @@ title: 在 macOS 上
     source readmes/README.macOS.bash
     ```
 
-    :::note
-    如果系统中未安装 [Homebrew](https://brew.sh/)，此命令会安装 Homebrew。
+    :::info 注意
+    如果系统中未安装 [Homebrew](https://brew.sh/)，此命令会自动安装 Homebrew。
     :::
 
-## 第 2 步：开启免密码 SSH 连接到本地主机
+## 第 2 步：为本地主机配置免密 SSH 登录
 
-1. 打开 **系统设置** \> **通用** \> **共享** \> **远程登录**，在 macOS 系统上启用**远程登录**。
-2. 验证 macOS 系统是否已启用与 localhost 的免密码 SSH 连接：
+1. 打开 macOS 系统的**系统设置** \> **通用** \> **共享** \> **远程登录**，在 macOS 上启用**远程登录**。
+2. 验证 macOS 系统是否开启与 localhost 的免密 SSH 连接：
 
     ```bash
     ssh $(hostname)
@@ -51,12 +51,12 @@ title: 在 macOS 上
     - 如果需要输入密码，请按照以下步骤设置免密码 SSH 连接。
 
         1. 执行 `ssh-keygen`，然后执行 `cat ~/.ssh/id_rsa.pub >>  ~/.ssh/authorized_keys`。
-        2. 再次执行 `ssh $(hostname)` 以检查免密码 SSH 连接是否可用。
+        2. 再次执行 `ssh $(hostname)`，检查免密码 SSH 连接是否可用。
         3. 如果可用，执行 `exit` 并阅读下一节[第 3 步：配置、编译和安装](#第-3-步配置编译和安装)。
 
-:::note 注意
+:::info 注意
 
-- 如果你是第一次使用 `ssh` 连接到 localhost，可能需要接受第一次使用提示：
+- 如果你是第一次使用 `ssh` 连接到 localhost，在遇到以下提示时，你需要确认继续连接：
 
     ```bash
     The authenticity of host '<your hostname>' can't be established.
@@ -64,7 +64,7 @@ title: 在 macOS 上
     Are you sure you want to continue connecting (yes/no)?
     ```
 
-- 如果你的主机名无法解析，请尝试将你的机器名添加到 `/etc/hosts`：
+- 如果主机名无法解析，请尝试将你的机器名添加到 `/etc/hosts`，例如：
 
     ```bash
     echo -e "127.0.0.1\t$HOSTNAME" | sudo tee -a /etc/hosts
@@ -85,7 +85,7 @@ BREWPREFIX=$(brew --prefix); export PATH="$BREWPREFIX/opt/gnu-sed/libexec/gnubin
 make -j8
 make -j8 install
 
-# 3. 将 Cloudberry Database 的 Greenplum 环境引入你正在运行的 shell。
+# 3. 将 Cloudberry Database 的 Greenplum 环境引入运行中的 shell。
 
 source $(cd ~; pwd)/install/cbdb/greenplum_path.sh
 
@@ -98,7 +98,7 @@ pip3 install --user -r readmes/python-dependencies.txt
 PORT_BASE=8000 make create-demo-cluster
 ```
 
-执行以下命令，此命令会配置端口和环境变量，例如 `PGPORT`（主节点的默认端口） 和 `MASTER_DATA_DIRECTORY`（主节点的数据目录）。
+执行以下命令，该命令会配置端口和环境变量，例如 `PGPORT`（主节点的默认端口） 和 `MASTER_DATA_DIRECTORY`（主节点的数据目录）。
 
 ```bash
 source gpAux/gpdemo/gpdemo-env.sh
@@ -106,13 +106,13 @@ source gpAux/gpdemo/gpdemo-env.sh
 
 ## 第 4 步：验证集群
 
-1. 执行以下命令来验证集群是否已成功启动。如果成功启动，你会在输出结果中看到许多端口在 `8000` 到 `8007` 之间的 `postgres` 进程。
+1. 执行以下命令来验证集群是否已成功启动。如果成功启动，你会在输出结果中看到端口在 `8000` 到 `8007` 之间的多个 `postgres` 进程。
 
     ```bash
     ps -ef | grep postgres
     ```
     
-2. 连接至 Cloudberry Database，通过查询系统表 `gp_segement_configuration` 查看活跃 segment 的信息。关于此系统表的详细描述，参见 [Greenplum 文档](https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/ref_guide-system_catalogs-gp_segment_configuration.html)。
+2. 连接至 Cloudberry Database，通过查询系统表 `gp_segement_configuration` 查看活跃 segment 的信息。关于此系统表的详细描述，参见 [Greenplum 文档](https://docs.vmware.com/en/VMware-Greenplum/7/greenplum-database/ref_guide-system_catalogs-gp_segment_configuration.html)。
 
     ```sql
     $ psql -p 8000 postgres

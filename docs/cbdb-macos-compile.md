@@ -4,13 +4,15 @@ title: On macOS
 
 # Compile and Install Cloudberry Database on macOS
 
-:::note
-This source document is from the GitHub repository [cloudberrydb/cloudberrydb](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md).
+:::info
+The source of this document is from the GitHub repository [cloudberrydb/cloudberrydb](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md).
 :::
 
-This document shares how to build, compile, and install Cloudberry Database on macOS for development purposes. Follow the steps below. DO NOT use this guide for production deployment.
+This document shares how to build, compile, and install Cloudberry Database on macOS for development and trial purposes. Follow the steps below.
 
-According to our test, these steps work well on macOS Ventura 13.4+ with both Intel and Apple silicon processors (M1 or M2). If you have an older version of macOS, upgrading is recommended.
+According to our test, these steps work well on macOS Ventura 13.4+ with both Intel and Apple silicon processors (M1 or M2). If you have an older version of macOS, upgrading is recommended. Make sure that the Mac you use has at least 4 cores and 8 GB memory, and is connected to the Internet.
+
+DO NOT use this guide for production deployment.
 
 ## Step 1. Install needed dependencies
 
@@ -32,7 +34,7 @@ According to our test, these steps work well on macOS Ventura 13.4+ with both In
     source readmes/README.macOS.bash
     ```
 
-    :::note
+    :::info
     This will install [Homebrew](https://brew.sh/) if missing.
     :::
 
@@ -52,7 +54,7 @@ According to our test, these steps work well on macOS Ventura 13.4+ with both In
         2. Run `ssh $(hostname)` again to check whether password-free connection is ready.
         3. If ready, run `exit` and go to [Step 3. Configure, compile, and install](#step-3-configure-compile-and-install).
 
-:::note
+:::info
 
 - If it is the first time you are using `ssh` connection to localhost, you might need to accept the trust on the first use prompt:
 
@@ -110,7 +112,7 @@ source gpAux/gpdemo/gpdemo-env.sh
     ps -ef | grep postgres
     ```
     
-2. Connect to the Cloudberry Database and see the active segment information by querying the system table `gp_segement_configuration`. For detailed description of this table, see the Greenplum document [here](https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/ref_guide-system_catalogs-gp_segment_configuration.html).
+2. Connect to the Cloudberry Database and see the active segment information by querying the system table `gp_segement_configuration`. For detailed description of this table, see the Greenplum document [here](https://docs.vmware.com/en/VMware-Greenplum/7/greenplum-database/ref_guide-system_catalogs-gp_segment_configuration.html).
 
     ```sql
     $ psql -p 8000 postgres
