@@ -5,7 +5,7 @@ title: On macOS
 # Compile and Install Cloudberry Database on macOS
 
 :::info
-The source of this document is from the GitHub repository [cloudberrydb/cloudberrydb](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md).
+The source of this document is from [the document](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md) in the GitHub repository `cloudberrydb/cloudberrydb`.
 :::
 
 This document shares how to build, compile, and install Cloudberry Database on macOS for development and trial purposes. Follow the steps below.
