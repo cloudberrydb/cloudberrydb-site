@@ -113,6 +113,10 @@ const config = {
                 to: '/community/slack',
               },
               {
+                label: 'WeChat Guide',
+                to: '/community/wechat',
+              },
+              {
                 label: 'Events',
                 to: '/community/events',
               },
