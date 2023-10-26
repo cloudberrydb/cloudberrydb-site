@@ -4,6 +4,9 @@ title: CREATE FOREIGN DATA WRAPPER
 
 # CREATE FOREIGN DATA WRAPPER
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Defines a new foreign-data wrapper.
 
 ## Synopsis

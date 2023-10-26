@@ -4,6 +4,9 @@ title: DROP POLICY
 
 # DROP POLICY
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Removes a row-level security policy from a table.
 
 ## Synopsis

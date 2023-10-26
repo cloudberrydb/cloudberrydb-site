@@ -4,6 +4,9 @@ title: SET CONSTRAINTS
 
 # SET CONSTRAINTS
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Sets constraint check timing for the current transaction.
 
 > **Note** Referential integrity syntax (foreign key constraints) is accepted but not enforced.

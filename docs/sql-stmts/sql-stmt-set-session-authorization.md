@@ -4,6 +4,9 @@ title: SET SESSION AUTHORIZATION
 
 # SET SESSION AUTHORIZATION
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Sets the session role identifier and the current role identifier of the current session.
 
 ## Synopsis

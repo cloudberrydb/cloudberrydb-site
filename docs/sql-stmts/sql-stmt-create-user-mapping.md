@@ -4,6 +4,9 @@ title: CREATE USER MAPPING
 
 # CREATE USER MAPPING
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Defines a new mapping of a user to a foreign server.
 
 ## Synopsis

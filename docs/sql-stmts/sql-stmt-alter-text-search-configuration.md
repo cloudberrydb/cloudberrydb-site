@@ -4,6 +4,9 @@ title: ALTER TEXT SEARCH CONFIGURATION
 
 # ALTER TEXT SEARCH CONFIGURATION
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Changes the definition of a text search configuration.
 
 ## Synopsis

@@ -4,6 +4,9 @@ title: CREATE PROTOCOL
 
 # CREATE PROTOCOL
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Registers a custom data access protocol that can be specified when defining a Cloudberry Database external table.
 
 ## Synopsis

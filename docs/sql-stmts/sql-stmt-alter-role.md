@@ -4,6 +4,9 @@ title: ALTER ROLE
 
 # ALTER ROLE
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Changes a database role (user or group).
 
 ## Synopsis

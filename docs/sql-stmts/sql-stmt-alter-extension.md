@@ -4,6 +4,9 @@ title: ALTER EXTENSION
 
 # ALTER EXTENSION
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Change the definition of an extension.
 
 ## Synopsis

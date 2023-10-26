@@ -4,6 +4,9 @@ title: DROP TEXT SEARCH TEMPLATE
 
 # DROP TEXT SEARCH TEMPLATE
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 ## Description
 
 Removes a text search template.

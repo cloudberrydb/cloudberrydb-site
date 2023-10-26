@@ -4,6 +4,9 @@ title: DELETE
 
 # DELETE
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Deletes rows from a table.
 
 ## Synopsis

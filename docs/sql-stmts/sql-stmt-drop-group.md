@@ -4,6 +4,9 @@ title: DROP GROUP
 
 # DROP GROUP
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Removes a database role.
 
 ## Synopsis

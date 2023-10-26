@@ -4,6 +4,9 @@ title: REASSIGN OWNED
 
 # REASSIGN OWNED
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Changes the ownership of database objects owned by a database role.
 
 ## Synopsis

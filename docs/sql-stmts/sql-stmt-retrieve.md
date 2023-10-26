@@ -4,6 +4,9 @@ title: RETRIEVE
 
 # RETRIEVE
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Retrieves rows from a query using a parallel retrieve cursor.
 
 ## Synopsis

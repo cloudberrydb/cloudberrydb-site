@@ -1,16 +1,20 @@
 import os
 
-# 指定目录路径
-directory_path = "/Users/hashdata/Documents/GitHub/tom-cloudberrydb-site/docs/db-utilities"
+dir_path = "/Users/hashdata/Documents/GitHub/upstream/cloudberrydb-site/docs/sql-stmts"
+content_to_insert = """
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+"""
 
-# 获取目录的名称
-parent_dir_name = os.path.basename(directory_path)
+for filename in os.listdir(dir_path):
+    if filename.endswith(".md"):
+        file_path = os.path.join(dir_path, filename)
+        
+        with open(file_path, 'r') as file:
+            file_contents = file.readlines()
 
-# 获取目录下的所有文件并存入列表中
-file_list = [os.path.join(parent_dir_name, f[:-3]) for f in os.listdir(directory_path) if f.endswith('.md')]
+        # 将内容插入到第 6 行
+        file_contents.insert(5, content_to_insert)
 
-# 按照指定格式输出文件名列表
-print("[")
-for filename in file_list:
-    print(f"  '{filename}',")
-print("]")
+        with open(file_path, 'w') as file:
+            file.writelines(file_contents)

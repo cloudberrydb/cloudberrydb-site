@@ -4,6 +4,9 @@ title: SET
 
 # SET
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Changes the value of a run-time Cloudberry Database configuration parameter.
 
 ## Synopsis

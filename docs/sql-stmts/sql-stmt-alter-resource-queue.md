@@ -4,6 +4,9 @@ title: ALTER RESOURCE QUEUE
 
 # ALTER RESOURCE QUEUE
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Changes the limits of a resource queue.
 
 ## Synopsis

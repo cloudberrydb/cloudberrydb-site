@@ -4,6 +4,9 @@ title: ALTER USER MAPPING
 
 # ALTER USER MAPPING
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Changes the definition of a user mapping for a foreign server.
 
 ## Synopsis
