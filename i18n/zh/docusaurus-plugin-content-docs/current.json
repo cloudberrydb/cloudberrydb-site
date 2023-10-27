@@ -18,5 +18,13 @@
   "sidebar.docsbars.category.Build from Source Code": {
     "message": "从源码编译安装",
     "description": "The label for category building CloudberryDB from source code in sidebar docs"
+  },
+  "sidebar.docsbars.category.Reference": {
+    "message": "参考指南",
+    "description": "The label for category reference in sidebar docs"
+  },
+  "sidebar.docsbars.category.SQL Statements": {
+    "message": "SQL 语句",
+    "description": "The label for category SQL statements in sidebar docs"
   }
 }
