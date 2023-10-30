@@ -14,9 +14,6 @@ const config = {
       en: {
         label: 'English',
       },
-      zh: {
-        label: '简体中文',
-      },
     },
   },
   title: 'Cloudberry Database',
@@ -113,6 +110,10 @@ const config = {
                 to: '/community/slack',
               },
               {
+                label: 'WeChat Guide',
+                to: '/community/wechat',
+              },
+              {
                 label: 'Events',
                 to: '/community/events',
               },
@@ -159,17 +160,7 @@ const config = {
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/download', label: 'Download', position: 'left'},
           {to: '/support', label: 'Support', position: 'left'},
-          {
-            type: 'localeDropdown',
-            position: 'right',
-            dropdownItemsAfter: [{
-                type: 'html',
-                value: '<hr style="margin: 0.3rem 0;">',
-            },{
-              href: 'https://github.com/cloudberrydb/cloudberrydb-site/blob/main/',
-              label: 'Help Us Translate',
-            }]
-          },{
+ {
             href: repoUrl,
             position: 'right',
             className: 'header-github-link',
