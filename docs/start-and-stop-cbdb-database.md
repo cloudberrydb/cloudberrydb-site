@@ -62,7 +62,7 @@ Start only the coordinator to perform maintenance or administrative tasks withou
 
 2. Connect to the coordinator in maintenance mode to do catalog maintenance. For example:
 
-    ``` shell
+    ```shell
     $ PGOPTIONS='-c gp_role=utility' psql postgres
     ```
 
@@ -77,7 +77,7 @@ Start only the coordinator to perform maintenance or administrative tasks withou
 
 ## Stop Cloudberry Database
 
-The `gpstop` utility stops or restarts your Cloudberry Database system and always runs on the coordinator host. When activated, `gpstop` stops all `postgres` processes in the system, including the coordinator and all segment instances. The `gpstop` utility uses a default of up to 64 parallel worker threads to bring down the Postgres instances that make up the Cloudberry Database cluster. The system waits for any active transactions to finish before shutting down. If after two minutes there are still active connections, `gpstop` will prompt you to either continue waiting in smart mode, stop in fast mode, or stop in immediate mode. To stop Cloudberry Database immediately, use fast mode.
+The `gpstop` utility stops or restarts your Cloudberry Database system and always runs on the coordinator host. When activated, `gpstop` stops all `postgres` processes in the system, including the coordinator and all segment instances. The `gpstop` utility uses a default of up to multiple parallel worker threads to bring down the Postgres instances that make up the Cloudberry Database cluster. To stop Cloudberry Database immediately, use the fast mode.
 
 > **Important** Immediate shut down mode is not recommended. This mode stops all database processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.
 
