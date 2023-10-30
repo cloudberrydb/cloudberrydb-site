@@ -4,7 +4,7 @@ title: Create and Manage Database
 
 # Create and Manage Cloudberry Database
 
-A Cloudberry Database system is a single instance of Cloudberry Database. There can be several separate Cloudberry Database systems installed, but usually just one is selected by environment variable settings.
+A Cloudberry Database system is a single instance of Cloudberry Database. There can be multiple running Cloudberry Database systems co-existing with each other, but usually a client can only connect to one of them.
 
 There can be multiple databases in a Cloudberry Database system. This is different from some database management systems (such as Oracle) where the database instance *is* the database. Although you can create many databases in a Cloudberry system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.
 
@@ -12,11 +12,11 @@ There can be multiple databases in a Cloudberry Database system. This is differe
 
 Cloudberry Database provides some template databases and a default database, *template1*, *template0*, and *postgres*.
 
-By default, each new database you create is based on a *template* database. Cloudberry Database uses *template1* to create databases unless you specify another template. Creating objects in *template1* is not recommended. The objects will be in every database you create using the default template database.
+By default, each new database you create is based on a *template1* database. Cloudberry Database uses *template1* to create databases unless you specify another template. Creating objects in *template1* is not recommended. The objects will be in every database you create using the default template database.
 
 Cloudberry Database uses another database template, *template0*, internally. Do not drop or modify *template0*. You can use *template0* to create a completely clean database containing only the standard objects predefined by Cloudberry Database at initialization.
 
-You can use the *postgres* database to connect to Cloudberry Database for the first time. Cloudberry Database uses *postgres* as the default database for administrative connections. For example, *postgres* is used by startup processes, the Global Deadlock Detector process, and the FTS (Fault Tolerance Server) process for catalog access.
+You can use the *postgres* database to connect to Cloudberry Database for the first time. Cloudberry Database uses *postgres* as the default database for administrative connections.
 
 ## Create a database 
 
@@ -64,7 +64,7 @@ If you are working in the `psql` client program, you can use the `\l` meta-comma
 => SELECT datname from pg_database;
 ```
 
-## Alter a database 
+## Alter a database
 
 The `ALTER DATABASE` command changes database attributes such as owner, name, or default configuration attributes. For example, the following command alters a database by setting its default schema search path (the `search_path` configuration parameter):
 
