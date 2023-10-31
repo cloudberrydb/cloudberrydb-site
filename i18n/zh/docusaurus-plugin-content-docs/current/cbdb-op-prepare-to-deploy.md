@@ -78,14 +78,14 @@ systemctl disable firewalld.service
 以下配置参数仅供参考，请按实际需要进行设置。下文介绍了其中一些配置参数的详细信息以及推荐设置。
 
 ```conf
-# kernel.shmall = _PHYS_PAGES / 2 # See Shared Memory Pages
+# kernel.shmall = _PHYS_PAGES / 2
 kernel.shmall = 197951838
 # kernel.shmmax = kernel.shmall * PAGE_SIZE
 kernel.shmmax = 810810728448
 kernel.shmmni = 4096
-vm.overcommit_memory = 2 # See Segment Host Memory
-vm.overcommit_ratio = 95 # See Segment Host Memory
-net.ipv4.ip_local_port_range = 10000 65535 # See Port Settings
+vm.overcommit_memory = 2
+vm.overcommit_ratio = 95
+net.ipv4.ip_local_port_range = 10000 65535
 kernel.sem = 250 2048000 200 8192
 kernel.sysrq = 1
 kernel.core_uses_pid = 1
@@ -106,7 +106,7 @@ vm.swappiness = 10
 vm.zone_reclaim_mode = 0
 vm.dirty_expire_centisecs = 500
 vm.dirty_writeback_centisecs = 100
-vm.dirty_background_ratio = 0 # See System Memory
+vm.dirty_background_ratio = 0
 vm.dirty_ratio = 0
 vm.dirty_background_bytes = 1610612736
 vm.dirty_bytes = 4294967296
