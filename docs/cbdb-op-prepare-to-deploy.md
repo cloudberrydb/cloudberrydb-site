@@ -10,7 +10,7 @@ Before deploying Cloudberry Database on physical machines, you need to do some p
 
 Plan your deployment architecture based on the [Cloudberry Database Architecture](/docs/cbdb-architecture.md) and [Software and Hardware Configuration Requirements](/docs/cbdb-op-software-hardware.md), and determine the number of servers needed. Ensure that all servers are within a single security group and have mutual trust configured.
 
-The deployment plan for the example of this document includes 1 Master + 1 Standby + 3 Segments (Primary + Mirror), totaling 5 servers.
+The deployment plan for the example of this document includes 1 coordinator + 1 standby + 3 segments (primary + mirror), totaling 5 servers.
 
 ## Modify server settings
 
@@ -27,8 +27,8 @@ Use the `hostnamectl set-hostname` command to modify the hostname of each server
 Example:
 
 ```bash
-hostnamectl set-hostname cbdb-master
-hostnamectl set-hostname cbdb-standbymaster
+hostnamectl set-hostname cbdb-coordinator
+hostnamectl set-hostname cbdb-standbycoordinator
 hostnamectl set-hostname cbdb-datanode01
 hostnamectl set-hostname cbdb-datanode02
 hostnamectl set-hostname cbdb-datanode03
@@ -64,8 +64,8 @@ systemctl disable firewalld.service
 Check the `/etc/hosts` file to make sure that it contains mappings of all host aliases to their network IP addresses. Examples are as follows:
 
 ```
-192.168.1.101  cbdb-master
-192.168.1.102  cbdb-standbymaster
+192.168.1.101  cbdb-coordinator
+192.168.1.102  cbdb-standbycoordinator
 192.168.1.103  cbdb-datanode01
 192.168.1.104  cbdb-datanode02
 192.168.1.105  cbdb-datanode03
@@ -78,14 +78,14 @@ Add relevant system parameters in the `/etc/sysctl.conf` configuration file, and
 When setting the configuration parameters, you can take the following example as a reference and set them according to your needs. Details of some of these parameters and recommended settings are provided below.
 
 ```conf
-# kernel.shmall = _PHYS_PAGES / 2 # See Shared Memory Pages
+# kernel.shmall = _PHYS_PAGES / 2
 kernel.shmall = 197951838
 # kernel.shmmax = kernel.shmall * PAGE_SIZE
 kernel.shmmax = 810810728448
 kernel.shmmni = 4096
-vm.overcommit_memory = 2 # See Segment Host Memory
-vm.overcommit_ratio = 95 # See Segment Host Memory
-net.ipv4.ip_local_port_range = 10000 65535 # See Port Settings
+vm.overcommit_memory = 2
+vm.overcommit_ratio = 95
+net.ipv4.ip_local_port_range = 10000 65535
 kernel.sem = 250 2048000 200 8192
 kernel.sysrq = 1
 kernel.core_uses_pid = 1
@@ -106,7 +106,7 @@ vm.swappiness = 10
 vm.zone_reclaim_mode = 0
 vm.dirty_expire_centisecs = 500
 vm.dirty_writeback_centisecs = 100
-vm.dirty_background_ratio = 0 # See System Memory
+vm.dirty_background_ratio = 0
 vm.dirty_ratio = 0
 vm.dirty_background_bytes = 1610612736
 vm.dirty_bytes = 4294967296
@@ -417,7 +417,7 @@ service sshd restart
 
 Cloudberry Database requires that the clocks configured for all hosts need to be synchronized, and the clock synchronization service should be started when the host starts. You can choose one of the following synchronization methods:
 
-- Use the Master node's time as the source, and other hosts synchronize the clock of the Master node host.
+- Use the coordinator node's time as the source, and other hosts synchronize the clock of the coordinator node host.
 - Synchronize clocks using an external clock source.
 
 The example in this document uses an external clock source for synchronization, that is, adding the following configuration to the `/etc/chrony.conf` configuration file:

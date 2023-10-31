@@ -10,7 +10,7 @@ title: 部署前准备
 
 根据 [Cloudberry Database 架构](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-architecture.md)和[软硬件配置要求](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-software-hardware.md)规划部署架构，确定所需的服务器数量。确保所有的服务器都在一个安全组内，并且配置了互信。
 
-本文示例的部署规划为 1 Master + 1 Standby + 3 Segment (Primary + Mirror)，共 5 台服务器。
+本文示例的部署规划为 1 Coordinator + 1 Standby + 3 Segment (Primary + Mirror)，共 5 台服务器。
 
 ## 修改服务器设置
 
@@ -27,8 +27,8 @@ title: 部署前准备
 示例如下：
 
 ```bash
-hostnamectl set-hostname cbdb-master
-hostnamectl set-hostname cbdb-standbymaster
+hostnamectl set-hostname cbdb-coordinator
+hostnamectl set-hostname cbdb-standbycoordinator
 hostnamectl set-hostname cbdb-datanode01
 hostnamectl set-hostname cbdb-datanode02
 hostnamectl set-hostname cbdb-datanode03
@@ -64,8 +64,8 @@ systemctl disable firewalld.service
 检查 `/etc/hosts` 文件，确保该文件包含 Cloudberry Database 所有主机别名与其网络 IP 地址的映射。示例如下：
 
 ```
-192.168.1.101  cbdb-master
-192.168.1.102  cbdb-standbymaster
+192.168.1.101  cbdb-coordinator
+192.168.1.102  cbdb-standbycoordinator
 192.168.1.103  cbdb-datanode01
 192.168.1.104  cbdb-datanode02
 192.168.1.105  cbdb-datanode03
@@ -78,14 +78,14 @@ systemctl disable firewalld.service
 以下配置参数仅供参考，请按实际需要进行设置。下文介绍了其中一些配置参数的详细信息以及推荐设置。
 
 ```conf
-# kernel.shmall = _PHYS_PAGES / 2 # See Shared Memory Pages
+# kernel.shmall = _PHYS_PAGES / 2
 kernel.shmall = 197951838
 # kernel.shmmax = kernel.shmall * PAGE_SIZE
 kernel.shmmax = 810810728448
 kernel.shmmni = 4096
-vm.overcommit_memory = 2 # See Segment Host Memory
-vm.overcommit_ratio = 95 # See Segment Host Memory
-net.ipv4.ip_local_port_range = 10000 65535 # See Port Settings
+vm.overcommit_memory = 2
+vm.overcommit_ratio = 95
+net.ipv4.ip_local_port_range = 10000 65535
 kernel.sem = 250 2048000 200 8192
 kernel.sysrq = 1
 kernel.core_uses_pid = 1
@@ -106,7 +106,7 @@ vm.swappiness = 10
 vm.zone_reclaim_mode = 0
 vm.dirty_expire_centisecs = 500
 vm.dirty_writeback_centisecs = 100
-vm.dirty_background_ratio = 0 # See System Memory
+vm.dirty_background_ratio = 0
 vm.dirty_ratio = 0
 vm.dirty_background_bytes = 1610612736
 vm.dirty_bytes = 4294967296
@@ -417,7 +417,7 @@ service sshd restart
 
 Cloudberry Database 要求为所有主机配置时钟需要同步，时钟同步服务应当随主机启动而启动。有两种同步方式：
 
-- 使用 Master 节点的时间作为来源，其他主机同步 Master 节点主机的时钟。
+- 使用 Coordinator 节点的时间作为来源，其他主机同步 Coordinator 节点主机的时钟。
 - 使用外部时钟来源同步。
 
 本文档示例使用外部时钟来源同步，即在 `/etc/chrony.conf` 配置文件中添加如下配置：

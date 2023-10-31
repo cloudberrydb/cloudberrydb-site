@@ -59,15 +59,15 @@ title: 通过 RPM 包手动部署
     在 `/home/gpadmin/` 目录下创建节点的配置文件，包含 `all_hosts` 和 `seg_hosts` 文件，分别存放全部节点和数据节点的主机信息，代码如下所示：
 
     ```bash
-    [gpadmin@cbdb-master gpadmin]$ cat all_hosts
+    [gpadmin@cbdb-coordinator gpadmin]$ cat all_hosts
 
-    cbdb-master
-    cbdb-standbymaster
+    cbdb-coordinator
+    cbdb-standbycoordinator
     cbdb-datanode01
     cbdb-datanode02
     cbdb-datanode03
 
-    [gpadmin@cbdb-master gpadmin]$ cat seg_hosts
+    [gpadmin@cbdb-coordinator gpadmin]$ cat seg_hosts
 
     cbdb-datanode01
     cbdb-datanode02
@@ -79,7 +79,7 @@ title: 通过 RPM 包手动部署
     1. 在各主机上执行 `ssh-keygen` 生成 SSH 密钥，示例如下：
 
         ```bash
-        [gpadmin@cbbd-master cloudberry-db-1.0.0]$ ssh-keygen
+        [gpadmin@cbbd-coordinator cloudberry-db-1.0.0]$ ssh-keygen
 
         Generating public/private rsa key pair.
         Enter file in which to save the key (/usr/local/cloudberry-db/.ssh/id_rsa):
@@ -88,7 +88,7 @@ title: 通过 RPM 包手动部署
         Your identification has been saved in /usr/local/cloudberry-db/.ssh/id_rsa.
         Your public key has been saved in /usr/local/cloudberry-db/.ssh/id_rsa.pub.
         The key fingerprint is:
-        SHA256:cvcYS87egYCyh/v6UtdqrejVU5qqF7OvpcHg/T9lRrg gpadmin@cbbd-master
+        SHA256:cvcYS87egYCyh/v6UtdqrejVU5qqF7OvpcHg/T9lRrg gpadmin@cbbd-coordinator
         The key's randomart image is:
         +---[RSA 2048]----+
         |                 |
@@ -106,8 +106,8 @@ title: 通过 RPM 包手动部署
     2. 在各主机上使用 `ssh-copy-id` 配置免密，示例如下：
 
         ```bash
-        ssh-copy-id  cbdb-master
-        ssh-copy-id  cbdb-standbymaster
+        ssh-copy-id  cbdb-coordinator
+        ssh-copy-id  cbdb-standbycoordinator
         ssh-copy-id  cbdb-datanode01
         ssh-copy-id  cbdb-datanode02
         ssh-copy-id  cbdb-datanode03
@@ -116,23 +116,23 @@ title: 通过 RPM 包手动部署
     3. 验证节点之间的 SSH 是否全部打通，即服务器之间免密码登录是否成功，示例如下：
 
         ```bash
-        [gpadmin@cbdb-master ~]$ gpssh -f all_hosts
+        [gpadmin@cbdb-coordinator ~]$ gpssh -f all_hosts
         => pwd
         [ cbdb-datanode03] b'/usr/local/cloudberry-db\r'
-        [ cbdb-master] b'/usr/local/cloudberry-db\r'
+        [ cbdb-coordinator] b'/usr/local/cloudberry-db\r'
         [ cbdb-datanode02] b'/usr/local/cloudberry-db\r'
-        [cbdb-standbymaster] b'/usr/local/cloudberry-db\r'
+        [cbdb-standbycoordinator] b'/usr/local/cloudberry-db\r'
         [ cbdb-datanode01] b'/usr/local/cloudberry-db\r'
         =>
         ```
 
-        若无法执行 `gpssh`，可在 Master 节点先执行如下命令 `source /usr/local/cloudberry-db/greenplum_path.sh`。
+        若无法执行 `gpssh`，可在 Coordinator 节点先执行如下命令 `source /usr/local/cloudberry-db/greenplum_path.sh`。
 
 ## 第 4 步：初始化 Cloudberry Database
 
 执行以下操作前，你需要先执行 `su - gpadmin` 切换到 `gpadmin` 用户。
 
-1. 在所有节点（Master/Standby Master/Segment）的 `~/.bashrc` 文件中新增一行 `source` 命令，示例如下：
+1. 在所有节点（Coordinator/Standby Coordinator/Segment）的 `~/.bashrc` 文件中新增一行 `source` 命令，示例如下：
 
     ```bash
     source /usr/local/cloudberry-db/greenplum_path.sh
@@ -144,7 +144,7 @@ title: 通过 RPM 包手动部署
     source ~/.bashrc
     ```
 
-3. 在 Master 节点上使用 `gpssh` 命令为 Segment 节点创建数据目录和 Mirror 目录，本文档中两个目录分别为 `/data0/primary/` 和 `/data0/mirror/`，示例如下：
+3. 在 Coordinator 节点上使用 `gpssh` 命令为 Segment 节点创建数据目录和 Mirror 目录，本文档中两个目录分别为 `/data0/primary/` 和 `/data0/mirror/`，示例如下：
 
     ```bash
     gpssh -f seg_hosts
@@ -152,25 +152,25 @@ title: 通过 RPM 包手动部署
     mkdir -p /data0/mirror/
     ```
 
-4. 在 Master 节点上创建数据目录，本文档以 `/data0/master` 为例：
+4. 在 Coordinator 节点上创建数据目录，本文档以 `/data0/coordinator` 为例：
 
     ```bash
-    mkdir -p /data0/master/
+    mkdir -p /data0/coordinator/
     ```
 
-5. 在 Master 节点上使用 `gpssh` 命令为 Standby 节点创建数据目录，本文档以 `/data0/master/` 为例：
+5. 在 Coordinator 节点上使用 `gpssh` 命令为 Standby 节点创建数据目录，本文档以 `/data0/coordinator/` 为例：
 
     ```bash
-    gpssh -h cbdb-standbymaster -e 'mkdir -p /data0/master/'
+    gpssh -h cbdb-standbycoordinator -e 'mkdir -p /data0/coordinator/'
     ```
 
-6. 在 Master 和 Standby 节点的主机上，往 `~/.bashrc` 文件再添加一行 `COORDINATOR_DATA_DIRECTORY` 的路径声明：`{第 5 步的路径}` + `gpseg-1`，示例如下：
+6. 在 Coordinator 和 Standby 节点的主机上，往 `~/.bashrc` 文件再添加一行 `COORDINATOR_DATA_DIRECTORY` 的路径声明：`{第 5 步的路径}` + `gpseg-1`，示例如下：
 
     ```bash
-    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
+    export COORDINATOR_DATA_DIRECTORY=/data0/coordinator/gpseg-1
     ```
 
-7. 在 Master 和 Standby 节点的主机执行以下命令，使上一步对 `COORDINATOR_DATA_DIRECTORY` 的声明生效。
+7. 在 Coordinator 和 Standby 节点的主机执行以下命令，使上一步对 `COORDINATOR_DATA_DIRECTORY` 的声明生效。
 
     ```bash
     source ~/.bashrc
@@ -178,7 +178,7 @@ title: 通过 RPM 包手动部署
 
 8. 配置 `gpinitsystem_config` 启动脚本。
 
-    1. 在 Master 节点所在主机上，将模板配置文件复制到该当前目录：
+    1. 在 Coordinator 节点所在主机上，将模板配置文件复制到该当前目录：
 
         ```bash
         cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
@@ -186,14 +186,14 @@ title: 通过 RPM 包手动部署
 
     2. 修改 `gpinitsystem_config` 文件。
 
-        - 注意端口，Master 节点、Segment 节点、Mirror 节点。
+        - 注意端口，Coordinator 节点、Segment 节点、Mirror 节点。
         - 将 `DATA_DIRECTORY` 修改为 Segment 计算节点的数据目录，即前面步骤中的 `/data0/primary`。
-        - 将 `COORDINATOR_HOSTNAME` 修改为 Master 节点主机名。本文档中 Master 主机名为 `cbdb-master`。
-        - 将 `COORDINATOR_DIRECTORY` 修改为 Master 节点数据目录，即前面步骤中的 `/data0/master`。
+        - 将 `COORDINATOR_HOSTNAME` 修改为 Coordinator 节点主机名。本文档中 Coordinator 主机名为 `cbdb-coordinator`。
+        - 将 `COORDINATOR_DIRECTORY` 修改为 Coordinator 节点数据目录，即前面步骤中的 `/data0/coordinator`。
         - 将 `MIRROR_DATA_DIRECTORY` 修改为 Mirror 的数据目录，即前面步骤的 `/data0/mirror`。
         
             ```bash
-            [gpadmin@cbdb-master ~]$ cat gpinitsystem_config
+            [gpadmin@cbdb-coordinator ~]$ cat gpinitsystem_config
             # FILE NAME: gpinitsystem_config
 
             # Configuration file needed by the gpinitsystem
@@ -218,11 +218,11 @@ title: 通过 RPM 包手动部署
             declare -a DATA_DIRECTORY=(/data0/primary)
 
             #### OS-configured hostname or IP address of the coordinator host.
-            COORDINATOR_HOSTNAME=cbdb-master
+            COORDINATOR_HOSTNAME=cbdb-coordinator
 
             #### File system location where the coordinator data directory
             #### will be created.
-            COORDINATOR_DIRECTORY=/data0/master
+            COORDINATOR_DIRECTORY=/data0/coordinator
 
             #### Port number for the coordinator instance.
             COORDINATOR_PORT=5432
@@ -267,10 +267,10 @@ title: 通过 RPM 包手动部署
 
     在以上 `gpinitsystem` 中，`-c` 为配置文件，`-h` 为计算节点列表。
 
-    如果需要初始化 Standby Master 节点，则参考如下命令初始化：
+    如果需要初始化 Standby Coordinator 节点，则参考如下命令初始化：
 
     ```bash
-    gpinitstandby -s cbdb-standbymaster
+    gpinitstandby -s cbdb-standbycoordinator
     ```
 
 ## 第 5 步：登录数据库
@@ -283,7 +283,7 @@ psql -h <hostname> -p <port> -U <username> -d <database>
 
 以上命令中：
 
-- `<hostname>` 是 Cloudberry Database 服务器的 Master 节点 IP 地址。
+- `<hostname>` 是 Cloudberry Database 服务器的 Coordinator 节点 IP 地址。
 - `<port>` 是 Cloudberry Database 的端口号，默认为 `5432`。
 - `<username>` 是数据库的用户名。
 - `<database>` 是要连接的数据库名称。
@@ -291,15 +291,15 @@ psql -h <hostname> -p <port> -U <username> -d <database>
 执行命令后，系统将提示你输入数据库密码。输入正确的密码后，你将成功登录到 Cloudberry Database，并可以执行相应的 SQL 查询和操作。请确保你有正确的权限来访问目标数据库。
 
 ```sql
-[gpadmin@cddb-master ~]$ psql warehouse
+[gpadmin@cddb-coordinator ~]$ psql warehouse
 psql (14.4, server 14.4)
 Type "help" for help.
 
 warehouse=# SELECT * FROM gp_segment_configuration;
 dbid | content | role | preferred_role | mode | status | port  | hostname             | address               | datadir
 ------------------------------------------------------------------------------------------
-1    | -1      | p    | p              | n    | u      | 5432 | cddb-master          | cddb-master           | /data0/master/gpseg-1
-8    | -1      | m    | m              | s    | u      | 5432 | cddb-standbymaster   | cddb-standbymaster    | /data0/master/gpseg-1
+1    | -1      | p    | p              | n    | u      | 5432 | cddb-coordinator          | cddb-coordinator           | /data0/coordinator/gpseg-1
+8    | -1      | m    | m              | s    | u      | 5432 | cddb-standbycoordinator   | cddb-standbycoordinator    | /data0/coordinator/gpseg-1
 2    | 0       | p    | p              | s    | u      | 6000 | cddb-datanode01      | cddb-datanode01       | /data0/primary/gpseg0
 5    | 0       | m    | m              | s    | u      | 7000 | cddb-datanode02      | cddb-datanode02       | /data0/mirror/gpseg0
 3    | 1       | p    | p              | s    | u      | 6000 | cddb-datanode02      | cddb-datanode02       | /data0/primary/gpseg1

@@ -54,15 +54,15 @@ After the preparation, it is time to install Cloudberry Database. You need to do
     Create the node configuration file in the `/home/gpadmin/` directory, including the `all_hosts` and `seg_hosts` files, which store the host information of all nodes and data nodes respectively. The example node information is as follows:
 
     ```bash
-    [gpadmin@cbdb-master gpadmin]$ cat all_hosts
+    [gpadmin@cbdb-coordinator gpadmin]$ cat all_hosts
 
-    cbdb-master
-    cbdb-standbymaster
+    cbdb-coordinator
+    cbdb-standbycoordinator
     cbdb-datanode01
     cbdb-datanode02
     cbdb-datanode03
 
-    [gpadmin@cbdb-master gpadmin]$ cat seg_hosts
+    [gpadmin@cbdb-coordinator gpadmin]$ cat seg_hosts
 
     cbdb-datanode01
     cbdb-datanode02
@@ -74,7 +74,7 @@ After the preparation, it is time to install Cloudberry Database. You need to do
     1. Run `ssh-keygen` on each host to generate SSH key. For example:
 
         ```bash
-        [gpadmin@cbbd-master cloudberry-db-1.0.0]$ ssh-keygen
+        [gpadmin@cbbd-coordinator cloudberry-db-1.0.0]$ ssh-keygen
 
         Generating public/private rsa key pair.
         Enter file in which to save the key (/usr/local/cloudberry-db/.ssh/id_rsa):
@@ -83,7 +83,7 @@ After the preparation, it is time to install Cloudberry Database. You need to do
         Your identification has been saved in /usr/local/cloudberry-db/.ssh/id_rsa.
         Your public key has been saved in /usr/local/cloudberry-db/.ssh/id_rsa.pub.
         The key fingerprint is:
-        SHA256:cvcYS87egYCyh/v6UtdqrejVU5qqF7OvpcHg/T9lRrg gpadmin@cbbd-master
+        SHA256:cvcYS87egYCyh/v6UtdqrejVU5qqF7OvpcHg/T9lRrg gpadmin@cbbd-coordinator
         The key's randomart image is:
         +---[RSA 2048]----+
         |                 |
@@ -101,8 +101,8 @@ After the preparation, it is time to install Cloudberry Database. You need to do
     2. Run `ssh-copy-id` on each host to configure password-free login. The example is as follows:
 
         ```bash
-        ssh-copy-id  cbdb-master
-        ssh-copy-id  cbdb-standbymaster
+        ssh-copy-id  cbdb-coordinator
+        ssh-copy-id  cbdb-standbycoordinator
         ssh-copy-id  cbdb-datanode01
         ssh-copy-id  cbdb-datanode02
         ssh-copy-id  cbdb-datanode03
@@ -111,23 +111,23 @@ After the preparation, it is time to install Cloudberry Database. You need to do
     3. Verify that SSH between nodes is all connected, that is, the password-free login between servers is successful. The example is as follows:
 
         ```bash
-        [gpadmin@cbdb-master ~]$ gpssh -f all_hosts
+        [gpadmin@cbdb-coordinator ~]$ gpssh -f all_hosts
         => pwd
         [ cbdb-datanode03] b'/usr/local/cloudberry-db\r'
-        [ cbdb-master] b'/usr/local/cloudberry-db\r'
+        [ cbdb-coordinator] b'/usr/local/cloudberry-db\r'
         [ cbdb-datanode02] b'/usr/local/cloudberry-db\r'
-        [cbdb-standbymaster] b'/usr/local/cloudberry-db\r'
+        [cbdb-standbycoordinator] b'/usr/local/cloudberry-db\r'
         [ cbdb-datanode01] b'/usr/local/cloudberry-db\r'
         =>
         ```
 
-        If you fail to run `gpssh`, you can first run `source /usr/local/cloudberry-db/greenplum_path.sh` on the Master node.
+        If you fail to run `gpssh`, you can first run `source /usr/local/cloudberry-db/greenplum_path.sh` on the coordinator node.
 
 ## Step 4. Initialize Cloudberry Database
 
 Before performing the following operations, run `su - gpadmin` to switch to the `gpadmin` user.
 
-1. Add a new line of `source` command to the `~/.bashrc` files of all nodes (Master/Standby Master/Segment). The example is as follows:
+1. Add a new line of `source` command to the `~/.bashrc` files of all nodes (coordinator/standby coordinator/segment). The example is as follows:
 
     ```bash
     source /usr/local/cloudberry-db/greenplum_path.sh
@@ -139,7 +139,7 @@ Before performing the following operations, run `su - gpadmin` to switch to the 
     source ~/.bashrc
     ```
 
-3. Use the `gpssh` command on the Master node to create data directories and mirror directories for Segment nodes. In this document, the 2 directories are `/data0/primary/` and `/data0/mirror/`, respectively. The example is as follows:
+3. Use the `gpssh` command on the coordinator node to create data directories and mirror directories for segment nodes. In this document, the 2 directories are `/data0/primary/` and `/data0/mirror/`, respectively. The example is as follows:
 
     ```bash
     gpssh -f seg_hosts
@@ -147,25 +147,25 @@ Before performing the following operations, run `su - gpadmin` to switch to the 
     mkdir -p /data0/mirror/
     ```
 
-4. Create data directory on the Master node. In this document, the directory is `/data0/master/`.
+4. Create data directory on the coordinator node. In this document, the directory is `/data0/coordinator/`.
 
     ```bash
-    mkdir -p /data0/master/
+    mkdir -p /data0/coordinator/
     ```
 
-5. Use the `gpssh` command on the Master node to create data directory for the Standby node. In this document, the directory is `/data0/master/`.
+5. Use the `gpssh` command on the coordinator node to create data directory for the standby node. In this document, the directory is `/data0/coordinator/`.
 
     ```bash
-    gpssh -h cbdb-standbymaster -e 'mkdir -p /data0/master/'
+    gpssh -h cbdb-standbycoordinator -e 'mkdir -p /data0/coordinator/'
     ```
 
-6. On the hosts of the Master and Standby nodes, add a line to the `~/.bashrc` file to declare the path of `COORDINATOR_DATA_DIRECTORY`, which is `{the path step 5}` + `gpseg-1`. For example:
+6. On the hosts of the coordinator and standby nodes, add a line to the `~/.bashrc` file to declare the path of `COORDINATOR_DATA_DIRECTORY`, which is `{the path step 5}` + `gpseg-1`. For example:
 
     ```bash
-    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
+    export COORDINATOR_DATA_DIRECTORY=/data0/coordinator/gpseg-1
     ```
 
-7. Run the following command on the hosts of the Master and Standby nodes to make the declaration of `COORDINATOR_DATA_DIRECTORY` in the previous step effective.
+7. Run the following command on the hosts of the coordinator and standby nodes to make the declaration of `COORDINATOR_DATA_DIRECTORY` in the previous step effective.
 
     ```bash
     source ~/.bashrc
@@ -173,7 +173,7 @@ Before performing the following operations, run `su - gpadmin` to switch to the 
 
 8. Configure the `gpinitsystem_config` initialization script:
 
-    1. On the host where the Master node is located, copy the template configuration file to the current directory:
+    1. On the host where the coordinator node is located, copy the template configuration file to the current directory:
 
         ```bash
         cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
@@ -181,14 +181,14 @@ Before performing the following operations, run `su - gpadmin` to switch to the 
 
     2. Modify the `gpinitsystem_config` file as follows:
 
-        - Pay attention to the port, Master node, Segment node, and Mirror node.
-        - Modify `DATA_DIRECTORY` to the data directory of the Segment node, for example, `/data0/primary`.
-        - Modify `COORDINATOR_HOSTNAME` to the hostname of the Master node, for example, `cbdb-master`.
-        - Modify `COORDINATOR_DIRECTORY` to the data directory of the Master node, for example, `/data0/master`.
-        - Modify `MIRROR_DATA_DIRECTORY` to the data directory of the Mirror node, for example, `/data0/mirror`.
+        - Pay attention to the port, coordinator node, segment node, and mirror node.
+        - Modify `DATA_DIRECTORY` to the data directory of the segment node, for example, `/data0/primary`.
+        - Modify `COORDINATOR_HOSTNAME` to the hostname of the coordinator node, for example, `cbdb-coordinator`.
+        - Modify `COORDINATOR_DIRECTORY` to the data directory of the coordinator node, for example, `/data0/coordinator`.
+        - Modify `MIRROR_DATA_DIRECTORY` to the data directory of the mirror node, for example, `/data0/mirror`.
 
             ```bash
-            [gpadmin@cbdb-master ~]$ cat gpinitsystem_config
+            [gpadmin@cbdb-coordinator ~]$ cat gpinitsystem_config
             # FILE NAME: gpinitsystem_config
 
             # Configuration file needed by the gpinitsystem
@@ -213,11 +213,11 @@ Before performing the following operations, run `su - gpadmin` to switch to the 
             declare -a DATA_DIRECTORY=(/data0/primary)
 
             #### OS-configured hostname or IP address of the coordinator host.
-            COORDINATOR_HOSTNAME=cbdb-master
+            COORDINATOR_HOSTNAME=cbdb-coordinator
 
             #### File system location where the coordinator data directory
             #### will be created.
-            COORDINATOR_DIRECTORY=/data0/master
+            COORDINATOR_DIRECTORY=/data0/coordinator
 
             #### Port number for the coordinator instance.
             COORDINATOR_PORT=5432
@@ -262,10 +262,10 @@ Before performing the following operations, run `su - gpadmin` to switch to the 
 
     In the command above, `-c` specifies the configuration file and `-h` specifies the computing node list.
 
-    If you need to initialize the Standby Master node, refer to the following command:
+    If you need to initialize the standby coordinator node, refer to the following command:
 
     ```bash
-    gpinitstandby -s cbdb-standbymaster
+    gpinitstandby -s cbdb-standbycoordinator
     ```
 
 ## Step 5. Log into Cloudberry Database
@@ -278,7 +278,7 @@ psql -h <hostname> -p <port> -U <username> -d <database>
 
 In the command above:
 
-- `<hostname>` is the IP address of the Master node of the Cloudberry Database server.
+- `<hostname>` is the IP address of the coordinator node of the Cloudberry Database server.
 - `<port>` is the default port number of Cloudberry Database, which is `5432` by default.
 - `<username>` is the user name of the database.
 - `<database>` is the name of the database to connect.
@@ -286,15 +286,15 @@ In the command above:
 After you run the `psql` command, the system will prompt you to enter the database password. After you enter the correct password, you will successfully log into the Cloudberry Database and can perform SQL queries and operations. Make sure that you have the correct permissions to access the target database.
 
 ```sql
-[gpadmin@cddb-master ~]$ psql warehouse
+[gpadmin@cddb-coordinator ~]$ psql warehouse
 psql (14.4, server 14.4)
 Type "help" for help.
 
 warehouse=# SELECT * FROM gp_segment_configuration;
 dbid | content | role | preferred_role | mode | status | port  | hostname             | address               | datadir
 ------------------------------------------------------------------------------------------
-1    | -1      | p    | p              | n    | u      | 5432 | cddb-master          | cddb-master           | /data0/master/gpseg-1
-8    | -1      | m    | m              | s    | u      | 5432 | cddb-standbymaster   | cddb-standbymaster    | /data0/master/gpseg-1
+1    | -1      | p    | p              | n    | u      | 5432 | cddb-coordinator          | cddb-coordinator           | /data0/coordinator/gpseg-1
+8    | -1      | m    | m              | s    | u      | 5432 | cddb-standbycoordinator   | cddb-standbycoordinator    | /data0/coordinator/gpseg-1
 2    | 0       | p    | p              | s    | u      | 6000 | cddb-datanode01      | cddb-datanode01       | /data0/primary/gpseg0
 5    | 0       | m    | m              | s    | u      | 7000 | cddb-datanode02      | cddb-datanode02       | /data0/mirror/gpseg0
 3    | 1       | p    | p              | s    | u      | 6000 | cddb-datanode02      | cddb-datanode02       | /data0/primary/gpseg1
