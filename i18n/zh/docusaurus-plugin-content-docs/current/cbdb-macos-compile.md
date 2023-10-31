@@ -100,7 +100,7 @@ pip3 install --user -r readmes/python-dependencies.txt
 PORT_BASE=8000 make create-demo-cluster
 ```
 
-执行以下命令，该命令会配置端口和环境变量，例如 `PGPORT`（主节点的默认端口） 和 `MASTER_DATA_DIRECTORY`（主节点的数据目录）。
+执行以下命令，该命令会配置端口和环境变量，例如 `PGPORT`（主节点的默认端口） 和 `COORDINATOR_DATA_DIRECTORY`（主节点的数据目录）。
 
 ```bash
 source gpAux/gpdemo/gpdemo-env.sh

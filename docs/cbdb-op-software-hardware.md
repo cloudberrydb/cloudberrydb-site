@@ -16,7 +16,7 @@ The following section describes the recommended physical machine configuration f
 
 | Component    | CPU  | Memory | Disk type | Network                 | Number of instances |
 | ------- | ---- | ---- | -------- | -------------------- | -------- |
-| Master  | 4 cores | 8 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
+| Coordinator  | 4 cores | 8 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
 | Segment | 4 cores | 8 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
 | ETCD    | 2 cores | 4 GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
 | FTS     | 2 cores | 4 GB | SSD      | 10 Gbps NIC (2 preferred) | 1+       |
@@ -25,7 +25,7 @@ The following section describes the recommended physical machine configuration f
 
 | Component    | CPU    | Memory   | Disk type | Network                 | Instance count |
 | ------- | ------ | ------ | -------- | -------------------- | -------- |
-| Master  | 16+ cores | 32+ GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
+| Coordinator  | 16+ cores | 32+ GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
 | Segment | 8+ cores  | 32+ GB | SSD      | 10 Gbps NIC (2 preferred) | 2+       |
 | ETCD    | 16+ cores | 64+ GB | SSD      | 10 Gbps NIC (2 preferred) | 3+       |
 | FTS     | 4+ cores  | 8+ GB   | SSD      | 10 Gbps NIC (2 preferred) | 3+       |
@@ -76,7 +76,7 @@ mount /dev/data/data2 /data2/
 
     - Connect the management console and the database host in the data exchange network. If there is a firewall device between the management console and the database host, ensure that the TCP idle connection can be kept for more than 12 hours.
     - Connect database hosts and management console hosts in the data exchange network, and do not limit the TCP idle connection time.
-    - Connect database clients and application programs that access the database with the database master node in the data exchange network.
+    - Connect database clients and application programs that access the database with the database coordinator node in the data exchange network.
     - Ensure that the TCP idle connection can be kept for more than 12 hours.
 
 - **Default gateway**
