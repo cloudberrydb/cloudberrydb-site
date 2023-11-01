@@ -29,7 +29,7 @@ const sidebars = {
       {
         type: 'category',
         label: 'Build from Source Code',
-        items: ['cbdb-macos-compile']
+        items: ['cbdb-macos-compile','cbdb-linux-compile']
       },
       {
         type: 'category',
