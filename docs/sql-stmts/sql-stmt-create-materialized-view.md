@@ -19,7 +19,7 @@ CREATE MATERIALIZED VIEW [ IF  NOT EXISTS ] <table_name>
     [ TABLESPACE <tablespace_name> ]
     AS <query>
     [ WITH [ NO ] DATA ]
-    [DISTRIBUTED {| BY <column> [<opclass>], [ ... ] | RANDOMLY | REPLICATED }]
+    [DISTRIBUTED { BY ( <column> [<opclass>], [ ... ] ) | RANDOMLY | REPLICATED }]
 ```
 
 ## Description
