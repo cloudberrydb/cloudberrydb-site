@@ -40,7 +40,7 @@ Cloudberry Database 100% 兼容 Greenplum，能提供所有你需要的 Greenplu
 | 存储过程 OUT 参数                            | ✅                   | ❌           |
 | 外键表的外键约束                    | ✅                   | ❌           |
 | `pg_terminate_backend` 的超时参数        | ✅                   | ❌           |
-| Master 自动故障转移                      | ✅                   | ❌           |
+| Coordinator 自动故障转移                      | ✅                   | ❌           |
 | 支持在 Kubernetes 上部署                 | ✅                   | ❌           |
 
 ## 性能特性对比

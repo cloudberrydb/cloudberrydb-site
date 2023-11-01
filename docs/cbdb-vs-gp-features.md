@@ -40,7 +40,7 @@ In addition, Cloudberry Database possesses some features that Greenplum currentl
 | Procedure OUT parameters                            | ✅                   | ❌           |
 | `CHECK` constraints for foreign tables                    | ✅                   | ❌           |
 | Timeout parameter for `pg_terminate_backend`        | ✅                   | ❌           |
-| Auto failover for Master                      | ✅                   | ❌           |
+| Auto failover for coordinator                      | ✅                   | ❌           |
 | Kubernetes deployment support                 | ✅                   | ❌           |
 
 ## Performance-related features

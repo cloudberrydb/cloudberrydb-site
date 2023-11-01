@@ -18,7 +18,7 @@ Cloudberry Database 架构图如下所示：
 
 ![Cloudberry Architecture](./media/cbdb-arch.png)
 
-- **控制节点 (Master)** 是 Cloudberry Database 数据库系统的入口，它接受客户端连接和 SQL 查询，并将工作分配给数据节点实例。用户与 Cloudberry Database 进行交互，使用客户端程序（例如 psql）或应用程序编程接口（API）（例如 JDBC、ODBC 或 libpq PostgreSQL C API）连接到控制节点。
+- **控制节点 (Coordinator)** 是 Cloudberry Database 数据库系统的入口，它接受客户端连接和 SQL 查询，并将工作分配给数据节点实例。用户与 Cloudberry Database 进行交互，使用客户端程序（例如 psql）或应用程序编程接口（API）（例如 JDBC、ODBC 或 libpq PostgreSQL C API）连接到控制节点。
     - 控制节点是全局系统目录所在的位置，全局系统目录是一组系统表，其中包含有关 Cloudberry Database 数据库系统本身的元数据。
     - 控制节点不包含任何用户数据，数据只保存在数据节点实例上。
     - 控制节点对客户端连接进行身份验证，处理传入的 SQL 命令，在数据节点之间分配工作负载，协调每个数据节点返回的结果，并将最终结果呈现给客户端程序。

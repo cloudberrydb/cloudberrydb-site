@@ -100,7 +100,7 @@ pip3 install --user -r readmes/python-dependencies.txt
 PORT_BASE=8000 make create-demo-cluster
 ```
 
-Prepare the test by running the following command. This command will configure the port and environment variables for the test. Environment variables such as `PGPORT` and `MASTER_DATA_DIRECTORY` will be configured, which are the default port and the data directory of the master node.
+Prepare the test by running the following command. This command will configure the port and environment variables for the test. Environment variables such as `PGPORT` and `COORDINATOR_DATA_DIRECTORY` will be configured, which are the default port and the data directory of the coordinator node.
 
 ```bash
 source gpAux/gpdemo/gpdemo-env.sh
