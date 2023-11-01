@@ -1,6 +1,6 @@
 ---
 slug: cloudberrydb-august-weekly
-title: August Newsletter (2023/08)
+title: August Newsletter - Cloudberry Database (2023/08)
 authors: [cloudberrydbteam]
 tags: [community]
 ---

@@ -1,6 +1,6 @@
 ---
 slug: cloudberrydb-sep-weekly
-title: Sep Newsletter (2023/09)
+title: Sep Newsletter - Cloudberry Database (2023/09)
 authors: [cloudberrydbteam]
 tags: [community]
 ---
