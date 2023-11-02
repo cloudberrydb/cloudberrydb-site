@@ -17,9 +17,11 @@ This topic includes the following subtopics:
 - [Vacuum the database](#vacuum-the-database)
 - [Run out of locks](#run-out-of-locks)
 
-## Concurrency control in Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
+## Concurrency control in Cloudberry Database
 
-Cloudberry Database and PostgreSQL do not use locks for concurrency control. They maintain data consistency using a multiversion model, Multiversion Concurrency Control (MVCC). MVCC achieves transaction isolation for each database session, and each query transaction sees a snapshot of data. This ensures the transaction sees consistent data that is not affected by other concurrent transactions.
+Cloudberry Database and PostgreSQL do not use locks for concurrency control. Instead, they maintain data consistency through a multi-version model known as Multi-version Concurrency Control (MVCC). MVCC ensures transaction isolation for each database session, allowing each query transaction to see a consistent snapshot of data. This ensures that the data observed by a transaction remains consistent and unaffected by other concurrent transactions.
+
+However, the specific data changes visible to a transaction are influenced by its isolation level. The default isolation level is "READ COMMITTED," which means that a transaction can observe data changes made by other transactions that have already been committed. If the isolation level is set to "REPEATABLE READ," then queries within that transaction will observe the data because it was at the beginning of the transaction and will not see changes made by other transactions in the interim. To specify the isolation level of a transaction, you can use the statement `BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ` to start a transaction with the "REPEATABLE READ" isolation level.
 
 Because MVCC does not use explicit locks for concurrency control, lock contention is minimized and Cloudberry Database maintains reasonable performance in multiuser environments. Locks acquired for querying (reading) data do not conflict with locks acquired for writing data.
 
@@ -30,18 +32,17 @@ Cloudberry Database provides multiple lock modes to control concurrent access to
 |ACCESS SHARE|`SELECT`|ACCESS EXCLUSIVE|
 |ROW SHARE|`SELECT...FOR lock_strength`|EXCLUSIVE, ACCESS EXCLUSIVE|
 |ROW EXCLUSIVE|`INSERT`, `COPY`|SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
-|SHARE UPDATE EXCLUSIVE|`VACUUM` (without `FULL`), `ANALYZE`|SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
+|SHARE UPDATE EXCLUSIVE|`ANALYZE`|SHARE UPDATE EXCLUSIVE, SHARE, EXCLUSIVE, ACCESS EXCLUSIVE|
 |SHARE|`CREATE INDEX`|ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
 |SHARE ROW EXCLUSIVE| |ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
 |EXCLUSIVE|`DELETE`, `UPDATE`, `SELECT...FOR lock_strength`, `REFRESH MATERIALIZED VIEW CONCURRENTLY`|ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
 |ACCESS EXCLUSIVE|`ALTER TABLE`, `DROP TABLE`, `TRUNCATE`, `REINDEX`, `CLUSTER`, `REFRESH MATERIALIZED VIEW` (without `CONCURRENTLY`), `VACUUM FULL`|ACCESS SHARE, ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
 
-> **Note** By default, the Global Deadlock Detector is deactivated, and Cloudberry Database acquires the more restrictive `EXCLUSIVE` lock (rather than `ROW EXCLUSIVE` in PostgreSQL) for `UPDATE`, `DELETE`, and `SELECT` queries with a locking clause (`FOR lock_strength`).
+> **Note** By default, the Global Deadlock Detector is deactivated, and Cloudberry Database acquires the more restrictive `EXCLUSIVE` lock (rather than `ROW EXCLUSIVE` in PostgreSQL) for `UPDATE` and `DELETE`.
 
 When the Global Deadlock Detector is enabled:
 
 - The lock mode for some `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector]](#global-deadlock-detector).
-- The lock mode for some queries with a locking clause (`SELECT...FOR lock_strength`) is `ROW SHARE`. See "The Locking Clause" in [SELECT](/docs/sql-stmts/sql-stmt-select.md).
 
 ## Insert rows
 
