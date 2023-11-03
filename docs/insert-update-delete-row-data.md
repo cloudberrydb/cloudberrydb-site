@@ -8,45 +8,9 @@ This document provides information about manipulating data and concurrent access
 
 This topic includes the following subtopics:
 
-- [Concurrency control in Cloudberry Database](#concurrency-control-in-cloudberry-database)
-- [Insert rows](#insert-rows)
-- [Update existing rows](#update-existing-rows)
-- [Delete rows](#delete-rows)
-- [Work with transactions](#work-with-transactions)
-- [Global Deadlock Detector](#global-deadlock-detector)
-- [Vacuum the database](#vacuum-the-database)
-- [Run out of locks](#run-out-of-locks)
-
-## Concurrency control in Cloudberry Database
-
-Cloudberry Database and PostgreSQL do not use locks for concurrency control. Instead, they maintain data consistency through a multi-version model known as Multi-version Concurrency Control (MVCC). MVCC ensures transaction isolation for each database session, allowing each query transaction to see a consistent snapshot of data. This ensures that the data observed by a transaction remains consistent and unaffected by other concurrent transactions.
-
-However, the specific data changes visible to a transaction are influenced by its isolation level. The default isolation level is "READ COMMITTED," which means that a transaction can observe data changes made by other transactions that have already been committed. If the isolation level is set to "REPEATABLE READ," then queries within that transaction will observe the data because it was at the beginning of the transaction and will not see changes made by other transactions in the interim. To specify the isolation level of a transaction, you can use the statement `BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ` to start a transaction with the "REPEATABLE READ" isolation level.
-
-Because MVCC does not use explicit locks for concurrency control, lock contention is minimized and Cloudberry Database maintains reasonable performance in multiuser environments. Locks acquired for querying (reading) data do not conflict with locks acquired for writing data.
-
-Cloudberry Database provides multiple lock modes to control concurrent access to data in tables. Most Cloudberry Database SQL commands automatically acquire the appropriate locks to ensure that referenced tables are not dropped or modified in incompatible ways while a command runs. For applications that cannot adapt easily to MVCC behavior, you can use the `LOCK` command to acquire explicit locks. However, proper use of MVCC generally provides better performance.
-
-|Lock Mode|Associated SQL Commands|Conflicts With|
-|---------|-----------------------|--------------|
-|ACCESS SHARE|`SELECT`|ACCESS EXCLUSIVE|
-|ROW SHARE|`SELECT...FOR lock_strength`|EXCLUSIVE, ACCESS EXCLUSIVE|
-|ROW EXCLUSIVE|`INSERT`, `COPY`|SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
-|SHARE UPDATE EXCLUSIVE|`ANALYZE`|SHARE UPDATE EXCLUSIVE, SHARE, EXCLUSIVE, ACCESS EXCLUSIVE|
-|SHARE|`CREATE INDEX`|ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
-|SHARE ROW EXCLUSIVE| |ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
-|EXCLUSIVE|`DELETE`, `UPDATE`, `SELECT...FOR lock_strength`, `REFRESH MATERIALIZED VIEW CONCURRENTLY`|ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
-|ACCESS EXCLUSIVE|`ALTER TABLE`, `DROP TABLE`, `TRUNCATE`, `REINDEX`, `CLUSTER`, `REFRESH MATERIALIZED VIEW` (without `CONCURRENTLY`), `VACUUM FULL`|ACCESS SHARE, ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
-
-> **Note** By default, the Global Deadlock Detector is deactivated, and Cloudberry Database acquires the more restrictive `EXCLUSIVE` lock (rather than `ROW EXCLUSIVE` in PostgreSQL) for `UPDATE` and `DELETE`.
-
-When the Global Deadlock Detector is enabled:
-
-- The lock mode for some `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector]](#global-deadlock-detector).
-
 ## Insert rows
 
-Use the `INSERT` command to create rows in a table. This command requires the table name and a value for each column in the table; you may optionally specify the column names in any order. If you do not specify column names, list the data values in the order of the columns in the table, separated by commas.
+Use the `INSERT` command to create rows in a table. This command requires the table name and a value for each column in the table; you might optionally specify the column names in any order. If you do not specify column names, list the data values in the order of the columns in the table, separated by commas.
 
 For example, to specify the column names and the values to insert:
 
@@ -76,11 +40,28 @@ INSERT INTO products (product_no, name, price) VALUES
     (3, 'Milk', 2.99);
 ```
 
-To insert data into a partitioned table, you specify the root partitioned table, which is the table created with the `CREATE TABLE` command. You also can specify a leaf partition in an `INSERT` command. An error is returned if the data is not valid for the specified leaf partition. Specifying a table that is not a leaf partition in the `INSERT` command is not supported.
+### Insert rows into partitioned tables
+
+To insert data into a partitioned table, you are expected to specify the root partitioned table that was created with the `CREATE TABLE` command. Directly specifying a leaf partition in an `INSERT` command is not supported, and attempting to do so will cause an error, because leaf partitions are invisible to users and data insertion is managed automatically by the database system.
+
+An error will be returned if the data being inserted does not fit the range of any existing partitions (for example, the specified key value does not match any partition rules).
+
+To ensure data is correctly inserted into a partitioned table, you only need to specify the root partitioned table in your `INSERT` statement. The database system will automatically insert the data row into the appropriate leaf partition based on the partition key. If a data row does not conform to the range of any leaf partition, the database will return an error.
+
+Example:
+
+```sql
+-- Inserting data into the root partitioned table
+INSERT INTO sales (sale_id, product_no, year, amount) VALUES (1, 'Cheese', 2021, 9.99);
+```
+
+The above statement will automatically insert the data row into the correct partition based on the value of the year column. Users should not, and need not, attempt to directly specify any leaf partition for data insertion.
+
+### Insert rows into append-optimized tables
 
 To insert large amounts of data, use external tables or the `COPY` command. These load mechanisms are more efficient than `INSERT` for inserting large quantities of rows. See [Loading and Unloading Data](/docs/import-data-into-cbdb.md) for more information about bulk data loading.
 
-`<!-- 概念类信息，暂未验证 -->`The storage model of append-optimized tables is optimized for bulk data loading. Cloudberry Database does not recommend single row `INSERT` statements for append-optimized tables. For append-optimized tables, Cloudberry Database supports a maximum of 127 concurrent `INSERT` transactions into a single append-optimized table.
+The storage model of append-optimized tables in Cloudberry Database is designed for efficient bulk data loading rather than single row `INSERT` statements. For high-volume data insertions, it is recommended to use batch loading methods such as the `COPY` command. Cloudberry Database can support multiple concurrent `INSERT` transactions on append-optimized tables; however, this capability is typically intended for batch insertions rather than single-row operations.
 
 ## Update existing rows
 
@@ -98,10 +79,6 @@ For example, the following command updates all products that have a price of *5*
 UPDATE products SET price = 10 WHERE price = 5;
 ```
 
-Using `UPDATE` in Cloudberry Database has the following restrictions:
-
-`<!-- 概念类信息，暂未验证 -->`While GPORCA supports updates to Cloudberry distribution key columns, the Postgres-based planner does not. - If mirrors are enabled, you cannot use `STABLE` or `VOLATILE` functions in an `UPDATE` statement. - Cloudberry Database partitioning columns cannot be updated.
-
 ## Delete rows
 
 The `DELETE` command deletes rows from a table. Specify a `WHERE` clause to delete rows that match certain criteria. If you do not specify a `WHERE` clause, all rows in the table are deleted. The result is a valid, but empty, table. For example, to remove all rows from the products table that have a price of *10*:
@@ -116,10 +93,6 @@ To delete all rows from a table:
 DELETE FROM products;
 ```
 
-Using `DELETE` in Cloudberry Database has similar restrictions to using `UPDATE`:
-
-- If mirrors are enabled, you cannot use `STABLE` or `VOLATILE` functions in an `UPDATE` statement.
-
 ### Truncate a table
 
 Use the `TRUNCATE` command to quickly remove all rows in a table. For example:
@@ -128,9 +101,9 @@ Use the `TRUNCATE` command to quickly remove all rows in a table. For example:
 TRUNCATE mytable;
 ```
 
-This command empties a table of all rows in one operation. Note that `TRUNCATE` does not scan the table, therefore it does not process inherited child tables or `ON DELETE` rewrite rules. The command truncates only rows in the named table.
+This command empties a table of all rows in one operation. Note that in Cloudberry Database, the `TRUNCATE` command will affect inherited child tables by default, even without using the `CASCADE` option. In addition, because Cloudberry Database does not support foreign key constraints, the `TRUNCATE` command will not trigger any `ON DELETE` actions or rewrite rules. The command truncates only rows in the named table.
 
-## Work with transactions `<!-- 概念类信息，暂未验证 -->`
+## Work with transactions
 
 Transactions allow you to bundle multiple SQL statements in one all-or-nothing operation.
 
@@ -143,7 +116,7 @@ The following are the Cloudberry Database SQL transaction commands:
 - `ROLLBACK TO SAVEPOINT` rolls back a transaction to a savepoint.
 - `RELEASE SAVEPOINT` destroys a savepoint within a transaction.
 
-### Transaction isolation levels `<!-- 概念类信息，暂未验证 -->`
+### Transaction isolation levels
 
 Cloudberry Database accepts the standard SQL transaction levels as follows:
 
@@ -152,7 +125,7 @@ Cloudberry Database accepts the standard SQL transaction levels as follows:
 
 The following information describes the behavior of the Cloudberry Database transaction levels.
 
-#### Read uncommitted and read committed `<!-- 概念类信息，暂未验证 -->`
+#### Read uncommitted and read committed
 
 Cloudberry Database does not allow any command to see an uncommitted update in another concurrent transaction, so `READ UNCOMMITTED` behaves the same as `READ COMMITTED`. `READ COMMITTED` provides fast, simple, partial transaction isolation. `SELECT`, `UPDATE`, and `DELETE` commands operate on a snapshot of the database taken when the query started.
 
@@ -320,3 +293,32 @@ When Cloudberry Database runs out of locks, the error message that you may obser
 > **Note** "shared memory" in this context refers to the shared memory of the internal object: the lock slots. "Out of shared memory" does *not* refer to exhaustion of system- or Cloudberry-level memory resources.
 
 As the hint describes, consider increasing the `max_locks_per_transaction` server configuration parameter when you encounter this error.
+
+## Concurrency control in Cloudberry Database
+
+Cloudberry Database and PostgreSQL do not use locks for concurrency control. Instead, they maintain data consistency through a multi-version model known as Multi-version Concurrency Control (MVCC). MVCC ensures transaction isolation for each database session, allowing each query transaction to see a consistent snapshot of data. This ensures that the data observed by a transaction remains consistent and unaffected by other concurrent transactions.
+
+However, the specific data changes visible to a transaction are influenced by its isolation level. The default isolation level is "READ COMMITTED," which means that a transaction can observe data changes made by other transactions that have already been committed. If the isolation level is set to "REPEATABLE READ," then queries within that transaction will observe the data because it was at the beginning of the transaction and will not see changes made by other transactions in the interim. To specify the isolation level of a transaction, you can use the statement `BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ` to start a transaction with the "REPEATABLE READ" isolation level.
+
+Because MVCC does not use explicit locks for concurrency control, lock contention is minimized and Cloudberry Database maintains reasonable performance in multiuser environments. Locks acquired for querying (reading) data do not conflict with locks acquired for writing data.
+
+Cloudberry Database provides multiple lock modes to control concurrent access to data in tables. Most Cloudberry Database SQL commands automatically acquire the appropriate locks to ensure that referenced tables are not dropped or modified in incompatible ways while a command runs. For applications that cannot adapt easily to MVCC behavior, you can use the `LOCK` command to acquire explicit locks. However, proper use of MVCC generally provides better performance.
+
+|Lock Mode|Associated SQL Commands|Conflicts With|
+|---------|-----------------------|--------------|
+|ACCESS SHARE|`SELECT`|ACCESS EXCLUSIVE|
+|ROW SHARE|`SELECT...FOR lock_strength`|EXCLUSIVE, ACCESS EXCLUSIVE|
+|ROW EXCLUSIVE|`INSERT`, `COPY`|SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
+|SHARE UPDATE EXCLUSIVE|`ANALYZE`|SHARE UPDATE EXCLUSIVE, SHARE, EXCLUSIVE, ACCESS EXCLUSIVE|
+|SHARE|`CREATE INDEX`|ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
+|SHARE ROW EXCLUSIVE| |ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
+|EXCLUSIVE|`DELETE`, `UPDATE`, `SELECT...FOR lock_strength`, `REFRESH MATERIALIZED VIEW CONCURRENTLY`|ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
+|ACCESS EXCLUSIVE|`ALTER TABLE`, `DROP TABLE`, `TRUNCATE`, `REINDEX`, `CLUSTER`, `REFRESH MATERIALIZED VIEW` (without `CONCURRENTLY`), `VACUUM FULL`|ACCESS SHARE, ROW SHARE, ROW EXCLUSIVE, SHARE UPDATE EXCLUSIVE, SHARE, SHARE ROW EXCLUSIVE, EXCLUSIVE, ACCESS EXCLUSIVE|
+
+:::info
+By default, the Global Deadlock Detector is deactivated, and Cloudberry Database acquires the more restrictive `EXCLUSIVE` lock (rather than `ROW EXCLUSIVE` in PostgreSQL) for `UPDATE` and `DELETE`.
+
+When the Global Deadlock Detector is enabled:
+
+- The lock mode for some `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector]](#global-deadlock-detector).
+:::
