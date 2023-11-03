@@ -2,6 +2,9 @@
 title: On Linux
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Compile and Install Cloudberry Database on Linux
 
 :::info
@@ -30,11 +33,8 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 
 Enter the repository and install dependencies according to your operating systems:
 
-- [For CentOS 7](#for-centos-7)
-- [For RHEL 8 or Rocky Linux 8](#for-rhel-8-or-rocky-linux-8)
-- [For Ubuntu 18.04 or later](#for-ubuntu-1804-or-later)
-
-### For CentOS 7
+<Tabs>
+<TabItem value="centos-7" label="For CentOS 7" default>
 
 The following steps work on CentOS 7. For other CentOS versions, these steps might work but are not guaranteed to work.
 
@@ -70,7 +70,8 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
     sudo ln -sf /usr/bin/cmake3 /usr/local/bin/cmake
     ```
 
-### For RHEL 8 or Rocky Linux 8
+</TabItem>
+<TabItem value="rockey-rhel-8" label="For RHEL 8 and Rocky Linux 8" default>
 
 1. Install Development Tools.
 
@@ -92,7 +93,8 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
     ~/cloudberrydb/readmes/README.Rhel-Rocky.bash
     ```
 
-### For Ubuntu 18.04 or later
+</TabItem>
+<TabItem value="ubuntu-18.04" label="For Ubuntu 18.04 or later" default>
 
 1. Install dependencies by running the `README.Ubuntu.bash` script in the `readmes` directory.
 
@@ -116,6 +118,9 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100
     ```
 
+</TabItem>
+</Tabs>
+
 ## Step 3. Perform prerequisite platform tasks
 
 After you have installed all the dependencies for your operating system, it is time to do some prerequisite platform tasks before you go on building Cloudberry Database. These operation include manually running `ldconfig` on all platforms, creating the `gpadmin` user, and setting up a password to start the Cloudberry Database and test.
@@ -129,27 +134,32 @@ After you have installed all the dependencies for your operating system, it is t
 
 2. Create the `gpadmin` user and set up the SSH key. Manually create SSH keys based on different operating systems, so that you can run `ssh localhost` without a password.
 
-    - For CentOS, RHEL, and Rocky Linux:
+    <Tabs>
+    <TabItem value="centos-rhel-rockey" label="For CentOS, Rocky Linux, and RHEL" default>
 
-        ```bash
-        useradd gpadmin  # Creates gpadmin user
-        su - gpadmin  # Uses the gpadmin user
-        ssh-keygen  # Creates SSH key
-        cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-        chmod 600 ~/.ssh/authorized_keys
-        exit
-        ```
+    ```bash
+    useradd gpadmin  # Creates gpadmin user
+    su - gpadmin  # Uses the gpadmin user
+    ssh-keygen  # Creates SSH key
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys
+    exit
+    ```
 
-    - For Ubuntu:
+    </TabItem>
+    <TabItem value="ubuntu" label="For Ubuntu" default>
 
-        ```bash
-        useradd -r -m -s /bin/bash gpadmin  # Creates gpadmin user
-        su - gpadmin  # Uses the gpadmin user
-        ssh-keygen  # Creates SSH key
-        cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-        chmod 600 ~/.ssh/authorized_keys 
-        exit
-        ```
+    ```bash
+    useradd -r -m -s /bin/bash gpadmin  # Creates gpadmin user
+    su - gpadmin  # Uses the gpadmin user
+    ssh-keygen  # Creates SSH key
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys 
+    exit
+    ```
+
+    </TabItem>
+    </Tabs>
 
 ## Step 4. Build Cloudberry Database
 
@@ -192,19 +202,24 @@ After you have installed all the dependencies and performed the prerequisite pla
 
 4. Start the demo cluster.
 
-    - For CentOS:
+    <Tabs>
+    <TabItem value="centos" label="For CentOS 7" default>
 
-        ```bash
-        scl enable devtoolset-10 bash 
-        source /opt/rh/devtoolset-10/enable 
-        make create-demo-cluster
-        ```
+    ```bash
+    scl enable devtoolset-10 bash 
+    source /opt/rh/devtoolset-10/enable 
+    make create-demo-cluster
+    ```
 
-    - For Ubuntu, Rocky, and RHEL:
+    </TabItem>
+    <TabItem value="ubuntu-rocky-rhel" label="For Ubuntu, Rocky Linux, and RHEL" default>
 
-        ```bash
-        make create-demo-cluster
-        ```
+    ```bash
+    make create-demo-cluster
+    ```
+
+    </TabItem>
+    </Tabs>
 
 5. Prepare the test by running the following command. This command will configure the port and environment variables for the test.
 

@@ -2,6 +2,9 @@
 title: 在 Linux 上
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # 在 Linux 系统上编译和安装 Cloudberry Database
 
 :::info
@@ -30,11 +33,8 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 
 进入仓库目录，根据你的操作系统安装依赖项：
 
-- [在 CentOS 7 上](#在-centos-7-上)
-- [在 RHEL 8 或 Rocky Linux 8 上](#在-rhel-8-或-rocky-linux-8-上)
-- [在 Ubuntu 18.04 或更新版本上](#在-ubuntu-1804-或更新版本上)
-
-### 在 CentOS 7 上
+<Tabs>
+<TabItem value="centos-7" label="CentOS 7" default>
 
 以下步骤在 CentOS 7 上测试通过。对于其他版本的 CentOS，这些步骤可能有效，但不能保证有效。
 
@@ -70,7 +70,8 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
     sudo ln -sf /usr/bin/cmake3 /usr/local/bin/cmake
     ```
 
-### 在 RHEL 8 或 Rocky Linux 8 上
+</TabItem>
+<TabItem value="rockey-rhel-8" label="RHEL 8 和 Rocky Linux 8" default>
 
 1. 安装开发工具 Development Tools。
 
@@ -92,7 +93,8 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
     ~/cloudberrydb/readmes/README.Rhel-Rocky.bash
     ```
 
-### 在 Ubuntu 18.04 或更新版本上
+</TabItem>
+<TabItem value="ubuntu-18.04" label="Ubuntu 18.04 或更新版本" default>
 
 1. 执行 `readmes` 目录下的 `README.Ubuntu.bash` 脚本，以安装依赖项。
 
@@ -116,6 +118,9 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100
     ```
 
+</TabItem>
+</Tabs>
+
 ## 第 3 步：执行平台准备工作
 
 在操作系统上安装所有依赖项后，在构建 Cloudberry Database 之前你还需要执行一些平台准备工作。这些操作包括在平台上手动运行 `ldconfig`、创建 `gpadmin` 用户以及设置密码以启动 Cloudberry Database 并进行测试。
@@ -129,27 +134,32 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 
 2. 创建 `gpadmin` 用户并设置 SSH 密钥。根据不同的操作系统手动创建 SSH 密钥，这样你就可以在不输入密码的情况下运行 `ssh localhost`。
 
-    - 在 CentOS、RHEL 和 Rocky Linux 上：
+    <Tabs>
+    <TabItem value="centos-rhel-rockey" label="CentOS、Rocky Linux 和 RHEL" default>
 
-        ```bash
-        useradd gpadmin  # 创建 gpadmin 用户
-        su - gpadmin  # 切换到 gpadmin 用户
-        ssh-keygen  # 创建 SSH 密钥
-        cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-        chmod 600 ~/.ssh/authorized_keys
-        exit
-        ```
+    ```bash
+    useradd gpadmin  # 创建 gpadmin 用户
+    su - gpadmin  # 切换到 gpadmin 用户
+    ssh-keygen  # 创建 SSH 密钥
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys
+    exit
+    ```
 
-    - 在 Ubuntu 上：
+    </TabItem>
+    <TabItem value="ubuntu" label="Ubuntu" default>
 
-        ```bash
-        useradd -r -m -s /bin/bash gpadmin  # 创建 gpadmin 用户
-        su - gpadmin  # 切换到 gpadmin 用户
-        ssh-keygen  # 创建 SSH 密钥
-        cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-        chmod 600 ~/.ssh/authorized_keys 
-        exit
-        ```
+    ```bash
+    useradd -r -m -s /bin/bash gpadmin  # 创建 gpadmin 用户
+    su - gpadmin  # 切换到 gpadmin 用户
+    ssh-keygen  # 创建 SSH 密钥
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys 
+    exit
+    ```
+
+    </TabItem>
+    </Tabs>
 
 ## 第 4 步：构建 Cloudberry Database
 
@@ -192,19 +202,24 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 
 4. 启动示例集群。
 
-    - 在 CentOS 上：
+    <Tabs>
+    <TabItem value="centos" label="CentOS 7" default>
 
-        ```bash
-        scl enable devtoolset-10 bash 
-        source /opt/rh/devtoolset-10/enable 
-        make create-demo-cluster
-        ```
+    ```bash
+    scl enable devtoolset-10 bash 
+    source /opt/rh/devtoolset-10/enable 
+    make create-demo-cluster
+    ```
 
-    - 在 Ubuntu、Rocky、RHEL 上：
+    </TabItem>
+    <TabItem value="ubuntu-rocky-rhel" label="Ubuntu、Rocky Linux 和 RHEL" default>
 
-        ```bash
-        make create-demo-cluster
-        ```
+    ```bash
+    make create-demo-cluster
+    ```
+
+    </TabItem>
+    </Tabs>
 
 5. 执行以下命令，以准备测试。此命令将为测试配置端口和环境变量。
 
