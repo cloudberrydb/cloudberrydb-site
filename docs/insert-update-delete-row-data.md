@@ -156,13 +156,13 @@ With `REPEATABLE READ` transactions, a `SELECT` query:
 
 The default transaction isolation level in Cloudberry Database is `READ COMMITTED`. To change the isolation level for a transaction, declare the isolation level when you `BEGIN` the transaction or use the `SET TRANSACTION` command after the transaction starts.
 
-## Global deadlock detector `<!-- 概念类信息，暂未验证 -->`
+## Global deadlock detector
 
 The Cloudberry Database Global Deadlock Detector background worker process collects lock information on all segments and uses a directed algorithm to detect the existence of local and global deadlocks. This algorithm allows Cloudberry Database to relax concurrent update and delete restrictions on heap tables. (Cloudberry Database still employs table-level locking on AO/CO tables, restricting concurrent `UPDATE`, `DELETE`, and `SELECT...FOR lock_strength` operations.)
 
-By default, the Global Deadlock Detector is deactivated and Cloudberry Database runs the concurrent `UPDATE` and `DELETE` operations on a heap table serially. You can activate these concurrent updates and have the Global Deadlock Detector determine when a deadlock exists by setting the server configuration parameter `gp_enable_global_deadlock_detector`.
+By default, the Global Deadlock Detector is deactivated and Cloudberry Database runs the concurrent `UPDATE` and `DELETE` operations on a heap table serially. You can activate these concurrent updates and have the Global Deadlock Detector determine when a deadlock exists by setting the parameter `gp_enable_global_deadlock_detector` in the `postgresql.conf` configuration file to `on` and then restarting the database.
 
-When the Global Deadlock Detector is enabled, the background worker process is automatically started on the coordinator host when you start Cloudberry Database. You configure the interval at which the Global Deadlock Detector collects and analyzes lock waiting data via the `gp_global_deadlock_detector_period` server configuration parameter.
+When the Global Deadlock Detector is enabled, the background worker process is automatically started on the coordinator host when you start Cloudberry Database. You configure the interval at which the Global Deadlock Detector collects and analyzes lock waiting data via the `gp_global_deadlock_detector_period` server configuration parameter in the `postgresql.conf` configuration file.
 
 If the Global Deadlock Detector determines that deadlock exists, it breaks the deadlock by cancelling one or more backend processes associated with the youngest transaction(s) involved.
 
@@ -172,7 +172,7 @@ When the Global Deadlock Detector determines a deadlock exists for the following
 - Concurrent update transactions on the same distribution key of a heap table that are run by the Postgres-based planner.
 - Concurrent update transactions on the same row of a hash table that are run by the GPORCA optimizer.
 
-> **Note** Cloudberry Database uses the interval specified in the deadlock_timeout server configuration parameter for local deadlock detection. Because the local and global deadlock detection algorithms differ, the cancelled process(es) may differ depending upon which detector (local or global) Cloudberry Database triggers first.
+> **Note** Cloudberry Database uses the interval specified in the `deadlock_timeout` server configuration parameter for local deadlock detection. Because the local and global deadlock detection algorithms differ, the cancelled process(es) may differ depending upon which detector (local or global) Cloudberry Database triggers first.
 
 > **Note** If the `lock_timeout` server configuration parameter is turned on and set to a value smaller than `deadlock_timeout` and `gp_global_deadlock_detector_period`, Cloudberry Database will cancel a statement before it would ever trigger a deadlock check in that session.
 
@@ -267,7 +267,7 @@ The following table shows the concurrent `UPDATE` or `DELETE` commands that are 
 |Complex `UPDATE`|NO|YES|NO|NO|NO|
 |Complex `DELETE`|NO|YES|NO|NO|YES|
 
-## Vacuum the database
+## Vacuum the database  `<!-- 概念类信息，暂未验证 -->`
 
 Deleted or updated data rows occupy physical space on disk even though new transactions cannot see them. Periodically running the `VACUUM` command removes these expired rows. For example:
 
