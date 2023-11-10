@@ -211,63 +211,7 @@ When it cancels a transaction to break a deadlock, the Global Deadlock Detector 
 ERROR:  canceling statement due to user request: "cancelled by global deadlock detector"
 ```
 
-### Global Deadlock Detector UPDATE and DELETE compatibility  `<!-- 概念类信息，暂未验证 -->`
-
-The Global Deadlock Detector can manage concurrent updates for these types of `UPDATE` and `DELETE` commands on heap tables:
-
-- Simple `UPDATE` of a single table. Update a non-distribution key with the Postgres-based planner. The command does not contain a `FROM` clause, or a sub-query in the `WHERE` clause.
-
-    ```sql
-    UPDATE t SET c2 = c2 + 1 WHERE c1 > 10;
-    ```
-
--   Simple `DELETE` of a single table. The command does not contain a sub-query in the `FROM` or `WHERE` clauses.
-
-    ```sql
-    DELETE FROM t WHERE c1 > 10;
-    ```
-
-- Split `UPDATE`. For the Postgres-based planner, the `UPDATE` command updates a distribution key.
-
-    ```sql
-    UPDATE t SET c = c + 1; -- c is a distribution key
-    ```
-
-    For GPORCA, the `UPDATE` command updates a distribution key or references a distribution key.
-
-    ```sql
-    UPDATE t SET b = b + 1 WHERE c = 10; -- c is a distribution key
-    ```
-
-- Complex `UPDATE`. The `UPDATE` command includes multiple table joins.
-
-    ```sql
-    UPDATE t1 SET c = t1.c+1 FROM t2 WHERE t1.c = t2.c;
-    ```
-
-    Or the command contains a sub-query in the `WHERE` clause.
-
-    ```sql
-    UPDATE t SET c = c + 1 WHERE c > ALL(SELECT * FROM t1);
-    ```
-
-- Complex `DELETE`. A complex `DELETE` command is similar to a complex `UPDATE`, and involves multiple table joins or a sub-query.
-
-    ```sql
-    DELETE FROM t USING t1 WHERE t.c > t1.c;
-    ```
-
-The following table shows the concurrent `UPDATE` or `DELETE` commands that are managed by the Global Deadlock Detector. For example, concurrent simple `UPDATE` commands on the same table row are managed by the Global Deadlock Detector. For a concurrent complex `UPDATE` and a simple `UPDATE`, only one `UPDATE` is performed, and an error is returned for the other `UPDATE`.
-
-|Command|Simple `UPDATE`|Simple `DELETE`|Split `UPDATE`|Complex `UPDATE`|Complex `DELETE`|
-|-------|---------------|---------------|--------------|----------------|----------------|
-|Simple `UPDATE`|YES|YES|NO|NO|NO|
-|Simple `DELETE`|YES|YES|NO|YES|YES|
-|Split `UPDATE`|NO|NO|NO|NO|NO|
-|Complex `UPDATE`|NO|YES|NO|NO|NO|
-|Complex `DELETE`|NO|YES|NO|NO|YES|
-
-## Vacuum the database  `<!-- 概念类信息，暂未验证 -->`
+## Vacuum the database
 
 Deleted or updated data rows occupy physical space on disk even though new transactions cannot see them. Periodically running the `VACUUM` command removes these expired rows. For example:
 
@@ -277,9 +221,9 @@ VACUUM mytable;
 
 The `VACUUM` command collects table-level statistics such as the number of rows and pages. Vacuum all tables after loading data, including append-optimized tables.
 
-> **Important** The `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE` commands should be used to maintain the data in a Cloudberry Database especially if updates and deletes are frequently performed on your database data.
+The `VACUUM`, `VACUUM FULL`, and `VACUUM ANALYZE` commands should be used to maintain the data in a Cloudberry Database especially if updates and deletes are frequently performed on your database data.
 
-## Run out of locks `<!-- 概念类信息，暂未验证 -->`
+## Run out of locks
 
 Cloudberry Database can potentially run out of locks when a database operation accesses multiple tables in a single transaction. Backup and restore are examples of such operations.
 
