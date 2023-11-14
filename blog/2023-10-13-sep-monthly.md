@@ -2,7 +2,7 @@
 slug: cloudberrydb-sep-weekly
 title: Sep Newsletter - Cloudberry Database (2023/09)
 authors: [cloudberrydbteam]
-tags: [community]
+tags: [newsletter]
 ---
 
 Welcome to the September monthly newsletter of the Cloudberry Database Community! Our goal with this newsletter is to keep you informed about the most recent developments, trends, and events within our community, as well as to highlight the impressive contributions and accomplishments of our members.
