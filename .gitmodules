@@ -1,0 +1,4 @@
+[submodule "bootcamp"]
+	path = src/pages/bootcamp
+	url = https://github.com/cloudberrydb/bootcamp.git
+	branch = bootcamp4site
