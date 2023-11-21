@@ -1,712 +1,310 @@
 ---
-title: 物理机部署指南
+title: 通过 RPM 包手动部署
 ---
 
-# 物理机部署指南
+# 通过 RPM 包在物理机上手动部署 Cloudberry Database
 
-本文档介绍如何在物理机环境中部署 Cloudberry Database。在阅读本文前，你需要先阅读 [Cloudberry Database 物理机部署架构](./cbdb-op-deploy-arch.md) 和 [Cloudberry Database 软硬件配置需求](./cbdb-op-software-hardware.md)。
+本文档介绍如何通过 RPM 包在物理机上安装与部署 Cloudberry Database。在阅读本文前，建议先阅读[软硬件配置需求](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-software-hardware.md)和[物理机部署前准备工作](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-prepare-to-deploy.md)。
 
-:::info 注意
+本文所介绍的部署方法可用于生产环境。
 
-本文所介绍的部署方法，都基于[自动高可用部署架构](./cbdb-op-deploy-arch.md#自动高可用部署架构)。
+本文示例以 CentOS 7.6 为例，说明如何部署 Cloudberry Database v1.0.0。主要分为以下步骤：
 
-:::
+1. [准备节点服务器](#第-1-步准备节点服务器)。
+2. [安装 RPM 包](#第-2-步安装-rpm-包)。
+3. [配置节点间互信](#第-3-步配置节点间互信)。
+4. [初始化数据库](#第-4-步初始化-cloudberry-database)。
+5. [登录数据库](#第-5-步登录数据库)。
 
-:::info 名词解释
+## 第 1 步：准备节点服务器
 
-- FTS，全称为 Fault Tolerance Service，即故障恢复节点，为 Cloudberry Database 的高可用服务组件。
-- ETCD：用于存储 Cloudberry Database 集群拓扑信息以及集群状态元数据信息。
-- 混合部署：将 ETCD 和 FTS 集群部署在与数据库节点的同一物理机资源上。
+参照[物理机部署前准备工作](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-prepare-to-deploy.md)的内容，完成节点服务器的准备工作。
 
-:::
+## 第 2 步：安装 RPM 包
 
-对于测试环境，你可以选择以下任一部署模式（点击链接查看对应模式的详细说明）：
+在完成准备工作后，就可以安装 Cloudberry Database 了。你需要从 [Cloudberry Database 发布页面](https://github.com/cloudberrydb/cloudberrydb/releases)下载对应的 RPM 安装包，然后在每个节点上通过安装包进行安装。
 
-- [最小化部署模式](#最小化部署模式)：适用于快速验证或者 PoC 测试场景。资源需求小（至少需要两台服务器），可用性保障较差。在该部署模式下，ETCD 和 FTS 集群混合方式部署于数据库节点。
-- [单节点部署模式](#单节点部署模式)：适用于研发测试或开源用户试用场景。只需单节点资源（即一台服务器），无高可用保障。在该部署模式下，ETCD 和 FTS 集群部署于单节点上。
-
-对于生产环境，你可以选择以下任一部署模式（点击链接查看对应模式的详细说明）：
-
-- [标准分布式部署模式](#标准分布式部署模式)：适用于生产环境，可用性保障最高。在该模式下，你需要额外的机器资源来独立部署 ETCD 和 FTS 集群。
-- [混合部署模式](#混合部署模式)：适用于生产环境，可用性保障较高，但不如标准分布式部署。在该模式下，ETCD 和 FTS 集群混合部署于数据库节点，无需额外的机器资源。
-
-## 测试环境部署
-
-:::danger 警告
-
-以下部署模式仅适用于测试环境。请勿在生产环境下使用最小化部署和单节点部署。
-
-:::
-
-### 最小化部署模式
-
-该模式适用于快速验证或者 PoC 测试场景。资源需求小，可用性保障较差。在该部署模式下，你只需将 FTS 和 ETCD 服务混合部署在数据库的不同节点上，无需使用额外的机器将 FTS 和 ETCD 部署为独立的集群。
-
-最小化部署模式为分布式部署，至少需要两台物理机器。该模式所需的物理机配置参见[开发及测试环境配置](./cbdb-op-software-hardware.md#开发及测试环境)。
-
-最小化部署的方法如下：
-
-#### 第 1 步：规划部署
-
-建议按照下表来规划待部署的节点：
-
-| 组件              | 建议的物理机数量 | 说明                                                         |
-| :----------------- | :---------------- | :------------------------------------------------------------ |
-| Master 节点       | 1                |                                                              |
-| Segment 计算节点 | 1                |                                                              |
-| FTS 节点          | 0                 | FTS 集群支持多节点混合部署，无需单独预留物理机，默认配置 2 节点保证可用性。 |
-| ETCD 元数据节点   | 0                | ETCD 集群支持多节点部署，无需单独预留物理机，节点高可用功能由应用原生支持。 |
-
-#### 第 2 步：准备配置文件
-
-:::info 注意
-
-以下部署安装操作均在 `gpadmin` 用户下进行。
-
-:::
-
-1. 准备好两台物理机器作为集群节点。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
-
-    ```
-    # Loopback address       Hostname
-    <ip_address 1>           master
-    <ip_address 2>           segment1
-    ```
-
-2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
-
-    ```
-    master
-    segment1
-    ```
-
-3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
-
-    ```
-    segment1
-    ```
-
-4. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
-
-    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，需要配置为 Master 和 Segment 的主机名，ETCD 服务会默认在这两台主机上启动。
-    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-
-    配置文件示例如下：
-
-    ```
-    gp_etcd_endpoints='master:2379,standby:2379,seg1:2379'
-    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
-    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
-    gp_etcd_namespace='default'
-    ```
-
-    :::info 注意
-
-    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
-
-    :::
-
-#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
-
-在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。
-
-```shell
-ssh-copy-id -f master
-ssh-copy-id -f seg1
-```
-
-#### 第 4 步：创建数据目录 {#最小化第-4-步}
-
-1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
+1. 下载 Cloudberry Database 的 RPM 安装包至 `gpadmin` 主目录 `/home/gpadmin/`：
 
     ```bash
-    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
+    wget -P /home/gpadmin <下载地址>
+    ```
 
+2. 在 `/home/gpadmin` 目录下安装 RPM 包。
+
+    执行以下命令时，你需要将 `<RPM 安装包路径>` 替换为实际的安装包路径，并使用 `root` 用户执行。安装时，会自动创建默认安装目录 `/usr/local/cloudberry-db/`。
+
+    ```bash
+    cd /home/gpadmin
+    yum install <RPM 安装包路径>
+    ```
+
+3. 为 `gpadmin` 用户授予安装目录的权限：
+
+    ```bash
+    chown -R gpadmin:gpadmin /usr/local
+    chown -R gpadmin:gpadmin /usr/local/cloudberry*
+    ```
+
+## 第 3 步：配置节点间互信
+
+1. 切换到 `gpadmin` 用户，后续操作使用 `gpadmin` 用户进行。
+
+    ```bash
+    su - gpadmin
+    ```
+
+2. 创建节点的信息配置文件。
+
+    在 `/home/gpadmin/` 目录下创建节点的配置文件，包含 `all_hosts` 和 `seg_hosts` 文件，分别存放全部节点和数据节点的主机信息，代码如下所示：
+
+    ```bash
+    [gpadmin@cbdb-coordinator gpadmin]$ cat all_hosts
+
+    cbdb-coordinator
+    cbdb-standbycoordinator
+    cbdb-datanode01
+    cbdb-datanode02
+    cbdb-datanode03
+
+    [gpadmin@cbdb-coordinator gpadmin]$ cat seg_hosts
+
+    cbdb-datanode01
+    cbdb-datanode02
+    cbdb-datanode03
+    ```
+
+3. 为各主机之间配置 SSH 互信。
+
+    1. 在各主机上执行 `ssh-keygen` 生成 SSH 密钥，示例如下：
+
+        ```bash
+        [gpadmin@cbbd-coordinator cloudberry-db-1.0.0]$ ssh-keygen
+
+        Generating public/private rsa key pair.
+        Enter file in which to save the key (/usr/local/cloudberry-db/.ssh/id_rsa):
+        Enter passphrase (empty for no passphrase):
+        Enter same passphrase again:
+        Your identification has been saved in /usr/local/cloudberry-db/.ssh/id_rsa.
+        Your public key has been saved in /usr/local/cloudberry-db/.ssh/id_rsa.pub.
+        The key fingerprint is:
+        SHA256:cvcYS87egYCyh/v6UtdqrejVU5qqF7OvpcHg/T9lRrg gpadmin@cbbd-coordinator
+        The key's randomart image is:
+        +---[RSA 2048]----+
+        |                 |
+        |                 |
+        |       +         |
+        |+      O         |
+        |o ...  S         |
+        |. +o=  B C       |
+        | o B=00 D        |
+        |.o=o0o.. =       |
+        |O=++*+o+..       |
+        +----[SHA256]-----+
+        ```
+
+    2. 在各主机上使用 `ssh-copy-id` 配置免密，示例如下：
+
+        ```bash
+        ssh-copy-id  cbdb-coordinator
+        ssh-copy-id  cbdb-standbycoordinator
+        ssh-copy-id  cbdb-datanode01
+        ssh-copy-id  cbdb-datanode02
+        ssh-copy-id  cbdb-datanode03
+        ```
+
+    3. 验证节点之间的 SSH 是否全部打通，即服务器之间免密码登录是否成功，示例如下：
+
+        ```bash
+        [gpadmin@cbdb-coordinator ~]$ gpssh -f all_hosts
+        => pwd
+        [ cbdb-datanode03] b'/usr/local/cloudberry-db\r'
+        [ cbdb-coordinator] b'/usr/local/cloudberry-db\r'
+        [ cbdb-datanode02] b'/usr/local/cloudberry-db\r'
+        [cbdb-standbycoordinator] b'/usr/local/cloudberry-db\r'
+        [ cbdb-datanode01] b'/usr/local/cloudberry-db\r'
+        =>
+        ```
+
+        若无法执行 `gpssh`，可在 Coordinator 节点先执行如下命令 `source /usr/local/cloudberry-db/greenplum_path.sh`。
+
+## 第 4 步：初始化 Cloudberry Database
+
+执行以下操作前，你需要先执行 `su - gpadmin` 切换到 `gpadmin` 用户。
+
+1. 在所有节点（Coordinator/Standby Coordinator/Segment）的 `~/.bashrc` 文件中新增一行 `source` 命令，示例如下：
+
+    ```bash
     source /usr/local/cloudberry-db/greenplum_path.sh
     ```
 
-2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
-
-    ```bash
-    # 在本例中分别为 /data0/primary 和 /data0/mirror
-
-    gpssh -f seg_host -e 'mkdir -p /data0/primary'
-    gpssh -f seg_host -e 'mkdir -p /data0/mirror'
-    ```
-
-3. 在 Master 上创建数据目录。
-
-    ```bash
-    # 在本例中为 /data0/master
-
-    mkdir -p /data0/master
-    ```
-
-4. 在 Master 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
-
-    ```bash
-    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
-    ```
-
-5. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
+2. 执行 `source` 命令使得新增内容生效：
 
     ```bash
     source ~/.bashrc
     ```
 
-#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
-
-1. 在 Master 节点上，将模板配置文件复制到当前目录。
+3. 在 Coordinator 节点上使用 `gpssh` 命令为 Segment 节点创建数据目录和 Mirror 目录，本文档中两个目录分别为 `/data0/primary/` 和 `/data0/mirror/`，示例如下：
 
     ```bash
-    cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
+    gpssh -f seg_hosts
+    mkdir -p /data0/primary/
+    mkdir -p /data0/mirror/
     ```
 
-2. 修改 `gpinitsystem_config` 文件：
-
-    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `/data0/primary`。
-    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
-    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 3 步的 `/data0/master`。
-
-    修改后的示例配置文件如下：
-
-    ```toml
-    #### Base number by which primary segment port numbers 
-    #### are calculated.
-    PORT_BASE=6000
-    
-    #### File system location(s) where primary segment data directories 
-    #### will be created. The number of locations in the list dictate
-    #### the number of primary segments that will get created per
-    #### physical host (if multiple addresses for a host are listed in 
-    #### the hostfile, the number of segments will be spread evenly across
-    #### the specified interface addresses).
-    declare -a DATA_DIRECTORY=(/data0/primary)
-    
-    #### OS-configured hostname or IP address of the coordinator host.
-    COORDINATOR_HOSTNAME=master
-    
-    #### File system location where the coordinator data directory 
-    #### will be created.
-    COORDINATOR_DIRECTORY=/data0/master
-    
-    #### Port number for the coordinator instance. 
-    COORDINATOR_PORT=5432
-    
-    #### Shell utility used to connect to remote hosts.
-    TRUSTED_SHELL=ssh
-    
-    #### Default server-side character set encoding.
-    ENCODING=UNICODE
-    ```
-
-    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
-
-    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
-    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#最小化第-4-步)中第 2 步的 `data0/mirror`。
-
-    修改后的示例配置文件如下：
-
-    ```toml
-    #### Base number by which mirror segment port numbers 
-    #### are calculated.
-    MIRROR_PORT_BASE=17000
-    
-    #### File system location(s) where mirror segment data directories 
-    #### will be created. The number of mirror locations must equal the
-    #### number of primary locations as specified in the 
-    #### DATA_DIRECTORY parameter.
-    declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
-    ```
-
-#### 第 6 步：初始化数据库
-
-使用 `gpinitsystem` 命令初始化数据库。
-
-```bash
-gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host
-```
-
-### 单节点部署模式
-
-单节点部署模式即在本地单节点上部署 FTS 和 ETCD 服务。该模式主要用于研发测试场景，不支持高可用功能，不适用于生产环境。
-
-单节点部署模式为非分布式部署，所有服务都部署在同一台物理机上。该模式所需的物理机配置参见[开发及测试环境配置](./cbdb-op-software-hardware.md#开发及测试环境)。
-
-要进行单节点部署，执行以下步骤：
-
-1. 下载 Cloudberry Database 源代码到本地目录，下载地址为 <https://github.com/cloudberrydb/cloudberrydb>。
-2. 参考 Cloudberry Database 代码仓库中 [README.md](https://github.com/cloudberrydb/cloudberrydb/tree/main/readmes) 文档，编译 Cloudberry Database 源代码并安装。
-3. 执行 `make create-demo-cluster` 命令。
-
-## 生产环境部署
-
-### 标准分布式部署模式
-
-该部署模式下，FTS 和 ETCD 集群节点部署在独立的物理机器上。系统可靠性较高，支持 Master/Standby 节点自动切换故障恢复，适用于对高可用性有要求的生产环境。
-
-该模式部署所需的物理机配置参见[生产环境配置](./cbdb-op-software-hardware.md#生产环境)。
-
-该模式的部署方法如下：
-
-#### 第 1 步：规划部署
-
-建议按照下表来规划待部署的节点：
-
-| 组件              | 建议的物理机数量 | 说明                                                         |
-| :----------------- | :---------------- | :------------------------------------------------------------ |
-| Master 节点       | 1                |                                                              |
-| Standby 节点 | 1 | Standby 节点用于 Master 节点的热备份。 |
-| Segment 计算节点 |  3               | 推荐部署与计算节点数量相同的 Mirror 节点做数据高可用。 |
-| FTS 节点          | 3 | FTS 集群支持多节点独立部署，默认配置 3 节点保证高可用。 |
-| ETCD 元数据节点   | 3               | ETCD 集群支持多节点独立部署，节点高可用功能由应用原生支持。 |
-
-:::info 注意
-
-- 以下部署安装操作均在 `gpadmin` 用户下进行。
-- 建议将 FTS 节点和 ETCD 节点部署在同一台服务器上，以节约资源。
-
-:::
-
-#### 第 2 步：准备配置文件
-
-1. 按照上一步规划的节点数，准备好对应的物理机。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
-
-    ```
-    # Loopback address       Hostname
-    <ip_address 1>           master
-    <ip_address 2>           standby 1
-    <ip_address 3>           segment 1
-    <ip_address 4>           segment 2
-    <ip_address 5>           segment 3
-    <ip_address 6>           etcd 1
-    <ip_address 7>          etcd 2
-    <ip_address 8>          etcd 3
-    ```
-
-2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
-
-    ```
-    master
-    standby
-    segment 1
-    segment 2
-    segment 3
-    etcd 1
-    etcd 2
-    etcd 3
-    ```
-
-3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
-
-    ```
-    segment 1
-    segment 2
-    segment 3
-    ```
-
-4. 在 Master 节点上创建名为 `fts_service.conf` 的文件，填入所有 FTS 节点的主机名。
-
-    :::note 说明
-
-    为节省硬件资源，FTS 服务不用单独部署集群，建议和 ETCD 服务混合部署在 ETCD 服务器上。
-
-    :::
-
-    ```
-    etcd 1
-    etcd 2
-    etcd 3
-    ```
-
-5. 在 Master 节点上创建名为 `etcd_service.conf` 的文件，填入所有 ETCD 节点的主机名。
-
-    ```
-    etcd 1
-    etcd 2
-    etcd 3
-    ```
-
-6. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
-
-    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，此处需要配置 `etcd_service.conf` 中指定的 ETCD 服务节点主机 `{etcd-service-0}`，`{etcd-service-1}`，`{etcd-service-2}`。ETCD 服务会默认在这三个主机上启动。
-    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-
-    配置文件示例如下：
-
-    ```conf
-    gp_etcd_endpoints='{etcd-service-0}:2379,{etcd-service-1}:2379,{etcd-service-2}:2379'
-    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
-    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
-    gp_etcd_namespace='default'
-    ```
-
-    :::info 注意
-
-    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
-
-    :::
-
-    以部署配置三台 ETCD 主机名 etcd1，etcd2，etcd3 为例：
-
-    ```conf
-    gp_etcd_endpoints='etcd1:2379,etcd2:2379,etcd3:2379'
-    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
-    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
-    gp_etcd_namespace='default'
-    ```
-
-#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
-
-在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。示例如下：
-
-```shell
-ssh-copy-id -f master
-ssh-copy-id -f standby
-ssh-copy-id -f seg1
-ssh-copy-id -f seg2
-ssh-copy-id -f seg3
-ssh-copy-id -f etcd1
-ssh-copy-id -f etcd2
-ssh-copy-id -f etcd3
-```
-
-#### 第 4 步：创建数据目录 {#标准第-4-步}
-
-1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
+4. 在 Coordinator 节点上创建数据目录，本文档以 `/data0/coordinator` 为例：
 
     ```bash
-    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
-
-    source /usr/local/cloudberry-db/greenplum_path.sh
+    mkdir -p /data0/coordinator/
     ```
 
-2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
+5. 在 Coordinator 节点上使用 `gpssh` 命令为 Standby 节点创建数据目录，本文档以 `/data0/coordinator/` 为例：
 
     ```bash
-    # 在本例中分别为 /data0/primary 和 /data0/mirror
-
-    gpssh -f seg_host -e 'mkdir -p /data0/primary'
-    gpssh -f seg_host -e 'mkdir -p /data0/mirror'
+    gpssh -h cbdb-standbycoordinator -e 'mkdir -p /data0/coordinator/'
     ```
 
-3. 在 Master 上创建数据目录。
+6. 在 Coordinator 和 Standby 节点的主机上，往 `~/.bashrc` 文件再添加一行 `COORDINATOR_DATA_DIRECTORY` 的路径声明：`{第 5 步的路径}` + `gpseg-1`，示例如下：
 
     ```bash
-    # 在本例中为 /data0/master
-
-    mkdir -p /data0/master
+    export COORDINATOR_DATA_DIRECTORY=/data0/coordinator/gpseg-1
     ```
 
-4. 在 Standby 节点上创建数据目录。
-
-    ```bash
-    # 本例中为 /data0/master
-
-    gpssh -h standby -e 'mkdir -p /data0/master'
-    ```
-
-5. 在 Master 和 Standby 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
-
-    ```bash
-    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
-    ```
-
-6. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
+7. 在 Coordinator 和 Standby 节点的主机执行以下命令，使上一步对 `COORDINATOR_DATA_DIRECTORY` 的声明生效。
 
     ```bash
     source ~/.bashrc
     ```
 
-#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
+8. 配置 `gpinitsystem_config` 启动脚本。
 
-1. 在 Master 节点上，将模板配置文件复制到当前目录。
+    1. 在 Coordinator 节点所在主机上，将模板配置文件复制到该当前目录：
+
+        ```bash
+        cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
+        ```
+
+    2. 修改 `gpinitsystem_config` 文件。
+
+        - 注意端口，Coordinator 节点、Segment 节点、Mirror 节点。
+        - 将 `DATA_DIRECTORY` 修改为 Segment 计算节点的数据目录，即前面步骤中的 `/data0/primary`。
+        - 将 `COORDINATOR_HOSTNAME` 修改为 Coordinator 节点主机名。本文档中 Coordinator 主机名为 `cbdb-coordinator`。
+        - 将 `COORDINATOR_DIRECTORY` 修改为 Coordinator 节点数据目录，即前面步骤中的 `/data0/coordinator`。
+        - 将 `MIRROR_DATA_DIRECTORY` 修改为 Mirror 的数据目录，即前面步骤的 `/data0/mirror`。
+        
+            ```bash
+            [gpadmin@cbdb-coordinator ~]$ cat gpinitsystem_config
+            # FILE NAME: gpinitsystem_config
+
+            # Configuration file needed by the gpinitsystem
+
+            ########################################
+            #### REQUIRED PARAMETERS
+            ########################################
+
+            #### Naming convention for utility-generated data directories.
+            SEG_PREFIX=gpseg
+
+            #### Base number by which primary segment port numbers
+            #### are calculated.
+            PORT_BASE=6000
+
+            #### File system location(s) where primary segment data directories
+            #### will be created. The number of locations in the list dictate
+            #### the number of primary segments that will get created per
+            #### physical host (if multiple addresses for a host are listed in
+            #### the hostfile, the number of segments will be spread evenly across
+            #### the specified interface addresses).
+            declare -a DATA_DIRECTORY=(/data0/primary)
+
+            #### OS-configured hostname or IP address of the coordinator host.
+            COORDINATOR_HOSTNAME=cbdb-coordinator
+
+            #### File system location where the coordinator data directory
+            #### will be created.
+            COORDINATOR_DIRECTORY=/data0/coordinator
+
+            #### Port number for the coordinator instance.
+            COORDINATOR_PORT=5432
+
+            #### Shell utility used to connect to remote hosts.
+            TRUSTED_SHELL=ssh
+
+            #### Default server-side character set encoding.
+            ENCODING=UNICODE
+
+            ########################################
+            #### OPTIONAL MIRROR PARAMETERS
+            ########################################
+
+            #### Base number by which mirror segment port numbers
+            #### are calculated.
+            MIRROR_PORT_BASE=7000
+
+            #### File system location(s) where mirror segment data directories
+            #### will be created. The number of mirror locations must equal the
+            #### number of primary locations as specified in the
+            #### DATA_DIRECTORY parameter.
+            declare -a MIRROR_DATA_DIRECTORY=(/data0/mirror)
+            ```
+
+        - 在初始化过程中如果需要生成默认的数据库，则需要填写数据库名。本文档中，初始化生成 `warehouse`数据库。
+
+            ```conf
+            ########################################
+            #### OTHER OPTIONAL PARAMETERS
+            ########################################
+
+            #### Create a database of this name after initialization.
+            DATABASE_NAME=warehouse
+            ```
+
+9. 初始化 Cloudberry Database。使用 `gpinitsystem` 命令进行初始化，命令示例如下：
 
     ```bash
-    cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
+    gpinitsystem -c  gpinitsystem_config -h /home/gpadmin/seg_hosts
     ```
 
-2. 修改 `gpinitsystem_config` 文件：
+    在以上 `gpinitsystem` 中，`-c` 为配置文件，`-h` 为计算节点列表。
 
-    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `/data0/primary`。
-    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
-    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 3 步的 `/data0/master`。
+    如果需要初始化 Standby Coordinator 节点，则参考如下命令初始化：
 
-    修改后的示例配置文件如下：
-
-    ```toml
-    #### Base number by which primary segment port numbers 
-    #### are calculated.
-    PORT_BASE=6000
-    
-    #### File system location(s) where primary segment data directories 
-    #### will be created. The number of locations in the list dictate
-    #### the number of primary segments that will get created per
-    #### physical host (if multiple addresses for a host are listed in 
-    #### the hostfile, the number of segments will be spread evenly across
-    #### the specified interface addresses).
-    declare -a DATA_DIRECTORY=(/data0/primary)
-    
-    #### OS-configured hostname or IP address of the coordinator host.
-    COORDINATOR_HOSTNAME=master
-    
-    #### File system location where the coordinator data directory 
-    #### will be created.
-    COORDINATOR_DIRECTORY=/data0/master
-    
-    #### Port number for the coordinator instance. 
-    COORDINATOR_PORT=5432
-    
-    #### Shell utility used to connect to remote hosts.
-    TRUSTED_SHELL=ssh
-    
-    #### Default server-side character set encoding.
-    ENCODING=UNICODE
+    ```bash
+    gpinitstandby -s cbdb-standbycoordinator
     ```
 
-    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和 `MIRROR_DATA_DIRECTORY`。
+## 第 5 步：登录数据库
 
-    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
-    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#标准第-4-步)中第 2 步的 `data0/mirror`。
-
-    修改后的示例配置文件如下：
-
-    ```toml
-    #### Base number by which mirror segment port numbers 
-    #### are calculated.
-    MIRROR_PORT_BASE=17000
-    
-    #### File system location(s) where mirror segment data directories 
-    #### will be created. The number of mirror locations must equal the
-    #### number of primary locations as specified in the 
-    #### DATA_DIRECTORY parameter.
-    declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
-    ```
-
-#### 第 6 步：初始化数据库
-
-使用 `gpinitsystem` 命令初始化数据库。
+至此，Cloudberry Database 已经成功部署，你可以参考以下命令来登录数据库：
 
 ```bash
-gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -F fts_service.conf  -E etcd_service.conf -h seg_host -s standby
+psql -h <hostname> -p <port> -U <username> -d <database>
 ```
 
-### 混合部署模式
+以上命令中：
 
-该模式下，FTS 和 ETCD 服务复用已有的数据库物理机部署。你不需要额外为 FTS 和 ETCD 部署物理机器，系统可靠性没有标准分布式部署高。该部署模式支持 Master/Standby 节点自动切换故障恢复。
+- `<hostname>` 是 Cloudberry Database 服务器的 Coordinator 节点 IP 地址。
+- `<port>` 是 Cloudberry Database 的端口号，默认为 `5432`。
+- `<username>` 是数据库的用户名。
+- `<database>` 是要连接的数据库名称。
 
-该模式部署所需的物理机配置参见[生产环境配置](./cbdb-op-software-hardware.md#生产环境)。
+执行命令后，系统将提示你输入数据库密码。输入正确的密码后，你将成功登录到 Cloudberry Database，并可以执行相应的 SQL 查询和操作。请确保你有正确的权限来访问目标数据库。
 
-#### 第 1 步：规划部署
+```sql
+[gpadmin@cddb-coordinator ~]$ psql warehouse
+psql (14.4, server 14.4)
+Type "help" for help.
 
-建议按照下表来规划待部署的节点：
-
-| 组件              | 建议的物理机数量 | 说明                                                         |
-| :----------------- | :---------------- | :------------------------------------------------------------ |
-| Master 节点       | 1                |                                                              |
-| Standby 节点 | 1 | Standby 节点用于 Master 节点的热备份。 |
-| Segment 计算节点 | 3 | 推荐部署与计算节点数量相同的 Mirror 节点做数据高可用。数据节点需要根据用户的数据需求，相关硬件（机器挂载盘数量）来确定。 |
-| FTS 节点          | 3 | FTS 集群支持多节点混合部署，无需单独预留物理机，默认配置 3 节点保证高可用。 |
-| ETCD 元数据节点   | 3               | ETCD 集群支持多节点部署，无需单独预留物理机，节点高可用功能由应用原生支持。 |
-
-:::info 注意
-
-- 以下部署安装操作均在 `gpadmin` 用户下进行。
-- 由于 Segment 为计算节点，如果将 ETCD 和 FTS 服务部署在计算节点，在生产环境下可能会有性能相关问题。为避免性能相关问题，建议通过配置文件指定一台额外的物理机 `{host}` 来部署 ETCD 和 FTS 服务，以提升系统可靠性，即 master + standby + {host} 部署。
-
-:::
-
-#### 第 2 步：准备配置文件
-
-1. 按照上一步规划的节点数，准备好对应的物理机。编辑 `/etc/hosts` 文件，在该文件中加入集群节点，包括集群中的所有 IP 地址和别名。
-
-    ```
-    # Loopback address       Hostname
-    <ip_address 1>           master
-    <ip_address 2>           standby 1
-    <ip_address 3>           segment 1
-    <ip_address 4>           segment 2
-    <ip_address 5>           segment 3
-    ```
-
-2. 在 Master 节点上创建名为 `all_host` 的文件，并在该文件中填入所有的主机名。
-
-    ```
-    master
-    standby
-    segment 1
-    segment 2
-    segment 3
-    ```
-
-3. 在 Master 节点上创建名为 `seg_host` 的文件，并在该文件中填入所有 Segment 的主机名。
-
-    ```
-    segment 1
-    segment 2
-    segment 3
-    ```
-
-4. 在 Master 节点上创建名为 `cbdb_etcd.conf` 的文件。并在文件中写入以下配置项。
-
-    - `gp_etcd_endpoints`：ETCD 集群服务的节点名称，此处需要配置为 Master、Standby 和需配置 ETCD 的 Segment 主机名。ETCD 服务会默认在三个主机上启动。
-    - `gp_etcd_account_id`：租户 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-    - `gp_etcd_cluster_id`：集群 ID。你可以使用 UUID 工具生成并配置为全局唯一的 UUID。
-
-    配置文件示例如下：
-
-    ```conf
-    gp_etcd_endpoints='master:2379,standby:2379,seg1:2379'
-    gp_etcd_account_id='e3cb5400-9589-918d-c178-82d500deac6e'
-    gp_etcd_cluster_id='7bc05356-67f9-49fe-804e-12fe30b093ef'
-    gp_etcd_namespace='default'
-    ```
-
-    :::info 注意
-
-    `gp_etcd_namespace` 为集群的 namespace 配置，物理机部署方式使用默认配置即可。
-
-    :::
-
-#### 第 3 步：配置 `gpadmin` 账号的 SSH 免密
-
-在 Master 主机的 `gpadmin` 用户下，使用 `ssh-copy-id` 命令配置免密。示例如下：
-
-```shell
-ssh-copy-id -f master
-ssh-copy-id -f standby
-ssh-copy-id -f seg1
-ssh-copy-id -f seg2
-ssh-copy-id -f seg3
+warehouse=# SELECT * FROM gp_segment_configuration;
+dbid | content | role | preferred_role | mode | status | port  | hostname             | address               | datadir
+------------------------------------------------------------------------------------------
+1    | -1      | p    | p              | n    | u      | 5432 | cddb-coordinator          | cddb-coordinator           | /data0/coordinator/gpseg-1
+8    | -1      | m    | m              | s    | u      | 5432 | cddb-standbycoordinator   | cddb-standbycoordinator    | /data0/coordinator/gpseg-1
+2    | 0       | p    | p              | s    | u      | 6000 | cddb-datanode01      | cddb-datanode01       | /data0/primary/gpseg0
+5    | 0       | m    | m              | s    | u      | 7000 | cddb-datanode02      | cddb-datanode02       | /data0/mirror/gpseg0
+3    | 1       | p    | p              | s    | u      | 6000 | cddb-datanode02      | cddb-datanode02       | /data0/primary/gpseg1
+6    | 1       | m    | m              | s    | u      | 7000 | cddb-datanode03      | cddb-datanode03       | /data0/mirror/gpseg1
+4    | 2       | p    | p              | s    | u      | 6000 | cddb-datanode03      | cddb-datanode03       | /data0/primary/gpseg2
+7    | 2       | m    | m              | s    | u      | 7000 | cddb-datanode01      | cddb-datanode01       | /data0/mirror/gpseg2
+(8 rows)
 ```
-
-#### 第 4 步：创建数据目录 {#混合第-4-步}
-
-1. 在每个节点的 `~/.bashrc` 文件中中添加一行 `source` 命令。示例如下：
-
-    ```bash
-    # /usr/local/cloudberry-db 为 Cloudberry Database 的安装目录
-
-    source /usr/local/cloudberry-db/greenplum_path.sh
-    ```
-
-2. 在 Master 节点上，使用 `gpssh` 命令为 Segment 创建数据目录和镜像 Mirror 目录。
-
-    ```bash
-    # 在本例中分别为 /data0/primary 和 /data0/mirror
-
-    gpssh -f seg_host -e 'mkdir -p /data0/primary'
-    gpssh -f seg_host -e 'mkdir -p /data0/mirror'
-    ```
-
-3. 在 Master 上创建数据目录。
-
-    ```bash
-    # 在本例中为 /data0/master
-
-    mkdir -p /data0/master
-    ```
-
-4. 在 Standby 节点上创建数据目录。
-
-    ```bash
-    # 本例中为 /data0/master
-
-    gpssh -h standby -e 'mkdir -p /data0/master'
-    ```
-
-5. 在 Master 和 Standby 节点的 `～/.bashrc` 文件中，再添加如下一行命令，其为路径为 `{上一步路径} + gpseg-1`。
-
-    ```bash
-    export COORDINATOR_DATA_DIRECTORY=/data0/master/gpseg-1
-    ```
-
-6. 执行以下命令，使 `COORDINATOR_DATA_DIRECTORY` 生效。
-
-    ```bash
-    source ~/.bashrc
-    ```
-
-#### 第 5 步：配置 `gpinitsystem_config` 启动脚本
-
-1. 在 Master 节点上，将模板配置文件复制到当前目录。
-
-    ```bash
-    cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
-    ```
-
-2. 修改 `gpinitsystem_config` 文件：
-
-    - 将 `DATA_DIRECTORY` 配置项修改为 Segment 计算节点的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `/data0/primary`。
-    - 将 `COORDINATOR_HOSTNAME` 改为 Master 主节点的主机名。
-    - 将 `COORDINATOR_DIRECTORY` 修改为 Master 主节点的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 3 步的 `/data0/master`。
-
-    修改后的示例配置文件如下：
-
-    ```toml
-    #### Base number by which primary segment port numbers 
-    #### are calculated.
-    PORT_BASE=6000
-
-    #### File system location(s) where primary segment data directories 
-    #### will be created. The number of locations in the list dictate
-    #### the number of primary segments that will get created per
-    #### physical host (if multiple addresses for a host are listed in 
-    #### the hostfile, the number of segments will be spread evenly across
-    #### the specified interface addresses).
-    declare -a DATA_DIRECTORY=(/data0/primary)
-
-    #### OS-configured hostname or IP address of the coordinator host.
-    COORDINATOR_HOSTNAME=master
-
-    #### File system location where the coordinator data directory 
-    #### will be created.
-    COORDINATOR_DIRECTORY=/data0/master
-
-    #### Port number for the coordinator instance. 
-    COORDINATOR_PORT=5432
-
-    #### Shell utility used to connect to remote hosts.
-    TRUSTED_SHELL=ssh
-
-    #### Default server-side character set encoding.
-    ENCODING=UNICODE
-    ```
-
-    若存在 Mirror 节点，还需修改 `MIRROR_PORT_BASE` 和`MIRROR_DATA_DIRECTORY`。
-
-    - `MIRROR_PORT_BASE` 为 Mirror 使用的端口。
-    - `MIRROR_DATA_DIRECTORY` 为 Mirror 的数据目录，即[第 4 步：创建数据目录](#混合第-4-步)中第 2 步的 `data0/mirror`。
-
-    修改后的示例配置文件如下：
-
-    ```toml
-    #### Base number by which mirror segment port numbers 
-    #### are calculated.
-    MIRROR_PORT_BASE=17000
-    
-    #### File system location(s) where mirror segment data directories 
-    #### will be created. The number of mirror locations must equal the
-    #### number of primary locations as specified in the 
-    #### DATA_DIRECTORY parameter.
-    declare -a MIRROR_DATA_DIRECTORY=(data0/mirror)
-    ```
-
-#### 第 6 步：初始化数据库
-
-使用 `gpinitsystem` 命令初始化数据库。`-s` 参数用于指定 Standby 的主机名。
-
-```bash
-gpinitsystem -c gpinitsystem_config -p cbdb_etcd.conf -h seg_host -s standby
-```
-
-## 注意事项
-
-- 自动检测 Master 是否失效，并自动将 Standby 升级为 Master 的功能需要在系统执行两次 dml 才能开启。
-- ETCD 服务至少需要存活 2 个节点才能正常工作，FTS 只要存活 1 个节点就能正常工作。
-- FTS 节点的日志存放在 `/tmp/fts/log` 文件夹中。
-
-
-

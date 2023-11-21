@@ -25,15 +25,63 @@ const sidebars = {
     {
       type: 'category',
       label: 'Deployment Guides',
-      items: ['cbdb-op-software-hardware',
+      items: [
       {
         type: 'category',
-        label: 'Physical Machine Deployment',
-        items: ['cbdb-op-deploy-arch','cbdb-op-deploy-guide']
-      }]
+        label: 'Build from Source Code',
+        items: ['cbdb-macos-compile','cbdb-linux-compile']
+      },
+      {
+        type: 'category',
+        label: 'Deploy on Physical Machine',
+        items: ['cbdb-op-software-hardware', 'cbdb-op-prepare-to-deploy', 'cbdb-op-deploy-guide']
+      }
+     ]
+    },
+
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+      {
+        type: 'category',
+        label: 'SQL Statements',
+        items: [
+          'sql-stmts/sql-stmt-abort',
+          'sql-stmts/sql-stmt-alter-database',
+          'sql-stmts/sql-stmt-alter-rule',
+          'sql-stmts/sql-stmt-alter-tablespace',
+          'sql-stmts/sql-stmt-create-database',
+          'sql-stmts/sql-stmt-create-index',
+          'sql-stmts/sql-stmt-create-tablespace',
+          'sql-stmts/sql-stmt-drop-database',
+          'sql-stmts/sql-stmt-drop-extension',
+          'sql-stmts/sql-stmt-drop-external-table',
+          'sql-stmts/sql-stmt-drop-index',
+          'sql-stmts/sql-stmt-drop-materialized-view',
+          'sql-stmts/sql-stmt-drop-role',
+          'sql-stmts/sql-stmt-drop-rule',
+          'sql-stmts/sql-stmt-drop-schema',
+          'sql-stmts/sql-stmt-drop-table',
+          'sql-stmts/sql-stmt-drop-tablespace',
+          'sql-stmts/sql-stmt-drop-type',
+          'sql-stmts/sql-stmt-drop-user',
+          'sql-stmts/sql-stmt-drop-view',
+          'sql-stmts/sql-stmt-end',
+          'sql-stmts/sql-stmt-rollback',
+          'sql-stmts/sql-stmt-rollback-to-savepoint',
+          'sql-stmts/sql-stmt-savepoint',
+          'sql-stmts/sql-stmt-set-role',
+          'sql-stmts/sql-stmt-set-transaction',
+          'sql-stmts/sql-stmt-start-transaction',
+          'sql-stmts/sql-stmt-truncate',
+        ]
+      },
+     ]
     },
 
   ]
 }
 
 module.exports = sidebars;
+
