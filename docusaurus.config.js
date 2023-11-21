@@ -159,6 +159,7 @@ const config = {
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/download', label: 'Download', position: 'left'},
           {to: '/support', label: 'Support', position: 'left'},
+	  {to: '/bootcamp', label: 'Bootcamp', position: 'left'},
           {
             type: 'localeDropdown',
             position: 'right',
