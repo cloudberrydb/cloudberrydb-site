@@ -2,7 +2,7 @@
 title: Query Performance in Cloudberry Database
 ---
 
-# Query Performance in Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
+# Query Performance in Cloudberry Database
 
 Cloudberry Database dynamically eliminates irrelevant partitions in a table and optimally allocates memory for different operators in a query.These enhancements scan less data for a query, accelerate query processing, and support more concurrency.
 

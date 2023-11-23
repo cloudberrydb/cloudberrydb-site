@@ -2,7 +2,7 @@
 title: Manage Roles and Permissions
 ---
 
-# Manage Roles and Permissions in Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
+# Manage Roles and Permissions in Cloudberry Database
 
 The Cloudberry Database authorization mechanism stores roles and permissions to access database objects in the database and is administered using SQL statements or command-line utilities.
 
@@ -10,7 +10,7 @@ Cloudberry Database manages database access permissions using *roles*. The conce
 
 Every Cloudberry Database system contains a set of database roles (users and groups). Those roles are separate from the users and groups managed by the operating system on which the server runs. However, for convenience you may want to maintain a relationship between operating system user names and Cloudberry Database role names, since many of the client applications use the current operating system user name as the default.
 
-In Cloudberry Database, users log in and connect through the coordinator instance, which then verifies their role and access privileges. The coordinator then issues commands to the segment instances behind the scenes as the currently logged in role.
+In Cloudberry Database, users log in and connect through the coordinator instance, which then verifies their role and access privileges. The coordinator then issues commands to the segment instances behind the scenes as the currently logged-in role.
 
 Roles are defined at the system level, meaning they are valid for all databases in the system.
 
@@ -33,7 +33,7 @@ A user-level role is considered to be a database role that can log in to the dat
 
 A database role may have a number of attributes that define what sort of tasks that role can perform in the database. You can set these attributes when you create the role, or later using the `ALTER ROLE` command.
 
-### Alter role attributes `<!-- 概念类信息，暂未验证 -->`
+### Alter role attributes
 
 A database role may have a number of attributes that define what sort of tasks that role can perform in the database.
 
@@ -42,23 +42,18 @@ A database role may have a number of attributes that define what sort of tasks t
 |`SUPERUSER` or `NOSUPERUSER`|Determines if the role is a superuser. You must yourself be a superuser to create a new superuser. `NOSUPERUSER` is the default.|
 |`CREATEDB` or `NOCREATEDB`|Determines if the role is allowed to create databases. `NOCREATEDB` is the default.|
 |`CREATEROLE` or `NOCREATEROLE`|Determines if the role is allowed to create and manage other roles. `NOCREATEROLE` is the default.|
-|`INHERIT` or `NOINHERIT`|Determines whether a role inherits the privileges of roles it is a member of. A role with the `INHERIT` attribute can automatically use whatever database privileges have been granted to all roles it is directly or indirectly a member of. `INHERIT` is the default.|
+|`INHERIT` or `NOINHERIT`|Determines whether a role inherits the privileges of roles it is a member. A role with the `INHERIT` attribute can automatically use whatever database privileges have been granted to all roles it is directly or indirectly a member of. `INHERIT` is the default. |
 |`LOGIN` or `NOLOGIN`|Determines whether a role is allowed to log in. A role having the `LOGIN` attribute can be thought of as a user. Roles without this attribute are useful for managing database privileges (groups). `NOLOGIN` is the default.|
 |`CONNECTION LIMIT *connlimit*`|If role can log in, this specifies how many concurrent connections the role can make. -1 (the default) means no limit.|
-|`CREATEEXTTABLE` or `NOCREATEEXTTABLE`|Determines whether a role is allowed to create external tables. `NOCREATEEXTTABLE` is the default. For a role with the `CREATEEXTTABLE` attribute, the default external table `type` is `readable` and the default `protocol` is `gpfdist`. Note that external tables that use the `file` or `execute` protocols can only be created by superusers.|
+|`CREATEEXTTABLE` or `NOCREATEEXTTABLE`|Determines whether a role is allowed to create external tables. `NOCREATEEXTTABLE` is the default. For a role with the `CREATEEXTTABLE` attribute, the default external table `type` is `readable` and the default `protocol` is `gpfdist`. Note that external tables that use the `file` protocol can only be created by superusers.|
 |`PASSWORD '*password*'`|Sets the role's password. If you do not plan to use password authentication you can omit this option. If no password is specified, the password will be set to null and password authentication will always fail for that user. A null password can optionally be written explicitly as `PASSWORD NULL`.|
-|`ENCRYPTED`|The password is always stored encrypted in the system catalogs. The `ENCRYPTED` keyword has no effect, but is accepted for backwards compatibility. The method of encryption is determined by the configuration parameter `password_encryption`. If the presented password string is already in MD5-encrypted or SCRAM-encrypted format, then it is stored as-is regardless of `password_encryption`, since the system cannot decrypt the specified encrypted password string, to encrypt it in a different format. This allows reloading of encrypted passwords during dump/restore. See [Protecting Passwords in Cloudberry Database](#protect-passwords-in-cloudberry-database) for additional information about protecting login passwords. |
-|`VALID UNTIL 'timestamp'`|Sets a date and time after which the role's password is no longer valid. If omitted the password will be valid for all time.|
-|`RESOURCE QUEUE queue_name`|Assigns the role to the named resource queue for workload management. Any statement that role issues is then subject to the resource queue's limits. Note that the `RESOURCE QUEUE` attribute is not inherited; it must be set on each user-level (`LOGIN`) role.|
 |`DENY deny_interval` or `DENY deny_point` | Restricts access during an interval, specified by day or day and time. For more information see [Time-based authentication](#time-based-authentication).|
 
 You can set these attributes when you create the role, or later using the `ALTER ROLE` command. For example:
 
 ```sql
 =# ALTER ROLE jsmith WITH PASSWORD 'passwd123';
-=# ALTER ROLE admin VALID UNTIL 'infinity';
 =# ALTER ROLE jsmith LOGIN;
-=# ALTER ROLE jsmith RESOURCE QUEUE adhoc;
 =# ALTER ROLE jsmith DENY DAY 'Sunday';
 ```
 
@@ -70,7 +65,7 @@ A role can also have role-specific defaults for many of the server configuration
 
 ## Role membership
 
-It is frequently convenient to group users together to ease management of object privileges: that way, privileges can be granted to, or revoked from, a group as a whole. In Cloudberry Database this is done by creating a role that represents the group, and then granting membership in the group role to individual user roles.
+It is frequently convenient to group users together to ease management of object privileges: that way, privileges can be granted to, or revoked from, a group as a whole. In Cloudberry Database, this is done by creating a role that represents the group, and then granting membership in the group role to individual user roles.
 
 Use the `CREATE ROLE` SQL command to create a new group role. For example:
 
@@ -103,9 +98,7 @@ The role attributes `LOGIN`, `SUPERUSER`, `CREATEDB`, `CREATEROLE`, `CREATEEXTTA
 
 When an object (table, view, sequence, database, function, language, schema, or tablespace) is created, it is assigned an owner. The owner is normally the role that ran the creation statement. For most kinds of objects, the initial state is that only the owner (or a superuser) can do anything with the object. To allow other roles to use it, privileges must be granted. Cloudberry Database supports the following privileges for each object type:
 
-`<!-- 建议研发核实下面表格的信息 @by TomShawn-->`
-
-| Object Type                  | Privileges                                                                           |
+| Object Type                  |  Privileges                                                                           |
 | :-----------------------------| :--------------------------------------------------------------------------------------|
 | Tables, External Tables, Views | `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `REFERENCES`, `TRIGGER`, `TRUNCATE`, `ALL`   |
 | Columns                       | `SELECT`, `INSERT`, `UPDATE`, `REFERENCES`, `ALL`                                    |
