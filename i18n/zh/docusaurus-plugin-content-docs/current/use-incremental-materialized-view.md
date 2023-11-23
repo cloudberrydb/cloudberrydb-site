@@ -194,7 +194,6 @@ CREATE [INCREMENTAL] MATERIALIZED VIEW [ IF NOT EXISTS ] table_name
             )
     ORDER BY s_suppkey;
 
-
     s_suppkey |          s_name           |     s_address     |     s_phone     | total_revenue 
     -----------+---------------------------+-------------------+-----------------+---------------
         8449 | Supplier#000008449        | Wp34zim9qYFbVctdW | 20-469-856-8873 |  1772627.2087
