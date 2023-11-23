@@ -96,20 +96,20 @@ title: 在 AO 表上使用唯一索引
 
 2. 如果一个事务插入失败，那么另一个事务会插入成功。
 
-```sql
-postgres=# BEGIN;
-BEGIN
-postgres=*# INSERT INTO foo VALUES(1);
-INSERT 0 1
-postgres=*# ROLLBACK;
-ROLLBACK
-```
+    ```sql
+    postgres=# BEGIN;
+    BEGIN
+    postgres=*# INSERT INTO foo VALUES(1);
+    INSERT 0 1
+    postgres=*# ROLLBACK;
+    ROLLBACK
+    ```
 
-```sql
-postgres=# BEGIN;
-BEGIN
-postgres=*# INSERT INTO foo VALUES(1);
-INSERT 0 1
-postgres=*# COMMIT;
-COMMIT
-```
+    ```sql
+    postgres=# BEGIN;
+    BEGIN
+    postgres=*# INSERT INTO foo VALUES(1);
+    INSERT 0 1
+    postgres=*# COMMIT;
+    COMMIT
+    ```
