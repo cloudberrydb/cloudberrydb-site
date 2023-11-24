@@ -48,7 +48,13 @@ const sidebars = {
      {
       type: 'category',
       label: 'Operate with Data',
-      items: ['basic-query-syntax','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control']
+      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control']
+     },
+
+     {
+      type: 'category',
+      label: 'Optimize Query Performance',
+      items: ['query-performance-overview', 'update-stats-using-analyze']
      },
 
     {
