@@ -10,7 +10,9 @@ Because a Cloudberry Database system is distributed across many machines, the pr
 
 Use the `gpstart` and `gpstop` utilities to start and stop Cloudberry Database, respectively. These utilities are located in the `$GPHOME/bin` directory on your Cloudberry Database coordinator host.
 
-> **Important** Do not issue a `kill` command to end any Postgres process. Instead, use the database command `pg_cancel_backend()`.
+:::tip
+Do not issue a `kill` command to end any Postgres process. Instead, use the database command `pg_cancel_backend()`.
+:::
 
 Issuing a `kill -9` or `kill -11` can introduce database corruption and prevent root cause analysis from being performed.
 
@@ -81,7 +83,9 @@ Start only the coordinator to perform maintenance or administrative tasks withou
 
 The `gpstop` utility stops or restarts your Cloudberry Database system and always runs on the coordinator host. When activated, `gpstop` stops all `postgres` processes in the system, including the coordinator and all segment instances. The `gpstop` utility uses a default of up to multiple parallel worker threads to bring down the Postgres instances that make up the Cloudberry Database cluster. To stop Cloudberry Database immediately, use the fast mode.
 
-> **Important** Immediate shut down mode is not recommended. This mode stops all database processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.
+:::tip
+Immediate shut down mode is not recommended. This mode stops all database processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.
+:::
 
 - To stop Cloudberry Database:
 

@@ -18,7 +18,7 @@ title: 连接到数据库
 |数据库名|待连接数据库的名称。对于新初始化的系统，首次连接请使用 `postgres` 数据库。|`$PGDATABASE`|
 |主机名|Cloudberry Database coordinator 的主机名。默认主机是本地主机。|`$PGHOST`|
 |端口|Cloudberry Database coordinator 实例运行的端口号。默认值为 `5432`。|`$PGPORT`|
-|用户名|连接的数据库用户（角色）名称。这不一定与你的操作系统用户名相同。如果你不确定你的数据库用户名是什么，请与你的 Cloudberry 管理员联系。请注意，每个 Cloudberry Database 系统在初始化时都会自动创建一个超级用户帐户。此帐户的名称与初始化 Cloudberry 系统的用户的操作系统名称相同（通常为 `gpadmin`）。|`$PGUSER`|
+|用户名|连接的数据库用户（角色）名称。这不一定与你的操作系统用户名相同。如果你不确定你的数据库用户名是什么，请与你的 Cloudberry Database 管理员联系。请注意，每个 Cloudberry Database 系统在初始化时都会自动创建一个超级用户帐户。此帐户的名称与初始化 Cloudberry 系统的用户的操作系统名称相同（通常为 `gpadmin`）。|`$PGUSER`|
 
 [使用 psql 连接](#使用-psql-连接) 介绍了连接到 Cloudberry Database 的示例命令。
 
@@ -55,11 +55,11 @@ Cloudberry Database 的安装中，随附包含了一些客户端工具应用程
 根据默认值或你设置的环境变量，使用 `psql` 访问数据库，示例如下：
 
 ```shell
-$ psql -d gpdatabase -h coordinator_host -p 5432 -U `gpadmin`
+$ psql -d cbdb-database -h coordinator_host -p 5432 -U `gpadmin`
 ```
 
 ```shell
-$ psql gpdatabase
+$ psql cbdb-database
 ```
 
 ```shell
@@ -75,7 +75,7 @@ $ psql postgres
 连接到数据库后，`psql` 展示了一个提示符，提示符后面是 `psql` 当前连接的数据库名称，后面跟着字符串 `=>`（如果你是数据库超级用户则为 `=#`）。例如：
 
 ```shell
-gpdatabase=>
+cbdb-database=>
 ```
 
 在提示符中，你可以输入 SQL 命令。为了将 SQL 命令发送到服务器并运行，SQL 命令必须以 `;`（分号）结尾。例如：

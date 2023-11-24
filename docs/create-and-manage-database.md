@@ -6,7 +6,7 @@ title: Create and Manage Database
 
 A Cloudberry Database system is a single instance of Cloudberry Database. There can be multiple running Cloudberry Database systems co-existing with each other, but usually a client can only connect to one of them.
 
-There can be multiple databases in a Cloudberry Database system. This is different from some database management systems (such as Oracle) where the database instance *is* the database. Although you can create many databases in a Cloudberry system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.
+There can be multiple databases in a Cloudberry Database system. This is different from some database management systems (such as Oracle) where the database instance *is* the database. Although you can create many databases in a Cloudberry Database system, client programs can connect to and access only one database at a time — you cannot cross-query between databases.
 
 ## About template and default databases
 

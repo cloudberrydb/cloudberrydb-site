@@ -57,9 +57,13 @@ When the Global Deadlock Detector determines a deadlock exists for the following
 - Concurrent update transactions on the same distribution key of a heap table that are run by the Postgres-based planner.
 - Concurrent update transactions on the same row of a hash table that are run by the GPORCA optimizer.
 
-> **Note** Cloudberry Database uses the interval specified in the `deadlock_timeout` server configuration parameter for local deadlock detection. Because the local and global deadlock detection algorithms differ, the cancelled process(es) may differ depending upon which detector (local or global) Cloudberry Database triggers first.
+:::tip
+Cloudberry Database uses the interval specified in the `deadlock_timeout` server configuration parameter for local deadlock detection. Because the local and global deadlock detection algorithms differ, the cancelled process(es) may differ depending upon which detector (local or global) Cloudberry Database triggers first.
+:::
 
-> **Note** If the `lock_timeout` server configuration parameter is turned on and set to a value smaller than `deadlock_timeout` and `gp_global_deadlock_detector_period`, Cloudberry Database will cancel a statement before it would ever trigger a deadlock check in that session.
+:::tip
+If the `lock_timeout` server configuration parameter is turned on and set to a value smaller than `deadlock_timeout` and `gp_global_deadlock_detector_period`, Cloudberry Database will cancel a statement before it would ever trigger a deadlock check in that session.
+:::
 
 To view lock waiting information for all segments, run the `gp_dist_wait_status()` user-defined function. You can use the output of this function to determine which transactions are waiting on locks, which transactions are holding locks, the lock types and mode, the waiter and holder session identifiers, and which segments are running the transactions. Sample output of the `gp_dist_wait_status()` function follows:
 

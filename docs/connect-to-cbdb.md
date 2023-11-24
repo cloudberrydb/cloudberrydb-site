@@ -18,7 +18,7 @@ To establish a connection to the Cloudberry Database coordinator, you will need 
 |Database name|The name of the database to which you want to connect. For a newly initialized system, use the `postgres` database to connect for the first time.|`$PGDATABASE`|
 |Host name|The host name of the Cloudberry Database coordinator. The default host is the local host.|`$PGHOST`|
 |Port|The port number that the Cloudberry Database coordinator instance is running on. The default is 5432.|`$PGPORT`|
-|User name|The database user (role) name to connect as. This is not necessarily the same as your OS user name. Check with your Cloudberry administrator if you are not sure what you database user name is. Note that every Cloudberry Database system has one superuser account that is created automatically at initialization time. This account has the same name as the OS name of the user who initialized the Cloudberry system (typically `gpadmin`).|`$PGUSER`|
+|User name|The database user (role) name to connect as. This is not necessarily the same as your OS user name. Check with your Cloudberry Database administrator if you are not sure what you database user name is. Note that every Cloudberry Database system has one superuser account that is created automatically at initialization time. This account has the same name as the OS name of the user who initialized the Cloudberry system (typically `gpadmin`).|`$PGUSER`|
 
 [Connecting with psql](#connect-with-psql) provides example commands for connecting to Cloudberry Database.
 
