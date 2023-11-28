@@ -34,5 +34,21 @@
   "sidebar.docsbars.category.Operate with Data": {
     "message": "数据操作",
     "description": "The label for category data operations in sidebar docs"
+  },
+  "sidebar.docsbars.category.Optimize Query Performance": {
+    "message": "优化查询性能",
+    "description": "The label for category optimizing query performance in sidebar docs"
+  },
+  "sidebar.docsbars.category.Security and Permission": {
+    "message": "安全和权限",
+    "description": "The label for category security and permission in sidebar docs"
+  },
+  "sidebar.docsbars.category.System Utilities": {
+    "message": "系统工具",
+    "description": "The label for category system utilities in sidebar docs"
+  },
+  "sidebar.docsbars.category.Releases": {
+    "message": "版本发布说明",
+    "description": "The label for category release notes in sidebar docs"
   }
 }

@@ -1,0 +1,76 @@
+.wrap {
+  height: 548px;
+  position: relative;
+  color: var(--sub-text-color-2);
+  width: var(--global-main-width);
+  margin: 0 auto;
+  .linksWrap {
+    display: flex;
+    width: 637px;
+    height: 328px;
+    position: absolute;
+    top: 80px;
+    left: 168px;
+    justify-content: space-between;
+    .footerLinkTitle {
+      color: var(--title-text-color);
+      font-weight: 700;
+      line-height: 20px;
+    }
+    .footerLinkItem {
+      line-height: 20px;
+      margin-top: 24px;
+      a {
+        color: var(--sub-text-color-2);
+        text-decoration: none;
+      }
+      &:hover {
+        a {
+          text-decoration: underline;
+          color: var(--active-color);
+        }
+      }
+    }
+  }
+  .logoLinkWrap {
+    position: absolute;
+    top: 71px;
+    left: 1053px;
+    width: 214px;
+    height: 108px;
+    .logoWrap {
+      height: 60px;
+      display: flex;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .logo {
+        width: 164px;
+      }
+      .swap {
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+      }
+    }
+    .links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .item {
+        fill: var(--title-text-color);
+        &:hover {
+          fill: var(--active-color);
+        }
+      }
+    }
+  }
+  .copyright {
+    position: absolute;
+    bottom: 20px;
+    top: 485px;
+    text-align: center;
+    width: 100%;
+  }
+}

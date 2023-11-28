@@ -1,0 +1,115 @@
+@keyframes light {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -20px) scale(1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes light2 {
+  0% {
+    transform: translate(0) scale(1) rotate(45deg);
+  }
+
+  33% {
+    transform: translate(-20px, 20px) scale(1.1) rotate(45deg);
+  }
+
+  66% {
+    transform: translate(20px, -20px) scale(0.9) rotate(45deg);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1) rotate(45deg);
+  }
+}
+
+.leftBox {
+  position: absolute;
+  left: -180px;
+  bottom: -180px;
+  width: 200px;
+  height: 200px;
+  border-radius: 30% 70% 0% 33% / 64% 70% 0% 36%;
+  background-color: #ef9364;
+  animation: 5s infinite light linear;
+  box-shadow: 90px 90px 50px 90px #ef9364, 90px -90px 190px 90px #ef9364,
+    -90px 90px 90px 190px #ef9364, -90px -90px 90px 100px #ef9364;
+}
+
+.rightBox {
+  position: absolute;
+  right: -220px;
+  top: 100px;
+  width: 200px;
+  height: 200px;
+  background-color: #8b7bcf;
+  border-radius: 30% 70% 67% 13% / 47% 30% 70% 66%;
+  animation: 5s infinite light2 linear;
+  box-shadow: 0 0px 1150px 250px #8b7bcf, -100px 40px 180px 200px #8b7bcf;
+}
+
+.wrap {
+  // padding-left: 67px;
+  position: relative;
+  overflow: hidden;
+  height: 360px;
+  background-color: var(--ifm-navbar-background-color);
+  background-image: url("/img/rectangle.png");
+  background-size: 72.6px 66.6px;
+  .content {
+    margin-top: 38px;
+  }
+
+  .back {
+    display: flex;
+    align-items: center;
+    height: 21px;
+    line-height: 21px;
+    width: var(--global-main-width);
+    margin: 0 auto;
+    position: relative;
+    .main {
+      position: absolute;
+      top: 14px;
+      display: flex;
+      justify-content: center;
+      a {
+        height: 18px;
+        width: 18px;
+        overflow: hidden;
+      }
+
+      .backLogo {
+        height: 18px;
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+      }
+
+      .line {
+        display: inline-block;
+        margin: 0 6px;
+        opacity: 0.4;
+        width: 12px;
+        height: 12px;
+        line-height: 21px;
+        position: relative;
+        top: 4px;
+      }
+      .curText {
+        color: var(--active-color);
+        font-size: 13px;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.main {
+  width: var(--global-main-width);
+  margin: 0 auto;
+  padding-left: 73px;
+  display: flex;
+  .leftContent {
+    padding-top: 68px;
+    .cardLine {
+      display: flex;
+      justify-content: space-between;
+      &:last-child {
+        margin-top: 30px;
+      }
+    }
+  }
+  .rightContent {
+    flex: 1;
+    position: relative;
+    .navLinkWrap {
+      position: sticky;
+      width: 196px;
+      height: 203px;
+      margin-left: 108px;
+      margin-top: 51px;
+      top: 130px;
+    }
+  }
+}
