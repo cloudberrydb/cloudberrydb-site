@@ -245,19 +245,56 @@ sudo/sbin/blockdev --setra16384/dev/vdc
 
 The disk type, operating system, and scheduling policies of Cloudberry Database are as follows:
 
-| Storage device type | OS     | Recommended scheduling policy |
-| ------------------- | ------ | ----------------------------- |
-|                     |        |                               |
-|                     |        |                               |
-| NVMe                | RHEL 7 | none                          |
-|                     | RHEL 8 | none                          |
-|                     | Ubuntu | none                          |
-| SSD                 | RHEL 7 | noop                          |
-|                     | RHEL 8 | none                          |
-|                     | Ubuntu | none                          |
-| Other               | RHEL 7 | deadline                      |
-|                     | RHEL 8 | mq-deadline                   |
-|                     | Ubuntu | mq-deadline                   |
+<table>
+<thead>
+  <tr>
+    <th>Storage device type</th>
+    <th>OS</th>
+    <th>Recommended scheduling policy</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">NVMe</td>
+    <td>RHEL 7</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>RHEL 8</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SSD</td>
+    <td>RHEL 7</td>
+    <td>noop</td>
+  </tr>
+  <tr>
+    <td>RHEL 8</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Other</td>
+    <td>RHEL 7</td>
+    <td>deadline</td>
+  </tr>
+  <tr>
+    <td>RHEL 8</td>
+    <td>mq-deadline</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>mq-deadline</td>
+  </tr>
+</tbody>
+</table>
 
 Refer to the following command to modify the scheduling policy. Note that this command is only a temporary modification, and the modification becomes invalid after the server is restarted.
 

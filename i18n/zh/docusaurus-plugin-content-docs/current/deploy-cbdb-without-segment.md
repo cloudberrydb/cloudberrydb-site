@@ -247,20 +247,56 @@ sudo /sbin/blockdev --setra 16384 /dev/vdc
 
 Cloudberry Database 的磁盘类型、操作系统以及调度策略如下：
 
-| 存储设备类型 | OS     | 推荐的调度策略 |
-| ------------ | ------ | -------------- |
-|              |        |                |
-|              |        |                |
-|              |        |                |
-| NVMe         | RHEL 7 | none           |
-|              | RHEL 8 | none           |
-|              | Ubuntu | none           |
-| SSD          | RHEL 7 | noop           |
-|              | RHEL 8 | none           |
-|              | Ubuntu | none           |
-| 其他         | RHEL 7 | deadline       |
-|              | RHEL 8 | mq-deadline    |
-|              | Ubuntu | mq-deadline    |
+<table>
+<thead>
+  <tr>
+    <th>存储设备类型</th>
+    <th>OS</th>
+    <th>推荐的调度策略</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="3">NVMe</td>
+    <td>RHEL 7</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>RHEL 8</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SSD</td>
+    <td>RHEL 7</td>
+    <td>noop</td>
+  </tr>
+  <tr>
+    <td>RHEL 8</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td rowspan="3">其他</td>
+    <td>RHEL 7</td>
+    <td>deadline</td>
+  </tr>
+  <tr>
+    <td>RHEL 8</td>
+    <td>mq-deadline</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>mq-deadline</td>
+  </tr>
+</tbody>
+</table>
 
 参考以下命令修改调度策略。注意，该命令仅为临时修改，服务器重启后，修改将失效。
 
