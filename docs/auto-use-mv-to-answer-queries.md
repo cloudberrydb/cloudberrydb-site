@@ -1,22 +1,22 @@
 ---
-title: Automatically Use Materialized Views for Query Optimization
+title: Use Auto Materialized Views for Query Optimization
 ---
 
-# Automatically Use Materialized Views for Query Optimization
+# Use Automatic Materialized Views for Query Optimization
 
-Since version v1.5, Hash Lightning supports automatically using materialized views to process some or all queries (called AQUMV) during the query planning phase. This feature is particularly suitable for queries made on large tables and can significantly reduce query processing time. AQUMV uses incremental materialized views (IMVs) because IMVs usually keep the latest data when related tables have write operations.
+Since v1.5, Cloudberry Database supports automatically using materialized views to process some or all queries (called AQUMV) during the query planning phase. This feature is suitable for queries on large tables and can greatly reduce query processing time. AQUMV uses incremental materialized views (IMVs) because IMVs usually keep the latest data when related tables have write operations.
 
 ## Usage scenarios
 
 - Aggregation queries on large data sets: For queries that need to aggregate results from millions of records, AQUMV can significantly reduce query time.
 - Frequently updated large tables: In an environment where data is frequently updated, using IMV can ensure that the query results are real-time and accurate.
-- Scenarios for complex calculation: For queries including complex calculations (such as square root and absolute value calculations in the following examples), AQUMV can speed up the query by pre-calculating these values in the materialized view.
+- Complex calculations: For queries with complex calculations (such as square root and absolute value calculations), AQUMV can speed up the queries by pre-calculating these values in materialized views.
 
 ## Usage example
 
-To enable the AQUMV feature, you need to create a materialized view and set the value of the system parameter `answer_query_using_materialized_views` to `ON`. The following example compares the results of the same complex query without AQUMV and with AQUMV.
+To enable AQUMV, you need to create a materialized view and set the value of the system parameter `answer_query_using_materialized_views` to `ON`. The following example compares the results of the same complex query without AQUMV and with AQUMV.
 
-1. Create the table `aqumv_t1`.
+1. Create a table `aqumv_t1`.
 
     ```sql
     CREATE TABLE aqumv_t1(c1 INT, c2 INT, c3 INT) DISTRIBUTED BY (c1);
@@ -29,7 +29,7 @@ To enable the AQUMV feature, you need to create a materialized view and set the 
     ANALYZE aqumv_t1;
     ```
 
-3. Executing a query without enabling AQUMV. The query takes 7384.329 ms.
+3. Execute a query without enabling AQUMV. The query takes 7384.329 ms.
 
     ```sql
     SELECT SQRT(ABS(ABS(c2) - c1 - 1) + ABS(c2)) FROM aqumv_t1 WHERE c1 > 30 AND c1 < 40 AND SQRT(ABS(c2)) > 5.8;
@@ -41,7 +41,7 @@ To enable the AQUMV feature, you need to create a materialized view and set the 
     Time: 7384.329 ms (00:07.384)
     ```
 
-From the following query plan, you can see that the optimizer scans the table (`Seq Scan on aqumv_t1 `).
+    From the following query plan, you can see that the optimizer scans the table (`Seq Scan on aqumv_t1 `).
 
     ```sql
     EXPLAIN(COSTS OFF) SELECT SQRT(ABS(ABS(c2) - c1 - 1) + ABS(c2)) FROM aqumv_t1 WHERE c1 > 30 AND c1 < 40 AND SQRT(ABS(c2)) > 5.8;
@@ -72,7 +72,7 @@ From the following query plan, you can see that the optimizer scans the table (`
     SET answer_query_using_materialized_views = ON;
     ```
 
-6. Now AQUMV is enabled. Execute the same table query again, which takes 45.701 ms.
+6. Now AQUMV is enabled. Execute the same query again, which takes only 45.701 ms.
 
     ```sql
     SELECT SQRT(ABS(ABS(c2) - c1 - 1) + ABS(c2)) FROM aqumv_t1 WHERE c1 > 30 AND c1 < 40 AND SQRT(ABS(c2)) > 5.8;
@@ -84,10 +84,10 @@ From the following query plan, you can see that the optimizer scans the table (`
     Time: 45.701 ms
     ```
 
-From the following query plan, you can see that the optimizer does not scan the `aqumv_t1` table, but scan the materialized view `mvt1` (`Seq Scan on public.mvt1`) instead.
+    From the following query plan, you can see that the optimizer does not scan the `aqumv_t1` table, but scans the materialized view `mvt1` (`Seq Scan on public.mvt1`) instead.
 
     ```sql
-    explain(verbose, costs off)select sqrt(abs(abs(c2) - c1 - 1) + abs(c2)) from aqumv_t1 where c1 > 30 and c1 < 40 and sqrt(abs(c2)) > 5.8;
+    EXPLAIN(VERBOSE, COSTS OFF) SELECT SQRT(ABS(ABS(c2) - c1 - 1) + ABS(c2)) FROM aqumv_t1 WHERE c1 > 30 AND c1 < 40 AND SQRT(ABS(c2)) > 5.8;
 
                                     QUERY PLAN
     --------------------------------------------------------------------------------
@@ -101,9 +101,9 @@ From the following query plan, you can see that the optimizer does not scan the 
     (7 rows)
     ```
 
-In the above example, the query takes 7384.329 ms without AQUMV and without using the materialized views. In contrast, the same query takes only 45.701 ms with AQUMV enabled and using the materialized view. This means that the materialized view pre-calculates and stores relevant calculation result, so that the view only contains rows that meet the specific condition (`c1 > 30 and c1 < 40`).
+    In the above example, the query takes 7384.329 ms without AQUMV and without using the materialized views. In contrast, the same query takes only 45.701 ms with AQUMV enabled and using the materialized view. This means that the materialized view pre-calculates and stores relevant calculation result, so that the view only contains rows that meet the specific condition (`c1 > 30 AND c1 < 40`).
 
-Therefore, the above table query `select sqrt (abs (abs (c2) - c1 - 1) + abs (c2)) from aqumv_t1 where c1 > 30 and c1 < 40 and sqrt (abs (c2)) > 5.8;` is actually equivalent to querying from the materialized view `select sqrt (mc4 + mc3) from mvt1 where sqrt (mc3) > 5.8;`.
+    Therefore, the above table query `SELECT SQRT(ABS(ABS(c2) - c1 - 1) + ABS(c2)) FROM aqumv_t1 WHERE c1 > 30 AND c1 < 40 AND SQRT(ABS(c2)) > 5.8;` is equivalent to querying from the materialized view `SELECT SQRT(ABS(ABS(c2) - c1 - 1) + ABS(c2)) FROM aqumv_t1 WHERE c1 > 30 AND c1 < 40 AND SQRT(ABS(c2)) > 5.8;`.
 
 When the same query is executed, the data can be obtained directly from the materialized view, rather than from the original table. In this way, AQUMV can significantly improve query performance, especially when dealing with large data volumes and complex calculations.
 
@@ -125,20 +125,20 @@ When there are multiple valid materialized view candidates, or the cost of query
 - Only `SELECT` queries for a single relationship are supported, which is applicable to materialized view queries and the original queries.
 - **Unsupported** features include:
 
-  - Aggregation (AGG)
-  - Subqueries
-  - Sorting of original queries (`ORDER BY`)
-  - Joins (`JOIN`)
-  - Sublinks (`SUBLINK`)
-  - Grouping (`GROUP BY`)
-  - Window functions
-  - Common table expressions (CTE)
-  - Deduplication (`DISTINCT ON`)
-  - Refreshing materialized views (`REFRESH MATERIALIZED VIEW`)
-  - `CREATE AS` statements
+    - Aggregation (AGG)
+    - Subqueries
+    - Sorting of original queries (`ORDER BY`)
+    - Joins (`JOIN`)
+    - Sublinks (`SUBLINK`)
+    - Grouping (`GROUP BY`)
+    - Window functions
+    - Common table expressions (CTE)
+    - Deduplication (`DISTINCT ON`)
+    - Refreshing materialized views (`REFRESH MATERIALIZED VIEW`)
+    - `CREATE AS` statements
 
-## Related other features
+## See also
 
-[Create AO/AOCO Tables and Refresh Materialized Views in Parallel](https://hashdata.feishu.cn/docx/N5B2dLrrioaBG9xEOWYcgjuLnce)
+[Create AO/AOCO Tables and Refresh Materialized Views in Parallel](/docs/parallel-create-ao-refresh-mv.md)
 
-[Incremental Materialized View in Cloudberry Database](https://hashdata.feishu.cn/docx/Mbjdd7TyQoSFS4xLIhici2uJnud)
+[Incremental Materialized View in Cloudberry Database](/docs/use-incremental-materialized-view.md)

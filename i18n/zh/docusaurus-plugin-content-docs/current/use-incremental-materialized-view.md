@@ -8,10 +8,12 @@ title: 使用增量物化视图
 
 增量物化视图是物化视图的一种特殊形式。当数据在基础表中发生变化时（例如插入、更新、删除操作），增量物化视图不需要重新计算整个视图中的所有数据。相反，它只更新那些自上次刷新以来发生变化的部分。这样可以节省大量的计算资源和时间，显著提高性能，尤其是在处理大型数据集时。
 
+:::tip 提示
 增量物化视图与普通视图的对比：
 
 - 普通视图：普通视图不存储数据，而是每次查询时根据定义的 SQL 语句动态生成结果。这意味着每次执行查询时，都需要重新计算视图的数据，这在处理大量数据时可能非常耗时。
 - 增量物化视图：增量物化视图提前计算并存储了结果集，这减少了查询时的计算负担。此外，由于是“增量”更新，当基础数据发生变化时，它只需要更新影响到的部分，而不是重新计算整个数据集。
+:::
 
 ## 使用场景
 
@@ -243,6 +245,6 @@ CREATE [INCREMENTAL] MATERIALIZED VIEW [ IF NOT EXISTS ] table_name
 
 # 其他相关功能
 
-[并行创建 AO 表与刷新物化视图](https://hashdata.feishu.cn/docx/EzuRddMhFoxxDExSHdpcfOrmnAe)
+[并行创建 AO 表与刷新物化视图](/i18n/zh/docusaurus-plugin-content-docs/current/parallel-create-ao-refresh-mv.md)
 
-[自动使用物化视图进行查询优化](https://hashdata.feishu.cn/docx/ZocDdLMUkoRbEUx3x21cZDG3nwe)
+[自动使用物化视图进行查询优化](/i18n/zh/docusaurus-plugin-content-docs/current/auto-use-mv-to-answer-queries.md)
