@@ -42,7 +42,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Query Optimization',
-      items: ['use-unique-index-on-ao-tables','use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh']
+      items: ['use-unique-index-on-ao-tables','use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh-mv']
      },
 
     {
