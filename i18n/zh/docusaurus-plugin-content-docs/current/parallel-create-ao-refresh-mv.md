@@ -125,6 +125,6 @@ title: 并行创建 AO/AOCO 表与刷新物化视图
 
 ## 相关其他特性
 
-[自动使用物化视图进行查询优化](/i18n/zh/docusaurus-plugin-content-docs/current/auto-use-mv-to-answer-queries.md)
+[自动使用物化视图进行查询优化](/i18n/zh/docusaurus-plugin-content-docs/current/use-auto-materialized-view-to-answer-queries.md)
 
 [增量物化视图说明文档](/i18n/zh/docusaurus-plugin-content-docs/current/use-incremental-materialized-view.md)
