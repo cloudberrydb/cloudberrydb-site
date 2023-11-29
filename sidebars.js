@@ -34,10 +34,16 @@ const sidebars = {
       {
         type: 'category',
         label: 'Deploy on Physical Machine',
-        items: ['cbdb-op-software-hardware', 'cbdb-op-prepare-to-deploy', 'cbdb-op-deploy-guide']
+        items: ['cbdb-op-software-hardware', 'cbdb-op-prepare-to-deploy', 'cbdb-op-deploy-guide','deploy-cbdb-without-segment']
       }
      ]
     },
+
+    {
+      type: 'category',
+      label: 'Query Optimization',
+      items: ['use-unique-index-on-ao-tables','use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh']
+     },
 
     {
       type: 'category',

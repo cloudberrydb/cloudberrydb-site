@@ -125,6 +125,6 @@ You can use tools to record the refresh durations, and compare the difference in
 
 ## See also
 
-[Use Automatic Materialized Views for Query Optimization](/docs/auto-use-mv-to-answer-queries.md)
+[Use Automatic Materialized Views for Query Optimization](/docs/use-auto-materialized-view-to-answer-queries.md)
 
 [Incremental Materialized View in Cloudberry Database](/docs/use-incremental-materialized-view.md)
