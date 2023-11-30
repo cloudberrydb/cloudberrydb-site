@@ -1,0 +1,34 @@
+
+/* src/components/VersionBadge.module.css */
+
+.versionBadgeContainer {
+    display: inline-flex;
+    vertical-align: middle; /* 调整到中间或尝试使用 'top' 来让它更靠上 */
+    margin-left: 0px; /* 与标题之间的间距 */
+  }
+  
+  .versionBadge {
+    display: flex;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px; /* 或更小，视情况而定 */
+  }
+  
+  .versionBadge .since,
+  .versionBadge .version {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .versionBadge .since {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .versionBadge .version {
+    background-color: #FFA500;
+    color: #fff;
+  }
+  
