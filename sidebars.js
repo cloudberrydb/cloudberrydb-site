@@ -45,6 +45,12 @@ const sidebars = {
       items: ['use-unique-index-on-ao-tables','use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh-mv']
      },
 
+     {
+      type: 'category',
+      label: 'Security and Permission',
+      items: ['set-password-profile']
+     },
+
     {
       type: 'category',
       label: 'Reference',
