@@ -3,7 +3,7 @@
 
 .versionBadgeContainer {
     display: inline-flex;
-    vertical-align: middle; /* 调整到中间或尝试使用 'top' 来让它更靠上 */
+    vertical-align: middle; /* 或使用 'top' 让整体位置更靠上 */
     margin-left: 0px; /* 与标题之间的间距 */
   }
   
@@ -11,7 +11,7 @@
     display: flex;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 13px; /* 或更小，视情况而定 */
+    font-size: 13px;
   }
   
   .versionBadge .since,
