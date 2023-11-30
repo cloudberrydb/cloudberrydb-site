@@ -313,7 +313,7 @@ SELECT rolname, rolprofile FROM pg_roles WHERE rolname = 'myuser';
 (1 row)
 ```
 
-### Scenario 1: Set the maximum number of failed login attempts and password lock time.
+### Scenario 1: Set the maximum number of failed login attempts and password lock time
 
 Modify a Profile to set the maximum number of failed login attempts to 3 and the password lock time to 2 hours.
 
