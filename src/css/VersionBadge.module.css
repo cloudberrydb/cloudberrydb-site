@@ -9,26 +9,33 @@
   
   .versionBadge {
     display: flex;
-    border-radius: 4px;
-    font-weight: bold;
+    border-radius: 90px;
+    font-weight: 900;
     font-size: 13px;
+  } 
+  
+  .versionBadge .since {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    font-weight: 900;
   }
   
-  .versionBadge .since,
   .versionBadge .version {
     padding: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .versionBadge .since {
-    background-color: #000;
-    color: #fff;
-  }
-  
-  .versionBadge .version {
     background-color: #FFA500;
     color: #fff;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    min-width: 50px;
+    font-weight: 900;
   }
   

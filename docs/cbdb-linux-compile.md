@@ -4,6 +4,7 @@ title: On Linux
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+<!-- import VersionBadge from '@site/src/components/VersionBadge'; -->
 
 # Compile and Install Cloudberry Database on Linux
 
