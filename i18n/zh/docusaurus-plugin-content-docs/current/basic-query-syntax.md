@@ -32,7 +32,7 @@ Cloudberry Database 是基于 PostgreSQL 和 Greenplum 开发的高性能、高�
     SELECT AVG(salary) FROM employees;  -- 计算员工的平均薪水。
     ```
 
-- `GROUP BY`：与聚合函数一起使用，用于对结果集进行分组。
+- `GROUP BY`：与聚合函数一起使用，用于指定分组聚合的列信息。
 
     ```sql
     SELECT department, COUNT(*) FROM employees GROUP BY department;  -- 按部门统计员工数量。
