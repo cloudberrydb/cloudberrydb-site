@@ -24,7 +24,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Deployment Guides',
+      label: 'Deploy and Build',
       items: [
       {
         type: 'category',
@@ -41,7 +41,25 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Reference',
+      label: 'Create and Prepare',
+      items: ['create-and-manage-database','start-and-stop-cbdb-database','connect-to-cbdb']
+     },
+
+     {
+      type: 'category',
+      label: 'Operate with Data',
+      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control']
+     },
+
+     {
+      type: 'category',
+      label: 'Optimize Query Performance',
+      items: ['query-performance-overview', 'update-stats-using-analyze']
+     },
+
+    {
+      type: 'category',
+      label: 'References',
       items: [
       {
         type: 'category',

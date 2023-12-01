@@ -7,7 +7,7 @@
     "message": "产品介绍",
     "description": "The label for category product introduction in sidebar docs"
   },
-  "sidebar.docsbars.category.Deployment Guides": {
+  "sidebar.docsbars.category.Deploy and Build": {
     "message": "部署指南",
     "description": "The label for category deployment guides in sidebar docs"
   },
@@ -19,12 +19,20 @@
     "message": "从源码编译安装",
     "description": "The label for category building CloudberryDB from source code in sidebar docs"
   },
-  "sidebar.docsbars.category.Reference": {
+  "sidebar.docsbars.category.References": {
     "message": "参考指南",
     "description": "The label for category reference in sidebar docs"
   },
   "sidebar.docsbars.category.SQL Statements": {
     "message": "SQL 语句",
     "description": "The label for category SQL statements in sidebar docs"
+  },
+  "sidebar.docsbars.category.Create and Prepare": {
+    "message": "创建和准备数据库",
+    "description": "The label for category creating and preparing database in sidebar docs"
+  },
+  "sidebar.docsbars.category.Operate with Data": {
+    "message": "数据操作",
+    "description": "The label for category data operations in sidebar docs"
   }
 }
