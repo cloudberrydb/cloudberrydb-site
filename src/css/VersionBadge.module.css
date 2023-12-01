@@ -1,0 +1,42 @@
+
+/* src/components/VersionBadge.module.css */
+
+.versionBadgeContainer {
+    display: inline-flex;
+    vertical-align: middle; /* 或使用 'top' 让整体位置更靠上 */
+    margin-left: 0px; /* 与标题之间的间距 */
+  }
+  
+  .versionBadge {
+    display: flex;
+    border-radius: 90px;
+    font-weight: 900;
+    font-size: 14px;
+  } 
+  
+  .versionBadge .since {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    min-width: 55px;
+    font-weight: 900;
+  }
+  
+  .versionBadge .version {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFA500;
+    color: #fff;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    min-width: 65px;
+    font-weight: 900;
+  }
+  
