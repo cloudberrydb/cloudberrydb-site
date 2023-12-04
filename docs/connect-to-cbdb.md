@@ -55,11 +55,11 @@ If the default values are not correct, you can set the environment variables `PG
 Depending on the default values used or the environment variables you have set, the following examples show how to access a database via `psql`:
 
 ```shell
-$ psql -d gpdatabase -h coordinator_host -p 5432 -U `gpadmin`
+$ psql -d mydatabase -h coordinator_host -p 5432 -U `gpadmin`
 ```
 
 ```shell
-$ psql gpdatabase
+$ psql mydatabase
 ```
 
 ```shell
@@ -75,7 +75,7 @@ $ psql postgres
 After connecting to a database, `psql` provides a prompt with the name of the database to which `psql` is currently connected, followed by the string `=>` (or `=#` if you are the database superuser). For example:
 
 ```shell
-gpdatabase=>
+mydatabase=>
 ```
 
 At the prompt, you might type in SQL commands. A SQL command must end with a `;` (semicolon) in order to be sent to the server and run. For example:

@@ -33,9 +33,9 @@ You can define constraints on columns and tables to restrict the data in your ta
 - `CHECK` constraints can refer only to the table on which they are defined.
 - `UNIQUE` and `PRIMARY KEY` constraints must be compatible with their table's distribution key and partitioning key, if any.
 
-    :::info
-    `UNIQUE` and `PRIMARY KEY` constraints are not allowed on append-optimized tables because the `UNIQUE` indexes that are created by the constraints are not allowed on append-optimized tables.
-    :::
+  :::info
+  `UNIQUE` and `PRIMARY KEY` constraints are not allowed on append-optimized tables because the `UNIQUE` indexes that are created by the constraints are not allowed on append-optimized tables.
+  :::
 
 - `FOREIGN KEY` constraints are allowed, but not enforced.
 - Constraints that you define on partitioned tables apply to the partitioned table as a whole. You cannot define constraints on the individual parts of the table.

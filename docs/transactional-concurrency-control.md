@@ -38,7 +38,7 @@ By default, the Global Deadlock Detector is deactivated, and Cloudberry Database
 
 When the Global Deadlock Detector is enabled:
 
-- The lock mode for some `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector]](#global-deadlock-detector).
+- The lock mode for some `DELETE` and `UPDATE` operations on heap tables is `ROW EXCLUSIVE`. See [Global Deadlock Detector](#global-deadlock-detector).
 :::
 
 ## Global Deadlock Detector
