@@ -35,7 +35,7 @@ A database role may have a number of attributes that define what sort of tasks t
 
 ### Alter role attributes
 
-A database role may have a number of attributes that define what sort of tasks that role can perform in the database.
+A database role might have a number of attributes that define what sort of tasks that role can perform in the database.
 
 |Attributes|Description|
 |----------|-----------|
@@ -145,7 +145,9 @@ You can also use the `DROP OWNED` and `REASSIGN OWNED` commands for managing obj
 
 Cloudberry Database is installed with an optional module of encryption/decryption functions called `pgcrypto`. The `pgcrypto` functions allow database administrators to store certain columns of data in encrypted form. This adds an extra layer of protection for sensitive data, as data stored in Cloudberry Database in encrypted form cannot be read by anyone who does not have the encryption key, nor can it be read directly from the disks.
 
-> **Note** The `pgcrypto` functions run inside the database server, which means that all the data and passwords move between `pgcrypto` and the client application in clear-text. For optimal security, consider also using SSL connections between the client and the Cloudberry coordinator server.
+:::info
+The `pgcrypto` functions run inside the database server, which means that all the data and passwords move between `pgcrypto` and the client application in clear-text.
+:::
 
 To use `pgcrypto` functions, register the `pgcrypto` extension in each database in which you want to use the functions. For example:
 
@@ -156,8 +158,6 @@ psql -d testdb -c "CREATE EXTENSION pgcrypto"
 See [pgcrypto](https://www.postgresql.org/docs/12/pgcrypto.html) in the PostgreSQL documentation for more information about individual functions.
 
 ## Protect passwords in Cloudberry Database
-
-`<!-- 建议研发核实下面的信息 by @TomShawn-->`
 
 In its default configuration, Cloudberry Database saves MD5 or SCRAM-SHA-256 hashes of login users' passwords in the `pg_authid` system catalog rather than saving clear text passwords. Anyone who is able to view the `pg_authid` table can see hash strings, but no passwords. This also ensures that passwords are obscured when the database is dumped to backup files.
 
@@ -172,12 +172,7 @@ The hash function runs when the password is set by using any of the following co
 
 The hash is calculated on the concatenated clear text password and role name. The MD5 hash produces a 32-byte hexadecimal string prefixed with the characters `md5` while the SCRAM-SHA-256 hash produces a 64-byte hexadecimal string prefixed with the characters `SCRAM-SHA-256`. The hashed password is saved in the `rolpassword` column of the `pg_authid` system table.
 
-To set `password_encryption` globally, run these commands in a shell as the `gpadmin` user:
-
-```shell
-$ gpconfig -c password_encryption -v 'scram-sha-256'
-$ gpstop -u
-```
+To set `password_encryption` globally, edit the `postgresql.conf` file and set the `password_encryption` parameter to `md5` or `scram-sha-256`.
 
 To set `password_encryption` in a session, use the SQL `SET` command:
 
