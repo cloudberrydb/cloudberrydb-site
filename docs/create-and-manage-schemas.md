@@ -90,7 +90,7 @@ The following system-level schemas exist in every database:
 
 - `pg_catalog` contains the system catalog tables, built-in data types, functions, and operators. It is always part of the schema search path, even if it is not explicitly named in the search path.
 - `information_schema` consists of a standardized set of views that contain information about the objects in the database. These views get system information from the system catalog tables in a standardized way.
-- `pg_toast` stores large objects such as records that exceed the page size. This schema is used internally by the Greenplum Database system.
-- `pg_bitmapindex` stores bitmap index objects such as lists of values. This schema is used internally by the Greenplum Database system.
-- `pg_aoseg` stores append-optimized table objects. This schema is used internally by the Greenplum Database system.
+- `pg_toast` stores large objects such as records that exceed the page size. This schema is used internally by the Cloudberry Database system.
+- `pg_bitmapindex` stores bitmap index objects such as lists of values. This schema is used internally by the Cloudberry Database system.
+- `pg_aoseg` stores append-optimized table objects. This schema is used internally by the Cloudberry Database system.
 - `gp_toolkit` is an administrative schema that contains external tables, views, and functions that you can access with SQL commands. All database users can access `gp_toolkit` to view and query the system log files and other system metrics.

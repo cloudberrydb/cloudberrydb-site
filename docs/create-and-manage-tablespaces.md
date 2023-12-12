@@ -4,11 +4,11 @@ title: Creating and Managing Tablespaces
 
 Tablespaces allow database administrators to have multiple file systems per machine and decide how to best use physical storage to store database objects. Tablespaces allow you to assign different storage for frequently and infrequently used database objects or to control the I/O performance on certain database objects. For example, place frequently-used tables on file systems that use high performance solid-state drives (SSD), and place other tables on standard hard drives.
 
-A tablespace requires a host file system location to store its database files. In Greenplum Database, the file system location must exist on all hosts including the hosts running the coordinator, standby coordinator, each primary segment, and each mirror segment.
+A tablespace requires a host file system location to store its database files. In Cloudberry Database, the file system location must exist on all hosts including the hosts running the coordinator, standby coordinator, each primary segment, and each mirror segment.
 
-A tablespace is Greenplum Database system object (a global object), you can use a tablespace from any database if you have appropriate privileges.
+A tablespace is Cloudberry Database system object (a global object), you can use a tablespace from any database if you have appropriate privileges.
 
-> **Note** Greenplum Database does not support different tablespace locations for a primary-mirror pair with the same content ID. It is only possible to configure different locations for different content IDs. Do not modify symbolic links under the `pg_tblspc` directory so that primary-mirror pairs point to different file locations; this will lead to erroneous behavior.
+> **Note** Cloudberry Database does not support different tablespace locations for a primary-mirror pair with the same content ID. It is only possible to configure different locations for different content IDs. Do not modify symbolic links under the `pg_tblspc` directory so that primary-mirror pairs point to different file locations; this will lead to erroneous behavior.
 
 ## Creating a Tablespace 
 
@@ -49,11 +49,11 @@ There is also the `temp_tablespaces` configuration parameter, which determines t
 
 The tablespace associated with a database stores that database's system catalogs, temporary files created by server processes using that database, and is the default tablespace selected for tables and indexes created within the database, if no `TABLESPACE` is specified when the objects are created. If you do not specify a tablespace when you create a database, the database uses the same tablespace used by its template database.
 
-You can use a tablespace from any database in the Greenplum Database system if you have appropriate privileges.
+You can use a tablespace from any database in the Cloudberry Database system if you have appropriate privileges.
 
 ## Viewing Existing Tablespaces 
 
-Every Greenplum Database system has the following default tablespaces.
+Every Cloudberry Database system has the following default tablespaces.
 
 - `pg_global` for shared system catalogs.
 - `pg_default`, the default tablespace. Used by the *template1* and *template0* databases.
@@ -119,7 +119,7 @@ You cannot drop a tablespace if it is not empty or if it stores temporary or tra
 
 You can move temporary or transaction files to a specific tablespace to improve database performance when running queries, creating backups, and to store data more sequentially.
 
-The Greenplum Database server configuration parameter `temp_tablespaces` controls the location for both temporary tables and temporary spill files for hash aggregate and hash join queries. Temporary files for purposes such as sorting large data sets are also created in these tablespaces.
+The Cloudberry Database server configuration parameter `temp_tablespaces` controls the location for both temporary tables and temporary spill files for hash aggregate and hash join queries. Temporary files for purposes such as sorting large data sets are also created in these tablespaces.
 
 `temp_tablespaces` specifies tablespaces in which to create temporary objects (temp tables and indexes on temp tables) when a `CREATE` command does not explicitly specify a tablespace.
 

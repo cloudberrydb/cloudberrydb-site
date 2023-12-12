@@ -24,7 +24,7 @@ The materialized view might be useful for displaying a graph in the dashboard cr
 REFRESH MATERIALIZED VIEW sales_summary;
 ```
 
-The information about a materialized view in the Greenplum Database system catalogs is exactly the same as it is for a table or view. A materialized view is a relation, just like a table or a view. When a materialized view is referenced in a query, the data is returned directly from the materialized view, just like from a table. The query in the materialized view definition is only used for populating the materialized view.
+The information about a materialized view in the Cloudberry Database system catalogs is exactly the same as it is for a table or view. A materialized view is a relation, just like a table or a view. When a materialized view is referenced in a query, the data is returned directly from the materialized view, just like from a table. The query in the materialized view definition is only used for populating the materialized view.
 
 If you can tolerate periodic updates of materialized view data, the performance benefit can be substantial.
 
