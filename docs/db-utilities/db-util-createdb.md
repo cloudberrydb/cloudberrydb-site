@@ -28,41 +28,41 @@ Normally, the database user who runs this command becomes the owner of the new d
 
 **`dbname`**
 
-The name of the database to be created. The name must be unique among all other databases in the Cloudberry system. If not specified, reads from the environment variable `PGDATABASE`, then `PGUSER` or defaults to the current system user.
+The name of the database to be created. The name must be unique among all other databases in the Cloudberry Database system. If not specified, reads from the environment variable `PGDATABASE`, then `PGUSER` or defaults to the current system user.
 
 **`description`**
 
 A comment to be associated with the newly created database. Descriptions containing white space must be enclosed in quotes.
 
-**`-D tablespace | --tablespace=tablespace`**
+**`-D tablespace | --tablespace=TABLESPACE`**
 
 Specifies the default tablespace for the database. (This name is processed as a double-quoted identifier.)
 
-**`-e echo`**
+**`-e | --echo`**
 
 Echo the commands that `createdb` generates and sends to the server.
 
-**`-E encoding | --encoding encoding`**
+**`-E encoding | --encoding=ENCODING`**
 
 Character set encoding to use in the new database. Specify a string constant (such as `'UTF8'`), an integer encoding number, or `DEFAULT` to use the default encoding.
 
-**`-l locale | --locale locale`**
+**`-l locale | --locale=LOCALE`**
 
 Specifies the locale to be used in this database. This is equivalent to specifying both `--lc-collate` and `--lc-ctype`.
 
-**`--lc-collate locale`**
+**`--lc-collate=LOCALE`**
 
 Specifies the `LC_COLLATE` setting to be used in this database.
 
-**`--lc-ctype locale`**
+**`--lc-ctype=LOCALE`**
 
 Specifies the `LC_CTYPE` setting to be used in this database.
 
-**`-O owner | --owner=owner`**
+**`-O owner | --owner=OWNER`**
 
 The name of the database user who will own the new database. Defaults to the user running this command. (This name is processed as a double-quoted identifier.)
 
-**`-T template | --template=template`**
+**`-T template | --template=TEMPLATE`**
 
 The name of the template from which to create the new database. Defaults to `template1`. (This name is processed as a double-quoted identifier.)
 
@@ -80,11 +80,11 @@ The options `-D`, `-l`, `-E`, `-O`, and `-T` correspond to options of the underl
 
 **`-h host | --host=host`**
 
-The host name of the machine on which the Cloudberry coordinator database server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
+The host name of the machine on which the Cloudberry Database coordinator server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
 **`-p port | --port=port`**
 
-The TCP port on which the Cloudberry coordinator database server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
+The TCP port on which the Cloudberry Database coordinator server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
 **`-U username | --username=username`**
 
@@ -110,12 +110,12 @@ To create the database `test` using the default options:
 createdb test
 ```
 
-To create the database `demo` using the Cloudberry coordinator on host `gpcoord`, port `54321`, using the `LATIN1` encoding scheme:
+To create the database `demo` using the Cloudberry Database coordinator on host `gpcoord`, port `54321`, using the `LATIN1` encoding scheme:
 
 ```shell
 createdb -p 54321 -h gpcoord -E LATIN1 demo
 ```
 
-## See Also
+## See also
 
 [`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [dropdb](/docs/db-utilities/db-util-dropdb.md)

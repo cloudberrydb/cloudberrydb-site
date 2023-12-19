@@ -43,11 +43,11 @@ Do not prompt the user for confirmation.
 
 **`-B parallel_processes`**
 
-The number of segments to stop in parallel. If not specified, the utility will start up to 64 parallel processes depending on how many segment instances it needs to stop.
+The number of segments to stop in parallel. You are expected to specify a number following this option, for example, `gpstop -B 3`.
 
 **`-d coordinator_data_directory`**
 
-Optional. The coordinator host data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
+Optional. The coordinator host data directory. You are expected to specify the data directory following this option, for example, `gpstop -d /data/master/gpseg-1`.
 
 **`--host host_name`**
 
@@ -69,7 +69,7 @@ The directory to write the log file. Defaults to `~/gpAdminLogs`.
 
 **`-m`**
 
-Optional. Shuts down a Cloudberry coordinator instance that was started in maintenance mode.
+Optional. Shuts down a Cloudberry Database coordinator instance that was started in maintenance mode.
 
 **`-M fast`**
 

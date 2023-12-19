@@ -33,7 +33,7 @@ Optional. Display a brief summary of the state of the Cloudberry Database system
 
 **`-B parallel_processes`**
 
-The number of segments to check in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to check.
+The number of segments to check in parallel. You are expected to specify a number following this option, for example, `gpstate -B 3`.
 
 **`-c (show primary to mirror mappings)`**
 
@@ -41,7 +41,7 @@ Optional. Display mapping of primary segments to their corresponding mirror segm
 
 **`-d coordinator_data_directory`**
 
-Optional. The coordinator data directory. If not specified, the value set for `$COORDINATOR_DATA_DIRECTORY` will be used.
+Optional. The coordinator data directory. You are expected to specify the data directory following this option, for example, `gpstate -d /data/master/gpseg-1`.
 
 **`-e (show segments with mirror status issues)`**
 
@@ -50,7 +50,9 @@ Show details on primary/mirror segment pairs that have potential issues. These i
 - Whether any segments are down.
 - Whether any primary-mirror segment pairs are out of sync – including information on how many bytes are remaining to sync (as displayed in the `WAL sync remaining bytes` output field).
 
-> **Note** `gpstate -e`does not display segment pairs that are in sync.
+:::info
+`gpstate -e`does not display segment pairs that are in sync.
+:::
 
 - Whether any primary-mirror segment pairs are not in their preferred roles.
 
@@ -91,7 +93,7 @@ Optional. Displays error messages and outputs detailed status and progress infor
 
 **`-x (expand)`**
 
-Optional. Displays detailed information about the progress and state of a Cloudberry system expansion.
+Optional. Displays detailed information about the progress and state of a Cloudberry Database system expansion.
 
 **`-? | -h | --help (help)`**
 
@@ -108,11 +110,11 @@ The following output fields are reported by `gpstate -s` for the coordinator:
 |Coordinator data directory|file system location of the coordinator data directory|
 |Coordinator port|port of the coordinator `postgres` database listener process|
 |Coordinator current role|dispatch = regular operating mode<br/><br/>utility = maintenance mode|
-|Cloudberry array configuration type|Standard = one NIC per host<br/><br/>Multi-Home = multiple NICs per host|
-|Cloudberry initsystem version|version of Cloudberry Database when system was first initialized|
-|Cloudberry current version|current version of Cloudberry Database|
+|Cloudberry Database array configuration type|Standard = one NIC per host<br/><br/>Multi-Home = multiple NICs per host|
+|Cloudberry Database initsystem version|version of Cloudberry Database when system was first initialized|
+|Cloudberry Database current version|current version of Cloudberry Database|
 |Postgres version|version of PostgreSQL that Cloudberry Database is based on|
-|Cloudberry mirroring status|physical mirroring or none|
+|Cloudberry Database mirroring status|physical mirroring or none|
 |Coordinator standby|host name of the standby coordinator|
 |Standby coordinator state|status of the standby coordinator: active or passive|
 
@@ -130,7 +132,7 @@ The following output fields are reported by `gpstate -s` for each primary segmen
 |Current write location|Location where primary segment is writing new logs as they come in|
 |Bytes remaining to send to mirror|Bytes remaining to be sent from primary to mirror|
 |Active PID|active process ID of a segment|
-|Coordinator reports status as|segment status as reported in the system catalog: Up or Down|
+|Configuration reports status as|segment status as reported in the system catalog: Up or Down|
 |Database status|status of Cloudberry Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
 
 The following output fields are reported by `gpstate -s` for each mirror segment:
@@ -153,7 +155,8 @@ The following output fields are reported by `gpstate -s` for each mirror segment
 |Coordinator reports status as|segment status as reported in the system catalog: Up or Down|
 |Database status|status of Cloudberry Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
 
-> **Note** When there is no connection between a primary segment and its mirror, `gpstate -s` displays `Unknown` in the following fields:
+:::info
+When there is no connection between a primary segment and its mirror, `gpstate -s` displays `Unknown` in the following fields:
 
 - `Bytes remaining to send to mirror`
 - `WAL Sent Location`
@@ -161,6 +164,7 @@ The following output fields are reported by `gpstate -s` for each mirror segment
 - `WAL Replay Location`
 - `Bytes received but remain to flush`
 - `Bytes received but remain to replay`
+:::
 
 The following output fields are reported by `gpstate -f` for standby coordinator replication status:
 
@@ -203,7 +207,7 @@ Show information about the standby coordinator configuration:
 gpstate -f
 ```
 
-Display the Cloudberry software version information:
+Display the Cloudberry Database software version information:
 
 ```shell
 gpstate -i
