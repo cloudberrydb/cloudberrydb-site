@@ -41,6 +41,18 @@ const sidebars = {
 
     {
       type: 'category',
+      label: 'Load Data',
+      items: ['data-loading/load-data-overview',
+      {
+        type: 'category',
+        label: 'Load Data from Local Files',
+        items: ['data-loading/load-data-using-copy', 'data-loading/load-data-using-gpfdist', 'data-loading/load-data-using-file-protocol','data-loading/load-data-using-gpload']
+      },
+      'data-loading/load-data-from-web-services']
+    },
+
+    {
+      type: 'category',
       label: 'Create and Prepare',
       items: ['create-and-manage-database','start-and-stop-cbdb-database','connect-to-cbdb']
      },
