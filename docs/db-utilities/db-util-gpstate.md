@@ -110,11 +110,11 @@ The following output fields are reported by `gpstate -s` for the coordinator:
 |Coordinator data directory|file system location of the coordinator data directory|
 |Coordinator port|port of the coordinator `postgres` database listener process|
 |Coordinator current role|dispatch = regular operating mode<br/><br/>utility = maintenance mode|
-|Cloudberry Database array configuration type|Standard = one NIC per host<br/><br/>Multi-Home = multiple NICs per host|
-|Cloudberry Database initsystem version|version of Cloudberry Database when system was first initialized|
-|Cloudberry Database current version|current version of Cloudberry Database|
+|CloudberryDB array configuration type|Standard = one NIC per host<br/><br/>Multi-Home = multiple NICs per host|
+|CloudberryDB initsystem version|version of Cloudberry Database when system was first initialized|
+|CloudberryDB current version|current version of Cloudberry Database|
 |Postgres version|version of PostgreSQL that Cloudberry Database is based on|
-|Cloudberry Database mirroring status|physical mirroring or none|
+|CloudberryDB mirroring status|physical mirroring or none|
 |Coordinator standby|host name of the standby coordinator|
 |Standby coordinator state|status of the standby coordinator: active or passive|
 
@@ -152,7 +152,7 @@ The following output fields are reported by `gpstate -s` for each mirror segment
 |Bytes received but remain to flush|Difference between flush log location and sent log location|
 |Bytes received but remain to replay|Difference between replay log location and sent log location|
 |Active PID|active process ID of a segment|
-|Coordinator reports status as|segment status as reported in the system catalog: Up or Down|
+|Configuration reports status as|segment status as reported in the system catalog: Up or Down|
 |Database status|status of Cloudberry Database to incoming requests: Up, Down, or Suspended. A Suspended state means database activity is temporarily paused while a segment transitions from one state to another.|
 
 :::info

@@ -78,15 +78,15 @@ The options `-D`, `-l`, `-E`, `-O`, and `-T` correspond to options of the underl
 
 ### Connection options
 
-**`-h host | --host=host`**
+**`-h host | --host=HOSTNAME`**
 
 The host name of the machine on which the Cloudberry Database coordinator server is running. If not specified, reads from the environment variable `PGHOST` or defaults to localhost.
 
-**`-p port | --port=port`**
+**`-p port | --port=PORT`**
 
 The TCP port on which the Cloudberry Database coordinator server is listening for connections. If not specified, reads from the environment variable `PGPORT` or defaults to 5432.
 
-**`-U username | --username=username`**
+**`-U username | --username=USERNAME`**
 
 The database role name to connect as. If not specified, reads from the environment variable `PGUSER` or defaults to the current system role name.
 
@@ -98,7 +98,7 @@ Never issue a password prompt. If the server requires password authentication an
 
 Force a password prompt.
 
-**`--maintenance-db=dbname`**
+**`--maintenance-db=DBNAME`**
 
 Specifies the name of the database to connect to when creating the new database. If not specified, the `postgres` database will be used; if that does not exist (or if it is the name of the new database being created), `template1` will be used.
 
