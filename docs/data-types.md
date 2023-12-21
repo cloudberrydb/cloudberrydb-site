@@ -23,9 +23,9 @@ Each data type has an external representation determined by its input and output
 | `character varying [ (n) ]`| `varchar [ (n) ]`      | 1 byte + string size | Strings up to `n` characters in length     | Variable-length with limit                               |
 | `cidr`                     |                        | 12 or 24 bytes |                                              | IPv4 and IPv6 networks                                   |
 | `circle`                   |                        | 24 bytes      | `<(x,y),r>` (center and radius)             | Circle in the plane, not allowed in distribution key columns. |
-| `date`                     |                        | 4 bytes`       | `'4714-11-24 BC'` - `'999999-12-31 AD'`     | Calendar date (year, month, day)                         |
+| `date`                     |                        | 4 bytes       | `'4714-11-24 BC'` - `'999999-12-31 AD'`     | Calendar date (year, month, day)                         |
 | `decimal [ (p, s) ]`1      | `numeric [ (p, s) ]`   | variable        | No limit                                    | User-specified precision, exact                          |
-| `double precision`         | `float8`               | 8 bytes`       | 15 decimal digits precision               | Variable-precision, inexact                              |
+| `double precision`         | `float8`               | 8 bytes       | 15 decimal digits precision               | Variable-precision, inexact                              |
 | `inet`                     |                        | 12 or 24 bytes |                                              | IPv4 and IPv6 hosts and networks                         |
 | `integer`                  | `int4`                 | 4 bytes       | `-2147483648` to `+2147483647`              | Usual choice for integer                                 |
 | `interval [ fields ] [ (p) ]` |                    | 16 bytes      | `-178000000 years` to `178000000 years`     | Time span                                                |

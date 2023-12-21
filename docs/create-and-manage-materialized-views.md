@@ -37,7 +37,7 @@ If a subquery is associated with a single query, consider using the `WITH` claus
 
 ## Create materialized views
 
-The `CREATE MATERIALIZED VIEW`command defines a materialized view based on a query.
+The `CREATE MATERIALIZED VIEW` command defines a materialized view based on a query.
 
 ```sql
 CREATE MATERIALIZED VIEW us_users AS SELECT u.id, u.name, a.zone FROM users u, address a WHERE a.country = 'USA';
