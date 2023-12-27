@@ -1,3 +1,7 @@
+---
+title: 创建和管理 Cloudberry Database
+---
+
 # 创建和管理 Cloudberry Database
 
 Cloudberry Database 系统是 Cloudberry Database 的单个实例。在 Cloudberry Database 中可能有多个正在运行的数据库系统，但通常客户端只能连接到其中一个系统。
