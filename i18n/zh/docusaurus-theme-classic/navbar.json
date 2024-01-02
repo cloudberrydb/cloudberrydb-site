@@ -7,8 +7,28 @@
     "message": "文档",
     "description": "Navbar item with label Docs"
   },
+  "item.label.Community": {
+    "message": "社区",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Contribute": {
+    "message": "贡献",
+    "description": "Navbar item with label Contribute"
+  },
   "item.label.Blog": {
     "message": "博客",
     "description": "Navbar item with label Blog"
+  },
+  "item.label.Download": {
+    "message": "下载",
+    "description": "Navbar item with label Download"
+  },
+  "item.label.Support": {
+    "message": "支持",
+    "description": "Navbar item with label Support"
+  },
+  "item.label.Bootcamp": {
+    "message": "Bootcamp",
+    "description": "Navbar item with label Bootcamp"
   }
 }

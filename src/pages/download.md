@@ -1,8 +1,7 @@
 ---
 title: Release & Download
+description: Get the latest release of Cloudberry Database to experience the latest technology.
 ---
-
-# Release & Download
 
 ## Release
 

@@ -1,0 +1,24 @@
+.mainContent {
+  width: var(--global-main-width);
+  margin: 0 auto;
+  position: relative;
+  height: 1065px;
+  .content {
+    position: absolute;
+    left: 294px;
+    top: 33px;
+
+    .title {
+      font-size: 32px;
+      line-height: 40px;
+    }
+    .subText {
+      line-height: 25px;
+      color: var(--sub-text-color-2);
+      margin-top: 17px;
+    }
+    .typeDesc {
+      margin-top: 46px;
+    }
+  }
+}
