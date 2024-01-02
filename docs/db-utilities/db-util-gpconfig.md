@@ -4,6 +4,9 @@ title: gpconfig
 
 # gpconfig
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Sets server configuration parameters on all segments within a Cloudberry Database system.
 
 ## Synopsis

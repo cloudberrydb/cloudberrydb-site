@@ -4,6 +4,9 @@ title: gpaddmirrors
 
 # gpaddmirrors
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Adds mirror segments to a Cloudberry Database system that was initially configured without mirroring.
 
 ## Synopsis

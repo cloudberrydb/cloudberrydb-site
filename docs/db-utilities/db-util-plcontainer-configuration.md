@@ -4,6 +4,9 @@ title: plcontainer Configuration File
 
 # plcontainer Configuration File
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 The Cloudberry Database utility `plcontainer` manages the PL/Container configuration files in a Cloudberry Database system. The utility ensures that the configuration files are consistent across the Cloudberry Database coordinator and segment instances.
 
 > **Caution** Modifying the configuration files on the segment instances without using the utility might create different, incompatible configurations on different Cloudberry Database segments that could cause unexpected behavior.

@@ -4,6 +4,9 @@ title: Window Functions
 
 # Window Functions in Cloudberry Database
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 The following are Cloudberry Database built-in window functions. All window functions are *immutable*.<!-- For more information about window functions, see "Window Expressions" in the *Cloudberry Database Administrator Guide*. -->
 
 |Function|Return Type|Full Syntax|Description|

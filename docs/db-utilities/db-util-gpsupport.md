@@ -4,6 +4,9 @@ title: gpsupport
 
 # gpsupport
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 The `gpsupport` tool provides a set of diagnostic utilities to troubleshoot and resolve common supportability issues, along with a consistent method for gathering information.
 
 ## Synopsis

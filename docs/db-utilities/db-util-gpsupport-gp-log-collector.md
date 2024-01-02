@@ -4,6 +4,9 @@ title: gpsupport gp_log_collector
 
 # gpsupport gp_log_collector
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 This tool collects Cloudberry and system log files, along with the relevant configuration parameters, and generates a file which can be provided for diagnosis of errors or system failures.
 
 ## Usage

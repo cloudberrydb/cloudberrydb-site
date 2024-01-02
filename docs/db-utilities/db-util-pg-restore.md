@@ -4,6 +4,9 @@ title: pg_restore
 
 # pg_restore
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Restores a database from an archive file created by `pg_dump`.
 
 ## Synopsis

@@ -4,6 +4,9 @@ title: Backup And Restore
 
 # Backup And Restore Cloudberry Database `<!-- 概念类信息，暂未验证 -->`
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Performing backups regularly ensures that you can restore your data or rebuild your Cloudberry Database system if data corruption or a system failure occurs. You can also use backups to migrate data from one Cloudberry Database system to another.
 
 Cloudberry Database supports parallel and non-parallel methods for backing up and restoring databases. Parallel operations scale regardless of the number of segments in your system, because segment hosts each write their data to local disk storage simultaneously. With non-parallel backup and restore operations, the data must be sent over the network from the segments to the coordinator, which writes all of the data to its storage. In addition to restricting I/O to one host, non-parallel backup requires that the coordinator have sufficient local disk storage to store the entire database.

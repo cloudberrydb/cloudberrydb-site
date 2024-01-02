@@ -4,6 +4,9 @@ title: gprecoverseg
 
 # gprecoverseg
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Recovers a primary or mirror segment instance that has been marked as down (if mirroring is enabled).
 
 ## Synopsis

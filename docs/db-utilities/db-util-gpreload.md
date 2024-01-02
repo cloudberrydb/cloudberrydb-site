@@ -4,6 +4,9 @@ title: gpreload
 
 # gpreload
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Reloads Cloudberry Database table data sorting the data based on specified columns.
 
 ## Synopsis

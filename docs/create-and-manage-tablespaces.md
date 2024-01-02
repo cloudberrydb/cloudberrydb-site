@@ -2,6 +2,8 @@
 title: Creating and Managing Tablespaces 
 ---
 
+# Creating and Managing Tablespaces
+
 Tablespaces allow database administrators to have multiple file systems per machine and decide how to best use physical storage to store database objects. Tablespaces allow you to assign different storage for frequently and infrequently used database objects or to control the I/O performance on certain database objects. For example, place frequently-used tables on file systems that use high performance solid-state drives (SSD), and place other tables on standard hard drives.
 
 A tablespace requires a host file system location to store its database files. In Cloudberry Database, the file system location must exist on all hosts including the hosts running the coordinator, standby coordinator, each primary segment, and each mirror segment.

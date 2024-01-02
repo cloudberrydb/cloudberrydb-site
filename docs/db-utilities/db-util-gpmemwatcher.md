@@ -4,6 +4,9 @@ title: gpmemwatcher
 
 # gpmemwatcher
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Tracks the memory usage of each process in a Cloudberry Database cluster.
 
 ## Synopsis

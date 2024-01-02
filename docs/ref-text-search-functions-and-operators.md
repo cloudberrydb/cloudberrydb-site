@@ -4,6 +4,9 @@ title: Text Search Functions and Operators
 
 # Text Search Functions and Operators in Cloudberry Database
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 The following tables summarize the functions and operators that are provided for full text searching.
 
 |Operator|Description|Example|Result|

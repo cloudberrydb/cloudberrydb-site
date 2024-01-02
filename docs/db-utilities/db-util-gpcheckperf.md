@@ -4,6 +4,9 @@ title: gpcheckperf
 
 # gpcheckperf
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Verifies the baseline hardware performance of the specified hosts.
 
 ## Synopsis

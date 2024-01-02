@@ -4,6 +4,9 @@ title: gppkg
 
 # gppkg
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Cloudberry Package Manager installs, upgrades, migrates, and removes Cloudberry Database extensions in `.gppkg` format, such as PL/Java, PL/R, PostGIS, and MADlib, along with their dependencies, across an entire cluster.
 
 ## Synopsis

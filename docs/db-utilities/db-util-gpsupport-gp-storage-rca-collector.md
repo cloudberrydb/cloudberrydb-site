@@ -4,6 +4,9 @@ title: gpsupport storage_rca_collector
 
 # gpsupport storage_rca_collector
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 This tool collects storage-related table data and generates an output file which can be provided for diagnosis of storage-related errors or system failures.
 
 ## Usage

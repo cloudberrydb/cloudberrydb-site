@@ -4,6 +4,9 @@ title: pg_config
 
 # pg_config
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Retrieves information about the installed version of Cloudberry Database.
 
 ## Synopsis

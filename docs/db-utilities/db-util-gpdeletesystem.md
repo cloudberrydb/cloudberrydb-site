@@ -4,6 +4,9 @@ title: gpdeletesystem
 
 # gpdeletesystem
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Deletes a Cloudberry Database system that was initialized using `gpinitsystem`.
 
 ## Synopsis

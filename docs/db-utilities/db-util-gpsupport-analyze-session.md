@@ -4,6 +4,9 @@ title: gpsupport analyze_session
 
 # gpsupport analyze_session
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 This tool traces busy processes associated with a Cloudberry Database session. The information collected can be used for root cause analysis on hung sessions.
 
 ## Usage

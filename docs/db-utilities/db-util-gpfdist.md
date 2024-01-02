@@ -4,6 +4,9 @@ title: gpfdist
 
 # gpfdist
 
+> [!WARNING]
+> The document page you are reading is not ready yet. It might contain inaccurate or incorrect content. It is not recommended to use this document for serious reference.
+
 Serves data files to or writes data files out from Cloudberry Database segments.
 
 ## Synopsis
