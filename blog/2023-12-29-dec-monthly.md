@@ -4,10 +4,11 @@ title: December Newsletter - Cloudberry Database (2023/12)
 authors: [cloudberrydbteam]
 tags: [newsletter]
 ---
-
 Hello there! We hope you're having a great time during the holiday season. Thank you for joining us for the latest Cloudberry Database project newsletter in December!
 
 In this newsletter, we will be sharing the latest updates, improvements, and contributions made by our incredible members. Let's dive right in and explore what's new!
+
+<!-- truncate -->
 
 ## Pull Requests
 

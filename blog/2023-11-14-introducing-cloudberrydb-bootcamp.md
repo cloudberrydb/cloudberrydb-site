@@ -11,6 +11,8 @@ The Cloudberry Database Bootcamp is a comprehensive program that provides a hand
 
 ![CloudberryDB Sandbox](../static/img/cbdb-sandbox.png)
 
+<!-- truncate -->
+
 The bootcamp includes step-by-step tutorials to get you started with the Cloudberry Database sandbox environment and its key features, real-world examples of best practices, and hands-on challenges to reinforce your understanding and put your new skills to the test.
 
 Getting started is easy, as the program is designed to be easy to follow, with clear instructions and examples that will help you learn at your own pace. Whether you're a data scientist, software developer, or someone who wants to learn more about Cloudberry Database, the Cloudberry Database Bootcamp is the perfect resource for you. You can access the program on [GitHub](https://github.com/cloudberrydb/bootcamp), where you will find the key resources you need to embark on your database learning journey.

@@ -7,6 +7,8 @@ tags: [newsletter]
 
 Hi, welcome to our Cloudberry Database project newsletter! From this month, we will initiate biweekly/monthly newsletters to gather information and new statuses around the Cloudberry Database. 
 
+<!-- truncate -->
+
 ## Pull Requests
 
 - [[FIXME] Wrong results on main branch for INDF query](https://github.com/cloudberrydb/cloudberrydb/pull/180) by @wenchaozhang-123
