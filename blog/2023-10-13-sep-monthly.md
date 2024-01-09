@@ -11,6 +11,8 @@ We invite you to join us in embracing the potential of open source technology as
 
 Let's get started!
 
+<!-- truncate -->
+
 ## Pull Requests
 
 - [Docs: merge docs for CBDB compilation on Linux systems](https://github.com/cloudberrydb/cloudberrydb/pull/224) by @TomShawn

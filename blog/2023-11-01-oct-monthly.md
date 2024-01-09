@@ -7,6 +7,8 @@ tags: [newsletter]
 
 Hey there! Welcome to our October newsletter for the Cloudberry Database project! 
 
+<!-- truncate -->
+
 We're so excited to have you on board with us. In this newsletter, we'll be sharing all the latest updates, improvements, and contributions made by our amazing community. From cool new features to pesky bug fixes, we have a lot to chat about, so let's get started!
 
 ## Pull Requests
