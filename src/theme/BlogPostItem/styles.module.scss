@@ -1,0 +1,29 @@
+.blogList {
+  border: 1px solid var(--sub-text-color-6);
+  position: relative;
+  &:hover {
+    border: 1px solid var(--active-color);
+  }
+}
+.blogDetail {
+  .tags {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+    .text {
+      margin-right: 15px;
+      color: var(--sub-text-color-2);
+    }
+  }
+}
+article[itemProp="blogPost"] {
+  border-radius: 6px;
+  margin-bottom: 22px;
+  // last column no margin
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+  &:nth-last-of-type(2) {
+    margin-bottom: 0;
+  }
+}

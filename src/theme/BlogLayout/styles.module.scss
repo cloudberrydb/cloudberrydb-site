@@ -1,0 +1,17 @@
+.main {
+  width: 896px;
+
+  &.blogList {
+    .breadCrumbs {
+      margin-bottom: 10px;
+    }
+    .listWrap {
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &.blogDetail {
+    margin: 0 auto;
+  }
+}

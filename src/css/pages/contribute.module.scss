@@ -1,0 +1,40 @@
+.globalWidth {
+  width: var(--global-main-width);
+  margin: 0 auto;
+  padding-left: 67px;
+  .mainContent {
+    // margin-left: 67px;
+    display: flex;
+    .leftContent {
+      width: 1050px;
+      flex-basis: 1050px;
+    }
+    .rightContent {
+      flex: 1;
+      position: relative;
+      .navLinkWrap {
+        position: sticky;
+        width: 196px;
+        height: 203px;
+        margin-left: 108px;
+        margin-top: 51px;
+        top: 130px;
+      }
+    }
+  }
+}
+
+.codeContribution {
+  display: flex;
+  margin-top: 32px;
+  .firstPosition {
+    margin-right: 20px;
+  }
+}
+
+.highLight {
+  color: var(--active-color);
+  a {
+    color: inherit;
+  }
+}

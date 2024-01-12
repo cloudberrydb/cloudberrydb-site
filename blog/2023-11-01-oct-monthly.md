@@ -3,6 +3,7 @@ slug: cloudberrydb-oct-weekly
 title: Oct Newsletter - Cloudberry Database (2023/10)
 authors: [cloudberrydbteam]
 tags: [newsletter]
+image: /img/blog/202310.png
 ---
 
 Hey there! Welcome to our October newsletter for the Cloudberry Database project! 

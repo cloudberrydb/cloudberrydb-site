@@ -1,0 +1,6 @@
+.mdxPageWrapper {
+  display: flex;
+  justify-content: center;
+  width: var(--global-main-width);
+  margin: 60px auto;
+}

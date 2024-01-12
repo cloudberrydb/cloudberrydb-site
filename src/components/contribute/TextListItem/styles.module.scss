@@ -1,0 +1,26 @@
+.wrap {
+  padding: 68px 0 57px 0;
+  box-sizing: border-box;
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 56px;
+  }
+  .content {
+    color: var(--sub-text-color-2);
+    line-height: 24px;
+    margin: 15px 0;
+  }
+  .link {
+    color: var(--active-color);
+    .icon {
+      fill: var(--active-color);
+    }
+    a {
+      color: inherit;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+.sub-text {
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: var(--sub-text-color-2);
+}
+
+.main-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 56px;
+}
+.sub-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--sub-text-color-5);
+}
+
+.flex {
+  display: flex;
+}
+.flex-justify-center {
+  justify-content: center;
+}
+
+.active-color {
+  color: var(--active-color);
+  cursor: pointer;
+}
+
+.two-lines-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.single-line-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.global-width-layout {
+  width: var(--global-main-width);
+  margin: 0 auto;
+  padding-left: 73px;
+}
+.global-width-center {
+  width: var(--global-main-width);
+  margin: 0 auto;
+}
+.hide-before-after {
+  &::before {
+    display: none;
+  }
+  &::after {
+    display: none;
+  }
+}
+
+// set up an external container and remove the underline of other labels in label a
+.link-wrap {
+  &:hover {
+    * {
+      text-decoration: none;
+    }
+  }
+}
