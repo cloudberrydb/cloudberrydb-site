@@ -1,5 +1,9 @@
 cloudberrydbteam:
   name: Cloudberrydb Team
-  title: Cloudberrydb Team
-  url: https://github.com/cloudberrydb
+  image_url: ../img/logo.svg
+Jianghua.yjh:
+  name: Jianghua.yjh
+  image_url: ../img/yjh.jpeg
+Jiajia.li:
+  name: Jiajia Li
   image_url: ../img/logo.svg
