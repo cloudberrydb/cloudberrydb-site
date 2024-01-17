@@ -1,69 +1,46 @@
 ---
-title: Security Policy
-description: Learn how to report security issues to us.
+title: 安全策略
+description: 了解如何向我们报告安全问题。
 ---
 
-## Reporting Security Issues
+## 报告安全问题
 
-To report a security issue, please email
-[security@cloudberrydb.org](mailto:security@cloudberrydb.org). This
-project follows a 90-day disclosure timeline. We will publish the
-[security
-advisories](https://github.com/cloudberrydb/cloudberrydb/security/advisories)
-via GitHub.
+要报告安全问题，请发送电子邮件至 [security@cloudberrydb.org](mailto:security@cloudberrydb.org)。本项目遵循 90 天披露时间计划。我们将通过 GitHub 发布[安全公告](https://github.com/cloudberrydb/cloudberrydb/security/advisories)。
 
-You should receive a response within 2 weeks. If for some reason you
-do not, please follow up via email to ensure we received your original
-message.
+你将在两周内收到回复。如果由于某种原因没有收到回复，请通过电子邮件保持跟进，以确保我们收到你发送的消息。
 
-Please include the requested information listed below (as much as you
-can provide) to help us better understand the nature and scope of the
-possible issue:
+请提供下列所需信息（尽可能多地提供），以帮助我们更好地了解潜在问题的性质和范围：
 
-* Type of issue (e.g. buffer overflow, SQL injection, cross-site
-  scripting, etc.)
-* Full paths of source file(s) related to the manifestation of the
-  issue
-* The location of the affected source code (tag/branch/commit or
-  direct URL)
-* Any special configuration required to reproduce the issue
-* Step-by-step instructions to reproduce the issue
-* Proof-of-concept or exploit code (if possible)
-* Impact of the issue, including how an attacker might exploit the
-  issue
+* 问题类型（例如缓冲区溢出、SQL 注入、跨站点脚本等）
+* 与问题相关的源文件的完整路径
+* 受影响的源代码的位置（标记/分支/提交或直接 URL）
+* 重现问题所需的任何特殊配置
+* 重现问题的分步说明
+* 概念验证或漏洞代码（如果可能）
+* 问题的影响，包括攻击者如何利用该问题
 
-This information will help us triage your report more quickly.
+这些信息将帮助我们更快地对你的报告做出分类。
 
-## Do not
+## 禁止
 
-For better collaboration, we hope you:
+为了更好地协作，我们期待你：
 
-- Do not file public issues on GitHub for security vulnerabilities.
-- Do not report non-security-impacting bugs through this channel. If
-  you have any questions on using, development, please use [GitHub
-  Issues, Discussions or
-  Slack](https://github.com/cloudberrydb/cloudberrydb/issues/new/choose)
-  instead.
+- 不要在 GitHub 上提交安全漏洞有关的公开 ISSUE。
+- 不要通过此渠道报告不影响安全的 bug。如果您对使用、开发有任何疑问，请使用 [GitHub Issues、Discussions 或 Slack]((https://github.com/cloudberrydb/cloudberrydb/issues/new/choose))。
 
-## Handling Process
+## 处理流程
 
-Here's an overview of the security issues handling process:
+以下是安全问题的处理流程概述：
 
-* The reporter reports the security issues to the Cloudberry Database
-  team.
-* The Cloudberry Database team investigates the report and decides to
-  accept or reject the report. If our team rejects the report, the
-  team will explain why to the reporter. If we accept the report, our
-  team will work privately with the reporter to fix the security
-  issues.
-* Release the new version of the Cloudberry Database that includes the
-  fix.
-* Public the security issues.
+* 报告者将安全问题报告给 Cloudberry Database 团队。
+* Cloudberry Database 团队调查报告并决定接受或拒绝报告。如果我们的团队拒绝报告，团队将向报告者解释原因。如果我们接受报告，我们的团队将与报告者私下合作解决安全问题。
+* 发布包含修复程序的新版本的 Cloudberry Database。
+* 公开安全问题。
 
-## Preferred Languages
+## 优选语言
 
-We prefer all communications to be in English.
+我们倾向沟通使用中文或英语沟通。
 
 ---
 
-Thanks for helping make Cloudberry Database safe!
+感谢你为 Cloudberry Database 的安全做出贡献！
