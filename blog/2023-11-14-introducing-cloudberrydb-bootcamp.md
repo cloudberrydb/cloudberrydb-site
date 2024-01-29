@@ -3,6 +3,7 @@ slug: introducing-cloudberrydb-bootcamp
 title: Introducing Cloudberry Database Bootcamp
 authors: [cloudberrydbteam]
 tags: [announcement]
+image: /img/blog/cbdb-bootcamp.png
 ---
 
 We are excited to announce the [Cloudberry Database Bootcamp](https://github.com/cloudberrydb/bootcamp) program!

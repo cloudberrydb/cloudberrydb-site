@@ -1,0 +1,37 @@
+.wrap {
+  border: 1px solid var(--sub-text-color);
+  padding: 20px;
+  width: 474px;
+  height: 190px;
+  cursor: pointer;
+  .content {
+    margin: 10px 0;
+  }
+  .link {
+    color: var(--active-color);
+    display: flex;
+    align-items: center;
+    .icon {
+      fill: var(--active-color);
+    }
+    a {
+      color: inherit;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    background-color: var(--active-color);
+    .content {
+      color: var(--sub-text-color-3);
+    }
+    .link {
+      color: var(--normal-text-color-1);
+
+      .icon {
+        fill: var(--normal-text-color-1);
+      }
+    }
+  }
+}

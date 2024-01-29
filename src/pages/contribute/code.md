@@ -1,5 +1,6 @@
 ---
 title: Code Contribution Guide
+description: Learn the code conventions, contribution workflow, how to review code, and the contributor checklist.
 ---
 
 # Code Contribution Guide
