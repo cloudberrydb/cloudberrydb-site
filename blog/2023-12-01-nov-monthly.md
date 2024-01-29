@@ -3,6 +3,7 @@ slug: cloudberrydb-nov-weekly
 title: Nov Newsletter - Cloudberry Database (2023/11)
 authors: [cloudberrydbteam]
 tags: [newsletter]
+image: /img/blog/202311.png
 ---
 
 Hello there! Thank you for joining us for the November newsletter of the Cloudberry Database project!

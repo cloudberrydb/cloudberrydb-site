@@ -1,0 +1,83 @@
+.wrap {
+  height: 469px;
+  padding: 58px 70px 70px 70px;
+  box-sizing: border-box;
+  background-color: var(--ifm-background-color);
+  width: var(--global-main-width);
+  margin: 0 auto 13px;
+
+  overflow: hidden;
+  .gTitle {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .listWrap {
+    margin-top: 23px;
+    display: flex;
+    justify-content: space-between;
+    .item {
+      border: 1px solid var(--sub-text-color);
+      width: 307px;
+      height: 232px;
+      box-sizing: border-box;
+      padding: 35px 23px;
+      border-radius: var(--normal-box-radius);
+      cursor: pointer;
+      &:hover {
+        border: 1px solid var(--title-text-color);
+        background: var(--active-color);
+        .title {
+          color: var(--normal-text-color-1);
+          a {
+            &:hover {
+              color: var(--normal-text-color-1);
+            }
+          }
+        }
+        .author {
+          color: var(--sub-text-color-3);
+          .portrait {
+            border-color: var(--portrait-border-hover-color);
+          }
+        }
+        .content {
+          color: var(--normal-text-color-1);
+        }
+      }
+      .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 26px;
+      }
+      .author {
+        color: var(--sub-text-color-2);
+        line-height: 20px;
+        margin-top: 19px;
+
+        .portrait {
+          width: 20px;
+          height: 20px;
+          border: 1px solid var(--portrait-border-color);
+          border-radius: 50%;
+          &:not(:last-of-type) {
+            margin-right: 2px;
+          }
+        }
+
+        &.singleAuthor {
+          .nameLogo {
+            display: flex;
+            align-items: center;
+          }
+          .portrait {
+            margin-right: 5px;
+          }
+        }
+        &.multiAuthor {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

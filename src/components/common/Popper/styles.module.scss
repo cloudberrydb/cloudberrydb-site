@@ -1,0 +1,38 @@
+.popperContent {
+  background: var(--popper-bg-color);
+  border-radius: 4px;
+  color: green;
+  text-align: justify;
+  word-break: break-all;
+  box-sizing: border-box;
+  z-index: 1000;
+  position: relative;
+  height: 23px;
+  font-size: 12px;
+  padding: 3px 10px;
+  text-align: center;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #3a3f63;
+  margin-top: 10px;
+  // display: none;
+  opacity: 0;
+  &.isOpen {
+    // display: block;
+    opacity: 1;
+  }
+}
+
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  background: var(--popper-bg-color);
+  left: 50%;
+  transform: translateX(-50%);
+  top: -3px;
+  transform: translateX(-50%) rotate(45deg);
+}

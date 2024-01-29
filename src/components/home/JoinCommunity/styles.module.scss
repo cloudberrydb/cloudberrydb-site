@@ -1,0 +1,43 @@
+.wrap {
+  height: 528px;
+  background-color: var(--normal-bg-1);
+  overflow: hidden;
+  .rect {
+    width: 1300px;
+    height: 412px;
+    background-color: var(--active-color);
+    margin: 81px auto 0;
+    border-radius: var(--normal-box-radius);
+    text-align: center;
+    overflow: hidden;
+    .title {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 56px;
+      color: var(--normal-text-color);
+      margin-top: 79px;
+    }
+    .content {
+      font-size: 16px;
+      font-weight: 400;
+      text-align: center;
+      line-height: 24px;
+      color: rgba(0, 0, 0, 0.6);
+      width: 899px;
+      margin: 18px auto 45px;
+      text-indent: 18px;
+    }
+    .links {
+      width: 518px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      .item {
+        fill: var(--normal-text-color-1);
+        &:hover {
+          fill: var(--hover-fill-color);
+        }
+      }
+    }
+  }
+}

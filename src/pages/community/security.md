@@ -1,5 +1,6 @@
 ---
 title: Security Policy
+description: Learn how to report security issues to us.
 ---
 
 # Security Policy

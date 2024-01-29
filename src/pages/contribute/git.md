@@ -1,5 +1,6 @@
 ---
 title: Working with Git & GitHub
+description: Before starting, it's important to learn Git and GitHub to effectively contribute and communicate with other members.
 ---
 
 # Working with Git & GitHub

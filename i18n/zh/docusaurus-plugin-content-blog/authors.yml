@@ -1,9 +1,9 @@
 cloudberrydbteam:
   name: Cloudberrydb Team
-  image_url: ../img/logo.svg
+  image_url: /img/blog/dbteam.png
 Jianghua.yjh:
   name: Jianghua.yjh
-  image_url: ../img/yjh.jpeg
+  image_url: /img/yjh.jpeg
 Jiajia.li:
   name: Jiajia Li
-  image_url: ../img/logo.svg
+  image_url: /img/blog/dbteam.png
