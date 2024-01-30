@@ -12,7 +12,7 @@ The `CREATE TABLE` command creates a table and defines its structure. When you c
 
 - The columns of the table and their associated data types. See [Choose column data types](#choose-column-data-types).
 - Any table or column constraints to limit the data that a column or table can contain. See [Setting table and column constraints](#set-table-and-column-constraints).
-- The distribution policy of the table, which determines how Cloudberry Database divides data across the segments. See [Choosing the table distribution policy](#choose-column-data-types).
+- The distribution policy of the table, which determines how Cloudberry Database divides data across the segments.
 - The way the table is stored on disk.
 - The table partitioning strategy for large tables.
 
