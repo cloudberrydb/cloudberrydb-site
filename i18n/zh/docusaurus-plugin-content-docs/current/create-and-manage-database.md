@@ -1,5 +1,5 @@
 ---
-title: 创建和管理 Cloudberry Database
+title: 创建和管理数据库
 ---
 
 # 创建和管理 Cloudberry Database

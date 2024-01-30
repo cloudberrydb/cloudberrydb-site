@@ -1,5 +1,5 @@
 ---
-title: 启动和停止 Cloudberry Database
+title: 启动和停止数据库
 ---
 
 # 启动和停止 Cloudberry Database
