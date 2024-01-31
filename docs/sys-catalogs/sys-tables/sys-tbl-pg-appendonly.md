@@ -2,6 +2,8 @@
 title: pg_appendonly
 ---
 
+# pg_appendonly
+
 The `pg_appendonly` table in the `pg_catalog` schema contains information about the storage options and other characteristics of append-optimized tables.
 
 |column|type|references|description|
