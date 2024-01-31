@@ -45,11 +45,11 @@ export default function MainContent({
           marginBottom: 32,
         }}
       >
-        <CardLine cardLine={DATA_101.cardLine1} />
+        <CardLine cardLine={DATA_101.cardLine1} itemWidth={221} />
       </div>
 
       <div className={styles.cardLine}>
-        <CardLine cardLine={DATA_101.cardLine2} />
+        <CardLine cardLine={DATA_101.cardLine2} itemWidth={305.33} />
       </div>
 
       {/* 102 before */}
@@ -72,7 +72,7 @@ export default function MainContent({
       </div>
       <div className="sub-text">{DATA_103.subText}</div>
       <div className={styles.cardLine} style={{ marginTop: 32 }}>
-        <CardLine cardLine={DATA_103.cardLine} />
+        <CardLine cardLine={DATA_103.cardLine} itemWidth={474} />
       </div>
 
       {/* 104 before */}
@@ -84,7 +84,7 @@ export default function MainContent({
         {DATA_104.title}
       </div>
       <div className={styles.cardLine}>
-        <CardLine cardLine={DATA_104.cardLine} />
+        <CardLine cardLine={DATA_104.cardLine} itemWidth={474} />
       </div>
 
       {/* Get the Source */}
