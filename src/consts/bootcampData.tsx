@@ -1,3 +1,5 @@
+import LinkWithBaseUrl from "../components/common/LinkWithBaseUrl";
+
 export const DATA_0 = {
   title: "Bootcamp Outline",
   subTitle: "CloudberryDB Sandbox",
@@ -139,7 +141,13 @@ export const GET_SOURCE = {
   content: (
     <>
       You can get the whole Bootcamp source code from the GitHub repo{" "}
-      <span className="active-color">cloudberrydb/bootcamp</span>.
+      <LinkWithBaseUrl
+        to="https://github.com/cloudberrydb/bootcamp"
+        className="active-color"
+      >
+        cloudberrydb/bootcamp
+      </LinkWithBaseUrl>
+      .
     </>
   ),
 };
