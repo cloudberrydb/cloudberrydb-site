@@ -1,5 +1,6 @@
 ---
 title: Cloudberry Database Proposal (CP)
+description: If you are planning to make significant changes to the Cloudberry Database, please submit a proposal for review.
 ---
 
 # Cloudberry Database Proposal Guide
@@ -22,13 +23,13 @@ to get feedback via GitHub Discussions.
 But any of the following can be considered a major change that needs
 to have a **Proposal**:
 
-* Any change that impacts the public interfaces of Cloudberry
+- Any change that impacts the public interfaces of Cloudberry
   Database.
-* Any new component, module, or code that introduces a new concept
+- Any new component, module, or code that introduces a new concept
   into Cloudberry Database or alters the behavior of an existing one.
-* Any large code refactors to address general code re-usability and
+- Any large code refactors to address general code re-usability and
   structure.
-* Any important breaking backward or forward compatibility.
+- Any important breaking backward or forward compatibility.
 
 :::caution
 
@@ -63,12 +64,12 @@ template](https://github.com/orgs/cloudberrydb/discussions/new?category=proposal
 all the fields as you can, at least the required ones, including:
 
 - Proposal title. Be direct, and clear. Please also keep the prefix
-`[Proposal]` starting with the title.
+  `[Proposal]` starting with the title.
 - Proposers. List all the proposers, can be only one, many people, a
   team, company.
 - Proposal Status. Choose one from the following: `Under
-  Discussion`/`In Progress`/`Completed`/`Inactive`/`Abandoned`, `Under
-  Discussion` as default when you initiate the CP.
+Discussion`/`In Progress`/`Completed`/`Inactive`/`Abandoned`, `Under
+Discussion` as default when you initiate the CP.
 - Abstract. A clear and concise description of what your proposal is.
 - Motivation. Please outline the motivation and why it should be
   implemented.
@@ -102,7 +103,7 @@ Votes are represented as numbers between -1 and +1, with '-1' meaning
 'no' and '+1' meaning 'yes.'
 
 The in-between values indicate how strongly the voting individual
-feels.  Here are some examples of fractional votes and what the voter
+feels. Here are some examples of fractional votes and what the voter
 might be communicating with them:
 
 - +0: 'I don't feel strongly about it, but I'm okay with this.'
@@ -122,12 +123,12 @@ most of this period is a weekend. The whole community is encouraged to
 give +1 and -1 votes.
 
 The vote as well as `Discuss` is a consensus-seeking process, “the
-goal is not to *win* votes or come to a unanimous agreement, but
+goal is not to _win_ votes or come to a unanimous agreement, but
 rather to ensure that there’s a forum for people to raise and discuss
 their concerns and that nobody feels strongly enough to block the
-group from moving forward.  Consensus-seeking emphasizes discussion
-over enumeration: *Rough consensus is achieved when all issues are
-addressed, but not necessarily accommodated.*”
+group from moving forward. Consensus-seeking emphasizes discussion
+over enumeration: _Rough consensus is achieved when all issues are
+addressed, but not necessarily accommodated._”
 
 For the vote, we are used to `majority approval`, that is, there must
 be more positive than negative votes.
@@ -207,7 +208,7 @@ changes in your implementation.
 ## List of Cloudberry Database Proposals(CPs)
 
 | No.  | Title                                                                        | Status  | Discussion Thread                                    |
-|------|------------------------------------------------------------------------------|---------|------------------------------------------------------|
+| ---- | ---------------------------------------------------------------------------- | ------- | ---------------------------------------------------- |
 | CP-2 | [Proposal] Implement Scorll Parallel Retrieve Cursor                         | Discuss | https://github.com/orgs/cloudberrydb/discussions/120 |
 | CP-1 | [Proposal] Support Incremental View Maintenance (IVM) in Cloudberry Database | Discuss | https://github.com/orgs/cloudberrydb/discussions/36  |
 

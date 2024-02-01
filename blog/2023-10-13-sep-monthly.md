@@ -3,6 +3,7 @@ slug: cloudberrydb-sep-weekly
 title: Sep Newsletter - Cloudberry Database (2023/09)
 authors: [cloudberrydbteam]
 tags: [newsletter]
+image: /img/blog/202309.png
 ---
 
 Welcome to the September monthly newsletter of the Cloudberry Database Community! Our goal with this newsletter is to keep you informed about the most recent developments, trends, and events within our community, as well as to highlight the impressive contributions and accomplishments of our members.
@@ -10,6 +11,8 @@ Welcome to the September monthly newsletter of the Cloudberry Database Community
 We invite you to join us in embracing the potential of open source technology as we work collaboratively to build an even stronger community.
 
 Let's get started!
+
+<!-- truncate -->
 
 ## Pull Requests
 

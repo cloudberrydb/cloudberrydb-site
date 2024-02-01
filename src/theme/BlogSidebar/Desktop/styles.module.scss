@@ -1,0 +1,29 @@
+.aside {
+  width: 224px;
+  margin-right: 71px;
+  .sidebar {
+    max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
+    overflow-y: auto;
+    position: sticky;
+    padding-top: 23px;
+  }
+  .sidebarItemTitle {
+    margin-bottom: 3px;
+  }
+  .sidebarItem {
+    cursor: pointer;
+    margin-top: 1px;
+    color: var(--sub-text-color-2);
+    padding: 0 20px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 4px;
+    margin-left: -20px;
+
+    &:hover,
+    &.active {
+      color: var(--active-color);
+      background-color: var(--menu-bg-color);
+    }
+  }
+}

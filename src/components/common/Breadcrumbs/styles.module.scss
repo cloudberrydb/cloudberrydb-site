@@ -1,0 +1,32 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  height: 21px;
+  font-size: 13px;
+  color: var(--sub-text-color-2);
+  .backLogoA {
+    position: relative;
+    top: 1px;
+    .backLogoSvg {
+      fill: var(--back-home-logo-color);
+    }
+    &:hover {
+      .backLogoSvg {
+        fill: var(--active-color);
+      }
+    }
+  }
+  .line {
+    opacity: 0.4;
+    margin: 0 4px;
+  }
+
+  .path {
+    span.leafPath {
+      color: var(--active-color);
+    }
+    .backPath {
+      text-decoration: none;
+    }
+  }
+}

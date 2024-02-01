@@ -1,5 +1,6 @@
 ---
 title: Community Events
+description: Don't miss out on exciting community events! Subscribe to our events calendar for meetups, webinars, conferences, and more.
 ---
 
 # Community Events

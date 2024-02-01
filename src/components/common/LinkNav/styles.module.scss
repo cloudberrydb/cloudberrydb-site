@@ -1,0 +1,56 @@
+.nav {
+  list-style: none;
+  .item {
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 19px;
+    position: relative;
+    margin-top: 0px;
+    height: 40px;
+    &.active {
+      color: var(--active-color);
+      a {
+        &::after {
+          background-color: var(--active-color);
+        }
+      }
+    }
+
+    &:hover {
+      color: var(--ifm-color-primary);
+      // a {
+      //   &::after {
+      //     background-color: var(--active-color);
+      //   }
+      // }
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      &::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        display: inline-block;
+        position: absolute;
+        background-color: var(--nav-link-line-normal-color);
+        border-radius: 50%;
+        left: -19px;
+        top: 6px;
+      }
+    }
+    &:not(:last-child) {
+      a {
+        &::before {
+          content: "";
+          background-image: url("/img/vertical-line.png");
+          width: 2px;
+          height: 32px;
+          position: absolute;
+          left: -16px;
+          top: 14px;
+        }
+      }
+    }
+  }
+}

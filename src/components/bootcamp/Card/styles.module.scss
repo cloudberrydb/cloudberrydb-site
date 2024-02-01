@@ -1,0 +1,34 @@
+.card {
+  border: 1px solid var(--sub-text-color);
+  border-radius: var(--normal-box-radius);
+  padding: 0 21px;
+  padding-top: 14px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--active-color);
+    color: var(--hover-full-bg-text-color);
+    .link,
+    a {
+      color: var(--hover-full-bg-text-color);
+    }
+    .content {
+      color: var(--sub-text-color-3);
+    }
+    svg {
+      fill: var(--hover-full-bg-text-color) !important;
+    }
+  }
+  .content {
+    line-height: 26px;
+    padding-bottom: 22px;
+  }
+  .link {
+    padding-bottom: 25px;
+    font-size: 14px;
+    color: var(--active-color);
+    svg {
+      fill: var(--active-color);
+      vertical-align: middle;
+    }
+  }
+}

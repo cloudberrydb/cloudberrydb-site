@@ -3,18 +3,20 @@ slug: cloudberrydb-nov-weekly
 title: Nov Newsletter - Cloudberry Database (2023/11)
 authors: [cloudberrydbteam]
 tags: [newsletter]
+image: /img/blog/202311.png
 ---
 
 Hello there! Thank you for joining us for the November newsletter of the Cloudberry Database project!
 
 We are thrilled to have you as a part of our community. In this newsletter, we will be sharing the latest updates, improvements, and contributions made by our incredible members. We have a lot to talk about, from exciting new features to bug fixes, so let's dive right in!
 
+<!-- truncate -->
+
 ## Highlight: Cloudberry Database Bootcamp
 
 A few weeks ago, we announced the [Cloudberry Database Bootcamp](https://github.com/cloudberrydb/bootcamp) program, a comprehensive program that provides a hands-on experience with Cloudberry Database. It is tailored to help you understand Cloudberry Database's capabilities and features a range of materials, including tutorials, sample code, and crash courses. If you're new to Cloudberry Database, this bootcamp is the perfect place to begin. You can check the [Announcement blog post](/blog/introducing-cloudberrydb-bootcamp) for more details.
 
 ![CloudberryDB Sandbox](../static/img/cbdb-sandbox.png)
-
 
 ## Pull Requests
 

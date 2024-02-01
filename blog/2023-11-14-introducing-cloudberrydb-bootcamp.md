@@ -3,6 +3,7 @@ slug: introducing-cloudberrydb-bootcamp
 title: Introducing Cloudberry Database Bootcamp
 authors: [cloudberrydbteam]
 tags: [announcement]
+image: /img/blog/cbdb-bootcamp.png
 ---
 
 We are excited to announce the [Cloudberry Database Bootcamp](https://github.com/cloudberrydb/bootcamp) program!
@@ -10,6 +11,8 @@ We are excited to announce the [Cloudberry Database Bootcamp](https://github.com
 The Cloudberry Database Bootcamp is a comprehensive program that provides a hands-on experience with Cloudberry Database. It is tailored to help you gain a basic understanding of Cloudberry Database's capabilities and features a range of materials, including tutorials, sample code, and crash courses. If you're new to Cloudberry Database, this bootcamp is the perfect place to begin.
 
 ![CloudberryDB Sandbox](../static/img/cbdb-sandbox.png)
+
+<!-- truncate -->
 
 The bootcamp includes step-by-step tutorials to get you started with the Cloudberry Database sandbox environment and its key features, real-world examples of best practices, and hands-on challenges to reinforce your understanding and put your new skills to the test.
 

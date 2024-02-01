@@ -1,5 +1,6 @@
 ---
 title: WeChat Guide
+description: If you'd like to chat or discuss in real-time using WeChat (in Mandarin Chinese), please feel free to request to join our WeChat groups.
 ---
 
 # WeChat Guide

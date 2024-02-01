@@ -7,7 +7,7 @@
 [![GitHub 
 Discussions](https://img.shields.io/github/discussions/cloudberrydb/cloudberrydb)](https://github.com/orgs/cloudberrydb/discussions)
 
----------
+---
 
 ## Website Directory Structure
 
@@ -37,16 +37,16 @@ Notable directories Description:
 
 1. Blog
 
-    The Blog post files are placed in the `blog` directory. You need
-    to create one new folder for each new post and add the author
-    information to the `blog/authors.yml`.
+   The Blog post files are placed in the `blog` directory. You need
+   to create one new folder for each new post and add the author
+   information to the `blog/authors.yml`.
 
 2. Document
 
-    The latest version of the document is under the `docs` (en) and `/i18n/zh/docusaurus-plugin-content-docs/current/` (zh).
-    directory. Media including images, video can be placed in
-    `docs/media` folder. You must add the new doc file name to
-    `sidebars.js` to make it display on the website.
+   The latest version of the document is under the `docs` (en) and `/i18n/zh/docusaurus-plugin-content-docs/current/` (zh).
+   directory. Media including images, video can be placed in
+   `docs/media` folder. You must add the new doc file name to
+   `sidebars.js` to make it display on the website.
 
 3. Pictures
 
@@ -79,7 +79,7 @@ $ npm install
 3. Build and run
 
 ```
-$ npm run build 
+$ npm run build
 $ npm run serve
 ```
 
