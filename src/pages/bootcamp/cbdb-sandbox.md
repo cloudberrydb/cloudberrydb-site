@@ -1,8 +1,7 @@
 ---
-title: Sandbox of Single-Node Cloudberry Database
+title: Install Single-Node Cloudberry Database in a Docker Container (Sandbox)
+description: Learn how to quickly set up and connect to a single-node Cloudberry Database in a Docker environment.
 ---
-
-# Install Single-Node Cloudberry Database in a Docker Container
 
 This document guides you on how to quickly set up and connect to a single-node Cloudberry Database in a Docker environment. You can try out Cloudberry Database by performing some basic operations and running SQL commands.
 

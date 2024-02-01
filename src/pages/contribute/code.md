@@ -3,8 +3,6 @@ title: Code Contribution Guide
 description: Learn the code conventions, contribution workflow, how to review code, and the contributor checklist.
 ---
 
-# Code Contribution Guide
-
 ## Code of Conduct
 
 Everyone who participates in Cloudberry Database, either as a user or
@@ -101,69 +99,69 @@ account.
 
 2. Clone down the repo to your local system.
 
-```
-$ git clone git@github.com:your-user-name/cloudberrydb.git
-```
+    ```
+    $ git clone git@github.com:your-user-name/cloudberrydb.git
+    ```
 
 3. Add the upstream repo. (You only have to do this once, not every
 time.)
 
-```
-$ git remote add upstream https://github.com/cloudberrydb/cloudberrydb.git
-```
+    ```
+    $ git remote add upstream https://github.com/cloudberrydb/cloudberrydb.git
+    ```
 
-now, when you run `git remote -v` will show two remote repositories
-named:
+    now, when you run `git remote -v` will show two remote repositories
+    named:
 
-* `upstream`, which refers to the 'cloudberrydb' repository
-* `origin`, which refers to your personal fork
+    * `upstream`, which refers to the 'cloudberrydb' repository
+    * `origin`, which refers to your personal fork
 
 4. Create a new branch to hold your work.
 
-```
-$ git checkout -b new-branch-name
-```
+    ```
+    $ git checkout -b new-branch-name
+    ```
 
 5. Work on your new code. Write and run tests.
 
 6. Commit your changes. For writing a good commit message, please
 refer to [Commit Conventions](./git#commit-conventions).
 
-```
-$ git add
-$ git commit
-```
+    ```
+    $ git add
+    $ git commit
+    ```
 
 7. Push your changes to your GitHub repo.
 
-```
-git push origin branch-name
-```
+    ```
+    git push origin branch-name
+    ```
 
 8. Open a PR(Pull Request).
 
-Go to the Cloudberry Database repo on GitHub. There will be a message
-about your recently pushed branch, asking if you would like to open a
-pull request. Follow the prompts, compare across repositories, and
-submit the PR.
+    Go to the Cloudberry Database repo on GitHub. There will be a message
+    about your recently pushed branch, asking if you would like to open a
+    pull request. Follow the prompts, compare across repositories, and
+    submit the PR.
 
-For code contributors, don’t rebase your branch orotherwise modify
-published commits during the code review process, since this can
-remove existing comment history and confuse the reviewers when
-reviewing. When you make a revision, always push it in a new commit.
+    For code contributors, don’t rebase your branch orotherwise modify
+    published commits during the code review process, since this can
+    remove existing comment history and confuse the reviewers when
+    reviewing. When you make a revision, always push it in a new commit.
 
 9. Get your code reviewed.
 
-Cloudberry Database maintainers and other contributors will review
-your PR. Please participate in the conversation, and try to make any
-requested changes. If you get no review comments within two weeks,
-feel free to ask for feedback by mentioning @cloudberry/dev team in
-your PR comment.
+    Cloudberry Database maintainers and other contributors will review
+    your PR. Please participate in the conversation, and try to make any
+    requested changes. If you get no review comments within two weeks,
+    feel free to ask for feedback by mentioning @cloudberry/dev team in
+    your PR comment.
 
-Once the maintainers are happy with your change, they'll approve the
-pull request. At this point, the maintainer will take over, possibly
-make some additional touch ups, and merge your changes into the
-codebase.
+    Once the maintainers are happy with your change, they'll approve the
+    pull request. At this point, the maintainer will take over, possibly
+    make some additional touch ups, and merge your changes into the
+    codebase.
 
 10. Congratulations! Once your PR is approved by at least 2
 maintainers with write access, and passes the CI/CD without errors,
@@ -177,21 +175,21 @@ repository is up to date:
 
 1. Switch to the local main branch.
 
-```
-$ git checkout main
-```
+    ```
+    $ git checkout main
+    ```
 
 2. Fetch the latest changes from upstream.
 
-```
-$ git fetch upstream
-```
+    ```
+    $ git fetch upstream
+    ```
 
 3. Create a new branch if you are starting new work.
 
-```
-$ git checkout -b branch-name
-```
+    ```
+    $ git checkout -b branch-name
+    ```
 
 If you want to update your existing branch with changes from upstream,
 you need to run `git checkout branch-name`, then rebase your branch on

@@ -3,8 +3,6 @@ title: Contributor Covenant Code of Conduct
 description: Let's work together to create a space that is open, welcoming, diverse, inclusive, and healthy for everyone.
 ---
 
-# Contributor Covenant Code of Conduct
-
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in our

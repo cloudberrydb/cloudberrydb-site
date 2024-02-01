@@ -1,8 +1,7 @@
 ---
 title: "[101-4] Lesson 4: Data Loading"
+description: Load your data to the Cloudberry Database.
 ---
-
-# [101-4] Lesson 4: Data Loading
 
 This tutorial briefly introduces 3 methods to load the example data `FAA` into Cloudberry Database tables you have created in the previous tutorial [Lesson 3: Create Tables](./101-3-create-tables). Before continuing, make sure you have completed the previous tutorial.
 
@@ -391,4 +390,4 @@ Other tutorials:
 - [Lesson 1: Create Users and Roles](./101-1-create-users-and-roles)
 - [Lesson 2: Create and Prepare Database](./101-2-create-and-prepare-database)
 - [Lesson 3: Create Tables](./101-3-create-tables)
-- [Lesson 6: Backup and Recovery Operations](./101-6-backup-and-recovery-operations)
+- [Lesson 6: Backup and Restore Operations](./101-6-backup-and-recovery-operations)

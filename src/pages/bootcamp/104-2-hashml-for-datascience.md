@@ -1,7 +1,6 @@
 ---
 title: "[104-2] HashML for Data Science"
+description: More is coming
 ---
-
-# [104-2] HashML for Data Science
 
 More is coming!

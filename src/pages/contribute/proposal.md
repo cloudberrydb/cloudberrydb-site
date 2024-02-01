@@ -1,9 +1,7 @@
 ---
-title: Cloudberry Database Proposal (CP)
+title: Cloudberry Database Proposal Guide
 description: If you are planning to make significant changes to the Cloudberry Database, please submit a proposal for review.
 ---
-
-# Cloudberry Database Proposal Guide
 
 This page describes a `Cloudberry Database Proposal(CP)` process for
 proposing major changes to Cloudberry Database.

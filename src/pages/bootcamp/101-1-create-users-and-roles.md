@@ -1,8 +1,7 @@
 ---
 title: "[101-1] Lesson 1: Create Users and Roles"
+description: Learn how to create users and roles in the Cloudberry Database with this helpful introduction.
 ---
-
-# [101-1] Lesson 1: Create Users and Roles
 
 Cloudberry Database manages database access using roles. Initially, there is one superuser role, the role associated with the OS user who initialized the database instance, usually `gpadmin`. This user owns all of the Cloudberry Database files and OS processes, so it is important to reserve the `gpadmin` role for system tasks only.
 
@@ -228,4 +227,4 @@ Other tutorials:
 - [Lesson 3: Create Tables](./101-3-create-tables)
 - [Lesson 4: Data Loading](./101-4-data-loading)
 - [Lesson 5: Queries and Performance Tuning](./101-5-queries-and-performance-tuning)
-- [Lesson 6: Backup and Recovery Operations](./101-6-backup-and-recovery-operations)
+- [Lesson 6: Backup and Restore Operations](./101-6-backup-and-recovery-operations)
