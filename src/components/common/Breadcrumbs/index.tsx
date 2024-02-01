@@ -25,7 +25,7 @@ function getDefaultPath(): Path[] {
     };
   });
   for (let i = 0; i < path.length - 1; i++) {
-    path[i].href = `/${path[i].name}`;
+    path[i].href = `/${path[i].name.toLocaleLowerCase()}`;
   }
   return path;
 }
