@@ -1,37 +1,35 @@
 ---
 title: "[102] Cloudberry Database Crash Course"
+description: If you want to learn the Cloudberry Database quickly, follow this crash course.
 ---
-
-# [102] Cloudberry Database Crash Course
 
 This crash course provides an extensive overview of Cloudberry Database, an open-source Massively Parallel Processing (MPP) database. It covers key concepts, features, utilities, and hands-on exercises to become proficient with CBDB.
 
 Topics include:
 
-- [\[102\] Cloudberry Database Crash Course](#102-cloudberry-database-crash-course)
-  - [Lesson 0. Prerequisite](#lesson-0-prerequisite)
-  - [Lesson 1. Where to read the official documentation](#lesson-1-where-to-read-the-official-documentation)
-  - [Lesson 2. How to install CBDB](#lesson-2-how-to-install-cbdb)
-  - [Lesson 3. Cluster architecture](#lesson-3-cluster-architecture)
-  - [Lesson 4. Management utilities](#lesson-4-management-utilities)
-  - [Lesson 5. Start and stop a cluster](#lesson-5-start-and-stop-a-cluster)
-  - [Lesson 6. Check cluster state](#lesson-6-check-cluster-state)
-  - [Lesson 7. How CBDB segment mirroring works](#lesson-7-how-cbdb-segment-mirroring-works)
-  - [Lesson 8. CBDB's fault tolerance and segment recovery](#lesson-8-cbdbs-fault-tolerance-and-segment-recovery)
-  - [Lesson 9. Set up and manage the standby master instance in CBDB](#lesson-9-set-up-and-manage-the-standby-master-instance-in-cbdb)
-  - [Lesson 10. Expand a cluster](#lesson-10-expand-a-cluster)
-  - [Lesson 11. Check cluster performance](#lesson-11-check-cluster-performance)
-  - [Lesson 12. User data and table distribution](#lesson-12-user-data-and-table-distribution)
-  - [Lesson 13. Database catalog](#lesson-13-database-catalog)
-  - [Lesson 14. CBDB data directories](#lesson-14-cbdb-data-directories)
-  - [Lesson 15. Instance processes](#lesson-15-instance-processes)
-      - [master processes:](#master-processes)
-      - [primary processes:](#primary-processes)
-      - [mirror processes:](#mirror-processes)
-  - [Lesson 16. Database log files](#lesson-16-database-log-files)
-  - [Lesson 17. Table types in CBDB: heap, AO, and AOCO](#lesson-17-table-types-in-cbdb-heap-ao-and-aoco)
-  - [Lesson 18. External tables](#lesson-18-external-tables)
-  - [Lesson 19. Workload management](#lesson-19-workload-management)
+- [Lesson 0. Prerequisite](#lesson-0-prerequisite)
+- [Lesson 1. Where to read the official documentation](#lesson-1-where-to-read-the-official-documentation)
+- [Lesson 2. How to install CBDB](#lesson-2-how-to-install-cbdb)
+- [Lesson 3. Cluster architecture](#lesson-3-cluster-architecture)
+- [Lesson 4. Management utilities](#lesson-4-management-utilities)
+- [Lesson 5. Start and stop a cluster](#lesson-5-start-and-stop-a-cluster)
+- [Lesson 6. Check cluster state](#lesson-6-check-cluster-state)
+- [Lesson 7. How CBDB segment mirroring works](#lesson-7-how-cbdb-segment-mirroring-works)
+- [Lesson 8. CBDB's fault tolerance and segment recovery](#lesson-8-cbdbs-fault-tolerance-and-segment-recovery)
+- [Lesson 9. Set up and manage the standby master instance in CBDB](#lesson-9-set-up-and-manage-the-standby-master-instance-in-cbdb)
+- [Lesson 10. Expand a cluster](#lesson-10-expand-a-cluster)
+- [Lesson 11. Check cluster performance](#lesson-11-check-cluster-performance)
+- [Lesson 12. User data and table distribution](#lesson-12-user-data-and-table-distribution)
+- [Lesson 13. Database catalog](#lesson-13-database-catalog)
+- [Lesson 14. CBDB data directories](#lesson-14-cbdb-data-directories)
+- [Lesson 15. Instance processes](#lesson-15-instance-processes)
+    - [master processes:](#master-processes)
+    - [primary processes:](#primary-processes)
+    - [mirror processes:](#mirror-processes)
+- [Lesson 16. Database log files](#lesson-16-database-log-files)
+- [Lesson 17. Table types in CBDB: heap, AO, and AOCO](#lesson-17-table-types-in-cbdb-heap-ao-and-aoco)
+- [Lesson 18. External tables](#lesson-18-external-tables)
+- [Lesson 19. Workload management](#lesson-19-workload-management)
 
 ## Lesson 0. Prerequisite
 

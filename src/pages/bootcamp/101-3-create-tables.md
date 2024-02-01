@@ -1,8 +1,7 @@
 ---
 title: "[101-3] Lesson 3: Create Tables"
+description: Learn how to create tables in the Cloudberry Database.
 ---
-
-# [101-3] Lesson 3: Create Tables
 
 After creating and preparing a database in [Lesson 2: Create and Prepare a Database](./101-2-create-and-prepare-database), you can start to create tables in the database.
 
@@ -157,4 +156,4 @@ Other tutorials:
 - [Lesson 1: Create Users and Roles](./101-1-create-users-and-roles)
 - [Lesson 2: Create and Prepare Database](./101-2-create-and-prepare-database)
 - [Lesson 5: Queries and Performance Tuning](./101-5-queries-and-performance-tuning)
-- [Lesson 6: Backup and Recovery Operations](./101-6-backup-and-recovery-operations)
+- [Lesson 6: Backup and Restore Operations](./101-6-backup-and-recovery-operations)

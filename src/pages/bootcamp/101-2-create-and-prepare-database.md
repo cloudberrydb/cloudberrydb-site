@@ -1,8 +1,7 @@
 ---
 title: "[101-2] Lesson 2: Create and Prepare Database"
+description: Let's create one new database in the Cloudberry Database.
 ---
-
-# [101-2] Lesson 2: Create and Prepare Database
 
 To create a new database in Cloudberry Database, you can either use the `CREATE DATABASE` SQL command in the `psql` client, or use the `createdb` utility. The `createdb` utility is a wrapper around the `CREATE DATABASE` command.
 
@@ -209,4 +208,4 @@ Other tutorials:
 - [Lesson 1: Create Users and Roles](./101-1-create-users-and-roles)
 - [Lesson 4: Data Loading](./101-4-data-loading)
 - [Lesson 5: Queries and Performance Tuning](./101-5-queries-and-performance-tuning)
-- [Lesson 6: Backup and Recovery Operations](./101-6-backup-and-recovery-operations)
+- [Lesson 6: Backup and Restore Operations](./101-6-backup-and-recovery-operations)

@@ -3,8 +3,6 @@ title: Documentation Contribution Guide
 description: We appreciate any contributions you can make to our documentation, including the website and other related materials.
 ---
 
-# Documentation Contribution Guide
-
 ## Code of conduct
 
 We are committed to fostering a welcoming and respectful

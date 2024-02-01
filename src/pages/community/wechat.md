@@ -3,8 +3,6 @@ title: WeChat Guide
 description: If you'd like to chat or discuss in real-time using WeChat (in Mandarin Chinese), please feel free to request to join our WeChat groups.
 ---
 
-# WeChat Guide
-
 WeChat, also known as Weixin in Pinyin, is a popular instant messaging and
 social media application. If you prefer using WeChat over Slack for real-time
 chatting or community discussions, you can add `cbdb-bot` as your WeChat

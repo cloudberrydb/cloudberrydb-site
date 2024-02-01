@@ -1,8 +1,7 @@
 ---
 title: "[103-1] TPC-H: Decision Support Benchmark for Cloudberry Database"
+description: Run the TPC-H benchmark automatically on an existing Cloudberry Database cluster.
 ---
-
-# [103-1] TPC-H: Decision Support Benchmark for Cloudberry Database
 
 This tool is based on the benchmark tool [TPC-H](https://www.tpc.org/tpch/default5.asp). 
 This repo will guide you on how to run the TPC-H benchmark automatically on an existing CloudberryDB cluster in the CloudberryDB Sandbox.

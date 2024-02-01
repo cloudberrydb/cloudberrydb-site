@@ -73,7 +73,7 @@ export const DATA_101 = {
     {
       title: "Lesson 6",
       link: {
-        text: "Backup and Recovery Operations",
+        text: "Backup and Restore Operations",
         href: "/bootcamp/101-6-backup-and-recovery-operations",
       },
     },

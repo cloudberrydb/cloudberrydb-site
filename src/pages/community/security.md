@@ -3,8 +3,6 @@ title: Security Policy
 description: Learn how to report security issues to us.
 ---
 
-# Security Policy
-
 ## Reporting Security Issues
 
 To report a security issue, please email

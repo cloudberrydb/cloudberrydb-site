@@ -1,8 +1,7 @@
 ---
 title: "[103-2] TPC-DS: Decision Support Benchmark for Cloudberry Database"
+description: Run the TPC-DS benchmark automatically on an existing Cloudberry Database cluster.
 ---
-
-# [103-2] TPC-DS: Decision Support Benchmark for Cloudberry Database
 
 This tool is based on the benchmark tool [Pivotal TPC-DS](https://github.com/pivotal/TPC-DS). This repo contains automation of running the DS benchmark on an existing CloudberryDB cluster.
 

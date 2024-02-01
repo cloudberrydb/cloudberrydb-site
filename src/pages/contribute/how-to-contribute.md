@@ -3,8 +3,6 @@ title: How to Contribute
 description: Check the contribution guide for information on how to contribute, request assistance, and the benefits of contributing.
 ---
 
-# How to Contribute
-
 Cloudberry Database community welcomes contributions from anyone, new
 and experienced! We appreciate your interest in contributing. This
 guide will help you get started with the contribution.

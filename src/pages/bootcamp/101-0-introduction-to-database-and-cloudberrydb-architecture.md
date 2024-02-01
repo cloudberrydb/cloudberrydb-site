@@ -1,8 +1,7 @@
 ---
 title: "[101-0] Lesson 0: Introduction to Database and CloudberryDB Architecture"
+description: This page provides an introduction to the basic concepts of databases and explains the architecture of Cloudberry Database.
 ---
-
-# [101-0] Lesson 0: Introduction to Database and CloudberryDB Architecture
 
 ## Background: Database Concepts
 
@@ -77,4 +76,4 @@ Now you can start the following lessons by clicking on the links:
 - [Lesson 3: Create Tables](./101-3-create-tables)
 - [Lesson 4: Data Loading](./101-4-data-loading)
 - [Lesson 5: Queries and Performance Tuning](./101-5-queries-and-performance-tuning)
-- [Lesson 6: Backup and Recovery Operations](./101-6-backup-and-recovery-operations)
+- [Lesson 6: Backup and Resotre Operations](./101-6-backup-and-recovery-operations)

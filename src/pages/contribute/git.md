@@ -3,8 +3,6 @@ title: Working with Git & GitHub
 description: Before starting, it's important to learn Git and GitHub to effectively contribute and communicate with other members.
 ---
 
-# Working with Git & GitHub
-
 Cloudberry Database is hosted on GitHub. We use GitHub Issues as the
 bug report system, use GitHub Discussions for discussion and get
 feedback, and use Git as our version control system. Given these, it's

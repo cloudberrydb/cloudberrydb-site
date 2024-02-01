@@ -1,8 +1,7 @@
 ---
 title: "[101-5] Lesson 5: Queries and Performance Tuning"
+description: Understand the queries in the Cloudberry Database.
 ---
-
-# [101-5] Lesson 5: Queries and Performance Tuning
 
 This lesson provides an overview of how Cloudberry Database processes queries. Understanding this process can be useful when you write and tune queries.
 

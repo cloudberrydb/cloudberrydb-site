@@ -3,8 +3,6 @@ title: Brand Guidelines
 description: Here is a comprehensive guide that explains how to download and use our logos, names, and fonts. This guide will provide you with all the necessary information you need to know to use our branding materials.
 ---
 
-# Brand Guidelines
-
 Welcome to the Brand Guide for Cloudberry Database!
 
 We're excited to share with you the insights and inspiration behind
