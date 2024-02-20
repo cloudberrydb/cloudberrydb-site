@@ -1,3 +1,4 @@
+import Translate from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useGetNewBlogList from "@site/src/hooks/useGetNewBlogList";
 import clsx from "clsx";
@@ -58,7 +59,9 @@ export default function BlogPosts() {
   });
   return (
     <div className={styles.wrap}>
-      <div className={styles.gTitle}>Blog Posts</div>
+      <div className={styles.gTitle}>
+        <Translate>Blog Posts</Translate>
+      </div>
       <div className={styles.listWrap}>{itemDom}</div>
     </div>
   );

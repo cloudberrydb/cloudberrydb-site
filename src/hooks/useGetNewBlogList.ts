@@ -1,7 +1,13 @@
 import dayjs from "dayjs";
 import recentPosts from "../../.docusaurus/docusaurus-plugin-content-blog/default/blog-archive-80c.json";
+
 export default function useGetNewBlogList(n: number = 4) {
-  const blogPosts = recentPosts.blogPosts;
+  let blogPosts = recentPosts.blogPosts;
+
+  // if (isZhLangrage()) {
+  //  require("../../.docusaurus/docusaurus-plugin-content-blog/default/zh-blog-archive-8d7.json");
+  // }
+
   blogPosts
     .sort((a, b) => {
       return +new Date(a.metadata.date) - +new Date(b.metadata.date);
