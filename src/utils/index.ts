@@ -12,3 +12,12 @@ export function getFirstLetter(str: string, splitSep: string = " ") {
     .map((item) => item[0].toLowerCase())
     .join("");
 }
+
+export function isLangrage() {
+  const p = globalThis.location?.pathname;
+  const lang = p?.match(/\/\w+\/*/);
+  return lang?.[0];
+}
+export function isZhLangrage() {
+  return isLangrage() === "/zh/";
+}
