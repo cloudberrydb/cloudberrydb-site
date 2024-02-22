@@ -4,7 +4,7 @@ title: Create AO/AOCO Tables and Refresh Materialized Views in Parallel
 
 # Create AO/AOCO Tables and Refresh Materialized Views in Parallel (New in v1.5.0)
 
-Since v1.5, Cloudberry Database supports creating append-optimized (AO) tables and append-optimized column-oriented (AOCO) tables in parallel by using the `CREATE TABLE AS` statement, and supports refreshing materialized views in parallel based on the AO or AOCO tables. Parallel processing accelerates table creation and materialized view refresh.
+Since v1.5.0, Cloudberry Database supports creating append-optimized (AO) tables and append-optimized column-oriented (AOCO) tables in parallel by using the `CREATE TABLE AS` statement, and supports refreshing materialized views in parallel based on the AO or AOCO tables. Parallel processing accelerates table creation and materialized view refresh.
 
 To use the parallel feature, you need to first set the value of the system parameter `enable_parallel` to `ON`.
 
