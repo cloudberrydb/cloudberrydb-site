@@ -107,9 +107,6 @@
     "message": "{nDocsTagged}「{tagName}」",
     "description": "The title of the page for a docs tag"
   },
-  "theme.docs.versionBadge.label": {
-    "message": "版本：{versionLabel}"
-  },
   "theme.docs.versions.unreleasedVersionLabel": {
     "message": "此为 {siteTitle} {versionLabel} 版尚未发行的文档。",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
