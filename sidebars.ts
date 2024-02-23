@@ -72,6 +72,18 @@ const sidebars: SidebarsConfig = {
        items: ['set-password-profile']
      },
 
+     {
+      type: 'category',
+      label: 'Manage System',
+      items: [
+        {
+        type: 'category',
+        label: 'Backup and Restore',
+        items: ['sys-admin/backup-and-restore-overview', 'sys-admin/perform-full-backup-and-restore', 'sys-admin/perform-incremental-backup-and-restore']
+       },
+        'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/recommended-maintenance-monitoring-tasks']
+     },
+
     {
       type: 'category',
       label: 'References',
@@ -124,65 +136,6 @@ const sidebars: SidebarsConfig = {
       label: 'Releases',
       items: ['releases/release-1.5.0']
      },
-
-    {
-      type: "category",
-      label: "Optimize Query Performance",
-      items: ["query-performance-overview", "update-stats-using-analyze"],
-    },
-
-    {
-      type: 'category',
-      label: 'Manage System',
-      items: [
-        {
-        type: 'category',
-        label: 'Backup and Restore',
-        items: ['sys-admin/backup-and-restore-overview', 'sys-admin/perform-full-backup-and-restore', 'sys-admin/perform-incremental-backup-and-restore']
-       },
-        'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/recommended-maintenance-monitoring-tasks']
-     },
-
-    {
-      type: "category",
-      label: "References",
-      items: [
-        {
-          type: "category",
-          label: "SQL Statements",
-          items: [
-            "sql-stmts/sql-stmt-abort",
-            "sql-stmts/sql-stmt-alter-database",
-            "sql-stmts/sql-stmt-alter-rule",
-            "sql-stmts/sql-stmt-alter-tablespace",
-            "sql-stmts/sql-stmt-create-database",
-            "sql-stmts/sql-stmt-create-index",
-            "sql-stmts/sql-stmt-create-tablespace",
-            "sql-stmts/sql-stmt-drop-database",
-            "sql-stmts/sql-stmt-drop-extension",
-            "sql-stmts/sql-stmt-drop-external-table",
-            "sql-stmts/sql-stmt-drop-index",
-            "sql-stmts/sql-stmt-drop-materialized-view",
-            "sql-stmts/sql-stmt-drop-role",
-            "sql-stmts/sql-stmt-drop-rule",
-            "sql-stmts/sql-stmt-drop-schema",
-            "sql-stmts/sql-stmt-drop-table",
-            "sql-stmts/sql-stmt-drop-tablespace",
-            "sql-stmts/sql-stmt-drop-type",
-            "sql-stmts/sql-stmt-drop-user",
-            "sql-stmts/sql-stmt-drop-view",
-            "sql-stmts/sql-stmt-end",
-            "sql-stmts/sql-stmt-rollback",
-            "sql-stmts/sql-stmt-rollback-to-savepoint",
-            "sql-stmts/sql-stmt-savepoint",
-            "sql-stmts/sql-stmt-set-role",
-            "sql-stmts/sql-stmt-set-transaction",
-            "sql-stmts/sql-stmt-start-transaction",
-            "sql-stmts/sql-stmt-truncate",
-          ],
-        },
-      ],
-    },
   ],
 };
 
