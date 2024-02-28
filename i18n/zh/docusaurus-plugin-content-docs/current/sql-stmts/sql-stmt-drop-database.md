@@ -14,12 +14,10 @@ DROP DATABASE [IF EXISTS] <name>
 
 ## 描述
 
-`DROP DATABASE` drops a database. It removes the catalog entries for the database and deletes the directory containing the data. It can only be run by the database owner. Also, it cannot be run while you or anyone else are connected to the target database. (Connect to `postgres` or any other database to issue this command.)
-
-`DROP DATABASE` 删除一个数据库。它删除数据库的目录项，并删除包含数据的目录。只有数据库所有者才能执行此命令。此外，它不能在您或其他任何人连接到目标数据库时运行。（连接到 `postgres` 或任何其他数据库以发出此命令。）
+`DROP DATABASE` 用于删除数据库。这个操作会移除数据库的目录条目，并且删除存放数据的目录。只有数据库的所有者才有权限执行这个命令。同时，当你或其他人正在连接目标数据库时，无法执行此命令。你需要连接到 `postgres` 或其他任意数据库来执行此命令。
 
 :::caution 警告
-`DROP DATABASE` cannot be undone. Use it with care!
+`DROP DATABASE` 一旦执行无法撤销。请谨慎使用！
 :::
 
 ## 参数
@@ -36,7 +34,7 @@ DROP DATABASE [IF EXISTS] <name>
 
 你不能在事务块中执行 `DROP DATABASE`。
 
-不能在连接到目标数据库时运行此命令。因此，使用 dropdb 程序可能更方便，它是该命令的一个包装器。
+不能在连接到目标数据库时运行此命令。因此，使用 dropdb 程序可能更方便，它是 `DROP DATABASE` 命令的一个包装器。
 
 ## 示例
 
