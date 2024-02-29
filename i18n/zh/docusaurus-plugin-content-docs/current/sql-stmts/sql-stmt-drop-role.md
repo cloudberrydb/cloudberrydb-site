@@ -40,8 +40,6 @@ DROP ROLE sally, bob;
 
 ## 兼容性
 
-The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped at a time, and it specifies different privilege requirements than Cloudberry Database uses.
-
 SQL 标准定义了 `DROP ROLE`，但一次只允许删除一个角色，并且它规定的权限要求与 Cloudberry Database 使用的不同。
 
 ## 另见

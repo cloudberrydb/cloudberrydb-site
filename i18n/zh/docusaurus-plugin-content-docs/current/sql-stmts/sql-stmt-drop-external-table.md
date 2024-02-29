@@ -28,7 +28,7 @@ DROP EXTERNAL [WEB] TABLE [IF EXISTS] <name> [CASCADE | RESTRICT]
 
 **`name`**
 
-现有外部表的名称（可选模式限定）。
+现有外部表的名称（可以选择性地指定其所在的数据库 schema 作为限定）。
 
 **`CASCADE`**
 
