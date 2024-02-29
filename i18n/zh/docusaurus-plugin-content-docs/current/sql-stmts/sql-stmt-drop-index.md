@@ -30,7 +30,7 @@ DROP INDEX [ CONCURRENTLY ] [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`name`**
 
-要删除的索引的名称（可选模式限定）。
+要删除的索引的名称（可以选择性地指定其所在的数据库 schema 作为限定）。
 
 **`CASCADE`**
 

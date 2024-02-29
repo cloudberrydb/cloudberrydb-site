@@ -26,7 +26,7 @@ ALTER RULE name ON <table_name> RENAME TO <new_name>
 
 **`table_name`**
 
-该规则所适用的表或视图的名称（可选模式限定）。
+该规则所适用的表或视图的名称（可以选择性地指定其所在的数据库 schema 作为限定）。
 
 **`new_name`**
 

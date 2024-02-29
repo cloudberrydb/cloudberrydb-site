@@ -24,7 +24,7 @@ DROP MATERIALIZED VIEW [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`name`**
 
-要删除的物化视图的名称（可选模式限定）。
+要删除的物化视图的名称（可以选择性地指定其所在的数据库 schema 作为限定）。
 
 **`CASCADE`**
 
@@ -44,7 +44,6 @@ DROP MATERIALIZED VIEW order_summary;
 
 ## 兼容性
 
-`DROP MATERIALIZED VIEW` is a Cloudberry Database extension of the SQL standard.
 `DROP MATERIALIZED VIEW` 是 Cloudberry Database 的语言扩展，在 SQL 标准中没有。
 
 ## 另见
