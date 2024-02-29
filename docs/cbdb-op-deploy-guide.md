@@ -32,7 +32,7 @@ After the preparation, it is time to install Cloudberry Database. You need to do
 
 2. Install the RPM package in the `/home/gpadmin` directory.
 
-    When running the following command, you need to replace `<RPM package path>` with the actual RPM package path, using the `root` user. During the installation, the directory `/usr/local/cloudberry-db/` is automatically created.
+    When running the following command, you need to replace `<RPM package path>` with the actual RPM package path, as the `root` user. During the installation, the directory `/usr/local/cloudberry-db/` is automatically created.
 
     ```bash
     cd /home/gpadmin
