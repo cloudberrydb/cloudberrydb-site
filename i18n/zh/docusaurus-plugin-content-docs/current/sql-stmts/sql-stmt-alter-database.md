@@ -105,4 +105,4 @@ ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
 
 ## 另见
 
-[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`DROP DATABASE`](/docs/sql-stmts/sql-stmt-drop-database.md), [SET](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set.md), [`CREATE TABLESPACE`](/docs/sql-stmts/sql-stmt-create-tablespace.md)
+[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-database.md)、[`DROP DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-database.md)、[`SET`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set.md)、[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-tablespace.md)

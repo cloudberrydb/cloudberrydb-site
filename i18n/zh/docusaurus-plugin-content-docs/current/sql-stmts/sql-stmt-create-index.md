@@ -43,7 +43,7 @@ Cloudberry Database 提供了 B-tree、hash、bitmap、GiST、SP-GiST、GIN 和 
 
 **`IF NOT EXISTS`**
 
-如果同名的关系已经存在，则不报错。在这种情况下 Cloudberry Database 会发出一个通知。请注意，不保证现有的索引与将要创建的索引相似。当指定了 `IF NOT EXISTS` 时，索引名是必需的。
+如果同名的关系已经存在，则不报错。在这种情况下 Cloudberry Database 会发出一个提醒。请注意，不保证现有的索引与将要创建的索引相似。当指定了 `IF NOT EXISTS` 时，索引名是必需的。
 
 **`INCLUDE`**
 
@@ -253,4 +253,4 @@ Cloudberry Database 不支持并发创建索引（不支持 `CONCURRENTLY` 关�
 
 ## 另见
 
-[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md), [`DROP INDEX`](/docs/sql-stmts/sql-stmt-drop-index.md)
+[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md)、[`DROP INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-index.md)

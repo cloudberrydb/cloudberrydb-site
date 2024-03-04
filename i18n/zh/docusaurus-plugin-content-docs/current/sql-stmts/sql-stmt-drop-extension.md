@@ -26,7 +26,7 @@ DROP EXTENSION [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`IF EXISTS`**
 
-如果扩展不存在，则不抛出错误。在这种情况下会发出一个通知。
+如果扩展不存在，则不抛出错误。在这种情况下，Cloudberry Database 会发出一个提醒。
 
 **`name`**
 
@@ -42,7 +42,7 @@ DROP EXTENSION [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`RESTRICT`**
 
-如果有任何对象依赖于该扩展（除了其自身的成员对象和同一 `DROP` 命令中列出的其他扩展），则拒绝删除该扩展。这是默认行为。
+如果有对象依赖于该扩展（除了其自身的成员对象和同一 `DROP` 命令中列出的其他扩展），Cloudberry Database 会拒绝删除该扩展。这是默认行为。
 
 ## 示例
 
@@ -60,4 +60,4 @@ DROP EXTENSION hstore;
 
 ## 另见
 
-[`CREATE EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-extension.md), [`ALTER EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-extension.md)
+[`CREATE EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-extension.md)、[`ALTER EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-extension.md)

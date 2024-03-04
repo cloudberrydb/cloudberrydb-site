@@ -44,7 +44,7 @@ CREATE DATABASE name
 
 **`tablespace_name`**
 
-与新数据库关联的表空间的名称，或者 `DEFAULT` 以使用模板数据库的表空间。该数据库中创建的对象默认使用该表空间。更多信息请参见 [`CREATE TABLESPACE`](/docs/sql-stmts/sql-stmt-create-tablespace.md)。
+与新数据库关联的表空间的名称，或者 `DEFAULT` 以使用模板数据库的表空间。该数据库中创建的对象默认使用该表空间。更多信息请参见 [`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-tablespace.md)。
 
 **`allowconn`**
 
@@ -96,4 +96,4 @@ SQL 标准中没有 `CREATE DATABASE` 语句。数据库相当于目录，数据
 
 ## 另见
 
-[`ALTER DATABASE`](/docs/sql-stmts/sql-stmt-alter-database.md), [`DROP DATABASE`](/docs/sql-stmts/sql-stmt-drop-database.md)
+[`ALTER DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-database.md)、[`DROP DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-database.md)
