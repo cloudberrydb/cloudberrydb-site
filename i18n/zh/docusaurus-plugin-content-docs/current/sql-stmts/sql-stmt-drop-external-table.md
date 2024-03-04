@@ -36,7 +36,7 @@ DROP EXTERNAL [WEB] TABLE [IF EXISTS] <name> [CASCADE | RESTRICT]
 
 **`RESTRICT`**
 
-如果有任何对象依赖于外部表，则拒绝删除外部表。这是默认行为。
+如果有任何对象依赖于外部表，Cloudberry Database 会拒绝删除外部表。这是默认行为。
 
 ## 示例
 
@@ -52,4 +52,4 @@ DROP EXTERNAL TABLE IF EXISTS staging;
 
 ## 另见
 
-[`CREATE EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-external-table.md), [`ALTER EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-external-table.md)
+[`CREATE EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-external-table.md)、[`ALTER EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-external-table.md)

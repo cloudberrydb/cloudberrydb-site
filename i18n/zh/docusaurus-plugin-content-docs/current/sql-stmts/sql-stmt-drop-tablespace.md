@@ -58,4 +58,4 @@ DROP TABLESPACE mystuff;
 
 ## 另见
 
-[`CREATE TABLESPACE`](/docs/sql-stmts/sql-stmt-create-tablespace.md), [`ALTER TABLESPACE`](/docs/sql-stmts/sql-stmt-alter-tablespace.md)
+[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-tablespace.md)、[`ALTER TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-tablespace.md)

@@ -24,7 +24,7 @@ DROP DATABASE [IF EXISTS] <name>
 
 **`IF EXISTS`**
 
-如果数据库不存在，则不抛出错误。在这种情况下会发出一个通知。
+如果数据库不存在，则不抛出错误。在这种情况下，Cloudberry Database 会发出一个提醒。
 
 **`name`**
 
@@ -50,4 +50,4 @@ DROP DATABASE testdb;
 
 ## 另见
 
-[`ALTER DATABASE`](/docs/sql-stmts/sql-stmt-alter-database.md), [`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md)
+[`ALTER DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-database.md)、[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-database.md)

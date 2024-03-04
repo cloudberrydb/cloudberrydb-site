@@ -20,7 +20,7 @@ DROP MATERIALIZED VIEW [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`IF EXISTS`**
 
-如果物化视图不存在，则不抛出错误。此时会发出一个通知。
+如果物化视图不存在，则不抛出错误。此时 Cloudberry Database 会发出一个提醒。
 
 **`name`**
 
@@ -32,7 +32,7 @@ DROP MATERIALIZED VIEW [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`RESTRICT`**
 
-如果有任何对象依赖于物化视图，则拒绝删除物化视图。这是默认行为。
+如果有任何对象依赖于物化视图，Cloudberry Database 会拒绝删除物化视图。这是默认行为。
 
 ## 示例
 
@@ -48,4 +48,4 @@ DROP MATERIALIZED VIEW order_summary;
 
 ## 另见
 
-[`ALTER MATERIALIZED VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-materialized-view.md), [`CREATE MATERIALIZED VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-materialized-view.md), [`REFRESH MATERIALIZED VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-refresh-materialized-view.md)
+[`ALTER MATERIALIZED VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-materialized-view.md)、[`CREATE MATERIALIZED VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-materialized-view.md)、[`REFRESH MATERIALIZED VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-refresh-materialized-view.md)

@@ -26,7 +26,7 @@ DROP INDEX [ CONCURRENTLY ] [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`IF EXISTS`**
 
-如果索引不存在，则不抛出错误。在这种情况下会发出一个通知。
+如果索引不存在，则不抛出错误。在这种情况下，Cloudberry Database 会发出一个提醒。
 
 **`name`**
 
@@ -38,7 +38,7 @@ DROP INDEX [ CONCURRENTLY ] [ IF EXISTS ] <name> [, ...] [ CASCADE | RESTRICT ]
 
 **`RESTRICT`**
 
-如果有任何对象依赖于索引，则拒绝删除索引。这是默认行为。
+如果有任何对象依赖于索引，Cloudberry Database 会拒绝删除索引。这是默认行为。
 
 ## 示例
 
@@ -54,4 +54,4 @@ DROP INDEX title_idx;
 
 ## 另见
 
-[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md), [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md)
+[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md)、[`CREATE INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-index.md)
