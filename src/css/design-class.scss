@@ -43,12 +43,12 @@
 }
 
 .global-width-layout {
-  width: var(--global-main-width);
+  max-width: var(--global-main-width);
   margin: 0 auto;
-  padding-left: 73px;
+  padding:0 var(--mobile-padding-width);
 }
 .global-width-center {
-  width: var(--global-main-width);
+  max-width: var(--global-main-width);
   margin: 0 auto;
 }
 .hide-before-after {

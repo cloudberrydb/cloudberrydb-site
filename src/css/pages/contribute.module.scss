@@ -1,12 +1,11 @@
 .globalWidth {
-  width: var(--global-main-width);
+  max-width: var(--global-main-width);
   margin: 0 auto;
-  padding-left: 67px;
+  padding: 0 var(--mobile-padding-width);
   .mainContent {
-    // margin-left: 67px;
     display: flex;
     .leftContent {
-      width: 1050px;
+      max-width: 1050px;
       flex-basis: 1050px;
     }
     .rightContent {
@@ -19,6 +18,32 @@
         margin-left: 108px;
         margin-top: 51px;
         top: 130px;
+      }
+    }
+  }
+  @media screen and (max-width: 1440px) {
+    .mainContent {
+      .leftContent {
+        width: 70%;
+      }
+      .rightContent {
+        .navLinkWrap {
+          margin-left: 40px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .rightContent {
+      display: none;
+    }
+    @media screen and (max-width: 768px) {
+      .leftContent {
+        .codeContribution {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
       }
     }
   }

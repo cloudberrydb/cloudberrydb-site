@@ -3,11 +3,9 @@
   margin: 0 auto;
   position: relative;
   .content {
-    width: 949px;
-
-    position: absolute;
+    max-width: 949px;
     .bigText {
-      width: 847px;
+      max-width: 847px;
       font-weight: 700;
       margin-top: 12px;
       font-size: 32px;
