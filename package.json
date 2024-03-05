@@ -22,6 +22,7 @@
     "@mdx-js/react": "^3.0.0",
     "@popperjs/core": "^2.11.8",
     "@types/lodash-es": "^4.17.12",
+    "ahooks": "^3.7.10",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
     "docusaurus-plugin-sass": "^0.2.5",

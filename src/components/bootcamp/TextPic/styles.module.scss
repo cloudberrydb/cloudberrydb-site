@@ -5,4 +5,9 @@
   .picture {
     margin: 0 -54px;
   }
+  @media screen and (max-width: 1024px) {
+    .picture {
+      margin: 0;
+    }
+  }
 }

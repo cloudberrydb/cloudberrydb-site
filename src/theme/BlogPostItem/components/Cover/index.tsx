@@ -10,7 +10,6 @@ export default function Cover(props: IProps) {
   return (
     <img
       style={{
-        height: 132,
         width: "100%",
         cursor: "pointer",
         ...props.style,

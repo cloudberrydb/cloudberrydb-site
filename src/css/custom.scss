@@ -59,7 +59,23 @@
 
   --global-main-width: 1440px;
   --normal-box-radius: 4px;
-  --doc-sidebar-width: 301px !important;
+  --doc-sidebar-width: 301px;
+  --home-btn-bg: rgba(255, 168, 0, 1);
+  --home-btn-color: rgb(0, 0, 0);
+  --footer-bg-color: #000;
+  --mobile-padding-width: 70px;
+  --docs-nav-margin: 60px;
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    --global-main-width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --mobile-padding-width: 37px;
+  }
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -90,4 +106,16 @@
   --nav-link-line-normal-color: rgba(48, 54, 61, 1);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --popper-bg-color: rgb(255, 168, 0);
+}
+
+[data-theme="light"] {
+  --ifm-font-color-base: #000;
+  --normal-bg-1: #fff;
+  --title-text-color: #000;
+  --sub-text-color-2: #525665;
+  --sub-text-color: #525665;
+  --sub-text-color-1: #525665;
+
+  --home-btn-bg: #000;
+  --home-btn-color: rgb(0, 0, 0);
 }
