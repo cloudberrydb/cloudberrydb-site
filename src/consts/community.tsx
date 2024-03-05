@@ -112,7 +112,7 @@ let COMMUNITY_PAGE: CommunityPageConfig = {
       title: "Get Support",
       cardLines: [
         {
-          style: { height: 182 },
+          style: { height: 182, gridTemplateColumns: "1fr 1fr" },
           cards: [
             {
               style: { width: 474 },
@@ -139,7 +139,7 @@ let COMMUNITY_PAGE: CommunityPageConfig = {
       title: "Stay Informed",
       cardLines: [
         {
-          style: { height: 195 },
+          style: { height: 195, gridTemplateColumns: "1fr 1fr" },
           cards: [
             {
               style: { width: 474 },

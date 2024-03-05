@@ -5,9 +5,11 @@ import {
 import Card from "../Card";
 import CardLine from "./CardLine";
 import styles from "./styles.module.scss";
+
 export default function MainContent() {
   const { DATA_0, DATA_101, DATA_102, DATA_103, DATA_104, GET_SOURCE } =
     BOOTCAMP_PAGE_CONFIG;
+
   return (
     <div className={styles.mainContent}>
       <div className="main-title" style={{ marginBottom: 22 }}>
@@ -37,12 +39,18 @@ export default function MainContent() {
         style={{
           marginTop: 25,
           marginBottom: 32,
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
         }}
       >
         <CardLine cardLine={DATA_101.cardLine1} itemWidth={221} />
       </div>
 
-      <div className={styles.cardLine}>
+      <div
+        className={styles.cardLine}
+        style={{
+          gridTemplateColumns: "1fr 1fr 1fr",
+        }}
+      >
         <CardLine cardLine={DATA_101.cardLine2} itemWidth={305.33} />
       </div>
 
@@ -65,7 +73,10 @@ export default function MainContent() {
         {DATA_103.title}
       </div>
       <div className="sub-text">{DATA_103.subText}</div>
-      <div className={styles.cardLine} style={{ marginTop: 32 }}>
+      <div
+        className={styles.cardLine}
+        style={{ marginTop: 32, gridTemplateColumns: "1fr 1fr" }}
+      >
         <CardLine cardLine={DATA_103.cardLine} itemWidth={474} />
       </div>
 
@@ -77,7 +88,10 @@ export default function MainContent() {
       >
         {DATA_104.title}
       </div>
-      <div className={styles.cardLine}>
+      <div
+        className={styles.cardLine}
+        style={{ gridTemplateColumns: "1fr 1fr" }}
+      >
         <CardLine cardLine={DATA_104.cardLine} itemWidth={474} />
       </div>
 

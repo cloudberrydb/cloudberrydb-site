@@ -1,0 +1,15 @@
+.docRoot {
+  display: flex;
+  width: 100%;
+  padding: 0 70px;
+}
+@media screen and (max-width: 768px) {
+  .docRoot {
+    padding: 35px;
+  }
+}
+
+.docsWrapper {
+  display: flex;
+  flex: 1 0 auto;
+}

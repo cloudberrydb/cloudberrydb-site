@@ -31,4 +31,7 @@
       vertical-align: middle;
     }
   }
+  @media screen and (max-width: 1440px) {
+    width: auto !important;
+  }
 }

@@ -9,7 +9,7 @@ export default function BlogPostItemHeaderTitle({
   className,
 }: Props): JSX.Element {
   const { metadata, isBlogPostPage } = useBlogPost();
-  const { permalink, title } = metadata;
+  const { title } = metadata;
   return (
     <div className={clsx(styles.title, className)} itemProp="headline">
       {isBlogPostPage ? (

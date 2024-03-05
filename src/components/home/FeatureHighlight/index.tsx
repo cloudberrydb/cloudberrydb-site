@@ -1,7 +1,6 @@
 import Translate from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { FEATURE_HIGHLIGHT } from "@site/src/consts/homeContent";
-import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 export default function FeatureHighlight() {
@@ -24,6 +23,7 @@ export default function FeatureHighlight() {
       </div>
     );
   });
+
   return (
     <div className={styles.container}>
       <div className="global-width-center">
@@ -31,8 +31,8 @@ export default function FeatureHighlight() {
           <div className={styles.title}>
             <Translate>Feature Highlights</Translate>
           </div>
-          <div className={clsx(styles.showList, styles.top)}>{itemTop}</div>
-          <div className={clsx(styles.showList, styles.bottom)}>
+          <div className={styles.showList}>
+            {itemTop}
             {itemBottom}
           </div>
         </div>

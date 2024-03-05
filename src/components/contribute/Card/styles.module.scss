@@ -2,7 +2,6 @@
   border: 1px solid var(--sub-text-color);
   padding: 20px;
   width: 474px;
-  height: 190px;
   cursor: pointer;
   .content {
     margin: 10px 0;
@@ -33,5 +32,8 @@
         fill: var(--normal-text-color-1);
       }
     }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 }
