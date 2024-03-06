@@ -28,7 +28,7 @@ export default function HCard() {
   const headerDesc = useIsMobile() ? (
     <>
       <div>
-        <Translate>Next Generation </Translate>
+        <Translate>Next Generation</Translate>{" "}
         <Translate>Unified Database for</Translate>
       </div>
     </>
