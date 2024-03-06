@@ -18,7 +18,7 @@ SQL 事务允许你将多个 SQL 语句捆绑在一起，形成一个全部成�
 Cloudberry Database 支持以下标准 SQL 事务隔离级别：
 
 - `READ UNCOMMITTED`（读未提交）和 `READ COMMITTED`（读已提交）的行为与标准的 `READ COMMITTED` 相同。
-- `REPEATABLE READ`（可重复读）和 `SERIALIZABLE`（可串行化）的行为与 `REPEATABLE READ` 相同。
+- `REPEATABLE READ`（可重复读）和 `SERIALIZABLE`（可序列化）的行为与 `REPEATABLE READ` 相同。
 
 以下内容描述了 Cloudberry Database 事务隔离级别的行为。
 
@@ -37,9 +37,9 @@ Cloudberry Database 支持以下标准 SQL 事务隔离级别：
 
 在 `READ COMMITTED` 事务隔离模式下，允许并行事务在 `UPDATE` 或 `DELETE` 执行前对数据行进行修改或加锁。然而，对于那些执行复杂查询和更新，同时又需要保持数据库视图一致性的应用程序来说，`READ COMMITTED` 的事务隔离水平可能不足以满足需求。
 
-#### 可重复读与串行化隔离级别
+#### 可重复读与序列化隔离级别
 
-在 SQL 标准中，`SERIALIZABLE` 事务隔离级别旨在确保，即便事务是并发运行的，其产生的结果也应当与事务依次运行时的结果相同。在 Cloudberry Database 中，当指定 `SERIALIZABLE` 隔离级别时，实际上会使用 `REPEATABLE READ` 隔离级别。`REPEATABLE READ` 隔离级别可以在无需使用复杂锁定机制的情况下，防止脏读、不可重复读和幻读现象，但这种模式并不能检测到所有在并发事务执行期间可能出现的串行化冲突。因此，你需要仔细检查并发事务，以识别哪些冲突是仅靠禁止对同一数据并发更新所无法预防的。为避免这类冲突，可以采用显式表锁或者更新某个特设的代表冲突的虚拟行。
+在 SQL 标准中，`SERIALIZABLE` 事务隔离级别旨在确保，即便事务是并发运行的，其产生的结果也应当与事务依次运行时的结果相同。在 Cloudberry Database 中，当指定 `SERIALIZABLE` 隔离级别时，实际上会使用 `REPEATABLE READ` 隔离级别。`REPEATABLE READ` 隔离级别可以在无需使用复杂锁定机制的情况下，防止脏读、不可重复读和幻读现象，但这种模式并不能检测到所有在并发事务执行期间可能出现的序列化冲突。因此，你需要仔细检查并发事务，以识别哪些冲突是仅靠禁止对同一数据并发更新所无法预防的。为避免这类冲突，可以采用显式表锁或者更新某个特设的代表冲突的虚拟行。
 
 在 `REPEATABLE READ` 隔离级别下，`SELECT` 查询将：
 

@@ -12,7 +12,7 @@ title: 从 Web 服务加载数据
 
 ## 使用命令来定义外部 Web 表
 
-在 Cloudberry Database 中，你可以通过 Shell 命令或脚本的输出来定义基于命令的外部 Web 表数据。具体来说，你需要在创建外部 Web 表的 SQL 命令中的 `EXECUTE` 子句中指明这个 Shell 命令或脚本。这样，当命令执行时，它会捕获那一刻的数据作为表数据。`EXECUTE` 子句负责在数据库系统的指定节点上执行这些命令或脚本，这些节点可能是 Coordinator、某个特定的 Segment 主机，或是多个 Segment 主机。
+在 Cloudberry Database 中，你可以通过 Shell 命令或脚本的输出来定义基于命令的外部 Web 表数据。具体来说，你需要执行 `CREATE EXTERNAL WEB TABLE` 命令来创建外部 Web 表，并在 `EXECUTE` 子句中指明这个 Shell 命令或脚本。这样，当命令执行时，它会捕获那一刻的数据作为表数据。`EXECUTE` 子句负责在数据库系统的指定节点上执行这些命令或脚本，这些节点可能是 Coordinator、某个特定的 Segment 主机，或是多个 Segment 主机。
 
 默认情况下，该命令会在有数据输出需处理的 Segment 主机上执行。例如，如果每个 Segment 主机都运行了 4 个处理输出数据的主 Segment 实例，那么该命令将在每个 Segment 主机上执行 4 次。你也可以通过设定限制来减少执行该 Web 表命令所需的 Segment 实例数量。在 SQL 命令的 `ON` 子句中指定的所有 Segment 将会并发执行此命令。
 
@@ -37,7 +37,7 @@ title: 从 Web 服务加载数据
 
 ## 基于 URL 的外部 Web 表
 
-在 Cloudberry Database 中，你可以直接通过基于 URL 的外部 Web 表使用 HTTP 协议，从 Web 服务器获取数据。通过这种方式。数据库能够动态地访问外部数据源。但值得注意的是，一旦获取，这些数据将无法被重新扫描或查询。
+在 Cloudberry Database 中，你可以直接通过基于 URL 的外部 Web 表使用 HTTP 协议，以此从 Web 服务器获取数据。通过这种方式，数据库能够动态地访问外部数据源。但值得注意的是，一旦获取，这些数据将无法被重新扫描或查询。
 
 你需要在使用 `http://` 协议的 URL 中明确指定 Web 服务器上数据文件的位置，由此定义外部 Web 表。这些 Web 数据文件应存放在 Cloudberry Database 的 Segment 主机可以访问的 Web 服务器上。你指定的 URL 数量直接影响数据库系统并行处理这些外部数据的能力。例如，在拥有 8 个 Segment 的 Cloudberry Database 系统中，如果你指定了 2 个外部数据文件，那么在执行查询时，将会有 2 个 Segment 同时并行访问这些外部 Web 表。
 

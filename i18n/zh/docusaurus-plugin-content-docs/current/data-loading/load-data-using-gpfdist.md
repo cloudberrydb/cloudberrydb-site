@@ -79,7 +79,7 @@ gpfdist &
 $ gpfdist -d /var/load_files -p 8081 -l /home/`gpadmin`/log &
 ```
 
-对于同一台 ETL 主机上的多个 gpfdist 实例，为每个实例使用不同的基路径和端口。例如：
+对于同一台 ETL 主机上的多个 gpfdist 实例，为每个实例使用不同的基础路径 (base directory) 和端口。例如：
 
 ```shell
 $ gpfdist -d /var/load_files1 -p 8081 -l /home/`gpadmin`/log1 &
@@ -139,7 +139,7 @@ FORMAT 'TEXT' (DELIMITER '|');
 
 使用 gpfdist 协议创建一个可读的外部表 `ext_expenses`，对所有带 txt 扩展名的文件使用 gpfdist 协议。列分隔符是管道 (`|`)，NULL 是空格 (`' '`)。
 
-当我们在 Cloudberry Database（Cloudberry 数据库）中访问外部表格时，采用了一种称为“单行错误隔离”模式的处理方式。这意味着，如果输入的数据格式出现任何错误，这些错误不会影响整个表格的处理过程，而是会被单独捕获并记录下来，同时还会提供一份详细的错误描述。你可以查看这些错误，修复问题，然后重新加载被拒绝的数据。如果某个 Segment 上的错误计数大于 `5`（`SEGMENT REJECT LIMIT` 值），整个外部表操作将失败，不会处理任何行。
+当我们在 Cloudberry Database 中访问外部表格时，采用了一种称为“单行错误隔离”模式的处理方式。这意味着，如果输入的数据格式出现任何错误，这些错误不会影响整个表格的处理过程，而是会被单独捕获并记录下来，同时还会提供一份详细的错误描述。你可以查看这些错误，修复问题，然后重新加载被拒绝的数据。如果某个 Segment 上的错误计数大于 `5`（`SEGMENT REJECT LIMIT` 值），整个外部表操作将失败，不会处理任何行。
 
 ```sql
 =# CREATE EXTERNAL TABLE ext_expenses ( name text, 

@@ -46,11 +46,11 @@ INSERT INTO products (product_no, name, price) VALUES
 
 ### 往分区表中插入行
 
-要将数据插入分区表，你需要指定根分区表，该根分区表是通过 `CREATE TABLE` 命令创建的。Cloudberry Database 不支持在 `INSERT` 命令中直接指定叶子分区，这样会导致报错。这是因为数据插入是由数据库系统自动管理的，所以叶子分区对用户不可见。
+要将数据插入分区表，你需要指定根分区表，该根分区表是通过 `CREATE TABLE` 命令创建的。Cloudberry Database 不支持在 `INSERT` 命令中直接指定叶分区，这样会导致报错。这是因为数据插入是由数据库系统自动管理的，所以叶分区对用户不可见。
 
 如果插入的数据不符合任何现有分区的范围（例如，指定的键值与任何分区规则都不匹配），将返回错误。
 
-要确保数据正确地插入分区表，只需要在 `INSERT` 语句中指定根分区表。Cloudberry Database 根据分区键自动将数据行插入正确的叶子分区。如果数据行不符合任何叶子分区的范围，Cloudberry Database 将返回错误。
+要确保数据正确地插入分区表，只需要在 `INSERT` 语句中指定根分区表。Cloudberry Database 根据分区键自动将数据行插入正确的叶分区。如果数据行不符合任何叶分区的范围，Cloudberry Database 将返回错误。
 
 示例：
 
@@ -59,7 +59,7 @@ _-- 将数据插入根分区表_
 INSERT INTO sales (sale_id, product_no, year, amount) VALUES (1, 'Cheese', 2021, 9.99);
 ```
 
-对于上述语句，Cloudberry Database 根据年份列的值自动将数据行插入正确的分区，因此不需要在语句中指定叶子分区。
+对于上述语句，Cloudberry Database 根据年份列的值自动将数据行插入正确的分区，因此不需要在语句中指定叶分区。
 
 ### 在 Append-Optimized 表中插入行
 
