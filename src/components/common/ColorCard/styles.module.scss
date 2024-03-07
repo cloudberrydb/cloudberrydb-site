@@ -2,6 +2,19 @@
   width: var(--global-main-width);
   margin: 0 auto;
   position: relative;
+  &.mdxCard {
+    &.lightMode {
+      .content {
+        .bigText {
+          color: #fff;
+        }
+        .smallText {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+
   .content {
     max-width: 949px;
     .bigText {

@@ -4,6 +4,24 @@
   height: 21px;
   font-size: 13px;
   color: var(--sub-text-color-2);
+  &.lightMode:not(&.mdxPage) {
+    color: #000;
+    svg {
+      fill: #000 !important;
+    }
+    .line {
+      opacity: 1;
+    }
+  }
+  &.mdxPage {
+    .backPath {
+      color: #fff !important;
+    }
+    svg {
+      fill: #fff !important;
+    }
+  }
+
   .backLogoA {
     position: relative;
     top: 1px;

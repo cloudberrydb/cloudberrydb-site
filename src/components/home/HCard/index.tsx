@@ -89,6 +89,15 @@ export default function HCard() {
       </div>
       <div className={styles.leftBox}></div>
       <div className={styles.rightBox}></div>
+      {useIsLightMode() ? (
+        <>
+          <div className={styles.lbBox}></div>
+          <div className={styles.rbBox}>
+            <div className={styles.sBox}></div>
+            <div className={styles.xBox}></div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

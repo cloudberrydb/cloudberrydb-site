@@ -19,14 +19,14 @@
       width: 100%;
       .item {
         height: 100%;
-        border: 1px solid var(--sub-text-color);
+        border: 1px solid var(--box-border-color); 
         box-sizing: border-box;
         padding: 35px 23px;
         border-radius: var(--normal-box-radius);
         cursor: pointer;
         margin-bottom: 0;
         &:hover {
-          border: 1px solid var(--title-text-color);
+          border: 1px solid var(--box-hover-border-color);
           background: var(--active-color);
           .title {
             color: var(--normal-text-color-1);
