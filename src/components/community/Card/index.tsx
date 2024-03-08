@@ -1,3 +1,5 @@
+import { useIsLightMode } from "@site/src/hooks/useColorMode";
+import clsx from "clsx";
 import LinkWithBaseUrl from "../../common/LinkWithBaseUrl";
 import styles from "./styles.module.scss";
 import GreaterThan from "/img/greater_than.svg";
@@ -15,7 +17,9 @@ export default function GetInvolved(props: IProps) {
   return (
     <LinkWithBaseUrl
       to={props.link.href}
-      className={styles.card}
+      className={clsx(styles.card, {
+        [styles.lightMode]: useIsLightMode(),
+      })}
       style={props.style}
     >
       <div className={styles.header}>

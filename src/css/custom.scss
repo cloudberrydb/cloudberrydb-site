@@ -25,10 +25,13 @@
   --hover-fill-color: rgba(255, 61, 0, 1);
   --docs-detail-bg: rgba(22, 27, 34, 1);
   --ordered-list-bg-color: rgb(51, 34, 0);
+  --ordered-list-text-color: #fff;
   --tags-bg-color: rgba(255, 168, 0, 0.15);
   --menu-bg-color: rgb(76, 50, 0);
   --hover-full-bg-text-color: rgb(0, 0, 0);
   --code-bg-color: rgb(51, 51, 51);
+  --right-sidebar-circle-bg-color: rgba(48, 54, 61, 1);
+  --right-sidebar-active-color: var(--active-color);
 
   // text color
   --normal-text-color: rgba(12, 14, 20, 1);
@@ -39,7 +42,7 @@
   --sub-text-color-3: rgba(0, 0, 0, 0.6);
   --sub-text-color-4: rgba(0, 194, 255, 1);
   --sub-text-color-5: rgba(242, 242, 242);
-  --sub-text-color-6: rgba(48, 54, 61, 1);
+  --blog-border-color: rgba(48, 54, 61, 1);
   --back-home-logo-color: rgba(76, 76, 76);
   --title-text-color: rgb(255, 255, 255);
   --ifm-breadcrumb-item-background-active: transparent;
@@ -102,6 +105,8 @@
   --code-border-color: rgb(153, 109, 26);
   --portrait-border-color: rgb(37, 38, 39);
   --portrait-border-hover-color: rgb(254, 177, 25);
+  --box-border-color: var(--sub-text-color);
+  --box-hover-border-color: var(--title-text-color);
   --sub-text-color-2: rgba(255, 255, 255, 0.6);
   --nav-link-line-normal-color: rgba(48, 54, 61, 1);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
@@ -112,10 +117,24 @@
   --ifm-font-color-base: #000;
   --normal-bg-1: #fff;
   --title-text-color: #000;
-  --sub-text-color-2: #525665;
+  --sub-text-color-2: #546e7a;
   --sub-text-color: #525665;
   --sub-text-color-1: #525665;
 
   --home-btn-bg: #000;
-  --home-btn-color: rgb(0, 0, 0);
+  --home-btn-color: #000;
+
+  --box-border-color: #e0e0e0;
+  --box-hover-border-color: #e0e0e0;
+
+  --right-sidebar-circle-bg-color: #f2f2f2;
+  --sub-text-color-5: #000;
+  --blog-border-color: #e0e0e0;
+  --docs-detail-bg: #eef9fd;
+  --ordered-list-bg-color: #ffeecc;
+  --ordered-list-text-color: #ffa800;
+  --ifm-menu-color-background-active: #ffe5b3;
+  --right-sidebar-active-color: #000;
+
+  --ifm-color-warning-contrast-background: #ffd1d1;
 }

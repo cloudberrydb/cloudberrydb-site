@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
+import { useIsDarkMode } from "@site/src/hooks/useColorMode";
 import GreaterThan from "@site/static/img/greater_than.svg";
 import LinkWithBaseUrl from "../../common/LinkWithBaseUrl";
 
@@ -18,9 +19,13 @@ export default function Card({
   href,
   className,
 }: IProps) {
+  let iconSrc = iconImgSrc;
+  if (useIsDarkMode()) {
+    iconSrc = iconImgSrc.replace("-light", "");
+  }
   return (
     <LinkWithBaseUrl to={href} className={clsx(styles.wrap, className)}>
-      <img src={iconImgSrc} alt="" />
+      <img src={iconSrc} alt="" />
       <div className={styles.content}>{content}</div>
       <div className={styles.link}>
         {linkText && (
