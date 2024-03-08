@@ -33,6 +33,71 @@
   }
 }
 
+@keyframes light3 {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(0, 100px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(0, -100px) scale(0.9);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes light4 {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(0, 10px) scale(1);
+  }
+
+  66% {
+    transform: translate(0, -10px) scale(1);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes smallTYKeyframe {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(0, 10px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(0, -10px) scale(0.9);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes scaleKeyframe {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(0.8);
+  }
+}
+
 .leftBox {
   position: absolute;
   left: -100px;
@@ -69,10 +134,93 @@
   background-image: url("/img/rectangle.png");
   background-size: 66.6px;
   &.lightMode {
+    .leftBox {
+      display: none;
+    }
+    .rightBox {
+      display: none;
+    }
+
+    background-color: #fffafa;
     .btnWrap {
       span {
         &.more {
           color: #fff;
+        }
+      }
+    }
+
+    // left box
+    .lbBox {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-color: rgba(250, 221, 169);
+      bottom: 8%;
+      left: 5%;
+      border-radius: 50%;
+      animation: scaleKeyframe 5s infinite linear;
+    }
+
+    .rbBox {
+      position: absolute;
+      right: 35%;
+
+      .sBox {
+        position: absolute;
+        width: 322px;
+        height: 322px;
+        background-color: rgba(250, 221, 169);
+        border-radius: 50%;
+        z-index: 2;
+        left: -350px;
+        animation: 5s infinite light4 linear;
+      }
+      .xBox {
+        position: absolute;
+        width: 200px;
+        height: 400px;
+        background-color: rgb(255, 209, 126);
+        border-radius: 50%;
+        bottom: -500px;
+        z-index: 1;
+        box-shadow: 50px 40px 120px 250px rgb(255, 209, 126);
+        animation: 5s infinite light3 linear;
+      }
+    }
+    @media screen and (max-width: 1440px) {
+      .rbBox {
+        bottom: 100px;
+        .sBox {
+          width: 250px;
+          height: 250px;
+          left: -300px;
+        }
+        .xBox {
+          width: 150px;
+          height: 300px;
+          bottom: -400px;
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .lbBox {
+        width: 50px;
+        height: 50px;
+      }
+      .rbBox {
+        bottom: 42px;
+        .sBox {
+          width: 100px;
+          height: 100px;
+          left: -120px;
+        }
+        .xBox {
+          width: 50px;
+          height: 50px;
+          bottom: -100px;
+          box-shadow: 10px 10px 50px 100px rgb(255, 209, 126);
+          animation-name: smallTYKeyframe;
         }
       }
     }

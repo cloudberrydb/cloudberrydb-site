@@ -37,7 +37,7 @@
       flex-shrink: 0;
 
       .item {
-        border: 1px solid var(--sub-text-color);
+        border: 1px solid var(--box-border-color); 
         padding: 24px;
         box-sizing: border-box;
         border-radius: 4px;

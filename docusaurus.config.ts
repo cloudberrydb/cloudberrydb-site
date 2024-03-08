@@ -73,7 +73,7 @@ const config: Config = {
     projectName: "cloudberrydb-site", // Usually your repo name.
     colorMode: {
       defaultMode: "dark",
-      disableSwitch: true,
+      disableSwitch: false,
     },
     navbar: {
       logo: {

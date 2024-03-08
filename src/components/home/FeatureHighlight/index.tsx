@@ -1,10 +1,19 @@
 import Translate from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { FEATURE_HIGHLIGHT } from "@site/src/consts/homeContent";
+import { useIsLightMode } from "@site/src/hooks/useColorMode";
 import styles from "./styles.module.scss";
 
 export default function FeatureHighlight() {
-
+  if (useIsLightMode()) {
+    FEATURE_HIGHLIGHT.forEach((item) => {
+      item.icon = item.lightIcon;
+    });
+  } else {
+    FEATURE_HIGHLIGHT.forEach((item) => {
+      item.icon = item.darkIcon;
+    });
+  }
   const itemTop = FEATURE_HIGHLIGHT.slice(0, 3).map((item, i) => {
     return (
       <div className={styles.listItem} key={i}>

@@ -5,6 +5,7 @@ interface IProps {
 }
 export default function CommonLayout({ children }: IProps): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+
   return (
     <Layout
       title={`${siteConfig.title}`}
