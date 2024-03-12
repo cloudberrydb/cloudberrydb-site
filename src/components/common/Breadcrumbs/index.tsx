@@ -18,6 +18,9 @@ interface IProps {
 }
 function getDefaultPath(): Path[] {
   let currentPathName = useLocation().pathname.slice(1);
+  if (currentPathName.endsWith("/")) {
+    currentPathName = currentPathName.slice(0, -1);
+  }
   currentPathName = currentPathName.replace("zh/", "");
   currentPathName = currentPathName[0].toUpperCase() + currentPathName.slice(1);
   const path: Path[] = currentPathName.split("/").map((item) => {

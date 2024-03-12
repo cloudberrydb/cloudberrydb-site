@@ -1,6 +1,5 @@
 import Translate, { translate } from "@docusaurus/Translate";
 import { HOME_HEADER_TIPS, LINKS } from "@site/src/consts/homeContent";
-import { useIsBrowser } from "@site/src/hooks/useIsBrowser";
 import { useIsMobile } from "@site/src/hooks/useIsMobile";
 import celebrate from "@site/static/img/celebrate.png";
 import clsx from "clsx";
@@ -56,7 +55,6 @@ export default function HCard() {
         <div className={styles.highText}>
           <div className={styles.textWrap}>
             {headerDesc}
-            {useIsBrowser() ? "browser" : "server"}
             <div className={styles.typewriterText}>
               <span ref={el}></span>
             </div>
