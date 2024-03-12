@@ -1,4 +1,3 @@
-import { useIsLightMode } from "@site/src/hooks/useColorMode";
 import clsx from "clsx";
 import BreadCrumbs from "../Breadcrumbs";
 import styles from "./styles.module.scss";
@@ -9,9 +8,7 @@ interface IProps {
 export function ColorHeader({ children, bgImg }: IProps) {
   return (
     <div
-      className={clsx(styles.wrap, {
-        [styles.lightMode]: useIsLightMode(),
-      })}
+      className={clsx(styles.wrap)}
       style={{
         backgroundImage: bgImg ? `url(${bgImg})` : "",
         backgroundSize: bgImg ? "cover" : "",
@@ -20,21 +17,21 @@ export function ColorHeader({ children, bgImg }: IProps) {
       <div className="global-width-layout">
         <BreadCrumbs style={{ marginTop: 15 }} />
         <div className={styles.content}>{children}</div>
-        {!bgImg &&
-          (useIsLightMode() ? (
-            <>
+        {!bgImg && (
+          <>
+            <div className={styles.lightModeBox}>
               <div className={styles.lbBox}></div>
               <div className={styles.rbBox}>
                 <div className={styles.sBox}></div>
                 <div className={styles.xBox}></div>
               </div>
-            </>
-          ) : (
-            <>
+            </div>
+            <div className={styles.darkModeBox}>
               <div className={styles.leftBox}></div>
               <div className={styles.rightBox}></div>
-            </>
-          ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

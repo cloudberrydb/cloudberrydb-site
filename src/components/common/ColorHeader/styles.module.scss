@@ -129,9 +129,63 @@
   background-color: var(--ifm-navbar-background-color);
   background-image: url("/img/rectangle.png");
   background-size: 72.6px 66.6px;
-  &.lightMode {
-    background-image: none;
+  .darkModeBox {
+    display: block;
+  }
+  .lightModeBox {
+    display: none;
+  }
+  .content {
+    margin-top: 38px;
+  }
+
+  .back {
+    display: flex;
+    align-items: center;
+    height: 21px;
+    line-height: 21px;
+    width: var(--global-main-width);
+    margin: 0 auto;
+    position: relative;
+    .main {
+      position: absolute;
+      top: 14px;
+      display: flex;
+      justify-content: center;
+      a {
+        height: 18px;
+        width: 18px;
+        overflow: hidden;
+      }
+
+      .backLogo {
+        height: 18px;
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+      }
+
+      .line {
+        display: inline-block;
+        margin: 0 6px;
+        opacity: 0.4;
+        width: 12px;
+        height: 12px;
+        line-height: 21px;
+        position: relative;
+        top: 4px;
+      }
+      .curText {
+        color: var(--active-color);
+        font-size: 13px;
+      }
+    }
+  }
+}
+html[data-theme="light"] {
+  .wrap {
     // left box
+    background: #fffafa;
     .lbBox {
       position: absolute;
       width: 150px;
@@ -241,51 +295,11 @@
       }
     }
   }
-  .content {
-    margin-top: 38px;
+  .darkModeBox {
+    display: none;
   }
-
-  .back {
-    display: flex;
-    align-items: center;
-    height: 21px;
-    line-height: 21px;
-    width: var(--global-main-width);
-    margin: 0 auto;
-    position: relative;
-    .main {
-      position: absolute;
-      top: 14px;
-      display: flex;
-      justify-content: center;
-      a {
-        height: 18px;
-        width: 18px;
-        overflow: hidden;
-      }
-
-      .backLogo {
-        height: 18px;
-        cursor: pointer;
-        position: relative;
-        top: 1px;
-      }
-
-      .line {
-        display: inline-block;
-        margin: 0 6px;
-        opacity: 0.4;
-        width: 12px;
-        height: 12px;
-        line-height: 21px;
-        position: relative;
-        top: 4px;
-      }
-      .curText {
-        color: var(--active-color);
-        font-size: 13px;
-      }
-    }
+  .lightModeBox {
+    display: block;
   }
 }
 @media screen and (max-width: 1440px) {

@@ -1,6 +1,6 @@
 import Translate, { translate } from "@docusaurus/Translate";
 import { HOME_HEADER_TIPS, LINKS } from "@site/src/consts/homeContent";
-import { useIsLightMode } from "@site/src/hooks/useColorMode";
+import { useIsBrowser } from "@site/src/hooks/useIsBrowser";
 import { useIsMobile } from "@site/src/hooks/useIsMobile";
 import celebrate from "@site/static/img/celebrate.png";
 import clsx from "clsx";
@@ -43,14 +43,7 @@ export default function HCard() {
     </>
   );
   return (
-    <div
-      className={clsx(styles.bannerContainer, {
-        [styles.lightMode]: useIsLightMode(),
-      })}
-      style={{
-        backgroundImage: useIsLightMode() ? "none" : "",
-      }}
-    >
+    <div className={clsx(styles.bannerContainer)}>
       <div className={styles.content}>
         <div className={styles.tipsWrap}>
           <span className={styles.tips}>
@@ -63,7 +56,7 @@ export default function HCard() {
         <div className={styles.highText}>
           <div className={styles.textWrap}>
             {headerDesc}
-
+            {useIsBrowser() ? "browser" : "server"}
             <div className={styles.typewriterText}>
               <span ref={el}></span>
             </div>
@@ -89,15 +82,13 @@ export default function HCard() {
       </div>
       <div className={styles.leftBox}></div>
       <div className={styles.rightBox}></div>
-      {useIsLightMode() ? (
-        <>
-          <div className={styles.lbBox}></div>
-          <div className={styles.rbBox}>
-            <div className={styles.sBox}></div>
-            <div className={styles.xBox}></div>
-          </div>
-        </>
-      ) : null}
+      <div className={styles.lightModeBox}>
+        <div className={styles.lbBox}></div>
+        <div className={styles.rbBox}>
+          <div className={styles.sBox}></div>
+          <div className={styles.xBox}></div>
+        </div>
+      </div>
     </div>
   );
 }

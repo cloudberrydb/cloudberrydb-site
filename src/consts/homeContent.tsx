@@ -1,4 +1,5 @@
 import LinkWithBaseUrl from "../components/common/LinkWithBaseUrl";
+import joinCommunityStyle from "../components/home/JoinCommunity/styles.module.scss";
 import { isZhLangrage } from "../utils";
 
 let HOME_HEADER_TIPS = "Cloudberry Database is open sourced now";
@@ -79,13 +80,16 @@ let JOIN_COMMUNITY = {
       other users. There are many ways to contribute to Cloudberry Database, and
       you can easily find the ones that suit your skills and interests to{" "}
       <b>
-        <LinkWithBaseUrl style={{ color: "inherit" }} to={"/contribute"}>
+        <LinkWithBaseUrl
+          className={joinCommunityStyle.textLink}
+          to={"/contribute"}
+        >
           begin your contribution
         </LinkWithBaseUrl>
       </b>{" "}
       journey. Additionally, our community is always there to{" "}
       <b>
-        <LinkWithBaseUrl style={{ color: "inherit" }} to="/support">
+        <LinkWithBaseUrl className={joinCommunityStyle.textLink} to="/support">
           help and provide support
         </LinkWithBaseUrl>
       </b>{" "}

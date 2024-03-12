@@ -1,3 +1,39 @@
+html[data-theme="light"] {
+  .wrap {
+    .showList {
+      .listItem1 {
+        .icon {
+          background-image: url(/img/home/feature/muc-light.svg);
+        }
+      }
+      .listItem2 {
+        .icon {
+          background-image: url(/img/home/feature/hesc-light.svg);
+        }
+      }
+      .listItem3 {
+        .icon {
+          background-image: url(/img/home/feature/sac-light.svg);
+        }
+      }
+      .listItem4 {
+        .icon {
+          background-image: url(/img/home/feature/cuwmt-light.svg);
+        }
+      }
+      .listItem5 {
+        .icon {
+          background-image: url(/img/home/feature/p14i-light.svg);
+        }
+      }
+      .listItem6 {
+        .icon {
+          background-image: url(/img/home/feature/mef-light.svg);
+        }
+      }
+    }
+  }
+}
 .wrap {
   padding-bottom: 74px;
   background-color: var(--normal-bg-1);
@@ -24,10 +60,45 @@
       padding: 20px;
       box-sizing: border-box;
       color: var(--sub-text-color);
-      border: 1px solid var(--box-border-color);     
+      border: 1px solid var(--box-border-color);
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
+      .icon {
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+      }
+      &.listItem1 {
+        .icon {
+          background-image: url(/img/home/feature/muc.svg);
+        }
+      }
+      &.listItem2 {
+        .icon {
+          background-image: url(/img/home/feature/hesc.svg);
+        }
+      }
+      &.listItem3 {
+        .icon {
+          background-image: url(/img/home/feature/sac.svg);
+        }
+      }
+      &.listItem4 {
+        .icon {
+          background-image: url(/img/home/feature/cuwmt.svg);
+        }
+      }
+      &.listItem5 {
+        .icon {
+          background-image: url(/img/home/feature/p14i.svg);
+        }
+      }
+      &.listItem6 {
+        .icon {
+          background-image: url(/img/home/feature/mef.svg);
+        }
+      }
 
       .itemTitle {
         color: var(--title-text-color);

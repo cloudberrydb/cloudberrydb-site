@@ -2,7 +2,6 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import LinkWithBaseUrl from "@site/src/components/common/LinkWithBaseUrl";
 import { LINKS } from "@site/src/consts/homeContent";
-import { useIsLightMode } from "@site/src/hooks/useColorMode";
 import useNavToTarget from "@site/src/hooks/useNavToTarget";
 import GithubSvg from "@site/static/img/github.svg";
 import SecuritySvg from "@site/static/img/security.svg";
@@ -70,11 +69,7 @@ export default function Footer() {
   });
 
   return (
-    <div
-      className={clsx(styles.wrap, {
-        [styles.lightMode]: useIsLightMode(),
-      })}
-    >
+    <div className={clsx(styles.wrap)}>
       <div className={styles.mainWrap}>
         <div className={styles.linksWrap}>{footerLinks}</div>
         <div className={styles.logoLinkWrap}>
