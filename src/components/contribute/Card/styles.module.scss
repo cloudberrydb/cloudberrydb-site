@@ -4,6 +4,11 @@ html[data-theme="light"] {
       .tIcon {
         background-image: url(/img/home/feature/mef-light.svg);
       }
+      &:hover {
+        .tIcon {
+          // background-image: red;
+        }
+      }
     }
     &:nth-of-type(2) {
       .tIcon {

@@ -27,7 +27,7 @@ html[data-theme="light"] {
   overflow: hidden;
   padding-bottom: 36px;
   padding-top: 80px;
-  padding: 80px 70px 36px;
+  padding: 80px 70px 157px;
 
   .rect {
     max-width: 1300px;
@@ -53,6 +53,7 @@ html[data-theme="light"] {
       color: rgba(0, 0, 0, 0.6);
       margin: 18px auto 45px;
       text-indent: 18px;
+      max-width: 921px;
       .textLink {
         color: inherit;
       }

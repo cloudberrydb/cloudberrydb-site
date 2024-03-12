@@ -505,6 +505,10 @@ article {
 
 ul[role="tablist"] {
   border-bottom: 1px solid #383b3f;
+  .tabs__item {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
   .tabs__item--active {
     background-color: #333333;
     color: #fff;
