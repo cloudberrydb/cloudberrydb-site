@@ -51,13 +51,14 @@ let CONTRIBUTE_PAGE_CONFIG: ConfigProps = {
         <div className={clsx(styles.codeContribution, "link-wrap")}>
           <Card
             className={styles.firstPosition}
-            iconImgSrc="/img/home/feature/mef-light.png"
+            iconImgSrc="/img/home/feature/mef-light.svg"
             content="Learn the code conventions, contribution workflow, how to review code, and the contributor checklist."
             linkText="Make your code contribution"
             href="/contribute/code"
           />
           <Card
-            iconImgSrc="/img/home/feature/muc-light.png"
+            className={styles.secondPosition}
+            iconImgSrc="/img/home/feature/muc-light.svg"
             content="For any major changes to the Cloudberry Database, please consider initiating one proposal."
             linkText="See the proposal process"
             href="/contribute/proposal"

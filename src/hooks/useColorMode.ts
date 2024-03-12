@@ -1,10 +1,8 @@
-import { ColorMode, useColorMode } from "@docusaurus/theme-common";
 export function useIsLightMode() {
-  return useColorMode().colorMode === "light";
+  if (!globalThis.document?.documentElement) return "";
+  return document.documentElement.getAttribute("data-theme") === "light";
 }
 export function useIsDarkMode() {
-  return useColorMode().colorMode === "dark";
-}
-export function useSetColorMode(colorMode: ColorMode) {
-  useColorMode().setColorMode(colorMode);
+  if (!globalThis.document?.documentElement) return "";
+  return document.documentElement.getAttribute("data-theme") === "dark";
 }

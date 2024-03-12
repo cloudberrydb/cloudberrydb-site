@@ -3,7 +3,6 @@ import styles from "./styles.module.scss";
 // links
 import Translate from "@docusaurus/Translate";
 import { JOIN_COMMUNITY, LINKS } from "@site/src/consts/homeContent";
-import { useIsLightMode } from "@site/src/hooks/useColorMode";
 import GithubSvg from "@site/static/img/github.svg";
 import SecuritySvg from "@site/static/img/security.svg";
 import TwitterSvg from "@site/static/img/twitter.svg";
@@ -14,11 +13,7 @@ import LinkWithBaseUrl from "../../common/LinkWithBaseUrl";
 
 export default function JoinCommunity() {
   return (
-    <div
-      className={clsx(styles.wrap, {
-        [styles.lightMode]: useIsLightMode(),
-      })}
-    >
+    <div className={clsx(styles.wrap)}>
       <div className="global-width-center">
         <div className={styles.rect}>
           <div className={styles.title}>

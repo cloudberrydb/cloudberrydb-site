@@ -1,9 +1,6 @@
-.main {
-  width: var(--global-main-width);
-  margin: 0 auto;
-  position: relative;
-  &.mdxCard {
-    &.lightMode {
+html[data-theme="light"] {
+  .main {
+    &.mdxCard {
       .content {
         .bigText {
           color: #fff;
@@ -14,6 +11,11 @@
       }
     }
   }
+}
+.main {
+  width: var(--global-main-width);
+  margin: 0 auto;
+  position: relative;
 
   .content {
     max-width: 949px;

@@ -1,10 +1,5 @@
-.wrap {
-  background-color: var(--normal-bg-1);
-  overflow: hidden;
-  padding-bottom: 36px;
-  padding-top: 80px;
-  padding: 80px 70px 36px;
-  &.lightMode {
+html[data-theme="light"] {
+  .wrap {
     .rect {
       background-color: #2a2c32;
       .title {
@@ -12,17 +7,28 @@
       }
       .content {
         color: rgba(266, 266, 266, 0.6);
+        .textLink:hover {
+          color: var(--active-color);
+        }
       }
       .links {
         .item {
           fill: #fff;
           &:hover {
-            fill: var(--hover-fill-color);
+            fill: var(--active-color);
           }
         }
       }
     }
   }
+}
+.wrap {
+  background-color: var(--normal-bg-1);
+  overflow: hidden;
+  padding-bottom: 36px;
+  padding-top: 80px;
+  padding: 80px 70px 36px;
+
   .rect {
     max-width: 1300px;
     height: 412px;
@@ -47,6 +53,9 @@
       color: rgba(0, 0, 0, 0.6);
       margin: 18px auto 45px;
       text-indent: 18px;
+      .textLink {
+        color: inherit;
+      }
     }
     .links {
       width: 518px;

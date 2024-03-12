@@ -1,7 +1,6 @@
 import { useLocation } from "@docusaurus/router";
-import { useIsLightMode } from "@site/src/hooks/useColorMode";
+import BackHomeLight from "@site/static/img/back_home-light.svg";
 import BackHome from "@site/static/img/back_home.svg";
-import LineLightSvg from "@site/static/img/line-light.svg";
 import LineSvg from "@site/static/img/line.svg";
 import clsx from "clsx";
 import React from "react";
@@ -39,19 +38,19 @@ export default function BreadCrumbs(props: IProps) {
   }
 
   const pathLen = location.pathname.split("/").filter((item) => {
-    return item != "" && item != "zh" && item != 'blog';
+    return item != "" && item != "zh" && item != "blog";
   }).length;
 
   return (
     <div
       className={clsx(styles.breadcrumbs, props.className, {
-        [styles.lightMode]: useIsLightMode(),
         [styles.mdxPage]: pathLen === 2,
       })}
       style={props.style}
     >
       <LinkWithBaseUrl to={"/"} className={styles.backLogoA}>
         <BackHome className={styles.backLogoSvg} />
+        <BackHomeLight className={styles.backLogoLightSvg} />
       </LinkWithBaseUrl>
       <div className={styles.path}>
         {path.map((item) => {
@@ -64,12 +63,7 @@ export default function BreadCrumbs(props: IProps) {
           );
           return (
             <React.Fragment key={item.name}>
-              {useIsLightMode() && pathLen !== 2 ? (
-                <LineLightSvg className={styles.line} />
-              ) : (
-                <LineSvg className={styles.line} />
-              )}
-
+              <LineSvg className={styles.line} />
               {LinkBtn}
             </React.Fragment>
           );

@@ -52,7 +52,7 @@
 }
 @keyframes light4 {
   0% {
-    transform: translate(0) scale(1);
+    transform: translate(0, 0) scale(1);
   }
 
   33% {
@@ -124,16 +124,12 @@
     -90px 90px 90px 90px #8b7bcf, -90px -90px 90px 190px #8b7bcf;
 }
 
-.bannerContainer {
-  position: relative;
-  overflow: hidden;
-  height: 867px;
-  margin-top: -98px;
-  background-color: var(--normal-bg-1);
-  position: relative;
-  background-image: url("/img/rectangle.png");
-  background-size: 66.6px;
-  &.lightMode {
+html[data-theme="light"] {
+  .bannerContainer {
+    background-image: none;
+    .lightModeBox {
+      display: block;
+    }
     .leftBox {
       display: none;
     }
@@ -165,7 +161,7 @@
     .rbBox {
       position: absolute;
       right: 35%;
-
+      bottom: 100px;
       .sBox {
         position: absolute;
         width: 322px;
@@ -224,6 +220,20 @@
         }
       }
     }
+  }
+}
+
+.bannerContainer {
+  position: relative;
+  overflow: hidden;
+  height: 867px;
+  margin-top: -98px;
+  background-color: var(--normal-bg-1);
+  position: relative;
+  background-image: url("/img/rectangle.png");
+  background-size: 66.6px;
+  .lightModeBox {
+    display: none;
   }
 
   .content {

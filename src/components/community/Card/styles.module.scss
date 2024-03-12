@@ -1,3 +1,12 @@
+html[data-theme="light"] {
+  .card {
+    .icon {
+      svg {
+        fill: #000 !important;
+      }
+    }
+  }
+}
 .card {
   width: 305px;
   border: 1px solid var(--box-border-color);
@@ -8,13 +17,6 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  &.lightMode {
-    .icon {
-      svg {
-        fill: #000;
-      }
-    }
-  }
   @media screen and (max-width: 1440px) {
     width: auto !important;
   }
