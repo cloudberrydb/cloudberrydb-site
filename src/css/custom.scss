@@ -32,6 +32,7 @@
   --code-bg-color: rgb(51, 51, 51);
   --right-sidebar-circle-bg-color: rgba(48, 54, 61, 1);
   --right-sidebar-active-color: var(--active-color);
+  --portrait-border-hover-color: rgb(254, 177, 25);
 
   // text color
   --normal-text-color: rgba(12, 14, 20, 1);
@@ -106,7 +107,6 @@
 
   --code-border-color: rgb(153, 109, 26);
   --portrait-border-color: rgb(37, 38, 39);
-  --portrait-border-hover-color: rgb(254, 177, 25);
   --box-border-color: var(--sub-text-color);
   --box-hover-border-color: var(--title-text-color);
   --sub-text-color-2: rgba(255, 255, 255, 0.6);
@@ -139,7 +139,6 @@
   --ifm-menu-color-background-active: #ffe5b3;
   --right-sidebar-active-color: #000;
 
-  --ifm-color-warning-contrast-background: #ffd1d1;
   --ifm-menu-color-active: #000;
   --ifm-menu-color: #000;
   --ifm-breadcrumb-color-active: var(--active-color);
