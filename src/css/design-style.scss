@@ -126,6 +126,9 @@ article {
 
   // icon
   .theme-admonition {
+    a {
+      text-decoration-color: var(--active-color);
+    }
     &.alert--warning {
       span::before {
         content: "";
@@ -526,18 +529,12 @@ html[data-theme="light"] {
   .theme-admonition {
     &.alert--warning {
       span::before {
-        display: none;
-      }
-      svg {
-        display: inline-block;
+        background-image: url("/img/docs/warning-light.svg");
       }
     }
     &.alert--danger {
       span::before {
-        display: none;
-      }
-      svg {
-        display: inline-block;
+        background-image: url("/img/docs/danger-light.svg");
       }
     }
   }
@@ -616,7 +613,7 @@ html[data-theme="light"] {
           &.menu__list-item {
             .menu__link--active {
               &::before {
-                background-image: url("/img/docs/hover-sub-active.svg");
+                background-image: url("/img/docs/sub-light.svg");
               }
             }
           }

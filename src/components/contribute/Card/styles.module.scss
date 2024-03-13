@@ -6,13 +6,18 @@ html[data-theme="light"] {
       }
       &:hover {
         .tIcon {
-          // background-image: red;
+          background-image: url(/img/home/feature/mef-light-hover.svg);
         }
       }
     }
     &:nth-of-type(2) {
       .tIcon {
         background-image: url(/img/home/feature/muc-light.svg);
+      }
+      &:hover {
+        .tIcon {
+          background-image: url(/img/home/feature/muc-light-hover.svg);
+        }
       }
     }
   }
