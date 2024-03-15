@@ -9,7 +9,7 @@ interface IProps {
     title?: string;
     style?: React.CSSProperties;
   }[];
-  itemWidth?: number;
+  itemWidth?: number | string;
 }
 export default function CardLine({ cardLine, itemWidth }: IProps) {
   return cardLine.map((card, i) => {

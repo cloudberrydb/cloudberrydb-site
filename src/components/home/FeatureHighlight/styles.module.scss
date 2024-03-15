@@ -1,51 +1,164 @@
+html[data-theme="light"] {
+  .wrap {
+    .showList {
+      .listItem1 {
+        .icon {
+          background-image: url(/img/home/feature/muc-light.svg);
+        }
+      }
+      .listItem2 {
+        .icon {
+          background-image: url(/img/home/feature/hesc-light.svg);
+        }
+      }
+      .listItem3 {
+        .icon {
+          background-image: url(/img/home/feature/sac-light.svg);
+        }
+      }
+      .listItem4 {
+        .icon {
+          background-image: url(/img/home/feature/cuwmt-light.svg);
+        }
+      }
+      .listItem5 {
+        .icon {
+          background-image: url(/img/home/feature/p14i-light.svg);
+        }
+      }
+      .listItem6 {
+        .icon {
+          background-image: url(/img/home/feature/mef-light.svg);
+        }
+      }
+    }
+  }
+}
 .wrap {
-  height: 874px;
+  padding-bottom: 74px;
   background-color: var(--normal-bg-1);
   padding-top: 81px;
+  padding-left: 180px;
+  padding-right: 180px;
+
   .title {
     color: var(--title-text-color);
     text-align: center;
     font-size: 40px;
     line-height: 56px;
     font-weight: 700;
+    margin-bottom: 38px;
   }
-}
+  .showList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 38px 32px;
 
-.showList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 1078px;
-  margin: 0 auto;
-  &.top {
-    margin: 39px auto 0;
     .listItem {
-      margin-bottom: 40px;
+      width: 100%;
+      border-radius: 4px;
+      padding: 20px;
+      box-sizing: border-box;
+      color: var(--sub-text-color);
+      border: 1px solid var(--box-border-color);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      .icon {
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+      }
+      &.listItem1 {
+        .icon {
+          background-image: url(/img/home/feature/muc.svg);
+        }
+      }
+      &.listItem2 {
+        .icon {
+          background-image: url(/img/home/feature/hesc.svg);
+        }
+      }
+      &.listItem3 {
+        .icon {
+          background-image: url(/img/home/feature/sac.svg);
+        }
+      }
+      &.listItem4 {
+        .icon {
+          background-image: url(/img/home/feature/cuwmt.svg);
+        }
+      }
+      &.listItem5 {
+        .icon {
+          background-image: url(/img/home/feature/p14i.svg);
+        }
+      }
+      &.listItem6 {
+        .icon {
+          background-image: url(/img/home/feature/mef.svg);
+        }
+      }
+
+      .itemTitle {
+        color: var(--title-text-color);
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
     }
   }
-  &.bottom {
-    .listItem {
-      height: 300px;
+  @media screen and (max-width: 1440px) {
+    .showList {
+      &.top {
+        .listItem {
+          margin-bottom: 20px;
+        }
+      }
     }
   }
-  .listItem {
-    width: 338px;
-    height: 284px;
-    border-radius: 4px;
-    padding: 20px;
-    box-sizing: border-box;
-    color: var(--sub-text-color);
-    border: 1px solid var(--sub-text-color);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
+  @media screen and (max-width: 1024px) {
+    height: 100%;
+    padding-left: var(--mobile-padding-width) !important;
+    padding-right: var(--mobile-padding-width) !important;
 
-    .itemTitle {
-      color: var(--title-text-color);
-      font-size: 28px;
-      line-height: 36px;
-      font-weight: 700;
-      margin-bottom: 10px;
+    .showList {
+      width: 100%;
+      padding: 0 var(--mobile-padding-width);
+      box-sizing: border-box;
+      margin-top: 40px;
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1fr 1fr;
+      padding: 0;
+      .listItem {
+        width: 100%;
+        height: auto;
+
+        img {
+          width: 30px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding-left: 74px;
+    padding-right: 74px;
+    .title {
+      font-size: 30px;
+    }
+    .showList {
+      width: 100% !important;
+      grid-template-columns: auto;
+      gap: 32px;
+      .listItem {
+        width: 100%;
+        .itemTitle {
+          font-size: 20px;
+          line-height: 1;
+        }
+      }
     }
   }
 }
