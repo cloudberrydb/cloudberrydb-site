@@ -1,0 +1,17 @@
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .docItemCol {
+    max-width: 70% !important;
+    margin-right: 40px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .docItemCol {
+    max-width: calc(100%) !important;
+    margin-right: 0;
+  }
+}

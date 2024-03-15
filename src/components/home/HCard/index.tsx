@@ -1,5 +1,6 @@
 import Translate, { translate } from "@docusaurus/Translate";
 import { HOME_HEADER_TIPS, LINKS } from "@site/src/consts/homeContent";
+import { useIsMobile } from "@site/src/hooks/useIsMobile";
 import celebrate from "@site/static/img/celebrate.png";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
@@ -23,8 +24,25 @@ export default function HCard() {
     };
   }, []);
 
+  const headerDesc = useIsMobile() ? (
+    <>
+      <div>
+        <Translate>Next Generation</Translate>{" "}
+        <Translate>Unified Database for</Translate>
+      </div>
+    </>
+  ) : (
+    <>
+      <div>
+        <Translate>Next Generation</Translate>
+      </div>
+      <div>
+        <Translate>Unified Database for</Translate>
+      </div>
+    </>
+  );
   return (
-    <div className={styles.bannerContainer}>
+    <div className={clsx(styles.bannerContainer)}>
       <div className={styles.content}>
         <div className={styles.tipsWrap}>
           <span className={styles.tips}>
@@ -36,12 +54,7 @@ export default function HCard() {
         </div>
         <div className={styles.highText}>
           <div className={styles.textWrap}>
-            <div>
-              <Translate>Next Generation</Translate>
-            </div>
-            <div>
-              <Translate>Unified Database for</Translate>
-            </div>
+            {headerDesc}
             <div className={styles.typewriterText}>
               <span ref={el}></span>
             </div>
@@ -67,6 +80,13 @@ export default function HCard() {
       </div>
       <div className={styles.leftBox}></div>
       <div className={styles.rightBox}></div>
+      <div className={styles.lightModeBox}>
+        <div className={styles.lbBox}></div>
+        <div className={styles.rbBox}>
+          <div className={styles.sBox}></div>
+          <div className={styles.xBox}></div>
+        </div>
+      </div>
     </div>
   );
 }

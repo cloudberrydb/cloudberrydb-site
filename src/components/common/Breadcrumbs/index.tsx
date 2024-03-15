@@ -1,4 +1,5 @@
 import { useLocation } from "@docusaurus/router";
+import BackHomeLight from "@site/static/img/back_home-light.svg";
 import BackHome from "@site/static/img/back_home.svg";
 import LineSvg from "@site/static/img/line.svg";
 import clsx from "clsx";
@@ -17,6 +18,9 @@ interface IProps {
 }
 function getDefaultPath(): Path[] {
   let currentPathName = useLocation().pathname.slice(1);
+  if (currentPathName.endsWith("/")) {
+    currentPathName = currentPathName.slice(0, -1);
+  }
   currentPathName = currentPathName.replace("zh/", "");
   currentPathName = currentPathName[0].toUpperCase() + currentPathName.slice(1);
   const path: Path[] = currentPathName.split("/").map((item) => {
@@ -31,16 +35,25 @@ function getDefaultPath(): Path[] {
 }
 export default function BreadCrumbs(props: IProps) {
   let path = getDefaultPath();
+  const location = useLocation();
   if (props.path?.length) {
     path = props.path;
   }
+
+  const pathLen = location.pathname.split("/").filter((item) => {
+    return item != "" && item != "zh" && item != "blog";
+  }).length;
+
   return (
     <div
-      className={clsx(styles.breadcrumbs, props.className)}
+      className={clsx(styles.breadcrumbs, props.className, {
+        [styles.mdxPage]: pathLen === 2,
+      })}
       style={props.style}
     >
       <LinkWithBaseUrl to={"/"} className={styles.backLogoA}>
         <BackHome className={styles.backLogoSvg} />
+        <BackHomeLight className={styles.backLogoLightSvg} />
       </LinkWithBaseUrl>
       <div className={styles.path}>
         {path.map((item) => {

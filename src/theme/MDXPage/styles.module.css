@@ -1,6 +1,15 @@
 .mdxPageWrapper {
   display: flex;
   justify-content: center;
-  width: var(--global-main-width);
+  max-width: var(--global-main-width);
   margin: 60px auto;
+
+  @media screen and (max-width: 1440px) {
+    padding: 0 var(--mobile-padding-width);
+  }
+  @media screen and (max-width: 1024px) {
+    .rightContent {
+      display: none;
+    }
+  }
 }

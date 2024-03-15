@@ -75,7 +75,7 @@ let COMMUNITY_PAGE: CommunityPageConfig = {
           style: { height: 216 },
           cards: [
             {
-              icon: <ReportBugsIcon fill="#fff" />,
+              icon: <ReportBugsIcon fill={"#fff"} />,
               title: "Report bugs",
               content:
                 "If you find any bugs in Cloudberry Database's core, please submit them on GitHub. More eyes result in fewer bugs.",
@@ -112,7 +112,7 @@ let COMMUNITY_PAGE: CommunityPageConfig = {
       title: "Get Support",
       cardLines: [
         {
-          style: { height: 182 },
+          style: { height: 182, gridTemplateColumns: "1fr 1fr" },
           cards: [
             {
               style: { width: 474 },
@@ -139,7 +139,7 @@ let COMMUNITY_PAGE: CommunityPageConfig = {
       title: "Stay Informed",
       cardLines: [
         {
-          style: { height: 195 },
+          style: { height: 195, gridTemplateColumns: "1fr 1fr" },
           cards: [
             {
               style: { width: 474 },
@@ -352,7 +352,7 @@ if (isZhLangrage()) {
                 title: "Twitter",
                 style: { width: 474 },
                 content:
-                  '欢迎关注我们的 X（原 Twitter）帐号 @cloudberrydb，获取新闻和动态。',
+                  "欢迎关注我们的 X（原 Twitter）帐号 @cloudberrydb，获取新闻和动态。",
                 link: {
                   text: "关注我们",
                   href: "https://twitter.com/cloudberrydb",
@@ -404,8 +404,7 @@ if (isZhLangrage()) {
               },
               {
                 title: "品牌指南",
-                content:
-                  "介绍如何下载、规范使用项目标志、名称和字体。",
+                content: "介绍如何下载、规范使用项目标志、名称和字体。",
                 link: {
                   text: "查看指南",
                   href: "/community/brand",
@@ -413,8 +412,7 @@ if (isZhLangrage()) {
               },
               {
                 title: "安全策略",
-                content:
-                  "查看安全策略了解如何向官方报告安全问题。",
+                content: "查看安全策略了解如何向官方报告安全问题。",
                 link: {
                   text: "了解安全策略",
                   href: "/community/security",

@@ -1,0 +1,35 @@
+.wrap {
+  .leftContent {
+    max-width: 980px;
+  }
+  .navLinkWrap {
+    flex: 1;
+    position: relative;
+    .navLinkComp {
+      position: sticky;
+      width: 196px;
+      height: 203px;
+      margin-left: 108px;
+      margin-top: 51px;
+      top: 130px;
+    }
+  }
+  @media screen and (max-width: 1440px) {
+    .leftContent {
+      width: 75%;
+    }
+    .navLinkWrap {
+      .navLinkComp {
+        margin-left: 40px;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .leftContent {
+      width: 100%;
+    }
+    .navLinkWrap {
+      display: none;
+    }
+  }
+}
