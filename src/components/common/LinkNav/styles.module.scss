@@ -8,10 +8,10 @@
     margin-top: 0px;
     height: 40px;
     &.active {
-      color: var(--active-color);
+      color: var(--right-sidebar-active-color);
       a {
         &::after {
-          background-color: var(--active-color);
+          background-color: var(--right-sidebar-active-color);
         }
       }
     }
@@ -33,7 +33,7 @@
         height: 8px;
         display: inline-block;
         position: absolute;
-        background-color: var(--nav-link-line-normal-color);
+        background-color: var(--right-sidebar-circle-bg-color);
         border-radius: 50%;
         left: -19px;
         top: 6px;
@@ -43,7 +43,7 @@
       a {
         &::before {
           content: "";
-          background-image: url("/img/vertical-line.png");
+          background-color: var(--right-sidebar-circle-bg-color);
           width: 2px;
           height: 32px;
           position: absolute;

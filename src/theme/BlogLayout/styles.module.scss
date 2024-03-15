@@ -1,9 +1,10 @@
 .main {
-  width: 896px;
+  max-width: 896px;
 
   &.blogList {
-    .breadCrumbs {
+    .breadcrumbs {
       margin-bottom: 10px;
+      margin-top: 10px;
     }
     .listWrap {
       flex-wrap: wrap;
@@ -13,5 +14,30 @@
   }
   &.blogDetail {
     margin: 0 auto;
+    .breadcrumbs {
+      margin-top: 20px;
+      display: flex;
+      align-items: self-start;
+    }
+  }
+  @media screen and (max-width: 1440px) {
+    &.blogList {
+      .listWrap {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px 16px;
+        article {
+          width: auto !important;
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    &.blogList {
+      .listWrap {
+        grid-template-columns: 1fr;
+      }
+    }
   }
 }
