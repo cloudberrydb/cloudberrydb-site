@@ -8,11 +8,12 @@ import SecuritySvg from "@site/static/img/security.svg";
 import TwitterSvg from "@site/static/img/twitter.svg";
 import WechatSvg from "@site/static/img/wechat.svg";
 import YoutubeSvg from "@site/static/img/youtube.svg";
+import clsx from "clsx";
 import LinkWithBaseUrl from "../../common/LinkWithBaseUrl";
 
 export default function JoinCommunity() {
   return (
-    <div className={styles.wrap}>
+    <div className={clsx(styles.wrap)}>
       <div className="global-width-center">
         <div className={styles.rect}>
           <div className={styles.title}>

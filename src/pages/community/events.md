@@ -15,4 +15,4 @@ welcome to email us: info@cloudberrydb.org.
 
 :::
 
-<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ee8332&ctz=UTC&showNav=1&showTitle=1&showPrint=1&src=Y2xvdWRiZXJyeWRiQGdtYWlsLmNvbQ&color=%23be5200" width="940" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ee8332&ctz=UTC&showNav=1&showTitle=1&showPrint=1&src=Y2xvdWRiZXJyeWRiQGdtYWlsLmNvbQ&color=%23be5200" width="100%" height="600" frameborder="0" scrolling="no"></iframe>

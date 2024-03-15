@@ -22,8 +22,18 @@
 
     &:hover,
     &.active {
+      background-color: var(--ifm-menu-color-background-active);
+    }
+  }
+  @media screen and (max-width: 1440px) {
+    margin-right: 22px;
+  }
+}
+html[data-theme="dark"] {
+  .sidebarItem {
+    &:hover,
+    &.active {
       color: var(--active-color);
-      background-color: var(--menu-bg-color);
     }
   }
 }

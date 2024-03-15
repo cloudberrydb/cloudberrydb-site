@@ -1,6 +1,6 @@
-import { themes as prismThemes } from "prism-react-renderer";
-import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type { Config } from "@docusaurus/types";
+import { themes as prismThemes } from "prism-react-renderer";
 const config: Config = {
   title: "Cloudberry Database",
   tagline: "Next Generation Unified Database for Analytics and AI",
@@ -73,7 +73,8 @@ const config: Config = {
     projectName: "cloudberrydb-site", // Usually your repo name.
     colorMode: {
       defaultMode: "dark",
-      disableSwitch: true,
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
     navbar: {
       logo: {
@@ -106,10 +107,10 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "light",
       logo: {
         alt: "Cloudberry Database Logo",
         src: "/img/cloudberrydb_color_white.svg",
+        srcDark: "/img/cloudberrydb_color_black.svg",
       },
       copyright: `Copyright © ${new Date().getFullYear()} HashData Technology Limited.`,
       links: [
