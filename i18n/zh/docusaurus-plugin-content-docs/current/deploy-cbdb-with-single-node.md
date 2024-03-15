@@ -425,7 +425,7 @@ systemctl status chronyd
 
 ## 第 3 步：部署单计算节点的 Cloudberry Database
 
-使用脚本工具 [`gpdemo`](/i18n/zh/docusaurus-plugin-content-docs/current/sys-utilities/gpdemo.md) 快速部署 Cloudberry Database。`gpdemo` 包含在 RPM 包中，将随配置脚本（gpinitsystem、gpstart、gpstop 等）一并安装到 `GPHOME/bin` 目录下，支持快捷部署无 Segment 节点的 Cloudberry Database。
+使用脚本工具 [`gpdemo`](/i18n/zh/docusaurus-plugin-content-docs/current/sys-utilities/db-util-gpdemo.md) 快速部署 Cloudberry Database。`gpdemo` 包含在 RPM 包中，将随配置脚本（gpinitsystem、gpstart、gpstop 等）一并安装到 `GPHOME/bin` 目录下，支持快捷部署无 Segment 节点的 Cloudberry Database。
 
 在上面[为 XFS 文件系统设置挂载选项](#为-xfs-文件系统设置挂载选项)中，XFS 文件系统的数据目录挂载在了 `/data0` 上。以下指令在该数据目录下部署一个单计算节点集群：
 
