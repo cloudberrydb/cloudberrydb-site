@@ -1,127 +1,97 @@
 ---
-title: Brand Guidelines
-description: Here is a comprehensive guide that explains how to download and use our logos, names, and fonts. This guide will provide you with all the necessary information you need to know to use our branding materials.
+title: 品牌指南
+description: 这里是一个详细指南，解释如何下载和使用我们的 Logo、名称和字体。本指南将为你提供使用我们的品牌材料所需的所有必要信息。
 ---
 
-Welcome to the Brand Guide for Cloudberry Database!
+欢迎查看 Cloudberry Database 品牌指南！
 
-We're excited to share with you the insights and inspiration behind
-our project's visual identity. This guide is designed to walk you
-through the key elements of our logo, its usage, and its significance
-in reflecting the essence of our ambitious project. So, get ready to
-dive deep into the world of Cloudberry Database.
+我们很高兴与你分享 Cloudberry Database 项目品牌设计背后的见解。本指南介绍我们 Logo 中的关键元素、使用方法及注意事项。开始深入了解 Cloudberry Database 的世界吧！
 
 ## Cloudberry Database logo
 
-:::info Download
+:::info 下载
 
-You can download all the logo files from our
-[artwork@GitHub](https://github.com/cloudberrydb/artwork), including
-different versions, and formats.
+你可以从我们的 [artwork@GitHub](https://github.com/cloudberrydb/artwork) 下载所有 logo 文件，包括不同版本和格式。
 
 :::
 
-Our project's formal name is "Cloudberry Database". If you mention it,
-please use the full name if you can.
+我们项目的正式名称是“Cloudberry Database”。如果你提到本项目，请尽量使用全名。
 
 ![Cloudberry Database Full Logo](/img/brand-guide/cloudberry-database-full-logo.jpg)
 
 :::caution
 
-In some situations, people probably use "CBDB", "CloudberryDB" for
-short. We don't encourage this way but recognize it can be beneficial
-to communicate with others efficiently.
+在某些情况下，人们可能会使用“CBDB”或“CloudberryDB”这样的简称，我们不鼓励，但我们认为使用这样的简称与他人沟通确实可以更方便有效。
 
 :::
 
-### Logo mark
+### Logo 标志
 
-Our logo mark is a combination of "cloud" and "cloudberry".
+我们的标志由“cloud”和“cloudberry”两个英文单词组合而来。
 
 ![Cloudberry Database Logo Mark](/img/brand-guide/logo-mark.png)
 
-### Logo versions 
+### Logo 版本
 
-We also offer various logo versions that are commonly used in many
-marketing scenarios. These options are available for your use as
-deemed appropriate for the specific situation.
+我们还提供在许多营销场景中常用的各种 Logo 版本，可根据特定情况选择使用。
 
 | ![Background White](/img/brand-guide/black-logomark.jpg) | ![Background Black](/img/brand-guide/black-full-logo.png) |
-|-------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| *Black logo mark*                                                       | *Black full logo*                                                        |
+|----------------------------------------------------------|-----------------------------------------------------------|
+| *黑色 logo*                                              | *全黑 logo*                                               |
 
-### Clear Space
+### 空白间距
 
 ![Clear Space](/img/brand-guide/clearspace.jpg)
 
-The Cloudberry Database logo requires ample clear space for optimal
-clarity. This area should remain free from any visual components at
-all times.
+Cloudberry Database 标志需要足够的空白间距以实现最佳清晰度，该区域应始终保持无任何可视组件。
 
-### Backgrounds
+### 背景
 
-Use the Cloudberry Database logos with the following backgrounds to
-have a better image.
+将 Cloudberry Database logo 与以下背景一起使用，以获得更好的图像效果。
 
 | ![Background White](/img/brand-guide/background-1.jpg) | ![Background Black](/img/brand-guide/background-2.jpg)       |
-|-----------------------------------------------------------------------|-----------------------------------------------------------------------------|
+|--------------------------------------------------------|--------------------------------------------------------------|
 | ![Background Grey](/img/brand-guide/background-3.jpg)  | ![Background Pink Orange](/img/brand-guide/background-4.jpg) |
 
-### Colors
+### 颜色
 
-#### Primary palette
+#### 主色调
 
-Our Cloudberry Database's primary brand colors are Berry Orange, Berry
-Yellow, Back, and White.
+我们的 Cloudberry Database 的主要品牌色是 Berry Orange（果橙）、Berry
+Yellow（果黄）、Back（黑色） 和 White（白色）。
 
 ![Primary palette](/img/brand-guide/primary-palette.jpg)
 
-#### Secondary palette
+#### 辅助色调
 
-The secondary palette features a diverse set of supporting colors that
-helps provide additional balance and range. Secondary colors should be
-used sparingly throughout the system in order to maintain optimal
-effect and a consistent look and feel.
+辅助色调支持颜色搭配，有助于提供额外平衡和应用于更多使用范围。在整个系统中应谨慎使用辅助色调，以保持最佳效果和一致的外观与感觉。
 
 ![Secondary palette](/img/brand-guide/secondary-palette.jpg)
 
-### What to avoid
+### 禁止情形
 
-| ![avoid-1](/img/brand-guide/avoid-1.png) **Don't alter, crop, skew, outline, distort or recreate the logo** | ![avoid-2](/img/brand-guide/avoid-2.jpeg) **Don’t use the full-color logo on an unapproved background color or low-contrast photo** | ![avoid-3](/img/brand-guide/avoid-3.png) **Don’t display the Cloudberry Database name without the logo mark** |
-|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| ![avoid-4](/img/brand-guide/avoid-4.png)  **Don’t use the full-color logo on the core color backgrounds**  | ![avoid-5](/img/brand-guide/avoid-5.png) **Don’t change the orientation of the logo mark**                                          | ![avoid-6](/img/brand-guide/avoid-6.png)  **Don’t change the logo color**                                     |
+| ![avoid-1](/img/brand-guide/avoid-1.png) **不要将 logo 变形、裁剪、歪斜、添加轮廓、扭曲或重新创建 logo** | ![avoid-2](/img/brand-guide/avoid-2.jpeg) **不要在未经批准的背景色或低对比度照片上使用全彩 logo** | ![avoid-3](/img/brand-guide/avoid-3.png) **不要单独显示不带 logo 图形的 Cloudberry Database 名称** |
+|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| ![avoid-4](/img/brand-guide/avoid-4.png) **不要在主色调背景上使用全彩 logo** | ![avoid-5](/img/brand-guide/avoid-5.png) **不要更改 logo 标记的方向** | ![avoid-6](/img/brand-guide/avoid-6.png) **不要更改 logo 颜色** |
 
-## Typography
+## 排版
 
-### Primary typeface: Noto Sans 
+### 主要字体: Noto Sans 
 
-Noto Sans is an unmodulated (“sans serif”) design for texts in the
-Latin, Cyrillic, and Greek scripts, which is also suitable as the
-complementary choice for other script-specific Noto Sans fonts. It has
-italic styles, multiple weights and widths, and 3,741 glyphs. Noto
-Sans is licensed under the Open Font License which allows us to use it
-in products & projects - print or digital, commercial or otherwise.
+Noto Sans 基于 Open Font License，允许在产品和项目中使用，包括印刷品、电子产品、商业或其他场景。
 
-Noto Sans should be the primary font choice for all Cloudberry
-Database materials.
+Noto Sans 应该是所有 Cloudberry Database 材料的首选字体。
 
 ![](/img/brand-guide/typeface.jpg)
 
-### Download
+### 下载
 
-You can download Noto Sans for free from [Google
-Fonts](https://fonts.google.com/noto/specimen/Noto+Sans).
+你可以从 [Google Fonts](https://fonts.google.com/noto/specimen/Noto+Sans) 下载 Noto Sans 字体.
 
-If you have a PC, check out the details on how to install a font
-[here](https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows).
+如果你使用的是个人电脑，请在[这里](https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows)查看如何在 Windows 系统上安装字体。
 
-If you have a Mac, see how to install the font
-[here](https://support.apple.com/en-us/HT201749).
+如果你使用的是 Mac 电脑，请在[此处](https://support.apple.com/en-us/HT201749)查看如何安装字体。
 
-## Questions
+## 有问题？
 
-Feel free to email questions to info@cloudberrydb.org. It helps if you
-provide a sample of your desired usage, enabling us to tailor our
-feedback accordingly. Although we strive to respond as quickly as
-possible, kindly allow up to two weeks for a response (please note
-that no response doesn't mean approval).
+欢迎将问题通过电子邮件发送到 info@cloudberrydb.org。邮件回复最多有两周的延迟（我们尽快回，不过请注意没有回复并不意味着批准）。

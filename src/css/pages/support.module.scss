@@ -1,11 +1,12 @@
 .mainContent {
-  width: var(--global-main-width);
+  max-width: var(--global-main-width);
   margin: 0 auto;
   position: relative;
-  height: 1065px;
+  min-height: 1065px;
   .content {
     position: absolute;
-    left: 294px;
+    left: 50%;
+    transform: translateX(-50%);
     top: 33px;
 
     .title {
@@ -19,6 +20,24 @@
     }
     .typeDesc {
       margin-top: 46px;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    padding-bottom: 100px;
+    .content {
+      width: 100%;
+      padding: 0 var(--mobile-padding-width);
+      position: static;
+      transform: translateX(0);
+
+      .table {
+        width: 100% !important;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .table {
+      width: auto !important;
     }
   }
 }

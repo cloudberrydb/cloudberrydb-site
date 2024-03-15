@@ -1,6 +1,15 @@
+html[data-theme="light"] {
+  .card {
+    .icon {
+      svg {
+        fill: #000 !important;
+      }
+    }
+  }
+}
 .card {
   width: 305px;
-  border: 1px solid var(--sub-text-color);
+  border: 1px solid var(--box-border-color);
   min-height: 100px;
   border-radius: var(--normal-box-radius);
   padding: 0 22px;
@@ -8,8 +17,11 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  @media screen and (max-width: 1440px) {
+    width: auto !important;
+  }
   &:hover {
-    border: 1px solid var(--title-text-color);
+    border: 1px solid var(--box-hover-border-color);
     background: var(--active-color);
     .header {
       .title {
