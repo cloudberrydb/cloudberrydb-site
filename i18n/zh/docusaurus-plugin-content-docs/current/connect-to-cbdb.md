@@ -97,7 +97,7 @@ cbdb-database=>
 |Perl DBI|pgperl|[DBD-Pg](https://metacpan.org/release/DBD-Pg)|
 |Python DBI|pygresql|[PyGreSQL](http://www.pygresql.org/)|
 |Python DBI|psycopg2|[Psycopg](https://www.psycopg.org/)|
-|libpq C 库|libpq|[libpq - C 库](https://www.postgresql.org/docs/12/libpq.html)|
+|libpq C 库|libpq|[libpq - C 库](https://www.postgresql.org/docs/14/libpq.html)|
 
 使用 API 访问 Cloudberry Database 的通用说明是：
 

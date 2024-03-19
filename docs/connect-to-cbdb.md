@@ -95,7 +95,7 @@ You might want to develop your own client applications that interface to Cloudbe
 |Perl DBI|pgperl|[https://metacpan.org/release/DBD-Pg](https://metacpan.org/release/DBD-Pg)|
 |Python DBI|pygresql|[http://www.pygresql.org/](http://www.pygresql.org/)|
 |Python DBI|psycopg2|[https://www.psycopg.org/](https://www.psycopg.org/)|
-|libpq C Library|libpq|[https://www.postgresql.org/docs/12/libpq.html](https://www.postgresql.org/docs/12/libpq.html)|
+|libpq C Library|libpq|[https://www.postgresql.org/docs/14/libpq.html](https://www.postgresql.org/docs/14/libpq.html)|
 
 General instructions for accessing a Cloudberry Database with an API are:
 
