@@ -35,6 +35,8 @@ const config: Config = {
           editUrl:
             "https://github.com/cloudberrydb/cloudberrydb-site/edit/main/",
           editLocalizedFiles: true,
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         blog: {
           postsPerPage: "ALL",
