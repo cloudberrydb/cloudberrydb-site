@@ -37,6 +37,7 @@ const config: Config = {
           editLocalizedFiles: true,
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          breadcrumbs: true,
         },
         blog: {
           postsPerPage: "ALL",
@@ -103,9 +104,33 @@ const config: Config = {
           to: "/contribute",
         },
         { to: "/blog", label: "Blog", position: "right" },
-        { to: "/download", label: "Download", position: "right" },
-        { to: "/support", label: "Support", position: "right" },
-        { to: "/bootcamp", label: "Bootcamp", position: "right" },
+        {
+          to: "/docs/releases",
+          label: "Download",
+          position: "right",
+        },
+        {
+          label: "Resources",
+          position: "right",
+          items: [
+            {
+              label: "Roadmap",
+              to: "https://github.com/orgs/cloudberrydb/discussions/369",
+            },
+            {
+              label: "Support",
+              to: "/support",
+            },
+            {
+              label: "Forum",
+              to: "https://github.com/orgs/cloudberrydb/discussions",
+            },
+            {
+              label: "Bootcamp",
+              to: "/bootcamp",
+            },
+          ],
+        },
       ],
     },
     footer: {
@@ -196,6 +221,11 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    algolia: {
+      appId: "GHWUNOM15G",
+      apiKey: "e53da4203379fe3f87df8d05a49b39fe",
+      indexName: "cloudberrydb",
     },
   } satisfies Preset.ThemeConfig,
 };
