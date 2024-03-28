@@ -226,6 +226,7 @@ const config: Config = {
       appId: "GHWUNOM15G",
       apiKey: "0dc1117a5a8d029a60ac5245da2afd91",
       indexName: "cloudberrydb",
+      contextualSearch: false,
     },
   } satisfies Preset.ThemeConfig,
 };
