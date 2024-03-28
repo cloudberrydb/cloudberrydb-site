@@ -21,7 +21,7 @@ Quick try: [v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
 </thead>
 <tbody>
   <tr>
-    <td rowspan="4">Query processing</td>
+    <td rowSpan="4">Query processing</td>
     <td>Supports creating AO or AOCO tables and refreshing materialized views in parallel.</td>
   </tr>
   <tr>
@@ -34,7 +34,7 @@ Quick try: [v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
     <td>Supports quickly deploying a cluster with only a command.</td>
   </tr>
   <tr>
-    <td rowspan="2">Storage</td>
+    <td rowSpan="2">Storage</td>
     <td>Supports incremental materialized views.</td>
   </tr>
   <tr>
