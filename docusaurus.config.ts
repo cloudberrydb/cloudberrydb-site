@@ -224,7 +224,7 @@ const config: Config = {
     },
     algolia: {
       appId: "GHWUNOM15G",
-      apiKey: "e53da4203379fe3f87df8d05a49b39fe",
+      apiKey: "0dc1117a5a8d029a60ac5245da2afd91",
       indexName: "cloudberrydb",
     },
   } satisfies Preset.ThemeConfig,
