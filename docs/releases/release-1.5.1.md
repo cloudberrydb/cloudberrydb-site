@@ -28,6 +28,5 @@ Quick try: [v1.5.1](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
 
 * Fix an illegal `PGnotify` declaration issue [#325](https://github.com/cloudberrydb/cloudberrydb/pull/325) @[jiaqizho](https://github.com/jiaqizho)
 * Fix a potential Use-After-Free (UAF) issue in `get_size_from_segDBs` [#326](https://github.com/cloudberrydb/cloudberrydb/pull/326) @[jiaqizho](https://github.com/jiaqizho)
-* Correct storage name display in `\d` command in psql from `pg_am` [#330](https://github.com/cloudberrydb/cloudberrydb/pull/330) @[gfphoenix78](https://github.com/gfphoenix78)
-* Move `workfile_set` structure to `workfile_mgr.c` [#331](https://github.com/cloudberrydb/cloudberrydb/pull/331) @[gfphoenix78](https://github.com/gfphoenix78)
+* Fix the storage name display in `\d` command in psql from `pg_am` [#330](https://github.com/cloudberrydb/cloudberrydb/pull/330) @[gfphoenix78](https://github.com/gfphoenix78)
 * Fix issues related to the `pg_ext_aux` namespace [#340](https://github.com/cloudberrydb/cloudberrydb/pull/340) @[gfphoenix78](https://github.com/gfphoenix78)

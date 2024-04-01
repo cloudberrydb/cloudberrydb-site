@@ -28,5 +28,4 @@ Cloudberry Database v1.5.1 是一个小版本，包含了一些 bug 修复。
 * 修复非法 `PGnotify` 声明的问题 [#325](https://github.com/cloudberrydb/cloudberrydb/pull/325) @[jiaqizho](https://github.com/jiaqizho)
 * 修复 `get_size_from_segDBs` 中可能的使用后释放 (UAF) 问题 [#326](https://github.com/cloudberrydb/cloudberrydb/pull/326) @[jiaqizho](https://github.com/jiaqizho)
 * 修正 psql 中 `\d` 命令从 `pg_am` 显示存储名称的问题 [#330](https://github.com/cloudberrydb/cloudberrydb/pull/330) @[gfphoenix78](https://github.com/gfphoenix78)
-* 将 `workfile_set` 结构移动到 `workfile_mgr.c` [#331](https://github.com/cloudberrydb/cloudberrydb/pull/331) @[gfphoenix78](https://github.com/gfphoenix78)
 * 修复与 `pg_ext_aux` 命名空间相关的问题 [#340](https://github.com/cloudberrydb/cloudberrydb/pull/340) @[gfphoenix78](https://github.com/gfphoenix78)
