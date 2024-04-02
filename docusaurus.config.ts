@@ -14,7 +14,13 @@ const config: Config = {
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
 
-  plugins: ["docusaurus-plugin-sass"],
+  plugins: [
+    "docusaurus-plugin-sass",
+    [
+      "@easyops-cn/docusaurus-search-local",
+      { hashed: true, indexPages: true, language: ["en", "zh"] },
+    ],
+  ],
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -226,7 +232,6 @@ const config: Config = {
       appId: "GHWUNOM15G",
       apiKey: "0dc1117a5a8d029a60ac5245da2afd91",
       indexName: "cloudberrydb",
-      contextualSearch: false,
     },
   } satisfies Preset.ThemeConfig,
 };
