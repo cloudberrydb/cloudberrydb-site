@@ -6,7 +6,7 @@ title: 1.5.1
 
 Version number: v1.5.1
 
-Cloudberry Database v1.5.1 is minor release that includes a few bug fixes.
+Cloudberry Database v1.5.1 is a minor release that includes a few bug fixes.
 
 Quick try: [v1.5.1](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.1)
 
