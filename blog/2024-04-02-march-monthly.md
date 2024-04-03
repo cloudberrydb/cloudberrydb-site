@@ -53,3 +53,7 @@ The Cloudberry Database community welcomes everyone to contribute, regardless of
 In addition, we offer various channels for community members to discuss, seek help, provide feedback, and chat. You can find [support](https://cloudberrydb.org/support) here. Let us know if you have any questions or feedback - we're always here to help!
 
 Join us and be part of our community!
+
+---
+
+[![Slack](https://img.shields.io/badge/Slack-6a32c9)](https://communityinviter.com/apps/cloudberrydb/welcome) [![Twitter](https://img.shields.io/twitter/follow/cloudberrydb)](https://twitter.com/cloudberrydb) [![WeChat](https://img.shields.io/badge/WeChat-eebc46)](https://cloudberrydb.org/community/wechat) [![Website](https://img.shields.io/badge/Website-bbec46)](https://cloudberrydb.org) [![Youtube](https://img.shields.io/badge/Youtube-gebc46)](https://youtube.com/@cloudberrydb) [![Discussions](https://img.shields.io/badge/Forum-gebc46)](https://github.com/orgs/cloudberrydb/discussions)

@@ -10,13 +10,13 @@ Hello, welcome back to work after a long Chinese New Year holiday. This is our F
 
 ## Pull Requests
 
-- [Fix: initialize parallel_workers to zero for CdbPathLocus_HashedOJ #387](https://github.com/cloudberrydb/cloudberrydb/pull/387) by @HuSen8891
-- [Revert #201 partially #386](https://github.com/cloudberrydb/cloudberrydb/pull/386) by @Ray-Eldath
-- [Offload entry root slice to QE #385](https://github.com/cloudberrydb/cloudberrydb/pull/385) by @Ray-Eldath
-- [Feature: add tests and benchmark in interconnect module #384](https://github.com/cloudberrydb/cloudberrydb/pull/384) by @jiaqizho
-- [Feature: extend int128 to numeric interface #381](https://github.com/cloudberrydb/cloudberrydb/pull/381) by @jiaqizho
-- [Fix CREATE TYPE in namespace pg_ext_aux #380](https://github.com/cloudberrydb/cloudberrydb/pull/380) by @gfphoenix78
-- [Fix shell script involves demo cluster #377](https://github.com/cloudberrydb/cloudberrydb/pull/377) by @gfphoenix78
+- Fix: initialize parallel_workers to zero for CdbPathLocus_HashedOJ [#387](https://github.com/cloudberrydb/cloudberrydb/pull/387) by @HuSen8891
+- Revert #201 partially [#386](https://github.com/cloudberrydb/cloudberrydb/pull/386) by @Ray-Eldath
+- Offload entry root slice to QE [#385](https://github.com/cloudberrydb/cloudberrydb/pull/385) by @Ray-Eldath
+- Feature: add tests and benchmark in interconnect module [#384](https://github.com/cloudberrydb/cloudberrydb/pull/384) by @jiaqizho
+- Feature: extend int128 to numeric interface [#381](https://github.com/cloudberrydb/cloudberrydb/pull/381) by @jiaqizho
+- Fix CREATE TYPE in namespace pg_ext_aux [#380](https://github.com/cloudberrydb/cloudberrydb/pull/380) by @gfphoenix78
+- Fix shell script involves demo cluster [#377](https://github.com/cloudberrydb/cloudberrydb/pull/377) by @gfphoenix78
 
 ## New Release
 
@@ -28,11 +28,11 @@ Last month, we launched our new Cloudberry Database website. We are working on i
 
 ## Ideas / Feature Requests
 
-- [Support scale-down of Cloudberry Database clusters #382](https://github.com/orgs/cloudberrydb/discussions/382).
+- Support scale-down of Cloudberry Database clusters [#382](https://github.com/orgs/cloudberrydb/discussions/382).
 
 ## Issues
 
-- [ERROR: Make install error on Centos7.9 #383](https://github.com/cloudberrydb/cloudberrydb/issues/383) by @Zhangbaowen-Hashdata
+- ERROR: Make install error on Centos7.9 [#383](https://github.com/cloudberrydb/cloudberrydb/issues/383) by @Zhangbaowen-Hashdata
 
 ## Contributors
 
