@@ -24,8 +24,6 @@ DROP VIEW [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 **`name`**
 
-The name (optionally schema-qualified) of the view to remove.
-
 要删除的视图的名称（可以选择性地指定其所在的数据库 schema 作为限定）。
 
 **`CASCADE`**

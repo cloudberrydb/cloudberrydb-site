@@ -59,7 +59,6 @@ COMMIT;
 
 以上事务插入了值 3 和 4。
 
-To use a single savepoint name:
 使用单个保存点名称：
 
 ``` sql

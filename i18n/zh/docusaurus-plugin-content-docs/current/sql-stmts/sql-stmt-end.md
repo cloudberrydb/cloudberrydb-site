@@ -21,7 +21,7 @@ END [WORK | TRANSACTION] [AND [NO] CHAIN]
 **`WORK`**<br />
 **`TRANSACTION`**
 
-可选关键字吗，没有任何效果。
+可选关键字。二者作用相同，没有什么差别。
 
 **`AND CHAIN`**
 

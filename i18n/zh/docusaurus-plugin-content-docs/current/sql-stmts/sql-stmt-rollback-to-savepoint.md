@@ -23,7 +23,7 @@ ROLLBACK [ WORK | TRANSACTION ] TO [ SAVEPOINT ] <savepoint_name>
 **`WORK`**<br />
 **`TRANSACTION`**
 
-可选关键字，没有任何效果。
+可选关键字。二者作用相同，没有什么差别。
 
 **`savepoint_name`**
 

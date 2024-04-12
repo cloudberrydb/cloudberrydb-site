@@ -38,7 +38,7 @@ DROP TABLE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 ## 示例
 
-删除表·`mytable`：
+删除表 `mytable`：
 
 ```sql
 DROP TABLE mytable;

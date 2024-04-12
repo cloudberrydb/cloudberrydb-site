@@ -14,7 +14,7 @@ DROP ROLE [IF EXISTS] <name> [, ...]
 
 ## 描述
 
-`DROP ROLE` 删除指定的角色。要删除超级用户角色，你必须是超级用户。要删除非超级用户角色，你必须拥有 `CREATEROLE` 权限。
+`DROP ROLE` 删除指定的角色。要删除超级用户角色，你必须是超级用户。要删除非超级用户角色，你必须拥有 `CREATE ROLE` 权限。
 
 如果角色仍被任何数据库引用，则无法删除；若试图这样做将会触发错误。删除角色前，必须先删除或转移其所拥有的所有对象的所有权，并撤销该角色被赋予的其他对象上的所有权限。为此，[`REASSIGN OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-reassign-owned.md) 和 [`DROP OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-drop-owned.md) 这两个命令非常有用。
 

@@ -34,7 +34,7 @@ DROP DATABASE [IF EXISTS] <name>
 
 你不能在事务块中执行 `DROP DATABASE`。
 
-不能在连接到目标数据库时运行此命令。因此，使用 dropdb 程序可能更方便，它是 `DROP DATABASE` 命令的一个包装器。
+不能在连接到目标数据库时运行此命令。因此，使用 dropdb 程序可能更方便，它是 `DROP DATABASE` 命令的一个封装程序。
 
 ## 示例
 

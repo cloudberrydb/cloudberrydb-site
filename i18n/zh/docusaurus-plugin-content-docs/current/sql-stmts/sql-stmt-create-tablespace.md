@@ -37,7 +37,7 @@ CREATE TABLESPACE <tablespace_name>
 
 **`LOCATION 'directory'`**
 
-将被用作表空间的目录，该目录应为空，并需由 Cloudberry Database 系统用户所拥有。您需要提供目录的绝对路径，且路径名长度不得超过100个字符。（这个路径用于在 `pg_tblspc` 目录下创建一个符号链接目标。当使用 `pg_basebackup` 等工具将符号链接目标发送至 tar 时，路径会被截短至100个字符。）
+将被用作表空间的目录，该目录应为空，并需由 Cloudberry Database 系统用户所拥有。您需要提供目录的绝对路径，且路径名长度不得超过 100 个字符。（这个路径用于在 `pg_tblspc` 目录下创建一个符号链接目标。当使用 `pg_basebackup` 等工具将符号链接目标发送至 tar 时，路径会被截短至 100 个字符。）
 
 你可以为 `WITH` 子句中的任何 Cloudberry Database Segment 实例指定不同的表空间目录。
 
@@ -70,7 +70,7 @@ Cloudberry Database 不支持为具有相同 content ID 的主-镜像对配置�
 创建一个新的表空间，并为 Coordinator 和所有 Segment 实例指定文件系统位置：
 
 ```sql
-CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace';
+CREATE TABLESPACE mytblspace LOCATION '/mydbtspc/mytestspace';
 ```
 
 在 `/data/indexes` 创建一个由用户 `genevieve` 拥有的表空间 `indexspace`：
@@ -82,7 +82,7 @@ CREATE TABLESPACE indexspace OWNER genevieve LOCATION '/data/indexes';
 创建一个新的表空间，并为 content ID 为 `0` 和 `1` 的 Segment 实例指定位置。对于未在 `WITH` 子句中列出的 Coordinator 和 Segment 实例，表空间的文件系统位置是 `LOCATION` 子句中指定的目录。
 
 ```sql
-CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');
+CREATE TABLESPACE mytblspace LOCATION '/mydbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');
 ```
 
 以上示例为两个 Segment 实例指定了相同的位置。你可以为每个 Segment 指定不同的位置。

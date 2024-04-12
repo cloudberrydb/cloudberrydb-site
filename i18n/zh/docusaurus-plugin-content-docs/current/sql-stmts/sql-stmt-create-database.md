@@ -56,7 +56,7 @@ Coordinator 上允许连接到该数据库的最大并发连接数。默认值�
 
 **`istemplate`**
 
-如果为 `true`，则任何拥有 `CREATEDB` 权限的用户都可以克隆这个数据库。如果为 `false`（默认值），则只有超级用户或数据库的所有者可以克隆这个数据库。请注意，不能被删除模板数据库。
+如果为 `true`，则任何拥有 `CREATEDB` 权限的用户都可以克隆这个数据库。如果为 `false`（默认值），则只有超级用户或数据库的所有者可以克隆这个数据库。请注意，不能删除模板数据库。
 
 你可以按任意顺序在命令中写以上参数，无需按照上面所列的参数顺序。
 
@@ -72,7 +72,7 @@ Coordinator 上允许连接到该数据库的最大并发连接数。默认值�
 
 数据库级别的配置参数（通过 [`ALTER DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-database.md) 设置）和数据库级别的权限（通过 [`GRANT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-grant.md) 设置）不会从模板数据库复制。
 
-虽然通过指定数据库名称作为模板来复制一个非 `template1` 的数据库是可能的，但这并不是（至少目前不是）作为一个通用的“复制数据库”功能。主要的限制是在复制模板数据库时，不能有其他会话连接到该模板数据库。如果在开始执行 `CREATE DATABASE` 时存在任何其他连接，则会失败；否则，新的连接到模板数据库会被锁定，直到 `CREATE DATABASE` 完成。
+虽然通过指定数据库名称作为模板来复制一个非 `template1` 的数据库是可能的，但这并不是（至少目前不是）作为一个通用的“复制数据库”功能。主要的限制是在复制模板数据库时，不能有其他会话连接到该模板数据库。如果在开始执行 `CREATE DATABASE` 时存在任何其他连接，则会失败；否则，到模板数据库的新连接会被锁定，直到 `CREATE DATABASE` 完成。
 
 `CONNECTION LIMIT` 选项是近似执行的；如果在数据库仅剩一个连接“槽”时，大约同时启动两个新会话，那么这两个会话都可能启动失败。此外，该限制不适用于超级用户或后台工作进程。
 
@@ -81,7 +81,7 @@ Coordinator 上允许连接到该数据库的最大并发连接数。默认值�
 创建一个新数据库：
 
 ```sql
-CREATE DATABASE gpdb;
+CREATE DATABASE mydatabase;
 ```
 
 创建一个由用户 `salesapp` 拥有的数据库 `sales`，默认表空间为 `salesspace`：
