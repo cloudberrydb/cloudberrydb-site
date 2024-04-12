@@ -1,0 +1,5 @@
+# Algolia-Crawler-Verif: 71E2C9425BEF610A
+
+User-agent: *
+Sitemap: https://cloudberrydb.org/sitemap.xml
+Sitemap: https://cloudberrydb.org/zh/sitemap.xml

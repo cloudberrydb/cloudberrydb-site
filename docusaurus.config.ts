@@ -14,7 +14,13 @@ const config: Config = {
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
 
-  plugins: ["docusaurus-plugin-sass"],
+  plugins: [
+    "docusaurus-plugin-sass",
+    [
+      "@easyops-cn/docusaurus-search-local",
+      { hashed: true, indexPages: true, language: ["en", "zh"] },
+    ],
+  ],
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -35,6 +41,9 @@ const config: Config = {
           editUrl:
             "https://github.com/cloudberrydb/cloudberrydb-site/edit/main/",
           editLocalizedFiles: true,
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+          breadcrumbs: true,
         },
         blog: {
           postsPerPage: "ALL",
@@ -101,9 +110,33 @@ const config: Config = {
           to: "/contribute",
         },
         { to: "/blog", label: "Blog", position: "right" },
-        { to: "/download", label: "Download", position: "right" },
-        { to: "/support", label: "Support", position: "right" },
-        { to: "/bootcamp", label: "Bootcamp", position: "right" },
+        {
+          to: "/docs/releases",
+          label: "Download",
+          position: "right",
+        },
+        {
+          label: "Resources",
+          position: "right",
+          items: [
+            {
+              label: "Roadmap",
+              to: "https://github.com/orgs/cloudberrydb/discussions/369",
+            },
+            {
+              label: "Support",
+              to: "/support",
+            },
+            {
+              label: "Forum",
+              to: "https://github.com/orgs/cloudberrydb/discussions",
+            },
+            {
+              label: "Bootcamp",
+              to: "/bootcamp",
+            },
+          ],
+        },
       ],
     },
     footer: {
@@ -194,6 +227,11 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    algolia: {
+      appId: "GHWUNOM15G",
+      apiKey: "0dc1117a5a8d029a60ac5245da2afd91",
+      indexName: "cloudberrydb",
     },
   } satisfies Preset.ThemeConfig,
 };

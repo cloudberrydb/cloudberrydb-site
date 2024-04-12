@@ -26,6 +26,11 @@ a {
   }
   .navbar__link--active {
     color: var(--active-color);
+
+    // specify the active link color
+    &[href="/docs/releases"] {
+      color: var(--ifm-navbar-link-color);
+    }
   }
   .navbar-sidebar {
     background-color: var(--normal-bg-1);
@@ -159,6 +164,15 @@ article {
 }
 
 .main-wrapper {
+  // docs left menu released
+  .container {
+    a {
+      text-decoration: none;
+    }
+    article {
+      --ifm-color-primary: var(--active-color);
+    }
+  }
   @media screen and (min-width: 1440px) {
     > div {
       width: var(--global-main-width);
@@ -292,9 +306,11 @@ article {
   .breadcrumbs {
     display: flex;
     align-items: center;
+
     .breadcrumbs__item {
       display: inline-flex;
       align-items: center;
+
       .breadcrumbs__link {
         padding: 0 6px;
       }
@@ -363,6 +379,9 @@ article {
           top: 8px;
           transition: all 0.1s;
         }
+      }
+      button {
+        display: none !important;
       }
 
       // no active add (div)
