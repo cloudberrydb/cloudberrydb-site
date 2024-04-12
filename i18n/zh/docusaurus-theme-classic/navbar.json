@@ -28,7 +28,19 @@
     "description": "Navbar item with label Support"
   },
   "item.label.Bootcamp": {
-    "message": "Bootcamp",
+    "message": "训练营",
+    "description": "Navbar item with label Bootcamp"
+  },
+  "item.label.Resources": {
+    "message": "资源中心",
+    "description": "Navbar item with label Bootcamp"
+  },
+  "item.label.Roadmap": {
+    "message": "路线图",
+    "description": "Navbar item with label Bootcamp"
+  },
+  "item.label.Forum": {
+    "message": "论坛",
     "description": "Navbar item with label Bootcamp"
   }
 }
