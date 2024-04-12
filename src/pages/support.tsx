@@ -208,6 +208,7 @@ export default function Support() {
               style={{
                 width: 795,
               }}
+              className={styles.table}
               data={tableData}
               tableColumns={[
                 { label: "Type", prop: "type", width: 290 },

@@ -3,4 +3,16 @@
     display: flex;
     justify-content: space-between;
   }
+  @media screen and (max-width: 1440px) {
+    .cardLine {
+      display: grid;
+      gap: 32px;
+    }
+    
+  }
+  @media screen and (max-width: 768px) {
+    .cardLine {
+      grid-template-columns: 1fr !important;
+    }
+  }
 }

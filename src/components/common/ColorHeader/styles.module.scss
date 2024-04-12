@@ -32,6 +32,70 @@
     transform: translate(0, 0) scale(1) rotate(45deg);
   }
 }
+@keyframes light3 {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(0, 100px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(0, -100px) scale(0.9);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes light4 {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(0, 10px) scale(1);
+  }
+
+  66% {
+    transform: translate(0, -10px) scale(1);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes smallTYKeyframe {
+  0% {
+    transform: translate(0) scale(1);
+  }
+
+  33% {
+    transform: translate(0, 10px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(0, -10px) scale(0.9);
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes scaleKeyframe {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(0.8);
+  }
+}
 
 .leftBox {
   position: absolute;
@@ -59,13 +123,18 @@
 }
 
 .wrap {
-  // padding-left: 67px;
   position: relative;
   overflow: hidden;
-  height: 360px;
+  padding-bottom: 158px;
   background-color: var(--ifm-navbar-background-color);
   background-image: url("/img/rectangle.png");
   background-size: 72.6px 66.6px;
+  .darkModeBox {
+    display: block;
+  }
+  .lightModeBox {
+    display: none;
+  }
   .content {
     margin-top: 38px;
   }
@@ -111,5 +180,151 @@
         font-size: 13px;
       }
     }
+  }
+}
+html[data-theme="light"] {
+  .wrap {
+    // left box
+    background: #fffafa;
+    .lbBox {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-color: #ffa800;
+      opacity: 0.3;
+      bottom: 8%;
+      left: 5%;
+      border-radius: 50%;
+      animation: scaleKeyframe 5s infinite linear;
+    }
+
+    .rbBox {
+      position: absolute;
+      right: 500px;
+
+      .sBox {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background-color: #ffa800;
+        opacity: 0.3;
+        border-radius: 50%;
+        z-index: 2;
+        left: -350px;
+        bottom: -300px;
+        animation: 5s infinite light4 linear;
+      }
+      .xBox {
+        position: absolute;
+        width: 100px;
+        height: 300px;
+        background-color: rgb(255, 209, 126);
+        border-radius: 50%;
+        bottom: -500px;
+        z-index: 1;
+        box-shadow: 50px 40px 120px 250px rgb(255, 209, 126);
+        animation: 5s infinite light3 linear;
+      }
+    }
+    @media screen and (max-width: 1200px) {
+      .lbBox {
+        width: 100px;
+        height: 100px;
+      }
+      .rbBox {
+        .sBox {
+          width: 180px;
+          height: 180px;
+          bottom: -270px;
+          left: -300px;
+        }
+        .xBox {
+          width: 60px;
+          height: 300px;
+        }
+      }
+    }
+    @media screen and (max-width: 996px) {
+      .lbBox {
+        width: 50px;
+        height: 50px;
+        left: 160px;
+        bottom: 100px;
+      }
+      .rbBox {
+        bottom: 42px;
+        right: 200px;
+        .sBox {
+          width: 100px;
+          height: 100px;
+          left: -150px;
+          bottom: -110px;
+        }
+        .xBox {
+          width: 50px;
+          height: 50px;
+          bottom: -100px;
+          box-shadow: 10px 10px 50px 100px rgb(255, 209, 126);
+          animation-name: smallTYKeyframe;
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .lbBox {
+        width: 50px;
+        height: 50px;
+        left: 30px;
+        bottom: 100px;
+      }
+      .rbBox {
+        bottom: 42px;
+        right: 200px;
+        .sBox {
+          width: 100px;
+          height: 100px;
+          left: -150px;
+          bottom: -110px;
+        }
+        .xBox {
+          width: 50px;
+          height: 50px;
+          bottom: -100px;
+          box-shadow: 10px 10px 50px 100px rgb(255, 209, 126);
+          animation-name: smallTYKeyframe;
+        }
+      }
+    }
+  }
+  .darkModeBox {
+    display: none;
+  }
+  .lightModeBox {
+    display: block;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .leftBox {
+    width: 100px;
+    height: 100px;
+  }
+  .rightBox {
+    width: 80px;
+    height: 80px;
+    top: 0;
+    right: -250px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .leftBox {
+    width: 60px;
+    height: 60px;
+    box-shadow: 90px -90px 190px 90px #ef9364;
+    left: -150px;
+    bottom: -150px;
+  }
+  .rightBox {
+    width: 60px;
+    height: 60px;
+    box-shadow: -100px 60px 80px 180px #8b7bcf;
   }
 }

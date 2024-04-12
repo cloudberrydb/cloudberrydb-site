@@ -1,13 +1,26 @@
+html[data-theme="light"] {
+  .main {
+    &.mdxCard {
+      .content {
+        .bigText {
+          color: #fff;
+        }
+        .smallText {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+}
 .main {
   width: var(--global-main-width);
   margin: 0 auto;
   position: relative;
-  .content {
-    width: 949px;
 
-    position: absolute;
+  .content {
+    max-width: 949px;
     .bigText {
-      width: 847px;
+      max-width: 847px;
       font-weight: 700;
       margin-top: 12px;
       font-size: 32px;

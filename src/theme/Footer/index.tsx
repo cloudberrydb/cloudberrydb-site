@@ -8,6 +8,7 @@ import SecuritySvg from "@site/static/img/security.svg";
 import TwitterSvg from "@site/static/img/twitter.svg";
 import WechatSvg from "@site/static/img/wechat.svg";
 import YoutubeSvg from "@site/static/img/youtube.svg";
+import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 interface LinkItem {
@@ -66,49 +67,52 @@ export default function Footer() {
   Object.keys(LINKS).forEach((key) => {
     LINKS[key] = useBaseUrl(LINKS[key]);
   });
+
   return (
-    <div className={styles.wrap}>
-      <div className={styles.linksWrap}>{footerLinks}</div>
-      <div className={styles.logoLinkWrap}>
-        <div className={styles.logoWrap}>
-          <img
-            className={styles.logo}
-            src={useBaseUrl((footerConfig as any).logo.src)}
-            alt=""
-          />
-          <img
-            className={styles.swap}
-            onClick={handleCheckLang}
-            src={useBaseUrl("/img/en_zh.png")}
-            alt=""
-          />
-        </div>
-        <div className={styles.links}>
-          <GithubSvg
-            className={styles.item}
-            cursor="pointer"
-            onClick={() => handleOpen(LINKS.github)}
-          />
-          <TwitterSvg
-            className={styles.item}
-            cursor="pointer"
-            onClick={() => handleOpen(LINKS.twitter)}
-          />
-          <YoutubeSvg
-            className={styles.item}
-            cursor="pointer"
-            onClick={() => handleOpen(LINKS.youtube)}
-          />
-          <SecuritySvg
-            className={styles.item}
-            cursor="pointer"
-            onClick={() => handleOpen(LINKS.community)}
-          />
-          <WechatSvg
-            className={styles.item}
-            cursor="pointer"
-            onClick={() => handleOpen(LINKS.wechat)}
-          />
+    <div className={clsx(styles.wrap)}>
+      <div className={styles.mainWrap}>
+        <div className={styles.linksWrap}>{footerLinks}</div>
+        <div className={styles.logoLinkWrap}>
+          <div className={styles.logoWrap}>
+            <img
+              className={styles.logo}
+              src={useBaseUrl((footerConfig as any).logo.src)}
+              alt=""
+            />
+            <img
+              className={styles.swap}
+              onClick={handleCheckLang}
+              src={useBaseUrl("/img/en_zh.png")}
+              alt=""
+            />
+          </div>
+          <div className={styles.links}>
+            <GithubSvg
+              className={styles.item}
+              cursor="pointer"
+              onClick={() => handleOpen(LINKS.github)}
+            />
+            <TwitterSvg
+              className={styles.item}
+              cursor="pointer"
+              onClick={() => handleOpen(LINKS.twitter)}
+            />
+            <YoutubeSvg
+              className={styles.item}
+              cursor="pointer"
+              onClick={() => handleOpen(LINKS.youtube)}
+            />
+            <SecuritySvg
+              className={styles.item}
+              cursor="pointer"
+              onClick={() => handleOpen(LINKS.community)}
+            />
+            <WechatSvg
+              className={styles.item}
+              cursor="pointer"
+              onClick={() => handleOpen(LINKS.wechat)}
+            />
+          </div>
         </div>
       </div>
       <div className={styles.copyright}>{(footerConfig as any).copyright}</div>

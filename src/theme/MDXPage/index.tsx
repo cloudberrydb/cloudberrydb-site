@@ -5,6 +5,7 @@ import {
 } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import ColorCard from "@site/src/components/common/ColorCard";
+import ColorCardStyle from "@site/src/components/common/ColorCard/styles.module.scss";
 import CommonLayout from "@site/src/components/common/Layout";
 import MDXContent from "@theme/MDXContent";
 import type { Props } from "@theme/MDXPage";
@@ -36,6 +37,9 @@ export default function MDXPage(props: Props): JSX.Element {
     >
       <CommonLayout>
         <ColorCard
+          className={clsx({
+            [ColorCardStyle.mdxCard]: pathLen == 2,
+          })}
           subText={description}
           titleText={title}
           bgImage={
@@ -54,7 +58,10 @@ export default function MDXPage(props: Props): JSX.Element {
           </div>
 
           {!hideTableOfContents && MDXPageContent.toc.length > 0 && (
-            <div className="col col--2" style={{ marginLeft: 50 }}>
+            <div
+              className={clsx("col col--2", styles.rightContent)}
+              style={{ marginLeft: 50 }}
+            >
               <TOC
                 toc={MDXPageContent.toc}
                 minHeadingLevel={frontMatter.toc_min_heading_level}

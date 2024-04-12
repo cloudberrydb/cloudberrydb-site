@@ -62,7 +62,7 @@ export default function BlogPosts() {
       <div className={styles.gTitle}>
         <Translate>Blog Posts</Translate>
       </div>
-      <div className={styles.listWrap}>{itemDom}</div>
+      <div className={clsx(styles.listWrap, "link-wrap")}>{itemDom}</div>
     </div>
   );
 }
