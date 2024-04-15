@@ -1,62 +1,28 @@
+import {
+  BOOTCAMP_PAGE_CONFIG,
+  LINK_NAV_CONFIG,
+} from "@site/src/consts/bootcamp";
+import clsx from "clsx";
 import MainContent from "../../components/bootcamp/MainContent";
 import TextPic from "../../components/bootcamp/TextPic";
 import ColorCard from "../../components/common/ColorCard";
 import CommonLayout from "../../components/common/Layout";
 import LinkNav from "../../components/common/LinkNav";
-import { formatStrHorizontalLine } from "../../utils";
+import styles from "../../css/pages/bootcamp.module.scss";
+
 export default function BootCamp(): JSX.Element {
-  const linkNavConfig = [
-    {
-      label: "CloudberryDB Sandbox",
-      id: "",
-    },
-    {
-      label: "101-CloudberryDB Tourials",
-      id: "",
-    },
-    {
-      label: "102-CloudberryDB Crash Course",
-      id: "",
-    },
-    {
-      label: "103-CloudberryDB Performance Benchmark",
-      id: "",
-    },
-    {
-      label: "104-CloudberryDB for Data Science",
-      id: "",
-    },
-  ];
-  linkNavConfig.forEach((item) => {
-    item.id = formatStrHorizontalLine(item.label);
-  });
   return (
     <CommonLayout>
-      <ColorCard
-        titleText="Cloudberry Database Bootcamp"
-        subText="Join us on an exciting journey to explore the features of Cloudberry Database using a Docker engine-based sandbox. Get ready to elevate your database skills. Happy exploring!"
-      />
-      <div className="main global-width-layout flex">
-        <div className="leftContent" style={{ width: 980 }}>
+      <ColorCard {...BOOTCAMP_PAGE_CONFIG.headerCard} />
+      <div className={clsx(styles.wrap, "global-width-layout flex")}>
+        <div className={styles.leftContent}>
           <TextPic />
-          <MainContent linkNavConfig={linkNavConfig} />
+          <MainContent />
         </div>
-        <div
-          style={{
-            flex: 1,
-            position: "relative",
-          }}
-        >
+        <div className={styles.navLinkWrap}>
           <LinkNav
-            style={{
-              position: "sticky",
-              width: 196,
-              height: 203,
-              marginLeft: 108,
-              marginTop: 51,
-              top: 130,
-            }}
-            config={linkNavConfig}
+            className={styles.navLinkComp}
+            config={LINK_NAV_CONFIG}
           ></LinkNav>
         </div>
       </div>

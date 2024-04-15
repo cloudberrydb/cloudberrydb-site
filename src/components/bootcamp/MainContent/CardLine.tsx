@@ -1,15 +1,18 @@
 import Card from "../Card";
 interface IProps {
-  link: {
-    text: string;
-    href: string;
-  };
-  content?: string;
-  title?: string;
-  style?: React.CSSProperties;
+  cardLine: {
+    link: {
+      text: string;
+      href: string;
+    };
+    content?: string;
+    title?: string;
+    style?: React.CSSProperties;
+  }[];
+  itemWidth?: number | string;
 }
-export default function CardLine({ cardLine }: { cardLine: IProps[] }) {
+export default function CardLine({ cardLine, itemWidth }: IProps) {
   return cardLine.map((card, i) => {
-    return <Card key={i} {...card}></Card>;
+    return <Card key={i} {...card} style={{ width: itemWidth }}></Card>;
   });
 }

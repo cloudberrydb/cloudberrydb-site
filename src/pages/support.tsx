@@ -198,7 +198,6 @@ export default function Support() {
       />
       <div className={styles.mainContent}>
         <div className={clsx(styles.content, "global-width")}>
-          <div className={styles.title}>Support</div>
           <div className={styles.subText}>
             This page shows that how you can ask for help and get support from
             our community.
@@ -209,6 +208,7 @@ export default function Support() {
               style={{
                 width: 795,
               }}
+              className={styles.table}
               data={tableData}
               tableColumns={[
                 { label: "Type", prop: "type", width: 290 },

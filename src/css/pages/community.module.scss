@@ -1,19 +1,24 @@
 .main {
-  width: var(--global-main-width);
+  max-width: var(--global-main-width);
   margin: 0 auto;
-  padding-left: 73px;
+  padding: 0 var(--mobile-padding-width);
   display: flex;
+  width: 100%;
+
   .leftContent {
+    padding-top: 68px;
     .cardLine {
       display: flex;
       justify-content: space-between;
+
       &:last-child {
-        margin-top: 30px;
+        margin-top: 40px;
       }
     }
   }
   .rightContent {
-    flex: 1;
+    // flex: 1;
+    width: 80%;
     position: relative;
     .navLinkWrap {
       position: sticky;
@@ -22,6 +27,37 @@
       margin-left: 108px;
       margin-top: 51px;
       top: 130px;
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    .leftContent {
+      .cardLine {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 32px;
+        height: auto !important;
+      }
+    }
+
+    .rightContent {
+      .navLinkWrap {
+        margin-left: 40px;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .rightContent {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .leftContent {
+      .cardLine {
+        &.getInvolved {
+          grid-template-columns: 1fr !important;
+        }
+      }
     }
   }
 }

@@ -415,7 +415,7 @@ service sshd restart
 
 #### Clock synchronization
 
-Cloudberry Database requires that the clocks configured for all hosts need to be synchronized, and the clock synchronization service should be started when the host starts. You can choose one of the following synchronization methods:
+Cloudberry Database requires the clock synchronization to be configured for all hosts, and the clock synchronization service should be started when the host starts. You can choose one of the following synchronization methods:
 
 - Use the coordinator node's time as the source, and other hosts synchronize the clock of the coordinator node host.
 - Synchronize clocks using an external clock source.

@@ -1,32 +1,58 @@
 .breadcrumbs {
   display: flex;
-  align-items: center;
+  align-items: self-start;
   height: 21px;
   font-size: 13px;
   color: var(--sub-text-color-2);
+  &.mdxPage {
+    .backPath {
+      color: #fff !important;
+    }
+  }
+
   .backLogoA {
     position: relative;
     top: 1px;
     .backLogoSvg {
+      display: inline-block;
       fill: var(--back-home-logo-color);
     }
-    &:hover {
-      .backLogoSvg {
-        fill: var(--active-color);
-      }
+    .backLogoLightSvg {
+      display: none;
     }
   }
   .line {
-    opacity: 0.4;
-    margin: 0 4px;
+    fill: #4c4c4c;
+    vertical-align: middle;
   }
 
   .path {
     span.leafPath {
       color: var(--active-color);
+      vertical-align: middle;
     }
     .backPath {
       text-decoration: none;
+    }
+  }
+}
+
+html[data-theme="light"] {
+  .breadcrumbs:not(.mdxPage) {
+    color: #000;
+  }
+  .breadcrumbs:not(.mdxPage) svg {
+    fill: #000;
+  }
+  .breadcrumbs:not(.mdxPage) .line {
+    opacity: 1;
+  }
+  .breadcrumbs:not(.mdxPage) {
+    .backLogoLightSvg {
+      display: inline-block !important;
+    }
+    .backLogoSvg {
+      display: none !important;
     }
   }
 }

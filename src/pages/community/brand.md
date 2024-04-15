@@ -3,8 +3,6 @@ title: Brand Guidelines
 description: Here is a comprehensive guide that explains how to download and use our logos, names, and fonts. This guide will provide you with all the necessary information you need to know to use our branding materials.
 ---
 
-# Brand Guidelines
-
 Welcome to the Brand Guide for Cloudberry Database!
 
 We're excited to share with you the insights and inspiration behind
@@ -26,7 +24,7 @@ different versions, and formats.
 Our project's formal name is "Cloudberry Database". If you mention it,
 please use the full name if you can.
 
-![Cloudberry Database Full Logo](../../../static/img/brand-guide/cloudberry-database-full-logo.jpg)
+![Cloudberry Database Full Logo](/img/brand-guide/cloudberry-database-full-logo.jpg)
 
 :::caution
 
@@ -40,7 +38,7 @@ to communicate with others efficiently.
 
 Our logo mark is a combination of "cloud" and "cloudberry".
 
-![Cloudberry Database Logo Mark](../../../static/img/brand-guide/logo-mark.png)
+![Cloudberry Database Logo Mark](/img/brand-guide/logo-mark.png)
 
 ### Logo versions 
 
@@ -48,13 +46,13 @@ We also offer various logo versions that are commonly used in many
 marketing scenarios. These options are available for your use as
 deemed appropriate for the specific situation.
 
-| ![Background White](../../../static/img/brand-guide/black-logomark.jpg) | ![Background Black](../../../static/img/brand-guide/black-full-logo.png) |
+| ![Background White](/img/brand-guide/black-logomark.jpg) | ![Background Black](/img/brand-guide/black-full-logo.png) |
 |-------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | *Black logo mark*                                                       | *Black full logo*                                                        |
 
 ### Clear Space
 
-![Clear Space](../../../static/img/brand-guide/clearspace.jpg)
+![Clear Space](/img/brand-guide/clearspace.jpg)
 
 The Cloudberry Database logo requires ample clear space for optimal
 clarity. This area should remain free from any visual components at
@@ -65,9 +63,9 @@ all times.
 Use the Cloudberry Database logos with the following backgrounds to
 have a better image.
 
-| ![Background White](../../../static/img/brand-guide/background-1.jpg) | ![Background Black](../../../static/img/brand-guide/background-2.jpg)       |
+| ![Background White](/img/brand-guide/background-1.jpg) | ![Background Black](/img/brand-guide/background-2.jpg)       |
 |-----------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| ![Background Grey](../../../static/img/brand-guide/background-3.jpg)  | ![Background Pink Orange](../../../static/img/brand-guide/background-4.jpg) |
+| ![Background Grey](/img/brand-guide/background-3.jpg)  | ![Background Pink Orange](/img/brand-guide/background-4.jpg) |
 
 ### Colors
 
@@ -76,7 +74,7 @@ have a better image.
 Our Cloudberry Database's primary brand colors are Berry Orange, Berry
 Yellow, Back, and White.
 
-![Primary palette](../../../static/img/brand-guide/primary-palette.jpg)
+![Primary palette](/img/brand-guide/primary-palette.jpg)
 
 #### Secondary palette
 
@@ -85,13 +83,13 @@ helps provide additional balance and range. Secondary colors should be
 used sparingly throughout the system in order to maintain optimal
 effect and a consistent look and feel.
 
-![Secondary palette](../../../static/img/brand-guide/secondary-palette.jpg)
+![Secondary palette](/img/brand-guide/secondary-palette.jpg)
 
 ### What to avoid
 
-| ![avoid-1](../../../static/img/brand-guide/avoid-1.png) **Don't alter, crop, skew, outline, distort or recreate the logo** | ![avoid-2](../../../static/img/brand-guide/avoid-2.jpeg) **Don’t use the full-color logo on an unapproved background color or low-contrast photo** | ![avoid-3](../../../static/img/brand-guide/avoid-3.png) **Don’t display the Cloudberry Database name without the logo mark** |
+| ![avoid-1](/img/brand-guide/avoid-1.png) **Don't alter, crop, skew, outline, distort or recreate the logo** | ![avoid-2](/img/brand-guide/avoid-2.jpeg) **Don’t use the full-color logo on an unapproved background color or low-contrast photo** | ![avoid-3](/img/brand-guide/avoid-3.png) **Don’t display the Cloudberry Database name without the logo mark** |
 |----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| ![avoid-4](../../../static/img/brand-guide/avoid-4.png)  **Don’t use the full-color logo on the core color backgrounds**  | ![avoid-5](../../../static/img/brand-guide/avoid-5.png) **Don’t change the orientation of the logo mark**                                          | ![avoid-6](../../../static/img/brand-guide/avoid-6.png)  **Don’t change the logo color**                                     |
+| ![avoid-4](/img/brand-guide/avoid-4.png)  **Don’t use the full-color logo on the core color backgrounds**  | ![avoid-5](/img/brand-guide/avoid-5.png) **Don’t change the orientation of the logo mark**                                          | ![avoid-6](/img/brand-guide/avoid-6.png)  **Don’t change the logo color**                                     |
 
 ## Typography
 
@@ -107,7 +105,7 @@ in products & projects - print or digital, commercial or otherwise.
 Noto Sans should be the primary font choice for all Cloudberry
 Database materials.
 
-![](../../../static/img/brand-guide/typeface.jpg)
+![](/img/brand-guide/typeface.jpg)
 
 ### Download
 
