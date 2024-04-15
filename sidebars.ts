@@ -63,7 +63,7 @@ const sidebars: SidebarsConfig = {
      {
        type: 'category',
        label: 'Optimize Query Performance',
-       items: ['query-performance-overview', 'update-stats-using-analyze','use-unique-index-on-ao-tables','use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh-mv']
+       items: ['query-performance-overview', 'update-stats-using-analyze', 'use-unique-index-on-ao-tables', 'use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh-mv', 'parallel-query-execution', 'use-aggre-pushdown-to-speed-up-queries', 'use-index-scan-on-ao-tables', 'use-runtimefilter-to-optimize-queries']
      },
 
      {
