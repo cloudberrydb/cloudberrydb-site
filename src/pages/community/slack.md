@@ -3,8 +3,6 @@ title: Slack Guide
 description: The channel for global community members to chat with each other in real-time. Get started by reading our guide on Slack.
 ---
 
-# Slack Guide
-
 Thanks so much for your interest in joining Cloudberry Database's
 Slack channels!
 

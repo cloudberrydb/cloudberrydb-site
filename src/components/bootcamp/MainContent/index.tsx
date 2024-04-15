@@ -1,19 +1,13 @@
 import {
-  DATA_0,
-  DATA_101,
-  DATA_102,
-  DATA_103,
-  DATA_104,
-  GET_SOURCE,
-} from "@site/src/consts/bootcampData";
+  BOOTCAMP_PAGE_CONFIG,
+  LINK_NAV_CONFIG,
+} from "@site/src/consts/bootcamp";
 import Card from "../Card";
 import CardLine from "./CardLine";
 import styles from "./styles.module.scss";
-export default function MainContent({
-  linkNavConfig,
-}: {
-  linkNavConfig: { id: string }[];
-}) {
+export default function MainContent() {
+  const { DATA_0, DATA_101, DATA_102, DATA_103, DATA_104, GET_SOURCE } =
+    BOOTCAMP_PAGE_CONFIG;
   return (
     <div className={styles.mainContent}>
       <div className="main-title" style={{ marginBottom: 22 }}>
@@ -21,7 +15,7 @@ export default function MainContent({
       </div>
       <div
         className="sub-title scroll-id-select"
-        data-id={linkNavConfig[0].id}
+        data-id={LINK_NAV_CONFIG[0].id}
         style={{ marginBottom: 31 }}
       >
         {DATA_0.subTitle}
@@ -31,7 +25,7 @@ export default function MainContent({
 
       <div
         className="sub-title scroll-id-select"
-        data-id={linkNavConfig[1].id}
+        data-id={LINK_NAV_CONFIG[1].id}
         style={{ marginBottom: 31, marginTop: 69 }}
       >
         {DATA_101.title}
@@ -54,7 +48,7 @@ export default function MainContent({
 
       {/* 102 before */}
       <div
-        data-id={linkNavConfig[2].id}
+        data-id={LINK_NAV_CONFIG[2].id}
         className="sub-title scroll-id-select"
         style={{ marginBottom: 49, marginTop: 69 }}
       >
@@ -64,7 +58,7 @@ export default function MainContent({
 
       {/* 103 before */}
       <div
-        data-id={linkNavConfig[3].id}
+        data-id={LINK_NAV_CONFIG[3].id}
         className="sub-title scroll-id-select"
         style={{ marginBottom: 39, marginTop: 69 }}
       >
@@ -77,7 +71,7 @@ export default function MainContent({
 
       {/* 104 before */}
       <div
-        data-id={linkNavConfig[4].id}
+        data-id={LINK_NAV_CONFIG[4].id}
         className="sub-title scroll-id-select"
         style={{ marginTop: 69, marginBottom: 49 }}
       >

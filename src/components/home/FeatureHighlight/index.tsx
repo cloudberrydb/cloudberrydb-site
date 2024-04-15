@@ -1,9 +1,11 @@
+import Translate from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { FEATURE_HIGHLIGHT } from "@site/src/consts/homeContent";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 export default function FeatureHighlight() {
+
   const itemTop = FEATURE_HIGHLIGHT.slice(0, 3).map((item, i) => {
     return (
       <div className={styles.listItem} key={i}>
@@ -26,7 +28,9 @@ export default function FeatureHighlight() {
     <div className={styles.container}>
       <div className="global-width-center">
         <div className={styles.wrap}>
-          <div className={styles.title}>Feature Highlights</div>
+          <div className={styles.title}>
+            <Translate>Feature Highlights</Translate>
+          </div>
           <div className={clsx(styles.showList, styles.top)}>{itemTop}</div>
           <div className={clsx(styles.showList, styles.bottom)}>
             {itemBottom}

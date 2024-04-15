@@ -1,7 +1,7 @@
+import Translate from "@docusaurus/Translate";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.scss";
-
 import { WHY_CLOUDBERRY_DATABASE } from "@site/src/consts/homeContent";
+import styles from "./styles.module.scss";
 
 export default function WhyCloudberryDatabase() {
   const itemDom = WHY_CLOUDBERRY_DATABASE.map((item, i) => {
@@ -18,7 +18,9 @@ export default function WhyCloudberryDatabase() {
       <div className={styles.content}>
         <div className={styles.left}>
           <img src={useBaseUrl("/img/home/wcd.png")} alt="" />
-          <span className={styles.text}>Why Cloudberry Database</span>
+          <span className={styles.text}>
+            <Translate>Why Cloudberry Database</Translate>
+          </span>
         </div>
         <div className={styles.right}>{itemDom}</div>
       </div>

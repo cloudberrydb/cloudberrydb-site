@@ -1,45 +1,20 @@
+import {
+  BOOTCAMP_PAGE_CONFIG,
+  LINK_NAV_CONFIG,
+} from "@site/src/consts/bootcamp";
 import MainContent from "../../components/bootcamp/MainContent";
 import TextPic from "../../components/bootcamp/TextPic";
 import ColorCard from "../../components/common/ColorCard";
 import CommonLayout from "../../components/common/Layout";
 import LinkNav from "../../components/common/LinkNav";
-import { formatStrHorizontalLine } from "../../utils";
 export default function BootCamp(): JSX.Element {
-  const linkNavConfig = [
-    {
-      label: "CloudberryDB Sandbox",
-      id: "",
-    },
-    {
-      label: "101-CloudberryDB Tourials",
-      id: "",
-    },
-    {
-      label: "102-CloudberryDB Crash Course",
-      id: "",
-    },
-    {
-      label: "103-CloudberryDB Performance Benchmark",
-      id: "",
-    },
-    {
-      label: "104-CloudberryDB for Data Science",
-      id: "",
-    },
-  ];
-  linkNavConfig.forEach((item) => {
-    item.id = formatStrHorizontalLine(item.label);
-  });
   return (
     <CommonLayout>
-      <ColorCard
-        titleText="Cloudberry Database Bootcamp"
-        subText="Join us on an exciting journey to explore the features of Cloudberry Database using a Docker engine-based sandbox. Get ready to elevate your database skills. Happy exploring!"
-      />
+      <ColorCard {...BOOTCAMP_PAGE_CONFIG.headerCard} />
       <div className="main global-width-layout flex">
         <div className="leftContent" style={{ width: 980 }}>
           <TextPic />
-          <MainContent linkNavConfig={linkNavConfig} />
+          <MainContent />
         </div>
         <div
           style={{
@@ -56,7 +31,7 @@ export default function BootCamp(): JSX.Element {
               marginTop: 51,
               top: 130,
             }}
-            config={linkNavConfig}
+            config={LINK_NAV_CONFIG}
           ></LinkNav>
         </div>
       </div>

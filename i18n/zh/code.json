@@ -107,9 +107,6 @@
     "message": "{nDocsTagged}「{tagName}」",
     "description": "The title of the page for a docs tag"
   },
-  "theme.docs.versionBadge.label": {
-    "message": "版本：{versionLabel}"
-  },
   "theme.docs.versions.unreleasedVersionLabel": {
     "message": "此为 {siteTitle} {versionLabel} 版尚未发行的文档。",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
@@ -285,5 +282,39 @@
   "theme.unlistedContent.message": {
     "message": "此页面未列出。搜索引擎不会对其索引，只有拥有直接链接的用户才能访问。",
     "description": "The unlisted content banner message"
+  },
+
+  "Next Generation": {
+    "message": "下一代"
+  },
+  "Unified Database for": {
+    "message": "统一数据库"
+  },
+  "Analytics  AI  Analytics and AI": {
+    "message": "分析  AI  分析和 AI"
+  },
+  "Cloudberry Database is open sourced now": {
+    "message": "Cloudberry Database 现已开源"
+  },
+  "Open, Friendly, Advanced": {
+    "message": "开放，友好，强大"
+  },
+  "Discover More": {
+    "message": "浏览文档"
+  },
+  "View on Github": {
+    "message": "查看 Github"
+  },
+  "Feature Highlights": {
+    "message": "功能亮点"
+  },
+  "Why Cloudberry Database": {
+    "message": "为何选择 Cloudberry Database"
+  },
+  "Join the Community": {
+    "message": "加入社区"
+  },
+  "Blog Posts": {
+    "message": "博客"
   }
 }
