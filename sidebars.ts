@@ -114,7 +114,10 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'System Utilities',
-        items: ['sys-utilities/gpdemo']
+        items: ['sys-utilities/db-util-createdb',
+                'sys-utilities/db-util-gpdemo',
+                'sys-utilities/db-util-gpstate',
+                'sys-utilities/db-util-gpstop']
        },
      ]
     },
