@@ -123,10 +123,14 @@ const sidebars: SidebarsConfig = {
     },
 
     {
-      type: 'category',
-      label: 'Releases',
-      items: ['releases/release-1.5.0']
-     }
+      type: "category",
+      label: "Releases",
+      link: {
+        type: "doc",
+        id: "releases/index",
+      },
+      items: ['releases/release-1.5.0','releases/release-1.5.1'],
+    },
   ]
 }
 
