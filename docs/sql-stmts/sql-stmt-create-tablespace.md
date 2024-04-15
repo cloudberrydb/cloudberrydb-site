@@ -70,7 +70,7 @@ Cloudberry Database does not support different tablespace locations for a primar
 Create a new tablespace and specify the file system location for the coordinator and all segment instances:
 
 ```sql
-CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace';
+CREATE TABLESPACE mytblspace LOCATION '/mydbtspc/mytestspace';
 ```
 
 Create a tablespace `indexspace` at `/data/indexes` owned by user `genevieve`:
@@ -82,7 +82,7 @@ CREATE TABLESPACE indexspace OWNER genevieve LOCATION '/data/indexes';
 Create a new tablespace and specify a location for segment instances with content ID 0 and 1. For the coordinator and segment instances not listed in the `WITH` clause, the file system location for the tablespace is the directory specified in the `LOCATION` clause.
 
 ```sql
-CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');
+CREATE TABLESPACE mytblspace LOCATION '/mydbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');
 ```
 
 The example specifies the same location for the two segment instances. You can a specify different location for each segment.

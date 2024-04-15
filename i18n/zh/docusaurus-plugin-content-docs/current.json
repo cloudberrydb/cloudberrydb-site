@@ -8,7 +8,7 @@
     "description": "The label for category product introduction in sidebar docs"
   },
   "sidebar.docsbars.category.Deploy and Build": {
-    "message": "部署指南",
+    "message": "部署和构建",
     "description": "The label for category deployment guides in sidebar docs"
   },
   "sidebar.docsbars.category.Deploy on Physical Machine": {
@@ -32,7 +32,7 @@
     "description": "The label for category creating and preparing database in sidebar docs"
   },
   "sidebar.docsbars.category.Operate with Data": {
-    "message": "数据操作",
+    "message": "操作数据",
     "description": "The label for category data operations in sidebar docs"
   },
   "sidebar.docsbars.category.Optimize Query Performance": {
@@ -40,7 +40,7 @@
     "description": "The label for category optimizing query performance in sidebar docs"
   },
   "sidebar.docsbars.category.Security and Permission": {
-    "message": "安全和权限",
+    "message": "设置安全和权限",
     "description": "The label for category security and permission in sidebar docs"
   },
   "sidebar.docsbars.category.System Utilities": {
@@ -50,5 +50,14 @@
   "sidebar.docsbars.category.Releases": {
     "message": "版本发布说明",
     "description": "The label for category release notes in sidebar docs"
+  },
+  "sidebar.docsbars.category.Load Data": {
+    "message": "加载数据",
+    "description": "The label for category data loading in sidebar docs"
+  },
+  "sidebar.docsbars.category.Load Data from Local Files": {
+    "message": "从本地文件加载数据",
+    "description": "The label for category loading data from local files in sidebar docs"
   }
+
 }

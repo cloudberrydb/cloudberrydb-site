@@ -38,7 +38,6 @@ Specifies that the command takes effect for only the current transaction. After 
 
 The name of a role to use for permissions checking in this session.
 
-NONE
 **`RESET`**
 
 Reset the current role identifier to be the current session role identifier (that of the role used to log in).

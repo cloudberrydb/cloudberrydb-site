@@ -18,7 +18,7 @@ title: 连接到数据库
 |数据库名|待连接数据库的名称。对于新初始化的系统，首次连接请使用 `postgres` 数据库。|`$PGDATABASE`|
 |主机名|Cloudberry Database coordinator 的主机名。默认主机是本地主机。|`$PGHOST`|
 |端口|Cloudberry Database coordinator 实例运行的端口号。默认值为 `5432`。|`$PGPORT`|
-|用户名|连接的数据库用户（角色）名称。这不一定与你的操作系统用户名相同。如果你不确定你的数据库用户名是什么，请与你的 Cloudberry Database 管理员联系。请注意，每个 Cloudberry Database 系统在初始化时都会自动创建一个超级用户帐户。此帐户的名称与初始化 Cloudberry 系统的用户的操作系统名称相同（通常为 `gpadmin`）。|`$PGUSER`|
+|用户名|连接的数据库用户（角色）名称。这不一定与你的操作系统用户名相同。如果你不确定你的数据库用户名是什么，请与你的 Cloudberry Database 管理员联系。请注意，每个 Cloudberry Database 系统在初始化时都会自动创建一个超级用户帐户。此帐户的名称与初始化 Cloudberry Database 系统的用户的操作系统名称相同（通常为 `gpadmin`）。|`$PGUSER`|
 
 [使用 psql 连接](#使用-psql-连接) 介绍了连接到 Cloudberry Database 的示例命令。
 
@@ -26,7 +26,7 @@ title: 连接到数据库
 
 你可以使用多种客户端应用程序连接到 Cloudberry Database：
 
-- Cloudberry 安装中包含了一些[客户端应用程序](#客户端应用程序)。在这些应用程序中，`psql` 是一个交互式命令行界面。
+- Cloudberry Database 安装中包含了一些[客户端应用程序](#客户端应用程序)。在这些应用程序中，`psql` 是一个交互式命令行界面。
 - 使用标准的[数据库应用程序接口](#使用应用程序接口连接)，例如 ODBC 和 JDBC，你可以创建自己的客户端应用程序，与 Cloudberry Database 进行连接。
 - 大多数使用标准数据库接口（例如 ODBC 和 JDBC）的客户端工具，都可以配置为连接到 Cloudberry Database。
 
@@ -97,7 +97,7 @@ cbdb-database=>
 |Perl DBI|pgperl|[DBD-Pg](https://metacpan.org/release/DBD-Pg)|
 |Python DBI|pygresql|[PyGreSQL](http://www.pygresql.org/)|
 |Python DBI|psycopg2|[Psycopg](https://www.psycopg.org/)|
-|libpq C 库|libpq|[libpq - C 库](https://www.postgresql.org/docs/12/libpq.html)|
+|libpq C 库|libpq|[libpq - C 库](https://www.postgresql.org/docs/14/libpq.html)|
 
 使用 API 访问 Cloudberry Database 的通用说明是：
 
@@ -113,5 +113,5 @@ cbdb-database=>
 | 问题 | 解决方案 |
 | ---- | -------- |
 | 没有针对主机或用户的 `pg_hba.conf` 条目 | 要允许远程客户端连接到 Cloudberry Database，你需要配置 Cloudberry Database coordinator 实例以接受这些连接。这需要通过在 `pg_hba.conf` 配置文件（该文件位于 coordinator 实例的数据目录中）添加适当的条目来实现。 |
-| Cloudberry Database 没有运行 | 如果 Cloudberry Database coordinator 实例停止运行，用户将无法连接。你可以通过在 Cloudberry coordinator 主机上运行 `gpstate` 实用程序来验证 Cloudberry Database 系统是否在运行。 |
-| 网络问题：连接超时 | 如果用户从远程客户端连接到 Cloudberry coordinator 主机，网络问题可能会阻止连接（例如，DNS 主机名解析问题、主机系统关闭等）。为排除网络问题，请从远程客户端主机连接到 Cloudberry coordinator 主机。例如：`ping hostname`。<br/><br/>如果系统无法解析参与 Cloudberry Database 的主机的主机名和 IP 地址，查询和连接将会失败。某些操作会使用 `localhost` 连接到 Cloudberry Database coordinator，而其他操作则会使用实际的主机名，因此你必须能够解析这两者。如果你遇到这个错误，请首先确保你能够从 coordinator 主机通过网络连接到 Cloudberry Database 列表中的每个主机。在 coordinator 和所有 segment 的 `/etc/hosts` 文件中，确保你拥有 Cloudberry Database 列表中涉及的所有主机的正确主机名和 IP 地址。`127.0.0.1` 必须解析为 `localhost`。 |
+| Cloudberry Database 没有运行 | 如果 Cloudberry Database coordinator 实例停止运行，用户将无法连接。你可以通过在 Cloudberry Database coordinator 主机上运行 `gpstate` 实用程序来验证 Cloudberry Database 系统是否在运行。 |
+| 网络问题：连接超时 | 如果用户从远程客户端连接到 Cloudberry Database coordinator 主机，网络问题可能会阻止连接（例如，DNS 主机名解析问题、主机系统关闭等）。为排除网络问题，请从远程客户端主机连接到 Cloudberry Database coordinator 主机。例如：`ping hostname`。<br/><br/>如果系统无法解析参与 Cloudberry Database 的主机的主机名和 IP 地址，查询和连接将会失败。某些操作会使用 `localhost` 连接到 Cloudberry Database coordinator，而其他操作则会使用实际的主机名，因此你必须能够解析这两者。如果你遇到这个错误，请首先确保你能够从 coordinator 主机通过网络连接到 Cloudberry Database 列表中的每个主机。在 coordinator 和所有 segment 的 `/etc/hosts` 文件中，确保你拥有 Cloudberry Database 列表中涉及的所有主机的正确主机名和 IP 地址。`127.0.0.1` 必须解析为 `localhost`。 |

@@ -14,7 +14,7 @@ DROP ROLE [IF EXISTS] <name> [, ...]
 
 ## Description
 
-`DROP ROLE` removes the specified role(s). To drop a superuser role, you must be a superuser yourself. To drop non-superuser roles, you must have `CREATEROLE` privilege.
+`DROP ROLE` removes the specified role(s). To drop a superuser role, you must be a superuser yourself. To drop non-superuser roles, you must have `CREATE ROLE` privilege.
 
 A role cannot be removed if it is still referenced in any database; an error will be raised if so. Before dropping the role, you must drop all the objects it owns (or reassign their ownership) and revoke any privileges the role has been granted on other objects. The [`REASSIGN OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-reassign-owned.md) and [`DROP OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-drop-owned.md) commands can be useful for this purpose.
 
@@ -44,4 +44,4 @@ The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped 
 
 ## See also
 
-[`R`EASSIGN OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-reassign-owned.md), [`DROP OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-drop-owned.md), [`CREATE ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-role.md), [`SET ROLE]`(/docs/sql-stmts/sql-stmt-set-role.md)
+[`REASSIGN OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-reassign-owned.md), [`DROP OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-drop-owned.md), [`CREATE ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-role.md), [`SET ROLE`](/docs/sql-stmts/sql-stmt-set-role.md)
