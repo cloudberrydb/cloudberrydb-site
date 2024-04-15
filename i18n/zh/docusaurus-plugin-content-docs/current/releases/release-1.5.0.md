@@ -82,7 +82,7 @@ Cloudberry Database v1.5.0 新增了若干功能，包含了若干产品性能/�
     gpdemo
     ```
 
-    详情参见文档 [gpdemo 快捷部署使用文档](/i18n/zh/docusaurus-plugin-content-docs/current/sys-utilities/gpdemo.md)。
+    详情参见文档 [gpdemo 快捷部署使用文档](/i18n/zh/docusaurus-plugin-content-docs/current/sys-utilities/db-util-gpdemo.md)。
 
 ### 存储
 

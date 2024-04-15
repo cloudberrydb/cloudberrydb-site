@@ -84,7 +84,7 @@ Each new feature is described as follows:
     gpdemo
     ```
 
-    See [Use gpdemo to Quickly Deploy Cloudberry Database](/docs/sys-utilities/gpdemo.md) for details.
+    See [Use gpdemo to Quickly Deploy Cloudberry Database](/docs/sys-utilities/db-util-gpdemo.md) for details.
 
 ### Storage
 
