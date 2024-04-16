@@ -135,6 +135,10 @@ const config: Config = {
               label: "Bootcamp",
               to: "/bootcamp",
             },
+            {
+              label: "Team",
+              to: "/team",
+            },
           ],
         },
       ],
