@@ -1,13 +1,13 @@
 ---
 title: Team
-description: Built on Open Source, By Open Source, for Open Source.
+description: Built On Open Source, By Open Source, For Open Source.
 ---
 
-The Cloudberry Database team works on developing the core database kernel, utilities, tools, as well as the documentation website. Our journey began in 2022, and we have built our foundation on Postgres and Greenplum Database. We would not be where we are today without the invaluable contributions of the two project contributors. We extend our heartfelt thanks to them.
+The Cloudberry Database team works on developing the core database kernel, utilities, tools, as well as the documentation website. Our journey began in 2022, and we have built our foundation on PostgreSQL and Greenplum Database. We would not be where we are today without the invaluable contributions of the two project contributors. We extend our heartfelt thanks to them.
 
 [![GitHub Contributor Over Time](https://contributor-overtime-api.git-contributor.com/contributors-svg?chart=contributorOverTime&repo=cloudberrydb/cloudberrydb)](https://git-contributor.com?chart=contributorOverTime&repo=cloudberrydb/cloudberrydb)
 
-We have several ecosystem projects available on GitHub in addition to our [main repository](https://github.com/cloudberrydb/cloudberrydb). To discover all of the contributors to the Cloudberry Database, please visit our [GitHub homepage](https://github.com/cloudberrydb/). Please note that the images shown below highlight the amazing work of our active and upstream contributors while not including anonymous contributors. To view all the contributors, you can click on the pictures.
+We have several ecosystem projects available on GitHub in addition to our [main repository](https://github.com/cloudberrydb/cloudberrydb). To discover all of the contributors to Cloudberry Database, please visit our [GitHub homepage](https://github.com/cloudberrydb/). Please note that the images shown below highlight the avatars of our active and upstream contributors while not including anonymous contributors. To view all the contributors, you can click on the images.
 
 - **[cloudberrydb/cloudberrydb](https://github.com/cloudberrydb/cloudberrydb):**
 
