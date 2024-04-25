@@ -1,214 +1,129 @@
 ---
-title: Cloudberry Database Proposal Guide
-description: If you are planning to make significant changes to the Cloudberry Database, please submit a proposal for review.
+title: Cloudberry Database 提案指南
+description: 如果你计划对 Cloudberry Database 进行重大更改，需要提交提案以供审阅。
 ---
 
-This page describes a `Cloudberry Database Proposal(CP)` process for
-proposing major changes to Cloudberry Database.
+本页介绍了针对 Cloudberry Database 进行重大变更所需的 `Cloudberry Database Proposal (Cloudberry Database 提案，缩写为 CP)` 整个流程。
 
-## When
+## 何时启用
 
-Not all changes need one CP.
+不是所有更改都需要提案。
 
-When changes are just minor updates or general bug fixes, just create
-a pull request directly!
+如果变更仅仅是小更新或常规错误修复，只需要直接创建 pull request 即可！
 
-When you just have one idea or a more `casual` feature request,
-consider choosing [Ideas / Feature
-Requests](https://github.com/orgs/cloudberrydb/discussions/new?category=ideas-feature-requests)
-to get feedback via GitHub Discussions.
+如果你只有初步想法或不太正式的功能需求，可以考虑先在 [GitHub Discussions - Ideas / Feature
+Requests](https://github.com/orgs/cloudberrydb/discussions/new?category=ideas-feature-requests) 板块上发帖和大家讨论、获取反馈。
 
-But any of the following can be considered a major change that needs
-to have a **Proposal**:
+如有以下任何一种情况，均可视为重大更改，需要发起提案：
 
-- Any change that impacts the public interfaces of Cloudberry
-  Database.
-- Any new component, module, or code that introduces a new concept
-  into Cloudberry Database or alters the behavior of an existing one.
-- Any large code refactors to address general code re-usability and
-  structure.
-- Any important breaking backward or forward compatibility.
+- 会对 Cloudberry Database 的公共接口产生影响的任何更改。
+- 为 Cloudberry Database 引入新组件、新模块或新概念，或者更改现有的行为。
+- 影响代码重用性和结构的大规模代码重构行为。
+- 任何重要的向后或向前兼容性中断行为。
 
 :::caution
 
-Please ensure that there is no existing proposal similar to yours
-before initiating, you can search the GitHub Discussions or ask
-directly in our Slack.
+在发起新提案之前，请确保没有与你的提案类似的已有提案，你可以搜索 GitHub Discussions 或在我们的 Slack 频道上直接询问。
 
 :::
 
-## Who
+## 何人提出
 
-Anyone can initiate one CP. For the proposer, it can be only you, a
-group of developers, or one team. Please list all the proposers' names
-in the proposal.
+任何人都可以发起一个提案。对于提案人，可以只是你自己，或是一群开发者，或一个团队。请在提案中列出所有提案人的名字。
 
-## Proposal lifecycle
-
-```plain-text
-                            --> Accepted --> In Progress --> Completed
-                            |                     v
-Draft --> Discuss --> Vote -|                  Inactive
-                            |                     v
-                            --> Rejected       Abandoned
-```
+## 提案周期
 
 ![Cloudberry Database Proposal life](/img/proposal-life.png)
 
-### Draft
+### Draft（草案）
 
-You can submit your proposal via [GitHub Discussions
-template](https://github.com/orgs/cloudberrydb/discussions/new?category=proposal). Fill
-all the fields as you can, at least the required ones, including:
+你可以通过 [GitHub Discussions 模板](https://github.com/orgs/cloudberrydb/discussions/new?category=proposal)发起提案。请尽可能填写所有字段，至少包括必需字段，如：
 
-- Proposal title. Be direct, and clear. Please also keep the prefix
-  `[Proposal]` starting with the title.
-- Proposers. List all the proposers, can be only one, many people, a
-  team, company.
-- Proposal Status. Choose one from the following: `Under
-Discussion`/`In Progress`/`Completed`/`Inactive`/`Abandoned`, `Under
-Discussion` as default when you initiate the CP.
-- Abstract. A clear and concise description of what your proposal is.
-- Motivation. Please outline the motivation and why it should be
-  implemented.
-- Implementation. How you implement your proposal, including the
-  principle, design, plans, etc.
+- 提案标题。保持直接清晰。请在标题前添加 `[Proposal]` 前缀。
+- 提案人。列出所有提案人，可以是一个人、多个人、一个团队或一家公司。
+- 提案状态。从多个选项中选择一个：`Under Discussion`/`In Progress`/`Completed`/`Inactive`/`Abandoned`。当你发起提案时，默认状态为 `Under Discussion`。
+- 摘要。简要描述你的提案内容。
+- 动机。概述动机以及为什么应该实施该提案。
+- 实现。介绍你如何实现提案，包括原则、设计、计划等。
 
-### Discuss
+### Discuss（讨论）
 
-When your proposal draft is ready, you can share the GitHub link to
-our `#dev` Slack Channel or mention others to get feedback from the
-community. It is important to be responsive to any questions or
-concerns raised by others. This stage is intended to gather a variety
-of feedback, suggestions, and constructive criticism from different
-perspectives.
+当你的提案草案准备就绪后，你可以将 GitHub 链接分享到我们的 Slack `#dev` 频道，或者 @ 其他人以获取社区的反馈。积极回应其他人提出的疑问或担忧很重要。在讨论阶段，主要就是从不同角度收集各种反馈、建议和建设性的批评。
 
-The duration of your CP is at least 7 days, allowing community members
-from various timezones to view and participate in discussions until
-all concerns have been addressed.
+你的提案至少保持 7 天时间的讨论，以便来自不同时区的社区成员能够查看和参与讨论，直到解决全部疑问。
 
-### Vote
+### Vote（投票）
 
-Once you or someone else feels like there’s a rough consensus on the
-idea and there’s no strong opposition after the `Discussion`, you can
-move your proposal to the `Vote` phase.
+一旦你或其他人觉得对某个想法已经达成了大致的共识，并且在讨论阶段之后没有强烈的反对意见，你就可以将你的提案移至投票阶段。
 
-For this, you will comment on your proposal's GitHub Discussions to
-start the `Vote`. We follow a vote on code modifications for Apache
-projects as described
-[here](https://www.apache.org/foundation/voting.html#votes-on-code-modification).
-Votes are represented as numbers between -1 and +1, with '-1' meaning
-'no' and '+1' meaning 'yes.'
+为此，你要在对应的 GitHub Discussions 帖子下留言以启动投票。我们遵循 Apache 项目常用的[投票方式](https://www.apache.org/foundation/voting.html#votes-on-code-modification)。投票以 -1 到 +1 之间的数字表示，其中“-1”表示“否”，“+1”表示“是”。
 
-The in-between values indicate how strongly the voting individual
-feels. Here are some examples of fractional votes and what the voter
-might be communicating with them:
+中间的数值表示投票人对此事的感觉程度。以下是一些投票示例以及投票者可能想要传达的信息：
 
-- +0: 'I don't feel strongly about it, but I'm okay with this.'
-- -0: 'I won't get in the way, but I'd rather we didn't do this.'
-- -0.5: 'I don't like this idea, but I can't find any rational
-  justification for my feelings.'
-- ++1: 'Wow! I like this! Let's do it!'
-- -0.9: 'I really don't like this, but I'm not going to stand in the
-  way if everyone else wants to go ahead with it.'
-- +0.9: 'This is a cool idea and I like it, but I don't have the
-  time/the skills necessary to help out.'
+- +0：“我对此事没有特别强烈的看法，但我没问题。”
+- -0：“我不会阻止，但我更希望我们不要做这件事。”
+- -0.5：“我不喜欢这个想法，但找不到合理的理由来支持我的感觉。”
+- ++1：“哇！我喜欢这个想法！抓紧开始吧！”
+- -0.9：“我真的不喜欢这个，但如果其他人想继续，我也不会阻止。”
+- +0.9：“这是个很酷的想法，我喜欢，但我没时间/必要的技能提供帮助。”
 
-The voting has to run for at least 72 hours to provide an opportunity
-for all concerned persons to participate, regardless of their
-geographic location, and it’s a good practice to extend this time if
-most of this period is a weekend. The whole community is encouraged to
-give +1 and -1 votes.
+投票必须至少持续 72 小时，以便为所有相关人员提供参与的机会，无论他们身在何处。如果大部分投票时间是周末，建议延长投票时间。鼓励全体社区成员给出 +1 或 -1 投票。
 
-The vote as well as `Discuss` is a consensus-seeking process, “the
-goal is not to _win_ votes or come to a unanimous agreement, but
-rather to ensure that there’s a forum for people to raise and discuss
-their concerns and that nobody feels strongly enough to block the
-group from moving forward. Consensus-seeking emphasizes discussion
-over enumeration: _Rough consensus is achieved when all issues are
-addressed, but not necessarily accommodated._”
+投票和讨论都是寻求共识的过程，“目标不是赢得选票或达成一致意见，而是确保有一个让人们提出和讨论问题的场所，使得没人感觉非得阻止团队前进才行。寻求共识强调讨论而非陈述：当所有问题都得到解决时，就实现了大致的共识，但不一定都能得到满足。”
 
-For the vote, we are used to `majority approval`, that is, there must
-be more positive than negative votes.
+对于投票来说，我们一贯遵循“少数服从多数”，即必须有更多的支持投票而非否定投票。
 
-### Accepted
+### Accepted（已接受）
 
-Congratulations! Your proposal has been accepted.
+祝贺！你的提案已被接受。
 
 :::note
 
-If you want to introduce significant changes to your proposal after it
-has been accepted you can do so following the same procedure.
+如果你的提案在被接受后要进行重大更改，你可以按照相同程序重新推进新版提案。
 
 :::
 
-Next up is breaking down tasks. You should break down tasks on
-Cloudberry Database GitHub issues page. Once a proposal is accepted,
-it moves into the implementation phase, status as `In Progress`.
+接下来是分解任务。你应在 Cloudberry Database GitHub issue 页面创建分解任务。一旦提案被接受，它将进入实现阶段，状态变更为 `In Progress`（正在进行）。
 
-### In Progress
+### In Progress（正在进行）
 
-Developers or contributors start working on the proposed changes,
-actively developing and integrating them into the project codebase.
+开发人员或贡献者开始着手进行提案开发工作，积极开发并将它们集成到项目代码库中。
 
-Now you can start contributing and - more importantly - you can, and
-probably should, encourage others to contribute to your
-project. However, this is optional and up to your discretion. You can
-learn how to contribute and communicate with other community
-members. Use your imagination and various communication channels for
-ways to encourage people if you do not already have contributors
-following your idea. It is advisable that several people work on the
-CP so that the knowledge is shared.
+现在你可以开始做贡献了，更重要的是建议你可以鼓励其他人一起参与到你的项目实现中来。然而，这是可选操作，取决于你的决定。你可以学习如何为社区做出贡献，如何与其他社区成员进行沟通。如果没人主动参与到你的提案贡献中来，你可以发挥想象力、利用各种沟通渠道鼓励大家参与。针对较大提案，建议多人组队一起推动。
 
-### Rejected
+### Rejected（已拒绝）
 
-If the proposal fails to gather enough support or does not align with
-the project's goals or guidelines, it may be rejected. This means the
-proposal will not move forward and is considered closed.
+如果提案未能获得足够支持，或与项目目标或路线图不符，可能会被拒绝。这意味着该提案将于此终止、不会继续进行，提案会被视为关闭。
 
-### Completed
+### Completed（已完成）
 
-When all the proposed changes and related tasks are fully implemented,
-tested, and integrated into the project, the proposal is marked as
-`Completed`. The new feature or enhancement is available for use in
-the project's release or codebase.
+当所有提议的变更和相关任务完全实现、经过测试并集成到项目中时，该提案将被标记为 `Completed`（已完成）。新特性或增强功能将随后续项目发版正式推出。
 
-### Inactive
+### Inactive（非活跃）
 
-We will move CP to `Inactive` if no updates over six months. This can
-occur due to various reasons, such as a lack of resources or a need
-for further discussions. The proposal remains open but is not actively
-being worked on or progressed.
+如果提案在 6 个月内没有更新，我们将把提案移至 `Inactive`（非活跃）状态。这可能出于各种原因，例如缺乏资源或需要进一步讨论。该提案仍然保持开放，只是尚未积极推进或取得进展。
 
-If someone can take over the proposal to proceed forward, it will be
-marked as `In Progress`.
+如果有人能接手该提案并继续推进，那么该提案将被标记为 `In Progress`（进行中）。
 
-### Abandoned
+### Abandoned（已放弃）
 
-If a proposal has been `Inactive` because of losing relevance,
-support, or the resources needed for implementation for over 12
-months, it will be deemed `Abandoned`. Abandoned proposals are no
-longer actively considered and are closed without being implemented.
+如果一项提案由于失去相关性、支持或实现所需的资源而超过 12 个月未采取任何行动，则被视为 `Abandoned`（已放弃）。已放弃的提案将被视为不再活跃，因不再实现而关闭。
 
-If you want to restart an `Abandoned` proposal, you must follow the
-same procedure as before, in case there have been any changes since it
-was abandoned.
+如果你想重新启动已放弃的提案，必须遵循与以前相同的评审程序，防止提案自放弃以来有任何更改。
 
 :::note
 
-Please ensure that your proposal is regularly updated to reflect any
-changes in your implementation.
+请确保你的提案定期更新，反映实现过程中的最新进展。
 
 :::
 
 ---
 
-## List of Cloudberry Database Proposals(CPs)
+## Cloudberry Database 提案清单
 
-| No.  | Title                                                                        | Status  | Discussion Thread                                    |
+| 序号  | 标题   | 状态  | 讨论   |
 | ---- | ---------------------------------------------------------------------------- | ------- | ---------------------------------------------------- |
 | CP-2 | [Proposal] Implement Scorll Parallel Retrieve Cursor                         | Discuss | https://github.com/orgs/cloudberrydb/discussions/120 |
 | CP-1 | [Proposal] Support Incremental View Maintenance (IVM) in Cloudberry Database | Discuss | https://github.com/orgs/cloudberrydb/discussions/36  |
 
-You can find more proposal
-[here](https://github.com/cloudberrydb/community).
+你可以[在此](https://github.com/cloudberrydb/community)查看全部提案。

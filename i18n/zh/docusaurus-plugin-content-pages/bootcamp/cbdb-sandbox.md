@@ -20,7 +20,7 @@ Make sure that your environment meets the following requirements:
 
 ## Build the Sandbox
 
-This section introduces how to set up the Docker container in which the source code of Cloudberry Database v1.5.1 (released in [Cloudberry Database Release Page](https://github.com/cloudberrydb/cloudberrydb/releases)) will be compiled. In this CentOS 7.9 Docker container, a single-node cluster will be initialized with one coordinator and two segments. Both x86 and ARM CPUs (including Apple chips) are supported.
+This section introduces how to set up the Docker container in which the source code of the latest Cloudberry Database (released in [Cloudberry Database Release Page](https://github.com/cloudberrydb/cloudberrydb/releases)) will be compiled. In this CentOS 7.9 Docker container, a single-node cluster will be initialized with one coordinator and two segments. Both x86 and ARM CPUs (including Apple chips) are supported.
 
 Build steps:
 
