@@ -41,14 +41,14 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.
 
 ## Bug fixes
 
-Fix the `AO`/`AOCS` `insertDesc` memory issue by @[avamingli](https://github.com/avamingli) in [#365](https://github.com/cloudberrydb/cloudberrydb/pull/365)
-Fix the issue that `CopyCreateStmtFields` lost the `intoPolicy` field by @[yjhjstz](https://github.com/yjhjstz) in [#372](https://github.com/cloudberrydb/cloudberrydb/pull/372)
-Fix the issue that `configue` is not consistent with `configure.ac` by [@lss602726449](https://github.com/lss602726449) in [#373](https://github.com/cloudberrydb/cloudberrydb/pull/373)
-Fix the unstable `ao`, `vacuum` and `icw` tests by [@jiaqizho](https://github.com/jiaqizho) in [#376](https://github.com/cloudberrydb/cloudberrydb/pull/376)
-Fix the issue that the shell script involves demo cluster by @[gfphoenix78](https://github.com/gfphoenix78) in [#377](https://github.com/cloudberrydb/cloudberrydb/pull/377)
-Fix `CREATE TYPE` in namespace `pg_ext_aux` by @[gfphoenix78](https://github.com/gfphoenix78) in [#380](https://github.com/cloudberrydb/cloudberrydb/pull/380)
-Fix the issue that `parallel_workers` is initialized as `0` for `CdbPathLocus_HashedOJ` by [@HuSen8891](https://github.com/HuSen8891) in [#387](https://github.com/cloudberrydb/cloudberrydb/pull/387)
-Fix the redefined `sm4` in `pgcrypto` and backend/crypto by [@jiaqizho](https://github.com/jiaqizho) in [#394](https://github.com/cloudberrydb/cloudberrydb/pull/394)
+- Fix the `AO`/`AOCS` `insertDesc` memory issue by @[avamingli](https://github.com/avamingli) in [#365](https://github.com/cloudberrydb/cloudberrydb/pull/365)
+- Fix the issue that `CopyCreateStmtFields` lost the `intoPolicy` field by @[yjhjstz](https://github.com/yjhjstz) in [#372](https://github.com/cloudberrydb/cloudberrydb/pull/372)
+- Fix the issue that `configue` is not consistent with `configure.ac` by [@lss602726449](https://github.com/lss602726449) in [#373](https://github.com/cloudberrydb/cloudberrydb/pull/373)
+- Fix the unstable `ao`, `vacuum` and `icw` tests by [@jiaqizho](https://github.com/jiaqizho) in [#376](https://github.com/cloudberrydb/cloudberrydb/pull/376)
+- Fix the issue that the shell script involves demo cluster by @[gfphoenix78](https://github.com/gfphoenix78) in [#377](https://github.com/cloudberrydb/cloudberrydb/pull/377)
+- Fix `CREATE TYPE` in namespace `pg_ext_aux` by @[gfphoenix78](https://github.com/gfphoenix78) in [#380](https://github.com/cloudberrydb/cloudberrydb/pull/380)
+- Fix the issue that `parallel_workers` is initialized as `0` for `CdbPathLocus_HashedOJ` by [@HuSen8891](https://github.com/HuSen8891) in [#387](https://github.com/cloudberrydb/cloudberrydb/pull/387)
+- Fix the redefined `sm4` in `pgcrypto` and backend/crypto by [@jiaqizho](https://github.com/jiaqizho) in [#394](https://github.com/cloudberrydb/cloudberrydb/pull/394)
 
 ## 🙌🏻️ New contributors
 
