@@ -10,7 +10,7 @@ Cloudberry Database v1.5.2 is a minor release that includes some improvements an
 
 Quick try: [v1.5.2](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.2)
 
-Full changelog: <https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2>
+Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2)
 
 ## Improvements
 

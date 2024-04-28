@@ -10,7 +10,7 @@ Cloudberry Database v1.5.2 是一个小版本，包含了一些提升改进和 b
 
 快速试用：[v1.5.2](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.2)
 
-完整的变更日志见：<https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2>
+完整的变更日志见：[https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2)
 
 ## 提升改进
 
