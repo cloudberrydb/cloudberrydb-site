@@ -36,7 +36,7 @@ Cloudberry Database v1.5.2 是一个小版本，包含了一些提升改进和 b
 - 将预加载的 `interconnect` 移动到头文件中 [#388](https://github.com/cloudberrydb/cloudberrydb/pull/388) by @[gfphoenix78](https://github.com/gfphoenix78)
 - 为表访问方法添加内联函数 `'table_scan_flags'` 以获取标志 [#395](https://github.com/cloudberrydb/cloudberrydb/pull/395) by @[HuSen8891](https://github.com/HuSen8891)
 - 添加 `gpshrink` 以支持弹性扩缩容 [#393](https://github.com/cloudberrydb/cloudberrydb/pull/393) by @[lss602726449](https://github.com/lss602726449)
-- 部分回滚 [#201](https://github.com/cloudberrydb/cloudberrydb/pull/201) [#386](https://github.com/cloudberrydb/cloudberrydb/pull/386) by @[Ray-Eldath](https://github.com/Ray-Eldath)
+- 提交 [#386](https://github.com/cloudberrydb/cloudberrydb/pull/386) 以部分回滚 [#201](https://github.com/cloudberrydb/cloudberrydb/pull/201) by @[Ray-Eldath](https://github.com/Ray-Eldath)
 - 将入口根切片卸载到 `QE` [#385](https://github.com/cloudberrydb/cloudberrydb/pull/385) by @[Ray-Eldath](https://github.com/Ray-Eldath)
 
 ## Bug 修复
@@ -52,7 +52,7 @@ Cloudberry Database v1.5.2 是一个小版本，包含了一些提升改进和 b
 
 ## 🙌🏻️ 新贡献者
 
-@[shmiwy](https://github.com/) 在 [#361](https://github.com/cloudberrydb/cloudberrydb/pull/361) 中做出了他（或她）的首次贡献。
+@[shmiwy](https://github.com/) 在 [#361](https://github.com/cloudberrydb/cloudberrydb/pull/361) 中做出了他的首次贡献。
 
 ## 🧑🏻‍💻 贡献者列表
 
