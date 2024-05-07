@@ -4,6 +4,7 @@ title: "PostgreSQL Technical Insights (Part 1): Data Organization"
 authors: [Jianghua.yjh, Jiajia.li]
 tags: [engineering]
 image: /img/blog/2024part1.png
+zh_hidden: true
 ---
 
 PostgreSQL, often referred to as PG, stands out as one of the most powerful open-source databases. It has undergone rapid technological advancements in recent years, repeatedly earning the prestigious title of "DBMS of the Year" in the DB-Engines rankings.
