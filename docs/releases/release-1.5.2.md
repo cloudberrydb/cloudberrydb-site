@@ -11,7 +11,7 @@ Cloudberry Database v1.5.2 is a minor release that includes some improvements an
 Quick try: [v1.5.2](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.2)
 
 Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2)
-
+<!-- 
 ## New feature
 
 - Directory table
@@ -20,7 +20,7 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.
 
     Directory tables store, manage, and analyze unstructured data objects. They reside within tablespaces. When unstructured data files are imported, a directory table record (file metadata) is created, and the file itself is loaded into object storage. The table metadata remains associated with the corresponding object storage file.
 
-    For details, see the [user document](/docs/advanced-analytics/directory-tables.md).
+    For details, see the [user document](/docs/advanced-analytics/directory-tables.md). -->
 
 ## Improvements
 

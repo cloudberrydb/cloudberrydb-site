@@ -4,7 +4,7 @@ title: Directory Table
 
 # Directory Table
 
-自 v1.5.2 版本起，Cloudberry Database 引入了 Directory Table，用于统一纳管对象存储上的非结构化数据。
+自 v1.5.3 版本起，Cloudberry Database 引入了 Directory Table，用于统一纳管对象存储上的非结构化数据。
 
 在大模型 AI 快速发展的背景下，AI 应用催生出了管理非结构化多模态语料数据的需求。需要持续准备大量非结构化的高质量精选语料、数据迭代训练大模型，以及归纳丰富的知识库。因此，在结构化语料数据管理与语料加工方面，面临技术挑战。
 
@@ -128,7 +128,7 @@ CREATE DIRECTORY TABLE <table_name>
 
 ### 加载文件至 Directory Table
 
-将文件上传至 Directory Table 后，该文件被上传至 Cloudberry Database 管理的本地存储或对象存储中，而 Directory Table 则纳管该文件的元数据。Cloudberry Database v1.5.2 暂不支持用户自行管理对象存储目录文件。
+将文件上传至 Directory Table 后，该文件被上传至 Cloudberry Database 管理的本地存储或对象存储中，而 Directory Table 则纳管该文件的元数据。Cloudberry Database v1.5.3 暂不支持用户自行管理对象存储目录文件。
 
 从本地上传文件至数据库对象存储语法如下：
 
