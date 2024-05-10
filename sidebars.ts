@@ -62,7 +62,7 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'Advanced Analytics',
-        items: ['advanced-analytics/directory-table']
+        items: ['advanced-analytics/directory-tables']
       },
       ]
      },
