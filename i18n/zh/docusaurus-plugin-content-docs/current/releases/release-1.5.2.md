@@ -22,6 +22,8 @@ Cloudberry Database v1.5.2 是一个小版本，包含了一些提升改进和 b
 
     Directory Table 定位于存储、管理和分析非结构化数据对象。Directory Table 位于表空间中，将非结构化数据文件导入 Directory Table 后，会在 Directory Table 上创建一条记录，即该文件的元数据信息，而文件本身则加载进对象存储中。表上的元数据与对象存储上的对应文件相关联。
 
+    详情参见[用户文档](/i18n/zh/docusaurus-plugin-content-docs/current/advanced-analytics/directory-tables.md)。
+
 ## 提升改进
 
 - 对于物化视图功能，支持原查询中的 `GROUP BY`、`GROUPING SETS`、`ROLLUP` 和 `CUBE` 子句 [#342](https://github.com/cloudberrydb/cloudberrydb/pull/342) by @[avamingli](https://github.com/avamingli)
