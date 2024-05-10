@@ -58,6 +58,10 @@
   "sidebar.docsbars.category.Load Data from Local Files": {
     "message": "从本地文件加载数据",
     "description": "The label for category loading data from local files in sidebar docs"
+  },
+  "sidebar.docsbars.category.Advanced Analytics": {
+    "message": "高级分析",
+    "description": "The label for category advanced analytics in sidebar docs"
   }
 
 }

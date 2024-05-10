@@ -12,6 +12,16 @@ Quick try: [v1.5.2](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
 
 Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2)
 
+## New feature
+
+- Directory table
+
+    Starting from v1.5.2, Cloudberry Database supports directory tables for managing multiple types of unstructured data. Developer users can use simple SQL statements to invoke the capabilities of multiple computing engines to achieve one-stop data processing and application development.
+
+    Directory tables store, manage, and analyze unstructured data objects. They reside within tablespaces. When unstructured data files are imported, a directory table record (file metadata) is created, and the file itself is loaded into object storage. The table metadata remains associated with the corresponding object storage file.
+
+    For details, see the [user document](/docs/advanced-analytics/directory-tables.md).
+
 ## Improvements
 
 - Support `GROUP BY`, `GROUPING SETS`, `ROLLUP`, `CUBE` in origin queries for materialized views by @[avamingli](https://github.com/avamingli) in [#342](https://github.com/cloudberrydb/cloudberrydb/pull/342)
