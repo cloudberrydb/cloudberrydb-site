@@ -2,7 +2,7 @@
 slug: cloudberrydb-oct-weekly
 title: Cloudberry Database 社区简报 - 2023/10
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [简报]
 image: /img/blog/202310.png
 ---
 

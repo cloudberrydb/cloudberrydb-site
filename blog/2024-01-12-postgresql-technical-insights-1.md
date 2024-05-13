@@ -2,7 +2,7 @@
 slug: postgresql-technical-insights-1
 title: "PostgreSQL Technical Insights (Part 1): Data Organization"
 authors: [Jianghua.yjh, Jiajia.li]
-tags: [engineering]
+tags: [Engineering]
 image: /img/blog/2024part1.png
 zh_hidden: true
 ---
