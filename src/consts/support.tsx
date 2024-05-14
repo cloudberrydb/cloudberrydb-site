@@ -10,7 +10,7 @@ const configData = {
   tableData: [
     {
       type: (
-        <LinkWithBaseUrl href="/download" className="active-color">
+        <LinkWithBaseUrl href="/docs/releases/" className="active-color">
           Download
         </LinkWithBaseUrl>
       ),
@@ -172,7 +172,7 @@ const configData = {
           </LinkWithBaseUrl>{" "}
           to help spread good words on Cloudberry Database. Welcome to{" "}
           <LinkWithBaseUrl
-            href="https://cloudberrydb.org/community/slack"
+            href="/community/slack"
             className="active-color"
             target="_blank"
           >
@@ -180,7 +180,7 @@ const configData = {
           </LinkWithBaseUrl>{" "}
           or{" "}
           <LinkWithBaseUrl
-            href="https://cloudberrydb.org/community/wechat"
+            href="/community/wechat"
             className="active-color"
             target="_blank"
           >
@@ -196,156 +196,154 @@ const configData = {
 if (isZhLangrage()) {
   configData.titleText = "Cloudberry Database 支持";
   configData.subText =
-    "欢迎来到我们的支持页面！我们的团队随时准备帮助您充分利用 Cloudberry Database。探索资源，并让我们协助您充分利用其全部潜力。";
-  configData.contentTextDesc = "本页显示如何向社区寻求帮助和支持。";
+    "欢迎来到支持页面！我们随时待命，帮你用好 Cloudberry Database。探索可用资源，发挥 Cloudberry Database 全部潜力。";
+  configData.contentTextDesc = "本页展示了如何寻求帮助和支持。";
   configData.tableData = [
     {
       type: (
-        <LinkWithBaseUrl href="/download" className="active-color">
-          Download
+        <LinkWithBaseUrl href="/docs/releases/" className="active-color">
+          软件下载
         </LinkWithBaseUrl>
       ),
-      desc: "You can download the Cloudberry Database releases and see the changelogs.",
+      desc: "你可以下载 Cloudberry Database 对应版本并查看更新日志。",
     },
     {
       type: (
         <LinkWithBaseUrl href="/docs" className="active-color">
-          Documentation
+          用户文档
         </LinkWithBaseUrl>
       ),
       desc: (
         <>
-          Official documentation for Cloudberry Database. You can explore it to
-          discover more details about us. If you want to contribute, see{" "}
+          Cloudberry Database 的官方文档。你可以浏览文档，了解更多详细信息。如果你想为文档做出贡献，请参阅{""}
           <LinkWithBaseUrl href="/contribute/doc" className="active-color">
-            the guide
+          《文档贡献指南》
           </LinkWithBaseUrl>
-          .
+          。
         </>
       ),
     },
     {
-      type: "Report bugs",
+      type: "报告错误",
       desc: (
         <>
-          Problems and issues in Cloudberry Database core. If you find bugs,
-          welcome to submit them{" "}
+          反馈 Cloudberry Database 核心中的问题。如果你发现了 Bug，欢迎提交到
+          {" "}
           <LinkWithBaseUrl
             href="https://github.com/cloudberrydb/cloudberrydb/issues"
             className="active-color"
             target="_blank"
           >
-            here
+            GitHub Issue
           </LinkWithBaseUrl>
-          .
+          。
         </>
       ),
     },
     {
-      type: "Report a security vulnerability",
+      type: "报告安全漏洞",
       desc: (
         <>
-          View our{" "}
+          查看{""}
           <LinkWithBaseUrl
             href="https://github.com/cloudberrydb/cloudberrydb/security/policy"
             className="active-color"
             target="_blank"
           >
-            security policy
-          </LinkWithBaseUrl>{" "}
-          to learn how to report and contact us.
+          《安全策略》
+          </LinkWithBaseUrl>{""}
+          了解如何报告安全问题，以及如何与我们联络。
         </>
       ),
     },
     {
-      type: "Q&A",
+      type: "Q&A / 问答",
       desc: (
         <>
-          Ask for help when running/developing Cloudberry Database, visit GitHub{" "}
+          在运行/开发 Cloudberry Database 时遇到问题，可在 {" "}
           <LinkWithBaseUrl
             href="https://github.com/orgs/cloudberrydb/discussions/categories/q-a"
             className="active-color"
             target="_blank"
           >
-            Discussions - QA
-          </LinkWithBaseUrl>
-          .
+            GitHub Discussions - QA 
+          </LinkWithBaseUrl>{" "}
+            模块发帖求助。
         </>
       ),
     },
     {
-      type: "New ideas / Feature Requests",
+      type: "新点子 / 功能需求",
       desc: (
         <>
-          Share ideas for new features, visit{" "}
+          分享有关新功能的想法，请前往{" "}
           <LinkWithBaseUrl
             href="https://github.com/orgs/cloudberrydb/discussions/categories/ideas-feature-requests"
             className="active-color"
             target="_blank"
           >
             GitHub Discussions - Ideas
-          </LinkWithBaseUrl>
-          .
+          </LinkWithBaseUrl>{" "}
+          模块发帖。
         </>
       ),
     },
     {
-      type: "Code contribution",
+      type: "代码贡献",
       desc: (
         <>
-          Fix bugs, add new features to Cloudberry Database, visit our guide on{" "}
+          贡献方式多种多样，如修复错误、为 Cloudberry Database 开发新功能，详情可参考文档
           <LinkWithBaseUrl
             href="/contribute/how-to-contribute"
             className="active-color"
           >
-            "How to Contribute"
+            《如何做出贡献》
           </LinkWithBaseUrl>
-          ,{" "}
+          、
           <LinkWithBaseUrl href="/contribute/git" className="active-color">
-            {" "}
-            "Working with Git & GitHub"
+            《使用 Git & GitHub》
           </LinkWithBaseUrl>
-          ,{" "}
+          、
           <LinkWithBaseUrl href="/contribute/code" className="active-color">
-            "Code Contribution Guide"
+            《代码贡献指南》
           </LinkWithBaseUrl>
-          , and{" "}
+          以及
           <LinkWithBaseUrl href="/contribute/proposal" className="active-color">
-            "Proposal Guide"
+            《Cloudberry Database 提案指南》
           </LinkWithBaseUrl>
-          .
+          等。
         </>
       ),
     },
     {
-      type: "Community events",
+      type: "社区活动",
       desc: (
         <>
-          Including meetups, webinars, conferences, and more events, visit the{" "}
+          包括 Meetup、网络研讨会 Webinar、会议和更多活动信息，可查看页面
           <LinkWithBaseUrl href="/community/events" className="active-color">
-            Events page
-          </LinkWithBaseUrl>{" "}
-          and subscribe events calendar.
-        </>
-      ),
-    },
-    {
-      type: "Brand Guidelines",
-      desc: (
-        <>
-          Guide on how to download, and use our logos and fonts, visit our{" "}
-          <LinkWithBaseUrl href="/community/brand" className="active-color">
-            Brand Guidelines
+            社区活动
           </LinkWithBaseUrl>
-          .
+            了解详情，并订阅活动日历。
         </>
       ),
     },
     {
-      type: "Social channels",
+      type: "品牌指南",
       desc: (
         <>
-          Follow our{" "}
+          关于如何下载和使用项目 Logo、名称和字体等事宜，可查看文档
+          <LinkWithBaseUrl href="/community/brand" className="active-color">
+            《品牌指南》
+          </LinkWithBaseUrl>
+          了解详情。
+        </>
+      ),
+    },
+    {
+      type: "社交渠道",
+      desc: (
+        <>
+          欢迎关注{" "}
           <LinkWithBaseUrl
             href="https://twitter.com/cloudberrydb"
             className="active-color"
@@ -353,7 +351,7 @@ if (isZhLangrage()) {
           >
             Twitter
           </LinkWithBaseUrl>
-          ,{" "}
+          、
           <LinkWithBaseUrl
             href="https://youtube.com/@cloudberrydb"
             className="active-color"
@@ -361,23 +359,23 @@ if (isZhLangrage()) {
           >
             Youtube
           </LinkWithBaseUrl>{" "}
-          to help spread good words on Cloudberry Database. Welcome to{" "}
+          与我们互动，并转发 Cloudberry Database 相关话题和推文。同时，欢迎加入{" "}
           <LinkWithBaseUrl
-            href="https://cloudberrydb.org/community/slack"
+            href="/community/slack"
             className="active-color"
             target="_blank"
           >
             Slack
           </LinkWithBaseUrl>{" "}
-          or{" "}
+          或{" "}
           <LinkWithBaseUrl
-            href="https://cloudberrydb.org/community/wechat"
+            href="/community/wechat"
             className="active-color"
             target="_blank"
           >
-            WeChat
+            微信
           </LinkWithBaseUrl>{" "}
-          for real-time chat.
+          对应频道或群组，与社区成员聊天。
         </>
       ),
     },
