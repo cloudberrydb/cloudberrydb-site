@@ -8,6 +8,8 @@ title: Geospatial Analytics
 
 This document introduces how to compile and build PostGIS for your Cloudberry Database cluster.
 
+You can access the Cloudberry Database PostGIS project repo at [`cloudberrydb/postgis`](https://github.com/cloudberrydb/postgis). The PostGIS code in this repo is dedicated to Cloudberry Database. The compilation and building method introduced in this document is based on the code of this repo.
+
 ## Compile PostGIS for Cloudberry Database
 
 Before installing PostGIS for Cloudberry Database, install the required dependencies and compile several components. This process is currently supported only on CentOS, with plans to support Rocky Linux in the future.

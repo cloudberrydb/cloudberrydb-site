@@ -8,6 +8,8 @@ title: 地理空间分析
 
 本文介绍了如何为你的 Cloudberry Database 集群编译和构建 PostGIS。
 
+要查看 Cloudberry Database PostGIS 项目的仓库，请访问 [`cloudberrydb/postgis`](https://github.com/cloudberrydb/postgis)。该仓库的 PostGIS 是专门为 Cloudberry Database 打造的，本文档介绍的编译构建方法，是基于该仓库的代码。
+
 ## 为 Cloudberry Database 编译 PostGIS
 
 在为 Cloudberry Database 安装 PostGIS 之前，请先安装所需的依赖项并编译若干组件。目前，仅支持在 CentOS 系统上进行编译构建，未来计划支持 Rocky Linux。
