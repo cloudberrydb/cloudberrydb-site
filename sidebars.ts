@@ -57,7 +57,14 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operate with Data',
-      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control']
+      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control',
+
+      {
+        type: 'category',
+        label: 'Advanced Analytics',
+        items: ['advanced-analytics/postgis']
+      }
+      ]
      },
 
      {
