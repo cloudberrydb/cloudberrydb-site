@@ -2,7 +2,7 @@
 slug: cloudberrydb-dec-weekly
 title: Cloudberry Database 社区简报 - 2023/12
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [简报]
 image: /img/blog/202312.png
 ---
 
