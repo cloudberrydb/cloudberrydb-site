@@ -91,12 +91,12 @@ Before you get started, ensure that the Cloudberry Database is correctly install
 
 3. Build and install PostGIS.
 
-    1. Download this repo to your `/home/gpadmin` directory:
+    1. Download the `cloudberrydb/postgis` repo to your `/home/gpadmin` directory:
 
-    ```bash
-    git clone https://github.com/cloudberrydb/postgis.git /home/gpadmin/postgis
-    chown -R gpadmin:gpadmin /home/gpadmin/postgis
-    ```
+        ```bash
+        git clone https://github.com/cloudberrydb/postgis.git /home/gpadmin/postgis
+        chown -R gpadmin:gpadmin /home/gpadmin/postgis
+        ```
 
     2. Compile PostGIS.
 
