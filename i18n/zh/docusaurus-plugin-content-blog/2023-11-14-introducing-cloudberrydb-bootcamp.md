@@ -2,7 +2,7 @@
 slug: introducing-cloudberrydb-bootcamp
 title: Cloudberry Database 训练营项目发布
 authors: [cloudberrydbteam]
-tags: [announcement]
+tags: [通告]
 image: /img/blog/cbdb-bootcamp.png
 ---
 

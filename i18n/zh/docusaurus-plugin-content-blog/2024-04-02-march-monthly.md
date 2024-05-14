@@ -2,7 +2,7 @@
 slug: march-2024-cloudberrydb-community-newsletter
 title: "Cloudberry Database 社区简报 - 2024/3"
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [简报]
 image: /img/blog/202403.png
 ---
 
