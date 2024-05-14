@@ -18,7 +18,7 @@ image: /img/blog/ospp2024.png
 
 Cloudberry Database 由原 Greenplum Database 开发团队核心成员和 ASF 提交者创建。我们的目标是将现代计算能力引入到传统的分布式 MPP 数据库中，实现在一个统一平台中支持分析和 AI/ML 工作负载。
 
-作为 Greenplum Database 7 的衍生版本，Cloudberry Database 与 Greenplum 保持兼容，但搭载了更新的 PostgreSQL 14.4 内核（每年升级内核），并具备 Greenplum 缺乏或不支持的一系列功能。有关详细信息，请查看 [Cloudberry Database vs Greenplum Database](https://cloudberrydb.org/docs/cbdb-vs-gp-features) 文档。
+作为 Greenplum Database 7 的衍生版本，Cloudberry Database 与 Greenplum 保持兼容，但搭载了更新的 PostgreSQL 14.4 内核（每年升级内核），并具备 Greenplum 缺乏或不支持的一系列功能。有关详细信息，请查看 [Cloudberry Database vs Greenplum Database](https://cloudberrydb.org/zh/docs/cbdb-vs-gp-features) 文档。
 
 ## 项目详情
 
