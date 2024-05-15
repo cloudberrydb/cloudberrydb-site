@@ -191,6 +191,26 @@ const configData = {
       ),
     },
   ],
+  communitySupportText: "Community Support",
+  commercialSupportText: "Commercial support",
+  commercialDesc: (
+    <>
+      Commercial support is available from many companies that provide
+      professional services to the Cloudberry Database community. You can{" "}
+      <LinkWithBaseUrl
+        className={"active-color"}
+        href="https://hashdata.feishu.cn/share/base/form/shrcnJIVr3gTDXPvKkWMtBkXv5e?open_in_browser=true"
+      >
+        submit your support request
+      </LinkWithBaseUrl>{" "}
+      to us.
+      <div style={{ fontSize: "smaller" }}>
+        We will help coordinate with the relevant vendors to assist you in
+        resolving your troubles. By submitting the request form, you acknowledge
+        that we will share your information with the appropriate vendors.
+      </div>
+    </>
+  ),
 };
 
 if (isZhLangrage()) {
@@ -380,5 +400,21 @@ if (isZhLangrage()) {
       ),
     },
   ];
+  configData.communitySupportText = "社区支持";
+  configData.commercialSupportText = "商业服务";
+  configData.commercialDesc = (
+    <>
+      目前有众多公司为 Cloudberry Database 社区提供商业服务支持。你可以
+      <LinkWithBaseUrl
+        className={"active-color"}
+        href="https://hashdata.feishu.cn/share/base/form/shrcnJIVr3gTDXPvKkWMtBkXv5e?open_in_browser=true"
+      >
+        点此提交支持需求表单。
+      </LinkWithBaseUrl>
+      <div style={{ fontSize: "smaller" }}>
+        我们将协调相关商业服务商，以帮助为你提供最优支持方案。提交支持需求表单，意味着你已同意我们将与合适的供应商共享你的需求信息。
+      </div>
+    </>
+  );
 }
 export default configData;
