@@ -2,7 +2,7 @@
   max-width: var(--global-main-width);
   margin: 0 auto;
   position: relative;
-  min-height: 1065px;
+  min-height: 1365px;
   .content {
     position: absolute;
     left: 50%;
@@ -40,4 +40,10 @@
       width: auto !important;
     }
   }
+}
+
+.subTitleText {
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: bold;
 }
