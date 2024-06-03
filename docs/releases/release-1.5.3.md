@@ -28,6 +28,8 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 
 - Update the `googletest` module URL by @[tuhaihe](https://github.com/tuhaihe) in [#429](https://github.com/cloudberrydb/cloudberrydb/pull/429)
 
+- Enable privilege check when dropping directory table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#425](https://github.com/cloudberrydb/cloudberrydb/pull/425)
+
 
 ## Bug fixes
 
@@ -35,19 +37,17 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 
 - Fix the issue that `pgrx` cannot find the function `numeric_is_nan` or `numeric_is_inf` after numeric change interface by @[jiaqizho](https://github.com/jiaqizho) in [#410](https://github.com/cloudberrydb/cloudberrydb/pull/410)
 
-- Fix copy from directory tables by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416)
+- Fix a copy issue for Directory Table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416)
 
 - Fix visimap consults for unique checks during UPDATEs by @[lss602726449](https://github.com/lss602726449) in [#423](https://github.com/cloudberrydb/cloudberrydb/pull/423)
 
-- Fix the directory table CI pipeline issues by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#414](https://github.com/cloudberrydb/cloudberrydb/pull/414)
-
-- Fix drop directory privilege check by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#425](https://github.com/cloudberrydb/cloudberrydb/pull/425)
+- Fix some CI pipeline issues for Directory Table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#414](https://github.com/cloudberrydb/cloudberrydb/pull/414)
 
 ## Doc updates
 
-- Update the README.md file by @[tuhaihe](https://github.com/tuhaihe) in [#411](https://github.com/cloudberrydb/cloudberrydb/pull/411)
+- Update the `README.md` file by @[tuhaihe](https://github.com/tuhaihe) in [#411](https://github.com/cloudberrydb/cloudberrydb/pull/411)
 
-- Update the deployment README.md by @[Zhangbaowen-Hashdata](https://github.com/Zhangbaowen-Hashdata) in [#409](https://github.com/cloudberrydb/cloudberrydb/pull/409)
+- Update the deployment `README.md` by @[Zhangbaowen-Hashdata](https://github.com/Zhangbaowen-Hashdata) in [#409](https://github.com/cloudberrydb/cloudberrydb/pull/409)
 
 ## 🙌🏻️ New contributors
 
