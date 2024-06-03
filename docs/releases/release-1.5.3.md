@@ -20,7 +20,7 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 
 - Support using access method flags to specify the column-oriented scanning on custom tables by @[gongxun0928](https://github.com/gongxun0928) in [407#](https://github.com/cloudberrydb/cloudberrydb/pull/407)
 
-- Add GUC `gp_random_insert_segments` to control the segments used for randomly distributed table insertion by @[foreyes](https://github.com/foreyes) in [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406)
+- Add a configuration parameter `gp_random_insert_segments` to control the number of segments used for inserting data into randomly distributed tables by @[foreyes](https://github.com/foreyes) in [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406)
 
 - Implement Directory Table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#390](https://github.com/cloudberrydb/cloudberrydb/pull/390)
 
