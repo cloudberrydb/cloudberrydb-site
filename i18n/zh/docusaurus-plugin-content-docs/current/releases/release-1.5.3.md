@@ -20,23 +20,23 @@ Cloudberry Database v1.5.3 是一个小版本更新，包含了一些提升改�
 
 - 访问方法 flags 现在可以指示是否支持自定义表的列定向扫描 [#407](https://github.com/cloudberrydb/cloudberrydb/pull/407) by @[gongxun0928](https://github.com/gongxun0928)
 
-- 添加 GUC `gp_random_insert_segments` 以控制用于随机分布表插入的 segments [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406) by @[foreyes](https://github.com/foreyes)
+- 添加配置参数 `gp_random_insert_segments` 以控制用于随机分布表插入的 segment 数量 [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406) by @[foreyes](https://github.com/foreyes)
 
 - 支持目录表 [#390](https://github.com/cloudberrydb/cloudberrydb/pull/390) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
 
-- 禁用在 `pg_dump` 中导出 pax 表 [#412](https://github.com/cloudberrydb/cloudberrydb/pull/412) by @[jiaqizho](https://github.com/jiaqizho)
+- 禁止在 `pg_dump` 中导出 pax 表 [#412](https://github.com/cloudberrydb/cloudberrydb/pull/412) by @[jiaqizho](https://github.com/jiaqizho)
 
 - 更新 `googletest` 模块 URL [#429](https://github.com/cloudberrydb/cloudberrydb/pull/429) by @[tuhaihe](https://github.com/tuhaihe)
 
 ## Bug 修复
 
-- 提升调用 `EVP_DecryptUpdate` 时的出站数据缓冲区 (#479) [#408](https://github.com/cloudberrydb/cloudberrydb/pull/408) by @[kongfanshen-0801](https://github.com/kongfanshen-0801) 
+- 修复调用 `EVP_DecryptUpdate` 时出站数据缓冲区不足的问题 (#479) [#408](https://github.com/cloudberrydb/cloudberrydb/pull/408) by @[kongfanshen-0801](https://github.com/kongfanshen-0801) 
 
-- 添加 pgrx 在数值变化接口后找不到的方程 [#410](https://github.com/cloudberrydb/cloudberrydb/pull/410) by @[jiaqizho](https://github.com/jiaqizho)
+- 修复 `pgrx` 在数值变化接口后找不到 `numeric_is_nan` or `numeric_is_inf` 的问题 [#410](https://github.com/cloudberrydb/cloudberrydb/pull/410) by @[jiaqizho](https://github.com/jiaqizho)
 
-- 修复从目录表复制的问题 在 [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
+- 修复从目录表复制时存在的问题 [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
 
-- 修复 UPDATE 时唯一性检查的 visimap 查询 [#423](https://github.com/cloudberrydb/cloudberrydb/pull/423) by @[lss602726449](https://github.com/lss602726449) 
+- 修复 `UPDATE` 时用于唯一性检查的 `visimap` 查询 [#423](https://github.com/cloudberrydb/cloudberrydb/pull/423) by @[lss602726449](https://github.com/lss602726449) 
 
 - 修复目录表 CI 管道存在的问题 [#414](https://github.com/cloudberrydb/cloudberrydb/pull/414) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
 

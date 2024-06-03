@@ -16,9 +16,9 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 
 - Support `postgres_fdw` in the default build by @[smartyhero](https://github.com/smartyhero) in [#400](https://github.com/cloudberrydb/cloudberrydb/pull/400)
 
-- `gpconfig` does not escape '$' char by @[Ray-Eldath](https://github.com/Ray-Eldath) in [403#](https://github.com/cloudberrydb/cloudberrydb/pull/403)
+- Fix the issue that `gpconfig` does not escape the `$` character by @[Ray-Eldath](https://github.com/Ray-Eldath) in [403#](https://github.com/cloudberrydb/cloudberrydb/pull/403)
 
-- Access method flags can now indicate supporting column-oriented scanning of custom table by @[gongxun0928](https://github.com/gongxun0928) in [407#](https://github.com/cloudberrydb/cloudberrydb/pull/407)
+- Support using access method flags to specify the column-oriented scanning on custom tables by @[gongxun0928](https://github.com/gongxun0928) in [407#](https://github.com/cloudberrydb/cloudberrydb/pull/407)
 
 - Add GUC `gp_random_insert_segments` to control the segments used for randomly distributed table insertion by @[foreyes](https://github.com/foreyes) in [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406)
 
@@ -31,9 +31,9 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 
 ## Bug fixes
 
-- Improve the outbound data buffer when calling `EVP_DecryptUpdate` (#479) by @[kongfanshen-0801](https://github.com/kongfanshen-0801) in [#408](https://github.com/cloudberrydb/cloudberrydb/pull/408)
+- Fix the issue that the outbound data buffer is not enough when calling `EVP_DecryptUpdate` (#479) by @[kongfanshen-0801](https://github.com/kongfanshen-0801) in [#408](https://github.com/cloudberrydb/cloudberrydb/pull/408)
 
-- Add back the function that pgrx could not find after numeric change interface by @[jiaqizho](https://github.com/jiaqizho) in [#410](https://github.com/cloudberrydb/cloudberrydb/pull/410)
+- Fix the issue that `pgrx` cannot find the function `numeric_is_nan` or `numeric_is_inf` after numeric change interface by @[jiaqizho](https://github.com/jiaqizho) in [#410](https://github.com/cloudberrydb/cloudberrydb/pull/410)
 
 - Fix copy from directory tables by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416)
 
