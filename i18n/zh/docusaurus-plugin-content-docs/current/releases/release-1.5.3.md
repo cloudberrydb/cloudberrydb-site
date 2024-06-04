@@ -28,7 +28,6 @@ export GOPROXY=https://goproxy.io,direct
 ## 提升改进
 
 - 在默认 build 中支持 `postgres_fdw` [#400](https://github.com/cloudberrydb/cloudberrydb/pull/400) by @[smartyhero](https://github.com/smartyhero)
-- `gpconfig` 不再转义 '$' 字符 [#403](https://github.com/cloudberrydb/cloudberrydb/pull/403) by @[Ray-Eldath](https://github.com/Ray-Eldath)
 - 访问方法 flags 现在可以指示是否支持自定义表的列定向扫描 [#407](https://github.com/cloudberrydb/cloudberrydb/pull/407) by @[gongxun0928](https://github.com/gongxun0928)
 - 添加配置参数 `gp_random_insert_segments` 以控制用于随机分布表插入的 segment 数量 [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406) by @[foreyes](https://github.com/foreyes)
 - 支持目录表 [#390](https://github.com/cloudberrydb/cloudberrydb/pull/390) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
@@ -42,7 +41,8 @@ export GOPROXY=https://goproxy.io,direct
 - 修复从目录表复制时存在的问题 [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
 - 修复 `UPDATE` 时用于唯一性检查的 `visimap` 查询 [#423](https://github.com/cloudberrydb/cloudberrydb/pull/423) by @[lss602726449](https://github.com/lss602726449) 
 - 修复目录表 CI 管道存在的问题 [#414](https://github.com/cloudberrydb/cloudberrydb/pull/414) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
-- 修复删除目录权限检查问题 [#425](https://github.com/cloudberrydb/cloudberrydb/pull/425) by @[wenchaozhang-123](https://github.com/wenchaozhang-123) 
+- 修复删除目录权限检查问题 [#425](https://github.com/cloudberrydb/cloudberrydb/pull/425) by @[wenchaozhang-123](https://github.com/wenchaozhang-123)
+- 修复 `gpconfig` 不转义 '$' 字符的问题 [#403](https://github.com/cloudberrydb/cloudberrydb/pull/403) by @[Ray-Eldath](https://github.com/Ray-Eldath)
 
 ## 文档更新
 

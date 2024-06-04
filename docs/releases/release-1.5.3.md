@@ -26,7 +26,6 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 ## Improvements
 
 - Support `postgres_fdw` in the default build by @[smartyhero](https://github.com/smartyhero) in [#400](https://github.com/cloudberrydb/cloudberrydb/pull/400)
-- Fix the issue that `gpconfig` does not escape the `$` character by @[Ray-Eldath](https://github.com/Ray-Eldath) in [403#](https://github.com/cloudberrydb/cloudberrydb/pull/403)
 - Support using access method flags to specify the column-oriented scanning on custom tables by @[gongxun0928](https://github.com/gongxun0928) in [407#](https://github.com/cloudberrydb/cloudberrydb/pull/407)
 - Add a configuration parameter `gp_random_insert_segments` to control the number of segments used for inserting data into randomly distributed tables by @[foreyes](https://github.com/foreyes) in [#406](https://github.com/cloudberrydb/cloudberrydb/pull/406)
 - Implement Directory Table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#390](https://github.com/cloudberrydb/cloudberrydb/pull/390)
@@ -42,6 +41,7 @@ Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.
 - Fix a copy issue for Directory Table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#416](https://github.com/cloudberrydb/cloudberrydb/pull/416)
 - Fix visimap consults for unique checks during UPDATEs by @[lss602726449](https://github.com/lss602726449) in [#423](https://github.com/cloudberrydb/cloudberrydb/pull/423)
 - Fix some CI pipeline issues for Directory Table by @[wenchaozhang-123](https://github.com/wenchaozhang-123) in [#414](https://github.com/cloudberrydb/cloudberrydb/pull/414)
+- Fix the issue that `gpconfig` does not escape the `$` character by @[Ray-Eldath](https://github.com/Ray-Eldath) in [403#](https://github.com/cloudberrydb/cloudberrydb/pull/403)
 
 ## Doc updates
 
