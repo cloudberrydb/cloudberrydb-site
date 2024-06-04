@@ -10,6 +10,17 @@ Cloudberry Database v1.5.3 is a minor release that includes some improvements, b
 
 Quick try: [v1.5.3](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.3)
 
+:::note
+
+Before running the `./configure` command to [build the Cloudberry Database](https://cloudberrydb.org/docs/cbdb-linux-compile#step-4-build-cloudberry-database) from version 1.5.3 source code files, make sure to execute the following command to install the dependencies. We have refactored the relative module using Python in PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435). If using a later version, you can skip the following commands and refer to the original guide.
+
+```
+yum install -y go
+export GOPROXY=https://goproxy.io,direct
+```
+
+:::
+
 Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.5.3](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.5.3)
 
 ## Improvements
