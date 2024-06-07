@@ -90,7 +90,7 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
 3. Install more dependencies by running the `README.Rhel-Rocky.bash` script.
 
     ```bash
-    ~/cloudberrydb/readmes/README.Rhel-Rocky.bash
+    ~/cloudberrydb/deploy/build/README.Rhel-Rocky.bash
     ```
 
 </TabItem>

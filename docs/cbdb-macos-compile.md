@@ -33,7 +33,7 @@ DO NOT use this guide for production deployment.
 3. Run the following command to install the needed dependencies. You will be asked to enter the `sudo` password of your macOS system.
 
     ```bash
-    source readmes/README.macOS.bash
+    source deploy/build/README.macOS.bash
     ```
 
     :::info

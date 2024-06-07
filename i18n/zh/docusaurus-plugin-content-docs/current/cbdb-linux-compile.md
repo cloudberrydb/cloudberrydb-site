@@ -100,7 +100,7 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 
     ```shell
     # 执行该脚本需要输入密码。
-    sudo ~/cloudberrydb/readmes/README.Ubuntu.bash
+    sudo ~/cloudberrydb/deploy/build/README.Ubuntu.bash
     ```
 
     :::info 提示
