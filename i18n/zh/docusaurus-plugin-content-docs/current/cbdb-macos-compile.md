@@ -33,7 +33,7 @@ title: 在 macOS 上
 3. 运行以下命令安装依赖项。系统会提示你输入 macOS 系统的 sudo 密码。
 
     ```bash
-    source readmes/README.macOS.bash
+    source deploy/build/README.macOS.bash
     ```
 
     :::info 提示
