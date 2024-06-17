@@ -12,46 +12,46 @@ let FEATURE_HIGHLIGHT: {
   content: string;
 }[] = [
   {
-    icon: "/img/home/feature/muc.png",
-    lightIcon: "/img/home/feature/muc-light.png",
-    title: "More Use Cases",
-    content:
-      "Cloudberry Database can be used in different scenarios, including batch processing data warehouse offline, building data warehouse in real-time, and more. Also, you can use it as an alternative to existing MPP databases.",
-  },
-  {
     icon: "/img/home/feature/hesc.png",
     lightIcon: "/img/home/feature/hesc-light.png",
-    title: "Highly Elastic Scaling Capability",
+    title: "Open Source Alternative to Greenplum",
     content:
-      "Cloudberry Database can independently scale out computing and storage resources to achieve fully elastic adjustments in throughput, response time, and data capacity.",
-  },
+      "Cloudberry Database is compatible with Greenplum Database, but with a newer PostgreSQL 14.4 kernel and more advanced features Greenplum doesn't support.",
+  },  
   {
     icon: "/img/home/feature/sac.png",
     lightIcon: "/img/home/feature/sac-light.png",
     title: "Strong Analytical Capability",
     content:
-      "Inheriting the rich analytical features from PostgreSQL and Greenplum Database, Cloudberry Database leverages them to the cloud platform, and seamlessly integrates the mainstream ETL and BI tools.",
+      "Inheriting the rich analytical features from PostgreSQL and Greenplum Database, Cloudberry Database leverages them to the data platform, and seamlessly integrates the mainstream ETL and BI tools.",
   },
   {
     icon: "/img/home/feature/cuwmt.png",
     lightIcon: "/img/home/feature/cuwmt-light.png",
-    title: "Catch up with Mainstream Technology",
+    title: "Performance Optimization",
     content:
-      "Cloudberry Database supports mainstream data analytical features such as machine learning, graph calculation, and spatiotemporal analyses.",
+      "Cloudberry Database has done a lot of work to speed up the query performance, including supporting parallel query execution, aggregation pushdown and supporting RuntimeFilter, and more.",
   },
   {
     icon: "/img/home/feature/p14i.png",
     lightIcon: "/img/home/feature/p14i-light.png",
-    title: "PostgreSQL 14 Inside",
+    title: "Newer PostgreSQL Kernel",
     content:
-      "Cloudberry Database adopts the newer PostgreSQL version 14 inside to let users enjoy more with the backend global community.",
+      "Cloudberry Database has a newer PostgreSQL 14.4 kernel inside to let users enjoy more with the backend global community.",
   },
   {
     icon: "/img/home/feature/mef.png",
     lightIcon: "/img/home/feature/mef-light.png",
-    title: "More Enterprise Features",
+    title: "Security Enhancments",
     content:
-      "Cloudberry Database supports multi-tenant management, relational data models, standard JDBC and ODBC interfaces, and more.",
+      "Cloudberry Database supports password security policy, transparent data encryption (TDE) and more encryption algorithms besides the AES algorithm.",
+  },
+  {
+    icon: "/img/home/feature/muc.png",
+    lightIcon: "/img/home/feature/muc-light.png",
+    title: "More Use Cases",
+    content:
+      "Cloudberry Database can be used in different scenarios, including batch processing data warehouse offline, building data warehouse in real-time, and more.",
   },
 ];
 
