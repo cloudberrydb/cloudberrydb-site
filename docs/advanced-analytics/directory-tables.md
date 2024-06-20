@@ -8,7 +8,7 @@ Cloudberry Database has introduced *directory tables* in v1.5.3 for unified mana
 
 In the context of large-scale AI, AI applications have generated the need to manage unstructured multi-modal corpora. There is a need to continuously prepare a large amount of high-quality curated unstructured corpora, train large models through data iteration, and summarize rich knowledge bases. Therefore, there are technical challenges in the management and processing of structured corpora.
 
-To address these challenges, Cloudberry Database introduces directory tables for managing multiple types of unstructured data. Developer users can use simple SQL statements to invoke the capabilities of multiple computing engines to achieve one-stop data processing and application development.
+To address these challenges, Cloudberry Database introduces directory tables for managing multiple types of unstructured data. Developer users can use simple SQL statements to take advantage of the capabilities of multiple computing engines to achieve one-stop data processing and application development.
 
 Directory tables store, manage, and analyze unstructured data objects. They reside within tablespaces. When unstructured data files are imported, a directory table record (file metadata) is created, and the file itself is loaded into object storage. The table metadata remains associated with the corresponding object storage file.
 
@@ -38,9 +38,9 @@ CREATE DIRECTORY TABLE <table_name>;
 
 #### Create in external storage
 
-To create a directory table in external storage, you first need to create a tablespace in that storage. You'll need to provide connection information for the external storage server, such as server IP address, protocol, and access credentials. The following examples show how to create directory tables on QingCloud Object Storage and HDFS.
+To create a directory table in an external storage, you first need to create a tablespace in that storage. You'll need to provide connection information of the external storage server, such as server IP address, protocol, and access credentials. The following examples show how to create directory tables on QingCloud Object Storage and HDFS.
 
-1. Create server objects and define connection methods for external data sources. Cloudberry Database supports protocols for various storage options, including S3 object storage and HDFS. The following examples create server objects named `oss_server` and `hdfs_server` on QingCloud and HDFS, respectively.
+1. Create server objects and define connection methods for external data sources. Cloudberry Database supports protocols for multiple storage options, including S3 object storage and HDFS. The following examples create server objects named `oss_server` and `hdfs_server` on QingCloud and HDFS, respectively.
 
     - For QingCloud:
 
@@ -54,7 +54,7 @@ To create a directory table in external storage, you first need to create a tabl
         CREATE STORAGE SERVER hdfs_server OPTIONS(protocol 'hdfs', namenode '<HDFS node IP:port>', https 'false');
         ```
 
-    The parameters involved in the above commands are as follows:
+    The parameters in the above commands are described as follows:
 
     - `protocol`: The protocol used to connect to the external data source. In the examples above, `'qingstor'` indicates using the QingCloud object storage service protocol, and `'hdfs'` indicates using the HDFS storage service protocol.
     - `prefix`: Sets the path prefix when accessing object storage. If this prefix is set, all operations will be limited to this specific path, such as `prefix '/rose-oss-test4/usf1'`. This is typically used to organize and isolate data stored in the same bucket.
@@ -77,7 +77,7 @@ To create a directory table in external storage, you first need to create a tabl
         CREATE STORAGE USER MAPPING FOR CURRENT_USER STORAGE SERVER hdfs_server OPTIONS (auth_method 'simple');
         ```
 
-    The parameters involved in the above commands are as follows:
+    The parameters in the above commands are described as follows:
 
     - `accesskey` and `secretkey`: These parameters provide the necessary authentication information. `'accesskey'` and `'secretkey'` are similar to username and password, and are used to access the object storage service.
 

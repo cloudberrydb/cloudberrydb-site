@@ -12,16 +12,27 @@ Quick try: [v1.5.3](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
 
 :::note
 
-Before running the `./configure` command to [build the Cloudberry Database](https://cloudberrydb.org/docs/cbdb-linux-compile#step-4-build-cloudberry-database) from version 1.5.3 source code files, make sure to execute the following command to install the dependencies. We have refactored the relative module using Python in PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435). If using a later version, you can skip the following commands and refer to the original guide.
+Before running the `./configure` command to [build the Cloudberry Database](/docs/cbdb-linux-compile#step-4-build-cloudberry-database) from the v1.5.3 source code files, make sure to execute the following command to install the dependencies.
 
 ```
 yum install -y go
 export GOPROXY=https://goproxy.io,direct
 ```
 
+We have refactored the relative module using Python in PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435). If you are build the database from the source code of a later version, you can skip the above commands and refer to the original build guide.
 :::
 
 Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.5.3](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.5.3)
+
+## New feature
+
+- Directory table
+
+    Starting from v1.5.3, Cloudberry Database supports directory tables for managing multiple types of unstructured data. Developer users can use simple SQL statements to invoke the capabilities of multiple computing engines to achieve one-stop data processing and application development.
+
+    Directory tables store, manage, and analyze unstructured data objects. They reside within tablespaces. When unstructured data files are imported, a directory table record (file metadata) is created, and the file itself is loaded into object storage. The table metadata remains associated with the corresponding object storage file.
+
+    For details, see the [user document](/docs/advanced-analytics/directory-tables.md).
 
 ## Improvements
 

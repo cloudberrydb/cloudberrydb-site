@@ -11,18 +11,6 @@ Cloudberry Database v1.5.2 是一个小版本，包含了一些提升改进和 b
 快速试用：[v1.5.2](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.2)
 
 完整的变更日志：[https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.1...1.5.2)
-<!-- 
-## 新功能
-
-- Directory Table（目录表）
-
-    自 v1.5.2 版本起，Cloudberry Database 引入了 Directory Table，用于统一纳管对象存储上的非结构化数据。
-
-    面对这些技术挑战，Cloudberry Database 定义了一种 Directory Table 表，用于纳管多种类型的非结构化数据。开发者用户只需使用简单的 SQL 语句就能调用各种计算引擎的能力，实现一站式数据加工和应用开发。
-
-    Directory Table 定位于存储、管理和分析非结构化数据对象。Directory Table 位于表空间中，将非结构化数据文件导入 Directory Table 后，会在 Directory Table 上创建一条记录，即该文件的元数据信息，而文件本身则加载进对象存储中。表上的元数据与对象存储上的对应文件相关联。
-
-    详情参见[用户文档](/i18n/zh/docusaurus-plugin-content-docs/current/advanced-analytics/directory-tables.md)。 -->
 
 ## 提升改进
 
