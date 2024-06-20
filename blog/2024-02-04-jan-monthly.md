@@ -2,7 +2,7 @@
 slug: january-2024-cloudberrydb-community-newsletter
 title: "January 2024 - Cloudberry Database Community Newsletter"
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [Newsletter]
 image: /img/blog/202401.png
 ---
 

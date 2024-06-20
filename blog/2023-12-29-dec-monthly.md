@@ -2,7 +2,7 @@
 slug: cloudberrydb-dec-weekly
 title: December Newsletter - Cloudberry Database (2023/12)
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [Newsletter]
 image: /img/blog/202312.png
 ---
 Hello there! We hope you're having a great time during the holiday season. Thank you for joining us for the latest Cloudberry Database project newsletter in December!

@@ -2,7 +2,7 @@
 slug: cloudberrydb-nov-weekly
 title: Cloudberry Database 社区简报 - 2023/11
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [简报]
 image: /img/blog/202311.png
 ---
 

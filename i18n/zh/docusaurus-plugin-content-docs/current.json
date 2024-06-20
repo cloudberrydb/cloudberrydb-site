@@ -60,8 +60,7 @@
     "description": "The label for category loading data from local files in sidebar docs"
   },
   "sidebar.docsbars.category.Advanced Analytics": {
-    "message": "高级分析",
+    "message": "高级数据分析",
     "description": "The label for category advanced analytics in sidebar docs"
   }
-
 }

@@ -3,7 +3,7 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 const config: Config = {
   title: "Cloudberry Database",
-  tagline: "Next Generation Unified Database for Analytics and AI",
+  tagline: "Open Source Alternative to Greenplum Database. Next Generation Unified Database for Analytics and AI.",
   favicon: "/img/favicon.ico",
   url: "https://cloudberrydb.org",
   baseUrl: "/",
@@ -54,7 +54,7 @@ const config: Config = {
           feedOptions: {
             type: "all",
             title:
-              "Cloudberry Database: Next Generation Unified Database for Analytics and AI",
+              "Cloudberry Database: Open Source Alternative to Greenplum Database. Next Generation Unified Database for Analytics and AI",
           },
         },
         theme: {
@@ -74,7 +74,7 @@ const config: Config = {
 
   themeConfig: {
     title: "Cloudberry Database",
-    tagline: "Next Generation Unified Database for Analytics and AI",
+    tagline: "Open Source Alternative to Greenplum Database. Next Generation Unified Database for Analytics and AI",
     favicon: "/img/favicon.ico",
     url: "https://cloudberrydb.org",
     baseUrl: "/",
@@ -116,16 +116,17 @@ const config: Config = {
           position: "right",
         },
         {
+          to: "/support",
+          label: "Support",
+          position: "right",
+        },
+        {
           label: "Resources",
           position: "right",
           items: [
             {
               label: "Roadmap",
               to: "https://github.com/orgs/cloudberrydb/discussions/369",
-            },
-            {
-              label: "Support",
-              to: "/support",
             },
             {
               label: "Forum",

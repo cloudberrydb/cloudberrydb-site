@@ -2,7 +2,7 @@
 slug: cloudberrydb-august-weekly
 title: Cloudberry Database 社区简报 - 2023/8
 authors: [cloudberrydbteam]
-tags: [newsletter]
+tags: [简报]
 image: /img/blog/202308.png
 ---
 

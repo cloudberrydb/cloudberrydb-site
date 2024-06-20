@@ -41,7 +41,7 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 1. 执行 `cloudberrydb/cloudberrydb` 仓库下 `readmes` 目录中的 `README.CentOS.bash` 脚本。执行此脚本需要输入密码。然后，系统会自动下载一些必要的依赖项。
 
     ```bash
-    cd cloudberrydb/readmes
+    cd cloudberrydb/deploy/build
     ./README.CentOS.bash
     ```
 
@@ -100,7 +100,7 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 
     ```shell
     # 执行该脚本需要输入密码。
-    sudo ~/cloudberrydb/readmes/README.Ubuntu.bash
+    sudo ~/cloudberrydb/deploy/build/README.Ubuntu.bash
     ```
 
     :::info 提示
