@@ -19,7 +19,7 @@ yum install -y go
 export GOPROXY=https://goproxy.io,direct
 ```
 
-We have refactored the relative module using Python in PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435). If you are build the database from the source code of a later version, you can skip the above commands and refer to the original build guide.
+In later versions, we have refactored the relative module using Python (See PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435)). If you are building the database from the source code of a later version, you can skip the above commands.
 :::
 
 Full changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.5.3](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.2...1.5.3)

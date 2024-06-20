@@ -19,7 +19,7 @@ yum install -y go
 export GOPROXY=https://goproxy.io,direct
 ```
 
-我们在 PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435) 中使用 Python 重构了相关模块。因此若使用最新的源码进行部署，可以略过上述命令。
+在后续版本中，我们使用 Python 重构了相关模块（见 PR [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435)）。因此，如果你使用最新源码进行编译，可以略过上述命令。
 :::
 
 
