@@ -79,6 +79,18 @@ const sidebars: SidebarsConfig = {
        items: ['set-password-profile']
      },
 
+     {
+      type: 'category',
+      label: 'Manage System',
+      items: [
+        {
+        type: 'category',
+        label: 'Backup and Restore',
+        items: ['sys-admin/backup-and-restore-overview', 'sys-admin/perform-full-backup-and-restore', 'sys-admin/perform-incremental-backup-and-restore']
+       },
+        'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/recommended-maintenance-monitoring-tasks']
+     },
+
     {
       type: 'category',
       label: 'References',
