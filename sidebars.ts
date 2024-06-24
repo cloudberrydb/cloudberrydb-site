@@ -62,7 +62,7 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'Advanced Analytics',
-        items: ['advanced-analytics/postgis']
+        items: ['advanced-analytics/postgis','advanced-analytics/directory-tables']
       }
       ]
      },
