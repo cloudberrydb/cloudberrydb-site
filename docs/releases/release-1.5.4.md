@@ -6,7 +6,7 @@ title: 1.5.4
 
 Version number: v1.5.4
 
-Cloudberry Database v1.5.4 is a minor release that includes some improvements, bug fixes and doc updates.
+Cloudberry Database v1.5.4 is a minor release that includes some improvements, changes, and bug fixes.
 
 Quick try: [v1.5.4](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.4)
 
@@ -24,12 +24,6 @@ Full Changelog: <https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.
 - Clean up the build tools and guide directories by [@tuhaihe](https://github.com/tuhaihe) in [#445](https://github.com/cloudberrydb/cloudberrydb/pull/445)
 - Insert more data to make tuplestore spill in `regress/misc_jiras.sql` by [@fanfuxiaoran](https://github.com/fanfuxiaoran) in [#452](https://github.com/cloudberrydb/cloudberrydb/pull/452)
 
-## Compatibility changes
-
-- Remove the `cbload`-related codes by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#431](https://github.com/cloudberrydb/cloudberrydb/pull/431)
-- Refactor `cbload` to `gpdirtableload` using Python by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435)
-- Remove the CPP keywords that were used as function or parameter names by [@jiaqizho](https://github.com/jiaqizho) in [#449](https://github.com/cloudberrydb/cloudberrydb/pull/449)
-
 ## Bug fixes
 
 - Fix the motion toast error by [@gfphoenix78](https://github.com/gfphoenix78) in [#436](https://github.com/cloudberrydb/cloudberrydb/pull/436)
@@ -37,6 +31,12 @@ Full Changelog: <https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.
 - Fix the ORCA issue of the flaky `Invalid key is inaccessible` fallback (#15147) by [@fanfuxiaoran](https://github.com/fanfuxiaoran) in [#437](https://github.com/cloudberrydb/cloudberrydb/pull/437)
 - Fix `explain(locus)` issues by [@avamingli](https://github.com/avamingli) in [#433](https://github.com/cloudberrydb/cloudberrydb/pull/433)
 - Use the checkberry `gpcheckperf` series updates to solve the problem that the `gpcheckperf` in Cloudberry Database v1.5.2 does not display disk information by [@August-beaulo](https://github.com/August-beaulo) in [#430](https://github.com/cloudberrydb/cloudberrydb/pull/430)
+
+## Other changes
+
+- Remove the `cbload`-related codes by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#431](https://github.com/cloudberrydb/cloudberrydb/pull/431)
+- Refactor `cbload` to `gpdirtableload` using Python by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435)
+- Remove the CPP keywords that were used as function or parameter names by [@jiaqizho](https://github.com/jiaqizho) in [#449](https://github.com/cloudberrydb/cloudberrydb/pull/449)
 
 ## 🙌🏻️ New contributor
 
