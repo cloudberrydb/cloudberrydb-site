@@ -12,9 +12,9 @@ Quick try: [v1.5.3](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
 
 :::note
 
-Before running the `./configure` command to [build the Cloudberry Database](/docs/cbdb-linux-compile#step-4-build-cloudberry-database) from the v1.5.3 source code files, make sure to execute the following command to install the dependencies.
+Before running the `./configure` command to [build the Cloudberry Database](/docs/cbdb-linux-compile#step-4-build-cloudberry-database) from the v1.5.3 source code files, make sure to execute the following commands to install the dependencies.
 
-```
+```bash
 yum install -y go
 export GOPROXY=https://goproxy.io,direct
 ```
