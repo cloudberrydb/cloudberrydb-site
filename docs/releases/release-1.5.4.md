@@ -10,7 +10,7 @@ Cloudberry Database v1.5.4 is a minor release that includes some improvements, c
 
 Quick try: [v1.5.4](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.4)
 
-Full Changelog: <https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4>
+Full Changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4)
 
 ## Improvements
 

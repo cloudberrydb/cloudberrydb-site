@@ -10,7 +10,7 @@ Cloudberry Database v1.5.4 是一个小版本，包含了一些提升改进、�
 
 快速试用：[v1.5.4](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.4)
 
-完整的变更日志：<https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4>
+完整的变更日志：[https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4)
 
 ## 提升改进
 
