@@ -34,7 +34,7 @@ Full Changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.
 
 ## Other changes
 
-- Remove the `cbload`-related codes by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#431](https://github.com/cloudberrydb/cloudberrydb/pull/431)
+- Remove the `cbload`-related code by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#431](https://github.com/cloudberrydb/cloudberrydb/pull/431)
 - Refactor `cbload` to `gpdirtableload` using Python by [@wenchaozhang-123](https://github.com/wenchaozhang-123) in [#435](https://github.com/cloudberrydb/cloudberrydb/pull/435)
 - Remove the CPP keywords that were used as function or parameter names by [@jiaqizho](https://github.com/jiaqizho) in [#449](https://github.com/cloudberrydb/cloudberrydb/pull/449)
 
@@ -42,6 +42,6 @@ Full Changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.
 
 [@fanfuxiaoran](https://github.com/fanfuxiaoran) made their first contribution in [#428](https://github.com/cloudberrydb/cloudberrydb/pull/428)
 
-## 🧑🏻‍💻 All contributors
+## 🧑🏻‍💻 Contributor list
 
 Thanks to all the contributors to make this release happen: [@higuoxing](https://github.com/higuoxing), [@tuhaihe](https://github.com/tuhaihe), [@August-beaulo](https://github.com/August-beaulo), [@avamingli](https://github.com/avamingli), [@piyushc01](https://github.com/piyushc01), [@red1452](https://github.com/red1452), [@edespino](https://github.com/edespino), [@jnihal](https://github.com/jnihal), [@Annu149](https://github.com/Annu149), [@jiaqizho](https://github.com/jiaqizho), [@wenchaozhang-123](https://github.com/wenchaozhang-123), [@dgkimura](https://github.com/dgkimura), [@fanfuxiaoran](https://github.com/fanfuxiaoran), [@gfphoenix78](https://github.com/gfphoenix78), [@HelloYJohn](https://github.com/HelloYJohn), [@adam8157](https://github.com/adam8157), [@xiaoxiaoHe-E](https://github.com/xiaoxiaoHe-E), [@InnerLife0](https://github.com/InnerLife0), [@wuyuhao28](https://github.com/wuyuhao28), [@l-wang](https://github.com/l-wang), [@lij55](https://github.com/lij55), [@huansong](https://github.com/huansong), [@chrishajas](https://github.com/chrishajas), [@tglsfdc](https://github.com/tglsfdc), [@fairyfar](https://github.com/fairyfar), [@kainwen](https://github.com/kainwen), [@nmisch](https://github.com/nmisch), [@my-ship-it](https://github.com/my-ship-it)
