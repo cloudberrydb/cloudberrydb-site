@@ -1,5 +1,5 @@
 ---
-title: Deploy with a Multiple Computing Nodes
+title: Deploy with Multiple Computing Nodes
 ---
 
 # Deploy Cloudberry Database Manually Using RPM Package with Multiple Computing Nodes
