@@ -1,10 +1,14 @@
 ---
-title: 通过 RPM 包手动部署
+title: 多计算节点部署
 ---
 
-# 通过 RPM 包在物理机上手动部署 Cloudberry Database
+# 在多计算节点上部署 Cloudberry Database
 
-本文档介绍如何通过 RPM 包在物理机上安装与部署 Cloudberry Database。在阅读本文前，建议先阅读[软硬件配置需求](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-software-hardware.md)和[物理机部署前准备工作](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-prepare-to-deploy.md)。
+本文档介绍如何通过 RPM 包在多计算节点的物理机上安装与部署 Cloudberry Database。在阅读本文前，建议先阅读[软硬件配置需求](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-software-hardware.md)和[物理机部署前准备工作](/i18n/zh/docusaurus-plugin-content-docs/current/cbdb-op-prepare-to-deploy.md)。
+
+:::warning 警告
+本文档介绍的方法仅适用于通过 RPM 包部署 Cloudberry Database v1.0.0，不适用于部署更高版本的 Cloudberry Database。
+:::
 
 本文所介绍的部署方法可用于生产环境。
 

@@ -12,6 +12,10 @@ Cloudberry Database v1.5.4 是一个小版本，包含了一些提升改进、�
 
 完整的变更日志：[https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4)
 
+:::caution 告示
+v1.5.4 提供的 RPM 包仅适用于在单计算节点上部署，参见[在单计算节点上部署集群](/i18n/zh/docusaurus-plugin-content-docs/current/deploy-cbdb-with-single-node.md)。该安装包不能用于多节点部署。
+:::
+
 ## 提升改进
 
 - 添加 `cbdb_relation_size` 函数 [#428](https://github.com/cloudberrydb/cloudberrydb/pull/428) by [@fanfuxiaoran](https://github.com/fanfuxiaoran)
