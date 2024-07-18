@@ -81,7 +81,7 @@ The `CONNECTION LIMIT` option is enforced approximately; if two new sessions sta
 To create a new database:
 
 ```sql
-CREATE DATABASE gpdb;
+CREATE DATABASE mydatabase;
 ```
 
 To create a database `sales` owned by user `salesapp` with a default tablespace of `salesspace`:

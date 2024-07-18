@@ -1,16 +1,14 @@
 ---
-title: v1.5.0
+title: 1.5.0
 ---
 
 # Cloudberry Database v1.5.0 Release Notes
-
-Release date: February 4, 2024
 
 Version number: v1.5.0
 
 Cloudberry Database v1.5.0 adds several new features, and includes several performance/stability optimizations and bug fixes.
 
-Quick try: [v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/v1.5.0)
+Quick try: [v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.0)
 
 ## New features
 
@@ -23,7 +21,7 @@ Quick try: [v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/v1
 </thead>
 <tbody>
   <tr>
-    <td rowspan="4">Query processing</td>
+    <td rowSpan="4">Query processing</td>
     <td>Supports creating AO or AOCO tables and refreshing materialized views in parallel.</td>
   </tr>
   <tr>
@@ -36,7 +34,7 @@ Quick try: [v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/v1
     <td>Supports quickly deploying a cluster with only a command.</td>
   </tr>
   <tr>
-    <td rowspan="2">Storage</td>
+    <td rowSpan="2">Storage</td>
     <td>Supports incremental materialized views.</td>
   </tr>
   <tr>
@@ -86,7 +84,7 @@ Each new feature is described as follows:
     gpdemo
     ```
 
-    See [Use gpdemo to Quickly Deploy Cloudberry Database](/docs/sys-utilities/gpdemo.md) for details.
+    See [Use gpdemo to Quickly Deploy Cloudberry Database](/docs/sys-utilities/db-util-gpdemo.md) for details.
 
 ### Storage
 

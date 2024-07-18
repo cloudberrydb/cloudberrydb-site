@@ -41,7 +41,7 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
 1. Run the Bash script `README.CentOS.bash` in the `readmes` directory of the `cloudberrydb/cloudberrydb` repository. To run this script, password is required. Then, some required dependencies will be automatically downloaded.
 
     ```bash
-    cd cloudberrydb/readmes
+    cd cloudberrydb/deploy/build
     ./README.CentOS.bash
     ```
 
@@ -90,7 +90,7 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
 3. Install more dependencies by running the `README.Rhel-Rocky.bash` script.
 
     ```bash
-    ~/cloudberrydb/readmes/README.Rhel-Rocky.bash
+    ~/cloudberrydb/deploy/build/README.Rhel-Rocky.bash
     ```
 
 </TabItem>

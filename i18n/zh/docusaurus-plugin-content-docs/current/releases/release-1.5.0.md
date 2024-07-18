@@ -1,16 +1,14 @@
 ---
-title: v1.5.0
+title: 1.5.0
 ---
 
 # Cloudberry Database v1.5.0 发版说明
-
-发布日期：2024 年 2 月 4 日
 
 版本号：v1.5.0
 
 Cloudberry Database v1.5.0 新增了若干功能，包含了若干产品性能/稳定性优化，修复了若干错误 (bug)。
 
-快速试用：[v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/v1.5.0)
+快速试用：[v1.5.0](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.5.0)
 
 ## 新功能
 
@@ -84,7 +82,7 @@ Cloudberry Database v1.5.0 新增了若干功能，包含了若干产品性能/�
     gpdemo
     ```
 
-    详情参见文档 [gpdemo 快捷部署使用文档](/i18n/zh/docusaurus-plugin-content-docs/current/sys-utilities/gpdemo.md)。
+    详情参见文档 [gpdemo 快捷部署使用文档](/i18n/zh/docusaurus-plugin-content-docs/current/sys-utilities/db-util-gpdemo.md)。
 
 ### 存储
 
