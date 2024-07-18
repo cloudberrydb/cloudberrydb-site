@@ -11,12 +11,15 @@ import BlogPostItemAuthors from "./components/Authors";
 
 import styles from "./styles.module.scss";
 import LinkWithBaseUrl from "@site/src/components/common/LinkWithBaseUrl";
+import { isZhLangrage } from "@site/src/utils";
 
 const BlogListItem = () => {
   const {
     metadata: { permalink },
   } = useBlogPost();
-
+  if (useBlogPost().metadata.frontMatter['zh_hidden'] && isZhLangrage()) {
+    return null;
+  }
   return (
     <BlogPostItemContainer className={styles["blogList"]}>
       <header style={{ padding: "7px 6px" }} className="link-wrap">

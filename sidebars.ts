@@ -57,7 +57,14 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operate with Data',
-      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control']
+      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control',
+
+      {
+        type: 'category',
+        label: 'Advanced Analytics',
+        items: ['advanced-analytics/postgis','advanced-analytics/directory-tables']
+      }
+      ]
      },
 
      {
@@ -141,7 +148,7 @@ const sidebars: SidebarsConfig = {
         type: "doc",
         id: "releases/index",
       },
-      items: ['releases/release-1.5.0','releases/release-1.5.1'],
+      items: ['releases/release-1.5.4','releases/release-1.5.3','releases/release-1.5.2','releases/release-1.5.1', 'releases/release-1.5.0'],
     },
   ]
 }

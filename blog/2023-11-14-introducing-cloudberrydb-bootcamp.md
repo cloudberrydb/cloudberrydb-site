@@ -2,7 +2,7 @@
 slug: introducing-cloudberrydb-bootcamp
 title: Introducing Cloudberry Database Bootcamp
 authors: [cloudberrydbteam]
-tags: [announcement]
+tags: [Announcement]
 image: /img/blog/cbdb-bootcamp.png
 ---
 

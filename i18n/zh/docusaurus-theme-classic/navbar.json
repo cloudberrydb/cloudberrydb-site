@@ -33,14 +33,18 @@
   },
   "item.label.Resources": {
     "message": "资源中心",
-    "description": "Navbar item with label Bootcamp"
+    "description": "Navbar item with label Resources"
   },
   "item.label.Roadmap": {
     "message": "路线图",
-    "description": "Navbar item with label Bootcamp"
+    "description": "Navbar item with label Roadmap"
   },
   "item.label.Forum": {
     "message": "论坛",
-    "description": "Navbar item with label Bootcamp"
+    "description": "Navbar item with label Forum"
+  },
+  "item.label.Team": {
+    "message": "团队",
+    "description": "Navbar item with label Team"
   }
 }

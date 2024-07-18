@@ -102,7 +102,8 @@ CloudBerry Database 支持操作系统包括：
 - 中标麒麟 V7update6
 - RHEL/CentOS 7.6+
 - openEuler 20.3 LTS SP2
-- SSH 配置
+
+### SSH 配置
 
     SSH 服务端的配置（`/etc/ssh/sshd_config`）如下。配置完成后，执行 `systemctl restart sshd.service` 命令重启生效。
 
