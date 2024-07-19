@@ -57,7 +57,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operate with Data',
-      items: ['basic-query-syntax','create-and-manage-tables','create-and-manage-schema','create-and-manage-view','create-and-manage-materialized-views','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control','table-storage-models',
+      items: ['basic-query-syntax','create-and-manage-tables','create-and-manage-schemas','create-and-manage-views','create-and-manage-materialized-views','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control','table-storage-models',
 
       {
         type: 'category',
