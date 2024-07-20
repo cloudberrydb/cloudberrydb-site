@@ -57,7 +57,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operate with Data',
-      items: ['basic-query-syntax','create-and-manage-tables','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control',
+      items: ['basic-query-syntax','create-and-manage-tables','create-and-manage-schemas','create-and-manage-views','create-and-manage-materialized-views','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control','table-storage-models',
 
       {
         type: 'category',
@@ -76,7 +76,7 @@ const sidebars: SidebarsConfig = {
      {
        type: 'category',
        label: 'Security and Permission',
-       items: ['set-password-profile']
+       items: ['manage-roles-and-privileges','protect-passwords','set-password-profile']
      },
 
      {
@@ -129,6 +129,8 @@ const sidebars: SidebarsConfig = {
           'sql-stmts/sql-stmt-truncate',
         ]
       },
+
+        'data-types',
 
       {
         type: 'category',
