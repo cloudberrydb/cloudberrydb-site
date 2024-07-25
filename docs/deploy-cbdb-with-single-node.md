@@ -98,7 +98,7 @@ $echo $(expr $(getconf _PHYS_PAGES)/2)
 $echo $(expr $(getconf _PHYS_PAGES)/2 \*$(getconf PAGE_SIZE))
 ```
 
-- vm.overcommit_memory indicates the overcommit handling modes for memory. Available options are: 
+- `vm.overcommit_memory` indicates the overcommit handling modes for memory. Available options are: 
     
     - `0`: Heuristic overcommit handling
     - `1`: Always overcommit
