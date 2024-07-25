@@ -134,7 +134,14 @@ $ echo $(expr $(getconf _PHYS_PAGES) / 2 \* $(getconf PAGE_SIZE))
 
 In the `/etc/sysctl.conf` configuration file,
 
-- `vm.overcommit_memory` is a Linux kernel parameter that indicates the amount of memory that the system can allocate to a process. Setting `vm.overcommit_memory` to `2` means that when the system allocates more than 2 GB of memory, the operation will be rejected.
+- `vm.overcommit_memory` indicates the overcommit handling modes for memory. Available options are: 
+    
+    - `0`: Heuristic overcommit handling
+    - `1`: Always overcommit
+    - `2`: Don't overcommit
+        
+    Set the value of this parameter to `2` to refuse overcommit.
+    
 - `vm.overcommit_ratio` is a kernel parameter and is the percentage of RAM occupied by the application process. The default value on CentOS is `50`. `vm.overcommit_ratio` is calculated as follows:
 
     ```

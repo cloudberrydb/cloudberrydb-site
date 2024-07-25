@@ -100,7 +100,13 @@ vm.dirty_bytes = 4294967296
     $ echo $(expr $(getconf _PHYS_PAGES) / 2 \$(getconf PAGE_SIZE))
     ```
 
-- `vm.overcommit_memory` 是一个 Linux 内核参数，表示系统可分配给某进程的内存大小。将 `vm.overcommit_memory` 设置为 `2`，表示当系统分配的内存超过 2 GB 时，系统会拒绝该操作。
+- `vm.overcommit_memory` 是一个 Linux 内核参数。使用该参数指定对内存过度使用的处理方式。可选值如下：
+    - `0`: 探索式处理，即预估可用内存并拒绝占用内存过大的请求。
+    - `1`: 允许过度使用。
+    - `2`: 拒绝过度使用。
+    
+    将 `vm.overcommit_memory` 设置为 `2`，即拒绝过度使用。
+    
 - `vm.overcommit_ratio` 是一个内核参数，是应用进程占用 RAM 的百分比。在 CentOS 上默认值为 `50`。`vm.overcommit_ratio` 的计算公式如下：
 
     ```bash
