@@ -1,5 +1,6 @@
 ---
 title: Enable Coordinator Mirroring for Cloudberry Database
+toc_max_heading_level: 5
 ---
 
 # Enable Coordinator Mirroring for Cloudberry Database
