@@ -76,7 +76,7 @@ const sidebars: SidebarsConfig = {
      {
        type: 'category',
        label: 'Security and Permission',
-       items: ['manage-roles-and-privileges','protect-passwords','set-password-profile']
+       items: ['manage-roles-and-privileges','configure-row-level-security-policy', 'protect-passwords','set-password-profile']
      },
 
      {
