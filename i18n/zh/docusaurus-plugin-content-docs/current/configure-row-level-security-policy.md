@@ -31,13 +31,15 @@ toc_max_heading_level: 5
 
 表所有者须先为一个表启用行级安全策略，再创建具体的策略。
 
-1. 启用行级安全策略
+**第一步：** 启用行级安全策略
 
 表所有者须先使用一下命令启用行级安全策略：
 
-`ALTER TABLE <talbe_name> ENABLE ROW LEVEL SECURITY;`
-
-2. 创建策略
+    ```
+    ALTER TABLE <talbe_name> ENABLE ROW LEVEL SECURITY;
+    ```
+    
+**第二步：** 创建策略
 
 启用行级安全策略后，可通过 `CREATE POLICY`创建策略。行级安全策略须在`USING`或`WITH CHECK`子句中提供一个表达式，该表达返回的布尔值决定了哪些行可被返回。该表达式会在用户查询的所有条件和函数被执行前被逐行评估。表达式未返回 `true`的行将不会被处理。
 
@@ -45,14 +47,14 @@ toc_max_heading_level: 5
 
 参考以下句法创建行级安全策略：
 
-```
-CREATE POLICY <name> ON <table_name>
-    [ AS { PERMISSIVE | RESTRICTIVE } ]
-    [ FOR { ALL | SELECT | INSERT | UPDATE | DELETE } ]
-    [ TO { <role_name> | PUBLIC | CURRENT_USER | SESSION_USER } [, ...] ]
-    [ USING ( <using_expression> ) ]
-    [ WITH CHECK ( <check_expression> ) ]
-```
+    ```
+    CREATE POLICY <name> ON <table_name>
+        [ AS { PERMISSIVE | RESTRICTIVE } ]
+        [ FOR { ALL | SELECT | INSERT | UPDATE | DELETE } ]
+        [ TO { <role_name> | PUBLIC | CURRENT_USER | SESSION_USER } [, ...] ]
+        [ USING ( <using_expression> ) ]
+        [ WITH CHECK ( <check_expression> ) ]
+    ```
 
 具体用法参见以下参数说明：
 
@@ -83,57 +85,48 @@ CREATE POLICY <name> ON <table_name>
 以下示例对表设置了行级访问安全策略，该策略仅允许`(department = current_setting('myapp.current_department'))`为`true`的行被返回。
 
 1. 以管理员身份访问数据库：`psql -h <host_ip> -p <port> -U <user_name> -d <db_name>`
-
 2. 创建表并插入数据：
 
-```
-CREATE TABLE projects (
-    project_id SERIAL PRIMARY KEY,
-    project_name TEXT,
-    project_manager TEXT,
-    department TEXT
-);
+    ```
+    CREATE TABLE projects (
+        project_id SERIAL PRIMARY KEY,
+        project_name TEXT,
+        project_manager TEXT,
+        department TEXT
+    );
 
-INSERT INTO projects (project_name, project_manager, department) VALUES
-('Project Alpha', 'zhangsan', 'Engineering'),
-('Project Beta', 'lisi', 'HR'),
-('Project Gamma', 'wangwu', 'Sales');
-```
-
+    INSERT INTO projects (project_name, project_manager, department) VALUES
+    ('Project Alpha', 'zhangsan', 'Engineering'),
+    ('Project Beta', 'lisi', 'HR'),
+    ('Project Gamma', 'wangwu', 'Sales');
+    ```
 3. 启用行级安全策略：`ALTER TABLE projects ENABLE ROW LEVEL SECURITY;`
-
 4. 创建行级安全策略：
 
-```
-CREATE POLICY department_policy
-ON projects
-FOR SELECT
-USING (department = current_setting('myapp.current_department'));
-```
-
-该策略仅返回`(department = current_setting('myapp.current_department'))`为 `true`的行。
-
+    ```
+    CREATE POLICY department_policy
+    ON projects
+    FOR SELECT
+    USING (department = current_setting('myapp.current_department'));
+    ```
+    该策略仅返回`(department = current_setting('myapp.current_department'))`为 `true`的行。
 5. 创建测试用户：
-
-```
-CREATE USER zhangsan WITH PASSWORD '<password>';
-CREATE USER lisi WITH PASSWORD '<password>';
-CREATE USER wangwu WITH PASSWORD '<password>';
-```
-
+    ```
+    CREATE USER zhangsan WITH PASSWORD '<password>';
+    CREATE USER lisi WITH PASSWORD '<password>';
+    CREATE USER wangwu WITH PASSWORD '<password>';
+    ```
 6. 向测试用户赋予查询 `projects`表的权限：`GRANT SELECT ON projects TO zhangsan;`
-
 7. 切换至测试用户并定义当前会话中变量 `myapp.current_department`的值：
 
-```
-SET ROLE zhangsan;
-SET myapp.current_department = 'Engineering';
-```
-
+    ```
+    SET ROLE zhangsan;
+    SET myapp.current_department = 'Engineering';
+    ```
 8. 以当前用户查询 projects 表：`SELECT * FROM projects;`。因`myapp.current_department`值为 `engineering`，故期待如下返回数据：
 
-```
- project_id | project_name  | project_manager | department
-------------+---------------+-----------------+-------------
-          1 | Project Alpha | zhangsan           | Engineering
-```
+    ```
+    project_id | project_name  | project_manager | department
+    ------------+---------------+-----------------+-------------
+            1 | Project Alpha | zhangsan           | Engineering
+    ```

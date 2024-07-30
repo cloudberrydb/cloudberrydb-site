@@ -31,15 +31,15 @@ Row-level security policies can be created for specific commands, such as `SELEC
 
 The table owner must first enable row-level security policies for a table before creating specific policies.
 
-1. Enable row-level security policy
+**Step 1.** Enable row-level security policy
 
 The table owner must first enable row-level security policy using the following command:
 
-```
-ALTER TABLE <table_name> ENABLE ROW LEVEL SECURITY;
-```
+    ```
+    ALTER TABLE <table_name> ENABLE ROW LEVEL SECURITY;
+    ```
 
-2. Create policy
+**Step 2.** Create policy
 
 After enabling row-level security policies, you can create policies with `CREATE POLICY`.
 
@@ -49,14 +49,14 @@ You can specify separate expressions to provide independent control over which r
 
 Refer to the following syntax to create a row-level security policy:
 
-```
-CREATE POLICY <name> ON <table_name>
-    [ AS { PERMISSIVE | RESTRICTIVE } ]
-    [ FOR { ALL | SELECT | INSERT | UPDATE | DELETE } ]
-    [ TO { <role_name> | PUBLIC | CURRENT_USER | SESSION_USER } [, ...] ]
-    [ USING ( <using_expression> ) ]
-    [ WITH CHECK ( <check_expression> ) ]
-```
+    ```
+    CREATE POLICY <name> ON <table_name>
+        [ AS { PERMISSIVE | RESTRICTIVE } ]
+        [ FOR { ALL | SELECT | INSERT | UPDATE | DELETE } ]
+        [ TO { <role_name> | PUBLIC | CURRENT_USER | SESSION_USER } [, ...] ]
+        [ USING ( <using_expression> ) ]
+        [ WITH CHECK ( <check_expression> ) ]
+    ```
 
 See the following parameter descriptions for detailed usage:
 
@@ -88,75 +88,67 @@ The following example sets up a row-level access security policy on a table that
 
 1. Access the database as an administrator:
 
-```
-psql -h <host_ip> -p <port> -U <user_name> -d <db_name>
-```
-
+    ```
+    psql -h <host_ip> -p <port> -U <user_name> -d <db_name>
+    ```
 2. Create a table and insert data:
 
-```
-CREATE TABLE projects (
-    project_id SERIAL PRIMARY KEY,
-    project_name TEXT,
-    project_manager TEXT,
-    department TEXT
-);
+    ```
+    CREATE TABLE projects (
+        project_id SERIAL PRIMARY KEY,
+        project_name TEXT,
+        project_manager TEXT,
+        department TEXT
+    );
 
-INSERT INTO projects (project_name, project_manager, department) VALUES
-('Project Alpha', 'zhangsan', 'Engineering'),
-('Project Beta', 'lisi', 'HR'),
-('Project Gamma', 'wangwu', 'Sales');
-```
-
+    INSERT INTO projects (project_name, project_manager, department) VALUES
+    ('Project Alpha', 'zhangsan', 'Engineering'),
+    ('Project Beta', 'lisi', 'HR'),
+    ('Project Gamma', 'wangwu', 'Sales');
+    ```
 3. Enable row-level security policy:
 
-```
-ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
-```
-
+    ```
+    ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+    ```
 4.  Create the row-level security policy:
 
-```
-CREATE POLICY department_policy
-ON projects
-FOR SELECTUSING (department = current_setting('myapp.current_department'));
-```
-
-This policy will only return rows where `(department = current_setting('myapp.current_department'))` is `true`.
-
+    ```
+    CREATE POLICY department_policy
+    ON projects
+    FOR SELECTUSING (department = current_setting('myapp.current_department'));
+    ```
+    This policy will only return rows where `(department = current_setting('myapp.current_department'))` is `true`.
 5. Create test users:
 
-```
-CREATE USER zhangsan WITH PASSWORD '<password>';
-CREATE USER lisi WITH PASSWORD '<password>';
-CREATE USER wangwu WITH PASSWORD '<password>';
-```
-
+    ```
+    CREATE USER zhangsan WITH PASSWORD '<password>';
+    CREATE USER lisi WITH PASSWORD '<password>';
+    CREATE USER wangwu WITH PASSWORD '<password>';
+    ```
 6. Grant the test users permission to query the `projects` table:
 
-```
-GRANT SELECT ON projects TO zhangsan;
-```
-
+    ```
+    GRANT SELECT ON projects TO zhangsan;
+    ```
 7. Switch to the test user and define the value of the variable `myapp.current_department` for the current session:
 
-```
-SET ROLE zhangsan;
-SET myapp.current_department = 'Engineering';
-```
-
+    ```
+    SET ROLE zhangsan;
+    SET myapp.current_department = 'Engineering';
+    ```
 8. Query the `projects` table as the current user:
 
-```
-SELECT * FROM projects;
-```
+    ```
+    SELECT * FROM projects;
+    ```
 
 Because the value of `myapp.current_department` is set to `Engineering`, you would expect the following data to be returned:
 
-```
- project_id | project_name | project_manager | department
-------------+--------------+-----------------+------------
-          1 | Project Alpha | zhangsan        | Engineering
-```
+    ```
+    project_id | project_name | project_manager | department
+    ------------+--------------+-----------------+------------
+            1 | Project Alpha | zhangsan        | Engineering
+    ```
 
 Only the row related to the "Engineering" department will be visible to the user `zhangsan` because of the row-level security policy in place.
