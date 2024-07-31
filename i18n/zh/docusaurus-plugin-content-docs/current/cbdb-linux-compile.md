@@ -90,7 +90,7 @@ git clone https://github.com/cloudberrydb/cloudberrydb.git
 3. 执行 `README.Rhel-Rocky.bash` 脚本安装更多依赖项。
 
     ```bash
-    ~/cloudberrydb/readmes/README.Rhel-Rocky.bash
+    ~/cloudberrydb/deploy/build/README.Rhel-Rocky.bash
     ```
 
 </TabItem>
