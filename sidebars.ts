@@ -88,7 +88,7 @@ const sidebars: SidebarsConfig = {
         label: 'Backup and Restore',
         items: ['sys-admin/backup-and-restore-overview', 'sys-admin/perform-full-backup-and-restore', 'sys-admin/perform-incremental-backup-and-restore']
        },
-        'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/recommended-maintenance-monitoring-tasks']
+        'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/enable-coordinator-mirroring', 'sys-admin/recommended-maintenance-monitoring-tasks']
      },
 
     {
