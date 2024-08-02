@@ -26,14 +26,14 @@ which can help you familiarize yourself with the contribution
 workflow, and for the dev teams to become acquainted with you.
 
 In addition, all code contributors are required to sign a Contributor
-License Agreement (CLA), you can sign it as CLAassistant prompts when
+License Agreement (CLA), you can sign it as CLA assistant prompts when
 submitting your first Pull Request.
 
 :::caution
 
 It's not required for upstream contributors to sign CLA if you cherry
 pick the commits from upstream projects like PostgreSQL or Greenplum
-Database, so just ignore the CLAassistant's warning, which will don't
+Database, so just ignore the CLA assistant's warning, which will not
 block your PR's merge.
 
 :::
