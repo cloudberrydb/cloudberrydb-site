@@ -33,7 +33,7 @@ submitting your first Pull Request.
 
 It's not required for upstream contributors to sign CLA if you cherry
 pick the commits from upstream projects like PostgreSQL or Greenplum
-Database, so just ignore the CLAassistant's warning, which will not
+Database, so just ignore the CLA assistant's warning, which will not
 block your PR's merge.
 
 :::
