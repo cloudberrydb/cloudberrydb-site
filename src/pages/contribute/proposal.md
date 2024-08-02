@@ -53,8 +53,6 @@ Draft --> Discuss --> Vote -|                  Inactive
                             --> Rejected       Abandoned
 ```
 
-![Cloudberry Database Proposal life](/img/proposal-life.png)
-
 ### Draft
 
 You can submit your proposal via [GitHub Discussions
