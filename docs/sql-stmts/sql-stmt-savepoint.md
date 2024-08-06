@@ -26,7 +26,7 @@ The name of the new savepoint. If savepoints with the same name already exist, t
 
 ## Notes
 
-Use [`ROLLBACK TO SAVEPOINT`](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md) to rollback to a savepoint. Use [`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md) to destroy a savepoint, keeping the effects of commands run after it was established.
+Use [`ROLLBACK TO SAVEPOINT`](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md) to rollback to a savepoint. Use [`RELEASE SAVEPOINT`](/docs/sql-stmts/sql-stmt-release-savepoint.md) to destroy a savepoint, keeping the effects of commands run after it was established.
 
 Savepoints can be established only inside a transaction block. You can define multiple savepoints within a transaction.
 
@@ -86,8 +86,8 @@ The above transaction shows row 3 being rolled back first, then row 2.
 
 ## Compatibility
 
-SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Cloudberry Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. (Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md) and [RELEASE SAVEPOINT](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md).) Otherwise, `SAVEPOINT` is fully SQL conforming.
+SQL requires a savepoint to be destroyed automatically when another savepoint with the same name is established. In Cloudberry Database, the old savepoint is kept, though only the more recent one is used when rolling back or releasing. (Releasing the newer savepoint will cause the older one to again become accessible to [ROLLBACK TO SAVEPOINT](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md) and [RELEASE SAVEPOINT](/docs/sql-stmts/sql-stmt-release-savepoint.md).) Otherwise, `SAVEPOINT` is fully SQL conforming.
 
 ## See also
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md), [`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md), [`ROLLBACK TO SAVEPOINT`](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md)
+[`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md), [`RELEASE SAVEPOINT`](/docs/sql-stmts/sql-stmt-release-savepoint.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md), [`ROLLBACK TO SAVEPOINT`](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md)

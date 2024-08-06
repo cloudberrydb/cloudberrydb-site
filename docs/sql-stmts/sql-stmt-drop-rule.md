@@ -52,4 +52,4 @@ DROP RULE sales_2006 ON sales;
 
 ## See also
 
-[`ALTER RULE`](/docs/sql-stmts/sql-stmt-alter-rule.md), [`CREATE RULE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-rule.md)
+[`ALTER RULE`](/docs/sql-stmts/sql-stmt-alter-rule.md), [`CREATE RULE`](/docs/sql-stmts/sql-stmt-create-rule.md)

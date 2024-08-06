@@ -48,4 +48,4 @@ This command is similar to the corresponding command in the SQL standard, apart 
 
 ## See also
 
-[`ALTER TYPE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-type.md), [`CREATE TYPE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-type.md)
+[`ALTER TYPE`](/docs/sql-stmts/sql-stmt-alter-type.md), [`CREATE TYPE`](/docs/sql-stmts/sql-stmt-create-type.md)

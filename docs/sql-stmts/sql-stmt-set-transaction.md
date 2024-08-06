@@ -51,7 +51,7 @@ The `SET TRANSACTION SNAPSHOT` command allows a new transaction to run with the 
 
 ## Notes
 
-If `SET TRANSACTION` is run without a prior [START TRANSACTION](/docs/sql-stmts/sql-stmt-start-transaction.md) or [`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md), it emits a warning and otherwise has no effect.
+If `SET TRANSACTION` is run without a prior [START TRANSACTION](/docs/sql-stmts/sql-stmt-start-transaction.md) or [`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md), it emits a warning and otherwise has no effect.
 
 It is possible to dispense with `SET TRANSACTION` by instead specifying the desired transaction_modes in `BEGIN` or `START TRANSACTION`. But that option is not available for `SET TRANSACTION SNAPSHOT`.
 
@@ -91,4 +91,4 @@ The SQL standard requires commas between successive transaction_modes, but for h
 
 ## See also
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)
+[`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md)

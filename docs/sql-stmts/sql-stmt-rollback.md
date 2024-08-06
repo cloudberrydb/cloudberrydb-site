@@ -29,7 +29,7 @@ If `AND CHAIN` is specified, a new transaction is immediately started with the s
 
 ## Notes
 
-Use [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md) to successfully end the current transaction.
+Use [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md) to successfully end the current transaction.
 
 Issuing `ROLLBACK` when not inside a transaction block emits a warning and otherwise has no effect. `ROLLBACK AND CHAIN` outside of a transaction block is an error.
 
@@ -47,4 +47,4 @@ The command `ROLLBACK` conforms to the SQL standard. The form `ROLLBACK TRANSACT
 
 ## See also
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md), [`ROLLBACK TO SAVEPOINT`](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md), [`SAVEPOINT`](/docs/sql-stmts/sql-stmt-savepoint.md)
+[`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md), [`ROLLBACK TO SAVEPOINT`](/docs/sql-stmts/sql-stmt-rollback-to-savepoint.md), [`SAVEPOINT`](/docs/sql-stmts/sql-stmt-savepoint.md)

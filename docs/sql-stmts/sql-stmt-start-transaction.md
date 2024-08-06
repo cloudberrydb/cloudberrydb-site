@@ -20,7 +20,7 @@ START TRANSACTION [<transaction_mode>] [, ...]
 
 ## Description
 
-`START TRANSACTION` begins a new transaction block. If the isolation level, read/write mode, or deferrable mode is specified, the new transaction has those characteristics, as if [SET TRANSACTION](/docs/sql-stmts/sql-stmt-set-transaction.md) was run. This is the same as the [`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md) command.
+`START TRANSACTION` begins a new transaction block. If the isolation level, read/write mode, or deferrable mode is specified, the new transaction has those characteristics, as if [SET TRANSACTION](/docs/sql-stmts/sql-stmt-set-transaction.md) was run. This is the same as the [`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md) command.
 
 ## Parameters
 
@@ -39,4 +39,4 @@ See also the compatibility section of [SET TRANSACTION](/docs/sql-stmts/sql-stmt
 
 ## See also
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md), [`SAVEPOINT`](/docs/sql-stmts/sql-stmt-savepoint.md), [`SET TRANSACTION`](/docs/sql-stmts/sql-stmt-set-transaction.md)
+[`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md), [`SAVEPOINT`](/docs/sql-stmts/sql-stmt-savepoint.md), [`SET TRANSACTION`](/docs/sql-stmts/sql-stmt-set-transaction.md)

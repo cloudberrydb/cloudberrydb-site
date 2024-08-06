@@ -14,7 +14,7 @@ DROP TABLE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 ## Description
 
-`DROP TABLE` removes tables from the database. Only the table owner, the schema owner, and superuser can drop a table. To empty a table of rows without removing the table definition, use [`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-delete.md) or [`TRUNCATE`](/docs/sql-stmts/sql-stmt-truncate.md).
+`DROP TABLE` removes tables from the database. Only the table owner, the schema owner, and superuser can drop a table. To empty a table of rows without removing the table definition, use [`DELETE`](/docs/sql-stmts/sql-stmt-delete.md) or [`TRUNCATE`](/docs/sql-stmts/sql-stmt-truncate.md).
 
 `DROP TABLE` always removes any indexes, rules, triggers, and constraints that exist for the target table. However, to drop a table that is referenced by a view, `CASCADE` must be specified. `CASCADE` removes a dependent view entirely.
 
@@ -56,4 +56,4 @@ DROP TABLE films, distributors;
 
 ## See also
 
-[`ALTER TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-table.md), [`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md)
+[`ALTER TABLE`](/docs/sql-stmts/sql-stmt-alter-table.md), [`CREATE TABLE`](/docs/sql-stmts/sql-stmt-create-table.md)

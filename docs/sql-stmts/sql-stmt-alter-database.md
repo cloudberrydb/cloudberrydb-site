@@ -79,11 +79,11 @@ This form of the command cannot be executed inside a transaction block.
 
 Set this database's session default for the specified configuration parameter to the given value. If value is `DEFAULT` or, equivalently, `RESET` is used, the database-specific setting is removed, so the system-wide default setting will be inherited in new sessions. Use `RESET ALL` to clear all database-specific settings. `SET FROM CURRENT` saves the session's current value of the parameter as the database-specific value.
 
-See [`SET`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set.md) and Server Configuration Parameters for more information about allowed parameter names and values.
+See [`SET`](/docs/sql-stmts/sql-stmt-set.md) and Server Configuration Parameters for more information about allowed parameter names and values.
 
 ## Notes
 
-It is also possible to tie a session default to a specific role rather than to a database; see [`ALTER ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-role.md). Role-specific settings override database-specific ones if there is a conflict.
+It is also possible to tie a session default to a specific role rather than to a database; see [`ALTER ROLE`](/docs/sql-stmts/sql-stmt-alter-role.md). Role-specific settings override database-specific ones if there is a conflict.
 
 ## Examples
 

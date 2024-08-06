@@ -74,4 +74,4 @@ Cloudberry Database allows identifier syntax (rolename), while the SQL standard 
 
 ## See also
 
-[`SET SESSION AUTHORIZATION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set-session-authorization.md)
+[`SET SESSION AUTHORIZATION`](/docs/sql-stmts/sql-stmt-set-session-authorization.md)

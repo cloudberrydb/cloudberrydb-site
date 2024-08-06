@@ -29,7 +29,7 @@ If `AND CHAIN` is specified, a new transaction is immediately started with the s
 
 ## Notes
 
-Use [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md) to successfully terminate a transaction.
+Use [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md) to successfully terminate a transaction.
 
 Issuing `ABORT` outside of a transaction block emits a warning and otherwise has no effect.
 

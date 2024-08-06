@@ -48,4 +48,4 @@ DROP VIEW topten;
 
 ## See also
 
-[`CREATE VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-view.md), [`ALTER VIEW`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-view.md)
+[`CREATE VIEW`](/docs/sql-stmts/sql-stmt-create-view.md), [`ALTER VIEW`](/docs/sql-stmts/sql-stmt-alter-view.md)

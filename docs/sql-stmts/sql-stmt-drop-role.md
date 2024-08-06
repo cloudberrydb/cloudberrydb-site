@@ -16,7 +16,7 @@ DROP ROLE [IF EXISTS] <name> [, ...]
 
 `DROP ROLE` removes the specified role(s). To drop a superuser role, you must be a superuser yourself. To drop non-superuser roles, you must have `CREATE ROLE` privilege.
 
-A role cannot be removed if it is still referenced in any database; an error will be raised if so. Before dropping the role, you must drop all the objects it owns (or reassign their ownership) and revoke any privileges the role has been granted on other objects. The [`REASSIGN OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-reassign-owned.md) and [`DROP OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-drop-owned.md) commands can be useful for this purpose.
+A role cannot be removed if it is still referenced in any database; an error will be raised if so. Before dropping the role, you must drop all the objects it owns (or reassign their ownership) and revoke any privileges the role has been granted on other objects. The [`REASSIGN OWNED`](/docs/sql-stmts/sql-stmt-reassign-owned.md) and [`DROP OWNED`](/docs/sql-stmts/sql-stmt-drop-owned.md) commands can be useful for this purpose.
 
 However, it is not necessary to remove role memberships involving the role; `DROP ROLE` automatically revokes any memberships of the target role in other roles, and of other roles in the target role. The other roles are not dropped nor otherwise affected.
 
@@ -44,4 +44,4 @@ The SQL standard defines `DROP ROLE`, but it allows only one role to be dropped 
 
 ## See also
 
-[`REASSIGN OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-reassign-owned.md), [`DROP OWNED`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-drop-owned.md), [`CREATE ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-role.md), [`SET ROLE`](/docs/sql-stmts/sql-stmt-set-role.md)
+[`REASSIGN OWNED`](/docs/sql-stmts/sql-stmt-reassign-owned.md), [`DROP OWNED`](/docs/sql-stmts/sql-stmt-drop-owned.md), [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md), [ALTER ROLE](/docs/sql-stmts/sql-stmt-alter-role.md), [`SET ROLE`](/docs/sql-stmts/sql-stmt-set-role.md)
