@@ -255,7 +255,7 @@ or
 
 The first format populates the `hostname` and `address` fields in the `gp_segment_configuration` catalog table with the hostname and address values provided in the input configuration file. The second format populates `hostname` and `address` fields with the same value, derived from host.
 
-The Cloudberry Database coordinator always uses the value -1 for the segment ID and content ID. For example, seg_prefix<segment_id> and dbid values for `QD_PRIMARY_ARRAY` use `-1` to indicate the coordinator instance:
+The Cloudberry Database coordinator always uses the value -1 for the segment ID and content ID. For example, seg_prefix `<segment_id>` and dbid values for `QD_PRIMARY_ARRAY` use `-1` to indicate the coordinator instance:
 
 ```shell
 QD_PRIMARY_ARRAY=cdw~cdw~5432~/gpdata/coordinator/gpseg-1~1~-1
