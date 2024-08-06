@@ -153,4 +153,4 @@ gpstop -u
 
 ## See also
 
-[gpstart](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/db-utilities/db-util-gpstart.md)
+[gpstart](/docs/db-utilities/db-util-gpstart.md)

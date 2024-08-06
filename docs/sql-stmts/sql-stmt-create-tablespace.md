@@ -93,4 +93,4 @@ The example specifies the same location for the two segment instances. You can a
 
 ## See also
 
-[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md), [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md), [`DROP TABLESPACE`](/docs/sql-stmts/sql-stmt-drop-tablespace.md), [`ALTER TABLESPACE`](/docs/sql-stmts/sql-stmt-alter-tablespace.md)
+[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`CREATE TABLE`](/docs/sql-stmts/sql-stmt-create-table.md), [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md), [`DROP TABLESPACE`](/docs/sql-stmts/sql-stmt-drop-tablespace.md), [`ALTER TABLESPACE`](/docs/sql-stmts/sql-stmt-alter-tablespace.md)

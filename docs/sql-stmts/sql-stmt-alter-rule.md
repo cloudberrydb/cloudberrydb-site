@@ -46,4 +46,4 @@ ALTER RULE notify_all ON emp RENAME TO notify_me;
 
 ## See also
 
-[`CREATE RULE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-rule.md), [`DROP RULE`](/docs/sql-stmts/sql-stmt-drop-rule.md)
+[`CREATE RULE`](/docs/sql-stmts/sql-stmt-create-rule.md), [`DROP RULE`](/docs/sql-stmts/sql-stmt-drop-rule.md)

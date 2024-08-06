@@ -60,4 +60,4 @@ This command fails if any of the extension objects are in use in the database. F
 
 ## See also
 
-[`CREATE EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-extension.md), [`ALTER EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-extension.md)
+[`CREATE EXTENSION`](/docs/sql-stmts/sql-stmt-create-extension.md), [`ALTER EXTENSION`](/docs/sql-stmts/sql-stmt-alter-extension.md)
