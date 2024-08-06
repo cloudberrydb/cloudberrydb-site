@@ -12,6 +12,10 @@ Quick try: [v1.5.4](https://github.com/cloudberrydb/cloudberrydb/releases/tag/1.
 
 Full Changelog: [https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4](https://github.com/cloudberrydb/cloudberrydb/compare/1.5.3...1.5.4)
 
+:::caution
+The v1.5.4 installation package can be used to deploy Cloudberry Database only with a single computing node. See [Deploy with a Single Computing Node](/docs/deploy-cbdb-with-single-node.md). It cannot be used for multi-node deployment.
+:::
+
 ## Improvements
 
 - Add the `cbdb_relation_size` function by [@fanfuxiaoran](https://github.com/fanfuxiaoran) in [#428](https://github.com/cloudberrydb/cloudberrydb/pull/428)

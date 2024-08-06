@@ -1,10 +1,14 @@
 ---
-title: Deploy Manually Using RPM Package
+title: Deploy with Multiple Computing Nodes
 ---
 
-# Deploy Cloudberry Database Manually Using RPM Package
+# Deploy Cloudberry Database Manually Using RPM Package with Multiple Computing Nodes
 
-This document introduces how to manually deploy Cloudberry Database on physical machines using RPM package. Before reading this document, it is recommended to first read the [Software and Hardware Configuration Requirements](/docs/cbdb-op-software-hardware.md) and [Prepare to Deploy Cloudberry Database on Physical Machine](/docs/cbdb-op-prepare-to-deploy.md).
+This document introduces how to manually deploy Cloudberry Database on physical machines using RPM package with multiple computing nodes. Before reading this document, it is recommended to first read the [Software and Hardware Configuration Requirements](/docs/cbdb-op-software-hardware.md) and [Prepare to Deploy Cloudberry Database on Physical Machine](/docs/cbdb-op-prepare-to-deploy.md).
+
+:::warning
+The deployment method described in this document is suitable only for deploying Cloudberry Database v1.0.0, not for deploying later versions.
+:::
 
 The deployment method in this document is for production environments.
 
