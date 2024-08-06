@@ -27,7 +27,7 @@ An index field can be an expression computed from the values of one or more colu
 
 Cloudberry Database provides the index methods B-tree, hash, bitmap, GiST, SP-GiST, GIN, and BRIN. Users can also define their own index methods, but that is fairly complicated.
 
-When the `WHERE` clause is present, a partial index is created. A partial index is an index that contains entries for only a portion of a table, usually a portion that is more useful for indexing than the rest of the table. For example, if you have a table that contains both billed and unbilled orders where the unbilled orders take up a small fraction of the total table and yet is most often selected, you can improve performance by creating an index on just that portion. Another possible application is to use `WHERE` with `UNIQUE` to enforce uniqueness over a subset of a table. See [Partial Indexes](https://www.postgresql.org/docs/12/indexes-partial.html) in the PostgreSQL documentation for more information.
+When the `WHERE` clause is present, a partial index is created. A partial index is an index that contains entries for only a portion of a table, usually a portion that is more useful for indexing than the rest of the table. For example, if you have a table that contains both billed and unbilled orders where the unbilled orders take up a small fraction of the total table and yet is most often selected, you can improve performance by creating an index on just that portion. Another possible application is to use `WHERE` with `UNIQUE` to enforce uniqueness over a subset of a table. See [Partial Indexes](https://www.postgresql.org/docs/14/indexes-partial.html) in the PostgreSQL documentation for more information.
 
 The expression used in the `WHERE` clause may refer only to columns of the underlying table, but it can use all columns, not just the ones being indexed. Subqueries and aggregate expressions are also forbidden in `WHERE`. The same restrictions apply to index fields that are expressions.
 
@@ -109,7 +109,7 @@ Specifies that nulls sort after non-nulls. This is the default when `DESC` is no
 
 **`storage_parameter`**
 
-The name of an index-method-specific storage parameter. Each index method has its own set of allowed storage parameters. See [Index Storage Parameters](#section4isp) for details.
+The name of an index-method-specific storage parameter. Each index method has its own set of allowed storage parameters. See [Index Storage Parameters](#index-storage-parameters) for details.
 
 **`tablespace_name`**
 
@@ -137,13 +137,13 @@ GiST indexes additionally accept this parameter:
 
 **`buffering`**
 
-Determines whether Cloudberry Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/12/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches effective_cache_size. The default is `AUTO`.
+Determines whether Cloudberry Database builds the index using the buffering build technique described in [GiST buffering build](https://www.postgresql.org/docs/14/gist-implementation.html) in the PostgreSQL documentation. With `OFF` it is deactivated, with `ON` it is activated, and with `AUTO` it is initially deactivated, but turned on on-the-fly once the index size reaches effective_cache_size. The default is `AUTO`.
 
 GIN indexes accept different parameters:
 
 **`fastupdate`**
 
-This setting controls usage of the fast update technique described in [GIN Fast Update Technique](https://www.postgresql.org/docs/12/gin-implementation.html#GIN-FAST-UPDATE) in the PostgreSQL documentation. It is a Boolean parameter that deactivates or activates the GIN index fast update technique. A value of `ON` activates fast update (the default), and `OFF` deactivates it.
+This setting controls usage of the fast update technique described in [GIN Fast Update Technique](https://www.postgresql.org/docs/14/gin-implementation.html#GIN-FAST-UPDATE) in the PostgreSQL documentation. It is a Boolean parameter that deactivates or activates the GIN index fast update technique. A value of `ON` activates fast update (the default), and `OFF` deactivates it.
 
 :::info
 Turning `fastupdate` off via `ALTER INDEX` prevents future insertions from going into the list of pending index entries, but does not in itself flush previous entries. You might want to `VACUUM` the table or call `gin_clean_pending_list()` function afterward to ensure the pending list is emptied.
@@ -157,19 +157,19 @@ BRIN indexes accept different parameters:
 
 **`pages_per_range`**
 
-Defines the number of table blocks that make up one block range for each entry of a BRIN index (see the [BRIN Index Introduction](https://www.postgresql.org/docs/12/brin-intro.html) in the PostgreSQL documentation for details). The default is 128.
+Defines the number of table blocks that make up one block range for each entry of a BRIN index (see the [BRIN Index Introduction](https://www.postgresql.org/docs/14/brin-intro.html) in the PostgreSQL documentation for details). The default is 128.
 
 **`autosummarize`**
 
-Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance](https://www.postgresql.org/docs/12/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
+Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance](https://www.postgresql.org/docs/14/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
 
 ## Notes
 Refer to the [Indexes](https://www.postgresql.org/docs/12/indexes.html) topics in the PostgreSQL documentation for information about when indexes can be used, when they are not used, and in which particular situations they can be useful.
 
 Currently, only the B-tree, bitmap, GiST, GIN, and BRIN index methods support multicolumn indexes. You can specify up to 32 fields by default. Only B-tree currently supports unique indexes.
 
-An operator class can be specified for each column of an index. The operator class identifies the operators to be used by the index for that column. For example, a B-tree index on four-byte integers would use the `int4_ops` class; this operator class includes comparison functions for four-byte integers. In practice the default operator class for the column's data type is usually sufficient. The main point of having operator classes is that for some data types, there could be more than one meaningful ordering. For example, we might want to sort a complex-number data type either by absolute value or by real part. We could do this by defining two operator classes for the data type and then selecting the proper class when creating an index. Refer to [Operator Classes and Operator Families](https://www.postgresql.org/docs/12/indexes-opclass.html) and [Interfacing Extensions to Indexes
-](https://www.postgresql.org/docs/12/xindex.html) in the PostgreSQL documentation for more information about operator classes.
+An operator class can be specified for each column of an index. The operator class identifies the operators to be used by the index for that column. For example, a B-tree index on four-byte integers would use the `int4_ops` class; this operator class includes comparison functions for four-byte integers. In practice the default operator class for the column's data type is usually sufficient. The main point of having operator classes is that for some data types, there could be more than one meaningful ordering. For example, we might want to sort a complex-number data type either by absolute value or by real part. We could do this by defining two operator classes for the data type and then selecting the proper class when creating an index. Refer to [Operator Classes and Operator Families](https://www.postgresql.org/docs/14/indexes-opclass.html) and [Interfacing Extensions to Indexes
+](https://www.postgresql.org/docs/14/xindex.html) in the PostgreSQL documentation for more information about operator classes.
 
 When `CREATE INDEX` is invoked on a partitioned table, the default behavior is to recurse to all partitions to ensure they all have matching indexes. Each partition is first checked to determine whether an equivalent index already exists, and if so, that index will become attached as a partition index to the index being created, which will become its parent index. If no matching index exists, a new index will be created and automatically attached; the name of the new index in each partition will be determined as if no index name had been specified in the command. If the `ONLY` option is specified, no recursion is done, and the index is marked invalid. (`ALTER INDEX ... ATTACH PARTITION` marks the index valid, once all partitions acquire matching indexes.) Note, however, that any partition that is created in the future using `CREATE TABLE ... PARTITION OF` or `ALTER TABLE ... ADD PARTITION`  will automatically have a matching index, regardless of whether `ONLY` is specified
 
