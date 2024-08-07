@@ -288,6 +288,19 @@ const sidebars: SidebarsConfig = {
         type: 'category',
         label: 'System Utilities',
         items: [
+                'functions/function-summary',
+                'functions/json-functions-and-operators',
+                'functions/window-functions',
+                'functions/advanced-aggregate-functions',
+                'functions/text-search-functions-and-operators',
+                'functions/range-functions-and-operators',
+        ]
+      },
+
+      {
+        type: 'category',
+        label: 'System Utilities',
+        items: [
                 'sys-utilities/analyzedb',
                 'sys-utilities/clusterdb',
                 'sys-utilities/createuser',
