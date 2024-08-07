@@ -178,7 +178,7 @@ Never issue a password prompt. If the server requires password authentication an
 
 ## Usage
 
-### Connect to a database**
+### Connect to a database
 
 `psql` is a client application for Cloudberry Database. In order to connect to a database you need to know the name of your target database, the host name and port number of the Cloudberry coordinator server and what database user name you want to connect as. `psql` can be told about those parameters via command line options, namely `-d`, `-h`, `-p`, and `-U` respectively. If an argument is found that does not belong to any option it will be interpreted as the database name (or the user name, if the database name is already given). Not all of these options are required; there are useful defaults. If you omit the host name, `psql` will connect via a UNIX-domain socket to a coordinator server on the local host, or via TCP/IP to `localhost` on machines that do not have UNIX-domain sockets. The default coordinator port number is 5432. If you use a different port for the coordinator, you must specify the port. The default database user name is your operating-system user name, as is the default database name. Note that you cannot just connect to any database under any user name. Your database administrator should have informed you about your access rights.
 
