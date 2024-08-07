@@ -55,7 +55,7 @@ Operators that require the `jsonb` data type as the left operand are described i
 |`?`|`text`|Does the *string* exist as a top-level key within the JSON value?|`'{"a":1, "b":2}'::jsonb ? 'b'`|
 |`?\|` |`text[]`|Do any of these array *strings* exist as a top-level key?|`'{"a":1, "b":2, "c":3}'::jsonb ?\| array['b', 'c']`|
 |`?&`|`text[]`|Do all of these array *strings* exist as top-level keys?|`'["a", "b"]'::jsonb ?& array['a', 'b']`|
-| `||` | `jsonb` | Concatenate two `jsonb` values into a new `jsonb` value. | `'["a", "b"]'::jsonb || '["c", "d"]'::jsonb` |
+| `\|\|` | `jsonb` | Concatenate two `jsonb` values into a new `jsonb` value. | `'["a", "b"]'::jsonb \|\| '["c", "d"]'::jsonb` |
 | `-` | `text` | Delete key/value pair or *string* elements from left operand. Key/value pairs are matched based on their key value.| `'{"a": "b"}'::jsonb - 'a'` |
 | `-` | `text[]` | Delete multiple key/value pairs or *string* elements from left operand. Key/value pairs are matched based on their key value.| `'{"a": "b", "c": "d"}'::jsonb - '{a,c}'::text[]` |
 | `-` | `integer` | Delete the array element with specified index (Negative integers count from the end). Throws an error if top level container is not an array.| `'["a", "b"]'::jsonb - 1` |
@@ -299,7 +299,7 @@ The following table describes the available filter expressions elements for `jso
 | `false` | Value used to perform comparison with JSON `false` literal | `[{"name": "John", "parent": false}, {"name": "Chris", "parent": true}]` | `$[*] ? (@.parent == false)` | `{"name": "John", "parent": false}` |
 | `null` | Value used to perform comparison with JSON `null` value | `[{"name": "Mary", "job": null}, {"name": "Michael", "job": "driver"}]` | `$[*] ? (@.job == null) .name` | `"Mary"` |
 | `&&` | Boolean AND | `[1, 3, 7]` | `$[*] ? (@ > 1 && @ < 5)` | `3` |
-| `||` | Boolean OR | `[1, 3, 7]` | `$[*] ? (@ < 1 || @ > 5)` | `7` |
+| `\|\|` | Boolean OR | `[1, 3, 7]` | `$[*] ? (@ < 1 \|\| @ > 5)` | `7` |
 | `!` | Boolean NOT | `[1, 3, 7]` | `$[*] ? (!(@ < 5))` | `7` |
 | `like_regex` | Tests whether the first operand matches the regular expression given by the second operand, optionally with modifications described by a string of `flag` characters. | `["abc", "abd", "aBdC", "abdacb", "babc"]` | `$[*] ? (@ like_regex "^ab.*c" flag "i")` | `"abc", "aBdC", "abdacb"` |
 | `starts with` | Tests whether the second operand is an initial substring of the first operand | `["John Smith", "Mary Stone", "Bob Johnson"]` | `$[*] ? (@ starts with "John")` | `"John Smith"` |
