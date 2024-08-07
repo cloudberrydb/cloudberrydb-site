@@ -286,7 +286,7 @@ const sidebars: SidebarsConfig = {
 
       {
         type: 'category',
-        label: 'System Utilities',
+        label: 'Built-in Functions',
         items: [
                 'functions/function-summary',
                 'functions/json-functions-and-operators',
