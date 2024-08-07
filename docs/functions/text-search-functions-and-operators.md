@@ -10,9 +10,9 @@ The following tables summarize the functions and operators that are provided for
 |--------|-----------|-------|------|
 |`@@`|`tsvector` matches `tsquery` ?|`to_tsvector('fat cats ate rats') @@ to_tsquery('cat & rat')`|`t`|
 |`@@@`|deprecated synonym for `@@`|`to_tsvector('fat cats ate rats') @@@ to_tsquery('cat & rat')`|`t`|
-|`||`|concatenate`tsvector`s|`'a:1 b:2'::tsvector || 'c:1 d:2 b:3'::tsvector`|`'a':1 'b':2,5 'c':3 'd':4`|
-|`&&`|AND `tsquery`s together|`'fat | rat'::tsquery && 'cat'::tsquery`|`( 'fat' | 'rat' ) & 'cat'`|
-|`||`|OR `tsquery`s together|`'fat | rat'::tsquery || 'cat'::tsquery`|`( 'fat' | 'rat' ) | 'cat'`|
+|`\|\|`|concatenate`tsvector`s|`'a:1 b:2'::tsvector \|\| 'c:1 d:2 b:3'::tsvector`|`'a':1 'b':2,5 'c':3 'd':4`|
+|`&&`|AND `tsquery`s together|`'fat \| rat'::tsquery && 'cat'::tsquery`|`( 'fat' \| 'rat' ) & 'cat'`|
+|`\|\|`|OR `tsquery`s together|`'fat \| rat'::tsquery \|\| 'cat'::tsquery`|`( 'fat' \| 'rat' ) \| 'cat'`|
 |`!!`|negate a`tsquery`|`!! 'cat'::tsquery`|`!'cat'`|
 |`@>`|`tsquery` contains another ?|`'cat'::tsquery @> 'cat & rat'::tsquery`|`f`|
 |`<@`|`tsquery` is contained in ?|`'cat'::tsquery <@ 'cat & rat'::tsquery`|`t`|
@@ -35,7 +35,7 @@ In addition to the operators shown in the table, the ordinary B-tree comparison 
 |`ts_headline([ config regconfig, ] documenttext, query tsquery [, options text ])`|text|display a query match|ts_headline('x y z', 'z'::tsquery)|x y <b>z</b>|
 |`ts_rank([ weights float4[], ] vector tsvector,query tsquery [, normalization integer ])`|float4|rank document for query|ts_rank(textsearch, query)|0.818|
 |`ts_rank_cd([ weights float4[], ] vectortsvector, query tsquery [, normalizationinteger ])`|float4|rank document for query using cover density|ts_rank_cd('{0.1, 0.2, 0.4, 1.0}', textsearch, query)|2.01317|
-|`ts_rewrite(query tsquery, target tsquery,substitute tsquery)`|tsquery|replace target with substitute within query|ts_rewrite('a & b'::tsquery, 'a'::tsquery, 'foo|bar'::tsquery)|'b' & ( 'foo' \| 'bar' )|
+|`ts_rewrite(query tsquery, target tsquery,substitute tsquery)`|tsquery|replace target with substitute within query|ts_rewrite('a & b'::tsquery, 'a'::tsquery, 'foo\|bar'::tsquery)|'b' & ( 'foo' \| 'bar' )|
 |`ts_rewrite(query tsquery, select text)`|tsquery|replace using targets and substitutes from a SELECTcommand|SELECT ts_rewrite('a & b'::tsquery, 'SELECT t,s FROM aliases')|'b' & ( 'foo' \| 'bar' )|
 |`tsvector_update_trigger()`|trigger|trigger function for automatic tsvector column update|CREATE TRIGGER ... tsvector_update_trigger(tsvcol, 'pg_catalog.swedish', title, body)| |
 |`tsvector_update_trigger_column()`|trigger|trigger function for automatic tsvector column update|CREATE TRIGGER ... tsvector_update_trigger_column(tsvcol, configcol, title, body)| |

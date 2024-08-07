@@ -1,5 +1,5 @@
 ---
-title: Built-in Functions
+title: Summary of Built-in Functions 
 ---
 
 # Built-in Functions in Cloudberry Database
