@@ -105,4 +105,4 @@ The `ALTER DATABASE` statement is a Cloudberry Database extension.
 
 ## See also
 
-[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`DROP DATABASE`](/docs/sql-stmts/sql-stmt-drop-database.md), [SET](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set.md), [`CREATE TABLESPACE`](/docs/sql-stmts/sql-stmt-create-tablespace.md)
+[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`DROP DATABASE`](/docs/sql-stmts/sql-stmt-drop-database.md), [SET](/docs/sql-stmts/sql-stmt-set.md), [`CREATE TABLESPACE`](/docs/sql-stmts/sql-stmt-create-tablespace.md)

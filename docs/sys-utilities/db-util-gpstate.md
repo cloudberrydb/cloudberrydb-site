@@ -215,4 +215,4 @@ gpstate -i
 
 ## See also
 
-[gpstart](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/db-utilities/db-util-gpstart.md), [gpexpand](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/db-utilities/db-util-gpinitsystem.md), [gplogfilter](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/db-utilities/db-util-gplogfilter.md)
+[gpstart](/docs/sys-utilities/db-util-gpstart.md), [gpexpand](/docs/sys-utilities/db-util-gpinitsystem.md), [gplogfilter](/docs/sys-utilities/db-util-gplogfilter.md)

@@ -47,4 +47,4 @@ This command is a Cloudberry Database extension present for historical reasons. 
 
 ## See also
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md)
+[`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md)

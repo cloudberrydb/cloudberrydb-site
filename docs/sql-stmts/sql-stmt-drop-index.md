@@ -54,4 +54,4 @@ DROP INDEX title_idx;
 
 ## See also
 
-[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md), [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md)
+[`ALTER INDEX`](/docs/sql-stmts/sql-stmt-alter-index.md), [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md)

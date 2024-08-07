@@ -253,4 +253,4 @@ Cloudberry Database does not support the concurrent creation of indexes (`CONCUR
 
 ## See also
 
-[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md), [`DROP INDEX`](/docs/sql-stmts/sql-stmt-drop-index.md)
+[`ALTER INDEX`](/docs/sql-stmts/sql-stmt-alter-index.md), [`DROP INDEX`](/docs/sql-stmts/sql-stmt-drop-index.md)
