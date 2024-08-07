@@ -93,4 +93,4 @@ gpactivatestandby -d /gpdata
 
 ## See also
 
-[gpinitsystem](/docs/db-utilities/db-util-gpinitsystem.md), [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md)
+[gpinitsystem](/docs/sys-utilities/db-util-gpinitsystem.md), [gpinitstandby](/docs/sys-utilities/db-util-gpinitstandby.md)

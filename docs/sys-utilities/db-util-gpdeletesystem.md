@@ -78,4 +78,4 @@ gpdeletesystem -d /gpdata/gp-1 -f
 
 ## See also
 
-[gpinitsystem](/docs/db-utilities/db-util-gpinitsystem.md)
+[gpinitsystem](/docs/sys-utilities/db-util-gpinitsystem.md)

@@ -212,4 +212,4 @@ Where `mirror_config_file` looks something like this:
 
 ## See also
 
-[gpinitsystem](/docs/db-utilities/db-util-gpinitsystem.md), [gpinitstandby](/docs/db-utilities/db-util-gpinitstandby.md), [gpactivatestandby](/docs/db-utilities/db-util-gpactivatestandby.md)
+[gpinitsystem](/docs/sys-utilities/db-util-gpinitsystem.md), [gpinitstandby](/docs/sys-utilities/db-util-gpinitstandby.md), [gpactivatestandby](/docs/sys-utilities/db-util-gpactivatestandby.md)

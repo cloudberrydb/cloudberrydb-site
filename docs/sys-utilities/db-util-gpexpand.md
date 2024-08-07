@@ -182,5 +182,5 @@ $ gpexpand -d 60:00:00
 
 ## See also
 
-[gpssh-exkeys](/docs/db-utilities/db-util-gpssh-exkeys.md)
+[gpssh-exkeys](/docs/sys-utilities/db-util-gpssh-exkeys.md)
 <!-- [Expanding a Cloudberry System](../../admin_guide/expand/expand-main.html) -->

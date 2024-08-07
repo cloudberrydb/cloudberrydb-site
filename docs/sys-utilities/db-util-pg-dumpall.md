@@ -217,4 +217,4 @@ pg_dumpall -g --resource-queues
 
 ## See also
 
-[pg_dump](/docs/db-utilities/db-util-pg-dump.md)
+[pg_dump](/docs/sys-utilities/db-util-pg-dump.md)

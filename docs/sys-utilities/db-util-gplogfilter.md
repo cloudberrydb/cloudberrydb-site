@@ -159,4 +159,4 @@ con6 /gpdata/*/log/gpdb*.csv' > seglog.out
 
 ## See also
 
-[gpssh](/docs/db-utilities/db-util-gpssh.md), [gpsync](/docs/db-utilities/db-util-gpsync.md)
+[gpssh](/docs/sys-utilities/db-util-gpssh.md), [gpsync](/docs/sys-utilities/db-util-gpsync.md)

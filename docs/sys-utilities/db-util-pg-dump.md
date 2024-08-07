@@ -363,4 +363,4 @@ pg_dump -t '"MixedCaseName"' mydb > mytab.sql
 
 ## See also
 
-[pg_dumpall](/docs/db-utilities/db-util-pg-dumpall.md), [pg_restore](/docs/db-utilities/db-util-pg-restore.md), [psql](/docs/db-utilities/db-util-psql.md)
+[pg_dumpall](/docs/sys-utilities/db-util-pg-dumpall.md), [pg_restore](/docs/sys-utilities/db-util-pg-restore.md), [psql](/docs/sys-utilities/db-util-psql.md)

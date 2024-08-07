@@ -91,4 +91,4 @@ $ ls -thrl
 
 ## See also
 
-[gpmemwatcher](/docs/db-utilities/db-util-gpmemwatcher.md)
+[gpmemwatcher](/docs/sys-utilities/db-util-gpmemwatcher.md)

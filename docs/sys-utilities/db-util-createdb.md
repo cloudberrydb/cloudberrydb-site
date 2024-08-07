@@ -118,4 +118,4 @@ createdb -p 54321 -h gpcoord -E LATIN1 demo
 
 ## See also
 
-[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [dropdb](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/db-utilities/db-util-dropdb.md)
+[`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [dropdb](/docs/sys-utilities/db-util-dropdb.md)

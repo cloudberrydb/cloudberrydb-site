@@ -532,4 +532,4 @@ GPLOAD:
 
 ## See also
 
-[gpfdist](/docs/db-utilities/db-util-gpfdist.md), [`CREATE EXTERNAL TABLE`](/docs/sql-stmts/sql-stmt-create-external-table.md)
+[gpfdist](/docs/sys-utilities/db-util-gpfdist.md), [`CREATE EXTERNAL TABLE`](/docs/sql-stmts/sql-stmt-create-external-table.md)

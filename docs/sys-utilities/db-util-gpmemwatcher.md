@@ -94,4 +94,4 @@ $ [gpadmin@gpdb-m]$ ls -thrl
 
 ## See also
 
-[gpmemreport](/docs/db-utilities/db-util-gpmemreport.md)
+[gpmemreport](/docs/sys-utilities/db-util-gpmemreport.md)

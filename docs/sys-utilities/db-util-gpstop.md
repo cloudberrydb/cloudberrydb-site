@@ -153,4 +153,4 @@ gpstop -u
 
 ## See also
 
-[gpstart](/docs/db-utilities/db-util-gpstart.md)
+[gpstart](/docs/sys-utilities/db-util-gpstart.md)

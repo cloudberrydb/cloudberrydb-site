@@ -136,4 +136,4 @@ PGOPTIONS='-c gp_role=utility' psql
 
 ## See also
 
-[gpstop](/docs/db-utilities/db-util-gpstop.md), [gpinitsystem](/docs/db-utilities/db-util-gpinitsystem.md)
+[gpstop](/docs/sys-utilities/db-util-gpstop.md), [gpinitsystem](/docs/sys-utilities/db-util-gpinitsystem.md)
