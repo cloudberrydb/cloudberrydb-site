@@ -22,7 +22,7 @@ CREATE DATABASE name
 
 `CREATE DATABASE` creates a new database.
 
-To create a database, you must be a superuser or have the special `CREATEDB` privilege. See [`CREATE ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-role.md).
+To create a database, you must be a superuser or have the special `CREATEDB` privilege. See [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
 
 The creator becomes the owner of the new database by default. Superusers can create databases owned by other users by using the `OWNER` clause. They can even create databases owned by users with no special privileges. Non-superusers with `CREATEDB` privilege can only create databases owned by themselves.
 
@@ -70,7 +70,7 @@ Use [`DROP DATABASE`](/docs/sql-stmts/sql-stmt-drop-database.md) to remove a dat
 
 The program createdb is a wrapper program around this command, provided for convenience.
 
-Database-level configuration parameters (set via [`ALTER DATABASE`](/docs/sql-stmts/sql-stmt-alter-database.md)) and database-level permissions (set via [GRANT](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-grant.md)) are not copied from the template database.
+Database-level configuration parameters (set via [`ALTER DATABASE`](/docs/sql-stmts/sql-stmt-alter-database.md)) and database-level permissions (set via [GRANT](/docs/sql-stmts/sql-stmt-grant.md)) are not copied from the template database.
 
 Although it is possible to copy a database other than `template1` by specifying its name as the template, this is not (yet) intended as a general-purpose `"COPY DATABASE"` facility. The principal limitation is that no other sessions can be connected to the template database while it is being copied. `CREATE DATABASE` will fail if any other connection exists when it starts; otherwise, new connections to the template database are locked out until `CREATE DATABASE` completes.
 

@@ -54,4 +54,4 @@ DROP SCHEMA mystuff CASCADE;
 
 ## See also
 
-[`CREATE SCHEMA`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-schema.md), [`ALTER SCHEMA`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-schema.md)
+[`CREATE SCHEMA`](/docs/sql-stmts/sql-stmt-create-schema.md), [`ALTER SCHEMA`](/docs/sql-stmts/sql-stmt-alter-schema.md)

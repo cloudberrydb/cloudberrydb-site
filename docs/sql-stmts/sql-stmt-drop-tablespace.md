@@ -42,7 +42,7 @@ WARNINGtablespace with oid "16415" is not empty
 DROP TABLESPACE
 ```
 
-The table data in the tablespace directory is not dropped. You can use the [ALTER TABLE](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-table.md) command to change the tablespace defined for the table and move the data to an existing tablespace.
+The table data in the tablespace directory is not dropped. You can use the [ALTER TABLE](/docs/sql-stmts/sql-stmt-alter-table.md) command to change the tablespace defined for the table and move the data to an existing tablespace.
 
 ## Examples
 

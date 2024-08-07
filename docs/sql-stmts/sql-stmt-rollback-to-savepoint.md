@@ -31,7 +31,7 @@ The name of the savepoint to roll back to.
 
 ## Notes
 
-Use [RELEASE SAVEPOINT](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md) to destroy a savepoint without discarding the effects of commands run after it was established.
+Use [RELEASE SAVEPOINT](/docs/sql-stmts/sql-stmt-release-savepoint.md) to destroy a savepoint without discarding the effects of commands run after it was established.
 
 Specifying a savepoint name that has not been established is an error.
 
@@ -71,4 +71,4 @@ The SQL standard specifies that the key word `SAVEPOINT` is mandatory, but Cloud
 
 ## See also
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md), [`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md), [`SAVEPOINT`](/docs/sql-stmts/sql-stmt-savepoint.md)
+[`BEGIN`](/docs/sql-stmts/sql-stmt-begin.md), [`COMMIT`](/docs/sql-stmts/sql-stmt-commit.md), [`RELEASE SAVEPOINT`](/docs/sql-stmts/sql-stmt-release-savepoint.md), [`ROLLBACK`](/docs/sql-stmts/sql-stmt-rollback.md), [`SAVEPOINT`](/docs/sql-stmts/sql-stmt-savepoint.md)

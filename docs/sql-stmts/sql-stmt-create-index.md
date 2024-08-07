@@ -39,7 +39,7 @@ All functions and operators used in an index definition must be immutable. Their
 
 Checks for duplicate values in the table when the index is created (if data already exist) and each time data is added. Duplicate entries will generate an error. Unique indexes only apply to B-tree indexes.
 
-Additional restrictions apply when unique indexes are applied to partitioned tables; see [`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md).
+Additional restrictions apply when unique indexes are applied to partitioned tables; see [`CREATE TABLE`](/docs/sql-stmts/sql-stmt-create-table.md).
 
 **`IF NOT EXISTS`**
 
@@ -175,7 +175,7 @@ When `CREATE INDEX` is invoked on a partitioned table, the default behavior is t
 
 For index methods that support ordered scans (currently, only B-tree), you can specify the optional clauses `ASC`, `DESC`, `NULLS FIRST`, and/or `NULLS LAST` to modify the sort ordering of the index. Since an ordered index can be scanned either forward or backward, it is not normally useful to create a single-column `DESC` index — that sort ordering is already available with a regular index. The value of these options is that multicolumn indexes can be created that match the sort ordering requested by a mixed-ordering query, such as `SELECT ... ORDER BY x ASC, y DESC`. The `NULLS` options are useful if you need to support "nulls sort low" behavior, rather than the default "nulls sort high", in queries that depend on indexes to avoid sorting steps.
 
-The system regularly collects statistics on all of a table's columns. Newly-created non-expression indexes can immediately use these statistics to determine an index's usefulness. For new expression indexes, you must run [ANALYZE](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-analyze.md) to generate statistics for these indexes.
+The system regularly collects statistics on all of a table's columns. Newly-created non-expression indexes can immediately use these statistics to determine an index's usefulness. For new expression indexes, you must run [ANALYZE](/docs/sql-stmts/sql-stmt-analyze.md) to generate statistics for these indexes.
 
 For most index methods, the speed of creating an index is dependent on the setting of `maintenance_work_mem`. Larger values will reduce the time needed for index creation, so long as you don't make it larger than the amount of memory really available, which would drive the machine into swapping.
 

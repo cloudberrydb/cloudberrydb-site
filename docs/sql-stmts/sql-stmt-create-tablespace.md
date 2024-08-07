@@ -21,7 +21,7 @@ CREATE TABLESPACE <tablespace_name>
 
 A tablespace allows superusers to define an alternative host file system location where the data files containing database objects (such as tables and indexes) reside.
 
-A user with appropriate privileges can pass tablespace_name to [`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md), or [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md) to direct Cloudberry Database to store the data files for these objects within the specified tablespace.
+A user with appropriate privileges can pass tablespace_name to [`CREATE DATABASE`](/docs/sql-stmts/sql-stmt-create-database.md), [`CREATE TABLE`](/docs/sql-stmts/sql-stmt-create-table.md), or [`CREATE INDEX`](/docs/sql-stmts/sql-stmt-create-index.md) to direct Cloudberry Database to store the data files for these objects within the specified tablespace.
 
 In Cloudberry Database, the file system location must exist on all hosts including the hosts running the coordinator, standby mirror, each primary segment, and each mirror segment.
 
