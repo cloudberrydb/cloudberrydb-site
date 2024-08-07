@@ -53,7 +53,7 @@ Operators that require the `jsonb` data type as the left operand are described i
 |`@>`|`jsonb`|Does the left JSON value contain the right JSON path/value entries at the top level?|`'{"a":1, "b":2}'::jsonb @> '{"b":2}'::jsonb`|
 |`<@`|`jsonb`|Are the left JSON path/value enries contained at the top level within the right JSON value?|`'{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb`|
 |`?`|`text`|Does the *string* exist as a top-level key within the JSON value?|`'{"a":1, "b":2}'::jsonb ? 'b'`|
-|`?|`|`text[]`|Do any of these array *strings* exist as a top-level key?|`'{"a":1, "b":2, "c":3}'::jsonb ?| array['b', 'c']`|
+|`?\|` |`text[]`|Do any of these array *strings* exist as a top-level key?|`'{"a":1, "b":2, "c":3}'::jsonb ?\| array['b', 'c']`|
 |`?&`|`text[]`|Do all of these array *strings* exist as top-level keys?|`'["a", "b"]'::jsonb ?& array['a', 'b']`|
 | `||` | `jsonb` | Concatenate two `jsonb` values into a new `jsonb` value. | `'["a", "b"]'::jsonb || '["c", "d"]'::jsonb` |
 | `-` | `text` | Delete key/value pair or *string* elements from left operand. Key/value pairs are matched based on their key value.| `'{"a": "b"}'::jsonb - 'a'` |
