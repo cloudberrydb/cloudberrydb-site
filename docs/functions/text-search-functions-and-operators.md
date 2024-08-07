@@ -19,7 +19,7 @@ The following tables summarize the functions and operators that are provided for
 
 > **Note** The `tsquery` containment operators consider only the lexemes listed in the two queries, ignoring the combining operators.
 
-In addition to the operators shown in the table, the ordinary B-tree comparison operators (=, <, etc) are defined for types `tsvector` and `tsquery`. These are not very useful for text searching but allow, for example, unique indexes to be built on columns of these types.
+In addition to the operators shown in the table, the ordinary B-tree comparison operators (`=`, `<`, etc) are defined for types `tsvector` and `tsquery`. These are not very useful for text searching but allow, for example, unique indexes to be built on columns of these types.
 
 |Function|Return Type|Description|Example|Result|
 |--------|-----------|-----------|-------|------|
