@@ -164,7 +164,7 @@ Defines the number of table blocks that make up one block range for each entry o
 Defines whether a summarization run is queued for the previous page range whenever an insertion is detected on the next one. See [BRIN Index Maintenance](https://www.postgresql.org/docs/14/brin-intro.html#BRIN-OPERATION) in the PostgreSQL documentation for more information. The default is `off`.
 
 ## Notes
-Refer to the [Indexes](https://www.postgresql.org/docs/12/indexes.html) topics in the PostgreSQL documentation for information about when indexes can be used, when they are not used, and in which particular situations they can be useful.
+Refer to the [Indexes](https://www.postgresql.org/docs/14/indexes.html) topics in the PostgreSQL documentation for information about when indexes can be used, when they are not used, and in which particular situations they can be useful.
 
 Currently, only the B-tree, bitmap, GiST, GIN, and BRIN index methods support multicolumn indexes. You can specify up to 32 fields by default. Only B-tree currently supports unique indexes.
 
@@ -184,8 +184,6 @@ For most index methods, the speed of creating an index is dependent on the setti
 Use [`DROP INDEX`](/docs/sql-stmts/sql-stmt-drop-index.md) to remove an index.
 
 Like any long-running transaction, `CREATE INDEX` on a table can affect which tuples can be removed by concurrent `VACUUM` on any other table.
-
-Prior releases of Cloudberry Database also had an R-tree index method. This method has been removed because it had no significant advantages over the GiST method. If `USING rtree` is specified, `CREATE INDEX` will interpret it as `USING gist`, to simplify conversion of old databases to GiST.
 
 ## Examples
 
