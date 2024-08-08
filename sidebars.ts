@@ -286,6 +286,19 @@ const sidebars: SidebarsConfig = {
 
       {
         type: 'category',
+        label: 'Built-in Functions',
+        items: [
+                'functions/function-summary',
+                'functions/json-functions-and-operators',
+                'functions/window-functions',
+                'functions/advanced-aggregate-functions',
+                'functions/text-search-functions-and-operators',
+                'functions/range-functions-and-operators',
+        ]
+      },
+
+      {
+        type: 'category',
         label: 'System Utilities',
         items: [
                 'sys-utilities/analyzedb',
@@ -309,11 +322,14 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/db-util-gpmovemirrors',
                 'sys-utilities/db-util-gppkg',
                 'sys-utilities/db-util-gpreload',
+                'sys-utilities/db-util-gprecoverseg',
                 'sys-utilities/db-util-gpssh-exkeys',
                 'sys-utilities/db-util-gpssh',
                 'sys-utilities/db-util-gpstart',
                 'sys-utilities/db-util-gpstate',
                 'sys-utilities/db-util-gpstop',
+                'sys-utilities/db-util-gpsync',
+                'sys-utilities/db-util-pg-checksums',
                 'sys-utilities/db-util-pg-config',
                 'sys-utilities/db-util-pg-dump',
                 'sys-utilities/db-util-pg-dumpall',
