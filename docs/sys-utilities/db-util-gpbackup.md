@@ -68,7 +68,7 @@ The `gpbackup` utility cannot be run while `gpexpand` is initializing new segmen
 
 **--dbname database_name:** Required. Specifies the database to back up.
 
-**--backup-dir directory:** Optional. Copies all required backup files (metadata files and data files) to the specified directory. You must specify directory as an absolute path (not relative). If you do not supply this option, metadata files are created on the Cloudberry Database master host in the $MASTER_DATA_DIRECTORY/backups/YYYYMMDD/YYYYMMDDhhmmss/ directory. Segment hosts create CSV data files in the <seg_dir>/backups/YYYYMMDD/YYYYMMDDhhmmss/ directory. When you specify a custom backup directory, files are copied to these paths in subdirectories of the backup directory.
+**--backup-dir directory:** Optional. Copies all required backup files (metadata files and data files) to the specified directory. You must specify directory as an absolute path (not relative). If you do not supply this option, metadata files are created on the Cloudberry Database master host in the $MASTER_DATA_DIRECTORY/backups/YYYYMMDD/YYYYMMDDhhmmss/ directory. Segment hosts create CSV data files in the `<seg_dir>/backups/YYYYMMDD/YYYYMMDDhhmmss/` directory. When you specify a custom backup directory, files are copied to these paths in subdirectories of the backup directory.
 
 You cannot combine this option with the option `--plugin-config`.
 
@@ -76,7 +76,7 @@ You cannot combine this option with the option `--plugin-config`.
 
 **--compression-type type:** Optional. Specifies the compression type (`gzip` or `zstd`) used to compress data files. The default is `gzip`.
 
-**Note:** In order to use the `zstd` compression type, Zstandard ( <http://facebook.github.io/zstd/>) must be installed in a $PATH accessible by the gpadmin user.
+**Note:** In order to use the `zstd` compression type, [Zstandard](http://facebook.github.io/zstd/) must be installed in a `$PATH` accessible by the gpadmin user.
 
 **--copy-queue-size int:** Optional. Specifies the number of `COPY` commands `gpbackup` should enqueue when backing up using the `--single-data-file` option. This option optimizes backup performance by reducing the amount of time spent initializing `COPY` commands. If you do not set this option to 2 or greater, `gpbackup` enqueues 1 `COPY` command at a time.
 
