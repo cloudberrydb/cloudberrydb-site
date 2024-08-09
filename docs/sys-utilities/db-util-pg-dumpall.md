@@ -20,7 +20,7 @@ pg_dumpall -V | --version
 
 `pg_dumpall` is a standard PostgreSQL utility for backing up all databases in a Cloudberry Database (or PostgreSQL) instance, and is also supported in Cloudberry Database. It creates a single (non-parallel) dump file. For routine backups of Cloudberry Database it is better to use the Cloudberry Database backup utility, gpbackup, for the best performance.
 
-`pg_dumpall` creates a single script file that contains SQL commands that can be used as input to [psql](/docs/db-utilities/db-util-psql.md) to restore the databases. It does this by calling [pg_dump](/docs/db-utilities/db-util-pg-dump.md) for each database. `pg_dumpall` also dumps global objects that are common to all databases. (`pg_dump` does not save these objects.) This currently includes information about database users and groups, and access permissions that apply to databases as a whole.
+`pg_dumpall` creates a single script file that contains SQL commands that can be used as input to [psql](/docs/sys-utilities/db-util-psql.md) to restore the databases. It does this by calling [pg_dump](/docs/sys-utilities/db-util-pg-dump.md) for each database. `pg_dumpall` also dumps global objects that are common to all databases. (`pg_dump` does not save these objects.) This currently includes information about database users and groups, and access permissions that apply to databases as a whole.
 
 Since `pg_dumpall` reads tables from all databases you will most likely have to connect as a database superuser in order to produce a complete dump. Also you will need superuser privileges to run the saved script in order to be allowed to add users and groups, and to create databases.
 
@@ -34,10 +34,10 @@ The SQL script will be written to the standard output. Use the `[-f | --file]` o
 
 **`-a | --data-only`**
 
-Dump only the data, not the schema (data definitions). This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
+Dump only the data, not the schema (data definitions). This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/sys-utilities/db-util-pg-restore.md).
 
 **`-c | --clean`**
-Output commands to clean (drop) database objects prior to (the commands for) creating them. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
+Output commands to clean (drop) database objects prior to (the commands for) creating them. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/sys-utilities/db-util-pg-restore.md).
 
 **`-f filename | --file=filename`**
 
@@ -53,7 +53,7 @@ Dump object identifiers (OIDs) as part of the data for every table. Use of this 
 
 **`-O | --no-owner`**
 
-Do not output commands to set ownership of objects to match the original database. By default, [pg_dump](/docs/db-utilities/db-util-pg-dump.md) issues `ALTER OWNER` or `SET SESSION AUTHORIZATION` statements to set ownership of created database objects. These statements will fail when the script is run unless it is started by a superuser (or the same user that owns all of the objects in the script). To make a script that can be restored by any user, but will give that user ownership of all the objects, specify `-O`. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/db-utilities/db-util-pg-restore.md).
+Do not output commands to set ownership of objects to match the original database. By default, [pg_dump](/docs/sys-utilities/db-util-pg-dump.md) issues `ALTER OWNER` or `SET SESSION AUTHORIZATION` statements to set ownership of created database objects. These statements will fail when the script is run unless it is started by a superuser (or the same user that owns all of the objects in the script). To make a script that can be restored by any user, but will give that user ownership of all the objects, specify `-O`. This option is only meaningful for the plain-text format. For the archive formats, you may specify the option when you call [pg_restore](/docs/sys-utilities/db-util-pg-restore.md).
 
 **`-r | --roles-only`**
 
@@ -75,7 +75,7 @@ Dump only tablespaces, not databases or roles.
 
 **`-v | --verbose`**
 
-Specifies verbose mode. This will cause [pg_dump](/docs/db-utilities/db-util-pg-dump.md) to output detailed object comments and start/stop times to the dump file, and progress messages to standard error.
+Specifies verbose mode. This will cause [pg_dump](/docs/sys-utilities/db-util-pg-dump.md) to output detailed object comments and start/stop times to the dump file, and progress messages to standard error.
 
 **`-V | --version`**
 
@@ -189,7 +189,7 @@ Specifies a role name to be used to create the dump. This option causes `pg_dump
 
 ## Notes
 
-Since `pg_dumpall` calls [pg_dump](/docs/db-utilities/db-util-pg-dump.md) internally, some diagnostic messages will refer to `pg_dump`.
+Since `pg_dumpall` calls [pg_dump](/docs/sys-utilities/db-util-pg-dump.md) internally, some diagnostic messages will refer to `pg_dump`.
 
 Once restored, it is wise to run `ANALYZE` on each database so the query planner has useful statistics. You can also run `vacuumdb -a -z` to vacuum and analyze all databases.
 

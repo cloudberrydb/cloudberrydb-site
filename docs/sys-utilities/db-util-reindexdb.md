@@ -144,7 +144,7 @@ This utility, like most other Cloudberry Database utilities, also uses the envir
 
 ## Diagnostics
 
-In case of difficulty, see [REINDEX](/docs/sql-stmts/sql-stmt-reindex.md) and [psql](/docs/db-utilities/db-util-psql.md) for discussions of potential problems and error messages. The database server must be running at the targeted host. Also, any default connection settings and environment variables used by the `libpq` front-end library will apply.
+In case of difficulty, see [REINDEX](/docs/sql-stmts/sql-stmt-reindex.md) and [psql](/docs/sys-utilities/db-util-psql.md) for discussions of potential problems and error messages. The database server must be running at the targeted host. Also, any default connection settings and environment variables used by the `libpq` front-end library will apply.
 
 ## Notes
 

@@ -18,7 +18,7 @@ pg_restore -V | --version
 
 ## Description
 
-`pg_restore` is a utility for restoring a database from an archive created by [pg_dump](/docs/db-utilities/db-util-pg-dump.md) in one of the non-plain-text formats. It will issue the commands necessary to reconstruct the database to the state it was in at the time it was saved. The archive files also allow `pg_restore` to be selective about what is restored, or even to reorder the items prior to being restored.
+`pg_restore` is a utility for restoring a database from an archive created by [pg_dump](/docs/sys-utilities/db-util-pg-dump.md) in one of the non-plain-text formats. It will issue the commands necessary to reconstruct the database to the state it was in at the time it was saved. The archive files also allow `pg_restore` to be selective about what is restored, or even to reorder the items prior to being restored.
 
 `pg_restore` can operate in two modes. If a database name is specified, the archive is restored directly into the database. Otherwise, a script containing the SQL commands necessary to rebuild the database is created and written to a file or standard output. The script output is equivalent to the plain text output format of `pg_dump`. Some of the options controlling the output are therefore analogous to `pg_dump` options.
 
@@ -62,7 +62,7 @@ Specify output file for generated script, or for the listing when used with `-l`
 
 **`-F c|d|t | --format={custom | directory | tar}`**
 
-The format of the archive produced by [pg_dump](/docs/db-utilities/db-util-pg-dump.md). It is not necessary to specify the format, since `pg_restore` will determine the format automatically. Format can be `custom`, `directory`, or `tar`.
+The format of the archive produced by [pg_dump](/docs/sys-utilities/db-util-pg-dump.md). It is not necessary to specify the format, since `pg_restore` will determine the format automatically. Format can be `custom`, `directory`, or `tar`.
 
 **`-I index | --index=index`**
 

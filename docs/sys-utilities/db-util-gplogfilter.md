@@ -21,7 +21,7 @@ gplogfilter --version
 
 The `gplogfilter` utility can be used to search through a Cloudberry Database log file for entries matching the specified criteria. If an input file is not supplied, then `gplogfilter` will use the `$COORDINATOR_DATA_DIRECTORY` environment variable to locate the Cloudberry coordinator log file in the standard logging location. To read from standard input, use a dash (`-`) as the input file name. Input files may be compressed using `gzip`. In an input file, a log entry is identified by its timestamp in `YYYY-MM-DD [hh:mm[:ss]]` format.
 
-You can also use `gplogfilter` to search through all segment log files at once by running it through the [gpssh](/docs/db-utilities/db-util-gpssh.md) utility. For example, to display the last three lines of each segment log file:
+You can also use `gplogfilter` to search through all segment log files at once by running it through the [gpssh](/docs/sys-utilities/db-util-gpssh.md) utility. For example, to display the last three lines of each segment log file:
 
 ```shell
 gpssh -f seg_host_file
@@ -149,7 +149,7 @@ Display log messages in the coordinator log file containing the string `|con6 cm
 gplogfilter -f '|con6 cmd11|'
 ```
 
-Using [gpssh](/docs/db-utilities/db-util-gpssh.md), run `gplogfilter` on the segment hosts and search for log messages in the segment log files containing the string `con6` and save output to a file.
+Using [gpssh](/docs/sys-utilities/db-util-gpssh.md), run `gplogfilter` on the segment hosts and search for log messages in the segment log files containing the string `con6` and save output to a file.
 
 ```shell
 gpssh -f seg_hosts_file -e 'source 
