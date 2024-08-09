@@ -241,4 +241,4 @@ You cannot use the option `--exclude-schema` with a table filtering option such 
 
 ## See Also
 
-[gprestore](/docs/sys-utilities/db-util-gprestore.md)
+[gprestore](/docs/sys-utilities/gprestore.md)
