@@ -6,9 +6,8 @@ title: Summary of Built-in Functions
 
 Cloudberry Database supports built-in functions and operators including analytic functions and window functions that can be used in window expressions.
 
-- [Built-in Functions in Cloudberry Database](#built-in-functions-in-cloudberry-database)
-  - [Cloudberry Database function types](#cloudberry-database-function-types)
-  - [Built-in functions and operators](#built-in-functions-and-operators)
+- [Cloudberry Database function types](#cloudberry-database-function-types)
+- [Built-in functions and operators](#built-in-functions-and-operators)
 
 ## Cloudberry Database function types
 
