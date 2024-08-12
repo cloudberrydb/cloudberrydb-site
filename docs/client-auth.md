@@ -10,7 +10,7 @@ When a Cloudberry Database system is first initialized, the system contains one 
 
 ## Allowing Connections to Cloudberry Database 
 
-Client access and authentication is controlled by a configuration file named `pg_hba.conf` (the standard PostgreSQL host-based authentication file). For detailed information about this file, see [The pg_hba.conf File](https://www.postgresql.org/docs/12/auth-pg-hba-conf.html) in the PostgreSQL documentation.
+Client access and authentication is controlled by a configuration file named `pg_hba.conf` (the standard PostgreSQL host-based authentication file). For detailed information about this file, see [The pg_hba.conf File](https://www.postgresql.org/docs/14/auth-pg-hba-conf.html) in the PostgreSQL documentation.
 
 In Cloudberry Database, the `pg_hba.conf` file of the coordinator instance controls client access and authentication to your Cloudberry system. The segments also have `pg_hba.conf` files, but these are already correctly configured to only allow client connections from the coordinator host. The segments never accept outside client connections, so there is no need to alter the `pg_hba.conf` file on segments.
 
@@ -40,7 +40,7 @@ Matches connection attempts made using TCP/IP. Remote TCP/IP connections will no
 
 **`hostssl`**
 
-Matches connection attempts made using TCP/IP, but only when the connection is made with SSL encryption. SSL must be enabled at server start time by setting the `ssl` configuration parameter to on. Requires SSL authentication be configured in `postgresql.conf`. See [Configuring postgresql.conf for SSL Authentication](#ssl_postgresql).
+Matches connection attempts made using TCP/IP, but only when the connection is made with SSL encryption. SSL must be enabled at server start time by setting the `ssl` configuration parameter to on. Requires SSL authentication be configured in `postgresql.conf`. See [Configuring postgresql.conf for SSL Authentication](#configuring-postgresqlconf-for-ssl-authentication).
 
 **`hostnossl`**
 
@@ -85,11 +85,11 @@ These two fields can be used as an alternative to the CIDR address notation. Ins
 
 **`auth-method`**
 
-Specifies the authentication method to use when a connection matches this record. See [Authentication Methods](#topic_nyh_gwd_jr) for options.
+Specifies the authentication method to use when a connection matches this record. See [Authentication Methods](#authentication-methods) for options.
 
 **`auth-options`**
 
-After the `auth-method` field, there can be field(s) of the form `name=value` that specify options for the authentication method. Details about which options are available for which authentication methods are described in [Authentication Methods](#topic_nyh_gwd_jr).
+After the `auth-method` field, there can be field(s) of the form `name=value` that specify options for the authentication method. Details about which options are available for which authentication methods are described in [Authentication Methods](#authentication-methods).
 
 Files included by @ constructs are read as lists of names, which can be separated by either whitespace or commas. Comments are introduced by \#, just as in `pg_hba.conf`, and nested @ constructs are allowed. Unless the file name following @ is an absolute path, it is taken to be relative to the directory containing the referencing file.
 
