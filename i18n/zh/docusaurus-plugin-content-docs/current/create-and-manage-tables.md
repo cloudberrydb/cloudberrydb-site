@@ -107,6 +107,6 @@ CREATE TABLE circles (
 
 分区表不支持排除约束。
 
-请参阅 [`CREATE TABLE ... CONSTRAINT ... EXCLUDE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md) 以查看详情。
+请参阅 [`CREATE TABLE ... CONSTRAINT ... EXCLUDE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-table.md) 以查看详情。
 
 添加排除约束会自动创建约束声明中指定类型的索引。

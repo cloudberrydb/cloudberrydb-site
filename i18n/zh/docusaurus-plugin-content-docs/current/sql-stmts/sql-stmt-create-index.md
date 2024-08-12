@@ -39,7 +39,7 @@ Cloudberry Database 提供了 B-tree、hash、bitmap、GiST、SP-GiST、GIN 和 
 
 当创建索引时（如果数据已存在）和每次添加数据时，检查表中是否存在重复值。重复的条目将会产生报错。唯一索引仅适用于 B-tree 索引。
 
-当唯一索引应用于分区表时，会有额外的限制，请参见 [`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md)。
+当唯一索引应用于分区表时，会有额外的限制，请参见 [`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-table.md)。
 
 **`IF NOT EXISTS`**
 
@@ -175,13 +175,13 @@ BRIN 索引还接受这些参数：
 
 对于支持有序扫描的索引类型（目前仅限于 B-tree），您可以使用 `ASC`、`DESC`、`NULLS FIRST` 和/或 `NULLS LAST` 这些可选子句来调整索引的排序方式。鉴于有序索引既可以向前也可以向后扫描，通常没有必要创建单一列的 DESC 索引——这一排序方式已经可以通过常规索引实现。这些选项的实际价值在于，它们允许创建多列索引，以适应那些需要混合排序的查询需求，例如 `SELECT ... ORDER BY x ASC, y DESC`。如果您需要在依赖索引避免排序操作的查询中实现“空值优先排序”而不是默认的“空值末尾排序”，`NULLS` 选项将非常有用。
 
-系统定期收集表的所有列的统计信息。新创建的非表达式索引可以立即使用这些统计信息来确定索引的有效性。对于新的表达式索引，你必须执行 [`ANALYZE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-analyze.md) 来为这些索引生成统计信息。
+系统定期收集表的所有列的统计信息。新创建的非表达式索引可以立即使用这些统计信息来确定索引的有效性。对于新的表达式索引，你必须执行 [`ANALYZE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/analyze.md) 来为这些索引生成统计信息。
 
 对大部分索引方法来说，创建索引的速度依赖于 `maintenance_work_mem` 的配置。增加这个值可以缩短创建索引的时间，但前提是不要设置得超过机器实际可用的内存容量，以免引起系统交换（Swapping）。
 
 对于具有 100 到 100,000 个不同值的列，`bitmap` 索引的性能最佳。对于具有超过 100,000 个不同值的列，`bitmap` 索引的性能和空间效率会下降。`bitmap` 索引的大小与表中的行数乘以索引列中的不同值数量成正比。
 
-要删除一条索引，请使用 [`DROP INDEX`](/sql-stmts/sql-stmt-drop-index.md)。
+要删除一条索引，请使用 [`DROP INDEX`](/sql-stmts/drop-index.md)。
 
 与任何长时间运行的事务一样，对表执行 `CREATE INDEX` 可能会影响并发 `VACUUM` 对其他表的清理效果。
 
@@ -253,4 +253,4 @@ Cloudberry Database 不支持并发创建索引（不支持 `CONCURRENTLY` 关�
 
 ## 另见
 
-[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-index.md)、[`DROP INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-index.md)
+[`ALTER INDEX`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/alter-index.md)、[`DROP INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/drop-index.md)

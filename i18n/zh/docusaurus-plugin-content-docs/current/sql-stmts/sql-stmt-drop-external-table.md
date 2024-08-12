@@ -52,4 +52,4 @@ DROP EXTERNAL TABLE IF EXISTS staging;
 
 ## 另见
 
-[`CREATE EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-external-table.md)、[`ALTER EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-external-table.md)
+[`CREATE EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-external-table.md)、[`ALTER EXTERNAL TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/alter-external-table.md)

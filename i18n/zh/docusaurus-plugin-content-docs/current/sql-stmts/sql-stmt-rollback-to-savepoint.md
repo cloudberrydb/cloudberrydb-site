@@ -31,7 +31,7 @@ ROLLBACK [ WORK | TRANSACTION ] TO [ SAVEPOINT ] <savepoint_name>
 
 ## 注意事项
 
-你可以使用 [`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md) 来销毁一个保存点，而不丢弃该保存点之后执行的命令的效果。
+你可以使用 [`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/release-savepoint.md) 来销毁一个保存点，而不丢弃该保存点之后执行的命令的效果。
 
 指定一个未建立的保存点名称会引发报错。
 
@@ -71,4 +71,4 @@ SQL 标准规定关键字 `SAVEPOINT` 是必须的，但 Cloudberry Database（�
 
 ## 另见
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md)、[`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-release-savepoint.md)、[`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-rollback.md)、[`SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-savepoint.md)
+[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/commit.md)、[`RELEASE SAVEPOINT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/release-savepoint.md)、[`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/rollback.md)、[`SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/savepoint.md)

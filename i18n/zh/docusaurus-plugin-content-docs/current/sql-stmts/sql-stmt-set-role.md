@@ -74,4 +74,4 @@ Cloudberry Database 允许使用标识符语法（rolename），而 SQL 标准�
 
 ## 另见
 
-[`SET SESSION AUTHORIZATION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set-session-authorization.md)
+[`SET SESSION AUTHORIZATION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/set-session-authorization.md)

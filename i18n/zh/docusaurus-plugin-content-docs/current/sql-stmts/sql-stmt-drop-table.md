@@ -14,7 +14,7 @@ DROP TABLE [IF EXISTS] <name> [, ...] [CASCADE | RESTRICT]
 
 ## 描述
 
-`DROP TABLE` 从数据库中删除表。只有表的所有者、schema 的所有者和超级用户才能删除表。若只想删除表中的行而不删除表定义，请使用 [`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-delete.md) 或 [`TRUNCATE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-truncate.md)。
+`DROP TABLE` 从数据库中删除表。只有表的所有者、schema 的所有者和超级用户才能删除表。若只想删除表中的行而不删除表定义，请使用 [`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/delete.md) 或 [`TRUNCATE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/truncate.md)。
 
 `DROP TABLE` 总是删除目标表的任何索引、规则、触发器和约束。但是，要删除被视图引用的表，必须指定 `CASCADE`。`CASCADE` 会完全删除依赖的视图。
 
@@ -56,4 +56,4 @@ DROP TABLE films, distributors;
 
 ## 另见
 
-[`ALTER TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-table.md)、[`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md)
+[`ALTER TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/alter-table.md)、[`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-table.md)

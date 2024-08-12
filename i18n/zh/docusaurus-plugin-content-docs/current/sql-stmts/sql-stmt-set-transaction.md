@@ -56,7 +56,7 @@ SQL 标准定义了另外两个隔离级别，`READ UNCOMMITTED` 和 `SERIALIZAB
 
 ## 注意事项
 
-如果在执行 `SET TRANSACTION` 前没有先执行 [`START TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-start-transaction.md) 或 [`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)，Cloudberry Database 会发出警告，但不会产生其他影响。
+如果在执行 `SET TRANSACTION` 前没有先执行 [`START TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/start-transaction.md) 或 [`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md)，Cloudberry Database 会发出警告，但不会产生其他影响。
 
 可以通过在 `BEGIN` 或 `START TRANSACTION` 中指定所需的 `transaction_modes` 来省去 `SET TRANSACTION`。但该选项不适用于 `SET TRANSACTION SNAPSHOT`。
 
@@ -96,4 +96,4 @@ SQL 标准要求在连续的 `transaction_modes` 之间使用逗号，但由于�
 
 ## 另见
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)
+[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md)

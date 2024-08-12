@@ -100,11 +100,11 @@ Print the `createuser` version and exit.
 
 **`--replication`**
 
-The new user will have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
+The new user will have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/create-role.md).
 
 **`--no-replication`**
 
-The new user will not have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md).
+The new user will not have the `REPLICATION` privilege, which is described more fully in the documentation for [`CREATE ROLE`](/docs/sql-stmts/create-role.md).
 
 **`-? | --help`**
 
@@ -174,4 +174,4 @@ In the above example, the new password is not actually echoed when typed, but we
 
 ## See also
 
-[`CREATE ROLE`](/docs/sql-stmts/sql-stmt-create-role.md), [dropuser](/docs/sys-utilities/db-util-dropuser.md)
+[`CREATE ROLE`](/docs/sql-stmts/create-role.md), [dropuser](/docs/sys-utilities/dropuser.md)

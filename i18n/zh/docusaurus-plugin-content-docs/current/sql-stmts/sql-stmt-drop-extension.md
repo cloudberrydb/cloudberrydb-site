@@ -60,4 +60,4 @@ DROP EXTENSION hstore;
 
 ## 另见
 
-[`CREATE EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-extension.md)、[`ALTER EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-extension.md)
+[`CREATE EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-extension.md)、[`ALTER EXTENSION`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/alter-extension.md)

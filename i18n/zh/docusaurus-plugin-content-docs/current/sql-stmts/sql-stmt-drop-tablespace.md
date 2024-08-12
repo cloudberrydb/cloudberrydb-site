@@ -42,7 +42,7 @@ WARNINGtablespace with oid "16415" is not empty
 DROP TABLESPACE
 ```
 
-在表空间目录中的表数据不会被删除。您可以使用 [`ALTER TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-table.md) 命令来更改表的表空间定义，并将数据移动到现有的表空间中。
+在表空间目录中的表数据不会被删除。您可以使用 [`ALTER TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/alter-table.md) 命令来更改表的表空间定义，并将数据移动到现有的表空间中。
 
 ## 示例
 
@@ -58,4 +58,4 @@ DROP TABLESPACE mystuff;
 
 ## 另见
 
-[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-tablespace.md)、[`ALTER TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-tablespace.md)
+[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-tablespace.md)、[`ALTER TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/alter-tablespace.md)

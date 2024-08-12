@@ -14,7 +14,7 @@ ABORT [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 ## 描述
 
-`ABORT` 回滚当前事务，并使事务中的所有更新被丢弃。该命令的行为上与标准 SQL 命令 [`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-rollback.md) 完全相同，仅出于历史原因而存在。
+`ABORT` 回滚当前事务，并使事务中的所有更新被丢弃。该命令的行为上与标准 SQL 命令 [`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/rollback.md) 完全相同，仅出于历史原因而存在。
 
 ## 参数
 
@@ -25,11 +25,11 @@ ABORT [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 **`AND CHAIN`**
 
-如果在 `ABORT` 命令中指定了 `AND CHAIN`，则会立即启动一个新的事务，该事务的特性与刚刚完成的事务相同（参见 [SET TRANSACTION](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-set-transaction.md)）。如果未指定该选项，则不启动新的事务。
+如果在 `ABORT` 命令中指定了 `AND CHAIN`，则会立即启动一个新的事务，该事务的特性与刚刚完成的事务相同（参见 [SET TRANSACTION](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/set-transaction.md)）。如果未指定该选项，则不启动新的事务。
 
 ## 注意事项
 
-使用 [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md) 成功终止事务。
+使用 [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/commit.md) 成功终止事务。
 
 在事务块之外执行 `ABORT` 会报错，而且不会生效。
 
@@ -47,4 +47,4 @@ ABORT;
 
 ## 另见
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md)、[`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-rollback.md)
+[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/commit.md)、[`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/rollback.md)
