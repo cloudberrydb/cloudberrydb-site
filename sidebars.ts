@@ -57,7 +57,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Operate with Data',
-      items: ['basic-query-syntax','create-and-manage-tables','create-and-manage-schemas','create-and-manage-views','create-and-manage-materialized-views','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control','table-storage-models',
+      items: ['basic-query-syntax', 'create-and-manage-tablespaces', 'create-and-manage-tables','create-and-manage-schemas','create-and-manage-views','create-and-manage-materialized-views','insert-update-delete-rows','work-with-transactions','transactional-concurrency-control','table-storage-models',
 
       {
         type: 'category',
@@ -76,7 +76,7 @@ const sidebars: SidebarsConfig = {
      {
        type: 'category',
        label: 'Security and Permission',
-       items: ['manage-roles-and-privileges','configure-row-level-security-policy', 'protect-passwords','set-password-profile']
+       items: ['manage-roles-and-privileges', 'client-auth', 'configure-row-level-security-policy', 'protect-passwords','set-password-profile']
      },
 
      {
@@ -301,11 +301,13 @@ const sidebars: SidebarsConfig = {
         type: 'category',
         label: 'System Utilities',
         items: [
+                'sys-utilities/db-util-overview',
                 'sys-utilities/analyzedb',
                 'sys-utilities/clusterdb',
                 'sys-utilities/createuser',
                 'sys-utilities/db-util-createdb',
                 'sys-utilities/db-util-gpaddmirrors',
+                'sys-utilities/db-util-gpbackup',
                 'sys-utilities/db-util-gpcheckcat',
                 'sys-utilities/db-util-gpcheckperf',
                 'sys-utilities/db-util-gpconfig',
@@ -321,6 +323,7 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/db-util-gpmemwatcher',
                 'sys-utilities/db-util-gpmovemirrors',
                 'sys-utilities/db-util-gppkg',
+                'sys-utilities/gprestore',
                 'sys-utilities/db-util-gpreload',
                 'sys-utilities/db-util-gprecoverseg',
                 'sys-utilities/db-util-gpssh-exkeys',
@@ -333,7 +336,6 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/db-util-pg-config',
                 'sys-utilities/db-util-pg-dump',
                 'sys-utilities/db-util-pg-dumpall',
-                'sys-utilities/db-util-pg-restore',
                 'sys-utilities/db-util-psql',
                 'sys-utilities/db-util-reindexdb',
                 'sys-utilities/db-util-vacuumdb',
