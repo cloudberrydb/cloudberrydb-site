@@ -202,13 +202,10 @@ CREATE OR REPLACE FUNCTION analyzedb(params TEXT)
 $BODY$
     import subprocess
     cmd = ['analyzedb', '-a' ] + params.split()
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
-    # verbose output of process
-    for line in iter(p.stdout.readline, ''):
-        plpy.info(line);
-
-    p.wait()
+    with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as proc:
+        # verbose output of process
+        for line in proc.stdout:
+            plpy.info(line.decode(errors='replace'))
 $BODY$
 LANGUAGE plpython3u VOLATILE;
 ```
