@@ -1,8 +1,8 @@
 ---
-title: Filedump
+title: pg_filedump
 ---
 
-# Filedump
+# pg_filedump
 
 Filedump，即系统命令行工具 `pg_filedump`，是一个用于将 Cloudberry Database 的堆文件、索引文件和控制文件格式化为人类可读形式的实用工具。通过 filedump，用户可以以多种方式格式化和转储文件，如在[命令行选项说明](#命令选项说明)部分所述，甚至可以直接转储二进制数据。
 
@@ -20,7 +20,7 @@ Filedump 工具主要适用于以下场景：
 
 在编译 filedump 前，你需要安装好一套 Cloudberry Database v1.0.0 及以上版本的集群，以下是典型的编译步骤：
 
-1. 确保 gpdb 包可以被找到：
+1. 确保 CloudberryDB 包可以被找到：
 
     ```bash
     su - gpadmin

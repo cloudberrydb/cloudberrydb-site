@@ -1,8 +1,8 @@
 ---
-title: Filedump
+title: pg_filedump
 ---
 
-# Filedump
+# pg_filedump
 
 Filedump, also known as the command-line tool `pg_filedump`, is a system utility that formats Cloudberry Database heap files, index files, and control files into human-readable forms. Using filedump, you can format and dump files in multiple ways, as described in the [Command-line options](#command-line-options) section, and even dump binary data directly.
 
@@ -21,7 +21,7 @@ The filedump tool is primarily used in the following scenarios:
 
 Before compiling filedump, you need to have a Cloudberry Database cluster installed with version 1.0.0 or later. The following are the typical steps for compilation:
 
-1. Ensure the `gpdb` package can be found:
+1. Ensure the CloudberryDB package can be found:
 
     ```bash
     su - gpadmin
