@@ -336,6 +336,7 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/db-util-pg-config',
                 'sys-utilities/db-util-pg-dump',
                 'sys-utilities/db-util-pg-dumpall',
+                'sys-utilities/gp-filedump',
                 'sys-utilities/db-util-psql',
                 'sys-utilities/db-util-reindexdb',
                 'sys-utilities/db-util-vacuumdb',
