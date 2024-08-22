@@ -19,7 +19,7 @@ TRUNCATE [TABLE] [ONLY] <name> [ * ] [, ...]
 
 ## 描述
 
-`TRUNCATE` 从一张表或一组表中快速删除所有行。它的效果与对每张表执行未加限定的 [`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-delete.md) 相同，但由于它实际上并不扫描表，因此速度更快。此外，它会立即回收磁盘空间，而不需要后续执行 [`VACUUM`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-vacuum.md) 操作。这在大型表上非常有用。
+`TRUNCATE` 从一张表或一组表中快速删除所有行。它的效果与对每张表执行未加限定的 [`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/delete.md) 相同，但由于它实际上并不扫描表，因此速度更快。此外，它会立即回收磁盘空间，而不需要后续执行 [`VACUUM`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/vacuum.md) 操作。这在大型表上非常有用。
 
 你必须对表具有 `TRUNCATE` 权限才能对表进行清空。
 
@@ -81,4 +81,4 @@ SQL:2008 标准包括了一个带有 `TRUNCATE TABLE tablename` 语法的 `TRUNC
 
 ## 另见
 
-[`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-delete.md)
+[`DELETE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/delete.md)

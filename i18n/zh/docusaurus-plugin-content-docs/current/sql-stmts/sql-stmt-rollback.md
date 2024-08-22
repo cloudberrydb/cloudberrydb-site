@@ -25,11 +25,11 @@ ROLLBACK [WORK | TRANSACTION] [AND [NO] CHAIN]
 
 **`AND CHAIN`**
 
-如果指定了 `AND CHAIN`，则立即启动一个新事务，其事务特性（参见 [SET TRANSACTION](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-set-transaction.md)）与刚刚完成的事务相同。否则，不会启动新事务。
+如果指定了 `AND CHAIN`，则立即启动一个新事务，其事务特性（参见 [SET TRANSACTION](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/set-transaction.md)）与刚刚完成的事务相同。否则，不会启动新事务。
 
 ## 注意事项
 
-使用 [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md) 来成功结束当前事务。
+使用 [`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/commit.md) 来成功结束当前事务。
 
 在事务块之外使用 `ROLLBACK` 会发出警告消息，但不会有任何实际效果。在事务块之外使用 `ROLLBACK AND CHAIN` 会引发错误。
 
@@ -47,4 +47,4 @@ ROLLBACK;
 
 ## 另见
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md)、[`ROLLBACK TO SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-rollback-to-savepoint.md)、[`SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-savepoint.md)
+[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/commit.md)、[`ROLLBACK TO SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/rollback-to-savepoint.md)、[`SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/savepoint.md)

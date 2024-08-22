@@ -21,7 +21,7 @@ CREATE TABLESPACE <tablespace_name>
 
 超级用户可以定义一个替代的主机文件系统位置，用于存放包含数据库对象（如表和索引）的数据文件。
 
-拥有适当权限的用户可以将 tablespace_name 传递给 [`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-database.md)、[`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md) 或 [`CREATE INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-index.md)，以此指示 Cloudberry Database 将这些对象的数据文件存储在指定的表空间中。
+拥有适当权限的用户可以将 tablespace_name 传递给 [`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-database.md)、[`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-table.md) 或 [`CREATE INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-index.md)，以此指示 Cloudberry Database 将这些对象的数据文件存储在指定的表空间中。
 
 在 Cloudberry Database 中，文件系统位置必须存在于所有主机上，包括运行 Coordinator、备用镜像、每个主要 Segment 和每个镜像 Segment 的主机。
 
@@ -93,4 +93,4 @@ CREATE TABLESPACE mytblspace LOCATION '/mydbtspc/mytestspace' WITH (content0='/t
 
 ## See also
 
-[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-database.md)、[`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-create-table.md)、[`CREATE INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-index.md)、[`DROP TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-tablespace.md)、[`ALTER TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-tablespace.md)
+[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-database.md)、[`CREATE TABLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/create-table.md)、[`CREATE INDEX`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-index.md)、[`DROP TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/drop-tablespace.md)、[`ALTER TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/alter-tablespace.md)

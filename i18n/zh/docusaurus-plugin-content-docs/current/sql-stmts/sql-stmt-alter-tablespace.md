@@ -62,4 +62,4 @@ ALTER TABLESPACE index_space OWNER TO mary;
 
 ## 另见
 
-[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-tablespace.md)、[`DROP TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-tablespace.md)
+[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-tablespace.md)、[`DROP TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/drop-tablespace.md)

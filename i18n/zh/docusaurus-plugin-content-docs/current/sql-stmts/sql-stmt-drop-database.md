@@ -50,4 +50,4 @@ DROP DATABASE testdb;
 
 ## 另见
 
-[`ALTER DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-alter-database.md)、[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-database.md)
+[`ALTER DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/alter-database.md)、[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-database.md)

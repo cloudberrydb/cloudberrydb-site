@@ -24,7 +24,7 @@ To cluster a table means to physically reorder a table on disk according to an i
 
 The `clusterdb` utility will find any tables in a database that have previously been clustered with the `CLUSTER` SQL command, and clusters them again on the same index that was last used. Tables that have never been clustered are not affected.
 
-`clusterdb` is a wrapper around the SQL command [`CLUSTER`](/docs/sql-stmts/sql-stmt-cluster.md). There is no effective difference between clustering databases via this utility and via other methods for accessing the server.
+`clusterdb` is a wrapper around the SQL command [`CLUSTER`](/docs/sql-stmts/cluster.md). There is no effective difference between clustering databases via this utility and via other methods for accessing the server.
 
 ## Options
 
@@ -122,7 +122,7 @@ This utility, like most other Cloudberry Database utilities, also uses the envir
 
 ## Diagnostics
 
-In case of difficulty, see [`CLUSTER`](/docs/sql-stmts/sql-stmt-cluster.md) and [psql](/docs/sys-utilities/db-util-psql.md) for discussions of potential problems and error messages. The database server must be running at the targeted host. Also, any default connection settings and environment variables used by the `libpq` front-end library will apply.
+In case of difficulty, see [`CLUSTER`](/docs/sql-stmts/cluster.md) and [psql](/docs/sys-utilities/psql.md) for discussions of potential problems and error messages. The database server must be running at the targeted host. Also, any default connection settings and environment variables used by the `libpq` front-end library will apply.
 
 ## Examples
 
@@ -140,4 +140,4 @@ clusterdb --table=foo xyzzy
 
 ## See also
 
-[`CLUSTER`](/docs/sql-stmts/sql-stmt-cluster.md)
+[`CLUSTER`](/docs/sql-stmts/cluster.md)

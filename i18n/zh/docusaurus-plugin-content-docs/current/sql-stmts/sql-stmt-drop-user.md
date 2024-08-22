@@ -14,7 +14,7 @@ DROP USER [IF EXISTS] <name> [, ...]
 
 ## 描述
 
-`DROP USER` 是 [`DROP ROLE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-role.md) 的别名。
+`DROP USER` 是 [`DROP ROLE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/drop-role.md) 的别名。
 
 ## 兼容性
 
@@ -22,4 +22,4 @@ DROP USER [IF EXISTS] <name> [, ...]
 
 ## 另见
 
-[`DROP ROLE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-role.md)
+[`DROP ROLE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/drop-role.md)

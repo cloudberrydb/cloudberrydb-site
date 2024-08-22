@@ -20,11 +20,11 @@ START TRANSACTION [<transaction_mode>] [, ...]
 
 ## 描述
 
-`START TRANSACTION` 开启一个新的事务块。如果指定了隔离级别、读/写模式或可延迟模式，新事务将具有这些特性，就像执行了 [SET TRANSACTION](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-set-transaction.md) 命令一样。这与 [`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md) 命令相同。
+`START TRANSACTION` 开启一个新的事务块。如果指定了隔离级别、读/写模式或可延迟模式，新事务将具有这些特性，就像执行了 [SET TRANSACTION](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/set-transaction.md) 命令一样。这与 [`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md) 命令相同。
 
 ## 参数
 
-更多有关该语句的参数信息，请参见 [`SET TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-set-transaction.md)。
+更多有关该语句的参数信息，请参见 [`SET TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/set-transaction.md)。
 
 ## 兼容性
 
@@ -34,8 +34,8 @@ START TRANSACTION [<transaction_mode>] [, ...]
 
 SQL 标准要求在连续的 `transaction_modes` 之间使用逗号，但出于历史原因，Cloudberry Database 允许省略逗号。
 
-另见 [`SET TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-set-transaction.md) 中的兼容性部分。
+另见 [`SET TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/set-transaction.md) 中的兼容性部分。
 
 ## 另见
 
-[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-commit.md)、[`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-rollback.md)、[`SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-savepoint.md)、[`SET TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-set-transaction.md)
+[`BEGIN`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/begin.md)、[`COMMIT`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/commit.md)、[`ROLLBACK`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/rollback.md)、[`SAVEPOINT`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/savepoint.md)、[`SET TRANSACTION`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/set-transaction.md)

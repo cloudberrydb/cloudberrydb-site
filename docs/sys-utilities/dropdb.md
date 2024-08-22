@@ -94,4 +94,4 @@ DROP DATABASE
 
 ## See also
 
-[createdb](/docs/sys-utilities/db-util-createdb.md), [`DROP DATABASE`](/docs/sql-stmts/sql-stmt-drop-database.md)
+[createdb](/docs/sys-utilities/createdb.md), [`DROP DATABASE`](/docs/sql-stmts/drop-database.md)

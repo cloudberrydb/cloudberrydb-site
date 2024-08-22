@@ -79,11 +79,11 @@ Coordinator 上允许连接到该数据库的最大并发连接数。默认值�
 
 将特定配置参数的会话默认值设置为给定值。如果值为 `DEFAULT` 或等效的 `RESET`，则会删除数据库特定的设置，因此系统范围的默认设置将在新会话中继承。使用 `RESET ALL` 来清除所有数据库特定的设置。`SET FROM CURRENT` 会将会话当前的参数值保存为数据库特定的值。
 
-更多有关参数名称和值的信息，请参见 [`SET`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set.md)。
+更多有关参数名称和值的信息，请参见 [`SET`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/set.md)。
 
 ## 注意事项
 
-还可以将会话默认值与特定角色绑定，而不是与数据库绑定；请参见 [`ALTER ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-alter-role.md)。如果存在冲突，角色特定的设置会覆盖数据库特定的设置。
+还可以将会话默认值与特定角色绑定，而不是与数据库绑定；请参见 [`ALTER ROLE`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/alter-role.md)。如果存在冲突，角色特定的设置会覆盖数据库特定的设置。
 
 ## 示例
 
@@ -105,4 +105,4 @@ ALTER DATABASE mydatabase SET search_path TO myschema, public, pg_catalog;
 
 ## 另见
 
-[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-database.md)、[`DROP DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-drop-database.md)、[`SET`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/sql-stmt-set.md)、[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/sql-stmt-create-tablespace.md)
+[`CREATE DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-database.md)、[`DROP DATABASE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/drop-database.md)、[`SET`](https://github.com/cloudberrydb/cloudberrydb-site/blob/cbdb-doc-validation/docs/sql-stmts/set.md)、[`CREATE TABLESPACE`](/i18n/zh/docusaurus-plugin-content-docs/current/sql-stmts/create-tablespace.md)

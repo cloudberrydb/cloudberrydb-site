@@ -34,7 +34,7 @@ analyzedb { -? | -h | --help }
 
 The analyzedb utility updates statistics on table data for the specified tables in a Cloudberry Database incrementally and concurrently.
 
-While performing [`ANALYZE`](/docs/sql-stmts/sql-stmt-analyze.md) operations, analyzedb creates a snapshot of the table metadata and stores it on disk on the coordinator host. An `ANALYZE` operation is performed only if the table has been modified. If a table or partition has not been modified since the last time it was analyzed, analyzedb automatically skips the table or partition because it already contains up-to-date statistics.
+While performing [`ANALYZE`](/docs/sql-stmts/analyze.md) operations, analyzedb creates a snapshot of the table metadata and stores it on disk on the coordinator host. An `ANALYZE` operation is performed only if the table has been modified. If a table or partition has not been modified since the last time it was analyzed, analyzedb automatically skips the table or partition because it already contains up-to-date statistics.
 
 - For append optimized tables, analyzedb updates statistics incrementally, if the statistics are not current. For example, if table data is changed after statistics were collected for the table. If there are no statistics for the table, statistics are collected.
 - For heap tables, statistics are always updated.
@@ -45,7 +45,7 @@ By default, analyzedb creates a maximum of 5 concurrent sessions to analyze tabl
 
 **Partitioned Append-Optimized Tables**
 
-For a partitioned, append-optimized table, analyzedb checks the root partitioned table and the leaf partitions. If needed, the utility updates statistics for non-current partitions and the root partition. For information about how statistics are collected for partitioned tables, see [`ANALYZE`](/docs/sql-stmts/sql-stmt-analyze.md).
+For a partitioned, append-optimized table, analyzedb checks the root partitioned table and the leaf partitions. If needed, the utility updates statistics for non-current partitions and the root partition. For information about how statistics are collected for partitioned tables, see [`ANALYZE`](/docs/sql-stmts/analyze.md).
 
 `analyzedb` must sample additional partitions within a partitioned table when it encounters a stale partition, even when statistics are already collected. We recommend that you run `analyzedb` on the root partition any time that you add a new partition(s) to a partitioned table. This operation both analyzes the leaf partitions in parallel and merges any updated statistics into the root partition.
 
@@ -224,4 +224,4 @@ CREATE LANGUAGE plpython3u;
 
 ## See also
 
-[`ANALYZE`](/docs/sql-stmts/sql-stmt-analyze.md)
+[`ANALYZE`](/docs/sql-stmts/analyze.md)
