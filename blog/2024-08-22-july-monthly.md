@@ -76,7 +76,7 @@ Thanks to @edespino, @tuhaihe, and @shawn0915 for making their contributions thi
 
 ### Cloudberry Database Meetup @ Beijing
 
-![Cloudberry Database Meetup@Beijing 2024](../static/img/Cloudberry-Meetup@Beijing.png)
+![Cloudberry Database Meetup@Beijing 2024](../static/img/blog/Cloudberry-Meetup@Beijing.png)
 
 🍺 Our first-ever in-person Cloudberry Database Meetup in Beijing 2024 was successfully organized. Welcome to take a look at our review blog for details:  [https://www.linkedin.com/pulse/first-ever-in-person-cloudberry-database-meetup-beijing-2024-h3ssc](https://www.linkedin.com/pulse/first-ever-in-person-cloudberry-database-meetup-beijing-2024-h3ssc).
 
@@ -86,17 +86,17 @@ Thanks to @edespino, @tuhaihe, and @shawn0915 for making their contributions thi
 
 CommunityOverCode (formerly known as ApacheCon) is the official global conference series of The Apache Software Foundation (ASF). This year,  [CommunityOverCode Asia 2024](https://asia.communityovercode.org/index.html)  was held in Hangzhou from July 26 to 28，2024.
 
-![CommunityOverCode Asia 2024](../static/img/ApacheCon-1.jpg)
+![CommunityOverCode Asia 2024](../static/img/blog/ApacheCon-1.jpg)
 
 Dianjin Wang [@tuhaihe](https://github.com/tuhaihe), our community manager, took care of the OLAP & Analytics track this year and also gave a talk on the story of Cloudberry Database open source, sharing the lessons learned in its open-source incubation from scratch.
 
-![CommunityOverCode Asia 2024](../static/img/ApacheCon-2.jpg)
+![CommunityOverCode Asia 2024](../static/img/blog/ApacheCon-2.jpg)
 
 ## Listed on GitHub Trending - C
 
 🎉 Cloudberry Database was listed again on the GitHub trending list for a few days this month!
 
-![CommunityOverCode Asia 2024](../static/img/GitHub-Trending-Cloudberry.png)
+![CommunityOverCode Asia 2024](../static/img/blog/GitHub-Trending-Cloudberry.png)
 
 ## More
 
