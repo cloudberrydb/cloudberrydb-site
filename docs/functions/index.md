@@ -2,12 +2,16 @@
 title: Summary of Built-in Functions
 ---
 
-# Built-in Functions in Cloudberry Database
+#  Summary of Built-in Functions
 
 Cloudberry Database supports built-in functions and operators including analytic functions and window functions that can be used in window expressions.
 
-- [Cloudberry Database function types](#cloudberry-database-function-types)
-- [Built-in functions and operators](#built-in-functions-and-operators)
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```
 
 ## Cloudberry Database function types
 
@@ -38,7 +42,7 @@ Cloudberry Database does not support functions that return a table reference (`r
 
 ## Built-in functions and operators
 
-The following table lists the categories of built-in functions and operators supported by PostgreSQL. All functions and operators are supported in Cloudberry Database as in PostgreSQL with the exception of `STABLE` and `VOLATILE` functions, which are subject to the restrictions noted in [Cloudberry Database Function Types](#topic27). See the [Functions and Operators](https://www.postgresql.org/docs/12/functions.html) section of the PostgreSQL documentation for more information about these built-in functions and operators.
+The following table lists the categories of built-in functions and operators supported by PostgreSQL. All functions and operators are supported in Cloudberry Database as in PostgreSQL with the exception of `STABLE` and `VOLATILE` functions, which are subject to the restrictions noted in [Cloudberry Database Function Types](#topic27). See the [Functions and Operators](https://www.postgresql.org/docs/14/functions.html) section of the PostgreSQL documentation for more information about these built-in functions and operators.
 
 |Operator/Function Category|VOLATILE Functions|STABLE Functions|Restrictions|
 |--------------------------|------------------|----------------|------------|

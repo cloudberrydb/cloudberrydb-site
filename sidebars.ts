@@ -98,6 +98,10 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'SQL Statements',
+        link: {
+          type: "doc",
+          id: 'sql-stmts/index',
+        },
         items: [
           'sql-stmts/abort',
           'sql-stmts/alter-aggregate',
@@ -287,8 +291,11 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'Built-in Functions',
+        link: {
+          type: "doc",
+          id: 'functions/index',
+        },
         items: [
-                'functions/function-summary',
                 'functions/json-functions-and-operators',
                 'functions/window-functions',
                 'functions/advanced-aggregate-functions',
@@ -300,8 +307,11 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'System Utilities',
+        link: {
+          type: "doc",
+          id: 'sys-utilities/index',
+        },
         items: [
-                'sys-utilities/overview',
                 'sys-utilities/analyzedb',
                 'sys-utilities/clusterdb',
                 'sys-utilities/createuser',
@@ -342,8 +352,7 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/vacuumdb',
                 'sys-utilities/dropdb',
                 'sys-utilities/dropuser',
-                'sys-utilities/gpactivatestandby',
-                'sys-utilities/gpdemo']
+                'sys-utilities/gpactivatestandby']
        },
      ]
     },
