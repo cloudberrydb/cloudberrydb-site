@@ -5,7 +5,7 @@
 - [CREATE ACCESS METHOD](./create-access-method.md) - Defines a new access method.
 - [DROP ACCESS METHOD](./drop-access-method.md) - Removes an access method.
 
-## cast
+## Cast
 
 - [CREATE CAST](./create-cast.md) - Defines a new cast.
 - [DROP CAST](./drop-cast.md) - Removes a cast.
@@ -66,7 +66,7 @@
 - [ALTER FOREIGN DATA WRAPPER](./alter-foreign-data-wrapper.md) - Changes the definition of a foreign-data wrapper.
 - [DROP FOREIGN DATA WRAPPER](./drop-foreign-data-wrapper.md) - Removes a foreign-data wrapper.
 
-## Function && Aggregate Function
+## Function & Aggregate Function
 
 ### Function
 
@@ -150,7 +150,7 @@
 - [ALTER OPERATOR FAMILY](./alter-operator-family.md) - Changes the definition of an operator family.
 - [DROP OPERATOR FAMILY](./drop-operator-family.md) - Removes an operator family.
 
-## Privilege && Security
+## Privilege & Security
 
 ### Privilege
 
