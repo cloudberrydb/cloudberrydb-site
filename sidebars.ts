@@ -39,7 +39,11 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Load Data',
-      items: ['data-loading/load-data-overview',
+      link: {
+        type: "doc",
+        id: 'data-loading/index',
+    },
+      items: [
       {
         type: 'category',
         label: 'Load Data from Local Files',
@@ -70,13 +74,26 @@ const sidebars: SidebarsConfig = {
      {
        type: 'category',
        label: 'Optimize Query Performance',
-       items: ['query-performance-overview', 'update-stats-using-analyze', 'use-unique-index-on-ao-tables', 'use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh-mv', 'parallel-query-execution', 'use-aggre-pushdown-to-speed-up-queries', 'use-index-scan-on-ao-tables', 'use-runtimefilter-to-optimize-queries']
+       link: {
+        type: "doc",
+        id: 'performance/index',
+      },
+       items: ['performance/update-stats-using-analyze', 'performance/use-unique-index-on-ao-tables', 'performance/use-auto-materialized-view-to-answer-queries', 'performance/use-incremental-materialized-view', 'performance/parallel-create-ao-refresh-mv', 'performance/parallel-query-execution', 'performance/use-aggre-pushdown-to-speed-up-queries', 'performance/use-index-scan-on-ao-tables', 'performance/use-runtimefilter-to-optimize-queries']
      },
 
      {
        type: 'category',
        label: 'Security and Permission',
-       items: ['manage-roles-and-privileges', 'client-auth', 'configure-row-level-security-policy', 'protect-passwords','set-password-profile']
+       link: {
+          type: "doc",
+          id: 'security/index',
+      },
+       items: [
+        'security/manage-roles-and-privileges', 
+        'security/client-auth', 
+        'security/configure-row-level-security-policy',
+        'security/protect-passwords',
+        'security/set-password-profile']
      },
 
      {
