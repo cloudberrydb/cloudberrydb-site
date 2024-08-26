@@ -103,7 +103,11 @@ const sidebars: SidebarsConfig = {
         {
         type: 'category',
         label: 'Backup and Restore',
-        items: ['sys-admin/backup-and-restore-overview', 'sys-admin/perform-full-backup-and-restore', 'sys-admin/perform-incremental-backup-and-restore']
+        link: {
+          type: "doc",
+          id: 'sys-admin/backup-and-restore/index',
+      },
+        items: ['sys-admin/backup-and-restore/perform-full-backup-and-restore', 'sys-admin/backup-and-restore/perform-incremental-backup-and-restore']
        },
         'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/enable-coordinator-mirroring', 'sys-admin/recommended-maintenance-monitoring-tasks']
      },
