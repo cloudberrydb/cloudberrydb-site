@@ -25,3 +25,9 @@ The `pg_restore` utility requires compressed dump files created by `pg_dump` or 
 To perform a non-parallel restore using parallel backup files, you can copy the backup files from each segment host to the coordinator host, and then load them through the coordinator.
 
 Another non-parallel method for backing up Cloudberry Database data is to use the `COPY TO` SQL command to copy all or a portion of a table out of the database to a delimited text file on the coordinator host.
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```

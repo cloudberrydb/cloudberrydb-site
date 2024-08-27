@@ -17,3 +17,9 @@ Cloudberry Database dynamically eliminates irrelevant partitions in a table and 
 :::info
 Cloudberry Database uses GPORCA by default. GPORCA extends the planning and optimization capabilities of the Postgres optimizer.
 :::
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```

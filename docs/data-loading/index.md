@@ -26,3 +26,11 @@ Cloudberry Database offers multiple data loading solutions, and you can select d
 | [`gpfdist`](/docs/data-loading/load-data-using-gpfdist.md)    | Local host files or files accessible via internal network   | • TXT<br />• CSV<br />• Any delimited text format supported by the `FORMAT` clause<br />• XML and JSON (requires conversion to text format via YAML configuration file) | Yes      |               |
 | [Batch loading using `gpload`](/docs/data-loading/load-data-using-gpload.md) (with `gpfdist` as the underlying worker) | Local host files or files accessible via internal network   | • TXT<br />• CSV<br />• Any delimited text format supported by the `FORMAT` clause<br />• XML and JSON (require conversion to text format via YAML configuration file) | Yes      |
 | [Creating external web tables](/docs/data-loading/load-data-from-web-services.md)         | Data pulled from network services or from any source accessible by command lines | • TXT<br />• CSV                                             | Yes      |
+
+## Learn more
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```

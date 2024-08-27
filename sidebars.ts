@@ -39,7 +39,11 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Load Data',
-      items: ['data-loading/load-data-overview',
+      link: {
+        type: "doc",
+        id: 'data-loading/index',
+    },
+      items: [
       {
         type: 'category',
         label: 'Load Data from Local Files',
@@ -70,13 +74,26 @@ const sidebars: SidebarsConfig = {
      {
        type: 'category',
        label: 'Optimize Query Performance',
-       items: ['query-performance-overview', 'update-stats-using-analyze', 'use-unique-index-on-ao-tables', 'use-auto-materialized-view-to-answer-queries', 'use-incremental-materialized-view', 'parallel-create-ao-refresh-mv', 'parallel-query-execution', 'use-aggre-pushdown-to-speed-up-queries', 'use-index-scan-on-ao-tables', 'use-runtimefilter-to-optimize-queries']
+       link: {
+        type: "doc",
+        id: 'performance/index',
+      },
+       items: ['performance/update-stats-using-analyze', 'performance/use-unique-index-on-ao-tables', 'performance/use-auto-materialized-view-to-answer-queries', 'performance/use-incremental-materialized-view', 'performance/parallel-create-ao-refresh-mv', 'performance/parallel-query-execution', 'performance/use-aggre-pushdown-to-speed-up-queries', 'performance/use-index-scan-on-ao-tables', 'performance/use-runtimefilter-to-optimize-queries']
      },
 
      {
        type: 'category',
        label: 'Security and Permission',
-       items: ['manage-roles-and-privileges', 'client-auth', 'configure-row-level-security-policy', 'protect-passwords','set-password-profile']
+       link: {
+          type: "doc",
+          id: 'security/index',
+      },
+       items: [
+        'security/manage-roles-and-privileges', 
+        'security/client-auth', 
+        'security/configure-row-level-security-policy',
+        'security/protect-passwords',
+        'security/set-password-profile']
      },
 
      {
@@ -86,7 +103,11 @@ const sidebars: SidebarsConfig = {
         {
         type: 'category',
         label: 'Backup and Restore',
-        items: ['sys-admin/backup-and-restore-overview', 'sys-admin/perform-full-backup-and-restore', 'sys-admin/perform-incremental-backup-and-restore']
+        link: {
+          type: "doc",
+          id: 'sys-admin/backup-and-restore/index',
+      },
+        items: ['sys-admin/backup-and-restore/perform-full-backup-and-restore', 'sys-admin/backup-and-restore/perform-incremental-backup-and-restore']
        },
         'sys-admin/configure-database-system', 'sys-admin/check-database-system', 'sys-admin/enable-coordinator-mirroring', 'sys-admin/recommended-maintenance-monitoring-tasks']
      },
@@ -98,6 +119,10 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'SQL Statements',
+        link: {
+          type: "doc",
+          id: 'sql-stmts/index',
+        },
         items: [
           'sql-stmts/abort',
           'sql-stmts/alter-aggregate',
@@ -287,8 +312,11 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'Built-in Functions',
+        link: {
+          type: "doc",
+          id: 'functions/index',
+        },
         items: [
-                'functions/function-summary',
                 'functions/json-functions-and-operators',
                 'functions/window-functions',
                 'functions/advanced-aggregate-functions',
@@ -300,8 +328,11 @@ const sidebars: SidebarsConfig = {
       {
         type: 'category',
         label: 'System Utilities',
+        link: {
+          type: "doc",
+          id: 'sys-utilities/index',
+        },
         items: [
-                'sys-utilities/overview',
                 'sys-utilities/analyzedb',
                 'sys-utilities/clusterdb',
                 'sys-utilities/createuser',
@@ -342,8 +373,7 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/vacuumdb',
                 'sys-utilities/dropdb',
                 'sys-utilities/dropuser',
-                'sys-utilities/gpactivatestandby',
-                'sys-utilities/gpdemo']
+                'sys-utilities/gpactivatestandby']
        },
      ]
     },
