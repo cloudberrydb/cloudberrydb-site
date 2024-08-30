@@ -493,6 +493,9 @@ article {
     width: 298px;
     height: 60px;
     font-size: 14px;
+    @media screen and (max-width: 768px) {
+      width: 150px;
+    }
 
     .pagination-nav__label {
       font-size: 14px;
