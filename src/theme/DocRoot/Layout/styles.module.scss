@@ -1,0 +1,28 @@
+.docRoot {
+  display: flex;
+  width: 100%;
+  padding: 0 70px;
+}
+@media screen and (max-width: 768px) {
+  .docRoot {
+    padding: 35px;
+  }
+}
+
+.docsWrapper {
+  display: flex;
+  flex: 1 0 auto;
+  @media screen and (min-width: 1024px) {
+    max-width: 1600px !important;
+    width: 1600px !important;
+    table {
+      th {
+        min-width: 110px;
+      }
+    }
+  }
+  table {
+    font-size: 14px;
+    word-break: break-all;
+  }
+}
