@@ -186,7 +186,7 @@ const config: Config = {
           items: [
             {
               label: "Download",
-              to: "/download",
+              href: "https://github.com/cloudberrydb/cloudberrydb/releases",
             },
             {
               label: "Documentation",
