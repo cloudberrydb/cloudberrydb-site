@@ -385,7 +385,7 @@ const sidebars: SidebarsConfig = {
         type: "doc",
         id: "releases/index",
       },
-      items: ['releases/release-1.5.4','releases/release-1.5.3','releases/release-1.5.2','releases/release-1.5.1', 'releases/release-1.5.0'],
+      items: ['releases/release-1.6.0','releases/release-1.5.4','releases/release-1.5.3','releases/release-1.5.2','releases/release-1.5.1', 'releases/release-1.5.0'],
     },
   ]
 }

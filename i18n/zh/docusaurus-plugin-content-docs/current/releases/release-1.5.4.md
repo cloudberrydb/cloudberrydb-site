@@ -24,7 +24,6 @@ Cloudberry Database v1.5.4 是一个小版本，包含了一些提升改进、�
 - 清理构建工具和指南目录 [#445](https://github.com/cloudberrydb/cloudberrydb/pull/445) by [@tuhaihe](https://github.com/tuhaihe)
 - 插入更多数据以在 `regress/misc_jiras.sql` 中使 tuplestore 溢出 [#452](https://github.com/cloudberrydb/cloudberrydb/pull/452) by [@fanfuxiaoran](https://github.com/fanfuxiaoran)
 
-
 ## Bug 修复
 
 - 修复 motion toast 错误 [#436](https://github.com/cloudberrydb/cloudberrydb/pull/436) by [@gfphoenix78](https://github.com/gfphoenix78)
