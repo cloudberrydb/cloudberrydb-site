@@ -1,10 +1,10 @@
 ---
-title: pgshrink
+title: gpshrink
 ---
 
 # gpshrink
 
-Cloudberry Database 通过 gpshrink 系统工具缩容集群。集群资源空闲时，例如磁盘空间占用长期低于20%、CPU或内存占用率持续较低，则可以使用 gpshrink 来实现集群的缩容，从而节省服务器资源。用户可以通过 gpshrink 工具删除多余服务器上的 segment，从而实现集群缩容。
+Cloudberry Database 通过 gpshrink 系统工具缩容集群。集群资源空闲时，例如磁盘空间占用长期低于 20%、CPU 或内存占用率持续较低，则可以使用 gpshrink 来实现集群的缩容，从而节省服务器资源。用户可以通过 gpshrink 工具删除多余服务器上的 segment，从而实现集群缩容。
 
 gpshrink 在执行时分为两阶段：
 

@@ -1,5 +1,5 @@
 ---
-title: pgshrink
+title: gpshrink
 ---
 
 # gpshrink
