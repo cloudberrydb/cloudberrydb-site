@@ -357,6 +357,7 @@ const sidebars: SidebarsConfig = {
                 'sys-utilities/gprestore',
                 'sys-utilities/gpreload',
                 'sys-utilities/gprecoverseg',
+                'sys-utilities/gpshrink',
                 'sys-utilities/gpssh-exkeys',
                 'sys-utilities/gpssh',
                 'sys-utilities/gpstart',

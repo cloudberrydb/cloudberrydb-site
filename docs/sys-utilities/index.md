@@ -56,6 +56,7 @@ For more information about a utility, see the corresponding topic listed in the 
 - [gprestore](./gprestore.md) - restore a database backup that was created using the gpbackup utility
 - [gpreload](./gpreload.md) - reload table data sorting the data based on specified columns
 - [gprecoverseg](./gprecoverseg.md) - recover a primary or mirror segment instance that has been marked as down (if mirroring is enabled)
+- [gpshrink](./gpshrink.md) - use `gpshrink` to reduce the size of the cluster, saving server resources
 - [gpssh-exkeys](./gpssh-exkeys.md) - exchange SSH public keys between hosts
 - [gpssh](./gpssh.md) - provide SSH access to multiple hosts at once
 - [gpstart](./gpstart.md) - start a Cloudberry Database system
