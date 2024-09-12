@@ -93,7 +93,8 @@ const sidebars: SidebarsConfig = {
         'security/client-auth', 
         'security/configure-row-level-security-policy',
         'security/protect-passwords',
-        'security/set-password-profile']
+        'security/set-password-profile',
+        'security/transparent-data-encryption']
      },
 
      {
