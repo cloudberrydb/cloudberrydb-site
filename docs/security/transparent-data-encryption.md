@@ -4,7 +4,7 @@ title: Transparent Data Encryption
 
 # Transparent Data Encryption
 
-To meet the requirements for protecting user data security, starting from version v1.6.0, Cloudberry Database has supported Transparent Data Encryption (TDE).
+To meet the requirements for protecting user data security, Cloudberry Database supports Transparent Data Encryption (TDE).
 
 TDE is a technology used to encrypt database data files:
 
@@ -44,14 +44,13 @@ AES is an internationally standardized block encryption algorithm, supporting 12
 - OFB: Output Feedback mode
 - CTR: Counter mode
 
-#### Chinese national encryption algorithms
+#### More ISO/IEC encryption algorithms
 
-Chinese national encryption algorithms include SM1, SM2, SM3, and SM4:
+More ISO/IEC encryption algorithms include:
 
-- SM1: Symmetric encryption, equivalent in strength to AES.
-- SM2: Asymmetric encryption, based on ECC, outperforms RSA.
-- SM3: Message digest algorithm, similar to MD5, outputs 256 bits.
-- SM4: Symmetric encryption algorithm for wireless LAN standards, supports 128-bit keys and block lengths.
+- ISO/IEC 14888-3/AMD1 (i.e., SM2): Asymmetric encryption, based on ECC, outperforms RSA.
+- ISO/IEC 10118-3:2018 (i.e., SM3): Message digest algorithm, similar to MD5, outputs 256 bits.
+- ISO/IEC 18033-3:2010/AMD1:2021 (i.e., SM4): Symmetric encryption algorithm for wireless LAN standards, supports 128-bit keys and block lengths.
 
 ## User instructions
 
