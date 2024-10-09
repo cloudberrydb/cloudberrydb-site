@@ -9,6 +9,7 @@ a {
 
 // navbar header
 .navbar {
+  background-color: var(--navbar-bg-color);
   padding: 0;
   .navbar__inner {
     box-sizing: border-box;
@@ -642,5 +643,31 @@ html[data-theme="light"] {
         }
       }
     }
+  }
+}
+
+.navbar-home-lighting {
+  background: #000;
+  .clean-btn {
+    color: #fff;
+  }
+  .check-theme-switch {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar__toggle {
+    display: inherit;
+  }
+}
+
+.nav-left-logo {
+  display: flex;
+}
+
+@media (min-width: 1024px) and (max-width: 1160px) {
+  .nav-left-logo {
+    display: none;
   }
 }

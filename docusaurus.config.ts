@@ -13,7 +13,7 @@ const config: Config = {
   // onBrokenLinks: "throw",
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
-
+  
   plugins: [
     "docusaurus-plugin-sass",
     [
@@ -233,11 +233,11 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-    algolia: {
-      appId: "GHWUNOM15G",
-      apiKey: "0dc1117a5a8d029a60ac5245da2afd91",
-      indexName: "cloudberrydb",
-    },
+    // algolia: {
+    //   appId: "GHWUNOM15G",
+    //   apiKey: "0dc1117a5a8d029a60ac5245da2afd91",
+    //   indexName: "cloudberrydb",
+    // },
   } satisfies Preset.ThemeConfig,
 };
 

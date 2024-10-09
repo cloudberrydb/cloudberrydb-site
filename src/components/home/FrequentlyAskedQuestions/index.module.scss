@@ -1,0 +1,41 @@
+.frequentlyAskedQuestions {
+  width: 832px;
+  margin: auto;
+  .highTitle {
+    margin-top: 86px;
+    margin-bottom: 61px;
+    font-size: 64px;
+    background-image: linear-gradient(
+      to left,
+      #9ee8ee 1%,
+      #f78013 55%,
+      #9f8ced 97%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    line-height: 66px;
+  }
+  .contentList {
+    color: #fff;
+    .item {
+      margin-top: 35px;
+      .title {
+        font-size: 20px;
+      }
+      .content {
+        margin-top: 3px;
+        color: #728095;
+      }
+      .bottomLine {
+        margin-top: 12px;
+        height: 2px;
+        background-color: rgb(48, 54, 61);
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 0 var(--mobile-padding-width);
+  }
+}

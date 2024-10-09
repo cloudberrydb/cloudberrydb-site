@@ -4,6 +4,7 @@ import LinkWithBaseUrl from "@site/src/components/common/LinkWithBaseUrl";
 import { LINKS } from "@site/src/consts/homeContent";
 import useNavToTarget from "@site/src/hooks/useNavToTarget";
 import GithubSvg from "@site/static/img/github.svg";
+import LinkedIn from "@site/static/img/linked-in.svg";
 import SecuritySvg from "@site/static/img/security.svg";
 import TwitterSvg from "@site/static/img/twitter.svg";
 import WechatSvg from "@site/static/img/wechat.svg";
@@ -106,6 +107,11 @@ export default function Footer() {
               className={styles.item}
               cursor="pointer"
               onClick={() => handleOpen(LINKS.community)}
+            />
+            <LinkedIn
+              className={styles.item}
+              cursor="pointer"
+              onClick={() => handleOpen(LINKS.linkedIn)}
             />
             <WechatSvg
               className={styles.item}

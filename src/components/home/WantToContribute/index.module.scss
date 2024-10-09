@@ -1,0 +1,20 @@
+.WantToContribute {
+  display: flex;
+  justify-content: center;
+  padding: 128px 0;
+  .item {
+    width: 550px;
+    background-color: #1a1a1a;
+    padding: 58px;
+    color: #fff;
+    &:first-of-type {
+      background-color: #ffb219;
+    }
+    .title {
+      font-size: 35px;
+    }
+  }
+  @media (max-width: 1024px) {
+    padding: 128px var(--mobile-padding-width);
+  }
+}
