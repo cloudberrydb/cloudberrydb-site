@@ -1,0 +1,30 @@
+.tipsWrap {
+  margin: 0 auto;
+  color: #fff;
+  width: 100%;
+  z-index: 10;
+  .tipsContent {
+    background: linear-gradient(90deg, #ffa800 0%, #fb750b 35.48%);
+    // height: 37px;
+    width: 100%;
+    // line-height: 37px;
+    padding-block: 5px;
+    position: relative;
+    text-align: center;
+    .text {
+      padding-right: 20px;
+
+      img {
+        position: relative;
+        top: 3px;
+      }
+    }
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-47%);
+      cursor: pointer;
+    }
+  }
+}

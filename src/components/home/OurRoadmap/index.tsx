@@ -1,10 +1,10 @@
 import Translate from "@docusaurus/Translate";
-import { FEATURE_HIGHLIGHT } from "@site/src/consts/homeContent";
+import { OUR_ROADMAP } from "@site/src/consts/homeContent";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export default function FeatureHighlight() {
-  const itemListGrid = FEATURE_HIGHLIGHT.slice(0, 6).map((item, i) => {
+export default function OurRoadmap() {
+  const itemListGrid = OUR_ROADMAP.list.slice(0, 6).map((item, i) => {
     return (
       <div
         className={clsx(styles.listItem, styles[`listItem${i + 1}`])}
@@ -12,7 +12,6 @@ export default function FeatureHighlight() {
       >
         <span className={styles.icon}></span>
         <div className={styles.itemTitle}>{item.title}</div>
-        <div className={styles.itemContent}>{item.content}</div>
       </div>
     );
   });
@@ -21,8 +20,10 @@ export default function FeatureHighlight() {
     <div className={styles.container}>
       <div className="global-width-center">
         <div className={styles.wrap}>
+          <div className={styles.bg}></div>
           <div className={styles.title}>
-            <Translate>Feature Highlights</Translate>
+            <Translate>{OUR_ROADMAP.title}</Translate>
+            <div className={styles.subTitle}>{OUR_ROADMAP.subTitle}</div>
           </div>
           <div className={styles.showList}>{itemListGrid}</div>
         </div>

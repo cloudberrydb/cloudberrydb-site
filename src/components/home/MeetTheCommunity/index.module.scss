@@ -1,0 +1,72 @@
+.meetTheCommunity {
+  position: relative;
+  height: 910px;
+  padding-top: 70px;
+  margin-bottom: -62px;
+  background-color: rgb(17, 15, 15);
+  .bgImg {
+    width: 810px;
+    height: 810px;
+    margin: auto;
+    background-image: url("/img/home/grid-rect.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .title {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 81px;
+    p {
+      color: #fff;
+      margin-bottom: 0;
+    }
+  }
+
+  .contributorList {
+    display: grid;
+    width: 1090px;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: auto;
+    gap: 20px 23px;
+    position: absolute;
+    top: 372px;
+    left: 50%;
+    transform: translateX(-50%);
+    .contributorItem {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 178, 25, 1);
+    }
+  }
+  @media screen and (max-width: 1440px) {
+    padding-inline: var(--mobile-padding-width);
+    height: 910px;
+    .contributorList {
+      gap: 15px;
+      width: auto;
+    }
+    .bgImg {
+      height: 900px;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    height: auto;
+    .bgImg {
+      height: 1000px;
+      width: 100%;
+      background-size: contain;
+    }
+    .contributorList {
+      width: auto;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 15px;
+    }
+  }
+}

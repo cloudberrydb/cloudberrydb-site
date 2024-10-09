@@ -1,17 +1,28 @@
 import CommonLayout from "../components/common/Layout";
-import BlogPosts from "../components/home/BlogPosts";
-import FeatureHighlight from "../components/home/FeatureHighlight";
+import FrequentlyAskedQuestions from "../components/home/FrequentlyAskedQuestions";
 import HCard from "../components/home/HCard";
-import JoinCommunity from "../components/home/JoinCommunity";
-import WhyCloudberryDatabase from "../components/home/WhyCloudberryDatabase";
+import MeetTheCommunity from "../components/home/MeetTheCommunity";
+import MMPArchitecture from "../components/home/MMPArchitecture";
+import OurRoadmap from "../components/home/OurRoadmap";
+import SlackWechatTwitterYoutube from "../components/home/SlackWechatTwitterYoutube";
+import TryItOut from "../components/home/TryItOut";
+import WantToContribute from "../components/home/WantToContribute";
+import styles from "../css/pages/home.module.scss";
 export default function Home(): JSX.Element {
   return (
     <CommonLayout>
-      <HCard></HCard>
-      <FeatureHighlight />
-      <WhyCloudberryDatabase />
-      <BlogPosts />
-      <JoinCommunity />
+      <div className="navbar-home-lighting">
+        <HCard />
+        <div className={styles.homeContentContainer}>
+          <MMPArchitecture />
+          <OurRoadmap />
+          <TryItOut />
+          <MeetTheCommunity />
+          <SlackWechatTwitterYoutube />
+          <WantToContribute />
+          <FrequentlyAskedQuestions />
+        </div>
+      </div>
     </CommonLayout>
   );
 }

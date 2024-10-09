@@ -1,11 +1,14 @@
-import React from 'react';
-import NavbarLayout from '@theme/Navbar/Layout';
-import NavbarContent from '@theme/Navbar/Content';
+import TipsBar from "@site/src/components/home/TipsBar";
+import NavbarContent from "@theme/Navbar/Content";
+import NavbarLayout from "@theme/Navbar/Layout";
 
 export default function Navbar(): JSX.Element {
   return (
-    <NavbarLayout>
-      <NavbarContent />
-    </NavbarLayout>
+    <>
+      <TipsBar />
+      <NavbarLayout>
+        <NavbarContent />
+      </NavbarLayout>
+    </>
   );
 }

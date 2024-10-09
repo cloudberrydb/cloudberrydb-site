@@ -3,6 +3,7 @@ import ColorModeToggle from "@theme/ColorModeToggle";
 import type { Props } from "@theme/Navbar/ColorModeToggle";
 import { useEffect } from "react";
 import styles from "./styles.module.css";
+import clsx from "clsx";
 
 export default function NavbarColorModeToggle({
   className,
@@ -34,7 +35,7 @@ export default function NavbarColorModeToggle({
 
   return (
     <ColorModeToggle
-      className={className}
+      className={clsx(className, 'check-theme-switch')}
       buttonClassName={
         navbarStyle === "dark" ? styles.darkNavbarColorModeToggle : undefined
       }
