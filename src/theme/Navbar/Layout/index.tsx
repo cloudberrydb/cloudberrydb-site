@@ -1,4 +1,3 @@
-import { useLocation } from "@docusaurus/router";
 import { useThemeConfig } from "@docusaurus/theme-common";
 import {
   useHideableNavbar,
@@ -30,7 +29,6 @@ export default function NavbarLayout({ children }: Props): JSX.Element {
   const mobileSidebar = useNavbarMobileSidebar();
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
   const config = useThemeConfig();
-  const location = useLocation();
 
   const logoObj = config.navbar.logo as typeof config.navbar.logo & {
     backSrc?: string;
