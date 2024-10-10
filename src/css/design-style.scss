@@ -381,9 +381,9 @@ article {
           transition: all 0.1s;
         }
       }
-      button {
-        display: none !important;
-      }
+      // button {
+      // display: none !important;
+      // }
 
       // no active add (div)
       &.menu__list-item--collapsed {
