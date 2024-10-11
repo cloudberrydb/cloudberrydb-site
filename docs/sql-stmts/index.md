@@ -92,10 +92,11 @@
 - [ALTER ROLE](./alter-role.md) - Changes a database role (user or group).
 - [SET ROLE](./set-role.md) - Sets the current role identifier of the current session.
 - [DROP ROLE](./drop-role.md) - Removes a database role.
-- [ALTER GROUP](./alter-group.md) - Changes a role name or membership.
 - [CREATE USER](./create-user.md) - Defines a new database role.
 - [ALTER USER](./alter-user.md) - Changes the definition of a database role.
 - [DROP USER](./drop-user.md) - Removes a database role.
+- [CREATE GROUP](./create-group.md) - Defines a new database role.
+- [ALTER GROUP](./alter-group.md) - Changes a role name or membership.
 - [DROP GROUP](./drop-group.md) - Removes a database role.
 - [DROP OWNED](./drop-owned.md) - Removes database objects owned by a database role.
 - [REASSIGN OWNED](./reassign-owned.md) - Changes the ownership of database objects owned by a database role.
