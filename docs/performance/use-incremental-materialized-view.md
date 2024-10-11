@@ -245,6 +245,5 @@ In addition, when using incremental materialized views on Cloudberry Database, y
 
 ## See also
 
-[Use Automatic Materialized Views for Query Optimization](/docs/use-auto-materialized-view-to-answer-queries.md)
-
-[Create AO/AOCO Tables and Refresh Materialized Views in Parallel](/docs/parallel-create-ao-refresh-mv.md)
+- [Use Automatic Materialized Views for Query Optimization](./use-auto-materialized-view-to-answer-queries.md)
+- [Create AO/AOCO Tables and Refresh Materialized Views in Parallel](./parallel-create-ao-refresh-mv.md)
