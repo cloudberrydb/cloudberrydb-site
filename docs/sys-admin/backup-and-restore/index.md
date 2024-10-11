@@ -8,7 +8,7 @@ Cloudberry Database offers both parallel and non-parallel methods for database b
 
 ## Parallel backup with `gpbackup` and `gprestore`
 
-Cloudberry Database provides `gpbackup` and `gprestore` for parallel backup and restore utilities. `gpbackup` uses table-level `ACCESS SHARE` locks instead of `EXCLUSIVE` locks on the `pg_class` catalog table. This enables you to execute DML statements such as `CREATE`, `ALTER`, `DROP`, and `TRUNCATE` during backups, as long as these statements do not target the current backup set.
+Cloudberry Database provides `gpbackup` and `gprestore` for parallel backup and restore utilities. `gpbackup` uses table-level `ACCESS SHARE` locks instead of `EXCLUSIVE` locks on the `pg_class` catalog table. This enables you to execute DDL statements such as `CREATE`, `ALTER`, `DROP`, and `TRUNCATE` during backups, as long as these statements do not target the current backup set.
 
 Backup files created with `gpbackup` are designed to provide future capabilities for restoring individual database objects along with their dependencies, such as functions and required user-defined data types.
 
