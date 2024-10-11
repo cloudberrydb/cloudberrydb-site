@@ -139,6 +139,5 @@ When there are multiple valid materialized view candidates, or the cost of query
 
 ## See also
 
-[Create AO/AOCO Tables and Refresh Materialized Views in Parallel](/docs/parallel-create-ao-refresh-mv.md)
-
-[Incremental Materialized View in Cloudberry Database](/docs/use-incremental-materialized-view.md)
+- [Create AO/AOCO Tables and Refresh Materialized Views in Parallel](./parallel-create-ao-refresh-mv.md)
+- [Incremental Materialized View in Cloudberry Database](./use-incremental-materialized-view.md)
