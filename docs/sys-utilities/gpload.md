@@ -204,7 +204,7 @@ SOURCE**
 
 Required. The `SOURCE` block of an `INPUT` specification defines the location of a source file. An `INPUT` section can have more than one `SOURCE` block defined. Each `SOURCE` block defined corresponds to one instance of the [gpfdist](/docs/sys-utilities/gpfdist.md) file distribution program that will be started on the local machine. Each `SOURCE` block defined must have a `FILE` specification.
 
-For more information about using the `gpfdist` parallel file server and single and multiple `gpfdist` instances, see [Loading data](/docs/import-data-into-cbdb.md).
+For more information about using the `gpfdist` parallel file server and single and multiple `gpfdist` instances, see [Loading data](../data-loading/load-data-using-gpfdist.md).
 
 **`LOCAL_HOSTNAME`**
 
@@ -258,7 +258,7 @@ The default source-to-target mapping is based on a match of column names as defi
 
 **`TRANSFORM`**
 
-Optional. Specifies the name of the input transformation passed to `gpload`. For information about XML transformations, see [Loading and Unloading Data](/docs/import-data-into-cbdb.md).
+Optional. Specifies the name of the input transformation passed to `gpload`. For information about XML transformations, see [Loading and Unloading Data](../data-loading/load-data-using-gpload.md).
 
 **`TRANSFORM_CONFIG`**
 
@@ -270,7 +270,7 @@ Optional. An integer that specifies the maximum length of a line in the XML tran
 
 **`FORMAT`**
 
-Optional. Specifies the format of the source data file(s) - either plain text (`TEXT`) or comma separated values (`CSV`) format. Defaults to `TEXT` if not specified. For more information about the format of the source data, see [Loading data](/docs/import-data-into-cbdb.md).
+Optional. Specifies the format of the source data file(s) - either plain text (`TEXT`) or comma separated values (`CSV`) format. Defaults to `TEXT` if not specified. For more information about the format of the source data, see [Loading data](../data-loading/).
 
 **`DELIMITER`**
 
@@ -322,7 +322,7 @@ Optional. Character set encoding of the source data. Specify a string constant (
 
 **`ERROR_LIMIT`**
 
-Optional. Enables single row error isolation mode for this load operation. When enabled, input rows that have format errors will be discarded provided that the error limit count is not reached on any Cloudberry Database segment instance during input processing. If the error limit is not reached, all good rows will be loaded and any error rows will either be discarded or captured as part of error log information. The default is to cancel the load operation on the first error encountered. Note that single row error isolation only applies to data rows with format errors; for example, extra or missing attributes, attributes of a wrong data type, or invalid client encoding sequences. Constraint errors, such as primary key violations, will still cause the load operation to be cancelled if encountered. For information about handling load errors, see [Loading data](/docs/import-data-into-cbdb.md).
+Optional. Enables single row error isolation mode for this load operation. When enabled, input rows that have format errors will be discarded provided that the error limit count is not reached on any Cloudberry Database segment instance during input processing. If the error limit is not reached, all good rows will be loaded and any error rows will either be discarded or captured as part of error log information. The default is to cancel the load operation on the first error encountered. Note that single row error isolation only applies to data rows with format errors; for example, extra or missing attributes, attributes of a wrong data type, or invalid client encoding sequences. Constraint errors, such as primary key violations, will still cause the load operation to be cancelled if encountered. For information about handling load errors, see [Loading data](../data-loading/).
 
 **`LOG_ERRORS`**
 

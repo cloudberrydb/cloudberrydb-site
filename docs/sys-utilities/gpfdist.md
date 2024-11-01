@@ -90,7 +90,7 @@ For a Cloudberry Database with multiple segments, there might be a delay between
 
 **`--ssl certificate_path`**
 
-Adds SSL encryption to data transferred with `gpfdist`. After running `gpfdist` with the `--ssl certificate_path` option, the only way to load data from this file server is with the `gpfdist://` protocol. For information on the `gpfdist://` protocol, see [Loading and Unloading Data](/docs/import-data-into-cbdb.md).
+Adds SSL encryption to data transferred with `gpfdist`. After running `gpfdist` with the `--ssl certificate_path` option, the only way to load data from this file server is with the `gpfdist://` protocol. For information on the `gpfdist://` protocol, see [Loading and Unloading Data](../data-loading/load-data-using-gpfdist.md).
 
 The location specified in certificate_path must contain the following files:
 

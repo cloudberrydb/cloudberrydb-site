@@ -2,6 +2,12 @@
 title: 1.5.2
 ---
 
+:::caution
+
+This is not an Apache release!
+
+:::
+
 # Cloudberry Database v1.5.2 Release Notes
 
 Version number: v1.5.2

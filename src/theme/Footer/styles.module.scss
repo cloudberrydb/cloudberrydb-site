@@ -71,15 +71,19 @@
       }
     }
   }
-
-  .copyright {
+  .copyrightWrap {
     position: absolute;
-    bottom: 20px;
     top: 485px;
     text-align: center;
     width: 100%;
-    padding-bottom: 30px;
+    background-color: #000;
+    font-size: 12px;
+    .copyright {
+      width: 1440px;
+      margin: 0 auto;
+    }
   }
+  
   @media screen and (max-width: 1440px) {
     .linksWrap {
       width: 520px !important;

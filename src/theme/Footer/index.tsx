@@ -121,7 +121,12 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className={styles.copyright}>{(footerConfig as any).copyright}</div>
+      <div className={styles.copyrightWrap}>
+        <div
+          className={styles.copyright}
+          dangerouslySetInnerHTML={{ __html: (footerConfig as any).copyright }}
+        ></div>
+      </div>
     </div>
   );
 }
