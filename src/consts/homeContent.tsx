@@ -5,7 +5,7 @@ import SystemSvg from "/img/home/try-it-out/system.svg";
 
 let TIPS_CONTENT = (
   <LinkWithBaseUrl href="https://github.com/cloudberrydb/cloudberrydb">
-    <span>If you like Cloudberry Database, give it a star on GitHub! </span>
+    <span>If you like Apache Cloudberry (Incubating), give it a star on GitHub! </span>
     <img src="/img/home/hcard/star.svg" alt="" />
   </LinkWithBaseUrl>
 );
@@ -196,8 +196,7 @@ let WANT_TO_CONTRIBUTE = {
       title: "Want to Contribute?",
       content: (
         <span>
-          There are many ways to contribute to Cloudberry Database, and you can
-          easily find the ones that suit your skills and interests to 
+          There are many ways to contribute to Apache Cloudberry (Incubating), and you can easily find the ones that suit your skills and interests to 
           <LinkWithBaseUrl className={"light-active-color"} href="/contribute">
             begin your contribution
           </LinkWithBaseUrl>
@@ -231,12 +230,12 @@ let FREQUENTLY_ASKED_QUESTIONS = {
   ),
   list: [
     {
-      title: "Can I use the Cloudberry Database for commercial purposes?",
+      title: "Can I use the Apache Cloudberry (Incubating) for commercial purposes?",
       content:
-        "Cloudberry Database is open-source under Apache License V2.0, which permits commercial use, as long as following the license agreement.",
+        "Apache Cloudberry (Incubating) is open-source under Apache License V2.0, which permits commercial use, as long as following the license agreement.",
     },
     {
-      title: "What's the product plan for the Cloudberry Database?",
+      title: "What's the product plan for the Apache Cloudberry (Incubating)?",
       content: (
         <>
           You can check our{" "}
@@ -252,12 +251,10 @@ let FREQUENTLY_ASKED_QUESTIONS = {
     },
     {
       title:
-        "What's the difference between Cloudberry Database and Greenplum Database?",
+        "What's the difference between Apache Cloudberry (Incubating) and Greenplum Database?",
       content: (
         <>
-          Though Cloudberry Database takes the Greenplum Database 7 as its code
-          base, Cloudberry Database has a newer solid PostgreSQL kernel built-in
-          and has more features. You can check the 
+          Though Apache Cloudberry (Incubating) takes the Greenplum Database 7 as its codebase, Cloudberry has a newer solid PostgreSQL kernel built-in and has more features. You can check the 
           <LinkWithBaseUrl
             className="active-color"
             href="https://cloudberrydb.org/docs/cbdb-vs-gp-features"
@@ -271,12 +268,12 @@ let FREQUENTLY_ASKED_QUESTIONS = {
     },
     {
       title:
-        "Can I use Cloudberry Database to replace our existing Greenplum Database clusters?",
+        "Can I use Apache Cloudberry (Incubating) to replace our existing Greenplum Database clusters?",
       content:
-        "Yes. One goal of Cloudberry Database is to be compatible with Greenplum to let users can use Cloudberry the way using Greenplum. You can migrate from Greenplum to Cloudberry using gpbackup or other migration tools.",
+        "Yes. One goal of Apache Cloudberry (Incubating) is to be compatible with Greenplum to let users can use Cloudberry the way using Greenplum. You can migrate from Greenplum to Cloudberry using gpbackup or other migration tools.",
     },
     {
-      title: "How can I contribute to the Cloudberry Database?",
+      title: "How can I contribute to the Apache Cloudberry (Incubating)?",
       content: (
         <>
           We welcome contributions from anyone, new and experienced! Welcome to

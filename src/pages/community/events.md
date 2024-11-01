@@ -3,14 +3,14 @@ title: Community Events
 description: Don't miss out on exciting community events! Subscribe to our events calendar for meetups, webinars, conferences, and more.
 ---
 
-You can [subscribe to Cloudberry Database Community
+You can [subscribe to Apache Cloudberry Community
 Calendar](https://calendar.google.com/calendar/embed?src=cloudberrydb%40gmail.com&ctz=America%2FLos_Angeles)
 to get notified about community events, including meetups, webinars,
 summits, conferences, Office Hours, and more!
 
 :::note
 
-If you want to add your events related to the Cloudberry Database,
+If you want to add your events related to the Apache Cloudberry,
 welcome to email us: info@cloudberrydb.org.
 
 :::
