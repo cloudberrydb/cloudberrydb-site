@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 # Compile and Install Cloudberry Database on Linux
 
 :::info
-The source of this document is from the GitHub repository [`cloudberrydb/cloudberrydb`](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.Linux.md).
+The source of this document is from the GitHub repository [`cloudberrydb/cloudberrydb`](https://github.com/cloudberrydb/cloudberrydb/blob/main/deploy/build/README.Linux.md).
 :::
 
 This document shares how to compile and install Cloudberry Database on Linux systems (CentOS 7, RHEL, and Ubuntu). Note that this document is for developers to try out Cloudberry Database in a single-node environments. DO NOT use this document for production environments.
@@ -38,7 +38,7 @@ Enter the repository and install dependencies according to your operating system
 
 The following steps work on CentOS 7. For other CentOS versions, these steps might work but are not guaranteed to work.
 
-1. Run the Bash script `README.CentOS.bash` in the `readmes` directory of the `cloudberrydb/cloudberrydb` repository. To run this script, password is required. Then, some required dependencies will be automatically downloaded.
+1. Run the Bash script `README.CentOS.bash` in the `deploy/build` directory of the `cloudberrydb/cloudberrydb` repository. To run this script, password is required. Then, some required dependencies will be automatically downloaded.
 
     ```bash
     cd cloudberrydb/deploy/build
@@ -97,11 +97,11 @@ The following steps work on CentOS 7. For other CentOS versions, these steps mig
 </TabItem>
 <TabItem value="ubuntu-18.04" label="For Ubuntu 18.04 or later" default>
 
-1. Install dependencies by running the `README.Ubuntu.bash` script in the `readmes` directory.
+1. Install dependencies by running the `README.Ubuntu.bash` script in the `deploy/build` directory.
 
     ```shell
     ## You need to enter your password to run.
-    sudo ~/cloudberrydb/readmes/README.Ubuntu.bash
+    sudo ~/cloudberrydb/deploy/build/README.Ubuntu.bash
     ```
 
     :::info
