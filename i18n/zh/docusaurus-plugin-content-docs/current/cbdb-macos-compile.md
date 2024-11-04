@@ -5,7 +5,7 @@ title: 在 macOS 上
 # 在 macOS 上编译和安装 Cloudberry Database
 
 :::info 提示
-本文档来自 GitHub 仓库 [`cloudberrydb/cloudberrydb`](https://github.com/cloudberrydb/cloudberrydb/blob/main/readmes/README.macOS.md)。
+本文档来自 GitHub 仓库 [`cloudberrydb/cloudberrydb`](https://github.com/cloudberrydb/cloudberrydb/blob/main/deploy/build/README.macOS.md)。
 :::
 
 本文档分享了如何在 macOS 上（单节点）构建、编译和安装 Cloudberry Database 以供开发测试使用。请按照以下步骤操作。
@@ -93,7 +93,7 @@ source $(cd ~; pwd)/install/cbdb/greenplum_path.sh
 
 # 4. 安装 Python 依赖。
 
-pip3 install --user -r readmes/python-dependencies.txt
+pip3 install --user -r python-dependencies.txt
 
 # 5. 开启示例集群。
 
