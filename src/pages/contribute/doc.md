@@ -11,7 +11,7 @@ Conduct](https://cloudberrydb.io/community/coc).
 
 ## What contributors can do
 
-Contributors can help improve the Apache Cloudberry documentation in
+Contributors can help improve the Cloudberry Database documentation in
 the following ways:
 
 - Fix typos, wrong spelling, grammar mistakes, and broken links
@@ -42,7 +42,7 @@ create a Pull Request.
 
 For simple updates such as typo or link fixing in a single document:
 
-1. Navigate to the target page on the [Apache Cloudberry
+1. Navigate to the target page on the [Cloudberry Database
    documentation site](https://cloudberrydb.io/docs/) you
    wish to update.
 2. Click **Edit this page** at the left bottom of the page. This will
@@ -58,13 +58,13 @@ For simple updates such as typo or link fixing in a single document:
 
 For more complex updates or adding new content in multiple documents:
 
-1. Fork the [Apache Cloudberry site
+1. Fork the [Cloudberry Database site
    repository](https://github.com/cloudberrydb/cloudberrydb-site).
 2. Clone your forked repository to your local machine.
 3. Create a new branch for your changes.
 4. Make your changes in your local environment.
 5. Commit your changes and push them to your forked repository.
-6. Navigate to the original Apache Cloudberry site repository.
+6. Navigate to the original Cloudberry Database site repository.
 7. Click **New pull request**.
 8. Choose your forked repository's branch in the comparison, and
    choose the `main` branch for the `cloudberrydb/cloudberrydb-site`
@@ -116,7 +116,7 @@ If you are considering a major change to the documentation, such as
 adding a new section or rewriting a large part of it, we recommend the
 following process:
 
-1. Open an issue in the [Apache Cloudberry site
+1. Open an issue in the [Cloudberry Database site
    repository](https://github.com/cloudberrydb/cloudberrydb-site)
    describing your proposed changes. This allows the Cloudberry
    Database team and community to provide feedback before you invest a

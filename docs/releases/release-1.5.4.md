@@ -2,12 +2,6 @@
 title: 1.5.4
 ---
 
-:::caution
-
-This is not an Apache release!
-
-:::
-
 # Cloudberry Database v1.5.4 Release Notes
 
 Version number: v1.5.4

@@ -2,12 +2,6 @@
 title: 1.6.0
 ---
 
-:::caution
-
-This is not an Apache release!
-
-:::
-
 # Cloudberry Database v1.6.0 Release Notes
 
 Version number: v1.6.0

@@ -2,13 +2,13 @@ import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 const config: Config = {
-  title: "Apache Cloudberry (Incubating)",
-  tagline: "One advanced and mature open-source MPP (Massively Parallel Processing) databases available.",
+  title: "Cloudberry Database",
+  tagline: "Open Source Alternative to Greenplum Database. Next Generation Unified Database for Analytics and AI.",
   favicon: "/img/favicon.ico",
-  url: "https://cloudberry.apache.org",
+  url: "https://cloudberrydb.org",
   baseUrl: "/",
-  organizationName: "apache", // Usually your GitHub org/user name.
-  projectName: "cloudberry-site", // Usually your repo name.
+  organizationName: "cloudberrydb", // Usually your GitHub org/user name.
+  projectName: "cloudberrydb-site", // Usually your repo name.
 
   // onBrokenLinks: "throw",
   onBrokenLinks: "ignore",
@@ -39,7 +39,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl:
-            "https://github.com/apache/cloudberry-site/edit/main/",
+            "https://github.com/cloudberrydb/cloudberrydb-site/edit/main/",
           editLocalizedFiles: true,
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
@@ -54,7 +54,7 @@ const config: Config = {
           feedOptions: {
             type: "all",
             title:
-              "Apache Cloudberry (Incubating) is one advanced and mature open-source MPP (Massively Parallel Processing) databases available.",
+              "Cloudberry Database: Open Source Alternative to Greenplum Database. Next Generation Unified Database for Analytics and AI",
           },
         },
         theme: {
@@ -73,13 +73,13 @@ const config: Config = {
   ],
 
   themeConfig: {
-    title: "Apache Cloudberry (Incubating)",
-    tagline: "one advanced and mature open-source MPP (Massively Parallel Processing) databases available.",
+    title: "Cloudberry Database",
+    tagline: "Open Source Alternative to Greenplum Database. Next Generation Unified Database for Analytics and AI",
     favicon: "/img/favicon.ico",
-    url: "https://cloudberry.apache.org",
+    url: "https://cloudberrydb.org",
     baseUrl: "/",
-    organizationName: "apache", // Usually your GitHub org/user name.
-    projectName: "cloudberry-site", // Usually your repo name.
+    organizationName: "cloudberrydb", // Usually your GitHub org/user name.
+    projectName: "cloudberrydb-site", // Usually your repo name.
     colorMode: {
       defaultMode: "dark",
       disableSwitch: false,
@@ -88,7 +88,7 @@ const config: Config = {
     navbar: {
       logo: {
         href: "/",
-        alt: "Apache Cloudberry (Incubating)",
+        alt: "Cloudberry Database",
         src: "/img/cloudberrydb_color_black.svg",
         srcDark: "/img/cloudberrydb_color_white.svg",
       },
@@ -142,63 +142,15 @@ const config: Config = {
             },
           ],
         },
- 	      {
-          label: 'ASF',
-          position: 'right',
-          items: [
-            {
-              label: 'Foundation',
-              to: 'https://www.apache.org/'
-            },
-            {
-              label: 'License',
-              to: 'https://www.apache.org/licenses/'
-            },
-            {
-              label: 'Events',
-              to: 'https://www.apache.org/events/current-event.html'
-            },
-            {
-              label: 'Privacy',
-              to: 'https://privacy.apache.org/policies/privacy-policy-public.html'
-            },
-            {
-              label: 'Security',
-              to: 'https://github.com/apache/cloudberry/blob/main/SECURITY.md'
-            },
-            {
-              label: 'Sponsorship',
-              to: 'https://www.apache.org/foundation/sponsorship.html'
-            },
-            {
-              label: 'Thanks',
-              to: 'https://www.apache.org/foundation/thanks.html'
-            },
-            {
-              label: 'Code of Conduct',
-              to: 'https://www.apache.org/foundation/policies/conduct'
-            },
-          ]
-        },
       ],
     },
     footer: {
       logo: {
-        src: "/img/apache-incubator.svg",
-        srcDark: "/img/apache-incubator.svg",
-        href: "https://incubator.apache.org/",
-        alt: "Apache Incubator logo",
+        alt: "Cloudberry Database Logo",
+        src: "/img/cloudberrydb_color_white.svg",
+        srcDark: "/img/cloudberrydb_color_black.svg",
       },
-      copyright: `
-      <p>
-        Apache Cloudberry is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
-      </p>
-      <p>
-        Copyright © ${new Date().getFullYear()} The Apache Software Foundation, Licensed under the Apache License, Version 2.0.</p>
-      <p>
-        Apache®, the names of Apache projects, and the feather logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.
-      </p>
-      `,
+      copyright: `Copyright © ${new Date().getFullYear()} HashData Technology Limited.`,
       links: [
         {
           title: "Support",

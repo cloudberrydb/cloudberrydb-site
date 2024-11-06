@@ -3,7 +3,7 @@ title: Working with Git & GitHub
 description: Before starting, it's important to learn Git and GitHub to effectively contribute and communicate with other members.
 ---
 
-Apache Cloudberry (Incubating) is hosted on GitHub. We use GitHub Issues as the
+Cloudberry Database is hosted on GitHub. We use GitHub Issues as the
 bug report system, use GitHub Discussions for discussion and get
 feedback, and use Git as our version control system. Given these, it's
 important for community users and developers to learn how to work well
@@ -24,7 +24,7 @@ avatar, bio, social accounts, etc. to let other people know you.
 
 ### Step 2: Configure two-factor authentication
 
-This is required only for Apache Cloudberry organization members,
+This is required only for Cloudberry Database organization members,
 including committers, and PMC members. If you're an outside
 contributor, you can skip this step.
 
@@ -180,7 +180,7 @@ now. GitHub Discussions and GitHub Issues use the same label system.
 
 #Type
     type: Announcement - New Release, Events, Blog and more
-    type: Proposal - Proposals of major changes to Apache Cloudberry
+    type: Proposal - Proposals of major changes to Cloudberry Database
     type: Enhancement - New feature or request, ideas
     type: Question - Ask the community for help
     type: Documentation - Improvements or additions to documentation
@@ -208,9 +208,9 @@ If you add new labels, please follow the format `prefix-name: type`.
 
 We use GitHub Issues as a bug report system and work tracking, use
 GitHub Discussions for asking questions and answering, share ideas for
-new features, and share proposals for Apache Cloudberry.
+new features, and share proposals for Cloudberry Database.
 
-If you find problems and issues with code in Apache Cloudberry core,
+If you find problems and issues with code in Cloudberry Database core,
 welcome to report to [GitHub
 Issues](https://github.com/cloudberrydb/cloudberrydb/issues/new/choose).
 
@@ -223,7 +223,7 @@ directly.
 |------------------------------|------------------------------------------------------------------|
 | Announcements                | New Release, events, blog and more (*Only maintainers can post*) |
 | Ideas / Feature Requests     | Share ideas for new features                                     |
-| Proposal                     | Share proposals of major changes to Apache Cloudberry          |
+| Proposal                     | Share proposals of major changes to Cloudberry Database          |
 | Q&A                          | Ask the community for help                                       |
 
 :::note
@@ -234,7 +234,7 @@ to learn more.
 
 ## GitHub Projects
 
-Now, our project is only public to the Apache Cloudberry
+Now, our project is only public to the Cloudberry Database
 organization members. If you're a member, you can open
 https://github.com/orgs/cloudberrydb/projects/5. We list the fields
 for your reference.
@@ -299,7 +299,7 @@ for details.
 We often use some acronyms and abbreviations for the code review, and
 comments in our daily GitHub communications. We collect some popular
 words to help you leverage them as part of an effective code review
-process in the Apache Cloudberry community.
+process in the Cloudberry Database community.
 
 | ****    |                                 | ****  |                                         |
 |---------|---------------------------------|-------|-----------------------------------------|

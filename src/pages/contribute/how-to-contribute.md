@@ -3,13 +3,13 @@ title: How to Contribute
 description: Check the contribution guide for information on how to contribute, request assistance, and the benefits of contributing.
 ---
 
-Apache Cloudberry (Incubating) community welcomes contributions from anyone, new
+Cloudberry Database community welcomes contributions from anyone, new
 and experienced! We appreciate your interest in contributing. This
 guide will help you get started with the contribution.
 
 ## Code of Conduct
 
-Everyone who participates in Apache Cloudberry, either as a user or
+Everyone who participates in Cloudberry Database, either as a user or
 a contributor, is obliged to follow our community [Code of
 Conduct](../community/coc). Every violation against it will be
 reviewed and investigated and will result in a response that is deemed
@@ -28,7 +28,7 @@ include:
 
 ## Find a Way to Contribute
 
-There are many ways to contribute to Apache Cloudberry. Here are
+There are many ways to contribute to Cloudberry Database. Here are
 some ways you need to get started. The most common contributions
 include code, documentation, and community support.
 
@@ -53,10 +53,10 @@ You can participate by:
 - [Reporting security issues](../community/security).
 - Testing code, testing releases.
 - Creating educational content (Blog posts, tutorials, videos, etc.)
-- Spreading the word about Apache Cloudberry on social media(eg,
+- Spreading the word about Cloudberry Database on social media(eg,
   Twitter, LinkedIn).
 - ...
-- More things to make Apache Cloudberry better.
+- More things to make Cloudberry Database better.
 
 ## Getting Help
 
@@ -66,22 +66,22 @@ Discussions](https://github.com/cloudberrydb/cloudberrydb/discussions)
 when your contribution is blocked, especially when making your first
 contribution. Don't be shy, we're happy to help.
 
-As the next-generation unified database, Apache Cloudberry cannot
+As the next-generation unified database, Cloudberry Database cannot
 grow without the support from the community. Hope to make our mission
 with you!
 
 ## Benefits of Contribution
 
-There are many reasons to contribute to Apache Cloudberry and open
+There are many reasons to contribute to Cloudberry Database and open
 source projects in general. Here are some of the benefits of
 participating:
 
-- Growing your network. Working with Apache Cloudberry in open
+- Growing your network. Working with Cloudberry Database in open
   source can help connect you with people working on similar things. You
   can get help or give help, and you might even make a real-life
   acquaintance!
 
-- Improving your skills. When you work on a Apache Cloudberry issue
+- Improving your skills. When you work on a Cloudberry Database issue
   or Pull Request, inevitably you'll learn more about how something
   works in our project; either by asking questions and gathering info or
   by digging deeper into the code yourself. There’s a skill-building
@@ -103,4 +103,4 @@ participating:
   Database team offers as a way to say thank you.
 
 There are undoubtedly more benefits than those listed here. Hope you
-enjoy your contribution to the Apache Cloudberry community!
+enjoy your contribution to the Cloudberry Database community!

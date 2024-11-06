@@ -5,7 +5,7 @@ description: Learn the code conventions, contribution workflow, how to review co
 
 ## Code of Conduct
 
-Everyone who participates in Apache Cloudberry, either as a user or
+Everyone who participates in Cloudberry Database, either as a user or
 a contributor, is obliged to follow our [community Code of
 Conduct](../community/coc).
 
@@ -52,7 +52,7 @@ info@cloudberrydb.org.
 
 :::
 
-To avoid duplicating work, please review the [Apache Cloudberry
+To avoid duplicating work, please review the [Cloudberry Database
 Proposals](./proposal) or ask directly in our Slack before
 you start work on a non-trivial feature.
 
@@ -71,7 +71,7 @@ in the PostgreSQL codebase we can `try to make your patch consistent
 with nearby code`(See discussions in [PostgreSQL mailing
 list](https://www.postgresql.org/message-id/16342.1221133325%40sss.pgh.pa.us).)
 
-We can use existing configurations for Apache Cloudberry
+We can use existing configurations for Cloudberry Database
 development, such as
 [Vim](https://github.com/cloudberrydb/cloudberrydb/blob/main/src/tools/editors/vim.samples),
 [Emacs](https://github.com/cloudberrydb/cloudberrydb/blob/main/src/tools/editors/emacs.samples),
@@ -87,13 +87,13 @@ Guide](https://www.postgresql.org/docs/current/error-style-guide.html).
 ## Contribution workflow
 
 The following will describe how to submit your code contribution as
-`Pull Request` to Apache Cloudberry. If you still don't know well
+`Pull Request` to Cloudberry Database. If you still don't know well
 how to work with Git and GitHub, please read [our
 guide](./git) again.
 
-To contribute to Apache Cloudberry development:
+To contribute to Cloudberry Database development:
 
-1. Fork the [Apache Cloudberry
+1. Fork the [Cloudberry Database
 repo](https://github.com/cloudberrydb/cloudberrydb) to your own GitHub
 account.
 
@@ -140,7 +140,7 @@ refer to [Commit Conventions](./git#commit-conventions).
 
 8. Open a PR(Pull Request).
 
-    Go to the Apache Cloudberry repo on GitHub. There will be a message
+    Go to the Cloudberry Database repo on GitHub. There will be a message
     about your recently pushed branch, asking if you would like to open a
     pull request. Follow the prompts, compare across repositories, and
     submit the PR.
@@ -152,7 +152,7 @@ refer to [Commit Conventions](./git#commit-conventions).
 
 9. Get your code reviewed.
 
-    Apache Cloudberry maintainers and other contributors will review
+    Cloudberry Database maintainers and other contributors will review
     your PR. Please participate in the conversation, and try to make any
     requested changes. If you get no review comments within two weeks,
     feel free to ask for feedback by mentioning @cloudberry/dev team in
@@ -221,9 +221,9 @@ to use.
 Here are some questions to keep in mind during the code review
 process:
 
-- Do we want this in Apache Cloudberry? Is it likely to be used? Do
-  you, as a Apache Cloudberry user, like the change and intend to
-  use it? Is this change in the scope of Apache Cloudberry? Will the
+- Do we want this in Cloudberry Database? Is it likely to be used? Do
+  you, as a Cloudberry Database user, like the change and intend to
+  use it? Is this change in the scope of Cloudberry Database? Will the
   cost of maintaining a new feature be worth its benefits?
 - Is it too large to review? Does it need to split into multi PR?
 - If it's a proposal, does it have been accepted and start to code?
@@ -260,7 +260,7 @@ For acronyms and abbreviations used in the code review, you can read
 * Read the Code of Conduct.
 * Ensure you have signed the Contributor License Agreement (CLA),
   especially for your first-time contribution.
-* Check if your changes are consistent with the Apache Cloudberry
+* Check if your changes are consistent with the Cloudberry Database
   coding style.
 * Make sure your Pull Request has a clear title and commit message.
 * List your communication in the [GitHub
