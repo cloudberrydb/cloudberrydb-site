@@ -38,6 +38,7 @@ github:
     # enable rebase button:
     rebase: true
   protected_branches:
+    asf-site: {}
     main:
       required_status_checks:
         # strict means "Require branches to be up to date before merging".
